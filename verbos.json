@@ -1,15 +1,41 @@
 {
-  "version": 1,
+  "version": 2,
   "verbos": {
     "volere": {
       "traduccion": "querer",
-      "conjugaciones": {
-        "io": {"italiano": "voglio", "espanol": "yo quiero"},
-        "tu": {"italiano": "vuoi", "espanol": "tú quieres"},
-        "lui/lei": {"italiano": "vuole", "espanol": "él/ella quiere"},
-        "noi": {"italiano": "vogliamo", "espanol": "nosotros queremos"},
-        "voi": {"italiano": "volete", "espanol": "ustedes quieren"},
-        "loro": {"italiano": "vogliono", "espanol": "ellos quieren"}
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "voglio", "espanol": "yo quiero"},
+          "tu": {"italiano": "vuoi", "espanol": "tú quieres"},
+          "lui/lei": {"italiano": "vuole", "espanol": "él/ella quiere"},
+          "noi": {"italiano": "vogliamo", "espanol": "nosotros queremos"},
+          "voi": {"italiano": "volete", "espanol": "ustedes quieren"},
+          "loro": {"italiano": "vogliono", "espanol": "ellos quieren"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho voluto", "espanol": "yo quise"},
+          "tu": {"italiano": "hai voluto", "espanol": "tú quisiste"},
+          "lui/lei": {"italiano": "ha voluto", "espanol": "él/ella quiso"},
+          "noi": {"italiano": "abbiamo voluto", "espanol": "nosotros quisimos"},
+          "voi": {"italiano": "avete voluto", "espanol": "ustedes quisieron"},
+          "loro": {"italiano": "hanno voluto", "espanol": "ellos quisieron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "volevo", "espanol": "yo quería"},
+          "tu": {"italiano": "volevi", "espanol": "tú querías"},
+          "lui/lei": {"italiano": "voleva", "espanol": "él/ella quería"},
+          "noi": {"italiano": "volevamo", "espanol": "nosotros queríamos"},
+          "voi": {"italiano": "volevate", "espanol": "ustedes querían"},
+          "loro": {"italiano": "volevano", "espanol": "ellos querían"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "vorrò", "espanol": "yo querré"},
+          "tu": {"italiano": "vorrai", "espanol": "tú querrás"},
+          "lui/lei": {"italiano": "vorrà", "espanol": "él/ella querrá"},
+          "noi": {"italiano": "vorremo", "espanol": "nosotros querremos"},
+          "voi": {"italiano": "vorrete", "espanol": "ustedes querrán"},
+          "loro": {"italiano": "vorranno", "espanol": "ellos querrán"}
+        }
       }
     }
   }
