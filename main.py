@@ -80,7 +80,7 @@ class QuizVerbos(BoxLayout):
         # Pregunta
         self.label_pregunta = Label(
             text="",
-            font_size=sp(28),
+            font_size=sp(20),
             size_hint=(1, None),
             height=dp(130),
             color=(0.1, 0.1, 0.4, 1),
