@@ -19,9 +19,9 @@ source.include_exts = py,png,jpg,kv,atlas,json
 version = 1.0
 
 # (list) Requerimientos de Python que necesita la app.
-# urllib, json, threading, shutil, random y os son de la librería estándar,
-# no hace falta listarlos acá. Solo python3 y kivy.
-requirements = python3,kivy
+# json, threading, shutil, random y os son de la librería estándar,
+# no hace falta listarlos acá. requests se usa para bajar los verbos nuevos.
+requirements = python3,kivy,requests
 
 # (str) Orientación de la app: portrait, landscape, o all
 orientation = portrait
