@@ -438,9 +438,13 @@ class QuizVerbosApp(App):
                 Clock.schedule_once(lambda dt: self._aplicar_actualizacion(datos_remotos))
             else:
                 Clock.schedule_once(lambda dt: self._mostrar_estado("Ya tenés la última versión."))
+        except requests.exceptions.RequestException as e:
+            print("ERROR al chequear actualización:", repr(e))
+            mensaje = "Sin conexión a internet. Usando los verbos guardados."
+            Clock.schedule_once(lambda dt: self._mostrar_estado(mensaje))
         except Exception as e:
             print("ERROR al chequear actualización:", repr(e))
-            mensaje = f"Error al buscar actualización: {e}"
+            mensaje = "No se pudo comprobar si hay verbos nuevos."
             Clock.schedule_once(lambda dt: self._mostrar_estado(mensaje))
 
     def _aplicar_actualizacion(self, datos_remotos):
