@@ -146,7 +146,8 @@ class QuizVerbos(BoxLayout):
             size_hint=(1, None),
         )
         alto_tecla = dp(58)
-        contenedor.height = alto_tecla * len(FILAS_TECLADO) + dp(6) * (len(FILAS_TECLADO) - 1)
+        total_filas = len(FILAS_TECLADO) + 1  # +1 por la fila del espacio
+        contenedor.height = alto_tecla * total_filas + dp(6) * (total_filas - 1)
 
         for fila in FILAS_TECLADO:
             fila_layout = BoxLayout(
@@ -164,12 +165,24 @@ class QuizVerbos(BoxLayout):
                 fila_layout.add_widget(boton)
             contenedor.add_widget(fila_layout)
 
+        fila_espacio = BoxLayout(
+            orientation="horizontal",
+            size_hint=(1, None),
+            height=alto_tecla,
+        )
+        boton_espacio = Button(text="espacio", font_size=sp(18))
+        boton_espacio.bind(on_press=self._on_tecla)
+        fila_espacio.add_widget(boton_espacio)
+        contenedor.add_widget(fila_espacio)
+
         return contenedor
 
     def _on_tecla(self, instance):
         tecla = instance.text
         if tecla == "<--":
             self.texto_actual = self.texto_actual[:-1]
+        elif tecla == "espacio":
+            self.texto_actual += " "
         else:
             self.texto_actual += tecla
         self._actualizar_campo_texto()
@@ -207,6 +220,20 @@ class QuizVerbos(BoxLayout):
             # Ningún verbo tiene datos para los tiempos elegidos: se usa
             # cualquier tiempo disponible en vez de trabar el quiz.
             verbo, tiempo, persona = self._elegir_combo(TIEMPOS_DISPONIBLES)
+
+        if verbo is None:
+            # Ni siquiera hay un verbo con la estructura nueva ("tiempos"):
+            # datos viejos o corruptos. Se avisa en vez de romper la app.
+            self.label_pregunta.text = (
+                "No hay verbos con datos cargados.\n"
+                "Revisá verbos.json / data.json."
+            )
+            self.label_feedback.text = ""
+            self.texto_actual = ""
+            self._actualizar_campo_texto()
+            self.modo = "verificar"
+            self.boton_accion.text = "Verificar"
+            return
 
         datos = self.verbos[verbo]["tiempos"][tiempo][persona]
 
