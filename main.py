@@ -1,23 +1,11 @@
 import json
 import os
 import shutil
-import ssl
 import threading
 import traceback
 import random
 
-try:
-    import requests
-    HAY_REQUESTS = True
-except ImportError:
-    HAY_REQUESTS = False
-    import urllib.request
-    import urllib.error
-    try:
-        import certifi
-        CONTEXTO_SSL = ssl.create_default_context(cafile=certifi.where())
-    except ImportError:
-        CONTEXTO_SSL = ssl.create_default_context()
+import requests
 
 from kivy.app import App
 from kivy.uix.boxlayout import BoxLayout
@@ -433,16 +421,12 @@ class QuizVerbosApp(App):
             shutil.copy(RUTA_JSON_DEFAULT, self.ruta_local)
 
     def _verificar_actualizacion(self):
-        print("Chequeando actualización en:", URL_REMOTO, "| usando requests:", HAY_REQUESTS)
+        print("Chequeando actualización en:", URL_REMOTO)
         try:
-            if HAY_REQUESTS:
-                r = requests.get(URL_REMOTO, timeout=8)
-                print("Código de respuesta:", r.status_code)
-                r.raise_for_status()
-                datos_remotos = r.json()
-            else:
-                with urllib.request.urlopen(URL_REMOTO, timeout=8, context=CONTEXTO_SSL) as resp:
-                    datos_remotos = json.loads(resp.read().decode("utf-8"))
+            r = requests.get(URL_REMOTO, timeout=8)
+            print("Código de respuesta:", r.status_code)
+            r.raise_for_status()
+            datos_remotos = r.json()
             print("Conectado correctamente")
 
             version_remota = datos_remotos.get("version", 0)
