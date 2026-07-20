@@ -38,6 +38,15 @@ FILAS_TECLADO = [
     list("àèéìòù"),
 ]
 
+# Tiempos verbales que se pueden practicar
+TIEMPOS_DISPONIBLES = ["presente", "passato_prossimo", "imperfetto", "futuro_semplice"]
+ETIQUETAS_TIEMPO = {
+    "presente": "presente",
+    "passato_prossimo": "passato prossimo",
+    "imperfetto": "imperfetto",
+    "futuro_semplice": "futuro semplice",
+}
+
 
 class CampoTexto(Label):
     """Label que simula un campo de texto, con fondo blanco."""
@@ -57,10 +66,11 @@ class CampoTexto(Label):
 class QuizVerbos(BoxLayout):
     """Widget del quiz en sí. Recibe el diccionario de verbos a usar."""
 
-    def __init__(self, verbos, **kwargs):
+    def __init__(self, verbos, tiempos_seleccionados, **kwargs):
         super().__init__(orientation="vertical", padding=dp(20), spacing=dp(10), **kwargs)
 
         self.verbos = verbos
+        self.tiempos_seleccionados = tiempos_seleccionados
         self.puntaje = 0
         self.total = 0
         self.respuesta_correcta = ""
@@ -82,7 +92,7 @@ class QuizVerbos(BoxLayout):
             text="",
             font_size=sp(20),
             size_hint=(1, None),
-            height=dp(130),
+            height=dp(150),
             color=(0.1, 0.1, 0.4, 1),
             halign="center",
             valign="middle",
@@ -175,13 +185,34 @@ class QuizVerbos(BoxLayout):
     def _actualizar_text_size(self, instance, value):
         instance.text_size = (instance.width, instance.height)
 
+    def _elegir_combo(self, tiempos):
+        """Elige verbo, tiempo y persona al azar, entre los que tengan datos
+        cargados para alguno de los tiempos pedidos."""
+        verbos_validos = [
+            v for v, datos in self.verbos.items()
+            if any(t in datos.get("tiempos", {}) for t in tiempos)
+        ]
+        if not verbos_validos:
+            return None, None, None
+
+        verbo = random.choice(verbos_validos)
+        tiempos_verbo = [t for t in tiempos if t in self.verbos[verbo]["tiempos"]]
+        tiempo = random.choice(tiempos_verbo)
+        persona = random.choice(list(self.verbos[verbo]["tiempos"][tiempo].keys()))
+        return verbo, tiempo, persona
+
     def nueva_pregunta(self, *args):
-        verbo = random.choice(list(self.verbos.keys()))
-        persona = random.choice(list(self.verbos[verbo]["conjugaciones"].keys()))
-        datos = self.verbos[verbo]["conjugaciones"][persona]
+        verbo, tiempo, persona = self._elegir_combo(self.tiempos_seleccionados)
+        if verbo is None:
+            # Ningún verbo tiene datos para los tiempos elegidos: se usa
+            # cualquier tiempo disponible en vez de trabar el quiz.
+            verbo, tiempo, persona = self._elegir_combo(TIEMPOS_DISPONIBLES)
+
+        datos = self.verbos[verbo]["tiempos"][tiempo][persona]
 
         self.respuesta_correcta = datos["italiano"].lower()
-        self.label_pregunta.text = f"¿Cómo se dice\n'{datos['espanol']}'?"
+        etiqueta_tiempo = ETIQUETAS_TIEMPO.get(tiempo, tiempo)
+        self.label_pregunta.text = f"¿Cómo se dice\n'{datos['espanol']}'\n({etiqueta_tiempo})?"
         self.label_feedback.text = ""
         self.texto_actual = ""
         self._actualizar_campo_texto()
@@ -221,6 +252,7 @@ class PantallaSeleccion(Screen):
         self.todos_verbos = todos_verbos
         self.al_confirmar = al_confirmar
         self.checks = {}
+        self.checks_tiempos = {}
 
         self.layout = BoxLayout(orientation="vertical", padding=dp(20), spacing=dp(15))
 
@@ -228,7 +260,7 @@ class PantallaSeleccion(Screen):
             text="Elegí los verbos a practicar",
             font_size=sp(24),
             size_hint=(1, None),
-            height=dp(60),
+            height=dp(50),
             color=(0.1, 0.1, 0.4, 1),
         )
         self.layout.add_widget(self.titulo)
@@ -239,6 +271,22 @@ class PantallaSeleccion(Screen):
         self.scroll = ScrollView(size_hint=(1, 1))
         self.scroll.add_widget(self.lista)
         self.layout.add_widget(self.scroll)
+
+        self.titulo_tiempos = Label(
+            text="Elegí los tiempos",
+            font_size=sp(24),
+            size_hint=(1, None),
+            height=dp(50),
+            color=(0.1, 0.1, 0.4, 1),
+        )
+        self.layout.add_widget(self.titulo_tiempos)
+
+        self.lista_tiempos = BoxLayout(
+            orientation="vertical", spacing=dp(4), size_hint=(1, None)
+        )
+        self.lista_tiempos.bind(minimum_height=self.lista_tiempos.setter("height"))
+        self.layout.add_widget(self.lista_tiempos)
+        self._crear_checks_tiempos()
 
         self.boton_empezar = Button(
             text="Empezar",
@@ -282,17 +330,44 @@ class PantallaSeleccion(Screen):
             )
             self.lista.add_widget(fila)
 
+    def _crear_checks_tiempos(self):
+        self.lista_tiempos.clear_widgets()
+        self.checks_tiempos = {}
+
+        for tiempo in TIEMPOS_DISPONIBLES:
+            fila = BoxLayout(orientation="horizontal", size_hint=(1, None), height=dp(55))
+
+            chk = CheckBox(active=True, size_hint=(None, 1), width=dp(50))
+            self.checks_tiempos[tiempo] = chk
+            fila.add_widget(chk)
+
+            fila.add_widget(
+                Label(
+                    text=ETIQUETAS_TIEMPO[tiempo],
+                    font_size=sp(22),
+                    color=(0.1, 0.1, 0.1, 1),
+                    halign="left",
+                    valign="middle",
+                )
+            )
+            self.lista_tiempos.add_widget(fila)
+
     def _confirmar(self, *args):
         seleccionados = [v for v, chk in self.checks.items() if chk.active]
         if not seleccionados:
             seleccionados = list(self.todos_verbos.keys())
-        self.al_confirmar(seleccionados)
+
+        tiempos_seleccionados = [t for t, chk in self.checks_tiempos.items() if chk.active]
+        if not tiempos_seleccionados:
+            tiempos_seleccionados = list(TIEMPOS_DISPONIBLES)
+
+        self.al_confirmar(seleccionados, tiempos_seleccionados)
 
 
 class PantallaQuiz(Screen):
     """Pantalla con el botón de arriba, el estado de actualización, y el quiz debajo."""
 
-    def __init__(self, todos_verbos, ir_a_seleccion, **kwargs):
+    def __init__(self, todos_verbos, tiempos_seleccionados, ir_a_seleccion, **kwargs):
         super().__init__(**kwargs)
         self.todos_verbos = todos_verbos
         self.ir_a_seleccion = ir_a_seleccion
@@ -321,7 +396,7 @@ class PantallaQuiz(Screen):
         self.label_estado.bind(size=self._actualizar_text_size_estado)
         self.layout_raiz.add_widget(self.label_estado)
 
-        self.quiz = QuizVerbos(todos_verbos)
+        self.quiz = QuizVerbos(todos_verbos, tiempos_seleccionados)
         self.layout_raiz.add_widget(self.quiz)
 
         self.add_widget(self.layout_raiz)
@@ -329,9 +404,9 @@ class PantallaQuiz(Screen):
     def _actualizar_text_size_estado(self, instance, value):
         instance.text_size = (instance.width, instance.height)
 
-    def actualizar_verbos(self, verbos_filtrados):
+    def actualizar_seleccion(self, verbos_filtrados, tiempos_seleccionados):
         self.layout_raiz.remove_widget(self.quiz)
-        self.quiz = QuizVerbos(verbos_filtrados)
+        self.quiz = QuizVerbos(verbos_filtrados, tiempos_seleccionados)
         self.layout_raiz.add_widget(self.quiz)
 
 
@@ -393,6 +468,7 @@ class QuizVerbosApp(App):
 
         self.pantalla_quiz = PantallaQuiz(
             self.todos_verbos,
+            list(TIEMPOS_DISPONIBLES),
             ir_a_seleccion=self._ir_a_seleccion,
         )
         self.pantalla_seleccion = PantallaSeleccion(
@@ -464,9 +540,9 @@ class QuizVerbosApp(App):
     def _ir_a_seleccion(self):
         self.sm.current = "seleccion"
 
-    def _confirmar_seleccion(self, seleccionados):
-        filtrados = {v: self.todos_verbos[v] for v in seleccionados}
-        self.pantalla_quiz.actualizar_verbos(filtrados)
+    def _confirmar_seleccion(self, verbos_seleccionados, tiempos_seleccionados):
+        filtrados = {v: self.todos_verbos[v] for v in verbos_seleccionados}
+        self.pantalla_quiz.actualizar_seleccion(filtrados, tiempos_seleccionados)
         self.sm.current = "quiz"
 
 
