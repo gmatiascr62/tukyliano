@@ -1,0 +1,16 @@
+{
+  "version": 1,
+  "verbos": {
+    "volere": {
+      "traduccion": "querer",
+      "conjugaciones": {
+        "io": {"italiano": "voglio", "espanol": "yo quiero"},
+        "tu": {"italiano": "vuoi", "espanol": "tú quieres"},
+        "lui/lei": {"italiano": "vuole", "espanol": "él/ella quiere"},
+        "noi": {"italiano": "vogliamo", "espanol": "nosotros queremos"},
+        "voi": {"italiano": "volete", "espanol": "ustedes quieren"},
+        "loro": {"italiano": "vogliono", "espanol": "ellos quieren"}
+      }
+    }
+  }
+}
