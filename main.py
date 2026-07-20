@@ -333,13 +333,13 @@ class PantallaQuiz(Screen):
         self.label_estado.bind(size=self._actualizar_text_size_estado)
         self.layout_raiz.add_widget(self.label_estado)
 
-    def _actualizar_text_size_estado(self, instance, value):
-        instance.text_size = (instance.width, instance.height)
-
         self.quiz = QuizVerbos(todos_verbos)
         self.layout_raiz.add_widget(self.quiz)
 
         self.add_widget(self.layout_raiz)
+
+    def _actualizar_text_size_estado(self, instance, value):
+        instance.text_size = (instance.width, instance.height)
 
     def actualizar_verbos(self, verbos_filtrados):
         self.layout_raiz.remove_widget(self.quiz)
