@@ -113,12 +113,12 @@ class QuizVerbos(BoxLayout):
         self.campo_texto.bind(size=self._actualizar_text_size)
         self.add_widget(self.campo_texto)
 
-        # Feedback
+        # Feedback (sin altura fija: no ocupa espacio cuando está vacío)
         self.label_feedback = Label(
             text="",
             font_size=sp(22),
             size_hint=(1, None),
-            height=dp(60),
+            height=0,
         )
         self.add_widget(self.label_feedback)
 
@@ -228,7 +228,7 @@ class QuizVerbos(BoxLayout):
                 "No hay verbos con datos cargados.\n"
                 "Revisá verbos.json / data.json."
             )
-            self.label_feedback.text = ""
+            self._set_feedback("")
             self.texto_actual = ""
             self._actualizar_campo_texto()
             self.modo = "verificar"
@@ -240,11 +240,19 @@ class QuizVerbos(BoxLayout):
         self.respuesta_correcta = datos["italiano"].lower()
         etiqueta_tiempo = ETIQUETAS_TIEMPO.get(tiempo, tiempo)
         self.label_pregunta.text = f"¿Cómo se dice\n'{datos['espanol']}'\n({etiqueta_tiempo})?"
-        self.label_feedback.text = ""
+        self._set_feedback("")
         self.texto_actual = ""
         self._actualizar_campo_texto()
         self.modo = "verificar"
         self.boton_accion.text = "Verificar"
+
+    def _set_feedback(self, texto, color=None):
+        """Cambia el texto del feedback y su alto (0 si está vacío, para no
+        dejar un hueco fijo cuando todavía no se verificó nada)."""
+        self.label_feedback.text = texto
+        self.label_feedback.height = dp(45) if texto else 0
+        if color is not None:
+            self.label_feedback.color = color
 
     def accion_boton(self, *args):
         if self.modo == "verificar":
@@ -260,11 +268,9 @@ class QuizVerbos(BoxLayout):
         self.total += 1
         if respuesta == self.respuesta_correcta:
             self.puntaje += 1
-            self.label_feedback.text = "¡Correcto!"
-            self.label_feedback.color = (0.1, 0.6, 0.1, 1)
+            self._set_feedback("¡Correcto!", color=(0.1, 0.6, 0.1, 1))
         else:
-            self.label_feedback.text = f"Incorrecto. Era: {self.respuesta_correcta}"
-            self.label_feedback.color = (0.7, 0.1, 0.1, 1)
+            self._set_feedback(f"Incorrecto. Era: {self.respuesta_correcta}", color=(0.7, 0.1, 0.1, 1))
 
         self.label_puntaje.text = f"Puntaje: {self.puntaje}/{self.total}"
         self.modo = "siguiente"
@@ -394,34 +400,36 @@ class PantallaSeleccion(Screen):
 class PantallaQuiz(Screen):
     """Pantalla con el botón de arriba, el estado de actualización, y el quiz debajo."""
 
-    def __init__(self, todos_verbos, tiempos_seleccionados, ir_a_seleccion, **kwargs):
+    def __init__(self, todos_verbos, tiempos_seleccionados, version_actual, ir_a_seleccion, **kwargs):
         super().__init__(**kwargs)
         self.todos_verbos = todos_verbos
         self.ir_a_seleccion = ir_a_seleccion
 
         self.layout_raiz = BoxLayout(orientation="vertical")
 
-        boton_top = Button(
-            text="Seleccionar verbos",
+        self.boton_top = Button(
+            text=f"Seleccionar verbos (versión {version_actual})",
             font_size=sp(18),
             size_hint=(1, None),
             height=dp(50),
         )
-        boton_top.bind(on_press=lambda *a: self.ir_a_seleccion())
-        self.layout_raiz.add_widget(boton_top)
+        self.boton_top.bind(on_press=lambda *a: self.ir_a_seleccion())
+        self.layout_raiz.add_widget(self.boton_top)
 
-        # Estado de la actualización (verificando / actualizado / sin conexión)
+        # Estado de la actualización (buscando / sin conexión / error)
         self.label_estado = Label(
             text="",
             font_size=sp(13),
             size_hint=(1, None),
-            height=dp(60),
+            height=dp(30),
             color=(0.4, 0.4, 0.4, 1),
             halign="center",
             valign="middle",
         )
         self.label_estado.bind(size=self._actualizar_text_size_estado)
         self.layout_raiz.add_widget(self.label_estado)
+
+        self.layout_raiz.add_widget(Widget(size_hint=(1, None), height=dp(15)))
 
         self.quiz = QuizVerbos(todos_verbos, tiempos_seleccionados)
         self.layout_raiz.add_widget(self.quiz)
@@ -430,6 +438,9 @@ class PantallaQuiz(Screen):
 
     def _actualizar_text_size_estado(self, instance, value):
         instance.text_size = (instance.width, instance.height)
+
+    def actualizar_version_boton(self, version):
+        self.boton_top.text = f"Seleccionar verbos (versión {version})"
 
     def actualizar_seleccion(self, verbos_filtrados, tiempos_seleccionados):
         self.layout_raiz.remove_widget(self.quiz)
@@ -496,6 +507,7 @@ class QuizVerbosApp(App):
         self.pantalla_quiz = PantallaQuiz(
             self.todos_verbos,
             list(TIEMPOS_DISPONIBLES),
+            self.version_actual,
             ir_a_seleccion=self._ir_a_seleccion,
         )
         self.pantalla_seleccion = PantallaSeleccion(
@@ -555,7 +567,8 @@ class QuizVerbosApp(App):
             self.todos_verbos = datos_remotos.get("verbos", {})
             self.version_actual = datos_remotos.get("version", self.version_actual)
             self.pantalla_seleccion.actualizar_lista(self.todos_verbos)
-            self._mostrar_estado(f"¡Verbos actualizados! (versión {self.version_actual})")
+            self.pantalla_quiz.actualizar_version_boton(self.version_actual)
+            self._mostrar_estado("")
         except Exception as e:
             print("ERROR al aplicar actualización:", repr(e))
             self._mostrar_estado(f"Error al aplicar actualización: {e}")
