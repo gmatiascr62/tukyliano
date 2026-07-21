@@ -67,7 +67,7 @@ class QuizVerbos(BoxLayout):
     """Widget del quiz en sí. Recibe el diccionario de verbos a usar."""
 
     def __init__(self, verbos, tiempos_seleccionados, **kwargs):
-        super().__init__(orientation="vertical", padding=dp(20), spacing=dp(10), **kwargs)
+        super().__init__(orientation="vertical", padding=dp(14), spacing=dp(8), **kwargs)
 
         self.verbos = verbos
         self.tiempos_seleccionados = tiempos_seleccionados
@@ -92,7 +92,7 @@ class QuizVerbos(BoxLayout):
             text="",
             font_size=sp(16),
             size_hint=(1, None),
-            height=dp(150),
+            height=dp(130),
             color=(0.1, 0.1, 0.4, 1),
             halign="center",
             valign="middle",
@@ -113,12 +113,13 @@ class QuizVerbos(BoxLayout):
         self.campo_texto.bind(size=self._actualizar_text_size)
         self.add_widget(self.campo_texto)
 
-        # Feedback (sin altura fija: no ocupa espacio cuando está vacío)
+        # Feedback: alto fijo (nunca cambia) para que no se recalcule el
+        # layout de toda la pantalla cada vez que aparece el texto.
         self.label_feedback = Label(
             text="",
             font_size=sp(20),
             size_hint=(1, None),
-            height=0,
+            height=dp(36),
         )
         self.add_widget(self.label_feedback)
 
@@ -145,7 +146,7 @@ class QuizVerbos(BoxLayout):
             spacing=dp(6),
             size_hint=(1, None),
         )
-        alto_tecla = dp(58)
+        alto_tecla = dp(52)
         total_filas = len(FILAS_TECLADO) + 1  # +1 por la fila del espacio
         contenedor.height = alto_tecla * total_filas + dp(6) * (total_filas - 1)
 
@@ -247,10 +248,9 @@ class QuizVerbos(BoxLayout):
         self.boton_accion.text = "Verificar"
 
     def _set_feedback(self, texto, color=None):
-        """Cambia el texto del feedback y su alto (0 si está vacío, para no
-        dejar un hueco fijo cuando todavía no se verificó nada)."""
+        """Cambia el texto del feedback. El alto queda fijo siempre (ver
+        __init__), para que no se recalcule el layout de la pantalla."""
         self.label_feedback.text = texto
-        self.label_feedback.height = dp(45) if texto else 0
         if color is not None:
             self.label_feedback.color = color
 
@@ -429,7 +429,7 @@ class PantallaQuiz(Screen):
         self.label_estado.bind(size=self._actualizar_text_size_estado)
         self.layout_raiz.add_widget(self.label_estado)
 
-        self.layout_raiz.add_widget(Widget(size_hint=(1, None), height=dp(15)))
+        self.layout_raiz.add_widget(Widget(size_hint=(1, None), height=dp(25)))
 
         self.quiz = QuizVerbos(todos_verbos, tiempos_seleccionados)
         self.layout_raiz.add_widget(self.quiz)
