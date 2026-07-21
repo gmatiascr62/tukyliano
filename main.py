@@ -80,7 +80,7 @@ class QuizVerbos(BoxLayout):
         # Puntaje
         self.label_puntaje = Label(
             text="Puntaje: 0/0",
-            font_size=sp(20),
+            font_size=sp(16),
             size_hint=(1, None),
             height=dp(40),
             color=(0.2, 0.2, 0.2, 1),
@@ -90,7 +90,7 @@ class QuizVerbos(BoxLayout):
         # Pregunta
         self.label_pregunta = Label(
             text="",
-            font_size=sp(20),
+            font_size=sp(16),
             size_hint=(1, None),
             height=dp(150),
             color=(0.1, 0.1, 0.4, 1),
@@ -103,7 +103,7 @@ class QuizVerbos(BoxLayout):
         # Campo de texto (Label que actúa como input)
         self.campo_texto = CampoTexto(
             text=PLACEHOLDER,
-            font_size=sp(26),
+            font_size=sp(22),
             size_hint=(1, None),
             height=dp(60),
             color=(0.5, 0.5, 0.5, 1),
@@ -116,7 +116,7 @@ class QuizVerbos(BoxLayout):
         # Feedback (sin altura fija: no ocupa espacio cuando está vacío)
         self.label_feedback = Label(
             text="",
-            font_size=sp(22),
+            font_size=sp(20),
             size_hint=(1, None),
             height=0,
         )
