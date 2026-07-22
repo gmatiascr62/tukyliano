@@ -239,8 +239,7 @@ class QuizVerbos(BoxLayout):
         datos = self.verbos[verbo]["tiempos"][tiempo][persona]
 
         self.respuesta_correcta = datos["italiano"].lower()
-        etiqueta_tiempo = ETIQUETAS_TIEMPO.get(tiempo, tiempo)
-        self.label_pregunta.text = f"¿Cómo se dice\n'{datos['espanol']}'\n({etiqueta_tiempo})?"
+        self.label_pregunta.text = f"¿Cómo se dice\n'{datos['espanol']}'?"
         self._set_feedback("")
         self.texto_actual = ""
         self._actualizar_campo_texto()
