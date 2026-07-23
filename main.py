@@ -14,6 +14,7 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.scrollview import ScrollView
+from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 from kivy.core.window import Window
 from kivy.metrics import dp, sp
@@ -47,23 +48,31 @@ ETIQUETAS_TIEMPO = {
     "futuro_semplice": "futuro semplice",
 }
 
-# IA que genera y corrige las frases de la pantalla "Frases" (Gemini, gratis)
-GEMINI_API_KEY = "AIzaSyAO4M0zNovutM4gZlhATALL5Pmm2h-2h5k"
+# IA que genera y corrige las frases de la pantalla "Frases" (Gemini, gratis).
+# La clave NUNCA se guarda en el código: la pide la app y la guarda en el
+# celular la primera vez que se usa "Frases" (ver PantallaClaveIA).
 GEMINI_MODEL = "gemini-2.5-flash"
 URL_GEMINI = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+URL_GEMINI_API_KEY = "https://aistudio.google.com/apikey"
 
 
-def preguntar_gemini(prompt):
+class ClaveInvalidaError(Exception):
+    """La clave de Gemini no existe, es inválida o fue revocada."""
+
+
+def preguntar_gemini(prompt, api_key):
     """Manda un prompt a Gemini y devuelve el texto de la respuesta."""
     r = requests.post(
         URL_GEMINI,
-        params={"key": GEMINI_API_KEY},
+        params={"key": api_key},
         json={
             "contents": [{"parts": [{"text": prompt}]}],
             "generationConfig": {"thinkingConfig": {"thinkingBudget": 0}},
         },
         timeout=20,
     )
+    if r.status_code in (400, 403):
+        raise ClaveInvalidaError(r.text)
     r.raise_for_status()
     datos = r.json()
     return datos["candidates"][0]["content"]["parts"][0]["text"]
@@ -78,7 +87,7 @@ def extraer_json(texto):
     return json.loads(texto[inicio:fin + 1])
 
 
-def generar_frase(verbo, traduccion, tiempo, persona):
+def generar_frase(verbo, traduccion, tiempo, persona, api_key):
     """Le pide a Gemini una oración corta en español que se traduzca al
     italiano usando el verbo/tiempo/persona dados. Devuelve (espanol, italiano)."""
     etiqueta_tiempo = ETIQUETAS_TIEMPO.get(tiempo, tiempo)
@@ -86,14 +95,15 @@ def generar_frase(verbo, traduccion, tiempo, persona):
         f"Generá una oración MUY CORTA en español (máximo 6 palabras), natural, "
         f"que se traduzca al italiano usando el verbo '{verbo}' ({traduccion}) "
         f"conjugado en {etiqueta_tiempo}, persona '{persona}'. "
+        f"Usá español de Latinoamérica: 'ustedes', nunca 'vosotros'. "
         f'Respondé SOLO un JSON válido, sin markdown, con este formato exacto: '
         f'{{"espanol": "...", "italiano": "..."}}'
     )
-    datos = extraer_json(preguntar_gemini(prompt))
+    datos = extraer_json(preguntar_gemini(prompt, api_key))
     return datos["espanol"], datos["italiano"]
 
 
-def verificar_frase(frase_es, italiano_referencia, respuesta_usuario):
+def verificar_frase(frase_es, italiano_referencia, respuesta_usuario, api_key):
     """Le pregunta a Gemini si la traducción del usuario es válida (acepta
     variantes correctas, no exige que sea idéntica a la referencia)."""
     prompt = (
@@ -104,7 +114,7 @@ def verificar_frase(frase_es, italiano_referencia, respuesta_usuario):
         f"no tiene que ser idéntica a la referencia, pero ojo con errores de "
         f"tipeo)? Respondé SOLO la palabra CORRECTO o INCORRECTO."
     )
-    texto = preguntar_gemini(prompt).strip().upper()
+    texto = preguntar_gemini(prompt, api_key).strip().upper()
     return texto.startswith("CORRECTO")
 
 
@@ -552,9 +562,11 @@ class PantallaFrases(Screen):
     """Pantalla para practicar frases sueltas: una IA (Gemini) genera una
     oración corta en español y corrige la traducción al italiano."""
 
-    def __init__(self, ir_a_seleccion, ir_a_articoli, ir_a_frases, **kwargs):
+    def __init__(self, ir_a_seleccion, ir_a_articoli, ir_a_frases, obtener_clave, clave_invalida, **kwargs):
         super().__init__(**kwargs)
 
+        self.obtener_clave = obtener_clave
+        self.clave_invalida = clave_invalida
         self.verbos = {}
         self.tiempos_seleccionados = []
         self.frase_es = ""
@@ -649,6 +661,11 @@ class PantallaFrases(Screen):
         threading.Thread(target=self._generar_frase_bg, daemon=True).start()
 
     def _generar_frase_bg(self):
+        api_key = self.obtener_clave()
+        if not api_key:
+            Clock.schedule_once(lambda dt: self.clave_invalida())
+            return
+
         verbo, tiempo, persona = elegir_combo_azar(self.verbos, self.tiempos_seleccionados)
         if verbo is None:
             verbo, tiempo, persona = elegir_combo_azar(self.verbos, TIEMPOS_DISPONIBLES)
@@ -660,8 +677,10 @@ class PantallaFrases(Screen):
 
         traduccion = self.verbos[verbo].get("traduccion", verbo)
         try:
-            frase_es, italiano = generar_frase(verbo, traduccion, tiempo, persona)
+            frase_es, italiano = generar_frase(verbo, traduccion, tiempo, persona, api_key)
             Clock.schedule_once(lambda dt: self._frase_generada(frase_es, italiano))
+        except ClaveInvalidaError:
+            Clock.schedule_once(lambda dt: self.clave_invalida())
         except Exception as e:
             print("ERROR al generar frase:", repr(e))
             Clock.schedule_once(
@@ -693,9 +712,16 @@ class PantallaFrases(Screen):
         threading.Thread(target=self._verificar_bg, args=(respuesta,), daemon=True).start()
 
     def _verificar_bg(self, respuesta):
+        api_key = self.obtener_clave()
+        if not api_key:
+            Clock.schedule_once(lambda dt: self.clave_invalida())
+            return
+
         try:
-            correcto = verificar_frase(self.frase_es, self.italiano_referencia, respuesta)
+            correcto = verificar_frase(self.frase_es, self.italiano_referencia, respuesta, api_key)
             Clock.schedule_once(lambda dt: self._mostrar_resultado(correcto))
+        except ClaveInvalidaError:
+            Clock.schedule_once(lambda dt: self.clave_invalida())
         except Exception as e:
             print("ERROR al verificar frase:", repr(e))
             Clock.schedule_once(lambda dt: self._mostrar_error_verificacion())
@@ -712,6 +738,88 @@ class PantallaFrases(Screen):
     def _mostrar_error_verificacion(self):
         self._set_feedback("No se pudo verificar. Probá de nuevo.", color=(0.7, 0.1, 0.1, 1))
         self.boton_accion.disabled = False
+
+
+class PantallaClaveIA(Screen):
+    """Pide la clave de la API de Gemini la primera vez (o si la guardada
+    dejó de funcionar) y la guarda en el celular. Nunca queda en el código."""
+
+    def __init__(self, on_guardar, **kwargs):
+        super().__init__(**kwargs)
+        self.on_guardar = on_guardar
+
+        layout = BoxLayout(orientation="vertical", padding=dp(20), spacing=dp(15))
+
+        titulo = Label(
+            text="Necesitás una clave gratis de la IA (Gemini)",
+            font_size=sp(20),
+            size_hint=(1, None),
+            height=dp(80),
+            color=(0.1, 0.1, 0.4, 1),
+            halign="center",
+            valign="middle",
+        )
+        titulo.bind(size=lambda inst, val: setattr(inst, "text_size", (val[0], None)))
+        layout.add_widget(titulo)
+
+        instrucciones = Label(
+            text=(
+                f"1. Andá a {URL_GEMINI_API_KEY}\n"
+                "2. Iniciá sesión con Google y creá una clave (gratis)\n"
+                "3. Copiala y pegala acá abajo"
+            ),
+            font_size=sp(15),
+            size_hint=(1, None),
+            height=dp(110),
+            color=(0.3, 0.3, 0.3, 1),
+            halign="center",
+            valign="middle",
+        )
+        instrucciones.bind(size=lambda inst, val: setattr(inst, "text_size", (val[0], None)))
+        layout.add_widget(instrucciones)
+
+        self.input_clave = TextInput(
+            hint_text="Pegá tu clave acá (empieza con AIza...)",
+            font_size=sp(16),
+            size_hint=(1, None),
+            height=dp(60),
+            multiline=False,
+        )
+        layout.add_widget(self.input_clave)
+
+        self.label_error = Label(
+            text="",
+            font_size=sp(14),
+            size_hint=(1, None),
+            height=dp(30),
+            color=(0.7, 0.1, 0.1, 1),
+        )
+        layout.add_widget(self.label_error)
+
+        boton_guardar = Button(
+            text="Guardar",
+            font_size=sp(20),
+            size_hint=(1, None),
+            height=dp(60),
+        )
+        boton_guardar.bind(on_press=self._guardar)
+        layout.add_widget(boton_guardar)
+
+        layout.add_widget(Widget())
+
+        self.add_widget(layout)
+
+    def mostrar_error(self, mensaje):
+        self.label_error.text = mensaje
+
+    def _guardar(self, *args):
+        clave = self.input_clave.text.strip()
+        if not clave:
+            self.label_error.text = "Pegá una clave antes de guardar."
+            return
+        self.label_error.text = ""
+        self.input_clave.text = ""
+        self.on_guardar(clave)
 
 
 class QuizVerbosApp(App):
@@ -760,6 +868,7 @@ class QuizVerbosApp(App):
         # Ruta de datos propia de la app (escribible en Android, a diferencia
         # de la carpeta donde vive el script, que es de solo lectura ahí)
         self.ruta_local = os.path.join(self.user_data_dir, "verbos_local.json")
+        self.ruta_gemini_key = os.path.join(self.user_data_dir, "gemini_key.txt")
         self._asegurar_datos_locales()
 
         with open(self.ruta_local, "r", encoding="utf-8") as f:
@@ -790,19 +899,24 @@ class QuizVerbosApp(App):
             ir_a_seleccion=self._ir_a_seleccion,
             ir_a_articoli=self._ir_a_articoli,
             ir_a_frases=self._ir_a_frases,
+            obtener_clave=self._cargar_clave_gemini,
+            clave_invalida=self._clave_gemini_invalida,
         )
+        self.pantalla_clave_ia = PantallaClaveIA(on_guardar=self._guardar_clave_y_continuar)
 
         self.sm.add_widget(self.pantalla_quiz)
         self.sm.add_widget(self.pantalla_seleccion)
         self.sm.add_widget(self.pantalla_seleccion_frases)
         self.sm.add_widget(self.pantalla_articoli)
         self.sm.add_widget(self.pantalla_frases)
+        self.sm.add_widget(self.pantalla_clave_ia)
 
         self.pantalla_quiz.name = "quiz"
         self.pantalla_seleccion.name = "seleccion"
         self.pantalla_seleccion_frases.name = "seleccion_frases"
         self.pantalla_articoli.name = "articoli"
         self.pantalla_frases.name = "frases"
+        self.pantalla_clave_ia.name = "clave_ia"
 
         self.sm.current = "quiz"
 
@@ -817,6 +931,34 @@ class QuizVerbosApp(App):
         carpeta de datos propia de la app (ahí sí se puede sobreescribir)."""
         if not os.path.exists(self.ruta_local):
             shutil.copy(RUTA_JSON_DEFAULT, self.ruta_local)
+
+    def _cargar_clave_gemini(self):
+        """Devuelve la clave de Gemini guardada en el celular, o None si
+        todavía no se cargó ninguna."""
+        if os.path.exists(self.ruta_gemini_key):
+            with open(self.ruta_gemini_key, "r", encoding="utf-8") as f:
+                clave = f.read().strip()
+                if clave:
+                    return clave
+        return None
+
+    def _guardar_clave_gemini(self, clave):
+        with open(self.ruta_gemini_key, "w", encoding="utf-8") as f:
+            f.write(clave.strip())
+
+    def _guardar_clave_y_continuar(self, clave):
+        self._guardar_clave_gemini(clave)
+        self.sm.current = "seleccion_frases"
+
+    def _clave_gemini_invalida(self):
+        """Se llama cuando Gemini rechaza la clave guardada (inválida o
+        revocada): la borra y vuelve a pedirla."""
+        if os.path.exists(self.ruta_gemini_key):
+            os.remove(self.ruta_gemini_key)
+        self.pantalla_clave_ia.mostrar_error(
+            "La clave guardada ya no funciona (¿fue revocada?). Pegá una nueva."
+        )
+        self.sm.current = "clave_ia"
 
     def _verificar_actualizacion(self):
         print("Chequeando actualización en:", URL_REMOTO)
@@ -867,7 +1009,10 @@ class QuizVerbosApp(App):
         self.sm.current = "articoli"
 
     def _ir_a_frases(self):
-        self.sm.current = "seleccion_frases"
+        if self._cargar_clave_gemini():
+            self.sm.current = "seleccion_frases"
+        else:
+            self.sm.current = "clave_ia"
 
     def _ir_a_quiz(self):
         self.sm.current = "quiz"
