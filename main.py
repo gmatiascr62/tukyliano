@@ -399,21 +399,34 @@ class PantallaSeleccion(Screen):
 class PantallaQuiz(Screen):
     """Pantalla con el botón de arriba, el estado de actualización, y el quiz debajo."""
 
-    def __init__(self, todos_verbos, tiempos_seleccionados, version_actual, ir_a_seleccion, **kwargs):
+    def __init__(self, todos_verbos, tiempos_seleccionados, ir_a_seleccion, ir_a_articoli, ir_a_frases, **kwargs):
         super().__init__(**kwargs)
         self.todos_verbos = todos_verbos
         self.ir_a_seleccion = ir_a_seleccion
+        self.ir_a_articoli = ir_a_articoli
+        self.ir_a_frases = ir_a_frases
 
         self.layout_raiz = BoxLayout(orientation="vertical")
 
-        self.boton_top = Button(
-            text=f"Seleccionar verbos (versión {version_actual})",
-            font_size=sp(18),
+        self.fila_botones_top = BoxLayout(
+            orientation="horizontal",
             size_hint=(1, None),
             height=dp(50),
         )
-        self.boton_top.bind(on_press=lambda *a: self.ir_a_seleccion())
-        self.layout_raiz.add_widget(self.boton_top)
+
+        boton_articoli = Button(text="Articoli", font_size=sp(16))
+        boton_articoli.bind(on_press=lambda *a: self.ir_a_articoli())
+        self.fila_botones_top.add_widget(boton_articoli)
+
+        boton_frases = Button(text="Frases", font_size=sp(16))
+        boton_frases.bind(on_press=lambda *a: self.ir_a_frases())
+        self.fila_botones_top.add_widget(boton_frases)
+
+        boton_verbos = Button(text="Verbos", font_size=sp(16))
+        boton_verbos.bind(on_press=lambda *a: self.ir_a_seleccion())
+        self.fila_botones_top.add_widget(boton_verbos)
+
+        self.layout_raiz.add_widget(self.fila_botones_top)
 
         # Estado de la actualización (buscando / sin conexión / error)
         self.label_estado = Label(
@@ -438,13 +451,32 @@ class PantallaQuiz(Screen):
     def _actualizar_text_size_estado(self, instance, value):
         instance.text_size = (instance.width, instance.height)
 
-    def actualizar_version_boton(self, version):
-        self.boton_top.text = f"Seleccionar verbos (versión {version})"
-
     def actualizar_seleccion(self, verbos_filtrados, tiempos_seleccionados):
         self.layout_raiz.remove_widget(self.quiz)
         self.quiz = QuizVerbos(verbos_filtrados, tiempos_seleccionados)
         self.layout_raiz.add_widget(self.quiz)
+
+
+class PantallaEnBlanco(Screen):
+    """Pantalla vacía, placeholder para funciones futuras (articoli, frases)."""
+
+    def __init__(self, volver, **kwargs):
+        super().__init__(**kwargs)
+
+        layout = BoxLayout(orientation="vertical", padding=dp(20), spacing=dp(15))
+
+        boton_volver = Button(
+            text="Volver",
+            font_size=sp(18),
+            size_hint=(1, None),
+            height=dp(50),
+        )
+        boton_volver.bind(on_press=lambda *a: volver())
+        layout.add_widget(boton_volver)
+
+        layout.add_widget(Widget())
+
+        self.add_widget(layout)
 
 
 class QuizVerbosApp(App):
@@ -506,19 +538,26 @@ class QuizVerbosApp(App):
         self.pantalla_quiz = PantallaQuiz(
             self.todos_verbos,
             list(TIEMPOS_DISPONIBLES),
-            self.version_actual,
             ir_a_seleccion=self._ir_a_seleccion,
+            ir_a_articoli=self._ir_a_articoli,
+            ir_a_frases=self._ir_a_frases,
         )
         self.pantalla_seleccion = PantallaSeleccion(
             self.todos_verbos,
             al_confirmar=self._confirmar_seleccion,
         )
+        self.pantalla_articoli = PantallaEnBlanco(volver=self._ir_a_quiz)
+        self.pantalla_frases = PantallaEnBlanco(volver=self._ir_a_quiz)
 
         self.sm.add_widget(self.pantalla_quiz)
         self.sm.add_widget(self.pantalla_seleccion)
+        self.sm.add_widget(self.pantalla_articoli)
+        self.sm.add_widget(self.pantalla_frases)
 
         self.pantalla_quiz.name = "quiz"
         self.pantalla_seleccion.name = "seleccion"
+        self.pantalla_articoli.name = "articoli"
+        self.pantalla_frases.name = "frases"
 
         self.sm.current = "quiz"
 
@@ -566,7 +605,6 @@ class QuizVerbosApp(App):
             self.todos_verbos = datos_remotos.get("verbos", {})
             self.version_actual = datos_remotos.get("version", self.version_actual)
             self.pantalla_seleccion.actualizar_lista(self.todos_verbos)
-            self.pantalla_quiz.actualizar_version_boton(self.version_actual)
             self._mostrar_estado("")
         except Exception as e:
             print("ERROR al aplicar actualización:", repr(e))
@@ -578,6 +616,15 @@ class QuizVerbosApp(App):
 
     def _ir_a_seleccion(self):
         self.sm.current = "seleccion"
+
+    def _ir_a_articoli(self):
+        self.sm.current = "articoli"
+
+    def _ir_a_frases(self):
+        self.sm.current = "frases"
+
+    def _ir_a_quiz(self):
+        self.sm.current = "quiz"
 
     def _confirmar_seleccion(self, verbos_seleccionados, tiempos_seleccionados):
         filtrados = {v: self.todos_verbos[v] for v in verbos_seleccionados}
