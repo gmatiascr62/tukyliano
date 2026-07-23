@@ -47,6 +47,154 @@ ETIQUETAS_TIEMPO = {
     "futuro_semplice": "futuro semplice",
 }
 
+# IA que genera y corrige las frases de la pantalla "Frases" (Gemini, gratis)
+GEMINI_API_KEY = "AIzaSyAO4M0zNovutM4gZlhATALL5Pmm2h-2h5k"
+GEMINI_MODEL = "gemini-2.5-flash"
+URL_GEMINI = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
+
+
+def preguntar_gemini(prompt):
+    """Manda un prompt a Gemini y devuelve el texto de la respuesta."""
+    r = requests.post(
+        URL_GEMINI,
+        params={"key": GEMINI_API_KEY},
+        json={
+            "contents": [{"parts": [{"text": prompt}]}],
+            "generationConfig": {"thinkingConfig": {"thinkingBudget": 0}},
+        },
+        timeout=20,
+    )
+    r.raise_for_status()
+    datos = r.json()
+    return datos["candidates"][0]["content"]["parts"][0]["text"]
+
+
+def extraer_json(texto):
+    """Gemini a veces envuelve el JSON en ```json ... ``` u otro texto alrededor."""
+    inicio = texto.find("{")
+    fin = texto.rfind("}")
+    if inicio == -1 or fin == -1:
+        raise ValueError(f"No se encontró JSON en la respuesta: {texto!r}")
+    return json.loads(texto[inicio:fin + 1])
+
+
+def generar_frase(verbo, traduccion, tiempo, persona):
+    """Le pide a Gemini una oración corta en español que se traduzca al
+    italiano usando el verbo/tiempo/persona dados. Devuelve (espanol, italiano)."""
+    etiqueta_tiempo = ETIQUETAS_TIEMPO.get(tiempo, tiempo)
+    prompt = (
+        f"Generá una oración MUY CORTA en español (máximo 6 palabras), natural, "
+        f"que se traduzca al italiano usando el verbo '{verbo}' ({traduccion}) "
+        f"conjugado en {etiqueta_tiempo}, persona '{persona}'. "
+        f'Respondé SOLO un JSON válido, sin markdown, con este formato exacto: '
+        f'{{"espanol": "...", "italiano": "..."}}'
+    )
+    datos = extraer_json(preguntar_gemini(prompt))
+    return datos["espanol"], datos["italiano"]
+
+
+def verificar_frase(frase_es, italiano_referencia, respuesta_usuario):
+    """Le pregunta a Gemini si la traducción del usuario es válida (acepta
+    variantes correctas, no exige que sea idéntica a la referencia)."""
+    prompt = (
+        f'Frase en español: "{frase_es}"\n'
+        f'Traducción de referencia al italiano: "{italiano_referencia}"\n'
+        f'Respuesta del alumno: "{respuesta_usuario}"\n\n'
+        f"¿Es una traducción correcta al italiano (aceptando variantes válidas, "
+        f"no tiene que ser idéntica a la referencia, pero ojo con errores de "
+        f"tipeo)? Respondé SOLO la palabra CORRECTO o INCORRECTO."
+    )
+    texto = preguntar_gemini(prompt).strip().upper()
+    return texto.startswith("CORRECTO")
+
+
+def elegir_combo_azar(verbos, tiempos):
+    """Elige verbo, tiempo y persona al azar, entre los que tengan datos
+    cargados para alguno de los tiempos pedidos."""
+    verbos_validos = [
+        v for v, datos in verbos.items()
+        if any(t in datos.get("tiempos", {}) for t in tiempos)
+    ]
+    if not verbos_validos:
+        return None, None, None
+
+    verbo = random.choice(verbos_validos)
+    tiempos_verbo = [t for t in tiempos if t in verbos[verbo]["tiempos"]]
+    tiempo = random.choice(tiempos_verbo)
+    persona = random.choice(list(verbos[verbo]["tiempos"][tiempo].keys()))
+    return verbo, tiempo, persona
+
+
+def aplicar_tecla(texto_actual, tecla):
+    """Devuelve el texto actualizado después de tocar una tecla del teclado
+    personalizado (letra, espacio o borrar)."""
+    if tecla == "<--":
+        return texto_actual[:-1]
+    if tecla == "espacio":
+        return texto_actual + " "
+    return texto_actual + tecla
+
+
+def crear_teclado(on_tecla):
+    """Arma el teclado personalizado (letras + acentos + espacio + borrar).
+    on_tecla(tecla: str) se llama con el texto de la tecla tocada."""
+    contenedor = BoxLayout(
+        orientation="vertical",
+        spacing=dp(6),
+        size_hint=(1, None),
+    )
+    alto_tecla = dp(52)
+    total_filas = len(FILAS_TECLADO) + 1  # +1 por la fila del espacio
+    contenedor.height = alto_tecla * total_filas + dp(6) * (total_filas - 1)
+
+    for fila in FILAS_TECLADO:
+        fila_layout = BoxLayout(
+            orientation="horizontal",
+            spacing=dp(4),
+            size_hint=(1, None),
+            height=alto_tecla,
+        )
+        for tecla in fila:
+            boton = Button(
+                text=tecla,
+                font_size=sp(18) if tecla == "<--" else sp(20),
+            )
+            boton.bind(on_press=lambda inst: on_tecla(inst.text))
+            fila_layout.add_widget(boton)
+        contenedor.add_widget(fila_layout)
+
+    fila_espacio = BoxLayout(
+        orientation="horizontal",
+        size_hint=(1, None),
+        height=alto_tecla,
+    )
+    boton_espacio = Button(text="espacio", font_size=sp(18))
+    boton_espacio.bind(on_press=lambda inst: on_tecla("espacio"))
+    fila_espacio.add_widget(boton_espacio)
+    contenedor.add_widget(fila_espacio)
+
+    return contenedor
+
+
+def crear_fila_botones_top(ir_a_articoli, ir_a_frases, ir_a_verbos):
+    """Fila de navegación (Articoli / Frases / Verbos) que se repite arriba
+    de varias pantallas."""
+    fila = BoxLayout(orientation="horizontal", size_hint=(1, None), height=dp(50))
+
+    boton_articoli = Button(text="Articoli", font_size=sp(16))
+    boton_articoli.bind(on_press=lambda *a: ir_a_articoli())
+    fila.add_widget(boton_articoli)
+
+    boton_frases = Button(text="Frases", font_size=sp(16))
+    boton_frases.bind(on_press=lambda *a: ir_a_frases())
+    fila.add_widget(boton_frases)
+
+    boton_verbos = Button(text="Verbos", font_size=sp(16))
+    boton_verbos.bind(on_press=lambda *a: ir_a_verbos())
+    fila.add_widget(boton_verbos)
+
+    return fila
+
 
 class CampoTexto(Label):
     """Label que simula un campo de texto, con fondo blanco."""
@@ -136,56 +284,12 @@ class QuizVerbos(BoxLayout):
         self.add_widget(Widget(size_hint=(1, None), height=dp(10)))
 
         # Teclado personalizado
-        self.add_widget(self._crear_teclado())
+        self.add_widget(crear_teclado(self._on_tecla))
 
         self.nueva_pregunta()
 
-    def _crear_teclado(self):
-        contenedor = BoxLayout(
-            orientation="vertical",
-            spacing=dp(6),
-            size_hint=(1, None),
-        )
-        alto_tecla = dp(52)
-        total_filas = len(FILAS_TECLADO) + 1  # +1 por la fila del espacio
-        contenedor.height = alto_tecla * total_filas + dp(6) * (total_filas - 1)
-
-        for fila in FILAS_TECLADO:
-            fila_layout = BoxLayout(
-                orientation="horizontal",
-                spacing=dp(4),
-                size_hint=(1, None),
-                height=alto_tecla,
-            )
-            for tecla in fila:
-                boton = Button(
-                    text=tecla,
-                    font_size=sp(18) if tecla == "<--" else sp(20),
-                )
-                boton.bind(on_press=self._on_tecla)
-                fila_layout.add_widget(boton)
-            contenedor.add_widget(fila_layout)
-
-        fila_espacio = BoxLayout(
-            orientation="horizontal",
-            size_hint=(1, None),
-            height=alto_tecla,
-        )
-        boton_espacio = Button(text="espacio", font_size=sp(18))
-        boton_espacio.bind(on_press=self._on_tecla)
-        fila_espacio.add_widget(boton_espacio)
-        contenedor.add_widget(fila_espacio)
-
-        return contenedor
-
-    def _on_tecla(self, instance):
-        tecla = instance.text
-        if tecla == "<--":
-            self.texto_actual = self.texto_actual[:-1]
-        elif tecla == "espacio":
-            self.texto_actual += " "
-        else:
-            self.texto_actual += tecla
+    def _on_tecla(self, tecla):
+        self.texto_actual = aplicar_tecla(self.texto_actual, tecla)
         self._actualizar_campo_texto()
 
     def _actualizar_campo_texto(self):
@@ -199,28 +303,12 @@ class QuizVerbos(BoxLayout):
     def _actualizar_text_size(self, instance, value):
         instance.text_size = (instance.width, instance.height)
 
-    def _elegir_combo(self, tiempos):
-        """Elige verbo, tiempo y persona al azar, entre los que tengan datos
-        cargados para alguno de los tiempos pedidos."""
-        verbos_validos = [
-            v for v, datos in self.verbos.items()
-            if any(t in datos.get("tiempos", {}) for t in tiempos)
-        ]
-        if not verbos_validos:
-            return None, None, None
-
-        verbo = random.choice(verbos_validos)
-        tiempos_verbo = [t for t in tiempos if t in self.verbos[verbo]["tiempos"]]
-        tiempo = random.choice(tiempos_verbo)
-        persona = random.choice(list(self.verbos[verbo]["tiempos"][tiempo].keys()))
-        return verbo, tiempo, persona
-
     def nueva_pregunta(self, *args):
-        verbo, tiempo, persona = self._elegir_combo(self.tiempos_seleccionados)
+        verbo, tiempo, persona = elegir_combo_azar(self.verbos, self.tiempos_seleccionados)
         if verbo is None:
             # Ningún verbo tiene datos para los tiempos elegidos: se usa
             # cualquier tiempo disponible en vez de trabar el quiz.
-            verbo, tiempo, persona = self._elegir_combo(TIEMPOS_DISPONIBLES)
+            verbo, tiempo, persona = elegir_combo_azar(self.verbos, TIEMPOS_DISPONIBLES)
 
         if verbo is None:
             # Ni siquiera hay un verbo con la estructura nueva ("tiempos"):
@@ -402,31 +490,12 @@ class PantallaQuiz(Screen):
     def __init__(self, todos_verbos, tiempos_seleccionados, ir_a_seleccion, ir_a_articoli, ir_a_frases, **kwargs):
         super().__init__(**kwargs)
         self.todos_verbos = todos_verbos
-        self.ir_a_seleccion = ir_a_seleccion
-        self.ir_a_articoli = ir_a_articoli
-        self.ir_a_frases = ir_a_frases
 
         self.layout_raiz = BoxLayout(orientation="vertical")
 
-        self.fila_botones_top = BoxLayout(
-            orientation="horizontal",
-            size_hint=(1, None),
-            height=dp(50),
+        self.layout_raiz.add_widget(
+            crear_fila_botones_top(ir_a_articoli, ir_a_frases, ir_a_seleccion)
         )
-
-        boton_articoli = Button(text="Articoli", font_size=sp(16))
-        boton_articoli.bind(on_press=lambda *a: self.ir_a_articoli())
-        self.fila_botones_top.add_widget(boton_articoli)
-
-        boton_frases = Button(text="Frases", font_size=sp(16))
-        boton_frases.bind(on_press=lambda *a: self.ir_a_frases())
-        self.fila_botones_top.add_widget(boton_frases)
-
-        boton_verbos = Button(text="Verbos", font_size=sp(16))
-        boton_verbos.bind(on_press=lambda *a: self.ir_a_seleccion())
-        self.fila_botones_top.add_widget(boton_verbos)
-
-        self.layout_raiz.add_widget(self.fila_botones_top)
 
         # Estado de la actualización (buscando / sin conexión / error)
         self.label_estado = Label(
@@ -477,6 +546,172 @@ class PantallaEnBlanco(Screen):
         layout.add_widget(Widget())
 
         self.add_widget(layout)
+
+
+class PantallaFrases(Screen):
+    """Pantalla para practicar frases sueltas: una IA (Gemini) genera una
+    oración corta en español y corrige la traducción al italiano."""
+
+    def __init__(self, ir_a_seleccion, ir_a_articoli, ir_a_frases, **kwargs):
+        super().__init__(**kwargs)
+
+        self.verbos = {}
+        self.tiempos_seleccionados = []
+        self.frase_es = ""
+        self.italiano_referencia = ""
+        self.texto_actual = ""
+        self.modo = "verificar"
+
+        layout = BoxLayout(orientation="vertical", padding=dp(14), spacing=dp(8))
+
+        layout.add_widget(crear_fila_botones_top(ir_a_articoli, ir_a_frases, ir_a_seleccion))
+
+        self.label_frase = Label(
+            text="",
+            font_size=sp(20),
+            size_hint=(1, None),
+            height=dp(130),
+            color=(0.1, 0.1, 0.4, 1),
+            halign="center",
+            valign="middle",
+        )
+        self.label_frase.bind(size=self._actualizar_text_size)
+        layout.add_widget(self.label_frase)
+
+        self.campo_texto = CampoTexto(
+            text=PLACEHOLDER,
+            font_size=sp(22),
+            size_hint=(1, None),
+            height=dp(60),
+            color=(0.5, 0.5, 0.5, 1),
+            halign="center",
+            valign="middle",
+        )
+        self.campo_texto.bind(size=self._actualizar_text_size)
+        layout.add_widget(self.campo_texto)
+
+        self.label_feedback = Label(
+            text="",
+            font_size=sp(20),
+            size_hint=(1, None),
+            height=dp(36),
+        )
+        layout.add_widget(self.label_feedback)
+
+        self.boton_accion = Button(
+            text="Verificar",
+            font_size=sp(22),
+            size_hint=(1, None),
+            height=dp(65),
+        )
+        self.boton_accion.bind(on_press=self._accion_boton)
+        layout.add_widget(self.boton_accion)
+
+        layout.add_widget(Widget(size_hint=(1, None), height=dp(10)))
+        layout.add_widget(crear_teclado(self._on_tecla))
+
+        self.add_widget(layout)
+
+    def _actualizar_text_size(self, instance, value):
+        instance.text_size = (instance.width, instance.height)
+
+    def _on_tecla(self, tecla):
+        self.texto_actual = aplicar_tecla(self.texto_actual, tecla)
+        self._actualizar_campo_texto()
+
+    def _actualizar_campo_texto(self):
+        if self.texto_actual:
+            self.campo_texto.text = self.texto_actual
+            self.campo_texto.color = (0.1, 0.1, 0.1, 1)
+        else:
+            self.campo_texto.text = PLACEHOLDER
+            self.campo_texto.color = (0.5, 0.5, 0.5, 1)
+
+    def _set_feedback(self, texto, color=None):
+        self.label_feedback.text = texto
+        if color is not None:
+            self.label_feedback.color = color
+
+    def iniciar(self, verbos, tiempos_seleccionados):
+        """Se llama al confirmar la selección de verbos/tiempos para Frases."""
+        self.verbos = verbos
+        self.tiempos_seleccionados = tiempos_seleccionados
+        self.nueva_frase()
+
+    def nueva_frase(self, *args):
+        self.label_frase.text = "Generando frase..."
+        self._set_feedback("")
+        self.texto_actual = ""
+        self._actualizar_campo_texto()
+        self.modo = "verificar"
+        self.boton_accion.text = "Verificar"
+        self.boton_accion.disabled = True
+        threading.Thread(target=self._generar_frase_bg, daemon=True).start()
+
+    def _generar_frase_bg(self):
+        verbo, tiempo, persona = elegir_combo_azar(self.verbos, self.tiempos_seleccionados)
+        if verbo is None:
+            verbo, tiempo, persona = elegir_combo_azar(self.verbos, TIEMPOS_DISPONIBLES)
+        if verbo is None:
+            Clock.schedule_once(
+                lambda dt: self._mostrar_error_frase("No hay verbos con datos cargados.")
+            )
+            return
+
+        traduccion = self.verbos[verbo].get("traduccion", verbo)
+        try:
+            frase_es, italiano = generar_frase(verbo, traduccion, tiempo, persona)
+            Clock.schedule_once(lambda dt: self._frase_generada(frase_es, italiano))
+        except Exception as e:
+            print("ERROR al generar frase:", repr(e))
+            Clock.schedule_once(
+                lambda dt: self._mostrar_error_frase("No se pudo generar la frase. Revisá tu conexión.")
+            )
+
+    def _frase_generada(self, frase_es, italiano):
+        self.frase_es = frase_es
+        self.italiano_referencia = italiano
+        self.label_frase.text = f"Escribí en italiano:\n'{frase_es}'"
+        self.boton_accion.disabled = False
+
+    def _mostrar_error_frase(self, mensaje):
+        self.label_frase.text = mensaje
+        self.boton_accion.disabled = False
+
+    def _accion_boton(self, *args):
+        if self.modo == "verificar":
+            self._verificar_respuesta()
+        else:
+            self.nueva_frase()
+
+    def _verificar_respuesta(self):
+        respuesta = self.texto_actual.strip()
+        if not respuesta:
+            return
+        self.boton_accion.disabled = True
+        self._set_feedback("Verificando...", color=(0.4, 0.4, 0.4, 1))
+        threading.Thread(target=self._verificar_bg, args=(respuesta,), daemon=True).start()
+
+    def _verificar_bg(self, respuesta):
+        try:
+            correcto = verificar_frase(self.frase_es, self.italiano_referencia, respuesta)
+            Clock.schedule_once(lambda dt: self._mostrar_resultado(correcto))
+        except Exception as e:
+            print("ERROR al verificar frase:", repr(e))
+            Clock.schedule_once(lambda dt: self._mostrar_error_verificacion())
+
+    def _mostrar_resultado(self, correcto):
+        if correcto:
+            self._set_feedback("¡Correcto!", color=(0.1, 0.6, 0.1, 1))
+        else:
+            self._set_feedback(f"Incorrecto. Era: {self.italiano_referencia}", color=(0.7, 0.1, 0.1, 1))
+        self.modo = "siguiente"
+        self.boton_accion.text = "Siguiente"
+        self.boton_accion.disabled = False
+
+    def _mostrar_error_verificacion(self):
+        self._set_feedback("No se pudo verificar. Probá de nuevo.", color=(0.7, 0.1, 0.1, 1))
+        self.boton_accion.disabled = False
 
 
 class QuizVerbosApp(App):
@@ -546,16 +781,26 @@ class QuizVerbosApp(App):
             self.todos_verbos,
             al_confirmar=self._confirmar_seleccion,
         )
+        self.pantalla_seleccion_frases = PantallaSeleccion(
+            self.todos_verbos,
+            al_confirmar=self._confirmar_seleccion_frases,
+        )
         self.pantalla_articoli = PantallaEnBlanco(volver=self._ir_a_quiz)
-        self.pantalla_frases = PantallaEnBlanco(volver=self._ir_a_quiz)
+        self.pantalla_frases = PantallaFrases(
+            ir_a_seleccion=self._ir_a_seleccion,
+            ir_a_articoli=self._ir_a_articoli,
+            ir_a_frases=self._ir_a_frases,
+        )
 
         self.sm.add_widget(self.pantalla_quiz)
         self.sm.add_widget(self.pantalla_seleccion)
+        self.sm.add_widget(self.pantalla_seleccion_frases)
         self.sm.add_widget(self.pantalla_articoli)
         self.sm.add_widget(self.pantalla_frases)
 
         self.pantalla_quiz.name = "quiz"
         self.pantalla_seleccion.name = "seleccion"
+        self.pantalla_seleccion_frases.name = "seleccion_frases"
         self.pantalla_articoli.name = "articoli"
         self.pantalla_frases.name = "frases"
 
@@ -605,6 +850,7 @@ class QuizVerbosApp(App):
             self.todos_verbos = datos_remotos.get("verbos", {})
             self.version_actual = datos_remotos.get("version", self.version_actual)
             self.pantalla_seleccion.actualizar_lista(self.todos_verbos)
+            self.pantalla_seleccion_frases.actualizar_lista(self.todos_verbos)
             self._mostrar_estado("")
         except Exception as e:
             print("ERROR al aplicar actualización:", repr(e))
@@ -621,7 +867,7 @@ class QuizVerbosApp(App):
         self.sm.current = "articoli"
 
     def _ir_a_frases(self):
-        self.sm.current = "frases"
+        self.sm.current = "seleccion_frases"
 
     def _ir_a_quiz(self):
         self.sm.current = "quiz"
@@ -630,6 +876,11 @@ class QuizVerbosApp(App):
         filtrados = {v: self.todos_verbos[v] for v in verbos_seleccionados}
         self.pantalla_quiz.actualizar_seleccion(filtrados, tiempos_seleccionados)
         self.sm.current = "quiz"
+
+    def _confirmar_seleccion_frases(self, verbos_seleccionados, tiempos_seleccionados):
+        filtrados = {v: self.todos_verbos[v] for v in verbos_seleccionados}
+        self.pantalla_frases.iniciar(filtrados, tiempos_seleccionados)
+        self.sm.current = "frases"
 
 
 if __name__ == "__main__":
