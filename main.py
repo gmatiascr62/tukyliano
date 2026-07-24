@@ -24,6 +24,13 @@ from kivy.clock import Clock
 
 Window.clearcolor = (0.95, 0.95, 0.95, 1)
 
+# En Android, el modo por defecto ("resize") a veces no restaura bien el
+# tamaño de la ventana cuando se cierra el teclado nativo (bug conocido de
+# Kivy), dejando un espacio en blanco arriba para siempre. Con "below_target"
+# la ventana nunca cambia de tamaño, solo se desplaza para mostrar el campo
+# enfocado arriba del teclado, así no hay nada que restaurar mal.
+Window.softinput_mode = "below_target"
+
 # JSON que viene empaquetado con la app (versión de respaldo, por si no hay internet)
 RUTA_JSON_DEFAULT = os.path.join(os.path.dirname(__file__), "verbos.json")
 
