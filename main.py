@@ -4,6 +4,7 @@ import shutil
 import threading
 import traceback
 import random
+import webbrowser
 
 import requests
 
@@ -57,6 +58,22 @@ ETIQUETAS_TIEMPO = {
 GEMINI_MODEL = "gemini-flash-lite-latest"
 URL_GEMINI = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 URL_GEMINI_API_KEY = "https://aistudio.google.com/apikey"
+
+
+def abrir_url(url):
+    """Abre una URL en el navegador. En Android usa un Intent nativo porque
+    el módulo webbrowser de Python no sabe abrir nada ahí; en escritorio usa
+    el webbrowser normal."""
+    try:
+        from jnius import autoclass
+
+        Intent = autoclass("android.content.Intent")
+        Uri = autoclass("android.net.Uri")
+        PythonActivity = autoclass("org.kivy.android.PythonActivity")
+        intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        PythonActivity.mActivity.startActivity(intent)
+    except Exception:
+        webbrowser.open(url)
 
 
 class ClaveInvalidaError(Exception):
@@ -641,10 +658,11 @@ class PantallaFrases(Screen):
             self.campo_texto.text = PLACEHOLDER
             self.campo_texto.color = (0.5, 0.5, 0.5, 1)
 
-    def _set_feedback(self, texto, color=None):
+    def _set_feedback(self, texto, color=None, font_size=None):
         self.label_feedback.text = texto
         if color is not None:
             self.label_feedback.color = color
+        self.label_feedback.font_size = font_size if font_size is not None else sp(20)
 
     def iniciar(self, verbos, tiempos_seleccionados):
         """Se llama al confirmar la selección de verbos/tiempos para Frases."""
@@ -732,7 +750,9 @@ class PantallaFrases(Screen):
         if correcto:
             self._set_feedback("¡Correcto!", color=(0.1, 0.6, 0.1, 1))
         else:
-            self._set_feedback(f"Incorrecto. Era: {self.italiano_referencia}", color=(0.7, 0.1, 0.1, 1))
+            self._set_feedback(
+                self.italiano_referencia, color=(0.7, 0.1, 0.1, 1), font_size=sp(15)
+            )
         self.modo = "siguiente"
         self.boton_accion.text = "Siguiente"
         self.boton_accion.disabled = False
@@ -766,10 +786,11 @@ class PantallaClaveIA(Screen):
 
         instrucciones = Label(
             text=(
-                f"1. Andá a {URL_GEMINI_API_KEY}\n"
+                f"1. Andá a [ref=url][u]{URL_GEMINI_API_KEY}[/u][/ref]\n"
                 "2. Iniciá sesión con Google y creá una clave (gratis)\n"
                 "3. Copiala y pegala acá abajo"
             ),
+            markup=True,
             font_size=sp(15),
             size_hint=(1, None),
             height=dp(110),
@@ -778,6 +799,7 @@ class PantallaClaveIA(Screen):
             valign="middle",
         )
         instrucciones.bind(size=lambda inst, val: setattr(inst, "text_size", (val[0], None)))
+        instrucciones.bind(on_ref_press=lambda inst, ref: abrir_url(URL_GEMINI_API_KEY))
         layout.add_widget(instrucciones)
 
         self.input_clave = TextInput(
@@ -821,6 +843,7 @@ class PantallaClaveIA(Screen):
             return
         self.label_error.text = ""
         self.input_clave.text = ""
+        self.input_clave.focus = False
         self.on_guardar(clave)
 
 
