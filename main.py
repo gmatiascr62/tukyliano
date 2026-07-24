@@ -114,6 +114,12 @@ def generar_frase(verbo, traduccion, tiempo, persona, api_key):
         f"Generá una oración MUY CORTA en español (máximo 6 palabras), natural, "
         f"que se traduzca al italiano usando el verbo '{verbo}' ({traduccion}) "
         f"conjugado en {etiqueta_tiempo}, persona '{persona}'. "
+        f"Tiene que ser una frase simple y concreta del día a día, del estilo "
+        f"que diría un chico o alguien que recién empieza: cosas de la casa, "
+        f"la comida, la escuela, el trabajo, la familia, los amigos, el clima. "
+        f"Nada poético, abstracto ni filosófico, y vocabulario fácil. "
+        f"Ejemplos del estilo que busco: 'Hoy comemos pizza', "
+        f"'Mi hermano lava el auto', 'Mañana voy al trabajo'. "
         f"Usá español de Latinoamérica: 'ustedes', nunca 'vosotros'. "
         f'Respondé SOLO un JSON válido, sin markdown, con este formato exacto: '
         f'{{"espanol": "...", "italiano": "..."}}'
