@@ -51,7 +51,10 @@ ETIQUETAS_TIEMPO = {
 # IA que genera y corrige las frases de la pantalla "Frases" (Gemini, gratis).
 # La clave NUNCA se guarda en el código: la pide la app y la guarda en el
 # celular la primera vez que se usa "Frases" (ver PantallaClaveIA).
-GEMINI_MODEL = "gemini-2.5-flash"
+# Se usa el modelo "lite": gemini-2.5-flash tiene cuota gratis de solo
+# 20 pedidos/día por proyecto, mientras que el lite tiene una cuota aparte
+# mucho más alta.
+GEMINI_MODEL = "gemini-flash-lite-latest"
 URL_GEMINI = f"https://generativelanguage.googleapis.com/v1beta/models/{GEMINI_MODEL}:generateContent"
 URL_GEMINI_API_KEY = "https://aistudio.google.com/apikey"
 
@@ -67,7 +70,6 @@ def preguntar_gemini(prompt, api_key):
         params={"key": api_key},
         json={
             "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {"thinkingConfig": {"thinkingBudget": 0}},
         },
         timeout=20,
     )
