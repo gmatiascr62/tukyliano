@@ -15,9 +15,9 @@ from kivy.uix.label import Label
 from kivy.uix.button import Button
 from kivy.uix.checkbox import CheckBox
 from kivy.uix.scrollview import ScrollView
-from kivy.uix.textinput import TextInput
 from kivy.uix.screenmanager import ScreenManager, Screen, NoTransition
 from kivy.core.window import Window
+from kivy.core.clipboard import Clipboard
 from kivy.metrics import dp, sp
 from kivy.graphics import Color, Rectangle
 from kivy.clock import Clock
@@ -795,7 +795,7 @@ class PantallaClaveIA(Screen):
             text=(
                 f"1. Andá a [ref=url][u]{URL_GEMINI_API_KEY}[/u][/ref]\n"
                 "2. Iniciá sesión con Google y creá una clave (gratis)\n"
-                "3. Copiala y pegala acá abajo"
+                "3. Copiala (botón Copiar) y volvé acá"
             ),
             markup=True,
             font_size=sp(15),
@@ -809,14 +809,28 @@ class PantallaClaveIA(Screen):
         instrucciones.bind(on_ref_press=lambda inst, ref: abrir_url(URL_GEMINI_API_KEY))
         layout.add_widget(instrucciones)
 
-        self.input_clave = TextInput(
-            hint_text="Pegá tu clave acá (empieza con AIza...)",
-            font_size=sp(16),
+        self.clave_pegada = ""
+
+        self.label_clave = CampoTexto(
+            text="(todavía no pegaste nada)",
+            font_size=sp(15),
             size_hint=(1, None),
             height=dp(60),
-            multiline=False,
+            color=(0.5, 0.5, 0.5, 1),
+            halign="center",
+            valign="middle",
         )
-        layout.add_widget(self.input_clave)
+        self.label_clave.bind(size=lambda inst, val: setattr(inst, "text_size", (val[0], val[1])))
+        layout.add_widget(self.label_clave)
+
+        boton_pegar = Button(
+            text="Pegar clave",
+            font_size=sp(18),
+            size_hint=(1, None),
+            height=dp(55),
+        )
+        boton_pegar.bind(on_press=self._pegar_clave)
+        layout.add_widget(boton_pegar)
 
         self.label_error = Label(
             text="",
@@ -843,14 +857,24 @@ class PantallaClaveIA(Screen):
     def mostrar_error(self, mensaje):
         self.label_error.text = mensaje
 
+    def _pegar_clave(self, *args):
+        self.clave_pegada = Clipboard.paste().strip()
+        if self.clave_pegada:
+            self.label_clave.text = self.clave_pegada
+            self.label_clave.color = (0.1, 0.1, 0.1, 1)
+        else:
+            self.label_clave.text = "(el portapapeles está vacío)"
+            self.label_clave.color = (0.5, 0.5, 0.5, 1)
+
     def _guardar(self, *args):
-        clave = self.input_clave.text.strip()
+        clave = self.clave_pegada.strip()
         if not clave:
-            self.label_error.text = "Pegá una clave antes de guardar."
+            self.label_error.text = "Copiá tu clave y tocá 'Pegar clave' antes de guardar."
             return
         self.label_error.text = ""
-        self.input_clave.text = ""
-        self.input_clave.focus = False
+        self.clave_pegada = ""
+        self.label_clave.text = "(todavía no pegaste nada)"
+        self.label_clave.color = (0.5, 0.5, 0.5, 1)
         self.on_guardar(clave)
 
 
