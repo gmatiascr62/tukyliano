@@ -24,13 +24,6 @@ from kivy.clock import Clock
 
 Window.clearcolor = (0.95, 0.95, 0.95, 1)
 
-# En Android, el modo por defecto ("resize") a veces no restaura bien el
-# tamaño de la ventana cuando se cierra el teclado nativo (bug conocido de
-# Kivy), dejando un espacio en blanco arriba para siempre. Con "below_target"
-# la ventana nunca cambia de tamaño, solo se desplaza para mostrar el campo
-# enfocado arriba del teclado, así no hay nada que restaurar mal.
-Window.softinput_mode = "below_target"
-
 # JSON que viene empaquetado con la app (versión de respaldo, por si no hay internet)
 RUTA_JSON_DEFAULT = os.path.join(os.path.dirname(__file__), "verbos.json")
 
@@ -645,7 +638,11 @@ class PantallaFrases(Screen):
         self.boton_accion.bind(on_press=self._accion_boton)
         layout.add_widget(self.boton_accion)
 
-        layout.add_widget(Widget(size_hint=(1, None), height=dp(10)))
+        # Relleno estirable (size_hint_y=1): sin esto todos los hijos tienen
+        # alto fijo y el BoxLayout vertical deja el espacio sobrante arriba,
+        # despegando la fila de botones del borde de la pantalla. Así el
+        # sobrante queda acá en el medio y el teclado se apoya abajo.
+        layout.add_widget(Widget())
         layout.add_widget(crear_teclado(self._on_tecla))
 
         self.add_widget(layout)
