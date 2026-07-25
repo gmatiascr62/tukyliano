@@ -15,6 +15,10 @@ source.dir = .
 # (list) Extensiones de archivo a incluir del código fuente
 source.include_exts = py,png,jpg,kv,atlas,json
 
+# (list) Carpetas a excluir. flutter_app es la versión en Flutter que se está
+# migrando en paralelo: no tiene nada que hacer adentro del APK de Kivy.
+source.exclude_dirs = flutter_app
+
 # (str) Versión de la app
 version = 1.0
 
