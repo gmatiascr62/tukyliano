@@ -1,0 +1,48 @@
+name: Build APK Flutter
+
+# Convive con build-apk.yml (la app Kivy) durante la migración.
+# Cada workflow solo corre cuando cambia lo suyo, así un cambio en Flutter
+# no dispara el build de buildozer, que tarda ~20 minutos.
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'flutter_app/**'
+      - '.github/workflows/build-apk-flutter.yml'
+  workflow_dispatch: {}
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: flutter_app
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+
+      - name: Instalar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Bajar dependencias
+        run: flutter pub get
+
+      - name: Revisar el código
+        run: flutter analyze
+
+      - name: Build APK
+        run: flutter build apk --debug
+
+      - name: Subir APK como artefacto
+        uses: actions/upload-artifact@v4
+        with:
+          name: tukyliano-flutter-apk
+          path: flutter_app/build/app/outputs/flutter-apk/app-debug.apk

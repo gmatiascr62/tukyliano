@@ -3,6 +3,11 @@ name: Build APK
 on:
   push:
     branches: [ main ]
+    # La app de Flutter (flutter_app/) tiene su propio workflow: no hace falta
+    # rebuildear la app Kivy, que tarda ~20 minutos, cuando solo cambia aquello.
+    paths-ignore:
+      - 'flutter_app/**'
+      - '.github/workflows/build-apk-flutter.yml'
   workflow_dispatch: {}
 
 jobs:
