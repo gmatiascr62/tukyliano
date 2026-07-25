@@ -106,14 +106,27 @@ def extraer_json(texto):
     return json.loads(texto[inicio:fin + 1])
 
 
-def generar_frase(verbo, traduccion, tiempo, persona, api_key):
+def generar_frase(verbo, traduccion, tiempo, persona, api_key, conjugacion_italiana=""):
     """Le pide a Gemini una oración corta en español que se traduzca al
     italiano usando el verbo/tiempo/persona dados. Devuelve (espanol, italiano)."""
     etiqueta_tiempo = ETIQUETAS_TIEMPO.get(tiempo, tiempo)
+    # Si tenemos la conjugación cargada en el JSON se la damos ya resuelta: así
+    # el modelo no puede escribir el italiano en una persona y el español en
+    # otra (pasaba, por ejemplo "Mañana estaré..." con "Domani sarà...").
+    if conjugacion_italiana:
+        exigencia_verbo = (
+            f"En italiano el verbo tiene que aparecer conjugado exactamente "
+            f"como '{conjugacion_italiana}'. "
+        )
+    else:
+        exigencia_verbo = ""
     prompt = (
         f"Generá una oración MUY CORTA en español (máximo 6 palabras), natural, "
         f"que se traduzca al italiano usando el verbo '{verbo}' ({traduccion}) "
         f"conjugado en {etiqueta_tiempo}, persona '{persona}'. "
+        f"{exigencia_verbo}"
+        f"El español y el italiano tienen que ser la misma frase, con la misma "
+        f"persona ('{persona}'): uno es la traducción literal del otro. "
         f"Tiene que ser una frase simple y concreta del día a día, del estilo "
         f"que diría un chico o alguien que recién empieza: cosas de la casa, "
         f"la comida, la escuela, el trabajo, la familia, los amigos, el clima. "
@@ -706,8 +719,13 @@ class PantallaFrases(Screen):
             return
 
         traduccion = self.verbos[verbo].get("traduccion", verbo)
+        # La conjugación ya está en el JSON de verbos: se la pasamos al prompt
+        # para que la frase en italiano use exactamente esa forma.
+        conjugacion = self.verbos[verbo]["tiempos"][tiempo][persona].get("italiano", "")
         try:
-            frase_es, italiano = generar_frase(verbo, traduccion, tiempo, persona, api_key)
+            frase_es, italiano = generar_frase(
+                verbo, traduccion, tiempo, persona, api_key, conjugacion
+            )
             Clock.schedule_once(lambda dt: self._frase_generada(frase_es, italiano))
         except ClaveInvalidaError:
             Clock.schedule_once(lambda dt: self.clave_invalida())
