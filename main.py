@@ -49,6 +49,45 @@ ETIQUETAS_TIEMPO = {
     "futuro_semplice": "futuro semplice",
 }
 
+# Temas y ejemplos que se sortean en cada frase de la pantalla "Frases".
+# La variedad la pone la app: cuando el prompt es siempre igual, el modelo
+# tiende a la respuesta más probable y repite las mismas frases.
+TEMAS_FRASE = [
+    "la casa",
+    "la comida",
+    "la escuela",
+    "el trabajo",
+    "la familia",
+    "los amigos",
+    "el clima",
+    "un viaje",
+    "las mascotas",
+    "los deportes",
+    "la música",
+    "la ropa",
+    "el supermercado",
+    "la ciudad",
+    "el auto",
+    "las vacaciones",
+    "un cumpleaños",
+    "la salud",
+    "el teléfono",
+    "el fin de semana",
+]
+
+EJEMPLOS_FRASE = [
+    "Hoy comemos pizza",
+    "Mi hermano lava el auto",
+    "Mañana voy al trabajo",
+    "El perro duerme en el sillón",
+    "Compro pan en la esquina",
+    "Mi mamá mira televisión",
+    "Hace mucho frío hoy",
+    "Los chicos juegan al fútbol",
+    "Tomo el tren temprano",
+    "Mi amiga cocina fideos",
+]
+
 # IA que genera y corrige las frases de la pantalla "Frases" (Gemini, gratis).
 # La clave NUNCA se guarda en el código: la pide la app y la guarda en el
 # celular la primera vez que se usa "Frases" (ver PantallaClaveIA).
@@ -120,6 +159,10 @@ def generar_frase(verbo, traduccion, tiempo, persona, api_key, conjugacion_itali
         )
     else:
         exigencia_verbo = ""
+    # El tema y los ejemplos se sortean acá, en la app: pedirle al modelo que
+    # "varíe" no alcanza, con el prompt fijo siempre volvía a las mismas frases.
+    tema = random.choice(TEMAS_FRASE)
+    ejemplos = ", ".join(f"'{e}'" for e in random.sample(EJEMPLOS_FRASE, 2))
     prompt = (
         f"Generá una oración MUY CORTA en español (máximo 6 palabras), natural, "
         f"que se traduzca al italiano usando el verbo '{verbo}' ({traduccion}) "
@@ -128,11 +171,11 @@ def generar_frase(verbo, traduccion, tiempo, persona, api_key, conjugacion_itali
         f"El español y el italiano tienen que ser la misma frase, con la misma "
         f"persona ('{persona}'): uno es la traducción literal del otro. "
         f"Tiene que ser una frase simple y concreta del día a día, del estilo "
-        f"que diría un chico o alguien que recién empieza: cosas de la casa, "
-        f"la comida, la escuela, el trabajo, la familia, los amigos, el clima. "
-        f"Nada poético, abstracto ni filosófico, y vocabulario fácil. "
-        f"Ejemplos del estilo que busco: 'Hoy comemos pizza', "
-        f"'Mi hermano lava el auto', 'Mañana voy al trabajo'. "
+        f"que diría un chico o alguien que recién empieza, con vocabulario "
+        f"fácil y nada poético, abstracto ni filosófico. "
+        f"El tema de la frase tiene que ser: {tema}. "
+        f"Si el tema no encaja bien con el verbo, priorizá que la frase suene natural. "
+        f"Ejemplos del estilo que busco: {ejemplos}. "
         f"Usá español de Latinoamérica: 'ustedes', nunca 'vosotros'. "
         f'Respondé SOLO un JSON válido, sin markdown, con este formato exacto: '
         f'{{"espanol": "...", "italiano": "..."}}'
