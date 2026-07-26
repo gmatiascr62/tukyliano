@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import 'datos/repositorio_verbos.dart';
+import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_verbos.dart';
@@ -34,7 +36,41 @@ class PantallaPrincipal extends StatefulWidget {
 }
 
 class _PantallaPrincipalState extends State<PantallaPrincipal> {
+  final RepositorioVerbos _repositorio = RepositorioVerbos();
+
   Seccion _seccion = Seccion.verbos;
+  DatosVerbos? _datos;
+  String _estado = '';
+
+  @override
+  void initState() {
+    super.initState();
+    _cargarDatos();
+  }
+
+  Future<void> _cargarDatos() async {
+    try {
+      final datos = await _repositorio.cargar();
+      if (!mounted) return;
+      setState(() {
+        _datos = datos;
+        _estado = 'Buscando verbos nuevos...';
+      });
+    } catch (e) {
+      if (!mounted) return;
+      setState(() => _estado = 'No se pudieron cargar los verbos: $e');
+      return;
+    }
+
+    // El chequeo va después de mostrar los verbos guardados, para que la app
+    // sea usable aunque no haya internet.
+    final resultado = await _repositorio.verificarActualizacion(_datos!.version);
+    if (!mounted) return;
+    setState(() {
+      if (resultado.datos != null) _datos = resultado.datos;
+      _estado = resultado.estado.mensaje;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,7 +98,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.frases:
         return const PantallaFrases();
       case Seccion.verbos:
-        return const PantallaVerbos();
+        return PantallaVerbos(datos: _datos, estado: _estado);
     }
   }
 }
