@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'constantes.dart';
 import 'datos/almacenamiento_clave.dart';
 import 'datos/repositorio_verbos.dart';
+import 'ia/gemini.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_clave_ia.dart';
@@ -17,7 +18,17 @@ void main() {
 }
 
 class TukylianoApp extends StatelessWidget {
-  const TukylianoApp({super.key});
+  const TukylianoApp({
+    super.key,
+    this.almacenClave,
+    this.gemini,
+    this.repositorio,
+  });
+
+  /// Inyectables para los tests; en la app real se usan los de verdad.
+  final AlmacenamientoClave? almacenClave;
+  final Gemini? gemini;
+  final RepositorioVerbos? repositorio;
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +36,11 @@ class TukylianoApp extends StatelessWidget {
       title: 'Tukyliano',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(scaffoldBackgroundColor: Tema.fondo),
-      home: const PantallaPrincipal(),
+      home: PantallaPrincipal(
+        almacenClave: almacenClave,
+        gemini: gemini,
+        repositorio: repositorio,
+      ),
     );
   }
 }
@@ -33,7 +48,16 @@ class TukylianoApp extends StatelessWidget {
 /// Contenedor con la barra de navegación fija arriba y la sección elegida
 /// debajo. Equivale al ScreenManager de la app Kivy.
 class PantallaPrincipal extends StatefulWidget {
-  const PantallaPrincipal({super.key});
+  const PantallaPrincipal({
+    super.key,
+    this.almacenClave,
+    this.gemini,
+    this.repositorio,
+  });
+
+  final AlmacenamientoClave? almacenClave;
+  final Gemini? gemini;
+  final RepositorioVerbos? repositorio;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -44,8 +68,10 @@ class PantallaPrincipal extends StatefulWidget {
 enum _PasoFrases { clave, seleccion, practica }
 
 class _PantallaPrincipalState extends State<PantallaPrincipal> {
-  final RepositorioVerbos _repositorio = RepositorioVerbos();
-  final AlmacenamientoClave _almacenClave = AlmacenamientoClave();
+  late final RepositorioVerbos _repositorio =
+      widget.repositorio ?? RepositorioVerbos();
+  late final AlmacenamientoClave _almacenClave =
+      widget.almacenClave ?? AlmacenamientoClave();
 
   Seccion _seccion = Seccion.verbos;
   DatosVerbos? _datos;
@@ -114,10 +140,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       _seccion = seccion;
       // Tocar "Verbos" lleva a elegir qué practicar, como en la app Kivy.
       if (seccion == Seccion.verbos) _eligiendoVerbos = true;
-      // Sin clave guardada, Frases lleva primero a pedirla.
+      // Tocar "Frases" siempre vuelve a elegir qué practicar (o a pedir la
+      // clave si todavía no hay). Si se conservara el paso, al volver desde
+      // otra sección caía directo en la práctica y no se podía cambiar la
+      // selección.
       if (seccion == Seccion.frases) {
         _pasoFrases =
-            _claveGemini == null ? _PasoFrases.clave : _pasoFrases;
+            _claveGemini == null ? _PasoFrases.clave : _PasoFrases.seleccion;
       }
     });
   }
@@ -229,6 +258,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       tiempos: _tiemposFrases ?? tiemposDisponibles,
       apiKey: _claveGemini!,
       onClaveInvalida: _claveInvalida,
+      gemini: widget.gemini,
     );
   }
 
