@@ -44,6 +44,19 @@ jobs:
       - name: Build APK
         run: flutter build apk --release
 
+      # La plantilla de Flutter pone el permiso de INTERNET solo en los
+      # manifests de debug y profile. Ya pasó una vez que el APK de release
+      # saliera sin internet; esto lo detecta acá en vez de en el celular.
+      - name: Verificar que el APK tenga permiso de internet
+        run: |
+          MANIFEST=build/app/intermediates/merged_manifests/release/processReleaseManifest/AndroidManifest.xml
+          if [ ! -f "$MANIFEST" ]; then
+            MANIFEST=$(find build/app/intermediates -name AndroidManifest.xml -path '*release*' | head -1)
+          fi
+          echo "Manifest: $MANIFEST"
+          grep -q 'android.permission.INTERNET' "$MANIFEST" \
+            || { echo "ERROR: el APK de release no declara INTERNET"; exit 1; }
+
       # Sin esto el archivo se llama "app-release.apk" en Descargas.
       - name: Renombrar el APK
         run: mv build/app/outputs/flutter-apk/app-release.apk Tukyliano.apk
