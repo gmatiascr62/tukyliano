@@ -74,6 +74,7 @@ class _PantallaSeleccionState extends State<PantallaSeleccion> {
                   ),
                 )
               : ListView(
+                  padding: EdgeInsets.zero,
                   children: [
                     for (final verbo in widget.verbos.values)
                       _FilaTilde(
@@ -95,17 +96,16 @@ class _PantallaSeleccionState extends State<PantallaSeleccion> {
             valor: _tiemposElegidos[tiempo] ?? true,
             onCambio: (v) => setState(() => _tiemposElegidos[tiempo] = v),
           ),
-        const SizedBox(height: 12),
+        const SizedBox(height: 14),
         SizedBox(
-          height: 65,
+          height: 58,
           child: ElevatedButton(
             onPressed: _confirmar,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Tema.boton,
-              foregroundColor: Tema.textoBoton,
-              shape: const RoundedRectangleBorder(),
+            style: Tema.botonPrincipal,
+            child: const Text(
+              'Empezar',
+              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
-            child: const Text('Empezar', style: TextStyle(fontSize: 22)),
           ),
         ),
       ],
@@ -121,11 +121,14 @@ class _Titulo extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 10),
+      padding: const EdgeInsets.fromLTRB(2, 16, 2, 8),
       child: Text(
         texto,
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 24, color: Tema.titulo),
+        style: const TextStyle(
+          fontSize: 18,
+          fontWeight: FontWeight.w700,
+          color: Tema.titulo,
+        ),
       ),
     );
   }
@@ -144,26 +147,45 @@ class _FilaTilde extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => onCambio(!valor),
-      child: SizedBox(
-        height: 55,
-        child: Row(
-          children: [
-            SizedBox(
-              width: 50,
-              child: Checkbox(
-                value: valor,
-                onChanged: (v) => onCambio(v ?? false),
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 7),
+      child: Material(
+        color: valor ? Tema.verdeSuave : Tema.superficie,
+        borderRadius: BorderRadius.circular(Tema.radioChico),
+        child: InkWell(
+          onTap: () => onCambio(!valor),
+          borderRadius: BorderRadius.circular(Tema.radioChico),
+          child: Container(
+            height: 52,
+            padding: const EdgeInsets.only(right: 14),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(Tema.radioChico),
+              border: Border.all(
+                color: valor ? Tema.verde.withValues(alpha: 0.35) : Tema.borde,
               ),
             ),
-            Expanded(
-              child: Text(
-                texto,
-                style: const TextStyle(fontSize: 22, color: Tema.texto),
-              ),
+            child: Row(
+              children: [
+                SizedBox(
+                  width: 48,
+                  child: Checkbox(
+                    value: valor,
+                    onChanged: (v) => onCambio(v ?? false),
+                  ),
+                ),
+                Expanded(
+                  child: Text(
+                    texto,
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: valor ? FontWeight.w600 : FontWeight.w400,
+                      color: valor ? Tema.titulo : Tema.textoTenue,
+                    ),
+                  ),
+                ),
+              ],
             ),
-          ],
+          ),
         ),
       ),
     );

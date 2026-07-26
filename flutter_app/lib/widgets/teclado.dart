@@ -11,8 +11,8 @@ const List<List<String>> filasTeclado = [
   ['à', 'è', 'é', 'ì', 'ò', 'ù'],
 ];
 
-/// Alto de cada tecla. Un poco más que los dp(52) de la app Kivy: en Flutter
-/// sobraba espacio arriba del teclado y las teclas se veían chicas.
+/// Alto de cada tecla. Un poco más que los dp(52) de la app Kivy: sobraba
+/// espacio arriba del teclado y las teclas se veían chicas.
 const double altoTecla = 58;
 
 /// Teclado italiano propio (letras + acentos + espacio + borrar). Se usa en
@@ -24,21 +24,28 @@ class Teclado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      // Sin esto la barra de espacio queda del ancho de su texto en vez de
-      // ocupar toda la fila, porque el Column centra a sus hijos.
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        for (final fila in filasTeclado) ...[
-          _Fila(teclas: fila, onTecla: onTecla),
-          const SizedBox(height: 6),
+    return Container(
+      padding: const EdgeInsets.fromLTRB(6, 8, 6, 6),
+      decoration: BoxDecoration(
+        color: Tema.verdeSuave,
+        borderRadius: BorderRadius.circular(Tema.radio),
+      ),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        // Sin esto la barra de espacio queda del ancho de su texto en vez de
+        // ocupar toda la fila, porque el Column centra a sus hijos.
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          for (final fila in filasTeclado) ...[
+            _Fila(teclas: fila, onTecla: onTecla),
+            const SizedBox(height: 6),
+          ],
+          SizedBox(
+            height: altoTecla,
+            child: _Tecla(texto: teclaEspacio, onTecla: onTecla),
+          ),
         ],
-        SizedBox(
-          height: altoTecla,
-          child: _Tecla(texto: teclaEspacio, onTecla: onTecla),
-        ),
-      ],
+      ),
     );
   }
 }
@@ -56,7 +63,7 @@ class _Fila extends StatelessWidget {
       child: Row(
         children: [
           for (int i = 0; i < teclas.length; i++) ...[
-            if (i > 0) const SizedBox(width: 4),
+            if (i > 0) const SizedBox(width: 5),
             Expanded(child: _Tecla(texto: teclas[i], onTecla: onTecla)),
           ],
         ],
@@ -71,20 +78,30 @@ class _Tecla extends StatelessWidget {
   final String texto;
   final ValueChanged<String> onTecla;
 
+  bool get _esEspecial => texto == teclaBorrar || texto == teclaEspacio;
+
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
       onPressed: () => onTecla(texto),
       style: ElevatedButton.styleFrom(
-        backgroundColor: Tema.boton,
-        foregroundColor: Tema.textoBoton,
-        shape: const RoundedRectangleBorder(),
+        // Teclas blancas sobre fondo verde claro, como un teclado de verdad;
+        // las especiales van en verde para diferenciarlas de las letras.
+        backgroundColor: _esEspecial ? Tema.verde : Tema.superficie,
+        foregroundColor: _esEspecial ? Colors.white : Tema.texto,
+        elevation: 0,
         padding: EdgeInsets.zero,
         minimumSize: Size.zero,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(Tema.radioChico),
+        ),
       ),
       child: Text(
         texto,
-        style: TextStyle(fontSize: texto == teclaBorrar ? 18 : 20),
+        style: TextStyle(
+          fontSize: texto == teclaBorrar ? 17 : 20,
+          fontWeight: FontWeight.w500,
+        ),
       ),
     );
   }

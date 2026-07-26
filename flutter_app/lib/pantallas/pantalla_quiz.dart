@@ -5,6 +5,7 @@ import '../logica/seleccion_azar.dart';
 import '../modelos/verbo.dart';
 import '../tema.dart';
 import '../widgets/campo_texto.dart';
+import '../widgets/tarjeta_pregunta.dart';
 import '../widgets/teclado.dart';
 
 /// Quiz de conjugaciones. Equivale a QuizVerbos de la app Kivy.
@@ -95,87 +96,72 @@ class _PantallaQuizState extends State<PantallaQuiz> {
 
   @override
   Widget build(BuildContext context) {
-    final pregunta = _combo == null
-        ? _mensajeSinDatos
-        : "¿Cómo se dice\n'${_combo!.conjugacion.espanol}'?";
-
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         // Todo lo de arriba va en un scroll que ocupa el espacio sobrante:
-        // en un celular normal se ve igual que antes (contenido arriba,
-        // teclado abajo), y en una pantalla baja scrollea en vez de romperse.
+        // en un celular normal se ve igual (contenido arriba, teclado abajo),
+        // y en una pantalla baja scrollea en vez de romperse.
         Expanded(
           child: SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: _contenido(pregunta),
+              children: [
+                const SizedBox(height: 12),
+                Center(child: ChipPuntaje(puntaje: _puntaje, total: _total)),
+                if (widget.estado.isNotEmpty)
+                  Padding(
+                    padding: const EdgeInsets.only(top: 8),
+                    child: Text(
+                      widget.estado,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 13,
+                        color: Tema.textoTenue,
+                      ),
+                    ),
+                  ),
+                const SizedBox(height: 12),
+                TarjetaPregunta(
+                  etiqueta: _combo == null ? '' : 'Traducí al italiano',
+                  texto: _combo == null
+                      ? _mensajeSinDatos
+                      : "'${_combo!.conjugacion.espanol}'",
+                ),
+                const SizedBox(height: 14),
+                CampoTexto(texto: _textoActual),
+                // Alto fijo siempre: si cambiara al aparecer el texto, se
+                // recalcularía el layout entero (el bug que tuvo Kivy).
+                SizedBox(
+                  height: 40,
+                  child: Center(
+                    child: TextoFeedback(
+                      texto: _feedback,
+                      color: _colorFeedback,
+                    ),
+                  ),
+                ),
+                SizedBox(
+                  height: 58,
+                  child: ElevatedButton(
+                    onPressed: _accionBoton,
+                    style: Tema.botonPrincipal,
+                    child: Text(
+                      _mostrandoResultado ? 'Siguiente' : 'Verificar',
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
             ),
           ),
         ),
         Teclado(onTecla: _onTecla),
       ],
     );
-  }
-
-  List<Widget> _contenido(String pregunta) {
-    return [
-        SizedBox(
-          height: 40,
-          child: Center(
-            child: Text(
-              'Puntaje: $_puntaje/$_total',
-              style: const TextStyle(fontSize: 16, color: Color(0xFF333333)),
-            ),
-          ),
-        ),
-        if (widget.estado.isNotEmpty)
-          Padding(
-            padding: const EdgeInsets.only(bottom: 4),
-            child: Text(
-              widget.estado,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 13, color: Tema.textoTenue),
-            ),
-          ),
-        SizedBox(
-          height: 130,
-          child: Center(
-            child: Text(
-              pregunta,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 20, color: Tema.titulo),
-            ),
-          ),
-        ),
-        CampoTexto(texto: _textoActual),
-        // Alto fijo siempre: si cambiara al aparecer el texto, se recalcularía
-        // el layout de toda la pantalla (el bug que tuvo la versión Kivy).
-        SizedBox(
-          height: 36,
-          child: Center(
-            child: Text(
-              _feedback,
-              textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20, color: _colorFeedback),
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 65,
-          child: ElevatedButton(
-            onPressed: _accionBoton,
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Tema.boton,
-              foregroundColor: Tema.textoBoton,
-              shape: const RoundedRectangleBorder(),
-            ),
-            child: Text(
-              _mostrandoResultado ? 'Siguiente' : 'Verificar',
-              style: const TextStyle(fontSize: 22),
-            ),
-          ),
-        ),
-    ];
   }
 }

@@ -35,7 +35,7 @@ class TukylianoApp extends StatelessWidget {
     return MaterialApp(
       title: 'Tukyliano',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(scaffoldBackgroundColor: Tema.fondo),
+      theme: Tema.datos,
       home: PantallaPrincipal(
         almacenClave: almacenClave,
         gemini: gemini,
@@ -210,7 +210,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           padding: const EdgeInsets.all(14),
           child: Column(
             children: [
-              BarraSuperior(onSeccion: _irA),
+              BarraSuperior(onSeccion: _irA, actual: _seccion),
               Expanded(child: _cuerpo()),
             ],
           ),

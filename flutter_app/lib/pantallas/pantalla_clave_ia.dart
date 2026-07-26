@@ -64,14 +64,37 @@ class _PantallaClaveIAState extends State<PantallaClaveIA> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
+          const SizedBox(height: 20),
+          Center(
+            child: Container(
+              padding: const EdgeInsets.all(18),
+              decoration: const BoxDecoration(
+                color: Tema.verdeSuave,
+                shape: BoxShape.circle,
+              ),
+              child: const Icon(Icons.key_rounded, size: 34, color: Tema.verde),
+            ),
+          ),
           const SizedBox(height: 16),
           const Text(
             'Necesitás una clave gratis de la IA (Gemini)',
             textAlign: TextAlign.center,
-            style: TextStyle(fontSize: 20, color: Tema.titulo),
+            style: TextStyle(
+              fontSize: 20,
+              fontWeight: FontWeight.w700,
+              color: Tema.titulo,
+            ),
           ),
           const SizedBox(height: 16),
-          _Instrucciones(onLink: _abrirLink),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 16),
+            decoration: BoxDecoration(
+              color: Tema.superficie,
+              borderRadius: BorderRadius.circular(Tema.radio),
+              boxShadow: Tema.sombra,
+            ),
+            child: _Instrucciones(onLink: _abrirLink),
+          ),
           const SizedBox(height: 16),
           CampoTexto(
             texto: _clavePegada,
@@ -79,15 +102,22 @@ class _PantallaClaveIAState extends State<PantallaClaveIA> {
           ),
           const SizedBox(height: 12),
           SizedBox(
-            height: 55,
-            child: ElevatedButton(
+            height: 54,
+            child: ElevatedButton.icon(
               onPressed: _pegar,
               style: ElevatedButton.styleFrom(
-                backgroundColor: Tema.boton,
-                foregroundColor: Tema.textoBoton,
-                shape: const RoundedRectangleBorder(),
+                backgroundColor: Tema.verdeSuave,
+                foregroundColor: Tema.verdeOscuro,
+                elevation: 0,
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(Tema.radio),
+                ),
               ),
-              child: const Text('Pegar clave', style: TextStyle(fontSize: 18)),
+              icon: const Icon(Icons.content_paste_rounded, size: 20),
+              label: const Text(
+                'Pegar clave',
+                style: TextStyle(fontSize: 18, fontWeight: FontWeight.w600),
+              ),
             ),
           ),
           SizedBox(
@@ -101,17 +131,17 @@ class _PantallaClaveIAState extends State<PantallaClaveIA> {
             ),
           ),
           SizedBox(
-            height: 60,
+            height: 58,
             child: ElevatedButton(
               onPressed: _guardar,
-              style: ElevatedButton.styleFrom(
-                backgroundColor: Tema.boton,
-                foregroundColor: Tema.textoBoton,
-                shape: const RoundedRectangleBorder(),
+              style: Tema.botonPrincipal,
+              child: const Text(
+                'Guardar',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
-              child: const Text('Guardar', style: TextStyle(fontSize: 20)),
             ),
           ),
+          const SizedBox(height: 12),
         ],
       ),
     );
@@ -125,7 +155,7 @@ class _Instrucciones extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const estilo = TextStyle(fontSize: 15, color: Color(0xFF4D4D4D));
+    const estilo = TextStyle(fontSize: 15, color: Tema.texto, height: 1.4);
 
     return Column(
       children: [
@@ -140,8 +170,11 @@ class _Instrucciones extends StatelessWidget {
                   urlClaveGemini,
                   style: TextStyle(
                     fontSize: 15,
-                    color: Tema.titulo,
+                    height: 1.4,
+                    color: Tema.verde,
+                    fontWeight: FontWeight.w600,
                     decoration: TextDecoration.underline,
+                    decorationColor: Tema.verde,
                   ),
                 ),
               ),
