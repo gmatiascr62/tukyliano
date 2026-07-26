@@ -1,4 +1,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- La plantilla de Flutter declara este permiso solo en los manifests de
+         debug y profile, así que el APK de release quedaba sin internet: no
+         bajaba los verbos nuevos ni podía hablar con Gemini. -->
+    <uses-permission android:name="android.permission.INTERNET"/>
+
     <application
         android:label="Tukyliano F"
         android:name="${applicationName}"
