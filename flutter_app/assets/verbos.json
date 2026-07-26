@@ -3,6 +3,7 @@
   "verbos": {
     "volere": {
       "traduccion": "querer",
+      "gerundio": {"italiano": "volendo", "espanol": "queriendo"},
       "tiempos": {
         "presente": {
           "io": {"italiano": "voglio", "espanol": "yo quiero"},
