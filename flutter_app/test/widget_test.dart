@@ -4,14 +4,16 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/main.dart';
 
 void main() {
-  testWidgets('arranca mostrando las tres secciones y la de Verbos',
+  // En los tests no hay plugins de plataforma, así que la carga de verbos
+  // (path_provider) falla y la pantalla de Verbos queda sin datos. Acá se
+  // verifica la navegación; el parseo se prueba en modelo_verbo_test.dart.
+  testWidgets('muestra las tres secciones en la barra de arriba',
       (WidgetTester tester) async {
     await tester.pumpWidget(const TukylianoApp());
 
-    expect(find.text('Articoli'), findsOneWidget);
-    expect(find.text('Frases'), findsOneWidget);
-    // "Verbos" aparece en el botón y en el cuerpo de la sección inicial.
-    expect(find.text('Verbos'), findsNWidgets(2));
+    expect(find.widgetWithText(ElevatedButton, 'Articoli'), findsOneWidget);
+    expect(find.widgetWithText(ElevatedButton, 'Frases'), findsOneWidget);
+    expect(find.widgetWithText(ElevatedButton, 'Verbos'), findsOneWidget);
   });
 
   testWidgets('la barra de arriba cambia de sección',
@@ -25,5 +27,9 @@ void main() {
     await tester.tap(find.widgetWithText(ElevatedButton, 'Articoli'));
     await tester.pumpAndSettle();
     expect(find.text('Articoli'), findsNWidgets(2));
+
+    await tester.tap(find.widgetWithText(ElevatedButton, 'Verbos'));
+    await tester.pumpAndSettle();
+    expect(find.text('La práctica con IA llega en la fase 4'), findsNothing);
   });
 }
