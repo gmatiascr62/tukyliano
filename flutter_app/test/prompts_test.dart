@@ -112,4 +112,33 @@ void main() {
       expect(() => extraerJson('no hay nada acá'), throwsFormatException);
     });
   });
+
+  group('promptGenerarFrase con gerundio', () {
+    String prompt() => promptGenerarFrase(
+          verbo: 'volere',
+          traduccion: 'querer',
+          tiempo: 'gerundio',
+          persona: '-',
+          conjugacionItaliana: 'volendo',
+          azar: Random(3),
+        );
+
+    test('pide el gerundio y no una persona', () {
+      final p = prompt();
+      expect(p, contains('usando el gerundio del verbo'));
+      expect(p, isNot(contains("persona '-'")));
+      expect(p, isNot(contains('conjugado en gerundio')));
+    });
+
+    test('exige la forma exacta del gerundio', () {
+      expect(
+        prompt(),
+        contains("el gerundio tiene que aparecer exactamente como 'volendo'"),
+      );
+    });
+
+    test('igual pide que las dos frases coincidan', () {
+      expect(prompt(), contains('tienen que ser la misma frase'));
+    });
+  });
 }

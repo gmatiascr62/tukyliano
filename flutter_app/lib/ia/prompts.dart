@@ -63,25 +63,40 @@ String promptGenerarFrase({
 }) {
   final random = azar ?? Random();
   final etiqueta = etiquetasTiempo[tiempo] ?? tiempo;
+  final esGerundio = tiempo == tiempoGerundio;
 
   // Si tenemos la conjugación cargada en el JSON se la damos ya resuelta: así
   // el modelo no puede escribir el italiano en una persona y el español en
   // otra (pasaba, por ejemplo "Mañana estaré..." con "Domani sarà...").
   final exigenciaVerbo = conjugacionItaliana.isEmpty
       ? ''
-      : "En italiano el verbo tiene que aparecer conjugado exactamente "
-          "como '$conjugacionItaliana'. ";
+      : esGerundio
+          ? "En italiano el gerundio tiene que aparecer exactamente "
+              "como '$conjugacionItaliana'. "
+          : "En italiano el verbo tiene que aparecer conjugado exactamente "
+              "como '$conjugacionItaliana'. ";
+
+  // El gerundio no tiene personas, así que no se le pide ninguna.
+  final pedido = esGerundio
+      ? "que se traduzca al italiano usando el gerundio del verbo "
+          "'$verbo' ($traduccion). "
+      : "que se traduzca al italiano usando el verbo '$verbo' ($traduccion) "
+          "conjugado en $etiqueta, persona '$persona'. ";
+
+  final mismaFrase = esGerundio
+      ? "El español y el italiano tienen que ser la misma frase: uno es la "
+          "traducción literal del otro. "
+      : "El español y el italiano tienen que ser la misma frase, con la misma "
+          "persona ('$persona'): uno es la traducción literal del otro. ";
 
   final tema = temasFrase[random.nextInt(temasFrase.length)];
   final barajados = List.of(ejemplosFrase)..shuffle(random);
   final ejemplos = barajados.take(2).map((e) => "'$e'").join(', ');
 
   return "Generá una oración MUY CORTA en español (máximo 6 palabras), natural, "
-      "que se traduzca al italiano usando el verbo '$verbo' ($traduccion) "
-      "conjugado en $etiqueta, persona '$persona'. "
+      "$pedido"
       "$exigenciaVerbo"
-      "El español y el italiano tienen que ser la misma frase, con la misma "
-      "persona ('$persona'): uno es la traducción literal del otro. "
+      "$mismaFrase"
       "Tiene que ser una frase simple y concreta del día a día, del estilo "
       "que diría un chico o alguien que recién empieza, con vocabulario "
       "fácil y nada poético, abstracto ni filosófico. "
