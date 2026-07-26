@@ -20,9 +20,14 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(const TukylianoApp());
 
+    // Sin clave de Gemini guardada, Frases lleva primero a pedirla.
     await tester.tap(find.widgetWithText(ElevatedButton, 'Frases'));
     await tester.pumpAndSettle();
-    expect(find.text('La práctica con IA llega en la fase 4'), findsOneWidget);
+    expect(
+      find.text('Necesitás una clave gratis de la IA (Gemini)'),
+      findsOneWidget,
+    );
+    expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsOneWidget);
 
     await tester.tap(find.widgetWithText(ElevatedButton, 'Articoli'));
     await tester.pumpAndSettle();
@@ -30,6 +35,6 @@ void main() {
 
     await tester.tap(find.widgetWithText(ElevatedButton, 'Verbos'));
     await tester.pumpAndSettle();
-    expect(find.text('La práctica con IA llega en la fase 4'), findsNothing);
+    expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsNothing);
   });
 }

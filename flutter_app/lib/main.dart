@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 
 import 'constantes.dart';
+import 'datos/almacenamiento_clave.dart';
 import 'datos/repositorio_verbos.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
+import 'pantallas/pantalla_clave_ia.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_quiz.dart';
 import 'pantallas/pantalla_seleccion.dart';
@@ -37,8 +39,13 @@ class PantallaPrincipal extends StatefulWidget {
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
 }
 
+/// Dentro de la sección Frases: primero la clave (si falta), después elegir
+/// qué practicar, después la práctica en sí.
+enum _PasoFrases { clave, seleccion, practica }
+
 class _PantallaPrincipalState extends State<PantallaPrincipal> {
   final RepositorioVerbos _repositorio = RepositorioVerbos();
+  final AlmacenamientoClave _almacenClave = AlmacenamientoClave();
 
   Seccion _seccion = Seccion.verbos;
   DatosVerbos? _datos;
@@ -46,6 +53,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   /// La sección Verbos alterna entre el quiz y la pantalla de selección.
   bool _eligiendoVerbos = false;
+
+  _PasoFrases _pasoFrases = _PasoFrases.seleccion;
+  String? _claveGemini;
+  String _errorClave = '';
+  List<String>? _verbosFrases;
+  List<String>? _tiemposFrases;
+  int _generacionFrases = 0;
 
   /// Null mientras el usuario no eligió nada: en ese caso se practica con
   /// todos los verbos, así los que llegan por actualización entran solos.
@@ -60,6 +74,15 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   void initState() {
     super.initState();
     _cargarDatos();
+    _cargarClave();
+  }
+
+  /// Se lee una sola vez al arrancar, así navegar a Frases no tiene que
+  /// esperar una lectura de disco.
+  Future<void> _cargarClave() async {
+    final clave = await _almacenClave.cargar();
+    if (!mounted || clave == null) return;
+    setState(() => _claveGemini = clave);
   }
 
   Future<void> _cargarDatos() async {
@@ -91,6 +114,42 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       _seccion = seccion;
       // Tocar "Verbos" lleva a elegir qué practicar, como en la app Kivy.
       if (seccion == Seccion.verbos) _eligiendoVerbos = true;
+      // Sin clave guardada, Frases lleva primero a pedirla.
+      if (seccion == Seccion.frases) {
+        _pasoFrases =
+            _claveGemini == null ? _PasoFrases.clave : _pasoFrases;
+      }
+    });
+  }
+
+  Future<void> _guardarClave(String clave) async {
+    await _almacenClave.guardar(clave);
+    if (!mounted) return;
+    setState(() {
+      _claveGemini = clave;
+      _errorClave = '';
+      _pasoFrases = _PasoFrases.seleccion;
+    });
+  }
+
+  /// Gemini rechazó la clave guardada: se borra y se vuelve a pedir.
+  Future<void> _claveInvalida() async {
+    await _almacenClave.borrar();
+    if (!mounted) return;
+    setState(() {
+      _claveGemini = null;
+      _errorClave =
+          'La clave guardada ya no funciona (¿fue revocada?). Pegá una nueva.';
+      _pasoFrases = _PasoFrases.clave;
+    });
+  }
+
+  void _empezarFrases(List<String> verbos, List<String> tiempos) {
+    setState(() {
+      _verbosFrases = verbos;
+      _tiemposFrases = tiempos;
+      _pasoFrases = _PasoFrases.practica;
+      _generacionFrases++;
     });
   }
 
@@ -103,10 +162,10 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     });
   }
 
-  /// Los verbos con los que se practica: la selección del usuario, o todos.
-  List<Verbo> get _verbosParaPracticar {
+  /// Los verbos con los que se practica: la selección del usuario, o todos si
+  /// todavía no eligió nada (así los que llegan por actualización entran solos).
+  List<Verbo> _resolverVerbos(List<String>? elegidos) {
     final todos = _datos?.verbos ?? {};
-    final elegidos = _verbosElegidos;
     if (elegidos == null) return todos.values.toList();
     return elegidos
         .where(todos.containsKey)
@@ -136,10 +195,41 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.articoli:
         return const PantallaArticoli();
       case Seccion.frases:
-        return const PantallaFrases();
+        return _seccionFrases();
       case Seccion.verbos:
         return _seccionVerbos();
     }
+  }
+
+  Widget _seccionFrases() {
+    if (_pasoFrases == _PasoFrases.clave || _claveGemini == null) {
+      return PantallaClaveIA(onGuardar: _guardarClave, error: _errorClave);
+    }
+
+    final datos = _datos;
+    if (datos == null) {
+      return const Center(
+        child: Text(
+          'Cargando verbos...',
+          style: TextStyle(fontSize: 16, color: Tema.textoTenue),
+        ),
+      );
+    }
+
+    if (_pasoFrases == _PasoFrases.seleccion) {
+      return PantallaSeleccion(
+        verbos: datos.verbos,
+        alConfirmar: _empezarFrases,
+      );
+    }
+
+    return PantallaFrases(
+      key: ValueKey(_generacionFrases),
+      verbos: _resolverVerbos(_verbosFrases),
+      tiempos: _tiemposFrases ?? tiemposDisponibles,
+      apiKey: _claveGemini!,
+      onClaveInvalida: _claveInvalida,
+    );
   }
 
   Widget _seccionVerbos() {
@@ -163,7 +253,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
     return PantallaQuiz(
       key: ValueKey(_generacionQuiz),
-      verbos: _verbosParaPracticar,
+      verbos: _resolverVerbos(_verbosElegidos),
       tiempos: _tiemposElegidos ?? tiemposDisponibles,
       estado: _estado,
     );
