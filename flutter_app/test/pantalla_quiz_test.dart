@@ -5,6 +5,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 import 'package:tukyliano/pantallas/pantalla_quiz.dart';
 
+import 'util_pantalla.dart';
+
 /// Un solo verbo con una sola conjugación: así la pregunta es determinística
 /// y se puede afirmar cuál es la respuesta correcta.
 final _unicaConjugacion = DatosVerbos.desdeJson(jsonDecode('''
@@ -35,6 +37,7 @@ Future<void> _escribir(WidgetTester tester, String palabra) async {
 void main() {
   testWidgets('muestra la pregunta en español y el puntaje en cero',
       (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_unicaConjugacion));
 
     expect(find.textContaining("yo soy/estoy"), findsOneWidget);
@@ -44,6 +47,7 @@ void main() {
   });
 
   testWidgets('una respuesta correcta suma puntaje', (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_unicaConjugacion));
 
     await _escribir(tester, 'sono');
@@ -60,6 +64,7 @@ void main() {
 
   testWidgets('una respuesta incorrecta muestra la correcta y no suma',
       (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_unicaConjugacion));
 
     await _escribir(tester, 'sei');
@@ -71,6 +76,7 @@ void main() {
   });
 
   testWidgets('la tecla de borrar saca el último carácter', (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_unicaConjugacion));
 
     await _escribir(tester, 'son');
@@ -81,6 +87,7 @@ void main() {
   });
 
   testWidgets('verificar con el campo vacío no hace nada', (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_unicaConjugacion));
 
     await tester.tap(find.widgetWithText(ElevatedButton, 'Verificar'));
@@ -92,6 +99,7 @@ void main() {
   });
 
   testWidgets('"Siguiente" limpia el campo y el feedback', (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_unicaConjugacion));
 
     await _escribir(tester, 'sono');
@@ -107,6 +115,7 @@ void main() {
   });
 
   testWidgets('avisa cuando no hay verbos con datos', (tester) async {
+    usarPantallaDeCelular(tester);
     final viejos = DatosVerbos.desdeJson(jsonDecode(
         '{"verbos": {"volere": {"conjugaciones": {"io": "voglio"}}}}') as Map<String, dynamic>);
 

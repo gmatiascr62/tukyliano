@@ -8,6 +8,8 @@ import 'package:tukyliano/ia/gemini.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 import 'package:tukyliano/pantallas/pantalla_frases.dart';
 
+import 'util_pantalla.dart';
+
 final _verbos = DatosVerbos.desdeJson(jsonDecode('''
   {"verbos": {"essere": {"traduccion": "ser/estar", "tiempos": {
     "presente": {"io": {"italiano": "sono", "espanol": "yo soy/estoy"}}
@@ -72,6 +74,7 @@ const _fraseOk = '{"espanol": "Hoy soy feliz", "italiano": "Oggi sono felice"}';
 
 void main() {
   testWidgets('muestra la frase generada en español', (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_geminiFalso(generacion: _fraseOk)));
     await tester.pumpAndSettle();
 
@@ -80,6 +83,7 @@ void main() {
   });
 
   testWidgets('una respuesta correcta muestra ¡Correcto!', (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_geminiFalso(generacion: _fraseOk)));
     await tester.pumpAndSettle();
 
@@ -93,6 +97,7 @@ void main() {
 
   testWidgets('una respuesta incorrecta muestra solo la frase correcta',
       (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(
       _app(_geminiFalso(generacion: _fraseOk, correccion: 'INCORRECTO')),
     );
@@ -108,6 +113,7 @@ void main() {
   });
 
   testWidgets('lee el JSON aunque venga envuelto en markdown', (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app(_geminiFalso(
       generacion: '```json\n$_fraseOk\n```',
     )));
@@ -117,6 +123,7 @@ void main() {
   });
 
   testWidgets('un 403 avisa que la clave es inválida', (tester) async {
+    usarPantallaDeCelular(tester);
     var avisado = false;
     await tester.pumpWidget(_app(
       _geminiFalso(generacion: _fraseOk, statusCode: 403),
@@ -128,6 +135,7 @@ void main() {
   });
 
   testWidgets('un error de red muestra un mensaje y no rompe', (tester) async {
+    usarPantallaDeCelular(tester);
     final gemini = Gemini(
       cliente: MockClient((_) async => http.Response('boom', 500)),
     );
@@ -138,6 +146,7 @@ void main() {
   });
 
   testWidgets('verificar con el campo vacío no llama a la IA', (tester) async {
+    usarPantallaDeCelular(tester);
     var llamadas = 0;
     final gemini = Gemini(
       cliente: MockClient((_) async {
