@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
 
+import 'constantes.dart';
 import 'datos/repositorio_verbos.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_frases.dart';
-import 'pantallas/pantalla_verbos.dart';
+import 'pantallas/pantalla_quiz.dart';
+import 'pantallas/pantalla_seleccion.dart';
 import 'tema.dart';
 import 'widgets/barra_superior.dart';
 
@@ -42,6 +44,18 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   DatosVerbos? _datos;
   String _estado = '';
 
+  /// La sección Verbos alterna entre el quiz y la pantalla de selección.
+  bool _eligiendoVerbos = false;
+
+  /// Null mientras el usuario no eligió nada: en ese caso se practica con
+  /// todos los verbos, así los que llegan por actualización entran solos.
+  List<String>? _verbosElegidos;
+  List<String>? _tiemposElegidos;
+
+  /// Cambia en cada "Empezar" para que el quiz arranque de cero (puntaje
+  /// incluido), igual que en Kivy, que recreaba el widget.
+  int _generacionQuiz = 0;
+
   @override
   void initState() {
     super.initState();
@@ -72,6 +86,34 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     });
   }
 
+  void _irA(Seccion seccion) {
+    setState(() {
+      _seccion = seccion;
+      // Tocar "Verbos" lleva a elegir qué practicar, como en la app Kivy.
+      if (seccion == Seccion.verbos) _eligiendoVerbos = true;
+    });
+  }
+
+  void _empezarQuiz(List<String> verbos, List<String> tiempos) {
+    setState(() {
+      _verbosElegidos = verbos;
+      _tiemposElegidos = tiempos;
+      _eligiendoVerbos = false;
+      _generacionQuiz++;
+    });
+  }
+
+  /// Los verbos con los que se practica: la selección del usuario, o todos.
+  List<Verbo> get _verbosParaPracticar {
+    final todos = _datos?.verbos ?? {};
+    final elegidos = _verbosElegidos;
+    if (elegidos == null) return todos.values.toList();
+    return elegidos
+        .where(todos.containsKey)
+        .map((nombre) => todos[nombre]!)
+        .toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -80,9 +122,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           padding: const EdgeInsets.all(14),
           child: Column(
             children: [
-              BarraSuperior(
-                onSeccion: (seccion) => setState(() => _seccion = seccion),
-              ),
+              BarraSuperior(onSeccion: _irA),
               Expanded(child: _cuerpo()),
             ],
           ),
@@ -98,7 +138,34 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.frases:
         return const PantallaFrases();
       case Seccion.verbos:
-        return PantallaVerbos(datos: _datos, estado: _estado);
+        return _seccionVerbos();
     }
+  }
+
+  Widget _seccionVerbos() {
+    final datos = _datos;
+    if (datos == null) {
+      return Center(
+        child: Text(
+          _estado.isEmpty ? 'Cargando verbos...' : _estado,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 16, color: Tema.textoTenue),
+        ),
+      );
+    }
+
+    if (_eligiendoVerbos) {
+      return PantallaSeleccion(
+        verbos: datos.verbos,
+        alConfirmar: _empezarQuiz,
+      );
+    }
+
+    return PantallaQuiz(
+      key: ValueKey(_generacionQuiz),
+      verbos: _verbosParaPracticar,
+      tiempos: _tiemposElegidos ?? tiemposDisponibles,
+      estado: _estado,
+    );
   }
 }
