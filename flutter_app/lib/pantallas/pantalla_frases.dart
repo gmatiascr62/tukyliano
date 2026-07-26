@@ -7,6 +7,7 @@ import '../logica/seleccion_azar.dart';
 import '../modelos/verbo.dart';
 import '../tema.dart';
 import '../widgets/campo_texto.dart';
+import '../widgets/tarjeta_pregunta.dart';
 import '../widgets/teclado.dart';
 
 /// Práctica de frases: la IA genera una oración corta en español y corrige la
@@ -43,7 +44,7 @@ class _PantallaFrasesState extends State<PantallaFrases> {
   String _textoActual = '';
   String _feedback = '';
   Color _colorFeedback = Tema.texto;
-  double _tamanoFeedback = 20;
+  double _tamanoFeedback = 18;
   String _mensajePantalla = 'Generando frase...';
 
   bool _ocupado = true;
@@ -123,7 +124,7 @@ class _PantallaFrasesState extends State<PantallaFrases> {
       _ocupado = true;
       _feedback = 'Verificando...';
       _colorFeedback = Tema.textoTenue;
-      _tamanoFeedback = 20;
+      _tamanoFeedback = 18;
     });
 
     try {
@@ -139,7 +140,7 @@ class _PantallaFrasesState extends State<PantallaFrases> {
         if (correcto) {
           _feedback = '¡Correcto!';
           _colorFeedback = Tema.correcto;
-          _tamanoFeedback = 20;
+          _tamanoFeedback = 18;
         } else {
           // Solo la frase correcta, sin el "Incorrecto. Era:".
           _feedback = _italianoReferencia;
@@ -173,18 +174,12 @@ class _PantallaFrasesState extends State<PantallaFrases> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                SizedBox(
-                  height: 130,
-                  child: Center(
-                    child: Text(
-                      _fraseEs.isEmpty
-                          ? _mensajePantalla
-                          : "Escribí en italiano:\n'$_fraseEs'",
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(fontSize: 20, color: Tema.titulo),
-                    ),
-                  ),
+                const SizedBox(height: 12),
+                TarjetaPregunta(
+                  etiqueta: _fraseEs.isEmpty ? '' : 'Escribí en italiano',
+                  texto: _fraseEs.isEmpty ? _mensajePantalla : "'$_fraseEs'",
                 ),
+                const SizedBox(height: 14),
                 CampoTexto(
                   texto: _textoActual,
                   placeholderTexto: 'Escribí la traducción...',
@@ -192,34 +187,30 @@ class _PantallaFrasesState extends State<PantallaFrases> {
                 // Alto fijo siempre, para que el layout no salte al aparecer
                 // el texto (el bug que tuvo la versión Kivy).
                 SizedBox(
-                  height: 36,
+                  height: 40,
                   child: Center(
-                    child: Text(
-                      _feedback,
-                      textAlign: TextAlign.center,
-                      style: TextStyle(
-                        fontSize: _tamanoFeedback,
-                        color: _colorFeedback,
-                      ),
+                    child: TextoFeedback(
+                      texto: _feedback,
+                      color: _colorFeedback,
+                      tamano: _tamanoFeedback,
                     ),
                   ),
                 ),
                 SizedBox(
-                  height: 65,
+                  height: 58,
                   child: ElevatedButton(
                     onPressed: _ocupado ? null : _accionBoton,
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Tema.boton,
-                      foregroundColor: Tema.textoBoton,
-                      disabledBackgroundColor: const Color(0xFF9E9E9E),
-                      shape: const RoundedRectangleBorder(),
-                    ),
+                    style: Tema.botonPrincipal,
                     child: Text(
                       _mostrandoResultado ? 'Siguiente' : 'Verificar',
-                      style: const TextStyle(fontSize: 22),
+                      style: const TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.w600,
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(height: 10),
               ],
             ),
           ),

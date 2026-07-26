@@ -105,10 +105,10 @@ flutter_launcher_icons:
 # fondo es el mismo que Window.clearcolor. Se regenera con:
 # dart run flutter_native_splash:create
 flutter_native_splash:
-  color: "#F2F2F2"
+  color: "#F5F7F2"
   image: assets/presplash.png
   android: true
   ios: false
   android_12:
-    color: "#F2F2F2"
+    color: "#F5F7F2"
     image: assets/presplash.png

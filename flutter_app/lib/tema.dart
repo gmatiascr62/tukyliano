@@ -1,23 +1,74 @@
 import 'package:flutter/material.dart';
 
-/// Colores de la app Kivy, replicados tal cual durante la migración para que
-/// las dos versiones se puedan comparar 1 a 1. El rediseño queda para el final.
+/// Paleta de la app, tomada del verde del logo (#58A030).
 class Tema {
   const Tema._();
 
-  /// Window.clearcolor de Kivy
-  static const Color fondo = Color(0xFFF2F2F2);
+  static const Color verde = Color(0xFF58A030);
+  static const Color verdeClaro = Color(0xFF8FC93F);
+  static const Color verdeOscuro = Color(0xFF3D7A1F);
+  static const Color verdeSuave = Color(0xFFEAF3E0);
 
-  /// Gris de los botones de Kivy
-  static const Color boton = Color(0xFF5A5A5A);
+  static const Color fondo = Color(0xFFF5F7F2);
+  static const Color superficie = Colors.white;
+  static const Color borde = Color(0xFFE0E6D8);
+
+  static const Color titulo = Color(0xFF23301C);
+  static const Color texto = Color(0xFF1F2421);
+  static const Color textoTenue = Color(0xFF6B7280);
+
+  static const Color boton = verde;
   static const Color textoBoton = Colors.white;
 
-  /// Azul oscuro de los títulos y las preguntas
-  static const Color titulo = Color(0xFF1A1A66);
+  static const Color correcto = Color(0xFF2E7D32);
+  static const Color incorrecto = Color(0xFFC62828);
 
-  static const Color texto = Color(0xFF1A1A1A);
-  static const Color textoTenue = Color(0xFF808080);
+  static const double radio = 14;
+  static const double radioChico = 10;
 
-  static const Color correcto = Color(0xFF1A991A);
-  static const Color incorrecto = Color(0xFFB31A1A);
+  static ThemeData get datos {
+    final esquema = ColorScheme.fromSeed(
+      seedColor: verde,
+      primary: verde,
+      surface: superficie,
+    );
+
+    return ThemeData(
+      useMaterial3: true,
+      colorScheme: esquema,
+      scaffoldBackgroundColor: fondo,
+      fontFamily: 'Roboto',
+      checkboxTheme: CheckboxThemeData(
+        fillColor: WidgetStateProperty.resolveWith(
+          (estados) =>
+              estados.contains(WidgetState.selected) ? verde : Colors.white,
+        ),
+        side: const BorderSide(color: borde, width: 2),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(6),
+        ),
+      ),
+    );
+  }
+
+  /// Botón principal (Verificar, Siguiente, Empezar, Guardar).
+  static ButtonStyle get botonPrincipal => ElevatedButton.styleFrom(
+        backgroundColor: verde,
+        foregroundColor: Colors.white,
+        disabledBackgroundColor: const Color(0xFFC7D4BC),
+        disabledForegroundColor: Colors.white,
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(radio),
+        ),
+      );
+
+  /// Sombra suave para las tarjetas.
+  static List<BoxShadow> get sombra => const [
+        BoxShadow(
+          color: Color(0x14000000),
+          blurRadius: 10,
+          offset: Offset(0, 2),
+        ),
+      ];
 }
