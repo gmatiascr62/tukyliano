@@ -39,7 +39,8 @@ void main() {
     await tester.pump();
 
     expect(verbosElegidos, containsAll(['essere', 'avere']));
-    expect(tiemposElegidos.length, 4);
+    // Los cuatro tiempos más el gerundio.
+    expect(tiemposElegidos.length, 5);
   });
 
   testWidgets('destildar un verbo lo saca de la selección', (tester) async {
@@ -62,7 +63,7 @@ void main() {
     await tester.pump();
 
     expect(tiemposElegidos, isNot(contains('imperfetto')));
-    expect(tiemposElegidos.length, 3);
+    expect(tiemposElegidos.length, 4);
   });
 
   testWidgets('si se destilda todo se usa todo, como en la app Kivy',

@@ -16,6 +16,8 @@
 /// clave "tiempos", y la app tiene que mostrar un mensaje en vez de romperse.
 library;
 
+import '../constantes.dart';
+
 class Conjugacion {
   const Conjugacion({required this.italiano, required this.espanol});
 
@@ -64,6 +66,17 @@ class Verbo {
           }
         }
       });
+    }
+
+    // El gerundio viene al lado de "tiempos", no adentro, y es una sola forma
+    // sin personas. Se lo suma como un tiempo más con una persona única, así
+    // el sorteo, el quiz y las frases lo usan sin ningún caso especial.
+    final gerundio = json['gerundio'];
+    if (gerundio is Map<String, dynamic>) {
+      final conjugacion = Conjugacion.desdeJson(gerundio);
+      if (conjugacion.italiano.isNotEmpty) {
+        tiempos[tiempoGerundio] = {personaGerundio: conjugacion};
+      }
     }
 
     return Verbo(

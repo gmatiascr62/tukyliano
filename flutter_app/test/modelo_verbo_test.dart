@@ -1,6 +1,9 @@
 import 'dart:convert';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'dart:math';
+
+import 'package:tukyliano/logica/seleccion_azar.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 
 void main() {
@@ -81,5 +84,52 @@ void main() {
     final essere = datos.verbos['essere']!;
     expect(essere.tieneAlgunTiempo(['presente', 'imperfetto']), isTrue);
     expect(essere.tieneAlgunTiempo(['presente']), isFalse);
+  });
+
+  group('gerundio', () {
+    // El gerundio viene al lado de "tiempos" (no adentro) y sin personas.
+    final conGerundio = DatosVerbos.desdeJson(jsonDecode('''
+      {
+        "version": 6,
+        "verbos": {
+          "volere": {
+            "traduccion": "querer",
+            "gerundio": {"italiano": "volendo", "espanol": "queriendo"},
+            "tiempos": {
+              "presente": {"io": {"italiano": "voglio", "espanol": "yo quiero"}}
+            }
+          }
+        }
+      }
+    ''') as Map<String, dynamic>);
+
+    test('se suma como un tiempo más', () {
+      final volere = conGerundio.verbos['volere']!;
+      expect(volere.tiempos.keys, containsAll(['presente', 'gerundio']));
+    });
+
+    test('queda con una única persona', () {
+      final gerundio = conGerundio.verbos['volere']!.tiempos['gerundio']!;
+      expect(gerundio.keys.toList(), ['-']);
+      expect(gerundio['-']!.italiano, 'volendo');
+      expect(gerundio['-']!.espanol, 'queriendo');
+    });
+
+    test('el sorteo lo puede elegir', () {
+      final combo = elegirComboAzar(
+        conGerundio.verbos.values,
+        ['gerundio'],
+        azar: Random(1),
+      );
+      expect(combo!.tiempo, 'gerundio');
+      expect(combo.conjugacion.italiano, 'volendo');
+    });
+
+    test('un verbo sin gerundio no gana un tiempo vacío', () {
+      final sinGerundio = DatosVerbos.desdeJson(jsonDecode(
+          '{"verbos": {"fare": {"tiempos": {"presente": {"io": {"italiano": "faccio", "espanol": "yo hago"}}}}}}')
+          as Map<String, dynamic>);
+      expect(sinGerundio.verbos['fare']!.tiempos.containsKey('gerundio'), isFalse);
+    });
   });
 }
