@@ -10,6 +10,8 @@ import 'package:tukyliano/ia/gemini.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 
+import 'util_pantalla.dart';
+
 /// Clave en memoria: en los tests no hay path_provider.
 class _ClaveFalsa extends AlmacenamientoClave {
   _ClaveFalsa([this.guardada]);
@@ -76,6 +78,7 @@ Future<void> _tocar(WidgetTester tester, String texto) async {
 void main() {
   testWidgets('con clave guardada, Frases lleva a elegir qué practicar',
       (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(TukylianoApp(
       almacenClave: _ClaveFalsa('FAKE'),
       gemini: _geminiFalso(),
@@ -92,6 +95,7 @@ void main() {
 
   testWidgets('volver a Frases deja elegir de nuevo, no cae en la práctica',
       (tester) async {
+    usarPantallaDeCelular(tester);
     // Regresión: antes conservaba el paso, así que al volver desde otra
     // sección entraba directo a practicar y no se podían cambiar los verbos.
     await tester.pumpWidget(TukylianoApp(
@@ -114,6 +118,7 @@ void main() {
 
   testWidgets('sin clave guardada, Frases la pide y después deja elegir',
       (tester) async {
+    usarPantallaDeCelular(tester);
     await tester.pumpWidget(TukylianoApp(
       almacenClave: _ClaveFalsa(),
       gemini: _geminiFalso(),

@@ -38,11 +38,18 @@ jobs:
       - name: Revisar el código
         run: flutter analyze
 
+      # Release en vez de debug: el APK pasa de ~160 MB a ~25 MB. Se firma con
+      # la clave de debug (ver android/app/build.gradle.kts), así que se
+      # instala igual sin tener que generar un keystore.
       - name: Build APK
-        run: flutter build apk --debug
+        run: flutter build apk --release
+
+      # Sin esto el archivo se llama "app-release.apk" en Descargas.
+      - name: Renombrar el APK
+        run: mv build/app/outputs/flutter-apk/app-release.apk Tukyliano.apk
 
       - name: Subir APK como artefacto
         uses: actions/upload-artifact@v4
         with:
           name: tukyliano-flutter-apk
-          path: flutter_app/build/app/outputs/flutter-apk/app-debug.apk
+          path: flutter_app/Tukyliano.apk

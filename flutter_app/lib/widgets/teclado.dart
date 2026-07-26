@@ -11,6 +11,10 @@ const List<List<String>> filasTeclado = [
   ['à', 'è', 'é', 'ì', 'ò', 'ù'],
 ];
 
+/// Alto de cada tecla. Un poco más que los dp(52) de la app Kivy: en Flutter
+/// sobraba espacio arriba del teclado y las teclas se veían chicas.
+const double altoTecla = 58;
+
 /// Teclado italiano propio (letras + acentos + espacio + borrar). Se usa en
 /// vez del teclado nativo para tener las vocales acentuadas a mano.
 class Teclado extends StatelessWidget {
@@ -22,13 +26,16 @@ class Teclado extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       mainAxisSize: MainAxisSize.min,
+      // Sin esto la barra de espacio queda del ancho de su texto en vez de
+      // ocupar toda la fila, porque el Column centra a sus hijos.
+      crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         for (final fila in filasTeclado) ...[
           _Fila(teclas: fila, onTecla: onTecla),
           const SizedBox(height: 6),
         ],
         SizedBox(
-          height: 52,
+          height: altoTecla,
           child: _Tecla(texto: teclaEspacio, onTecla: onTecla),
         ),
       ],
@@ -45,7 +52,7 @@ class _Fila extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 52,
+      height: altoTecla,
       child: Row(
         children: [
           for (int i = 0; i < teclas.length; i++) ...[
