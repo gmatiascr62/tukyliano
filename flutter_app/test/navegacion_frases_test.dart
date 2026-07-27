@@ -86,7 +86,11 @@ void main() {
       repositorio: _RepoFalso(),
       // Vacío a propósito: estos tests miran la navegación, así que la frase
       // tiene que venir de la IA simulada y no del asset real.
-      frasesLocales: RepositorioFrases(leerAsset: (_) async => '{"frases": []}'),
+      frasesLocales: RepositorioFrases(
+        leerAsset: (_) async => '{"frases": []}',
+        cliente: MockClient((_) async => http.Response('', 404)),
+        carpeta: () async => null,
+      ),
     ));
     await tester.pumpAndSettle();
 
@@ -108,7 +112,11 @@ void main() {
       repositorio: _RepoFalso(),
       // Vacío a propósito: estos tests miran la navegación, así que la frase
       // tiene que venir de la IA simulada y no del asset real.
-      frasesLocales: RepositorioFrases(leerAsset: (_) async => '{"frases": []}'),
+      frasesLocales: RepositorioFrases(
+        leerAsset: (_) async => '{"frases": []}',
+        cliente: MockClient((_) async => http.Response('', 404)),
+        carpeta: () async => null,
+      ),
     ));
     await tester.pumpAndSettle();
 
@@ -132,7 +140,11 @@ void main() {
       repositorio: _RepoFalso(),
       // Vacío a propósito: estos tests miran la navegación, así que la frase
       // tiene que venir de la IA simulada y no del asset real.
-      frasesLocales: RepositorioFrases(leerAsset: (_) async => '{"frases": []}'),
+      frasesLocales: RepositorioFrases(
+        leerAsset: (_) async => '{"frases": []}',
+        cliente: MockClient((_) async => http.Response('', 404)),
+        carpeta: () async => null,
+      ),
     ));
     await tester.pumpAndSettle();
 

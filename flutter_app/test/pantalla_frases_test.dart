@@ -55,7 +55,11 @@ Gemini _geminiFalso({
 /// Repositorio con las frases que le pasemos. Sin argumento queda vacío, que
 /// es lo que necesita la mayoría de los tests: obliga a pasar por la IA.
 RepositorioFrases _frasesLocales([String json = '{"frases": []}']) =>
-    RepositorioFrases(leerAsset: (_) async => json);
+    RepositorioFrases(
+      leerAsset: (_) async => json,
+      cliente: MockClient((_) async => http.Response('', 404)),
+      carpeta: () async => null,
+    );
 
 Widget _app(
   Gemini gemini, {
