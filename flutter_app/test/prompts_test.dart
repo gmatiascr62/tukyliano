@@ -51,7 +51,8 @@ void main() {
 
     test('sortea un tema de la lista', () {
       final p = prompt();
-      final usados = temasFrase.where((t) => p.contains('tiene que ser: $t.'));
+      final usados =
+          temasFrase.where((t) => p.contains('tiene que ser: ${t.nombre}.'));
       expect(usados.length, 1);
     });
 
@@ -65,10 +66,50 @@ void main() {
       final temas = <String>{};
       for (var i = 0; i < 30; i++) {
         final p = prompt(semilla: i);
-        temas.add(temasFrase.firstWhere((t) => p.contains('tiene que ser: $t.')));
+        temas.add(temasFrase
+            .firstWhere((t) => p.contains('tiene que ser: ${t.nombre}.'))
+            .nombre);
       }
       // Con 20 temas y 30 sorteos tiene que salir más de uno.
       expect(temas.length, greaterThan(1));
+    });
+
+    test('pide como mucho cuatro palabras', () {
+      expect(prompt(), contains('máximo 4 palabras'));
+    });
+
+    test('prohíbe los nombres propios', () {
+      expect(prompt(), contains('No uses nombres propios'));
+    });
+
+    test('limita el vocabulario a las palabras comunes más las del tema', () {
+      final p = prompt();
+      final tema =
+          temasFrase.firstWhere((t) => p.contains('tiene que ser: ${t.nombre}.'));
+
+      expect(p, contains('usá SOLO palabras de esta lista'));
+      for (final palabra in [...palabrasComunes, ...tema.palabras]) {
+        expect(p, contains(palabra), reason: 'falta "$palabra" en la lista');
+      }
+    });
+
+    test('ningún tema se queda sin vocabulario', () {
+      for (final tema in temasFrase) {
+        expect(tema.palabras, isNotEmpty, reason: tema.nombre);
+      }
+    });
+
+    test('los ejemplos respetan el largo que se pide', () {
+      for (final ejemplo in ejemplosFrase) {
+        expect(ejemplo.split(' ').length, lessThanOrEqualTo(4),
+            reason: ejemplo);
+      }
+    });
+
+    test('pide la pista en el JSON', () {
+      final p = prompt();
+      expect(p, contains('"palabra = parola"'));
+      expect(p, contains('{"espanol": "...", "italiano": "...", "pista": "..."}'));
     });
   });
 
