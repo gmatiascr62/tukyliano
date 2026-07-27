@@ -6,6 +6,10 @@ const String urlRemoto =
 /// Copia de respaldo empaquetada con la app.
 const String assetVerbos = 'assets/verbos.json';
 
+/// Frases escritas a mano que vienen con la app, para no depender de la IA
+/// en cada tirada.
+const String assetFrases = 'assets/frases.json';
+
 /// Archivo escribible donde se guardan los verbos ya actualizados.
 const String archivoVerbosLocal = 'verbos_local.json';
 

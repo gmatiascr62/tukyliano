@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'constantes.dart';
 import 'datos/almacenamiento_clave.dart';
+import 'datos/repositorio_frases.dart';
 import 'datos/repositorio_verbos.dart';
 import 'ia/gemini.dart';
 import 'modelos/verbo.dart';
@@ -23,12 +24,14 @@ class TukylianoApp extends StatelessWidget {
     this.almacenClave,
     this.gemini,
     this.repositorio,
+    this.frasesLocales,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
   final AlmacenamientoClave? almacenClave;
   final Gemini? gemini;
   final RepositorioVerbos? repositorio;
+  final RepositorioFrases? frasesLocales;
 
   @override
   Widget build(BuildContext context) {
@@ -40,6 +43,7 @@ class TukylianoApp extends StatelessWidget {
         almacenClave: almacenClave,
         gemini: gemini,
         repositorio: repositorio,
+        frasesLocales: frasesLocales,
       ),
     );
   }
@@ -53,11 +57,13 @@ class PantallaPrincipal extends StatefulWidget {
     this.almacenClave,
     this.gemini,
     this.repositorio,
+    this.frasesLocales,
   });
 
   final AlmacenamientoClave? almacenClave;
   final Gemini? gemini;
   final RepositorioVerbos? repositorio;
+  final RepositorioFrases? frasesLocales;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -259,6 +265,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       apiKey: _claveGemini!,
       onClaveInvalida: _claveInvalida,
       gemini: widget.gemini,
+      frasesLocales: widget.frasesLocales,
     );
   }
 

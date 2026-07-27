@@ -1,0 +1,124 @@
+{
+  "version": 1,
+  "frases": [
+    {"verbo": "volere", "tiempo": "presente", "persona": "io", "espanol": "Quiero un helado", "italiano": "Voglio un gelato", "pista": "helado = gelato"},
+    {"verbo": "volere", "tiempo": "presente", "persona": "tu", "espanol": "¿Quieres un café?", "italiano": "Vuoi un caffè?", "pista": "café = caffè"},
+    {"verbo": "volere", "tiempo": "presente", "persona": "lui/lei", "espanol": "Ella quiere agua", "italiano": "Lei vuole acqua", "pista": "agua = acqua"},
+    {"verbo": "volere", "tiempo": "presente", "persona": "noi", "espanol": "Queremos una casa nueva", "italiano": "Vogliamo una casa nuova", "pista": "nueva = nuova"},
+    {"verbo": "volere", "tiempo": "presente", "persona": "voi", "espanol": "¿Ustedes quieren salir?", "italiano": "Volete uscire?", "pista": "salir = uscire"},
+    {"verbo": "volere", "tiempo": "presente", "persona": "loro", "espanol": "Ellos quieren jugar", "italiano": "Loro vogliono giocare", "pista": "jugar = giocare"},
+
+    {"verbo": "volere", "tiempo": "passato_prossimo", "persona": "io", "espanol": "Quise ayudarte", "italiano": "Ho voluto aiutarti", "pista": "ayudarte = aiutarti"},
+    {"verbo": "volere", "tiempo": "passato_prossimo", "persona": "tu", "espanol": "Quisiste ir al cine", "italiano": "Hai voluto andare al cinema", "pista": "cine = cinema"},
+    {"verbo": "volere", "tiempo": "passato_prossimo", "persona": "lui/lei", "espanol": "Él quiso pagar todo", "italiano": "Lui ha voluto pagare tutto", "pista": "pagar = pagare"},
+    {"verbo": "volere", "tiempo": "passato_prossimo", "persona": "noi", "espanol": "Quisimos comer afuera", "italiano": "Abbiamo voluto mangiare fuori", "pista": "afuera = fuori"},
+    {"verbo": "volere", "tiempo": "passato_prossimo", "persona": "voi", "espanol": "Ustedes quisieron esperar", "italiano": "Avete voluto aspettare", "pista": "esperar = aspettare"},
+    {"verbo": "volere", "tiempo": "passato_prossimo", "persona": "loro", "espanol": "Ellos quisieron venir", "italiano": "Loro hanno voluto venire", "pista": "venir = venire"},
+
+    {"verbo": "volere", "tiempo": "imperfetto", "persona": "io", "espanol": "Yo quería dormir", "italiano": "Volevo dormire", "pista": "dormir = dormire"},
+    {"verbo": "volere", "tiempo": "imperfetto", "persona": "tu", "espanol": "Tú querías otra cosa", "italiano": "Volevi un'altra cosa", "pista": "otra = un'altra"},
+    {"verbo": "volere", "tiempo": "imperfetto", "persona": "lui/lei", "espanol": "Ella quería estudiar", "italiano": "Lei voleva studiare", "pista": "estudiar = studiare"},
+    {"verbo": "volere", "tiempo": "imperfetto", "persona": "noi", "espanol": "Queríamos ver el mar", "italiano": "Volevamo vedere il mare", "pista": "el mar = il mare"},
+    {"verbo": "volere", "tiempo": "imperfetto", "persona": "voi", "espanol": "Ustedes querían bailar", "italiano": "Volevate ballare", "pista": "bailar = ballare"},
+    {"verbo": "volere", "tiempo": "imperfetto", "persona": "loro", "espanol": "Ellos querían más pan", "italiano": "Volevano più pane", "pista": "más = più"},
+
+    {"verbo": "volere", "tiempo": "futuro_semplice", "persona": "io", "espanol": "Mañana querré un café", "italiano": "Domani vorrò un caffè", "pista": "mañana = domani"},
+    {"verbo": "volere", "tiempo": "futuro_semplice", "persona": "tu", "espanol": "Querrás descansar", "italiano": "Vorrai riposare", "pista": "descansar = riposare"},
+    {"verbo": "volere", "tiempo": "futuro_semplice", "persona": "lui/lei", "espanol": "Él querrá venir con nosotros", "italiano": "Lui vorrà venire con noi", "pista": "con nosotros = con noi"},
+    {"verbo": "volere", "tiempo": "futuro_semplice", "persona": "noi", "espanol": "Querremos ir a la playa", "italiano": "Vorremo andare al mare", "pista": "la playa = il mare"},
+    {"verbo": "volere", "tiempo": "futuro_semplice", "persona": "voi", "espanol": "Ustedes querrán comer algo", "italiano": "Vorrete mangiare qualcosa", "pista": "algo = qualcosa"},
+    {"verbo": "volere", "tiempo": "futuro_semplice", "persona": "loro", "espanol": "Ellos querrán la llave", "italiano": "Loro vorranno la chiave", "pista": "la llave = la chiave"},
+
+    {"verbo": "volere", "tiempo": "gerundio", "persona": "-", "espanol": "Queriendo, podemos quedarnos", "italiano": "Volendo, possiamo restare", "pista": "quedarnos = restare"},
+
+    {"verbo": "fare", "tiempo": "presente", "persona": "io", "espanol": "Yo hago la tarea", "italiano": "Faccio i compiti", "pista": "la tarea = i compiti"},
+    {"verbo": "fare", "tiempo": "presente", "persona": "tu", "espanol": "¿Qué haces hoy?", "italiano": "Cosa fai oggi?", "pista": "hoy = oggi"},
+    {"verbo": "fare", "tiempo": "presente", "persona": "lui/lei", "espanol": "Ella hace el pan", "italiano": "Lei fa il pane", "pista": "el pan = il pane"},
+    {"verbo": "fare", "tiempo": "presente", "persona": "noi", "espanol": "Hacemos un viaje", "italiano": "Facciamo un viaggio", "pista": "viaje = viaggio"},
+    {"verbo": "fare", "tiempo": "presente", "persona": "voi", "espanol": "¿Ustedes hacen deporte?", "italiano": "Fate sport?", "pista": "deporte = sport"},
+    {"verbo": "fare", "tiempo": "presente", "persona": "loro", "espanol": "Ellos hacen mucho ruido", "italiano": "Loro fanno molto rumore", "pista": "ruido = rumore"},
+
+    {"verbo": "fare", "tiempo": "passato_prossimo", "persona": "io", "espanol": "Hice la valija", "italiano": "Ho fatto la valigia", "pista": "la valija = la valigia"},
+    {"verbo": "fare", "tiempo": "passato_prossimo", "persona": "tu", "espanol": "¿Qué hiciste ayer?", "italiano": "Cosa hai fatto ieri?", "pista": "ayer = ieri"},
+    {"verbo": "fare", "tiempo": "passato_prossimo", "persona": "lui/lei", "espanol": "Ella hizo el almuerzo", "italiano": "Lei ha fatto il pranzo", "pista": "el almuerzo = il pranzo"},
+    {"verbo": "fare", "tiempo": "passato_prossimo", "persona": "noi", "espanol": "Hicimos una fiesta", "italiano": "Abbiamo fatto una festa", "pista": "fiesta = festa"},
+    {"verbo": "fare", "tiempo": "passato_prossimo", "persona": "voi", "espanol": "Ustedes hicieron un buen trabajo", "italiano": "Avete fatto un buon lavoro", "pista": "trabajo = lavoro"},
+    {"verbo": "fare", "tiempo": "passato_prossimo", "persona": "loro", "espanol": "Ellos hicieron las camas", "italiano": "Loro hanno fatto i letti", "pista": "las camas = i letti"},
+
+    {"verbo": "fare", "tiempo": "imperfetto", "persona": "io", "espanol": "Yo hacía el desayuno", "italiano": "Facevo la colazione", "pista": "el desayuno = la colazione"},
+    {"verbo": "fare", "tiempo": "imperfetto", "persona": "tu", "espanol": "¿Qué hacías ahí?", "italiano": "Cosa facevi lì?", "pista": "ahí = lì"},
+    {"verbo": "fare", "tiempo": "imperfetto", "persona": "lui/lei", "espanol": "Ella hacía dibujos", "italiano": "Lei faceva disegni", "pista": "dibujos = disegni"},
+    {"verbo": "fare", "tiempo": "imperfetto", "persona": "noi", "espanol": "Hacíamos largas caminatas", "italiano": "Facevamo lunghe passeggiate", "pista": "caminatas = passeggiate"},
+    {"verbo": "fare", "tiempo": "imperfetto", "persona": "voi", "espanol": "Ustedes hacían las compras", "italiano": "Facevate la spesa", "pista": "las compras = la spesa"},
+    {"verbo": "fare", "tiempo": "imperfetto", "persona": "loro", "espanol": "Ellos hacían fotos", "italiano": "Loro facevano foto", "pista": "fotos = foto"},
+
+    {"verbo": "fare", "tiempo": "futuro_semplice", "persona": "io", "espanol": "Haré la cena esta noche", "italiano": "Farò la cena stasera", "pista": "esta noche = stasera"},
+    {"verbo": "fare", "tiempo": "futuro_semplice", "persona": "tu", "espanol": "¿Qué harás el domingo?", "italiano": "Cosa farai domenica?", "pista": "el domingo = domenica"},
+    {"verbo": "fare", "tiempo": "futuro_semplice", "persona": "lui/lei", "espanol": "Él hará una pregunta", "italiano": "Lui farà una domanda", "pista": "una pregunta = una domanda"},
+    {"verbo": "fare", "tiempo": "futuro_semplice", "persona": "noi", "espanol": "Haremos un viaje largo", "italiano": "Faremo un viaggio lungo", "pista": "largo = lungo"},
+    {"verbo": "fare", "tiempo": "futuro_semplice", "persona": "voi", "espanol": "¿Qué harán el sábado?", "italiano": "Cosa farete sabato?", "pista": "el sábado = sabato"},
+    {"verbo": "fare", "tiempo": "futuro_semplice", "persona": "loro", "espanol": "Ellos harán un dibujo", "italiano": "Loro faranno un disegno", "pista": "un dibujo = un disegno"},
+
+    {"verbo": "fare", "tiempo": "gerundio", "persona": "-", "espanol": "¿Qué estás haciendo?", "italiano": "Cosa stai facendo?", "pista": "qué = cosa"},
+
+    {"verbo": "essere", "tiempo": "presente", "persona": "io", "espanol": "Estoy cansado", "italiano": "Sono stanco", "pista": "cansado = stanco"},
+    {"verbo": "essere", "tiempo": "presente", "persona": "tu", "espanol": "Eres muy amable", "italiano": "Sei molto gentile", "pista": "amable = gentile"},
+    {"verbo": "essere", "tiempo": "presente", "persona": "lui/lei", "espanol": "Ella es mi hermana", "italiano": "Lei è mia sorella", "pista": "hermana = sorella"},
+    {"verbo": "essere", "tiempo": "presente", "persona": "noi", "espanol": "Estamos en casa", "italiano": "Siamo a casa", "pista": "en casa = a casa"},
+    {"verbo": "essere", "tiempo": "presente", "persona": "voi", "espanol": "¿Ustedes están listos?", "italiano": "Siete pronti?", "pista": "listos = pronti"},
+    {"verbo": "essere", "tiempo": "presente", "persona": "loro", "espanol": "Ellos son mis amigos", "italiano": "Loro sono i miei amici", "pista": "amigos = amici"},
+
+    {"verbo": "essere", "tiempo": "passato_prossimo", "persona": "io", "espanol": "Estuve enfermo", "italiano": "Sono stato malato", "pista": "enfermo = malato"},
+    {"verbo": "essere", "tiempo": "passato_prossimo", "persona": "tu", "espanol": "Fuiste muy bueno", "italiano": "Sei stato molto bravo", "pista": "bueno = bravo"},
+    {"verbo": "essere", "tiempo": "passato_prossimo", "persona": "lui/lei", "espanol": "Él estuvo en el hospital", "italiano": "Lui è stato in ospedale", "pista": "el hospital = l'ospedale"},
+    {"verbo": "essere", "tiempo": "passato_prossimo", "persona": "noi", "espanol": "Estuvimos juntos ayer", "italiano": "Siamo stati insieme ieri", "pista": "juntos = insieme"},
+    {"verbo": "essere", "tiempo": "passato_prossimo", "persona": "voi", "espanol": "Ustedes estuvieron muy amables", "italiano": "Siete stati molto gentili", "pista": "amables = gentili"},
+    {"verbo": "essere", "tiempo": "passato_prossimo", "persona": "loro", "espanol": "Ellos estuvieron acá", "italiano": "Loro sono stati qui", "pista": "acá = qui"},
+
+    {"verbo": "essere", "tiempo": "imperfetto", "persona": "io", "espanol": "Yo era chico", "italiano": "Ero piccolo", "pista": "chico = piccolo"},
+    {"verbo": "essere", "tiempo": "imperfetto", "persona": "tu", "espanol": "Eras mi mejor amigo", "italiano": "Eri il mio migliore amico", "pista": "mejor = migliore"},
+    {"verbo": "essere", "tiempo": "imperfetto", "persona": "lui/lei", "espanol": "La comida era rica", "italiano": "Il cibo era buono", "pista": "la comida = il cibo"},
+    {"verbo": "essere", "tiempo": "imperfetto", "persona": "noi", "espanol": "Estábamos cansados", "italiano": "Eravamo stanchi", "pista": "cansados = stanchi"},
+    {"verbo": "essere", "tiempo": "imperfetto", "persona": "voi", "espanol": "Ustedes eran vecinos", "italiano": "Eravate vicini", "pista": "vecinos = vicini"},
+    {"verbo": "essere", "tiempo": "imperfetto", "persona": "loro", "espanol": "Ellos estaban felices", "italiano": "Loro erano felici", "pista": "felices = felici"},
+
+    {"verbo": "essere", "tiempo": "futuro_semplice", "persona": "io", "espanol": "Mañana estaré en la escuela", "italiano": "Domani sarò a scuola", "pista": "la escuela = la scuola"},
+    {"verbo": "essere", "tiempo": "futuro_semplice", "persona": "tu", "espanol": "Serás un buen médico", "italiano": "Sarai un bravo medico", "pista": "médico = medico"},
+    {"verbo": "essere", "tiempo": "futuro_semplice", "persona": "lui/lei", "espanol": "Él estará en el trabajo", "italiano": "Lui sarà al lavoro", "pista": "el trabajo = il lavoro"},
+    {"verbo": "essere", "tiempo": "futuro_semplice", "persona": "noi", "espanol": "Estaremos listos pronto", "italiano": "Saremo pronti presto", "pista": "pronto = presto"},
+    {"verbo": "essere", "tiempo": "futuro_semplice", "persona": "voi", "espanol": "Ustedes serán los primeros", "italiano": "Sarete i primi", "pista": "los primeros = i primi"},
+    {"verbo": "essere", "tiempo": "futuro_semplice", "persona": "loro", "espanol": "Ellos estarán en el jardín", "italiano": "Loro saranno in giardino", "pista": "el jardín = il giardino"},
+
+    {"verbo": "essere", "tiempo": "gerundio", "persona": "-", "espanol": "Estando cansado, me quedo", "italiano": "Essendo stanco, resto", "pista": "me quedo = resto"},
+
+    {"verbo": "avere", "tiempo": "presente", "persona": "io", "espanol": "Tengo mucha hambre", "italiano": "Ho molta fame", "pista": "hambre = fame"},
+    {"verbo": "avere", "tiempo": "presente", "persona": "tu", "espanol": "¿Tienes frío?", "italiano": "Hai freddo?", "pista": "frío = freddo"},
+    {"verbo": "avere", "tiempo": "presente", "persona": "lui/lei", "espanol": "Ella tiene dos hermanos", "italiano": "Lei ha due fratelli", "pista": "hermanos = fratelli"},
+    {"verbo": "avere", "tiempo": "presente", "persona": "noi", "espanol": "Tenemos poco tiempo", "italiano": "Abbiamo poco tempo", "pista": "tiempo = tempo"},
+    {"verbo": "avere", "tiempo": "presente", "persona": "voi", "espanol": "¿Ustedes tienen las llaves?", "italiano": "Avete le chiavi?", "pista": "las llaves = le chiavi"},
+    {"verbo": "avere", "tiempo": "presente", "persona": "loro", "espanol": "Ellos tienen un perro", "italiano": "Loro hanno un cane", "pista": "perro = cane"},
+
+    {"verbo": "avere", "tiempo": "passato_prossimo", "persona": "io", "espanol": "Tuve suerte", "italiano": "Ho avuto fortuna", "pista": "suerte = fortuna"},
+    {"verbo": "avere", "tiempo": "passato_prossimo", "persona": "tu", "espanol": "Tuviste miedo", "italiano": "Hai avuto paura", "pista": "miedo = paura"},
+    {"verbo": "avere", "tiempo": "passato_prossimo", "persona": "lui/lei", "espanol": "Ella tuvo fiebre", "italiano": "Lei ha avuto la febbre", "pista": "fiebre = febbre"},
+    {"verbo": "avere", "tiempo": "passato_prossimo", "persona": "noi", "espanol": "Tuvimos un accidente", "italiano": "Abbiamo avuto un incidente", "pista": "accidente = incidente"},
+    {"verbo": "avere", "tiempo": "passato_prossimo", "persona": "voi", "espanol": "Ustedes tuvieron razón", "italiano": "Avete avuto ragione", "pista": "razón = ragione"},
+    {"verbo": "avere", "tiempo": "passato_prossimo", "persona": "loro", "espanol": "Ellos tuvieron un hijo", "italiano": "Loro hanno avuto un figlio", "pista": "hijo = figlio"},
+
+    {"verbo": "avere", "tiempo": "imperfetto", "persona": "io", "espanol": "Yo tenía diez años", "italiano": "Avevo dieci anni", "pista": "años = anni"},
+    {"verbo": "avere", "tiempo": "imperfetto", "persona": "tu", "espanol": "Tenías el pelo largo", "italiano": "Avevi i capelli lunghi", "pista": "el pelo = i capelli"},
+    {"verbo": "avere", "tiempo": "imperfetto", "persona": "lui/lei", "espanol": "Él tenía una bici vieja", "italiano": "Lui aveva una bici vecchia", "pista": "vieja = vecchia"},
+    {"verbo": "avere", "tiempo": "imperfetto", "persona": "noi", "espanol": "Teníamos la misma edad", "italiano": "Avevamo la stessa età", "pista": "la misma edad = la stessa età"},
+    {"verbo": "avere", "tiempo": "imperfetto", "persona": "voi", "espanol": "Ustedes tenían apuro", "italiano": "Avevate fretta", "pista": "apuro = fretta"},
+    {"verbo": "avere", "tiempo": "imperfetto", "persona": "loro", "espanol": "Ellos tenían sed", "italiano": "Loro avevano sete", "pista": "sed = sete"},
+
+    {"verbo": "avere", "tiempo": "futuro_semplice", "persona": "io", "espanol": "Tendré tiempo el lunes", "italiano": "Avrò tempo lunedì", "pista": "el lunes = lunedì"},
+    {"verbo": "avere", "tiempo": "futuro_semplice", "persona": "tu", "espanol": "Tendrás mucho trabajo", "italiano": "Avrai molto lavoro", "pista": "trabajo = lavoro"},
+    {"verbo": "avere", "tiempo": "futuro_semplice", "persona": "lui/lei", "espanol": "Ella tendrá un bebé", "italiano": "Lei avrà un bambino", "pista": "bebé = bambino"},
+    {"verbo": "avere", "tiempo": "futuro_semplice", "persona": "noi", "espanol": "Tendremos una casa nueva", "italiano": "Avremo una casa nuova", "pista": "nueva = nuova"},
+    {"verbo": "avere", "tiempo": "futuro_semplice", "persona": "voi", "espanol": "Ustedes tendrán noticias", "italiano": "Avrete notizie", "pista": "noticias = notizie"},
+    {"verbo": "avere", "tiempo": "futuro_semplice", "persona": "loro", "espanol": "Ellos tendrán un examen", "italiano": "Loro avranno un esame", "pista": "un examen = un esame"},
+
+    {"verbo": "avere", "tiempo": "gerundio", "persona": "-", "espanol": "Teniendo tiempo, leo un libro", "italiano": "Avendo tempo, leggo un libro", "pista": "leo = leggo"}
+  ]
+}

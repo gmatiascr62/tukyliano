@@ -5,6 +5,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/almacenamiento_clave.dart';
+import 'package:tukyliano/datos/repositorio_frases.dart';
 import 'package:tukyliano/datos/repositorio_verbos.dart';
 import 'package:tukyliano/ia/gemini.dart';
 import 'package:tukyliano/main.dart';
@@ -83,6 +84,9 @@ void main() {
       almacenClave: _ClaveFalsa('FAKE'),
       gemini: _geminiFalso(),
       repositorio: _RepoFalso(),
+      // Vacío a propósito: estos tests miran la navegación, así que la frase
+      // tiene que venir de la IA simulada y no del asset real.
+      frasesLocales: RepositorioFrases(leerAsset: (_) async => '{"frases": []}'),
     ));
     await tester.pumpAndSettle();
 
@@ -102,6 +106,9 @@ void main() {
       almacenClave: _ClaveFalsa('FAKE'),
       gemini: _geminiFalso(),
       repositorio: _RepoFalso(),
+      // Vacío a propósito: estos tests miran la navegación, así que la frase
+      // tiene que venir de la IA simulada y no del asset real.
+      frasesLocales: RepositorioFrases(leerAsset: (_) async => '{"frases": []}'),
     ));
     await tester.pumpAndSettle();
 
@@ -123,6 +130,9 @@ void main() {
       almacenClave: _ClaveFalsa(),
       gemini: _geminiFalso(),
       repositorio: _RepoFalso(),
+      // Vacío a propósito: estos tests miran la navegación, así que la frase
+      // tiene que venir de la IA simulada y no del asset real.
+      frasesLocales: RepositorioFrases(leerAsset: (_) async => '{"frases": []}'),
     ));
     await tester.pumpAndSettle();
 

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../constantes.dart';
+import '../datos/repositorio_frases.dart';
 import '../ia/gemini.dart';
 import '../ia/prompts.dart';
 import '../logica/seleccion_azar.dart';
@@ -20,6 +21,7 @@ class PantallaFrases extends StatefulWidget {
     required this.apiKey,
     required this.onClaveInvalida,
     this.gemini,
+    this.frasesLocales,
   });
 
   final List<Verbo> verbos;
@@ -29,8 +31,9 @@ class PantallaFrases extends StatefulWidget {
   /// Se llama cuando Gemini rechaza la clave: hay que borrarla y pedir otra.
   final VoidCallback onClaveInvalida;
 
-  /// Inyectable para los tests.
+  /// Inyectables para los tests.
   final Gemini? gemini;
+  final RepositorioFrases? frasesLocales;
 
   @override
   State<PantallaFrases> createState() => _PantallaFrasesState();
@@ -38,6 +41,8 @@ class PantallaFrases extends StatefulWidget {
 
 class _PantallaFrasesState extends State<PantallaFrases> {
   late final Gemini _gemini = widget.gemini ?? Gemini();
+  late final RepositorioFrases _frasesLocales =
+      widget.frasesLocales ?? RepositorioFrases();
 
   String _fraseEs = '';
   String _italianoReferencia = '';
@@ -80,6 +85,20 @@ class _PantallaFrasesState extends State<PantallaFrases> {
       return;
     }
 
+    // Primero las frases que vienen con la app: salen al instante y no gastan
+    // cuota. Solo se le pide a la IA cuando esa forma no tiene ninguna.
+    await _frasesLocales.cargar();
+    final guardada = _frasesLocales.elegir(
+      verbo: combo.verbo.nombre,
+      tiempo: combo.tiempo,
+      persona: combo.persona,
+    );
+    if (guardada != null) {
+      if (!mounted) return;
+      setState(() => _mostrar(guardada));
+      return;
+    }
+
     try {
       final frase = await generarFrase(
         _gemini,
@@ -91,12 +110,7 @@ class _PantallaFrasesState extends State<PantallaFrases> {
         conjugacionItaliana: combo.conjugacion.italiano,
       );
       if (!mounted) return;
-      setState(() {
-        _fraseEs = frase.espanol;
-        _italianoReferencia = frase.italiano;
-        _pista = frase.pista;
-        _ocupado = false;
-      });
+      setState(() => _mostrar(frase));
     } on ClaveInvalidaError {
       if (!mounted) return;
       widget.onClaveInvalida();
@@ -107,6 +121,14 @@ class _PantallaFrasesState extends State<PantallaFrases> {
         _ocupado = false;
       });
     }
+  }
+
+  /// Deja la frase lista para responder. Se llama adentro de un setState.
+  void _mostrar(FraseGenerada frase) {
+    _fraseEs = frase.espanol;
+    _italianoReferencia = frase.italiano;
+    _pista = frase.pista;
+    _ocupado = false;
   }
 
   void _onTecla(String tecla) {
