@@ -29,21 +29,21 @@ String _respuestaGemini(String texto) => jsonEncode({
       ]
     });
 
-/// Gemini simulado: la primera llamada genera la frase, la segunda corrige.
+/// Gemini simulado. Distingue generación de corrección por el prompt, así
+/// sirve igual aunque el test pida varias frases seguidas.
 Gemini _geminiFalso({
   required String generacion,
   String correccion = 'CORRECTO',
   int statusCode = 200,
 }) {
-  var llamada = 0;
   return Gemini(
     cliente: MockClient((request) async {
-      llamada++;
       if (statusCode != 200) {
         return http.Response('{"error": "clave mala"}', statusCode);
       }
+      final esCorreccion = request.body.contains('Respuesta del alumno');
       return http.Response(
-        _respuestaGemini(llamada == 1 ? generacion : correccion),
+        _respuestaGemini(esCorreccion ? correccion : generacion),
         200,
         headers: {'content-type': 'application/json; charset=utf-8'},
       );
@@ -70,7 +70,8 @@ Future<void> _escribir(WidgetTester tester, String palabra) async {
   }
 }
 
-const _fraseOk = '{"espanol": "Hoy soy feliz", "italiano": "Oggi sono felice"}';
+const _fraseOk = '{"espanol": "Hoy soy feliz", "italiano": "Oggi sono felice", '
+    '"pista": "feliz = felice"}';
 
 void main() {
   testWidgets('muestra la frase generada en español', (tester) async {
@@ -143,6 +144,71 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.textContaining('No se pudo generar la frase'), findsOneWidget);
+  });
+
+  group('pista', () {
+    testWidgets('arranca escondida y se revela al tocar el botón',
+        (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(_geminiFalso(generacion: _fraseOk)));
+      await tester.pumpAndSettle();
+
+      expect(find.text('feliz = felice'), findsNothing);
+
+      await tester.tap(find.widgetWithText(TextButton, 'Pista'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('feliz = felice'), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'Pista'), findsNothing);
+    });
+
+    testWidgets('no gasta una llamada extra a la IA', (tester) async {
+      usarPantallaDeCelular(tester);
+      var llamadas = 0;
+      final gemini = Gemini(
+        cliente: MockClient((_) async {
+          llamadas++;
+          return http.Response(_respuestaGemini(_fraseOk), 200);
+        }),
+      );
+
+      await tester.pumpWidget(_app(gemini));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(TextButton, 'Pista'));
+      await tester.pumpAndSettle();
+
+      expect(llamadas, 1);
+    });
+
+    testWidgets('si el modelo no manda pista, no aparece el botón',
+        (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(_geminiFalso(
+        generacion: '{"espanol": "Hoy soy feliz", "italiano": "Oggi sono felice"}',
+      )));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('Hoy soy feliz'), findsOneWidget);
+      expect(find.widgetWithText(TextButton, 'Pista'), findsNothing);
+    });
+
+    testWidgets('se esconde de nuevo en la frase siguiente', (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(_geminiFalso(generacion: _fraseOk)));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.widgetWithText(TextButton, 'Pista'));
+      await tester.pumpAndSettle();
+      expect(find.text('feliz = felice'), findsOneWidget);
+
+      await _escribir(tester, 'oggi');
+      await tester.tap(find.widgetWithText(ElevatedButton, 'Verificar'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(ElevatedButton, 'Siguiente'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('feliz = felice'), findsNothing);
+    });
   });
 
   testWidgets('verificar con el campo vacío no llama a la IA', (tester) async {

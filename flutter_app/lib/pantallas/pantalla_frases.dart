@@ -41,6 +41,8 @@ class _PantallaFrasesState extends State<PantallaFrases> {
 
   String _fraseEs = '';
   String _italianoReferencia = '';
+  String _pista = '';
+  bool _mostrandoPista = false;
   String _textoActual = '';
   String _feedback = '';
   Color _colorFeedback = Tema.texto;
@@ -60,6 +62,8 @@ class _PantallaFrasesState extends State<PantallaFrases> {
     setState(() {
       _mensajePantalla = 'Generando frase...';
       _fraseEs = '';
+      _pista = '';
+      _mostrandoPista = false;
       _textoActual = '';
       _feedback = '';
       _mostrandoResultado = false;
@@ -90,6 +94,7 @@ class _PantallaFrasesState extends State<PantallaFrases> {
       setState(() {
         _fraseEs = frase.espanol;
         _italianoReferencia = frase.italiano;
+        _pista = frase.pista;
         _ocupado = false;
       });
     } on ClaveInvalidaError {
@@ -164,6 +169,29 @@ class _PantallaFrasesState extends State<PantallaFrases> {
     }
   }
 
+  /// La pista viene en la misma respuesta que la frase, así que mostrarla no
+  /// gasta cuota ni tarda: solo se revela si el alumno la pide.
+  Widget _pistaWidget() {
+    if (_pista.isEmpty || _fraseEs.isEmpty) return const SizedBox.shrink();
+    if (_mostrandoPista) {
+      return Text(
+        _pista,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 15,
+          color: Tema.verdeOscuro,
+          fontWeight: FontWeight.w600,
+        ),
+      );
+    }
+    return TextButton.icon(
+      onPressed: () => setState(() => _mostrandoPista = true),
+      icon: const Icon(Icons.lightbulb_outline, size: 18),
+      label: const Text('Pista'),
+      style: TextButton.styleFrom(foregroundColor: Tema.verde),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -184,6 +212,9 @@ class _PantallaFrasesState extends State<PantallaFrases> {
                   texto: _textoActual,
                   placeholderTexto: 'Escribí la traducción...',
                 ),
+                // Alto fijo, igual que el feedback, para que mostrar la pista
+                // no mueva el resto de la pantalla.
+                SizedBox(height: 36, child: Center(child: _pistaWidget())),
                 // Alto fijo siempre, para que el layout no salte al aparecer
                 // el texto (el bug que tuvo la versión Kivy).
                 SizedBox(
