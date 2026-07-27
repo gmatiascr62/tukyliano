@@ -92,6 +92,9 @@ class _PantallaFrasesState extends State<PantallaFrases> {
       verbo: combo.verbo.nombre,
       tiempo: combo.tiempo,
       persona: combo.persona,
+      // Descarta las frases cuyo italiano no traiga esta conjugación: es la
+      // red de contención para las que llegan del JSON remoto.
+      conjugacionItaliana: combo.conjugacion.italiano,
     );
     if (guardada != null) {
       if (!mounted) return;

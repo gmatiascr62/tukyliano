@@ -7,8 +7,16 @@ const String urlRemoto =
 const String assetVerbos = 'assets/verbos.json';
 
 /// Frases escritas a mano que vienen con la app, para no depender de la IA
-/// en cada tirada.
+/// en cada tirada. Es el respaldo: la lista al día se baja de GitHub.
 const String assetFrases = 'assets/frases.json';
+
+/// Frases en GitHub. Van en un archivo aparte de los verbos para poder
+/// agregarlas sin publicar un APK nuevo.
+const String urlFrasesRemoto =
+    'https://raw.githubusercontent.com/gmatiascr62/tukylingo_repo/main/frases.json';
+
+/// Copia escribible de las frases en el celular.
+const String archivoFrasesLocal = 'frases.json';
 
 /// Archivo escribible donde se guardan los verbos ya actualizados.
 const String archivoVerbosLocal = 'verbos_local.json';

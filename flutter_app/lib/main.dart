@@ -78,6 +78,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       widget.repositorio ?? RepositorioVerbos();
   late final AlmacenamientoClave _almacenClave =
       widget.almacenClave ?? AlmacenamientoClave();
+  late final RepositorioFrases _frasesLocales =
+      widget.frasesLocales ?? RepositorioFrases();
 
   Seccion _seccion = Seccion.verbos;
   DatosVerbos? _datos;
@@ -107,6 +109,15 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     super.initState();
     _cargarDatos();
     _cargarClave();
+    _cargarFrases();
+  }
+
+  /// Las frases guardadas se leen al arrancar y, si hay internet, se chequea
+  /// si GitHub tiene una tanda nueva. No bloquea nada: si falla, se sigue con
+  /// las que ya están.
+  Future<void> _cargarFrases() async {
+    await _frasesLocales.cargar();
+    await _frasesLocales.verificarActualizacion();
   }
 
   /// Se lee una sola vez al arrancar, así navegar a Frases no tiene que
@@ -265,7 +276,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       apiKey: _claveGemini!,
       onClaveInvalida: _claveInvalida,
       gemini: widget.gemini,
-      frasesLocales: widget.frasesLocales,
+      frasesLocales: _frasesLocales,
     );
   }
 
