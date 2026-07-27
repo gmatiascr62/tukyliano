@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:tukyliano/datos/repositorio_frases.dart';
 import 'package:tukyliano/ia/gemini.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 import 'package:tukyliano/pantallas/pantalla_frases.dart';
@@ -51,13 +52,24 @@ Gemini _geminiFalso({
   );
 }
 
-Widget _app(Gemini gemini, {VoidCallback? onClaveInvalida}) => MaterialApp(
+/// Repositorio con las frases que le pasemos. Sin argumento queda vacío, que
+/// es lo que necesita la mayoría de los tests: obliga a pasar por la IA.
+RepositorioFrases _frasesLocales([String json = '{"frases": []}']) =>
+    RepositorioFrases(leerAsset: (_) async => json);
+
+Widget _app(
+  Gemini gemini, {
+  VoidCallback? onClaveInvalida,
+  RepositorioFrases? frasesLocales,
+}) =>
+    MaterialApp(
       home: Scaffold(
         body: PantallaFrases(
           verbos: _verbos.verbos.values.toList(),
           tiempos: const ['presente'],
           apiKey: 'FAKE',
           gemini: gemini,
+          frasesLocales: frasesLocales ?? _frasesLocales(),
           onClaveInvalida: onClaveInvalida ?? () {},
         ),
       ),
@@ -208,6 +220,95 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('feliz = felice'), findsNothing);
+    });
+  });
+
+  group('frases guardadas', () {
+    const guardadas = '''
+      {"frases": [
+        {"verbo": "essere", "tiempo": "presente", "persona": "io",
+         "espanol": "Estoy cansado", "italiano": "Sono stanco",
+         "pista": "cansado = stanco"}
+      ]}
+    ''';
+
+    testWidgets('se usa la guardada y no se llama a la IA', (tester) async {
+      usarPantallaDeCelular(tester);
+      var llamadas = 0;
+      final gemini = Gemini(
+        cliente: MockClient((_) async {
+          llamadas++;
+          return http.Response(_respuestaGemini(_fraseOk), 200);
+        }),
+      );
+
+      await tester.pumpWidget(
+        _app(gemini, frasesLocales: _frasesLocales(guardadas)),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('Estoy cansado'), findsOneWidget);
+      expect(find.textContaining('Hoy soy feliz'), findsNothing);
+      expect(llamadas, 0);
+    });
+
+    testWidgets('la guardada también trae pista', (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(
+        _geminiFalso(generacion: _fraseOk),
+        frasesLocales: _frasesLocales(guardadas),
+      ));
+      await tester.pumpAndSettle();
+
+      await tester.tap(find.widgetWithText(TextButton, 'Pista'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('cansado = stanco'), findsOneWidget);
+    });
+
+    testWidgets('la corrección sigue yendo a la IA', (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(
+        _geminiFalso(generacion: _fraseOk, correccion: 'INCORRECTO'),
+        frasesLocales: _frasesLocales(guardadas),
+      ));
+      await tester.pumpAndSettle();
+
+      await _escribir(tester, 'sono');
+      await tester.tap(find.widgetWithText(ElevatedButton, 'Verificar'));
+      await tester.pumpAndSettle();
+
+      // Corrige contra el italiano de la frase guardada, no contra el de la IA.
+      expect(find.text('Sono stanco'), findsOneWidget);
+    });
+
+    testWidgets('si la forma no tiene frase guardada, cae en la IA',
+        (tester) async {
+      usarPantallaDeCelular(tester);
+      // Guardada para otro verbo: para essere/presente/io no hay nada.
+      await tester.pumpWidget(_app(
+        _geminiFalso(generacion: _fraseOk),
+        frasesLocales: _frasesLocales('''
+          {"frases": [
+            {"verbo": "avere", "tiempo": "presente", "persona": "io",
+             "espanol": "Tengo hambre", "italiano": "Ho fame", "pista": ""}
+          ]}
+        '''),
+      ));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('Hoy soy feliz'), findsOneWidget);
+    });
+
+    testWidgets('un asset roto no rompe la pantalla', (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(
+        _geminiFalso(generacion: _fraseOk),
+        frasesLocales: _frasesLocales('esto no es JSON'),
+      ));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('Hoy soy feliz'), findsOneWidget);
     });
   });
 
