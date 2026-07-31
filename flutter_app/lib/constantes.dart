@@ -6,8 +6,9 @@ const String urlRemoto =
 /// Copia de respaldo empaquetada con la app.
 const String assetVerbos = 'assets/verbos.json';
 
-/// Frases escritas a mano que vienen con la app, para no depender de la IA
-/// en cada tirada. Es el respaldo: la lista al día se baja de GitHub.
+/// Frases escritas a mano que vienen con la app. Es el respaldo para el
+/// primer arranque y para cuando no hay internet: la lista al día se baja de
+/// GitHub.
 const String assetFrases = 'assets/frases.json';
 
 /// Frases en GitHub. Van en un archivo aparte de los verbos para poder

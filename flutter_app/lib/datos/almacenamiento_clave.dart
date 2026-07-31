@@ -4,7 +4,11 @@ import 'package:path_provider/path_provider.dart';
 
 const String archivoClave = 'gemini_key.txt';
 
-/// Guarda la clave de Gemini en el almacenamiento privado de la app.
+/// Acceso al archivo donde la app guardaba la clave de Gemini.
+///
+/// La app ya no usa IA, así que esto queda solo para borrar la clave que
+/// pueda haber quedado de una versión anterior: es una credencial y no tiene
+/// por qué seguir en el celular.
 /// La clave NUNCA va en el código ni en el repo: la pega el usuario y queda
 /// solo en el celular.
 class AlmacenamientoClave {
@@ -33,7 +37,7 @@ class AlmacenamientoClave {
     await archivo.writeAsString(clave.trim());
   }
 
-  /// Se llama cuando Gemini rechaza la clave (inválida o revocada).
+  /// Borra el archivo si existe.
   Future<void> borrar() async {
     try {
       final archivo = await _obtenerArchivo();

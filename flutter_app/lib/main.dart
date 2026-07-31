@@ -4,10 +4,8 @@ import 'constantes.dart';
 import 'datos/almacenamiento_clave.dart';
 import 'datos/repositorio_frases.dart';
 import 'datos/repositorio_verbos.dart';
-import 'ia/gemini.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
-import 'pantallas/pantalla_clave_ia.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_quiz.dart';
 import 'pantallas/pantalla_seleccion.dart';
@@ -22,14 +20,12 @@ class TukylianoApp extends StatelessWidget {
   const TukylianoApp({
     super.key,
     this.almacenClave,
-    this.gemini,
     this.repositorio,
     this.frasesLocales,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
   final AlmacenamientoClave? almacenClave;
-  final Gemini? gemini;
   final RepositorioVerbos? repositorio;
   final RepositorioFrases? frasesLocales;
 
@@ -41,7 +37,6 @@ class TukylianoApp extends StatelessWidget {
       theme: Tema.datos,
       home: PantallaPrincipal(
         almacenClave: almacenClave,
-        gemini: gemini,
         repositorio: repositorio,
         frasesLocales: frasesLocales,
       ),
@@ -55,13 +50,11 @@ class PantallaPrincipal extends StatefulWidget {
   const PantallaPrincipal({
     super.key,
     this.almacenClave,
-    this.gemini,
     this.repositorio,
     this.frasesLocales,
   });
 
   final AlmacenamientoClave? almacenClave;
-  final Gemini? gemini;
   final RepositorioVerbos? repositorio;
   final RepositorioFrases? frasesLocales;
 
@@ -69,17 +62,13 @@ class PantallaPrincipal extends StatefulWidget {
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
 }
 
-/// Dentro de la sección Frases: primero la clave (si falta), después elegir
-/// qué practicar, después la práctica en sí.
-enum _PasoFrases { clave, seleccion, practica }
-
 class _PantallaPrincipalState extends State<PantallaPrincipal> {
   late final RepositorioVerbos _repositorio =
       widget.repositorio ?? RepositorioVerbos();
-  late final AlmacenamientoClave _almacenClave =
-      widget.almacenClave ?? AlmacenamientoClave();
   late final RepositorioFrases _frasesLocales =
       widget.frasesLocales ?? RepositorioFrases();
+  late final AlmacenamientoClave _almacenClave =
+      widget.almacenClave ?? AlmacenamientoClave();
 
   Seccion _seccion = Seccion.verbos;
   DatosVerbos? _datos;
@@ -88,9 +77,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   /// La sección Verbos alterna entre el quiz y la pantalla de selección.
   bool _eligiendoVerbos = false;
 
-  _PasoFrases _pasoFrases = _PasoFrases.seleccion;
-  String? _claveGemini;
-  String _errorClave = '';
+  /// La sección Frases alterna igual: primero se elige, después se practica.
+  bool _eligiendoFrases = true;
   List<String>? _verbosFrases;
   List<String>? _tiemposFrases;
   int _generacionFrases = 0;
@@ -108,24 +96,20 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   void initState() {
     super.initState();
     _cargarDatos();
-    _cargarClave();
     _cargarFrases();
+    _borrarClaveVieja();
   }
 
-  /// Las frases guardadas se leen al arrancar y, si hay internet, se chequea
-  /// si GitHub tiene una tanda nueva. No bloquea nada: si falla, se sigue con
-  /// las que ya están.
+  /// La app ya no usa Gemini, así que la clave guardada no tiene por qué
+  /// seguir en el celular. Se borra una vez, en silencio.
+  Future<void> _borrarClaveVieja() => _almacenClave.borrar();
+
+  /// Las frases se leen al arrancar y, si hay internet, se chequea si GitHub
+  /// tiene una tanda nueva. No bloquea nada: si falla, se sigue con las que
+  /// ya están.
   Future<void> _cargarFrases() async {
     await _frasesLocales.cargar();
     await _frasesLocales.verificarActualizacion();
-  }
-
-  /// Se lee una sola vez al arrancar, así navegar a Frases no tiene que
-  /// esperar una lectura de disco.
-  Future<void> _cargarClave() async {
-    final clave = await _almacenClave.cargar();
-    if (!mounted || clave == null) return;
-    setState(() => _claveGemini = clave);
   }
 
   Future<void> _cargarDatos() async {
@@ -155,38 +139,11 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   void _irA(Seccion seccion) {
     setState(() {
       _seccion = seccion;
-      // Tocar "Verbos" lleva a elegir qué practicar, como en la app Kivy.
+      // Tocar "Verbos" o "Frases" lleva a elegir qué practicar, como en la app
+      // Kivy. Si se conservara el paso, al volver desde otra sección caía
+      // directo en la práctica y no se podía cambiar la selección.
       if (seccion == Seccion.verbos) _eligiendoVerbos = true;
-      // Tocar "Frases" siempre vuelve a elegir qué practicar (o a pedir la
-      // clave si todavía no hay). Si se conservara el paso, al volver desde
-      // otra sección caía directo en la práctica y no se podía cambiar la
-      // selección.
-      if (seccion == Seccion.frases) {
-        _pasoFrases =
-            _claveGemini == null ? _PasoFrases.clave : _PasoFrases.seleccion;
-      }
-    });
-  }
-
-  Future<void> _guardarClave(String clave) async {
-    await _almacenClave.guardar(clave);
-    if (!mounted) return;
-    setState(() {
-      _claveGemini = clave;
-      _errorClave = '';
-      _pasoFrases = _PasoFrases.seleccion;
-    });
-  }
-
-  /// Gemini rechazó la clave guardada: se borra y se vuelve a pedir.
-  Future<void> _claveInvalida() async {
-    await _almacenClave.borrar();
-    if (!mounted) return;
-    setState(() {
-      _claveGemini = null;
-      _errorClave =
-          'La clave guardada ya no funciona (¿fue revocada?). Pegá una nueva.';
-      _pasoFrases = _PasoFrases.clave;
+      if (seccion == Seccion.frases) _eligiendoFrases = true;
     });
   }
 
@@ -194,7 +151,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     setState(() {
       _verbosFrases = verbos;
       _tiemposFrases = tiempos;
-      _pasoFrases = _PasoFrases.practica;
+      _eligiendoFrases = false;
       _generacionFrases++;
     });
   }
@@ -248,10 +205,6 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   }
 
   Widget _seccionFrases() {
-    if (_pasoFrases == _PasoFrases.clave || _claveGemini == null) {
-      return PantallaClaveIA(onGuardar: _guardarClave, error: _errorClave);
-    }
-
     final datos = _datos;
     if (datos == null) {
       return const Center(
@@ -262,7 +215,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       );
     }
 
-    if (_pasoFrases == _PasoFrases.seleccion) {
+    if (_eligiendoFrases) {
       return PantallaSeleccion(
         verbos: datos.verbos,
         alConfirmar: _empezarFrases,
@@ -273,9 +226,6 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       key: ValueKey(_generacionFrases),
       verbos: _resolverVerbos(_verbosFrases),
       tiempos: _tiemposFrases ?? tiemposDisponibles,
-      apiKey: _claveGemini!,
-      onClaveInvalida: _claveInvalida,
-      gemini: widget.gemini,
       frasesLocales: _frasesLocales,
     );
   }

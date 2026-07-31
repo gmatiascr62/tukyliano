@@ -7,7 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:path_provider/path_provider.dart';
 
 import '../constantes.dart';
-import '../ia/prompts.dart';
+import '../modelos/frase.dart';
 
 /// Frases de práctica, indexadas por verbo + tiempo + persona.
 ///
@@ -16,9 +16,8 @@ import '../ia/prompts.dart';
 /// GitHub por si hay frases nuevas. Así se pueden agregar frases sin publicar
 /// un APK.
 ///
-/// Sirven para dos cosas: la frase aparece al instante (no hay que esperar a
-/// Gemini) y no gasta cuota. Cuando una forma no tiene frase guardada, la
-/// pantalla sigue pidiéndosela a la IA.
+/// Son la única fuente de frases de la app: si una forma no tiene ninguna, no
+/// se sortea.
 class RepositorioFrases {
   RepositorioFrases({
     Future<String> Function(String)? leerAsset,
@@ -38,7 +37,7 @@ class RepositorioFrases {
   static Future<Directory?> _carpetaDeLaApp() =>
       getApplicationDocumentsDirectory();
 
-  final Map<String, List<FraseGenerada>> _porForma = {};
+  final Map<String, List<Frase>> _porForma = {};
   bool _cargado = false;
   int _version = 0;
 
@@ -56,8 +55,7 @@ class RepositorioFrases {
     }
   }
 
-  /// Lee las frases guardadas una sola vez. Si algo falla, la app queda como
-  /// antes de que existieran: todo lo genera la IA.
+  /// Lee las frases guardadas una sola vez.
   Future<void> cargar() async {
     if (_cargado) return;
     _cargado = true;
@@ -68,7 +66,7 @@ class RepositorioFrases {
           : await _leerAsset(assetFrases);
       _indexar(texto);
     } catch (_) {
-      // Un asset roto no puede dejar la pantalla sin frases.
+      // Con el asset roto no hay frases, pero la pantalla igual no crashea.
     }
   }
 
@@ -119,7 +117,7 @@ class RepositorioFrases {
         item['tiempo'] as String? ?? '',
         item['persona'] as String? ?? '',
       );
-      _porForma.putIfAbsent(clave, () => []).add(FraseGenerada(
+      _porForma.putIfAbsent(clave, () => []).add(Frase(
             espanol: espanol,
             italiano: italiano,
             pista: item['pista'] as String? ?? '',
@@ -132,8 +130,8 @@ class RepositorioFrases {
   /// Si se pasa [conjugacionItaliana], solo se consideran las frases que la
   /// contengan. Es la red de contención para el JSON remoto, que no pasa por
   /// la validación del build: una frase mal etiquetada o con el verbo mal
-  /// escrito se ignora y esa forma cae en la IA.
-  FraseGenerada? elegir({
+  /// escrito se ignora, y esa forma queda sin frases.
+  Frase? elegir({
     required String verbo,
     required String tiempo,
     required String persona,
@@ -152,6 +150,22 @@ class RepositorioFrases {
 
     return opciones[(azar ?? Random()).nextInt(opciones.length)];
   }
+
+  /// True si esa forma tiene al menos una frase usable. Lo usa el sorteo para
+  /// no ofrecer combinaciones que después no tienen nada que mostrar.
+  bool tieneFrase({
+    required String verbo,
+    required String tiempo,
+    required String persona,
+    String conjugacionItaliana = '',
+  }) =>
+      elegir(
+        verbo: verbo,
+        tiempo: tiempo,
+        persona: persona,
+        conjugacionItaliana: conjugacionItaliana,
+      ) !=
+      null;
 
   /// Cuántas frases hay cargadas. Se usa en los tests.
   int get cantidad => _porForma.values.fold(0, (n, l) => n + l.length);

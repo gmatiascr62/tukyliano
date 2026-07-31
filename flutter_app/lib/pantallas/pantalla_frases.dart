@@ -2,37 +2,30 @@ import 'package:flutter/material.dart';
 
 import '../constantes.dart';
 import '../datos/repositorio_frases.dart';
-import '../ia/gemini.dart';
-import '../ia/prompts.dart';
+import '../logica/correccion.dart';
 import '../logica/seleccion_azar.dart';
 import '../modelos/verbo.dart';
 import '../tema.dart';
 import '../widgets/campo_texto.dart';
 import '../widgets/tarjeta_pregunta.dart';
 import '../widgets/teclado.dart';
+import '../widgets/texto_ajustado.dart';
 
-/// Práctica de frases: la IA genera una oración corta en español y corrige la
-/// traducción al italiano. Equivale a PantallaFrases de la app Kivy.
+/// Práctica de frases: se muestra una oración en español y el alumno la
+/// escribe en italiano. Las frases vienen de frases.json, y al verificar se
+/// muestra la respuesta correcta con cada palabra en verde o en rojo.
 class PantallaFrases extends StatefulWidget {
   const PantallaFrases({
     super.key,
     required this.verbos,
     required this.tiempos,
-    required this.apiKey,
-    required this.onClaveInvalida,
-    this.gemini,
     this.frasesLocales,
   });
 
   final List<Verbo> verbos;
   final List<String> tiempos;
-  final String apiKey;
 
-  /// Se llama cuando Gemini rechaza la clave: hay que borrarla y pedir otra.
-  final VoidCallback onClaveInvalida;
-
-  /// Inyectables para los tests.
-  final Gemini? gemini;
+  /// Inyectable para los tests.
   final RepositorioFrases? frasesLocales;
 
   @override
@@ -40,8 +33,7 @@ class PantallaFrases extends StatefulWidget {
 }
 
 class _PantallaFrasesState extends State<PantallaFrases> {
-  late final Gemini _gemini = widget.gemini ?? Gemini();
-  late final RepositorioFrases _frasesLocales =
+  late final RepositorioFrases _frases =
       widget.frasesLocales ?? RepositorioFrases();
 
   String _fraseEs = '';
@@ -49,10 +41,11 @@ class _PantallaFrasesState extends State<PantallaFrases> {
   String _pista = '';
   bool _mostrandoPista = false;
   String _textoActual = '';
-  String _feedback = '';
-  Color _colorFeedback = Tema.texto;
-  double _tamanoFeedback = 18;
-  String _mensajePantalla = 'Generando frase...';
+  String _mensajePantalla = 'Buscando una frase...';
+
+  /// Vacío mientras no se verificó. Después trae la respuesta correcta con
+  /// cada palabra marcada.
+  List<PalabraCorregida> _correccion = [];
 
   bool _ocupado = true;
   bool _mostrandoResultado = false;
@@ -65,137 +58,80 @@ class _PantallaFrasesState extends State<PantallaFrases> {
 
   Future<void> _nuevaFrase() async {
     setState(() {
-      _mensajePantalla = 'Generando frase...';
+      _mensajePantalla = 'Buscando una frase...';
       _fraseEs = '';
       _pista = '';
       _mostrandoPista = false;
       _textoActual = '';
-      _feedback = '';
+      _correccion = [];
       _mostrandoResultado = false;
       _ocupado = true;
     });
 
-    var combo = elegirComboAzar(widget.verbos, widget.tiempos);
-    combo ??= elegirComboAzar(widget.verbos, tiemposDisponibles);
+    await _frases.cargar();
+    if (!mounted) return;
+
+    // Solo se sortean las formas que tienen frase guardada. Se descarta la
+    // frase cuyo italiano no traiga la conjugación esperada, que es la red de
+    // contención para el JSON remoto.
+    bool conFrase(Combo combo) => _frases.tieneFrase(
+          verbo: combo.verbo.nombre,
+          tiempo: combo.tiempo,
+          persona: combo.persona,
+          conjugacionItaliana: combo.conjugacion.italiano,
+        );
+
+    var combo = elegirComboFiltrado(widget.verbos, widget.tiempos, conFrase);
+    combo ??= elegirComboFiltrado(widget.verbos, tiemposDisponibles, conFrase);
     if (combo == null) {
       setState(() {
-        _mensajePantalla = 'No hay verbos con datos cargados.';
+        _mensajePantalla = 'Todavía no hay frases para estos verbos.';
         _ocupado = false;
       });
       return;
     }
 
-    // Primero las frases que vienen con la app: salen al instante y no gastan
-    // cuota. Solo se le pide a la IA cuando esa forma no tiene ninguna.
-    await _frasesLocales.cargar();
-    final guardada = _frasesLocales.elegir(
+    final frase = _frases.elegir(
       verbo: combo.verbo.nombre,
       tiempo: combo.tiempo,
       persona: combo.persona,
-      // Descarta las frases cuyo italiano no traiga esta conjugación: es la
-      // red de contención para las que llegan del JSON remoto.
       conjugacionItaliana: combo.conjugacion.italiano,
-    );
-    if (guardada != null) {
-      if (!mounted) return;
-      setState(() => _mostrar(guardada));
-      return;
-    }
+    )!;
 
-    try {
-      final frase = await generarFrase(
-        _gemini,
-        widget.apiKey,
-        verbo: combo.verbo.nombre,
-        traduccion: combo.verbo.traduccion,
-        tiempo: combo.tiempo,
-        persona: combo.persona,
-        conjugacionItaliana: combo.conjugacion.italiano,
-      );
-      if (!mounted) return;
-      setState(() => _mostrar(frase));
-    } on ClaveInvalidaError {
-      if (!mounted) return;
-      widget.onClaveInvalida();
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _mensajePantalla = 'No se pudo generar la frase. Revisá tu conexión.';
-        _ocupado = false;
-      });
-    }
-  }
-
-  /// Deja la frase lista para responder. Se llama adentro de un setState.
-  void _mostrar(FraseGenerada frase) {
-    _fraseEs = frase.espanol;
-    _italianoReferencia = frase.italiano;
-    _pista = frase.pista;
-    _ocupado = false;
+    setState(() {
+      _fraseEs = frase.espanol;
+      _italianoReferencia = frase.italiano;
+      _pista = frase.pista;
+      _ocupado = false;
+    });
   }
 
   void _onTecla(String tecla) {
     setState(() => _textoActual = aplicarTecla(_textoActual, tecla));
   }
 
-  Future<void> _accionBoton() async {
+  void _accionBoton() {
     if (_mostrandoResultado) {
-      await _nuevaFrase();
+      _nuevaFrase();
     } else {
-      await _verificar();
+      _verificar();
     }
   }
 
-  Future<void> _verificar() async {
-    final respuesta = _textoActual.trim();
-    if (respuesta.isEmpty || _fraseEs.isEmpty) return;
+  void _verificar() {
+    if (_textoActual.trim().isEmpty || _fraseEs.isEmpty) return;
 
     setState(() {
-      _ocupado = true;
-      _feedback = 'Verificando...';
-      _colorFeedback = Tema.textoTenue;
-      _tamanoFeedback = 18;
-    });
-
-    try {
-      final correcto = await verificarFrase(
-        _gemini,
-        widget.apiKey,
-        fraseEs: _fraseEs,
-        italianoReferencia: _italianoReferencia,
-        respuestaUsuario: respuesta,
+      _correccion = corregir(
+        correcta: _italianoReferencia,
+        respuesta: _textoActual,
       );
-      if (!mounted) return;
-      setState(() {
-        if (correcto) {
-          _feedback = '¡Correcto!';
-          _colorFeedback = Tema.correcto;
-          _tamanoFeedback = 18;
-        } else {
-          // Solo la frase correcta, sin el "Incorrecto. Era:".
-          _feedback = _italianoReferencia;
-          _colorFeedback = Tema.incorrecto;
-          _tamanoFeedback = 15;
-        }
-        _mostrandoResultado = true;
-        _ocupado = false;
-      });
-    } on ClaveInvalidaError {
-      if (!mounted) return;
-      widget.onClaveInvalida();
-    } catch (e) {
-      if (!mounted) return;
-      setState(() {
-        _feedback = 'No se pudo verificar. Probá de nuevo.';
-        _colorFeedback = Tema.incorrecto;
-        _tamanoFeedback = 15;
-        _ocupado = false;
-      });
-    }
+      _mostrandoResultado = true;
+    });
   }
 
-  /// La pista viene en la misma respuesta que la frase, así que mostrarla no
-  /// gasta cuota ni tarda: solo se revela si el alumno la pide.
+  /// La pista viene con la frase, así que mostrarla no cuesta nada: solo se
+  /// revela si el alumno la pide.
   Widget _pistaWidget() {
     if (_pista.isEmpty || _fraseEs.isEmpty) return const SizedBox.shrink();
     if (_mostrandoPista) {
@@ -214,6 +150,43 @@ class _PantallaFrasesState extends State<PantallaFrases> {
       icon: const Icon(Icons.lightbulb_outline, size: 18),
       label: const Text('Pista'),
       style: TextButton.styleFrom(foregroundColor: Tema.verde),
+    );
+  }
+
+  /// La respuesta correcta, con cada palabra en verde si la escribió y en rojo
+  /// si no. La letra se achica si no entra, así nunca queda cortada.
+  Widget _respuestaWidget() {
+    if (_correccion.isEmpty) return const SizedBox.shrink();
+
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+      children: [
+        Icon(
+          todoAcertado(_correccion) ? Icons.check_circle : Icons.cancel,
+          color: todoAcertado(_correccion) ? Tema.correcto : Tema.incorrecto,
+          size: 20,
+        ),
+        const SizedBox(width: 6),
+        Expanded(
+          child: TextoAjustado(
+            _correccion.map((p) => p.palabra).join(' '),
+            estilo: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            trozos: [
+              for (var i = 0; i < _correccion.length; i++)
+                TextSpan(
+                  text: i == 0
+                      ? _correccion[i].palabra
+                      : ' ${_correccion[i].palabra}',
+                  style: TextStyle(
+                    color: _correccion[i].acertada
+                        ? Tema.correcto
+                        : Tema.incorrecto,
+                  ),
+                ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 
@@ -237,21 +210,12 @@ class _PantallaFrasesState extends State<PantallaFrases> {
                   texto: _textoActual,
                   placeholderTexto: 'Escribí la traducción...',
                 ),
-                // Alto fijo, igual que el feedback, para que mostrar la pista
+                // Alto fijo, igual que la respuesta, para que mostrar la pista
                 // no mueva el resto de la pantalla.
                 SizedBox(height: 36, child: Center(child: _pistaWidget())),
                 // Alto fijo siempre, para que el layout no salte al aparecer
                 // el texto (el bug que tuvo la versión Kivy).
-                SizedBox(
-                  height: 40,
-                  child: Center(
-                    child: TextoFeedback(
-                      texto: _feedback,
-                      color: _colorFeedback,
-                      tamano: _tamanoFeedback,
-                    ),
-                  ),
-                ),
+                SizedBox(height: 40, child: Center(child: _respuestaWidget())),
                 SizedBox(
                   height: 58,
                   child: ElevatedButton(
