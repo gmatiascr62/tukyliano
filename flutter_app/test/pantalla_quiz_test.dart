@@ -21,7 +21,6 @@ Widget _app(DatosVerbos datos, {List<String> tiempos = const ['presente']}) {
       body: PantallaQuiz(
         verbos: datos.verbos.values.toList(),
         tiempos: tiempos,
-        estado: '',
       ),
     ),
   );

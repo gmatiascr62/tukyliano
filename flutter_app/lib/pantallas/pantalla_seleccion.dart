@@ -11,10 +11,17 @@ class PantallaSeleccion extends StatefulWidget {
     super.key,
     required this.verbos,
     required this.alConfirmar,
+    this.verbosMarcados,
+    this.tiemposMarcados,
   });
 
   final Map<String, Verbo> verbos;
   final void Function(List<String> verbos, List<String> tiempos) alConfirmar;
+
+  /// Lo que el usuario había elegido la vez anterior, para volver a mostrarlo
+  /// tildado. Null la primera vez: ahí va todo tildado.
+  final List<String>? verbosMarcados;
+  final List<String>? tiemposMarcados;
 
   @override
   State<PantallaSeleccion> createState() => _PantallaSeleccionState();
@@ -27,8 +34,16 @@ class _PantallaSeleccionState extends State<PantallaSeleccion> {
   @override
   void initState() {
     super.initState();
-    _verbosElegidos = {for (final v in widget.verbos.keys) v: true};
-    _tiemposElegidos = {for (final t in tiemposDisponibles) t: true};
+    final verbosPrevios = widget.verbosMarcados;
+    final tiemposPrevios = widget.tiemposMarcados;
+    _verbosElegidos = {
+      for (final v in widget.verbos.keys)
+        v: verbosPrevios == null || verbosPrevios.contains(v),
+    };
+    _tiemposElegidos = {
+      for (final t in tiemposDisponibles)
+        t: tiemposPrevios == null || tiemposPrevios.contains(t),
+    };
   }
 
   @override

@@ -14,14 +14,12 @@ class PantallaQuiz extends StatefulWidget {
     super.key,
     required this.verbos,
     required this.tiempos,
-    required this.estado,
   });
 
   final List<Verbo> verbos;
   final List<String> tiempos;
 
   /// Mensaje del chequeo de verbos nuevos.
-  final String estado;
 
   @override
   State<PantallaQuiz> createState() => _PantallaQuizState();
@@ -109,18 +107,6 @@ class _PantallaQuizState extends State<PantallaQuiz> {
               children: [
                 const SizedBox(height: 12),
                 Center(child: ChipPuntaje(puntaje: _puntaje, total: _total)),
-                if (widget.estado.isNotEmpty)
-                  Padding(
-                    padding: const EdgeInsets.only(top: 8),
-                    child: Text(
-                      widget.estado,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 13,
-                        color: Tema.textoTenue,
-                      ),
-                    ),
-                  ),
                 const SizedBox(height: 12),
                 TarjetaPregunta(
                   etiqueta: _combo == null ? '' : 'Traducí al italiano',

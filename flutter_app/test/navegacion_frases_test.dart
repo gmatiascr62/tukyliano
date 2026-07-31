@@ -73,6 +73,15 @@ Future<void> _tocar(WidgetTester tester, String texto) async {
   await tester.pumpAndSettle();
 }
 
+/// Si la fila de selección está tildada.
+bool _tildado(WidgetTester tester, String texto) {
+  final fila = find.ancestor(of: find.text(texto), matching: find.byType(Row));
+  final casilla = tester.widget<Checkbox>(
+    find.descendant(of: fila.first, matching: find.byType(Checkbox)),
+  );
+  return casilla.value!;
+}
+
 void main() {
   testWidgets('Frases lleva a elegir qué practicar, sin pedir ninguna clave',
       (tester) async {
@@ -105,6 +114,56 @@ void main() {
 
     expect(find.text('Elegí los verbos a practicar'), findsOneWidget);
     expect(find.textContaining('Tengo mucha hambre'), findsNothing);
+  });
+
+  testWidgets('al volver, los tildes quedan como se habían dejado',
+      (tester) async {
+    usarPantallaDeCelular(tester);
+    await tester.pumpWidget(_app());
+    await tester.pumpAndSettle();
+
+    // En Frases se destilda essere y se practica.
+    await _tocar(tester, 'Frases');
+    await tester.tap(find.text('essere (ser/estar)'));
+    await tester.pump();
+    await _tocar(tester, 'Empezar');
+
+    // Se pasa por otra sección y se vuelve.
+    await _tocar(tester, 'Verbos');
+    await _tocar(tester, 'Frases');
+
+    expect(_tildado(tester, 'essere (ser/estar)'), isFalse);
+    expect(_tildado(tester, 'avere (tener)'), isTrue);
+  });
+
+  testWidgets('cada sección recuerda su propia selección', (tester) async {
+    usarPantallaDeCelular(tester);
+    await tester.pumpWidget(_app());
+    await tester.pumpAndSettle();
+
+    // En Frases se destilda essere.
+    await _tocar(tester, 'Frases');
+    await tester.tap(find.text('essere (ser/estar)'));
+    await tester.pump();
+    await _tocar(tester, 'Empezar');
+
+    // Verbos no se contagia: sigue con todo tildado.
+    await _tocar(tester, 'Verbos');
+    expect(_tildado(tester, 'essere (ser/estar)'), isTrue);
+  });
+
+  testWidgets('no muestra nada sobre el chequeo de verbos nuevos',
+      (tester) async {
+    usarPantallaDeCelular(tester);
+    await tester.pumpWidget(_app());
+    await tester.pumpAndSettle();
+
+    await _tocar(tester, 'Verbos');
+    await _tocar(tester, 'Empezar');
+
+    // El repositorio devuelve yaAlDia; antes eso se mostraba en pantalla.
+    expect(find.textContaining('última versión'), findsNothing);
+    expect(find.textContaining('Buscando verbos'), findsNothing);
   });
 
   testWidgets('borra la clave de Gemini que quedó guardada de antes',
