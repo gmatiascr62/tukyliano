@@ -7,13 +7,13 @@ import 'package:http/testing.dart';
 import 'package:tukyliano/datos/almacenamiento_clave.dart';
 import 'package:tukyliano/datos/repositorio_frases.dart';
 import 'package:tukyliano/datos/repositorio_verbos.dart';
-import 'package:tukyliano/ia/gemini.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 
 import 'util_pantalla.dart';
 
-/// Clave en memoria: en los tests no hay path_provider.
+/// Clave en memoria: en los tests no hay path_provider. La app ya no la usa,
+/// pero la borra al arrancar, y eso tiene que seguir funcionando.
 class _ClaveFalsa extends AlmacenamientoClave {
   _ClaveFalsa([this.guardada]);
 
@@ -50,25 +50,22 @@ class _RepoFalso extends RepositorioVerbos {
       const ResultadoActualizacion(EstadoActualizacion.yaAlDia);
 }
 
-Gemini _geminiFalso() => Gemini(
-      cliente: MockClient((_) async => http.Response(
-            jsonEncode({
-              'candidates': [
-                {
-                  'content': {
-                    'parts': [
-                      {
-                        'text':
-                            '{"espanol": "Hoy soy feliz", "italiano": "Oggi sono felice"}'
-                      }
-                    ]
-                  }
-                }
-              ]
-            }),
-            200,
-            headers: {'content-type': 'application/json; charset=utf-8'},
-          )),
+RepositorioFrases _frasesFalsas() => RepositorioFrases(
+      leerAsset: (_) async => '''
+        {"frases": [
+          {"verbo": "avere", "tiempo": "presente", "persona": "io",
+           "espanol": "Tengo mucha hambre", "italiano": "Ho molta fame",
+           "pista": "hambre = fame"}
+        ]}
+      ''',
+      cliente: MockClient((_) async => http.Response('', 404)),
+      carpeta: () async => null,
+    );
+
+Widget _app({AlmacenamientoClave? clave}) => TukylianoApp(
+      almacenClave: clave ?? _ClaveFalsa(),
+      repositorio: _RepoFalso(),
+      frasesLocales: _frasesFalsas(),
     );
 
 Future<void> _tocar(WidgetTester tester, String texto) async {
@@ -77,27 +74,17 @@ Future<void> _tocar(WidgetTester tester, String texto) async {
 }
 
 void main() {
-  testWidgets('con clave guardada, Frases lleva a elegir qué practicar',
+  testWidgets('Frases lleva a elegir qué practicar, sin pedir ninguna clave',
       (tester) async {
     usarPantallaDeCelular(tester);
-    await tester.pumpWidget(TukylianoApp(
-      almacenClave: _ClaveFalsa('FAKE'),
-      gemini: _geminiFalso(),
-      repositorio: _RepoFalso(),
-      // Vacío a propósito: estos tests miran la navegación, así que la frase
-      // tiene que venir de la IA simulada y no del asset real.
-      frasesLocales: RepositorioFrases(
-        leerAsset: (_) async => '{"frases": []}',
-        cliente: MockClient((_) async => http.Response('', 404)),
-        carpeta: () async => null,
-      ),
-    ));
+    await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
     await _tocar(tester, 'Frases');
 
     expect(find.text('Elegí los verbos a practicar'), findsOneWidget);
     expect(find.widgetWithText(ElevatedButton, 'Empezar'), findsOneWidget);
+    // La pantalla de la clave de Gemini ya no existe.
     expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsNothing);
   });
 
@@ -106,53 +93,28 @@ void main() {
     usarPantallaDeCelular(tester);
     // Regresión: antes conservaba el paso, así que al volver desde otra
     // sección entraba directo a practicar y no se podían cambiar los verbos.
-    await tester.pumpWidget(TukylianoApp(
-      almacenClave: _ClaveFalsa('FAKE'),
-      gemini: _geminiFalso(),
-      repositorio: _RepoFalso(),
-      // Vacío a propósito: estos tests miran la navegación, así que la frase
-      // tiene que venir de la IA simulada y no del asset real.
-      frasesLocales: RepositorioFrases(
-        leerAsset: (_) async => '{"frases": []}',
-        cliente: MockClient((_) async => http.Response('', 404)),
-        carpeta: () async => null,
-      ),
-    ));
+    await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
     await _tocar(tester, 'Frases');
     await _tocar(tester, 'Empezar');
-    expect(find.textContaining('Hoy soy feliz'), findsOneWidget);
+    expect(find.textContaining('Tengo mucha hambre'), findsOneWidget);
 
     await _tocar(tester, 'Verbos');
     await _tocar(tester, 'Frases');
 
     expect(find.text('Elegí los verbos a practicar'), findsOneWidget);
-    expect(find.textContaining('Hoy soy feliz'), findsNothing);
+    expect(find.textContaining('Tengo mucha hambre'), findsNothing);
   });
 
-  testWidgets('sin clave guardada, Frases la pide y después deja elegir',
+  testWidgets('borra la clave de Gemini que quedó guardada de antes',
       (tester) async {
     usarPantallaDeCelular(tester);
-    await tester.pumpWidget(TukylianoApp(
-      almacenClave: _ClaveFalsa(),
-      gemini: _geminiFalso(),
-      repositorio: _RepoFalso(),
-      // Vacío a propósito: estos tests miran la navegación, así que la frase
-      // tiene que venir de la IA simulada y no del asset real.
-      frasesLocales: RepositorioFrases(
-        leerAsset: (_) async => '{"frases": []}',
-        cliente: MockClient((_) async => http.Response('', 404)),
-        carpeta: () async => null,
-      ),
-    ));
+    final clave = _ClaveFalsa('CLAVE-VIEJA');
+
+    await tester.pumpWidget(_app(clave: clave));
     await tester.pumpAndSettle();
 
-    await _tocar(tester, 'Frases');
-    expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsOneWidget);
-
-    // Sin nada en el portapapeles, Guardar avisa en vez de seguir.
-    await _tocar(tester, 'Guardar');
-    expect(find.textContaining('antes de guardar'), findsOneWidget);
+    expect(clave.guardada, isNull);
   });
 }

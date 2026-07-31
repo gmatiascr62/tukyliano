@@ -23,18 +23,30 @@ RepositorioFrases _repo({String? asset, String remoto = '', int codigo = 404}) =
 
 void main() {
   group('el asset de frases', () {
-    test('tiene una frase por cada forma de los verbos que vienen con la app',
-        () {
-      // 4 verbos x (4 tiempos x 6 personas + gerundio).
-      expect(_frases.length, 100);
-    });
-
-    test('no repite ninguna forma', () {
-      final claves = _frases
+    // Se afirman invariantes, no cantidades exactas: las frases crecen seguido
+    // y el test no tiene que romperse cada vez que se suman.
+    test('cubre todas las formas de los verbos que trae la app', () {
+      final formas = _frases
           .map((f) => RepositorioFrases.claveDe(
               f['verbo'] as String, f['tiempo'] as String, f['persona'] as String))
-          .toList();
-      expect(claves.toSet().length, claves.length);
+          .toSet();
+      // 4 verbos x (4 tiempos x 6 personas + gerundio).
+      expect(formas.length, 100);
+    });
+
+    test('cada forma tiene al menos una frase', () {
+      final porForma = <String, int>{};
+      for (final f in _frases) {
+        final clave = RepositorioFrases.claveDe(
+            f['verbo'] as String, f['tiempo'] as String, f['persona'] as String);
+        porForma[clave] = (porForma[clave] ?? 0) + 1;
+      }
+      expect(porForma.values.every((n) => n >= 1), isTrue);
+    });
+
+    test('no repite la misma frase en español', () {
+      final espanoles = _frases.map((f) => f['espanol']).toList();
+      expect(espanoles.toSet().length, espanoles.length);
     });
 
     test('todas tienen español, italiano y pista', () {
@@ -68,11 +80,11 @@ void main() {
   });
 
   group('RepositorioFrases', () {
-    test('carga las 100 y las encuentra por forma', () async {
+    test('carga todas las del asset y las encuentra por forma', () async {
       final repo = _repo();
       await repo.cargar();
 
-      expect(repo.cantidad, 100);
+      expect(repo.cantidad, _frases.length);
       final frase =
           repo.elegir(verbo: 'essere', tiempo: 'presente', persona: 'io');
       expect(frase, isNotNull);
@@ -94,7 +106,7 @@ void main() {
       await repo.cargar();
       await repo.cargar();
 
-      expect(repo.cantidad, 100);
+      expect(repo.cantidad, _frases.length);
     });
 
     test('un asset ilegible deja el repositorio vacío en vez de tirar', () async {
@@ -191,7 +203,7 @@ void main() {
 
   group('actualización desde GitHub', () {
     const remotoV2 = '''
-      {"version": 2, "frases": [
+      {"version": 99, "frases": [
         {"verbo": "essere", "tiempo": "presente", "persona": "io",
          "espanol": "Frase nueva", "italiano": "Sono nuovo", "pista": "nueva = nuovo"}
       ]}
@@ -200,10 +212,10 @@ void main() {
     test('una versión más nueva reemplaza a las del asset', () async {
       final repo = _repo(remoto: remotoV2, codigo: 200);
       await repo.cargar();
-      expect(repo.cantidad, 100);
+      expect(repo.cantidad, _frases.length);
 
       expect(await repo.verificarActualizacion(), isTrue);
-      expect(repo.version, 2);
+      expect(repo.version, 99);
       expect(repo.cantidad, 1);
       expect(
         repo.elegir(verbo: 'essere', tiempo: 'presente', persona: 'io')!.espanol,
@@ -216,7 +228,7 @@ void main() {
       await repo.cargar();
 
       expect(await repo.verificarActualizacion(), isFalse);
-      expect(repo.cantidad, 100);
+      expect(repo.cantidad, _frases.length);
     });
 
     test('sin internet se sigue con las que ya están', () async {
@@ -228,7 +240,7 @@ void main() {
       await repo.cargar();
 
       expect(await repo.verificarActualizacion(), isFalse);
-      expect(repo.cantidad, 100);
+      expect(repo.cantidad, _frases.length);
     });
 
     test('un JSON remoto roto no borra las frases', () async {
@@ -236,7 +248,7 @@ void main() {
       await repo.cargar();
 
       expect(await repo.verificarActualizacion(), isFalse);
-      expect(repo.cantidad, 100);
+      expect(repo.cantidad, _frases.length);
     });
 
     test('un 404 no cambia nada', () async {
@@ -244,7 +256,7 @@ void main() {
       await repo.cargar();
 
       expect(await repo.verificarActualizacion(), isFalse);
-      expect(repo.cantidad, 100);
+      expect(repo.cantidad, _frases.length);
     });
 
     test('guarda la tanda nueva en el celular para la próxima vez', () async {
@@ -267,7 +279,7 @@ void main() {
       );
       await despues.cargar();
 
-      expect(despues.version, 2);
+      expect(despues.version, 99);
       expect(despues.cantidad, 1);
     });
   });

@@ -105,4 +105,75 @@ void main() {
       expect(nombres, containsAll(['essere', 'avere']));
     });
   });
+
+  group('elegirComboFiltrado', () {
+    // essere tiene dos personas en presente, avere una sola.
+    final varios = _datos('''
+      {"verbos": {
+        "essere": {"traduccion": "ser/estar", "tiempos": {
+          "presente": {
+            "io": {"italiano": "sono", "espanol": "yo soy"},
+            "tu": {"italiano": "sei", "espanol": "tú eres"}
+          }
+        }},
+        "avere": {"traduccion": "tener", "tiempos": {
+          "presente": {"io": {"italiano": "ho", "espanol": "yo tengo"}}
+        }}
+      }}
+    ''');
+
+    test('sin filtro devuelve alguna de todas las combinaciones', () {
+      expect(
+        elegirComboFiltrado(varios.verbos.values, ['presente'], (_) => true,
+            azar: Random(1)),
+        isNotNull,
+      );
+    });
+
+    test('solo devuelve las que pasan el filtro', () {
+      bool soloSei(Combo c) => c.conjugacion.italiano == 'sei';
+
+      for (var i = 0; i < 20; i++) {
+        final combo = elegirComboFiltrado(
+            varios.verbos.values, ['presente'], soloSei, azar: Random(i));
+        expect(combo!.verbo.nombre, 'essere');
+        expect(combo.persona, 'tu');
+      }
+    });
+
+    test('devuelve null si ninguna pasa el filtro', () {
+      expect(
+        elegirComboFiltrado(varios.verbos.values, ['presente'], (_) => false),
+        isNull,
+      );
+    });
+
+    test('devuelve null si el tiempo pedido no existe en ningún verbo', () {
+      expect(
+        elegirComboFiltrado(varios.verbos.values, ['imperfetto'], (_) => true),
+        isNull,
+      );
+    });
+
+    test('con el filtro puesto sigue variando entre las que quedan', () {
+      bool soloEssere(Combo c) => c.verbo.nombre == 'essere';
+
+      final personas = <String>{};
+      for (var i = 0; i < 40; i++) {
+        personas.add(elegirComboFiltrado(
+                varios.verbos.values, ['presente'], soloEssere, azar: Random(i))!
+            .persona);
+      }
+      expect(personas, containsAll(['io', 'tu']));
+    });
+
+    test('la conjugación devuelta coincide con verbo/tiempo/persona', () {
+      for (var i = 0; i < 30; i++) {
+        final combo = elegirComboFiltrado(
+            varios.verbos.values, ['presente'], (_) => true, azar: Random(i))!;
+        final esperada = combo.verbo.tiempos[combo.tiempo]![combo.persona]!;
+        expect(combo.conjugacion.italiano, esperada.italiano);
+      }
+    });
+  });
 }

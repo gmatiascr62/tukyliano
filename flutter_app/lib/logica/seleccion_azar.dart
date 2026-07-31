@@ -44,6 +44,37 @@ Combo? elegirComboAzar(
   );
 }
 
+/// Como [elegirComboAzar], pero solo entre las combinaciones que [sirve]
+/// acepta. La práctica de frases lo usa para no sortear formas que no tienen
+/// ninguna frase guardada: sin IA, ahí no habría nada que mostrar.
+///
+/// Recorre todas las combinaciones posibles en vez de sortear y reintentar,
+/// así no depende de la suerte cuando quedan pocas.
+Combo? elegirComboFiltrado(
+  Iterable<Verbo> verbos,
+  List<String> tiempos,
+  bool Function(Combo) sirve, {
+  Random? azar,
+}) {
+  final posibles = <Combo>[];
+  for (final verbo in verbos) {
+    for (final tiempo in tiempos.where(verbo.tiempos.containsKey)) {
+      for (final entrada in verbo.tiempos[tiempo]!.entries) {
+        final combo = Combo(
+          verbo: verbo,
+          tiempo: tiempo,
+          persona: entrada.key,
+          conjugacion: entrada.value,
+        );
+        if (sirve(combo)) posibles.add(combo);
+      }
+    }
+  }
+
+  if (posibles.isEmpty) return null;
+  return posibles[(azar ?? Random()).nextInt(posibles.length)];
+}
+
 /// Teclas especiales del teclado propio.
 const String teclaBorrar = '<--';
 const String teclaEspacio = 'espacio';

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../tema.dart';
+import 'texto_ajustado.dart';
 
 const String placeholder = 'Escribí la conjugación...';
 
@@ -34,12 +35,11 @@ class CampoTexto extends StatelessWidget {
           width: vacio ? 1.5 : 2,
         ),
       ),
-      child: Text(
+      // Se achica en vez de cortarse con puntos suspensivos: mientras se
+      // escribe hay que poder leer todo lo escrito.
+      child: TextoAjustado(
         vacio ? placeholderTexto : texto,
-        textAlign: TextAlign.center,
-        maxLines: 1,
-        overflow: TextOverflow.ellipsis,
-        style: TextStyle(
+        estilo: TextStyle(
           fontSize: 22,
           fontWeight: vacio ? FontWeight.w400 : FontWeight.w600,
           color: vacio ? Tema.textoTenue : Tema.texto,

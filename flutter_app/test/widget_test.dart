@@ -20,21 +20,22 @@ void main() {
       (WidgetTester tester) async {
     await tester.pumpWidget(const TukylianoApp());
 
-    // Sin clave de Gemini guardada, Frases lleva primero a pedirla.
+    // Frases ya no pide ninguna clave: acá sin verbos cargados queda
+    // esperándolos.
     await tester.tap(find.widgetWithText(ElevatedButton, 'Frases'));
     await tester.pumpAndSettle();
-    expect(
-      find.text('Necesitás una clave gratis de la IA (Gemini)'),
-      findsOneWidget,
-    );
-    expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsOneWidget);
+    expect(find.text('Cargando verbos...'), findsOneWidget);
+    expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsNothing);
 
     await tester.tap(find.widgetWithText(ElevatedButton, 'Articoli'));
     await tester.pumpAndSettle();
     expect(find.text('Articoli'), findsNWidgets(2));
+    expect(find.text('Cargando verbos...'), findsNothing);
 
     await tester.tap(find.widgetWithText(ElevatedButton, 'Verbos'));
     await tester.pumpAndSettle();
-    expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsNothing);
+    // Sin path_provider los verbos nunca llegan, así que las dos secciones
+    // que dependen de ellos quedan esperando.
+    expect(find.text('Cargando verbos...'), findsOneWidget);
   });
 }
