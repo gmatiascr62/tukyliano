@@ -8,22 +8,13 @@ import 'package:path_provider/path_provider.dart';
 import '../constantes.dart';
 import '../modelos/verbo.dart';
 
-/// Cómo terminó el chequeo de verbos nuevos. Los mensajes son los mismos que
-/// muestra la app Kivy.
-enum EstadoActualizacion {
-  actualizado,
-  yaAlDia,
-  sinConexion,
-  error;
-
-  String get mensaje => switch (this) {
-        EstadoActualizacion.actualizado => '',
-        EstadoActualizacion.yaAlDia => 'Ya tenés la última versión.',
-        EstadoActualizacion.sinConexion =>
-          'Sin conexión a internet. Usando los verbos guardados.',
-        EstadoActualizacion.error => 'No se pudo comprobar si hay verbos nuevos.',
-      };
-}
+/// Cómo terminó el chequeo de verbos nuevos.
+///
+/// No tiene mensajes: la actualización es silenciosa a propósito. Al usuario
+/// no le sirve saber que se fue a mirar si había verbos nuevos; solo le
+/// importa que estén. Los estados quedan porque los usan los tests y porque
+/// distinguen "llegaron datos nuevos" de "no pasó nada".
+enum EstadoActualizacion { actualizado, yaAlDia, sinConexion, error }
 
 class ResultadoActualizacion {
   const ResultadoActualizacion(this.estado, [this.datos]);

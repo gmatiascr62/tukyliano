@@ -72,7 +72,11 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   Seccion _seccion = Seccion.verbos;
   DatosVerbos? _datos;
-  String _estado = '';
+
+  /// Solo se llena si los verbos no se pudieron cargar: ahí no hay nada que
+  /// practicar y hay que decirlo. El chequeo de verbos nuevos, en cambio, es
+  /// silencioso.
+  String _error = '';
 
   /// La sección Verbos alterna entre el quiz y la pantalla de selección.
   bool _eligiendoVerbos = false;
@@ -116,24 +120,19 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     try {
       final datos = await _repositorio.cargar();
       if (!mounted) return;
-      setState(() {
-        _datos = datos;
-        _estado = 'Buscando verbos nuevos...';
-      });
+      setState(() => _datos = datos);
     } catch (e) {
       if (!mounted) return;
-      setState(() => _estado = 'No se pudieron cargar los verbos: $e');
+      setState(() => _error = 'No se pudieron cargar los verbos: $e');
       return;
     }
 
     // El chequeo va después de mostrar los verbos guardados, para que la app
-    // sea usable aunque no haya internet.
+    // sea usable aunque no haya internet. Si llegan verbos nuevos aparecen
+    // solos, sin avisar nada.
     final resultado = await _repositorio.verificarActualizacion(_datos!.version);
-    if (!mounted) return;
-    setState(() {
-      if (resultado.datos != null) _datos = resultado.datos;
-      _estado = resultado.estado.mensaje;
-    });
+    if (!mounted || resultado.datos == null) return;
+    setState(() => _datos = resultado.datos);
   }
 
   void _irA(Seccion seccion) {
@@ -149,8 +148,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   void _empezarFrases(List<String> verbos, List<String> tiempos) {
     setState(() {
-      _verbosFrases = verbos;
-      _tiemposFrases = tiempos;
+      _verbosFrases = _recordar(verbos, _datos?.verbos.keys);
+      _tiemposFrases = _recordar(tiempos, tiemposDisponibles);
       _eligiendoFrases = false;
       _generacionFrases++;
     });
@@ -158,11 +157,21 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   void _empezarQuiz(List<String> verbos, List<String> tiempos) {
     setState(() {
-      _verbosElegidos = verbos;
-      _tiemposElegidos = tiempos;
+      _verbosElegidos = _recordar(verbos, _datos?.verbos.keys);
+      _tiemposElegidos = _recordar(tiempos, tiemposDisponibles);
       _eligiendoVerbos = false;
       _generacionQuiz++;
     });
+  }
+
+  /// Guarda la selección para volver a mostrarla tildada la próxima vez.
+  ///
+  /// Si el usuario tildó todo, se guarda null en vez de la lista completa:
+  /// "todos" sigue significando todos, así los verbos que lleguen después por
+  /// actualización entran solos en vez de aparecer destildados.
+  List<String>? _recordar(List<String> elegidos, Iterable<String>? universo) {
+    if (universo != null && elegidos.toSet().containsAll(universo)) return null;
+    return elegidos;
   }
 
   /// Los verbos con los que se practica: la selección del usuario, o todos si
@@ -217,8 +226,14 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
     if (_eligiendoFrases) {
       return PantallaSeleccion(
+        // La clave separa esta pantalla de la de Verbos: sin ella Flutter
+        // reutiliza el State entre secciones y una se lleva los tildes de la
+        // otra.
+        key: const ValueKey('seleccion-frases'),
         verbos: datos.verbos,
         alConfirmar: _empezarFrases,
+        verbosMarcados: _verbosFrases,
+        tiemposMarcados: _tiemposFrases,
       );
     }
 
@@ -235,7 +250,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     if (datos == null) {
       return Center(
         child: Text(
-          _estado.isEmpty ? 'Cargando verbos...' : _estado,
+          _error.isEmpty ? 'Cargando verbos...' : _error,
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 16, color: Tema.textoTenue),
         ),
@@ -244,8 +259,11 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
     if (_eligiendoVerbos) {
       return PantallaSeleccion(
+        key: const ValueKey('seleccion-verbos'),
         verbos: datos.verbos,
         alConfirmar: _empezarQuiz,
+        verbosMarcados: _verbosElegidos,
+        tiemposMarcados: _tiemposElegidos,
       );
     }
 
@@ -253,7 +271,6 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       key: ValueKey(_generacionQuiz),
       verbos: _resolverVerbos(_verbosElegidos),
       tiempos: _tiemposElegidos ?? tiemposDisponibles,
-      estado: _estado,
     );
   }
 }
