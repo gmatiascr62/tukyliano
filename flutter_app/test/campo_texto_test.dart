@@ -1,16 +1,21 @@
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/widgets/campo_texto.dart';
 
-/// Frases reales de la práctica, de las más largas que puede tocar escribir.
-const _respuestasLargas = [
-  'ho',
-  'non abbiamo avuto tempo',
-  'non abbiamo avuto tempo mai',
-  'avete avuto una macchina vecchia',
-  'abbiamo avuto la febbre la settimana scorsa',
-  'i miei cugini hanno avuto un gatto',
-];
+/// Las respuestas más largas que existen en el JSON: si estas entran, entran
+/// todas. Se leen del asset para que el test siga al día si se agregan frases.
+List<String> _lasMasLargas(int cuantas) {
+  final json = jsonDecode(File('assets/frases.json').readAsStringSync())
+      as Map<String, dynamic>;
+  final italianos = (json['frases'] as List)
+      .map((f) => (f as Map<String, dynamic>)['italiano'] as String)
+      .toList()
+    ..sort((a, b) => b.length.compareTo(a.length));
+  return italianos.take(cuantas).toList();
+}
 
 /// Deja el tester con el ancho de un celular real.
 void _celular(WidgetTester tester) {
@@ -30,13 +35,13 @@ void _celular(WidgetTester tester) {
   );
 }
 
-/// ¿Entró todo, sin recortar?
-bool _entraCompleto(({String texto, TextStyle estilo, Size caja}) p) {
+/// ¿Entró todo en un renglón, sin recortar?
+bool _entraEnUnRenglon(({String texto, TextStyle estilo, Size caja}) p) {
   final medidor = TextPainter(
     text: TextSpan(text: p.texto, style: p.estilo),
     textDirection: TextDirection.ltr,
     textAlign: TextAlign.center,
-    maxLines: 2,
+    maxLines: 1,
   )..layout(maxWidth: p.caja.width);
   return !medidor.didExceedMaxLines && medidor.width <= p.caja.width + 0.5;
 }
@@ -53,19 +58,30 @@ Future<void> _mostrar(WidgetTester tester, String texto) => tester.pumpWidget(
     );
 
 void main() {
-  testWidgets('cualquier respuesta larga se ve entera, sin puntos suspensivos',
-      (tester) async {
+  testWidgets('las respuestas más largas del JSON entran enteras y en un solo '
+      'renglón', (tester) async {
     _celular(tester);
 
-    for (final respuesta in _respuestasLargas) {
+    for (final respuesta in _lasMasLargas(15)) {
       await _mostrar(tester, respuesta);
       final p = _pintado(tester);
 
       expect(p.texto, respuesta, reason: 'no se dibuja el texto completo');
-      expect(_entraCompleto(p), isTrue,
+      expect(_entraEnUnRenglon(p), isTrue,
           reason: '"$respuesta" no entra a ${p.estilo.fontSize}px '
               'en ${p.caja.width}px');
     }
+  });
+
+  testWidgets('el texto nunca se parte en dos renglones', (tester) async {
+    // Dos renglones no entran en el alto de la caja: el segundo quedaba
+    // cortado por el borde.
+    _celular(tester);
+    await _mostrar(tester, 'Abbiamo avuto la febbre la settimana scorsa');
+
+    expect(tester.widget<Text>(find.byType(Text)).maxLines, 1);
+    final caja = tester.renderObject<RenderBox>(find.byType(Text)).size;
+    expect(caja.height, lessThan(40), reason: 'entró más de un renglón');
   });
 
   testWidgets('una respuesta corta no se achica', (tester) async {
@@ -75,14 +91,12 @@ void main() {
     expect(_pintado(tester).estilo.fontSize, 22);
   });
 
-  testWidgets('una respuesta larga se achica, pero no hasta ser ilegible',
+  testWidgets('una respuesta larga se achica lo que haga falta',
       (tester) async {
     _celular(tester);
-    await _mostrar(tester, 'abbiamo avuto la febbre la settimana scorsa');
-    final tamano = _pintado(tester).estilo.fontSize!;
+    await _mostrar(tester, 'Abbiamo avuto la febbre la settimana scorsa');
 
-    expect(tamano, lessThan(22));
-    expect(tamano, greaterThanOrEqualTo(13));
+    expect(_pintado(tester).estilo.fontSize, lessThan(22));
   });
 
   testWidgets('el placeholder se muestra tal cual cuando está vacío',
@@ -93,14 +107,16 @@ void main() {
     expect(_pintado(tester).texto, 'Escribí la conjugación...');
   });
 
-  testWidgets('una palabra sola larguísima igual se ve entera', (tester) async {
-    // Flutter parte la palabra entre renglones cuando no le queda otra, así
-    // que con dos renglones entra; si no alcanzara, se achica.
+  testWidgets('una palabra sola más ancha que la caja también se achica',
+      (tester) async {
+    // No puede cortarse, así que solo queda achicarla. Lo detecta el chequeo
+    // por ancho: contar renglones no alcanza.
+    //
+    // Una palabra de 45 letras no entra ni en el mínimo, y ahí sí se recorta:
+    // es el único caso que queda, y en italiano no existe.
     _celular(tester);
     await _mostrar(tester, 'unapalabralarguisimaquenoentradeningunamanera');
 
-    final p = _pintado(tester);
-    expect(p.estilo.fontSize, lessThan(22));
-    expect(_entraCompleto(p), isTrue);
+    expect(_pintado(tester).estilo.fontSize, 8);
   });
 }
