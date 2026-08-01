@@ -35,7 +35,11 @@ class TextoAjustado extends StatelessWidget {
       maxLines: maxLineas,
       textScaler: escala,
     )..layout(maxWidth: ancho);
-    return !medidor.didExceedMaxLines;
+
+    // didExceedMaxLines cuenta renglones, así que no detecta una palabra sola
+    // más ancha que el recuadro: esa no puede cortarse y se pasa de largo sin
+    // sumar un renglón. Por eso también se compara el ancho.
+    return !medidor.didExceedMaxLines && medidor.width <= ancho + 0.5;
   }
 
   @override
