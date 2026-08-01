@@ -170,9 +170,8 @@ class _PantallaFrasesState extends State<PantallaFrases> {
         Expanded(
           child: TextoAjustado(
             _correccion.map((p) => p.palabra).join(' '),
-            // Un renglón, como el campo de arriba, y con el mismo criterio:
-            // antes letra chica que texto cortado.
-            tamanoMinimo: 8,
+            // Mismo criterio que el campo de arriba: antes letra chica que
+            // texto cortado.
             estilo: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             trozos: [
               for (var i = 0; i < _correccion.length; i++)

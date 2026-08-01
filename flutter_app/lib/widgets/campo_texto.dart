@@ -36,15 +36,9 @@ class CampoTexto extends StatelessWidget {
         ),
       ),
       // Se achica en vez de cortarse con puntos suspensivos: mientras se
-      // escribe hay que poder leer todo lo escrito.
-      //
-      // Un solo renglón y un mínimo bajo: dos renglones no entran en el alto
-      // de la caja (el segundo quedaba cortado) y además se prefiere la letra
-      // chica antes que partir la frase. Las respuestas son cortas, así que
-      // el tamaño rara vez baja mucho.
+      // escribe hay que poder leer todo lo escrito, aunque quede chico.
       child: TextoAjustado(
         vacio ? placeholderTexto : texto,
-        tamanoMinimo: 8,
         estilo: TextStyle(
           fontSize: 22,
           fontWeight: vacio ? FontWeight.w400 : FontWeight.w600,
