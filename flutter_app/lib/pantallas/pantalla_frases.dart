@@ -170,10 +170,9 @@ class _PantallaFrasesState extends State<PantallaFrases> {
         Expanded(
           child: TextoAjustado(
             _correccion.map((p) => p.palabra).join(' '),
-            // Dos renglones por el mismo motivo que el campo de arriba: la
-            // respuesta correcta es una frase entera y tiene que leerse.
-            maxLineas: 2,
-            tamanoMinimo: 13,
+            // Un renglón, como el campo de arriba, y con el mismo criterio:
+            // antes letra chica que texto cortado.
+            tamanoMinimo: 8,
             estilo: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             trozos: [
               for (var i = 0; i < _correccion.length; i++)
@@ -219,7 +218,7 @@ class _PantallaFrasesState extends State<PantallaFrases> {
                 SizedBox(height: 36, child: Center(child: _pistaWidget())),
                 // Alto fijo siempre, para que el layout no salte al aparecer
                 // el texto (el bug que tuvo la versión Kivy).
-                SizedBox(height: 52, child: Center(child: _respuestaWidget())),
+                SizedBox(height: 40, child: Center(child: _respuestaWidget())),
                 SizedBox(
                   height: 58,
                   child: ElevatedButton(
