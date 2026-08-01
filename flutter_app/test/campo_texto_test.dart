@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tukyliano/tema.dart';
 import 'package:tukyliano/widgets/campo_texto.dart';
 
 /// Las respuestas más largas que existen en el JSON: si estas entran, entran
@@ -24,30 +25,11 @@ void _celular(WidgetTester tester) {
   addTearDown(tester.view.reset);
 }
 
-/// El texto que finalmente se dibuja, con el tamaño que quedó.
-({String texto, TextStyle estilo, Size caja}) _pintado(WidgetTester tester) {
-  final widget = tester.widget<Text>(find.byType(Text));
-  final span = widget.textSpan! as TextSpan;
-  return (
-    texto: span.text!,
-    estilo: span.style!,
-    caja: tester.renderObject<RenderBox>(find.byType(Text)).size,
-  );
-}
-
-/// ¿Entró todo en un renglón, sin recortar?
-bool _entraEnUnRenglon(({String texto, TextStyle estilo, Size caja}) p) {
-  final medidor = TextPainter(
-    text: TextSpan(text: p.texto, style: p.estilo),
-    textDirection: TextDirection.ltr,
-    textAlign: TextAlign.center,
-    maxLines: 1,
-  )..layout(maxWidth: p.caja.width);
-  return !medidor.didExceedMaxLines && medidor.width <= p.caja.width + 0.5;
-}
-
+/// Se usa el tema de la app a propósito: fija una tipografía, y la versión
+/// anterior fallaba justamente porque medía con una distinta a la que dibuja.
 Future<void> _mostrar(WidgetTester tester, String texto) => tester.pumpWidget(
       MaterialApp(
+        theme: Tema.datos,
         home: Scaffold(
           body: Padding(
             padding: const EdgeInsets.all(14),
@@ -57,46 +39,62 @@ Future<void> _mostrar(WidgetTester tester, String texto) => tester.pumpWidget(
       ),
     );
 
+Text _texto(WidgetTester tester) => tester.widget<Text>(find.byType(Text));
+
+/// Cuánto se achicó: 1 es tamaño original.
+double _escala(WidgetTester tester) {
+  final caja = tester.renderObject<RenderBox>(find.byType(FittedBox)).size;
+  final contenido = tester.renderObject<RenderBox>(find.byType(Text)).size;
+  if (contenido.width <= caja.width) return 1;
+  return caja.width / contenido.width;
+}
+
 void main() {
-  testWidgets('las respuestas más largas del JSON entran enteras y en un solo '
-      'renglón', (tester) async {
+  testWidgets('las respuestas más largas del JSON se dibujan enteras',
+      (tester) async {
     _celular(tester);
 
     for (final respuesta in _lasMasLargas(15)) {
       await _mostrar(tester, respuesta);
-      final p = _pintado(tester);
+      final texto = _texto(tester);
 
-      expect(p.texto, respuesta, reason: 'no se dibuja el texto completo');
-      expect(_entraEnUnRenglon(p), isTrue,
-          reason: '"$respuesta" no entra a ${p.estilo.fontSize}px '
-              'en ${p.caja.width}px');
+      expect((texto.textSpan! as TextSpan).text, respuesta,
+          reason: 'no se dibuja el texto completo');
+      expect(texto.overflow, TextOverflow.visible,
+          reason: '"$respuesta" se puede recortar');
     }
   });
 
-  testWidgets('el texto nunca se parte en dos renglones', (tester) async {
-    // Dos renglones no entran en el alto de la caja: el segundo quedaba
-    // cortado por el borde.
+  testWidgets('una respuesta larga se achica', (tester) async {
     _celular(tester);
     await _mostrar(tester, 'Abbiamo avuto la febbre la settimana scorsa');
 
-    expect(tester.widget<Text>(find.byType(Text)).maxLines, 1);
-    final caja = tester.renderObject<RenderBox>(find.byType(Text)).size;
-    expect(caja.height, lessThan(40), reason: 'entró más de un renglón');
+    expect(_escala(tester), lessThan(1));
   });
 
   testWidgets('una respuesta corta no se achica', (tester) async {
     _celular(tester);
     await _mostrar(tester, 'ho fame');
 
-    expect(_pintado(tester).estilo.fontSize, 22);
+    expect(_escala(tester), 1);
   });
 
-  testWidgets('una respuesta larga se achica lo que haga falta',
-      (tester) async {
+  testWidgets('nunca ocupa dos renglones', (tester) async {
     _celular(tester);
     await _mostrar(tester, 'Abbiamo avuto la febbre la settimana scorsa');
 
-    expect(_pintado(tester).estilo.fontSize, lessThan(22));
+    expect(_texto(tester).maxLines, 1);
+    expect(_texto(tester).softWrap, isFalse);
+  });
+
+  testWidgets('el texto entra en la caja, no se pasa', (tester) async {
+    _celular(tester);
+    await _mostrar(tester, 'Abbiamo avuto la febbre la settimana scorsa');
+
+    final fitted = tester.renderObject<RenderBox>(find.byType(FittedBox));
+    final campo = tester.renderObject<RenderBox>(find.byType(CampoTexto));
+    expect(fitted.size.width, lessThanOrEqualTo(campo.size.width));
+    expect(fitted.size.height, lessThanOrEqualTo(campo.size.height));
   });
 
   testWidgets('el placeholder se muestra tal cual cuando está vacío',
@@ -104,19 +102,16 @@ void main() {
     _celular(tester);
     await _mostrar(tester, '');
 
-    expect(_pintado(tester).texto, 'Escribí la conjugación...');
+    expect((_texto(tester).textSpan! as TextSpan).text,
+        'Escribí la conjugación...');
   });
 
   testWidgets('una palabra sola más ancha que la caja también se achica',
       (tester) async {
-    // No puede cortarse, así que solo queda achicarla. Lo detecta el chequeo
-    // por ancho: contar renglones no alcanza.
-    //
-    // Una palabra de 45 letras no entra ni en el mínimo, y ahí sí se recorta:
-    // es el único caso que queda, y en italiano no existe.
     _celular(tester);
     await _mostrar(tester, 'unapalabralarguisimaquenoentradeningunamanera');
 
-    expect(_pintado(tester).estilo.fontSize, 8);
+    expect(_escala(tester), lessThan(1));
+    expect(_texto(tester).overflow, TextOverflow.visible);
   });
 }
