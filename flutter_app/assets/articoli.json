@@ -1,5 +1,5 @@
 {
- "version": 2,
+ "version": 3,
  "clases": {
   "m_consonante": {
    "determinativo": "il",
@@ -52,37 +52,558 @@
    "es_genero": "m"
   },
   {
-   "it": "zaino",
-   "it_plural": "zaini",
-   "clase": "m_s_impura",
-   "es": "mochila",
-   "es_plural": "mochilas",
+   "it": "tavolo",
+   "it_plural": "tavoli",
+   "clase": "m_consonante",
+   "es": "mesa",
+   "es_plural": "mesas",
    "es_genero": "f",
-   "nota": "En español \"mochila\" es femenino, pero zaino es masculino"
+   "nota": "En español \"mesa\" es femenino, pero tavolo es masculino"
   },
   {
-   "it": "studente",
-   "it_plural": "studenti",
-   "clase": "m_s_impura",
-   "es": "estudiante",
-   "es_plural": "estudiantes",
+   "it": "cane",
+   "it_plural": "cani",
+   "clase": "m_consonante",
+   "es": "perro",
+   "es_plural": "perros",
    "es_genero": "m"
   },
   {
-   "it": "amico",
-   "it_plural": "amici",
-   "clase": "m_vocal",
-   "es": "amigo",
-   "es_plural": "amigos",
+   "it": "gatto",
+   "it_plural": "gatti",
+   "clase": "m_consonante",
+   "es": "gato",
+   "es_plural": "gatos",
    "es_genero": "m"
   },
   {
-   "it": "albero",
-   "it_plural": "alberi",
-   "clase": "m_vocal",
-   "es": "árbol",
-   "es_plural": "árboles",
+   "it": "bambino",
+   "it_plural": "bambini",
+   "clase": "m_consonante",
+   "es": "nene",
+   "es_plural": "nenes",
    "es_genero": "m"
+  },
+  {
+   "it": "ragazzo",
+   "it_plural": "ragazzi",
+   "clase": "m_consonante",
+   "es": "chico",
+   "es_plural": "chicos",
+   "es_genero": "m"
+  },
+  {
+   "it": "fratello",
+   "it_plural": "fratelli",
+   "clase": "m_consonante",
+   "es": "hermano",
+   "es_plural": "hermanos",
+   "es_genero": "m"
+  },
+  {
+   "it": "figlio",
+   "it_plural": "figli",
+   "clase": "m_consonante",
+   "es": "hijo",
+   "es_plural": "hijos",
+   "es_genero": "m"
+  },
+  {
+   "it": "padre",
+   "it_plural": "padri",
+   "clase": "m_consonante",
+   "es": "padre",
+   "es_plural": "padres",
+   "es_genero": "m"
+  },
+  {
+   "it": "nonno",
+   "it_plural": "nonni",
+   "clase": "m_consonante",
+   "es": "abuelo",
+   "es_plural": "abuelos",
+   "es_genero": "m"
+  },
+  {
+   "it": "maestro",
+   "it_plural": "maestri",
+   "clase": "m_consonante",
+   "es": "maestro",
+   "es_plural": "maestros",
+   "es_genero": "m"
+  },
+  {
+   "it": "medico",
+   "it_plural": "medici",
+   "clase": "m_consonante",
+   "es": "médico",
+   "es_plural": "médicos",
+   "es_genero": "m",
+   "nota": "Hace \"medici\", no \"medichi\": la fuerza de la voz cae en la e"
+  },
+  {
+   "it": "telefono",
+   "it_plural": "telefoni",
+   "clase": "m_consonante",
+   "es": "teléfono",
+   "es_plural": "teléfonos",
+   "es_genero": "m"
+  },
+  {
+   "it": "letto",
+   "it_plural": "letti",
+   "clase": "m_consonante",
+   "es": "cama",
+   "es_plural": "camas",
+   "es_genero": "f",
+   "nota": "En español \"cama\" es femenino, pero letto es masculino"
+  },
+  {
+   "it": "bicchiere",
+   "it_plural": "bicchieri",
+   "clase": "m_consonante",
+   "es": "vaso",
+   "es_plural": "vasos",
+   "es_genero": "m"
+  },
+  {
+   "it": "coltello",
+   "it_plural": "coltelli",
+   "clase": "m_consonante",
+   "es": "cuchillo",
+   "es_plural": "cuchillos",
+   "es_genero": "m"
+  },
+  {
+   "it": "piatto",
+   "it_plural": "piatti",
+   "clase": "m_consonante",
+   "es": "plato",
+   "es_plural": "platos",
+   "es_genero": "m"
+  },
+  {
+   "it": "giornale",
+   "it_plural": "giornali",
+   "clase": "m_consonante",
+   "es": "diario",
+   "es_plural": "diarios",
+   "es_genero": "m"
+  },
+  {
+   "it": "quaderno",
+   "it_plural": "quaderni",
+   "clase": "m_consonante",
+   "es": "cuaderno",
+   "es_plural": "cuadernos",
+   "es_genero": "m"
+  },
+  {
+   "it": "banco",
+   "it_plural": "banchi",
+   "clase": "m_consonante",
+   "es": "banco",
+   "es_plural": "bancos",
+   "es_genero": "m",
+   "nota": "Hace \"banchi\" con h, para que la c siga sonando dura"
+  },
+  {
+   "it": "parco",
+   "it_plural": "parchi",
+   "clase": "m_consonante",
+   "es": "parque",
+   "es_plural": "parques",
+   "es_genero": "m"
+  },
+  {
+   "it": "treno",
+   "it_plural": "treni",
+   "clase": "m_consonante",
+   "es": "tren",
+   "es_plural": "trenes",
+   "es_genero": "m"
+  },
+  {
+   "it": "ponte",
+   "it_plural": "ponti",
+   "clase": "m_consonante",
+   "es": "puente",
+   "es_plural": "puentes",
+   "es_genero": "m"
+  },
+  {
+   "it": "fiore",
+   "it_plural": "fiori",
+   "clase": "m_consonante",
+   "es": "flor",
+   "es_plural": "flores",
+   "es_genero": "f",
+   "nota": "En español \"flor\" es femenino, pero fiore es masculino"
+  },
+  {
+   "it": "mare",
+   "it_plural": "mari",
+   "clase": "m_consonante",
+   "es": "mar",
+   "es_plural": "mares",
+   "es_genero": "m"
+  },
+  {
+   "it": "monte",
+   "it_plural": "monti",
+   "clase": "m_consonante",
+   "es": "monte",
+   "es_plural": "montes",
+   "es_genero": "m"
+  },
+  {
+   "it": "paese",
+   "it_plural": "paesi",
+   "clase": "m_consonante",
+   "es": "pueblo",
+   "es_plural": "pueblos",
+   "es_genero": "m"
+  },
+  {
+   "it": "giorno",
+   "it_plural": "giorni",
+   "clase": "m_consonante",
+   "es": "día",
+   "es_plural": "días",
+   "es_genero": "m"
+  },
+  {
+   "it": "mese",
+   "it_plural": "mesi",
+   "clase": "m_consonante",
+   "es": "mes",
+   "es_plural": "meses",
+   "es_genero": "m"
+  },
+  {
+   "it": "nome",
+   "it_plural": "nomi",
+   "clase": "m_consonante",
+   "es": "nombre",
+   "es_plural": "nombres",
+   "es_genero": "m"
+  },
+  {
+   "it": "lavoro",
+   "it_plural": "lavori",
+   "clase": "m_consonante",
+   "es": "trabajo",
+   "es_plural": "trabajos",
+   "es_genero": "m"
+  },
+  {
+   "it": "formaggio",
+   "it_plural": "formaggi",
+   "clase": "m_consonante",
+   "es": "queso",
+   "es_plural": "quesos",
+   "es_genero": "m"
+  },
+  {
+   "it": "pesce",
+   "it_plural": "pesci",
+   "clase": "m_consonante",
+   "es": "pescado",
+   "es_plural": "pescados",
+   "es_genero": "m"
+  },
+  {
+   "it": "pollo",
+   "it_plural": "polli",
+   "clase": "m_consonante",
+   "es": "pollo",
+   "es_plural": "pollos",
+   "es_genero": "m"
+  },
+  {
+   "it": "cielo",
+   "it_plural": "cieli",
+   "clase": "m_consonante",
+   "es": "cielo",
+   "es_plural": "cielos",
+   "es_genero": "m"
+  },
+  {
+   "it": "sole",
+   "it_plural": "soli",
+   "clase": "m_consonante",
+   "es": "sol",
+   "es_plural": "soles",
+   "es_genero": "m",
+   "nota": "La s va seguida de vocal, así que no es impura: \"il sole\", no \"lo sole\""
+  },
+  {
+   "it": "vento",
+   "it_plural": "venti",
+   "clase": "m_consonante",
+   "es": "viento",
+   "es_plural": "vientos",
+   "es_genero": "m"
+  },
+  {
+   "it": "fuoco",
+   "it_plural": "fuochi",
+   "clase": "m_consonante",
+   "es": "fuego",
+   "es_plural": "fuegos",
+   "es_genero": "m"
+  },
+  {
+   "it": "piede",
+   "it_plural": "piedi",
+   "clase": "m_consonante",
+   "es": "pie",
+   "es_plural": "pies",
+   "es_genero": "m"
+  },
+  {
+   "it": "dente",
+   "it_plural": "denti",
+   "clase": "m_consonante",
+   "es": "diente",
+   "es_plural": "dientes",
+   "es_genero": "m"
+  },
+  {
+   "it": "capello",
+   "it_plural": "capelli",
+   "clase": "m_consonante",
+   "es": "pelo",
+   "es_plural": "pelos",
+   "es_genero": "m"
+  },
+  {
+   "it": "corpo",
+   "it_plural": "corpi",
+   "clase": "m_consonante",
+   "es": "cuerpo",
+   "es_plural": "cuerpos",
+   "es_genero": "m"
+  },
+  {
+   "it": "cuore",
+   "it_plural": "cuori",
+   "clase": "m_consonante",
+   "es": "corazón",
+   "es_plural": "corazones",
+   "es_genero": "m"
+  },
+  {
+   "it": "viso",
+   "it_plural": "visi",
+   "clase": "m_consonante",
+   "es": "rostro",
+   "es_plural": "rostros",
+   "es_genero": "m"
+  },
+  {
+   "it": "vestito",
+   "it_plural": "vestiti",
+   "clase": "m_consonante",
+   "es": "vestido",
+   "es_plural": "vestidos",
+   "es_genero": "m"
+  },
+  {
+   "it": "cappello",
+   "it_plural": "cappelli",
+   "clase": "m_consonante",
+   "es": "sombrero",
+   "es_plural": "sombreros",
+   "es_genero": "m"
+  },
+  {
+   "it": "guanto",
+   "it_plural": "guanti",
+   "clase": "m_consonante",
+   "es": "guante",
+   "es_plural": "guantes",
+   "es_genero": "m"
+  },
+  {
+   "it": "biglietto",
+   "it_plural": "biglietti",
+   "clase": "m_consonante",
+   "es": "boleto",
+   "es_plural": "boletos",
+   "es_genero": "m"
+  },
+  {
+   "it": "regalo",
+   "it_plural": "regali",
+   "clase": "m_consonante",
+   "es": "regalo",
+   "es_plural": "regalos",
+   "es_genero": "m"
+  },
+  {
+   "it": "tempo",
+   "it_plural": "tempi",
+   "clase": "m_consonante",
+   "es": "tiempo",
+   "es_plural": "tiempos",
+   "es_genero": "m"
+  },
+  {
+   "it": "posto",
+   "it_plural": "posti",
+   "clase": "m_consonante",
+   "es": "lugar",
+   "es_plural": "lugares",
+   "es_genero": "m"
+  },
+  {
+   "it": "prezzo",
+   "it_plural": "prezzi",
+   "clase": "m_consonante",
+   "es": "precio",
+   "es_plural": "precios",
+   "es_genero": "m"
+  },
+  {
+   "it": "numero",
+   "it_plural": "numeri",
+   "clase": "m_consonante",
+   "es": "número",
+   "es_plural": "números",
+   "es_genero": "m"
+  },
+  {
+   "it": "colore",
+   "it_plural": "colori",
+   "clase": "m_consonante",
+   "es": "color",
+   "es_plural": "colores",
+   "es_genero": "m"
+  },
+  {
+   "it": "tetto",
+   "it_plural": "tetti",
+   "clase": "m_consonante",
+   "es": "techo",
+   "es_plural": "techos",
+   "es_genero": "m"
+  },
+  {
+   "it": "muro",
+   "it_plural": "muri",
+   "clase": "m_consonante",
+   "es": "pared",
+   "es_plural": "paredes",
+   "es_genero": "f",
+   "nota": "En español \"pared\" es femenino, pero muro es masculino"
+  },
+  {
+   "it": "campo",
+   "it_plural": "campi",
+   "clase": "m_consonante",
+   "es": "campo",
+   "es_plural": "campos",
+   "es_genero": "m"
+  },
+  {
+   "it": "bosco",
+   "it_plural": "boschi",
+   "clase": "m_consonante",
+   "es": "bosque",
+   "es_plural": "bosques",
+   "es_genero": "m"
+  },
+  {
+   "it": "fiume",
+   "it_plural": "fiumi",
+   "clase": "m_consonante",
+   "es": "río",
+   "es_plural": "ríos",
+   "es_genero": "m"
+  },
+  {
+   "it": "lago",
+   "it_plural": "laghi",
+   "clase": "m_consonante",
+   "es": "lago",
+   "es_plural": "lagos",
+   "es_genero": "m",
+   "nota": "Hace \"laghi\" con h, para que la g siga sonando dura"
+  },
+  {
+   "it": "pomodoro",
+   "it_plural": "pomodori",
+   "clase": "m_consonante",
+   "es": "tomate",
+   "es_plural": "tomates",
+   "es_genero": "m"
+  },
+  {
+   "it": "limone",
+   "it_plural": "limoni",
+   "clase": "m_consonante",
+   "es": "limón",
+   "es_plural": "limones",
+   "es_genero": "m"
+  },
+  {
+   "it": "melone",
+   "it_plural": "meloni",
+   "clase": "m_consonante",
+   "es": "melón",
+   "es_plural": "melones",
+   "es_genero": "m"
+  },
+  {
+   "it": "dolce",
+   "it_plural": "dolci",
+   "clase": "m_consonante",
+   "es": "postre",
+   "es_plural": "postres",
+   "es_genero": "m"
+  },
+  {
+   "it": "gelato",
+   "it_plural": "gelati",
+   "clase": "m_consonante",
+   "es": "helado",
+   "es_plural": "helados",
+   "es_genero": "m"
+  },
+  {
+   "it": "panino",
+   "it_plural": "panini",
+   "clase": "m_consonante",
+   "es": "sándwich",
+   "es_plural": "sándwiches",
+   "es_genero": "m"
+  },
+  {
+   "it": "biscotto",
+   "it_plural": "biscotti",
+   "clase": "m_consonante",
+   "es": "galletita",
+   "es_plural": "galletitas",
+   "es_genero": "f",
+   "nota": "En español \"galletita\" es femenino, pero biscotto es masculino"
+  },
+  {
+   "it": "rumore",
+   "it_plural": "rumori",
+   "clase": "m_consonante",
+   "es": "ruido",
+   "es_plural": "ruidos",
+   "es_genero": "m"
+  },
+  {
+   "it": "naso",
+   "it_plural": "nasi",
+   "clase": "m_consonante",
+   "es": "nariz",
+   "es_plural": "narices",
+   "es_genero": "f",
+   "nota": "En español \"nariz\" es femenino, pero naso es masculino"
   },
   {
    "it": "latte",
@@ -100,6 +621,295 @@
    "incontable": true
   },
   {
+   "it": "denaro",
+   "clase": "m_consonante",
+   "es": "dinero",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "burro",
+   "clase": "m_consonante",
+   "es": "manteca",
+   "es_genero": "f",
+   "incontable": true,
+   "nota": "En español \"manteca\" es femenino, pero burro es masculino"
+  },
+  {
+   "it": "riso",
+   "clase": "m_consonante",
+   "es": "arroz",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "vino",
+   "clase": "m_consonante",
+   "es": "vino",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "caffè",
+   "clase": "m_consonante",
+   "es": "café",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "tè",
+   "clase": "m_consonante",
+   "es": "té",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "pepe",
+   "clase": "m_consonante",
+   "es": "pimienta",
+   "es_genero": "f",
+   "incontable": true,
+   "nota": "En español \"pimienta\" es femenino, pero pepe es masculino"
+  },
+  {
+   "it": "sale",
+   "clase": "m_consonante",
+   "es": "sal",
+   "es_genero": "f",
+   "incontable": true,
+   "nota": "La s va seguida de vocal: \"il sale\". Y en español \"sal\" es femenino"
+  },
+  {
+   "it": "prosciutto",
+   "clase": "m_consonante",
+   "es": "jamón",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "cioccolato",
+   "clase": "m_consonante",
+   "es": "chocolate",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "miele",
+   "clase": "m_consonante",
+   "es": "miel",
+   "es_genero": "f",
+   "incontable": true,
+   "nota": "En español \"miel\" es femenino, pero miele es masculino"
+  },
+  {
+   "it": "fumo",
+   "clase": "m_consonante",
+   "es": "humo",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "zaino",
+   "it_plural": "zaini",
+   "clase": "m_s_impura",
+   "es": "mochila",
+   "es_plural": "mochilas",
+   "es_genero": "f",
+   "nota": "En español \"mochila\" es femenino, pero zaino es masculino"
+  },
+  {
+   "it": "studente",
+   "it_plural": "studenti",
+   "clase": "m_s_impura",
+   "es": "estudiante",
+   "es_plural": "estudiantes",
+   "es_genero": "m"
+  },
+  {
+   "it": "specchio",
+   "it_plural": "specchi",
+   "clase": "m_s_impura",
+   "es": "espejo",
+   "es_plural": "espejos",
+   "es_genero": "m"
+  },
+  {
+   "it": "spettacolo",
+   "it_plural": "spettacoli",
+   "clase": "m_s_impura",
+   "es": "espectáculo",
+   "es_plural": "espectáculos",
+   "es_genero": "m"
+  },
+  {
+   "it": "sbaglio",
+   "it_plural": "sbagli",
+   "clase": "m_s_impura",
+   "es": "equivocación",
+   "es_plural": "equivocaciones",
+   "es_genero": "f",
+   "nota": "En español \"equivocación\" es femenino, pero sbaglio es masculino"
+  },
+  {
+   "it": "scherzo",
+   "it_plural": "scherzi",
+   "clase": "m_s_impura",
+   "es": "chiste",
+   "es_plural": "chistes",
+   "es_genero": "m"
+  },
+  {
+   "it": "sconto",
+   "it_plural": "sconti",
+   "clase": "m_s_impura",
+   "es": "descuento",
+   "es_plural": "descuentos",
+   "es_genero": "m"
+  },
+  {
+   "it": "stivale",
+   "it_plural": "stivali",
+   "clase": "m_s_impura",
+   "es": "bota",
+   "es_plural": "botas",
+   "es_genero": "f",
+   "nota": "En español \"bota\" es femenino, pero stivale es masculino"
+  },
+  {
+   "it": "studio",
+   "it_plural": "studi",
+   "clase": "m_s_impura",
+   "es": "estudio",
+   "es_plural": "estudios",
+   "es_genero": "m"
+  },
+  {
+   "it": "straniero",
+   "it_plural": "stranieri",
+   "clase": "m_s_impura",
+   "es": "extranjero",
+   "es_plural": "extranjeros",
+   "es_genero": "m"
+  },
+  {
+   "it": "sport",
+   "it_plural": "sport",
+   "clase": "m_s_impura",
+   "es": "deporte",
+   "es_plural": "deportes",
+   "es_genero": "m",
+   "nota": "Termina en consonante, así que no cambia: lo sport, gli sport"
+  },
+  {
+   "it": "spagnolo",
+   "it_plural": "spagnoli",
+   "clase": "m_s_impura",
+   "es": "español",
+   "es_plural": "españoles",
+   "es_genero": "m"
+  },
+  {
+   "it": "zio",
+   "it_plural": "zii",
+   "clase": "m_s_impura",
+   "es": "tío",
+   "es_plural": "tíos",
+   "es_genero": "m",
+   "nota": "La i suena fuerte, así que no se come: \"zii\", con dos"
+  },
+  {
+   "it": "psicologo",
+   "it_plural": "psicologi",
+   "clase": "m_s_impura",
+   "es": "psicólogo",
+   "es_plural": "psicólogos",
+   "es_genero": "m",
+   "nota": "La ps también pide \"lo\", igual que la s impura"
+  },
+  {
+   "it": "gnocco",
+   "it_plural": "gnocchi",
+   "clase": "m_s_impura",
+   "es": "ñoqui",
+   "es_plural": "ñoquis",
+   "es_genero": "m",
+   "nota": "La gn pide \"lo\": lo gnocco, gli gnocchi"
+  },
+  {
+   "it": "xilofono",
+   "it_plural": "xilofoni",
+   "clase": "m_s_impura",
+   "es": "xilofón",
+   "es_plural": "xilofones",
+   "es_genero": "m"
+  },
+  {
+   "it": "scaffale",
+   "it_plural": "scaffali",
+   "clase": "m_s_impura",
+   "es": "estante",
+   "es_plural": "estantes",
+   "es_genero": "m"
+  },
+  {
+   "it": "schermo",
+   "it_plural": "schermi",
+   "clase": "m_s_impura",
+   "es": "pantalla",
+   "es_plural": "pantallas",
+   "es_genero": "f",
+   "nota": "En español \"pantalla\" es femenino, pero schermo es masculino"
+  },
+  {
+   "it": "scopo",
+   "it_plural": "scopi",
+   "clase": "m_s_impura",
+   "es": "objetivo",
+   "es_plural": "objetivos",
+   "es_genero": "m"
+  },
+  {
+   "it": "spazio",
+   "it_plural": "spazi",
+   "clase": "m_s_impura",
+   "es": "espacio",
+   "es_plural": "espacios",
+   "es_genero": "m"
+  },
+  {
+   "it": "stipendio",
+   "it_plural": "stipendi",
+   "clase": "m_s_impura",
+   "es": "sueldo",
+   "es_plural": "sueldos",
+   "es_genero": "m"
+  },
+  {
+   "it": "strumento",
+   "it_plural": "strumenti",
+   "clase": "m_s_impura",
+   "es": "instrumento",
+   "es_plural": "instrumentos",
+   "es_genero": "m"
+  },
+  {
+   "it": "sguardo",
+   "it_plural": "sguardi",
+   "clase": "m_s_impura",
+   "es": "mirada",
+   "es_plural": "miradas",
+   "es_genero": "f",
+   "nota": "En español \"mirada\" es femenino, pero sguardo es masculino"
+  },
+  {
+   "it": "spirito",
+   "it_plural": "spiriti",
+   "clase": "m_s_impura",
+   "es": "espíritu",
+   "es_plural": "espíritus",
+   "es_genero": "m"
+  },
+  {
    "it": "zucchero",
    "clase": "m_s_impura",
    "es": "azúcar",
@@ -107,9 +917,310 @@
    "incontable": true
   },
   {
+   "it": "yogurt",
+   "clase": "m_s_impura",
+   "es": "yogur",
+   "es_genero": "m",
+   "incontable": true,
+   "nota": "La y pide \"lo\": lo yogurt, dello yogurt"
+  },
+  {
+   "it": "amico",
+   "it_plural": "amici",
+   "clase": "m_vocal",
+   "es": "amigo",
+   "es_plural": "amigos",
+   "es_genero": "m",
+   "nota": "Hace \"amici\", no \"amichi\": la fuerza de la voz cae en la i"
+  },
+  {
+   "it": "albero",
+   "it_plural": "alberi",
+   "clase": "m_vocal",
+   "es": "árbol",
+   "es_plural": "árboles",
+   "es_genero": "m"
+  },
+  {
+   "it": "uomo",
+   "it_plural": "uomini",
+   "clase": "m_vocal",
+   "es": "hombre",
+   "es_plural": "hombres",
+   "es_genero": "m",
+   "nota": "Plural irregular: uomini"
+  },
+  {
+   "it": "anno",
+   "it_plural": "anni",
+   "clase": "m_vocal",
+   "es": "año",
+   "es_plural": "años",
+   "es_genero": "m"
+  },
+  {
+   "it": "occhio",
+   "it_plural": "occhi",
+   "clase": "m_vocal",
+   "es": "ojo",
+   "es_plural": "ojos",
+   "es_genero": "m"
+  },
+  {
+   "it": "ospedale",
+   "it_plural": "ospedali",
+   "clase": "m_vocal",
+   "es": "hospital",
+   "es_plural": "hospitales",
+   "es_genero": "m"
+  },
+  {
+   "it": "ufficio",
+   "it_plural": "uffici",
+   "clase": "m_vocal",
+   "es": "oficina",
+   "es_plural": "oficinas",
+   "es_genero": "f",
+   "nota": "En español \"oficina\" es femenino, pero ufficio es masculino"
+  },
+  {
+   "it": "esempio",
+   "it_plural": "esempi",
+   "clase": "m_vocal",
+   "es": "ejemplo",
+   "es_plural": "ejemplos",
+   "es_genero": "m"
+  },
+  {
+   "it": "errore",
+   "it_plural": "errori",
+   "clase": "m_vocal",
+   "es": "error",
+   "es_plural": "errores",
+   "es_genero": "m"
+  },
+  {
+   "it": "esame",
+   "it_plural": "esami",
+   "clase": "m_vocal",
+   "es": "examen",
+   "es_plural": "exámenes",
+   "es_genero": "m"
+  },
+  {
+   "it": "aereo",
+   "it_plural": "aerei",
+   "clase": "m_vocal",
+   "es": "avión",
+   "es_plural": "aviones",
+   "es_genero": "m"
+  },
+  {
+   "it": "autobus",
+   "it_plural": "autobus",
+   "clase": "m_vocal",
+   "es": "colectivo",
+   "es_plural": "colectivos",
+   "es_genero": "m",
+   "nota": "Termina en consonante, así que no cambia: l'autobus, gli autobus"
+  },
+  {
+   "it": "albergo",
+   "it_plural": "alberghi",
+   "clase": "m_vocal",
+   "es": "alojamiento",
+   "es_plural": "alojamientos",
+   "es_genero": "m"
+  },
+  {
+   "it": "hotel",
+   "it_plural": "hotel",
+   "clase": "m_vocal",
+   "es": "hotel",
+   "es_plural": "hoteles",
+   "es_genero": "m",
+   "nota": "La h italiana es muda, así que cuenta como vocal: l'hotel"
+  },
+  {
+   "it": "uccello",
+   "it_plural": "uccelli",
+   "clase": "m_vocal",
+   "es": "pájaro",
+   "es_plural": "pájaros",
+   "es_genero": "m"
+  },
+  {
+   "it": "orso",
+   "it_plural": "orsi",
+   "clase": "m_vocal",
+   "es": "oso",
+   "es_plural": "osos",
+   "es_genero": "m"
+  },
+  {
+   "it": "asino",
+   "it_plural": "asini",
+   "clase": "m_vocal",
+   "es": "burro",
+   "es_plural": "burros",
+   "es_genero": "m"
+  },
+  {
+   "it": "elefante",
+   "it_plural": "elefanti",
+   "clase": "m_vocal",
+   "es": "elefante",
+   "es_plural": "elefantes",
+   "es_genero": "m"
+  },
+  {
+   "it": "insetto",
+   "it_plural": "insetti",
+   "clase": "m_vocal",
+   "es": "insecto",
+   "es_plural": "insectos",
+   "es_genero": "m",
+   "nota": "La i va seguida de consonante, así que suena como vocal: l'insetto"
+  },
+  {
+   "it": "inverno",
+   "it_plural": "inverni",
+   "clase": "m_vocal",
+   "es": "invierno",
+   "es_plural": "inviernos",
+   "es_genero": "m"
+  },
+  {
+   "it": "autunno",
+   "it_plural": "autunni",
+   "clase": "m_vocal",
+   "es": "otoño",
+   "es_plural": "otoños",
+   "es_genero": "m"
+  },
+  {
+   "it": "amore",
+   "it_plural": "amori",
+   "clase": "m_vocal",
+   "es": "amor",
+   "es_plural": "amores",
+   "es_genero": "m"
+  },
+  {
+   "it": "odore",
+   "it_plural": "odori",
+   "clase": "m_vocal",
+   "es": "olor",
+   "es_plural": "olores",
+   "es_genero": "m"
+  },
+  {
+   "it": "appartamento",
+   "it_plural": "appartamenti",
+   "clase": "m_vocal",
+   "es": "departamento",
+   "es_plural": "departamentos",
+   "es_genero": "m"
+  },
+  {
+   "it": "armadio",
+   "it_plural": "armadi",
+   "clase": "m_vocal",
+   "es": "armario",
+   "es_plural": "armarios",
+   "es_genero": "m"
+  },
+  {
+   "it": "angolo",
+   "it_plural": "angoli",
+   "clase": "m_vocal",
+   "es": "esquina",
+   "es_plural": "esquinas",
+   "es_genero": "f",
+   "nota": "En español \"esquina\" es femenino, pero angolo es masculino"
+  },
+  {
+   "it": "aiuto",
+   "it_plural": "aiuti",
+   "clase": "m_vocal",
+   "es": "ayuda",
+   "es_plural": "ayudas",
+   "es_genero": "f",
+   "nota": "En español \"ayuda\" es femenino, pero aiuto es masculino"
+  },
+  {
+   "it": "anello",
+   "it_plural": "anelli",
+   "clase": "m_vocal",
+   "es": "anillo",
+   "es_plural": "anillos",
+   "es_genero": "m"
+  },
+  {
+   "it": "orologio",
+   "it_plural": "orologi",
+   "clase": "m_vocal",
+   "es": "reloj",
+   "es_plural": "relojes",
+   "es_genero": "m"
+  },
+  {
+   "it": "ombrello",
+   "it_plural": "ombrelli",
+   "clase": "m_vocal",
+   "es": "paraguas",
+   "es_plural": "paraguas",
+   "es_genero": "m"
+  },
+  {
+   "it": "italiano",
+   "it_plural": "italiani",
+   "clase": "m_vocal",
+   "es": "italiano",
+   "es_plural": "italianos",
+   "es_genero": "m"
+  },
+  {
+   "it": "inglese",
+   "it_plural": "inglesi",
+   "clase": "m_vocal",
+   "es": "inglés",
+   "es_plural": "ingleses",
+   "es_genero": "m"
+  },
+  {
    "it": "olio",
    "clase": "m_vocal",
    "es": "aceite",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "aceto",
+   "clase": "m_vocal",
+   "es": "vinagre",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "oro",
+   "clase": "m_vocal",
+   "es": "oro",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "argento",
+   "clase": "m_vocal",
+   "es": "plata",
+   "es_genero": "f",
+   "incontable": true,
+   "nota": "En español \"plata\" es femenino, pero argento es masculino"
+  },
+  {
+   "it": "alcol",
+   "clase": "m_vocal",
+   "es": "alcohol",
    "es_genero": "m",
    "incontable": true
   },
@@ -140,9 +1251,543 @@
    "nota": "En español \"auto\" es masculino, pero macchina es femenino"
   },
   {
+   "it": "ragazza",
+   "it_plural": "ragazze",
+   "clase": "f_consonante",
+   "es": "chica",
+   "es_plural": "chicas",
+   "es_genero": "f"
+  },
+  {
+   "it": "donna",
+   "it_plural": "donne",
+   "clase": "f_consonante",
+   "es": "mujer",
+   "es_plural": "mujeres",
+   "es_genero": "f"
+  },
+  {
+   "it": "sorella",
+   "it_plural": "sorelle",
+   "clase": "f_consonante",
+   "es": "hermana",
+   "es_plural": "hermanas",
+   "es_genero": "f"
+  },
+  {
+   "it": "madre",
+   "it_plural": "madri",
+   "clase": "f_consonante",
+   "es": "madre",
+   "es_plural": "madres",
+   "es_genero": "f"
+  },
+  {
+   "it": "nonna",
+   "it_plural": "nonne",
+   "clase": "f_consonante",
+   "es": "abuela",
+   "es_plural": "abuelas",
+   "es_genero": "f"
+  },
+  {
+   "it": "figlia",
+   "it_plural": "figlie",
+   "clase": "f_consonante",
+   "es": "hija",
+   "es_plural": "hijas",
+   "es_genero": "f"
+  },
+  {
+   "it": "maestra",
+   "it_plural": "maestre",
+   "clase": "f_consonante",
+   "es": "maestra",
+   "es_plural": "maestras",
+   "es_genero": "f"
+  },
+  {
+   "it": "famiglia",
+   "it_plural": "famiglie",
+   "clase": "f_consonante",
+   "es": "familia",
+   "es_plural": "familias",
+   "es_genero": "f"
+  },
+  {
+   "it": "città",
+   "it_plural": "città",
+   "clase": "f_consonante",
+   "es": "ciudad",
+   "es_plural": "ciudades",
+   "es_genero": "f",
+   "nota": "Termina en vocal acentuada, así que no cambia: la città, le città"
+  },
+  {
+   "it": "strada",
+   "it_plural": "strade",
+   "clase": "f_consonante",
+   "es": "calle",
+   "es_plural": "calles",
+   "es_genero": "f"
+  },
+  {
+   "it": "piazza",
+   "it_plural": "piazze",
+   "clase": "f_consonante",
+   "es": "plaza",
+   "es_plural": "plazas",
+   "es_genero": "f"
+  },
+  {
+   "it": "chiesa",
+   "it_plural": "chiese",
+   "clase": "f_consonante",
+   "es": "iglesia",
+   "es_plural": "iglesias",
+   "es_genero": "f"
+  },
+  {
+   "it": "finestra",
+   "it_plural": "finestre",
+   "clase": "f_consonante",
+   "es": "ventana",
+   "es_plural": "ventanas",
+   "es_genero": "f"
+  },
+  {
+   "it": "porta",
+   "it_plural": "porte",
+   "clase": "f_consonante",
+   "es": "puerta",
+   "es_plural": "puertas",
+   "es_genero": "f"
+  },
+  {
+   "it": "sedia",
+   "it_plural": "sedie",
+   "clase": "f_consonante",
+   "es": "silla",
+   "es_plural": "sillas",
+   "es_genero": "f"
+  },
+  {
+   "it": "camera",
+   "it_plural": "camere",
+   "clase": "f_consonante",
+   "es": "habitación",
+   "es_plural": "habitaciones",
+   "es_genero": "f"
+  },
+  {
+   "it": "cucina",
+   "it_plural": "cucine",
+   "clase": "f_consonante",
+   "es": "cocina",
+   "es_plural": "cocinas",
+   "es_genero": "f"
+  },
+  {
+   "it": "chiave",
+   "it_plural": "chiavi",
+   "clase": "f_consonante",
+   "es": "llave",
+   "es_plural": "llaves",
+   "es_genero": "f"
+  },
+  {
+   "it": "borsa",
+   "it_plural": "borse",
+   "clase": "f_consonante",
+   "es": "cartera",
+   "es_plural": "carteras",
+   "es_genero": "f"
+  },
+  {
+   "it": "scarpa",
+   "it_plural": "scarpe",
+   "clase": "f_consonante",
+   "es": "zapato",
+   "es_plural": "zapatos",
+   "es_genero": "m",
+   "nota": "En español \"zapato\" es masculino, pero scarpa es femenino"
+  },
+  {
+   "it": "maglietta",
+   "it_plural": "magliette",
+   "clase": "f_consonante",
+   "es": "remera",
+   "es_plural": "remeras",
+   "es_genero": "f"
+  },
+  {
+   "it": "gonna",
+   "it_plural": "gonne",
+   "clase": "f_consonante",
+   "es": "pollera",
+   "es_plural": "polleras",
+   "es_genero": "f"
+  },
+  {
+   "it": "giacca",
+   "it_plural": "giacche",
+   "clase": "f_consonante",
+   "es": "campera",
+   "es_plural": "camperas",
+   "es_genero": "f",
+   "nota": "Hace \"giacche\" con h, para que la c siga sonando dura"
+  },
+  {
+   "it": "penna",
+   "it_plural": "penne",
+   "clase": "f_consonante",
+   "es": "lapicera",
+   "es_plural": "lapiceras",
+   "es_genero": "f"
+  },
+  {
+   "it": "matita",
+   "it_plural": "matite",
+   "clase": "f_consonante",
+   "es": "lápiz",
+   "es_plural": "lápices",
+   "es_genero": "m",
+   "nota": "En español \"lápiz\" es masculino, pero matita es femenino"
+  },
+  {
+   "it": "lettera",
+   "it_plural": "lettere",
+   "clase": "f_consonante",
+   "es": "carta",
+   "es_plural": "cartas",
+   "es_genero": "f"
+  },
+  {
+   "it": "parola",
+   "it_plural": "parole",
+   "clase": "f_consonante",
+   "es": "palabra",
+   "es_plural": "palabras",
+   "es_genero": "f"
+  },
+  {
+   "it": "domanda",
+   "it_plural": "domande",
+   "clase": "f_consonante",
+   "es": "pregunta",
+   "es_plural": "preguntas",
+   "es_genero": "f"
+  },
+  {
+   "it": "risposta",
+   "it_plural": "risposte",
+   "clase": "f_consonante",
+   "es": "respuesta",
+   "es_plural": "respuestas",
+   "es_genero": "f"
+  },
+  {
+   "it": "lezione",
+   "it_plural": "lezioni",
+   "clase": "f_consonante",
+   "es": "clase",
+   "es_plural": "clases",
+   "es_genero": "f"
+  },
+  {
+   "it": "settimana",
+   "it_plural": "settimane",
+   "clase": "f_consonante",
+   "es": "semana",
+   "es_plural": "semanas",
+   "es_genero": "f"
+  },
+  {
+   "it": "notte",
+   "it_plural": "notti",
+   "clase": "f_consonante",
+   "es": "noche",
+   "es_plural": "noches",
+   "es_genero": "f"
+  },
+  {
+   "it": "mattina",
+   "it_plural": "mattine",
+   "clase": "f_consonante",
+   "es": "mañana",
+   "es_plural": "mañanas",
+   "es_genero": "f"
+  },
+  {
+   "it": "stagione",
+   "it_plural": "stagioni",
+   "clase": "f_consonante",
+   "es": "estación",
+   "es_plural": "estaciones",
+   "es_genero": "f"
+  },
+  {
+   "it": "primavera",
+   "it_plural": "primavere",
+   "clase": "f_consonante",
+   "es": "primavera",
+   "es_plural": "primaveras",
+   "es_genero": "f"
+  },
+  {
+   "it": "spiaggia",
+   "it_plural": "spiagge",
+   "clase": "f_consonante",
+   "es": "playa",
+   "es_plural": "playas",
+   "es_genero": "f"
+  },
+  {
+   "it": "montagna",
+   "it_plural": "montagne",
+   "clase": "f_consonante",
+   "es": "montaña",
+   "es_plural": "montañas",
+   "es_genero": "f"
+  },
+  {
+   "it": "festa",
+   "it_plural": "feste",
+   "clase": "f_consonante",
+   "es": "fiesta",
+   "es_plural": "fiestas",
+   "es_genero": "f"
+  },
+  {
+   "it": "storia",
+   "it_plural": "storie",
+   "clase": "f_consonante",
+   "es": "historia",
+   "es_plural": "historias",
+   "es_genero": "f"
+  },
+  {
+   "it": "canzone",
+   "it_plural": "canzoni",
+   "clase": "f_consonante",
+   "es": "canción",
+   "es_plural": "canciones",
+   "es_genero": "f"
+  },
+  {
+   "it": "voce",
+   "it_plural": "voci",
+   "clase": "f_consonante",
+   "es": "voz",
+   "es_plural": "voces",
+   "es_genero": "f"
+  },
+  {
+   "it": "mano",
+   "it_plural": "mani",
+   "clase": "f_consonante",
+   "es": "mano",
+   "es_plural": "manos",
+   "es_genero": "f",
+   "nota": "Termina en -o pero es femenina: la mano, le mani"
+  },
+  {
+   "it": "testa",
+   "it_plural": "teste",
+   "clase": "f_consonante",
+   "es": "cabeza",
+   "es_plural": "cabezas",
+   "es_genero": "f"
+  },
+  {
+   "it": "gamba",
+   "it_plural": "gambe",
+   "clase": "f_consonante",
+   "es": "pierna",
+   "es_plural": "piernas",
+   "es_genero": "f"
+  },
+  {
+   "it": "bocca",
+   "it_plural": "bocche",
+   "clase": "f_consonante",
+   "es": "boca",
+   "es_plural": "bocas",
+   "es_genero": "f"
+  },
+  {
+   "it": "faccia",
+   "it_plural": "facce",
+   "clase": "f_consonante",
+   "es": "cara",
+   "es_plural": "caras",
+   "es_genero": "f",
+   "nota": "La i de -cia se cae cuando viene pegada a una consonante: facce"
+  },
+  {
+   "it": "vita",
+   "it_plural": "vite",
+   "clase": "f_consonante",
+   "es": "vida",
+   "es_plural": "vidas",
+   "es_genero": "f"
+  },
+  {
+   "it": "minestra",
+   "it_plural": "minestre",
+   "clase": "f_consonante",
+   "es": "sopa",
+   "es_plural": "sopas",
+   "es_genero": "f"
+  },
+  {
+   "it": "pizza",
+   "it_plural": "pizze",
+   "clase": "f_consonante",
+   "es": "pizza",
+   "es_plural": "pizzas",
+   "es_genero": "f"
+  },
+  {
+   "it": "torta",
+   "it_plural": "torte",
+   "clase": "f_consonante",
+   "es": "torta",
+   "es_plural": "tortas",
+   "es_genero": "f"
+  },
+  {
+   "it": "terra",
+   "it_plural": "terre",
+   "clase": "f_consonante",
+   "es": "tierra",
+   "es_plural": "tierras",
+   "es_genero": "f"
+  },
+  {
+   "it": "luce",
+   "it_plural": "luci",
+   "clase": "f_consonante",
+   "es": "luz",
+   "es_plural": "luces",
+   "es_genero": "f"
+  },
+  {
+   "it": "televisione",
+   "it_plural": "televisioni",
+   "clase": "f_consonante",
+   "es": "televisión",
+   "es_plural": "televisiones",
+   "es_genero": "f"
+  },
+  {
+   "it": "bottiglia",
+   "it_plural": "bottiglie",
+   "clase": "f_consonante",
+   "es": "botella",
+   "es_plural": "botellas",
+   "es_genero": "f"
+  },
+  {
+   "it": "tazza",
+   "it_plural": "tazze",
+   "clase": "f_consonante",
+   "es": "taza",
+   "es_plural": "tazas",
+   "es_genero": "f"
+  },
+  {
+   "it": "forchetta",
+   "it_plural": "forchette",
+   "clase": "f_consonante",
+   "es": "tenedor",
+   "es_plural": "tenedores",
+   "es_genero": "m",
+   "nota": "En español \"tenedor\" es masculino, pero forchetta es femenino"
+  },
+  {
+   "it": "zia",
+   "it_plural": "zie",
+   "clase": "f_consonante",
+   "es": "tía",
+   "es_plural": "tías",
+   "es_genero": "f",
+   "nota": "Empieza con z, pero en femenino igual va \"la\""
+  },
+  {
    "it": "carne",
    "clase": "f_consonante",
    "es": "carne",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "musica",
+   "clase": "f_consonante",
+   "es": "música",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "salute",
+   "clase": "f_consonante",
+   "es": "salud",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "pasta",
+   "clase": "f_consonante",
+   "es": "pasta",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "frutta",
+   "clase": "f_consonante",
+   "es": "fruta",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "verdura",
+   "clase": "f_consonante",
+   "es": "verdura",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "birra",
+   "clase": "f_consonante",
+   "es": "cerveza",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "farina",
+   "clase": "f_consonante",
+   "es": "harina",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "neve",
+   "clase": "f_consonante",
+   "es": "nieve",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "pioggia",
+   "clase": "f_consonante",
+   "es": "lluvia",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "sabbia",
+   "clase": "f_consonante",
+   "es": "arena",
    "es_genero": "f",
    "incontable": true
   },
@@ -152,6 +1797,146 @@
    "clase": "f_vocal",
    "es": "amiga",
    "es_plural": "amigas",
+   "es_genero": "f",
+   "nota": "Hace \"amiche\" con h, para que la c siga sonando dura"
+  },
+  {
+   "it": "isola",
+   "it_plural": "isole",
+   "clase": "f_vocal",
+   "es": "isla",
+   "es_plural": "islas",
+   "es_genero": "f"
+  },
+  {
+   "it": "ora",
+   "it_plural": "ore",
+   "clase": "f_vocal",
+   "es": "hora",
+   "es_plural": "horas",
+   "es_genero": "f"
+  },
+  {
+   "it": "estate",
+   "it_plural": "estati",
+   "clase": "f_vocal",
+   "es": "verano",
+   "es_plural": "veranos",
+   "es_genero": "m",
+   "nota": "En español \"verano\" es masculino, pero estate es femenino"
+  },
+  {
+   "it": "università",
+   "it_plural": "università",
+   "clase": "f_vocal",
+   "es": "universidad",
+   "es_plural": "universidades",
+   "es_genero": "f",
+   "nota": "Termina en vocal acentuada, así que no cambia"
+  },
+  {
+   "it": "idea",
+   "it_plural": "idee",
+   "clase": "f_vocal",
+   "es": "idea",
+   "es_plural": "ideas",
+   "es_genero": "f"
+  },
+  {
+   "it": "arancia",
+   "it_plural": "arance",
+   "clase": "f_vocal",
+   "es": "naranja",
+   "es_plural": "naranjas",
+   "es_genero": "f",
+   "nota": "La i de -cia se cae cuando viene pegada a una consonante: arance"
+  },
+  {
+   "it": "insalata",
+   "it_plural": "insalate",
+   "clase": "f_vocal",
+   "es": "ensalada",
+   "es_plural": "ensaladas",
+   "es_genero": "f"
+  },
+  {
+   "it": "opera",
+   "it_plural": "opere",
+   "clase": "f_vocal",
+   "es": "obra",
+   "es_plural": "obras",
+   "es_genero": "f"
+  },
+  {
+   "it": "ombra",
+   "it_plural": "ombre",
+   "clase": "f_vocal",
+   "es": "sombra",
+   "es_plural": "sombras",
+   "es_genero": "f"
+  },
+  {
+   "it": "amicizia",
+   "it_plural": "amicizie",
+   "clase": "f_vocal",
+   "es": "amistad",
+   "es_plural": "amistades",
+   "es_genero": "f"
+  },
+  {
+   "it": "età",
+   "it_plural": "età",
+   "clase": "f_vocal",
+   "es": "edad",
+   "es_plural": "edades",
+   "es_genero": "f"
+  },
+  {
+   "it": "esperienza",
+   "it_plural": "esperienze",
+   "clase": "f_vocal",
+   "es": "experiencia",
+   "es_plural": "experiencias",
+   "es_genero": "f"
+  },
+  {
+   "it": "uscita",
+   "it_plural": "uscite",
+   "clase": "f_vocal",
+   "es": "salida",
+   "es_plural": "salidas",
+   "es_genero": "f"
+  },
+  {
+   "it": "entrata",
+   "it_plural": "entrate",
+   "clase": "f_vocal",
+   "es": "entrada",
+   "es_plural": "entradas",
+   "es_genero": "f"
+  },
+  {
+   "it": "immagine",
+   "it_plural": "immagini",
+   "clase": "f_vocal",
+   "es": "imagen",
+   "es_plural": "imágenes",
+   "es_genero": "f"
+  },
+  {
+   "it": "oliva",
+   "it_plural": "olive",
+   "clase": "f_vocal",
+   "es": "aceituna",
+   "es_plural": "aceitunas",
+   "es_genero": "f"
+  },
+  {
+   "it": "ape",
+   "it_plural": "api",
+   "clase": "f_vocal",
+   "es": "abeja",
+   "es_plural": "abejas",
    "es_genero": "f"
   },
   {
@@ -160,7 +1945,37 @@
    "es": "uva",
    "es_genero": "f",
    "incontable": true,
-   "nota": "En italiano la uva no se cuenta: se dice \"dell'uva\", no \"delle uve\""
+   "nota": "En italiano la uva no se cuenta: se dice \"dell'uva\" y no \"delle uve\"."
+  },
+  {
+   "it": "acqua",
+   "clase": "f_vocal",
+   "es": "agua",
+   "es_genero": "m",
+   "incontable": true,
+   "nota": "En español 'agua' es femenino aunque lleve 'el': el agua fría. En italiano también: l'acqua fredda"
+  },
+  {
+   "it": "aria",
+   "clase": "f_vocal",
+   "es": "aire",
+   "es_genero": "m",
+   "incontable": true,
+   "nota": "En español \"aire\" es masculino, pero aria es femenino"
+  },
+  {
+   "it": "erba",
+   "clase": "f_vocal",
+   "es": "hierba",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
+   "it": "energia",
+   "clase": "f_vocal",
+   "es": "energía",
+   "es_genero": "f",
+   "incontable": true
   }
  ]
 }

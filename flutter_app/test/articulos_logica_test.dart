@@ -286,6 +286,68 @@ void main() {
     });
   });
 
+  group('pluralDeducido', () {
+    test('masculino en -o hace -i', () {
+      expect(pluralDeducido('libro', masculino: true), 'libri');
+      expect(pluralDeducido('gatto', masculino: true), 'gatti');
+    });
+
+    test('femenino en -a hace -e', () {
+      expect(pluralDeducido('casa', masculino: false), 'case');
+      expect(pluralDeducido('porta', masculino: false), 'porte');
+    });
+
+    test('los dos géneros en -e hacen -i', () {
+      expect(pluralDeducido('cane', masculino: true), 'cani');
+      expect(pluralDeducido('chiave', masculino: false), 'chiavi');
+    });
+
+    test('la c y la g suman una h para seguir sonando duras', () {
+      expect(pluralDeducido('banco', masculino: true), 'banchi');
+      expect(pluralDeducido('lago', masculino: true), 'laghi');
+      expect(pluralDeducido('amica', masculino: false), 'amiche');
+      expect(pluralDeducido('riga', masculino: false), 'righe');
+    });
+
+    test('-io con la i floja se come una i', () {
+      expect(pluralDeducido('occhio', masculino: true), 'occhi');
+      expect(pluralDeducido('studio', masculino: true), 'studi');
+    });
+
+    test('-cia y -gia pierden la i detrás de consonante', () {
+      expect(pluralDeducido('arancia', masculino: false), 'arance');
+      expect(pluralDeducido('spiaggia', masculino: false), 'spiagge');
+      expect(pluralDeducido('faccia', masculino: false), 'facce');
+    });
+
+    test('-cia y -gia conservan la i detrás de vocal', () {
+      expect(pluralDeducido('camicia', masculino: false), 'camicie');
+      expect(pluralDeducido('valigia', masculino: false), 'valigie');
+    });
+
+    test('las que terminan en consonante no cambian', () {
+      expect(pluralDeducido('sport', masculino: true), 'sport');
+      expect(pluralDeducido('hotel', masculino: true), 'hotel');
+    });
+
+    test('las que terminan en vocal acentuada no cambian', () {
+      expect(pluralDeducido('città', masculino: false), 'città');
+      expect(pluralDeducido('caffè', masculino: true), 'caffè');
+    });
+
+    test('las irregulares salen de la lista, no de la regla', () {
+      // Sin la lista, la regla daría "amichi", "uomi" y "mane".
+      expect(pluralDeducido('amico', masculino: true), 'amici');
+      expect(pluralDeducido('uomo', masculino: true), 'uomini');
+      expect(pluralDeducido('mano', masculino: false), 'mani');
+      expect(pluralDeducido('zio', masculino: true), 'zii');
+    });
+
+    test('no se cuelga con una palabra vacía', () {
+      expect(pluralDeducido('', masculino: true), isNull);
+    });
+  });
+
   group('claseDeducida', () {
     test('masculino con consonante común', () {
       expect(claseDeducida('libro', masculino: true), 'm_consonante');
