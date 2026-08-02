@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/repositorio_articoli.dart';
+import 'package:tukyliano/logica/articulos.dart';
 import 'package:tukyliano/pantallas/pantalla_articoli.dart';
 import 'package:tukyliano/tema.dart';
 
@@ -48,11 +49,22 @@ RepositorioArticoli _repo(String json) => RepositorioArticoli(
       carpeta: () async => null,
     );
 
-Future<void> _abrir(WidgetTester tester, String json) async {
+/// Se abre con una sola categoría para que la pregunta sea previsible: con las
+/// tres mezcladas cada corrida saldría distinta y no se podría afirmar nada.
+Future<void> _abrir(
+  WidgetTester tester,
+  String json, {
+  CategoriaArticulo categoria = CategoriaArticulo.determinado,
+}) async {
   usarPantallaDeCelular(tester);
   await tester.pumpWidget(MaterialApp(
     theme: Tema.datos,
-    home: Scaffold(body: PantallaArticoli(repositorio: _repo(json))),
+    home: Scaffold(
+      body: PantallaArticoli(
+        repositorio: _repo(json),
+        categorias: {categoria},
+      ),
+    ),
   ));
   await tester.pumpAndSettle();
 }
@@ -172,6 +184,98 @@ void main() {
       expect(find.text('Puntaje: 1/1'), findsOneWidget);
       expect(find.widgetWithText(ElevatedButton, 'Verificar'), findsOneWidget);
     });
+  });
+
+  group('indeterminado', () {
+    testWidgets('pregunta con "una" y ofrece los cuatro indeterminados',
+        (tester) async {
+      await _abrir(tester, _soloZaino,
+          categoria: CategoriaArticulo.indeterminado);
+
+      expect(find.text('una mochila'), findsOneWidget);
+      for (final articulo in ['un', 'uno', 'una', "un'"]) {
+        expect(find.text(articulo), findsOneWidget);
+      }
+    });
+
+    testWidgets('la respuesta correcta es uno, no un', (tester) async {
+      await _abrir(tester, _soloZaino,
+          categoria: CategoriaArticulo.indeterminado);
+
+      await _tocar(tester, 'un');
+      await _tocar(tester, 'Verificar');
+
+      expect(find.text('Va uno zaino'), findsOneWidget);
+      expect(find.text('Puntaje: 0/1'), findsOneWidget);
+    });
+  });
+
+  group('plural', () {
+    testWidgets('pregunta en plural y muestra la palabra en plural',
+        (tester) async {
+      await _abrir(tester, _soloZaino, categoria: CategoriaArticulo.plural);
+
+      expect(find.text('las mochilas'), findsOneWidget);
+      expect(find.textContaining('zaini'), findsOneWidget);
+      expect(find.textContaining('zaino'), findsNothing);
+    });
+
+    testWidgets('ofrece solamente tres artículos', (tester) async {
+      await _abrir(tester, _soloZaino, categoria: CategoriaArticulo.plural);
+
+      for (final articulo in ['i', 'gli', 'le']) {
+        expect(find.text(articulo), findsOneWidget);
+      }
+      // Los del singular no están.
+      for (final articulo in ['il', 'lo', 'la', 'uno']) {
+        expect(find.text(articulo), findsNothing);
+      }
+    });
+
+    testWidgets('acertar el plural suma', (tester) async {
+      await _abrir(tester, _soloZaino, categoria: CategoriaArticulo.plural);
+
+      await _tocar(tester, 'gli');
+      await _tocar(tester, 'Verificar');
+
+      expect(find.text('¡Correcto!'), findsOneWidget);
+      expect(find.text('Puntaje: 1/1'), findsOneWidget);
+    });
+
+    testWidgets('una palabra sin plural no aparece en esta categoría',
+        (tester) async {
+      const soloLatte = '''
+        {
+          "version": 1,
+          "clases": {
+            "m_consonante": {"determinativo": "il", "indeterminativo": "un",
+             "determinativo_plural": "i", "explicacion": "Masculino con consonante"}
+          },
+          "sustantivos": [
+            {"it": "latte", "clase": "m_consonante", "es": "leche"}
+          ]
+        }
+      ''';
+      await _abrir(tester, soloLatte, categoria: CategoriaArticulo.plural);
+
+      expect(find.textContaining('Todavía no hay palabras'), findsOneWidget);
+    });
+  });
+
+  testWidgets('la explicación no queda tapada por el botón', (tester) async {
+    // El texto de la regla es largo: si el hueco fuera de alto fijo, el botón
+    // se le montaría encima.
+    await _abrir(tester, _soloZaino);
+
+    await _tocar(tester, 'la');
+    await _tocar(tester, 'Verificar');
+
+    final explicacion =
+        tester.getRect(find.textContaining('s + consonante'));
+    final boton = tester.getRect(find.widgetWithText(ElevatedButton, 'Siguiente'));
+
+    expect(explicacion.bottom, lessThanOrEqualTo(boton.top),
+        reason: 'la explicación se solapa con el botón');
   });
 
   testWidgets('el apóstrofo va pegado a la palabra', (tester) async {

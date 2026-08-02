@@ -4,21 +4,26 @@ import 'package:flutter/material.dart';
 
 import '../datos/repositorio_articoli.dart';
 import '../logica/articulos.dart';
-import '../modelos/articulo.dart';
 import '../tema.dart';
 import '../widgets/tarjeta_pregunta.dart';
 import '../widgets/texto_ajustado.dart';
 
-/// Práctica de artículos determinados: se muestra un sustantivo italiano y
-/// hay que elegir el artículo que le corresponde tocando un botón.
+/// Práctica de artículos: se muestra un sustantivo italiano y hay que elegir
+/// el artículo que le corresponde tocando un botón.
 ///
-/// Por ahora solo el determinado (il / lo / la / l'). El JSON ya trae también
-/// el indeterminado y el plural para cuando se agreguen.
+/// Se mezclan las tres categorías (determinado, indeterminado y plural). Cuál
+/// es la que toca se ve en el artículo de la pregunta en español: "la mochila"
+/// pide el determinado, "una mochila" el indeterminado y "las mochilas" el
+/// plural. Por eso no hace falta ningún selector.
 class PantallaArticoli extends StatefulWidget {
-  const PantallaArticoli({super.key, this.repositorio});
+  const PantallaArticoli({super.key, this.repositorio, this.categorias});
 
   /// Inyectable para los tests.
   final RepositorioArticoli? repositorio;
+
+  /// Qué categorías entran en la mezcla. Por defecto las tres. Está acá por si
+  /// más adelante se quiere practicar una sola.
+  final Set<CategoriaArticulo>? categorias;
 
   @override
   State<PantallaArticoli> createState() => _PantallaArticoliState();
@@ -29,7 +34,8 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
       widget.repositorio ?? RepositorioArticoli();
   final _azar = Random();
 
-  Sustantivo? _actual;
+  List<Consigna> _posibles = const [];
+  Consigna? _actual;
   String _elegido = '';
   bool _mostrandoResultado = false;
   int _puntaje = 0;
@@ -45,25 +51,30 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
   Future<void> _empezar() async {
     await _repositorio.cargar();
     if (!mounted) return;
+    _posibles = consignasPosibles(
+      _repositorio.datos.sustantivos,
+      widget.categorias ?? CategoriaArticulo.values.toSet(),
+    );
     _nueva();
   }
 
   void _nueva() {
-    final palabras = _repositorio.datos.sustantivos;
     setState(() {
       _elegido = '';
       _mostrandoResultado = false;
-      if (palabras.isEmpty) {
+      if (_posibles.isEmpty) {
         _actual = null;
         _mensaje = 'Todavía no hay palabras cargadas.';
         return;
       }
-      // Se evita repetir la misma palabra dos veces seguidas: con pocas
+      // Se evita repetir la misma pregunta dos veces seguidas: con pocas
       // palabras pasa bastante y da la sensación de que no cambió nada.
-      Sustantivo elegida;
+      Consigna elegida;
       do {
-        elegida = palabras[_azar.nextInt(palabras.length)];
-      } while (palabras.length > 1 && elegida.italiano == _actual?.italiano);
+        elegida = _posibles[_azar.nextInt(_posibles.length)];
+      } while (_posibles.length > 1 &&
+          elegida.palabra == _actual?.palabra &&
+          elegida.categoria == _actual?.categoria);
       _actual = elegida;
     });
   }
@@ -86,8 +97,7 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
     });
   }
 
-  bool get _acerto =>
-      _actual != null && _elegido == _actual!.clase.determinativo;
+  bool get _acerto => _actual != null && _elegido == _actual!.correcto;
 
   @override
   Widget build(BuildContext context) {
@@ -111,16 +121,22 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
           const SizedBox(height: 12),
           TarjetaPregunta(
             etiqueta: '¿Cómo se dice?',
-            texto: conArticuloEspanol(actual),
+            texto: actual.pregunta,
             alto: 118,
           ),
           const SizedBox(height: 14),
           _respuesta(actual),
           const SizedBox(height: 16),
-          _botonesArticulo(),
+          _botonesArticulo(actual),
           const SizedBox(height: 10),
-          // Alto fijo para que aparecer la explicación no mueva el botón.
-          SizedBox(height: 76, child: _explicacion(actual)),
+          // Alto mínimo para que el botón no salte al aparecer la explicación,
+          // pero que pueda crecer: con alto fijo la explicación larga quedaba
+          // tapada por el botón.
+          ConstrainedBox(
+            constraints: const BoxConstraints(minHeight: 96),
+            child: _explicacion(actual),
+          ),
+          const SizedBox(height: 4),
           SizedBox(
             height: 58,
             child: ElevatedButton(
@@ -143,7 +159,7 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
 
   /// El renglón con el artículo elegido y la palabra: "· · ·  zaino" antes de
   /// elegir, "lo zaino" después.
-  Widget _respuesta(Sustantivo actual) {
+  Widget _respuesta(Consigna actual) {
     final sinElegir = _elegido.isEmpty;
     final color = !_mostrandoResultado
         ? Tema.texto
@@ -165,8 +181,8 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
       ),
       child: TextoAjustado(
         sinElegir
-            ? '· · ·  ${actual.italiano}'
-            : unir(_elegido, actual.italiano),
+            ? '· · ·  ${actual.palabra}'
+            : unir(_elegido, actual.palabra),
         estilo: TextStyle(
           fontSize: 26,
           fontWeight: FontWeight.w600,
@@ -176,23 +192,23 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
     );
   }
 
-  Widget _botonesArticulo() {
+  Widget _botonesArticulo(Consigna actual) {
+    final opciones = actual.categoria.opciones;
     return Row(
       children: [
-        for (final articulo in articulosDeterminados) ...[
+        for (final articulo in opciones) ...[
           Expanded(
             child: _BotonArticulo(
               articulo: articulo,
               elegido: _elegido == articulo,
               // Al contestar se marca cuál era la correcta, aunque no sea la
               // que se tocó.
-              correcto: _mostrandoResultado &&
-                  articulo == _actual!.clase.determinativo,
+              correcto: _mostrandoResultado && articulo == actual.correcto,
               habilitado: !_mostrandoResultado,
               onTocar: () => _tocarArticulo(articulo),
             ),
           ),
-          if (articulo != articulosDeterminados.last) const SizedBox(width: 8),
+          if (articulo != opciones.last) const SizedBox(width: 8),
         ],
       ],
     );
@@ -200,10 +216,10 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
 
   /// Por qué va ese artículo. Es lo que convierte el ejercicio en algo que se
   /// aprende, en vez de adivinar.
-  Widget _explicacion(Sustantivo actual) {
+  Widget _explicacion(Consigna actual) {
     if (!_mostrandoResultado) return const SizedBox.shrink();
 
-    final correcto = unir(actual.clase.determinativo, actual.italiano);
+    final sustantivo = actual.sustantivo;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -218,7 +234,7 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
             const SizedBox(width: 6),
             Flexible(
               child: Text(
-                _acerto ? '¡Correcto!' : 'Va $correcto',
+                _acerto ? '¡Correcto!' : 'Va ${actual.respuesta}',
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
                 style: TextStyle(
@@ -230,17 +246,13 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
             ),
           ],
         ),
-        const SizedBox(height: 4),
-        Flexible(
-          child: Text(
-            actual.nota.isEmpty
-                ? actual.clase.explicacion
-                : '${actual.clase.explicacion}. ${actual.nota}',
-            textAlign: TextAlign.center,
-            maxLines: 3,
-            overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 13.5, color: Tema.textoTenue),
-          ),
+        const SizedBox(height: 6),
+        Text(
+          sustantivo.nota.isEmpty
+              ? sustantivo.clase.explicacion
+              : '${sustantivo.clase.explicacion}. ${sustantivo.nota}',
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 13.5, color: Tema.textoTenue),
         ),
       ],
     );
