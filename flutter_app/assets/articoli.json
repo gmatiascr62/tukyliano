@@ -1,0 +1,119 @@
+{
+ "version": 1,
+ "clases": {
+  "m_consonante": {
+   "determinativo": "il",
+   "indeterminativo": "un",
+   "determinativo_plural": "i",
+   "explicacion": "Masculino que empieza con consonante"
+  },
+  "m_s_impura": {
+   "determinativo": "lo",
+   "indeterminativo": "uno",
+   "determinativo_plural": "gli",
+   "explicacion": "Masculino que empieza con s + consonante, z, gn, ps, pn, x o y"
+  },
+  "m_vocal": {
+   "determinativo": "l'",
+   "indeterminativo": "un",
+   "determinativo_plural": "gli",
+   "explicacion": "Masculino que empieza con vocal (el indeterminado va sin apóstrofo: un amico)"
+  },
+  "f_consonante": {
+   "determinativo": "la",
+   "indeterminativo": "una",
+   "determinativo_plural": "le",
+   "explicacion": "Femenino que empieza con consonante, incluso s + consonante"
+  },
+  "f_vocal": {
+   "determinativo": "l'",
+   "indeterminativo": "un'",
+   "determinativo_plural": "le",
+   "explicacion": "Femenino que empieza con vocal (el indeterminado sí lleva apóstrofo: un'amica)"
+  }
+ },
+ "sustantivos": [
+  {
+   "it": "libro",
+   "it_plural": "libri",
+   "clase": "m_consonante",
+   "es": "libro",
+   "es_plural": "libros",
+   "es_genero": "m"
+  },
+  {
+   "it": "zaino",
+   "it_plural": "zaini",
+   "clase": "m_s_impura",
+   "es": "mochila",
+   "es_plural": "mochilas",
+   "es_genero": "f",
+   "nota": "En español \"mochila\" es femenino, pero zaino es masculino"
+  },
+  {
+   "it": "studente",
+   "it_plural": "studenti",
+   "clase": "m_s_impura",
+   "es": "estudiante",
+   "es_plural": "estudiantes",
+   "es_genero": "m"
+  },
+  {
+   "it": "amico",
+   "it_plural": "amici",
+   "clase": "m_vocal",
+   "es": "amigo",
+   "es_plural": "amigos",
+   "es_genero": "m"
+  },
+  {
+   "it": "albero",
+   "it_plural": "alberi",
+   "clase": "m_vocal",
+   "es": "árbol",
+   "es_plural": "árboles",
+   "es_genero": "m"
+  },
+  {
+   "it": "latte",
+   "clase": "m_consonante",
+   "es": "leche",
+   "es_genero": "f",
+   "nota": "En español \"leche\" es femenino, pero latte es masculino"
+  },
+  {
+   "it": "casa",
+   "it_plural": "case",
+   "clase": "f_consonante",
+   "es": "casa",
+   "es_plural": "casas",
+   "es_genero": "f"
+  },
+  {
+   "it": "scuola",
+   "it_plural": "scuole",
+   "clase": "f_consonante",
+   "es": "escuela",
+   "es_plural": "escuelas",
+   "es_genero": "f",
+   "nota": "Empieza con s + consonante, pero eso solo cambia el artículo en masculino"
+  },
+  {
+   "it": "macchina",
+   "it_plural": "macchine",
+   "clase": "f_consonante",
+   "es": "auto",
+   "es_plural": "autos",
+   "es_genero": "m",
+   "nota": "En español \"auto\" es masculino, pero macchina es femenino"
+  },
+  {
+   "it": "amica",
+   "it_plural": "amiche",
+   "clase": "f_vocal",
+   "es": "amiga",
+   "es_plural": "amigas",
+   "es_genero": "f"
+  }
+ ]
+}
