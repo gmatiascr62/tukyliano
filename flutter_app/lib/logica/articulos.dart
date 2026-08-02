@@ -2,9 +2,15 @@ import '../modelos/articulo.dart';
 
 /// Qué artículo se está practicando.
 ///
-/// No hay indeterminado plural porque el italiano no lo tiene: "unos libros"
-/// se dice "dei libri" (partitivo) o directamente "libri". Es otro tema.
-enum CategoriaArticulo { determinado, indeterminado, plural }
+/// El italiano no tiene indeterminado plural: para "unos libros" usa el
+/// partitivo, "dei libri". Por eso [partitivoPlural] ocupa ese lugar.
+enum CategoriaArticulo {
+  determinado,
+  indeterminado,
+  partitivo,
+  plural,
+  partitivoPlural,
+}
 
 extension DatosCategoria on CategoriaArticulo {
   /// Los botones que se ofrecen. Son todos los que existen en esa categoría,
@@ -12,7 +18,10 @@ extension DatosCategoria on CategoriaArticulo {
   List<String> get opciones => switch (this) {
         CategoriaArticulo.determinado => const ['il', 'lo', 'la', "l'"],
         CategoriaArticulo.indeterminado => const ['un', 'uno', 'una', "un'"],
+        CategoriaArticulo.partitivo =>
+          const ['del', 'dello', 'della', "dell'"],
         CategoriaArticulo.plural => const ['i', 'gli', 'le'],
+        CategoriaArticulo.partitivoPlural => const ['dei', 'degli', 'delle'],
       };
 
   /// Cómo se arma la pregunta en español. El artículo de acá es el que le
@@ -20,9 +29,42 @@ extension DatosCategoria on CategoriaArticulo {
   String articuloEspanol(bool femenino) => switch (this) {
         CategoriaArticulo.determinado => femenino ? 'la' : 'el',
         CategoriaArticulo.indeterminado => femenino ? 'una' : 'un',
+        // No lleva género: "algo de pan", "algo de carne".
+        CategoriaArticulo.partitivo => 'algo de',
         CategoriaArticulo.plural => femenino ? 'las' : 'los',
+        CategoriaArticulo.partitivoPlural => femenino ? 'unas' : 'unos',
+      };
+
+  bool get esPartitivo =>
+      this == CategoriaArticulo.partitivo ||
+      this == CategoriaArticulo.partitivoPlural;
+
+  /// Una línea extra en la explicación, porque el partitivo no se deduce de
+  /// la clase: hay que saber qué es antes de que la regla sirva de algo.
+  String get ayuda => switch (this) {
+        CategoriaArticulo.partitivo =>
+          'El partitivo es "di" pegado al artículo determinado '
+              '(di + il = del) y sirve para las cosas que no se cuentan.',
+        CategoriaArticulo.partitivoPlural =>
+          'El italiano no tiene "unos/unas": usa el partitivo, que es "di" '
+              'pegado al plural determinado (di + i = dei).',
+        _ => '',
       };
 }
+
+/// Contrae "di" con un artículo determinado: il → del, gli → degli.
+///
+/// La app NO usa esto: en la pantalla manda lo que dice el JSON. Existe para
+/// que un test revise que los partitivos del JSON estén bien escritos.
+String? partitivoDe(String determinado) => const {
+      'il': 'del',
+      'lo': 'dello',
+      'la': 'della',
+      "l'": "dell'",
+      'i': 'dei',
+      'gli': 'degli',
+      'le': 'delle',
+    }[determinado];
 
 /// Pega el artículo con la palabra.
 ///
@@ -38,7 +80,9 @@ class Consigna {
   final Sustantivo sustantivo;
   final CategoriaArticulo categoria;
 
-  bool get _plural => categoria == CategoriaArticulo.plural;
+  bool get _plural =>
+      categoria == CategoriaArticulo.plural ||
+      categoria == CategoriaArticulo.partitivoPlural;
 
   /// La palabra italiana que se muestra: singular o plural según la categoría.
   String get palabra =>
@@ -48,10 +92,12 @@ class Consigna {
   String get correcto => switch (categoria) {
         CategoriaArticulo.determinado => sustantivo.clase.determinativo,
         CategoriaArticulo.indeterminado => sustantivo.clase.indeterminativo,
+        CategoriaArticulo.partitivo => sustantivo.clase.partitivo,
         CategoriaArticulo.plural => sustantivo.clase.determinativoPlural,
+        CategoriaArticulo.partitivoPlural => sustantivo.clase.partitivoPlural,
       };
 
-  /// Cómo se pregunta: "la mochila", "una mochila", "las mochilas".
+  /// Cómo se pregunta: "la mochila", "unas mochilas", "algo de pan".
   String get pregunta {
     final femenino = sustantivo.espanolGenero == 'f';
     final palabraEs =
@@ -63,10 +109,24 @@ class Consigna {
   String get respuesta => unir(correcto, palabra);
 }
 
-/// Todas las preguntas que se pueden hacer con estas palabras.
+/// Si esta palabra puede preguntarse en esta categoría.
 ///
-/// Una palabra sin plural (como "latte", que no se usa en plural) queda fuera
-/// de la categoría plural en vez de aparecer con el casillero vacío.
+/// No toda palabra entra en toda categoría: "latte" no va en plural, y "un
+/// azúcar" no se dice. Las que quedan afuera aparecerían con el casillero
+/// vacío o preguntando algo que nadie diría.
+bool sirveParaCategoria(Sustantivo s, CategoriaArticulo c) => switch (c) {
+      CategoriaArticulo.determinado => true,
+      // "un pane" existe, pero "un azúcar" o "un aceite" no: para las que no
+      // se cuentan, el indeterminado lo reemplaza el partitivo.
+      CategoriaArticulo.indeterminado => !s.incontable,
+      // Al revés: el partitivo singular es justamente para esas.
+      CategoriaArticulo.partitivo => s.incontable,
+      CategoriaArticulo.plural ||
+      CategoriaArticulo.partitivoPlural =>
+        s.tienePlural && s.espanolPlural.isNotEmpty,
+    };
+
+/// Todas las preguntas que se pueden hacer con estas palabras.
 List<Consigna> consignasPosibles(
   Iterable<Sustantivo> sustantivos,
   Set<CategoriaArticulo> categorias,
@@ -74,10 +134,8 @@ List<Consigna> consignasPosibles(
     [
       for (final s in sustantivos)
         for (final c in CategoriaArticulo.values)
-          if (categorias.contains(c))
-            if (c != CategoriaArticulo.plural ||
-                (s.tienePlural && s.espanolPlural.isNotEmpty))
-              Consigna(s, c),
+          if (categorias.contains(c) && sirveParaCategoria(s, c))
+            Consigna(s, c),
     ];
 
 const _vocales = 'aeiouàèéìòù';

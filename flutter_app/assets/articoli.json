@@ -1,34 +1,44 @@
 {
- "version": 1,
+ "version": 2,
  "clases": {
   "m_consonante": {
    "determinativo": "il",
    "indeterminativo": "un",
    "determinativo_plural": "i",
+   "partitivo": "del",
+   "partitivo_plural": "dei",
    "explicacion": "Masculino que empieza con consonante"
   },
   "m_s_impura": {
    "determinativo": "lo",
    "indeterminativo": "uno",
    "determinativo_plural": "gli",
+   "partitivo": "dello",
+   "partitivo_plural": "degli",
    "explicacion": "Masculino que empieza con s + consonante, z, gn, ps, pn, x o y"
   },
   "m_vocal": {
    "determinativo": "l'",
    "indeterminativo": "un",
    "determinativo_plural": "gli",
+   "partitivo": "dell'",
+   "partitivo_plural": "degli",
    "explicacion": "Masculino que empieza con vocal (el indeterminado va sin apóstrofo: un amico)"
   },
   "f_consonante": {
    "determinativo": "la",
    "indeterminativo": "una",
    "determinativo_plural": "le",
+   "partitivo": "della",
+   "partitivo_plural": "delle",
    "explicacion": "Femenino que empieza con consonante, incluso s + consonante"
   },
   "f_vocal": {
    "determinativo": "l'",
    "indeterminativo": "un'",
    "determinativo_plural": "le",
+   "partitivo": "dell'",
+   "partitivo_plural": "delle",
    "explicacion": "Femenino que empieza con vocal (el indeterminado sí lleva apóstrofo: un'amica)"
   }
  },
@@ -79,7 +89,29 @@
    "clase": "m_consonante",
    "es": "leche",
    "es_genero": "f",
+   "incontable": true,
    "nota": "En español \"leche\" es femenino, pero latte es masculino"
+  },
+  {
+   "it": "pane",
+   "clase": "m_consonante",
+   "es": "pan",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "zucchero",
+   "clase": "m_s_impura",
+   "es": "azúcar",
+   "es_genero": "m",
+   "incontable": true
+  },
+  {
+   "it": "olio",
+   "clase": "m_vocal",
+   "es": "aceite",
+   "es_genero": "m",
+   "incontable": true
   },
   {
    "it": "casa",
@@ -108,12 +140,27 @@
    "nota": "En español \"auto\" es masculino, pero macchina es femenino"
   },
   {
+   "it": "carne",
+   "clase": "f_consonante",
+   "es": "carne",
+   "es_genero": "f",
+   "incontable": true
+  },
+  {
    "it": "amica",
    "it_plural": "amiche",
    "clase": "f_vocal",
    "es": "amiga",
    "es_plural": "amigas",
    "es_genero": "f"
+  },
+  {
+   "it": "uva",
+   "clase": "f_vocal",
+   "es": "uva",
+   "es_genero": "f",
+   "incontable": true,
+   "nota": "En italiano la uva no se cuenta: se dice \"dell'uva\", no \"delle uve\""
   }
  ]
 }
