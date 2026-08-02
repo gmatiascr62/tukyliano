@@ -220,6 +220,11 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
     if (!_mostrandoResultado) return const SizedBox.shrink();
 
     final sustantivo = actual.sustantivo;
+    final regla = sustantivo.nota.isEmpty
+        ? sustantivo.clase.explicacion
+        : '${sustantivo.clase.explicacion}. ${sustantivo.nota}';
+    final ayuda = actual.categoria.ayuda;
+
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
@@ -248,12 +253,23 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
         ),
         const SizedBox(height: 6),
         Text(
-          sustantivo.nota.isEmpty
-              ? sustantivo.clase.explicacion
-              : '${sustantivo.clase.explicacion}. ${sustantivo.nota}',
+          regla,
           textAlign: TextAlign.center,
           style: const TextStyle(fontSize: 13.5, color: Tema.textoTenue),
         ),
+        if (ayuda.isNotEmpty) ...[
+          const SizedBox(height: 6),
+          Text(
+            ayuda,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 12.5,
+              height: 1.3,
+              fontStyle: FontStyle.italic,
+              color: Tema.textoTenue,
+            ),
+          ),
+        ],
       ],
     );
   }

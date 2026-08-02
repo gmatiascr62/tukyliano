@@ -18,6 +18,7 @@ const _soloZaino = '''
       "m_s_impura": {
         "determinativo": "lo", "indeterminativo": "uno",
         "determinativo_plural": "gli",
+        "partitivo": "dello", "partitivo_plural": "degli",
         "explicacion": "Masculino que empieza con s + consonante, z, gn, ps, pn, x o y"
       }
     },
@@ -29,13 +30,33 @@ const _soloZaino = '''
   }
 ''';
 
+/// Una palabra que no se cuenta, para el partitivo singular.
+const _soloZucchero = '''
+  {
+    "version": 1,
+    "clases": {
+      "m_s_impura": {
+        "determinativo": "lo", "indeterminativo": "uno",
+        "determinativo_plural": "gli",
+        "partitivo": "dello", "partitivo_plural": "degli",
+        "explicacion": "Masculino que empieza con s + consonante, z, gn, ps, pn, x o y"
+      }
+    },
+    "sustantivos": [
+      {"it": "zucchero", "clase": "m_s_impura", "es": "azúcar",
+       "es_genero": "m", "incontable": true}
+    ]
+  }
+''';
+
 /// Una palabra que empieza con vocal, para el caso del apóstrofo.
 const _soloAmico = '''
   {
     "version": 1,
     "clases": {
       "m_vocal": {"determinativo": "l'", "indeterminativo": "un",
-       "determinativo_plural": "gli", "explicacion": "Masculino que empieza con vocal"}
+       "determinativo_plural": "gli", "partitivo": "dell'",
+       "partitivo_plural": "degli", "explicacion": "Masculino que empieza con vocal"}
     },
     "sustantivos": [
       {"it": "amico", "clase": "m_vocal", "es": "amigo", "es_genero": "m"}
@@ -262,20 +283,108 @@ void main() {
     });
   });
 
-  testWidgets('la explicación no queda tapada por el botón', (tester) async {
-    // El texto de la regla es largo: si el hueco fuera de alto fijo, el botón
-    // se le montaría encima.
-    await _abrir(tester, _soloZaino);
+  group('partitivo plural', () {
+    testWidgets('pregunta con "unas" y ofrece dei/degli/delle', (tester) async {
+      await _abrir(tester, _soloZaino,
+          categoria: CategoriaArticulo.partitivoPlural);
 
-    await _tocar(tester, 'la');
-    await _tocar(tester, 'Verificar');
+      expect(find.text('unas mochilas'), findsOneWidget);
+      for (final articulo in ['dei', 'degli', 'delle']) {
+        expect(find.text(articulo), findsOneWidget);
+      }
+      // No se ofrecen los determinados plurales.
+      for (final articulo in ['i', 'gli', 'le']) {
+        expect(find.text(articulo), findsNothing);
+      }
+    });
 
-    final explicacion =
-        tester.getRect(find.textContaining('s + consonante'));
-    final boton = tester.getRect(find.widgetWithText(ElevatedButton, 'Siguiente'));
+    testWidgets('acertar suma y explica qué es el partitivo', (tester) async {
+      await _abrir(tester, _soloZaino,
+          categoria: CategoriaArticulo.partitivoPlural);
 
-    expect(explicacion.bottom, lessThanOrEqualTo(boton.top),
-        reason: 'la explicación se solapa con el botón');
+      await _tocar(tester, 'degli');
+      await _tocar(tester, 'Verificar');
+
+      expect(find.text('¡Correcto!'), findsOneWidget);
+      expect(find.text('Puntaje: 1/1'), findsOneWidget);
+      expect(find.textContaining('no tiene "unos/unas"'), findsOneWidget);
+    });
+  });
+
+  group('partitivo singular', () {
+    testWidgets('pregunta con "algo de" y ofrece del/dello/della/dell\'',
+        (tester) async {
+      await _abrir(tester, _soloZucchero,
+          categoria: CategoriaArticulo.partitivo);
+
+      expect(find.text('algo de azúcar'), findsOneWidget);
+      for (final articulo in ['del', 'dello', 'della', "dell'"]) {
+        expect(find.text(articulo), findsOneWidget);
+      }
+    });
+
+    testWidgets('errar muestra cuál era y explica la contracción',
+        (tester) async {
+      await _abrir(tester, _soloZucchero,
+          categoria: CategoriaArticulo.partitivo);
+
+      await _tocar(tester, 'del');
+      await _tocar(tester, 'Verificar');
+
+      expect(find.text('Va dello zucchero'), findsOneWidget);
+      expect(find.textContaining('di + il = del'), findsOneWidget);
+    });
+
+    testWidgets('una palabra que se cuenta no aparece acá', (tester) async {
+      await _abrir(tester, _soloZaino, categoria: CategoriaArticulo.partitivo);
+
+      expect(find.textContaining('Todavía no hay palabras'), findsOneWidget);
+    });
+
+    testWidgets('una incontable no aparece en el indeterminado',
+        (tester) async {
+      await _abrir(tester, _soloZucchero,
+          categoria: CategoriaArticulo.indeterminado);
+
+      expect(find.textContaining('Todavía no hay palabras'), findsOneWidget);
+    });
+  });
+
+  group('la explicación no queda tapada por el botón', () {
+    // Si el hueco fuera de alto fijo, el botón se le montaría encima.
+    Future<void> verificarQueNoSeSolapa(WidgetTester tester) async {
+      final explicacion = tester.getRect(find.textContaining('s + consonante'));
+      final boton =
+          tester.getRect(find.widgetWithText(ElevatedButton, 'Siguiente'));
+
+      expect(explicacion.bottom, lessThanOrEqualTo(boton.top),
+          reason: 'la explicación se solapa con el botón');
+    }
+
+    testWidgets('con la regla y la nota', (tester) async {
+      await _abrir(tester, _soloZaino);
+
+      await _tocar(tester, 'la');
+      await _tocar(tester, 'Verificar');
+
+      await verificarQueNoSeSolapa(tester);
+    });
+
+    testWidgets('con la regla y la ayuda del partitivo, que es la más larga',
+        (tester) async {
+      await _abrir(tester, _soloZucchero,
+          categoria: CategoriaArticulo.partitivo);
+
+      await _tocar(tester, 'del');
+      await _tocar(tester, 'Verificar');
+
+      await verificarQueNoSeSolapa(tester);
+      // Y la ayuda tampoco.
+      final ayuda = tester.getRect(find.textContaining('di + il = del'));
+      final boton =
+          tester.getRect(find.widgetWithText(ElevatedButton, 'Siguiente'));
+      expect(ayuda.bottom, lessThanOrEqualTo(boton.top));
+    });
   });
 
   testWidgets('el apóstrofo va pegado a la palabra', (tester) async {

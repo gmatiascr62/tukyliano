@@ -11,6 +11,8 @@ class ClaseArticulo {
     required this.indeterminativo,
     required this.determinativoPlural,
     required this.explicacion,
+    this.partitivo = '',
+    this.partitivoPlural = '',
   });
 
   final String nombre;
@@ -19,12 +21,20 @@ class ClaseArticulo {
   final String determinativoPlural;
   final String explicacion;
 
+  /// El partitivo es "di" pegado al determinado: di + il = del. Está escrito
+  /// en el JSON en vez de calculado para que la fuente de verdad siga siendo
+  /// una sola, pero un test verifica que la contracción esté bien hecha.
+  final String partitivo;
+  final String partitivoPlural;
+
   static ClaseArticulo desdeJson(String nombre, Map<String, dynamic> json) =>
       ClaseArticulo(
         nombre: nombre,
         determinativo: json['determinativo'] as String? ?? '',
         indeterminativo: json['indeterminativo'] as String? ?? '',
         determinativoPlural: json['determinativo_plural'] as String? ?? '',
+        partitivo: json['partitivo'] as String? ?? '',
+        partitivoPlural: json['partitivo_plural'] as String? ?? '',
         explicacion: json['explicacion'] as String? ?? '',
       );
 }
@@ -39,6 +49,7 @@ class Sustantivo {
     this.espanolPlural = '',
     this.espanolGenero = 'm',
     this.nota = '',
+    this.incontable = false,
   });
 
   final String italiano;
@@ -56,6 +67,11 @@ class Sustantivo {
   /// Aclaración propia de esta palabra, si tiene algo que valga la pena
   /// decir aparte de la regla general.
   final String nota;
+
+  /// Las que no se cuentan (pane, latte, zucchero): no van en plural ni con
+  /// el indeterminado, pero son justamente las que piden el partitivo
+  /// singular ("algo de pan" → del pane).
+  final bool incontable;
 
   bool get tienePlural => italianoPlural.isNotEmpty;
 
@@ -110,6 +126,7 @@ class DatosArticoli {
           espanolPlural: item['es_plural'] as String? ?? '',
           espanolGenero: item['es_genero'] as String? ?? 'm',
           nota: item['nota'] as String? ?? '',
+          incontable: item['incontable'] as bool? ?? false,
         ));
       }
     }

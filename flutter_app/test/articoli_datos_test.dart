@@ -43,13 +43,26 @@ void main() {
       }
     });
 
-    test('cada clase trae los tres artículos y su explicación', () {
+    test('cada clase trae los cinco artículos y su explicación', () {
       expect(_datos.clases, isNotEmpty);
       for (final clase in _datos.clases.values) {
         expect(clase.determinativo, isNotEmpty, reason: clase.nombre);
         expect(clase.indeterminativo, isNotEmpty, reason: clase.nombre);
         expect(clase.determinativoPlural, isNotEmpty, reason: clase.nombre);
+        expect(clase.partitivo, isNotEmpty, reason: clase.nombre);
+        expect(clase.partitivoPlural, isNotEmpty, reason: clase.nombre);
         expect(clase.explicacion, isNotEmpty, reason: clase.nombre);
+      }
+    });
+
+    test('los partitivos son la contracción del determinado', () {
+      // La otra red de contención: el partitivo es "di" + el determinado, sin
+      // excepciones, así que si en el JSON quedó uno mal escrito salta acá.
+      for (final clase in _datos.clases.values) {
+        expect(clase.partitivo, partitivoDe(clase.determinativo),
+            reason: '${clase.nombre}: di + ${clase.determinativo}');
+        expect(clase.partitivoPlural, partitivoDe(clase.determinativoPlural),
+            reason: '${clase.nombre}: di + ${clase.determinativoPlural}');
       }
     });
 
@@ -63,6 +76,44 @@ void main() {
             contains(clase.indeterminativo), reason: clase.nombre);
         expect(CategoriaArticulo.plural.opciones,
             contains(clase.determinativoPlural), reason: clase.nombre);
+        expect(CategoriaArticulo.partitivo.opciones,
+            contains(clase.partitivo), reason: clase.nombre);
+        expect(CategoriaArticulo.partitivoPlural.opciones,
+            contains(clase.partitivoPlural), reason: clase.nombre);
+      }
+    });
+
+    test('hay palabras incontables y ninguna trae plural', () {
+      // Son las que sostienen el partitivo singular: sin ellas esa categoría
+      // se quedaría sin preguntas.
+      final incontables =
+          _datos.sustantivos.where((s) => s.incontable).toList();
+      expect(incontables, isNotEmpty);
+      for (final s in incontables) {
+        expect(s.tienePlural, isFalse, reason: s.italiano);
+      }
+    });
+
+    test('todas las categorías tienen preguntas para hacer', () {
+      // Si una categoría se quedara sin palabras, la pantalla mostraría
+      // "Todavía no hay palabras" al practicarla sola.
+      for (final categoria in CategoriaArticulo.values) {
+        expect(
+          consignasPosibles(_datos.sustantivos, {categoria}),
+          isNotEmpty,
+          reason: categoria.name,
+        );
+      }
+    });
+
+    test('cada clase aparece en cada categoría', () {
+      // Así ninguna combinación de regla y artículo queda sin practicar.
+      for (final categoria in CategoriaArticulo.values) {
+        final clases = consignasPosibles(_datos.sustantivos, {categoria})
+            .map((c) => c.sustantivo.clase.nombre)
+            .toSet();
+        expect(clases.length, _datos.clases.length,
+            reason: 'a ${categoria.name} le faltan clases');
       }
     });
 
