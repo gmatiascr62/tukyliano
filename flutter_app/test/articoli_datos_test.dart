@@ -53,10 +53,23 @@ void main() {
       }
     });
 
-    test('todos los determinados están entre los botones que se ofrecen', () {
-      for (final s in _datos.sustantivos) {
-        expect(articulosDeterminados, contains(s.clase.determinativo),
-            reason: s.italiano);
+    test('todos los artículos están entre los botones que se ofrecen', () {
+      // Si una clase trajera un artículo que no está en los botones, esa
+      // pregunta sería imposible de contestar.
+      for (final clase in _datos.clases.values) {
+        expect(CategoriaArticulo.determinado.opciones,
+            contains(clase.determinativo), reason: clase.nombre);
+        expect(CategoriaArticulo.indeterminado.opciones,
+            contains(clase.indeterminativo), reason: clase.nombre);
+        expect(CategoriaArticulo.plural.opciones,
+            contains(clase.determinativoPlural), reason: clase.nombre);
+      }
+    });
+
+    test('las palabras con plural traen también el plural en español', () {
+      // Si no, la pregunta quedaría a medias ("las " sin nada).
+      for (final s in _datos.sustantivos.where((s) => s.tienePlural)) {
+        expect(s.espanolPlural, isNotEmpty, reason: s.italiano);
       }
     });
 
