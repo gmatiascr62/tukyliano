@@ -29,7 +29,9 @@ void main() {
 
     await tester.tap(find.widgetWithText(ElevatedButton, 'Articoli'));
     await tester.pumpAndSettle();
-    expect(find.text('Articoli'), findsNWidgets(2));
+    // Articoli ya no es un placeholder: entra a la práctica de artículos, que
+    // no depende de los verbos.
+    expect(find.text('Próximamente'), findsNothing);
     expect(find.text('Cargando verbos...'), findsNothing);
 
     await tester.tap(find.widgetWithText(ElevatedButton, 'Verbos'));

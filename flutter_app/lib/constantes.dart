@@ -19,6 +19,16 @@ const String urlFrasesRemoto =
 /// Copia escribible de las frases en el celular.
 const String archivoFrasesLocal = 'frases.json';
 
+/// Sustantivos y reglas de los artículos que vienen con la app.
+const String assetArticoli = 'assets/articoli.json';
+
+/// Los mismos, en GitHub: agregar palabras no necesita un APK nuevo.
+const String urlArticoliRemoto =
+    'https://raw.githubusercontent.com/gmatiascr62/tukylingo_repo/main/articoli.json';
+
+/// Copia escribible de los artículos en el celular.
+const String archivoArticoliLocal = 'articoli.json';
+
 /// Archivo escribible donde se guardan los verbos ya actualizados.
 const String archivoVerbosLocal = 'verbos_local.json';
 

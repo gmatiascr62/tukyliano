@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'constantes.dart';
 import 'datos/almacenamiento_clave.dart';
+import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
 import 'datos/repositorio_verbos.dart';
 import 'modelos/verbo.dart';
@@ -22,12 +23,14 @@ class TukylianoApp extends StatelessWidget {
     this.almacenClave,
     this.repositorio,
     this.frasesLocales,
+    this.articoli,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
   final AlmacenamientoClave? almacenClave;
   final RepositorioVerbos? repositorio;
   final RepositorioFrases? frasesLocales;
+  final RepositorioArticoli? articoli;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +42,7 @@ class TukylianoApp extends StatelessWidget {
         almacenClave: almacenClave,
         repositorio: repositorio,
         frasesLocales: frasesLocales,
+        articoli: articoli,
       ),
     );
   }
@@ -52,11 +56,13 @@ class PantallaPrincipal extends StatefulWidget {
     this.almacenClave,
     this.repositorio,
     this.frasesLocales,
+    this.articoli,
   });
 
   final AlmacenamientoClave? almacenClave;
   final RepositorioVerbos? repositorio;
   final RepositorioFrases? frasesLocales;
+  final RepositorioArticoli? articoli;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -67,6 +73,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       widget.repositorio ?? RepositorioVerbos();
   late final RepositorioFrases _frasesLocales =
       widget.frasesLocales ?? RepositorioFrases();
+  late final RepositorioArticoli _articoli =
+      widget.articoli ?? RepositorioArticoli();
   late final AlmacenamientoClave _almacenClave =
       widget.almacenClave ?? AlmacenamientoClave();
 
@@ -101,6 +109,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     super.initState();
     _cargarDatos();
     _cargarFrases();
+    _cargarArticoli();
     _borrarClaveVieja();
   }
 
@@ -114,6 +123,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   Future<void> _cargarFrases() async {
     await _frasesLocales.cargar();
     await _frasesLocales.verificarActualizacion();
+  }
+
+  /// Igual que las frases: se leen las guardadas y se chequea GitHub por si
+  /// hay palabras nuevas.
+  Future<void> _cargarArticoli() async {
+    await _articoli.cargar();
+    await _articoli.verificarActualizacion();
   }
 
   Future<void> _cargarDatos() async {
@@ -205,7 +221,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   Widget _cuerpo() {
     switch (_seccion) {
       case Seccion.articoli:
-        return const PantallaArticoli();
+        return PantallaArticoli(repositorio: _articoli);
       case Seccion.frases:
         return _seccionFrases();
       case Seccion.verbos:
