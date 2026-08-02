@@ -175,3 +175,60 @@ String? claseDeducida(String palabra, {required bool masculino}) {
 
   return sImpura ? 'm_s_impura' : 'm_consonante';
 }
+
+/// Las palabras cuyo plural no sale de la regla. Son pocas y conocidas: si
+/// aparece una nueva, va acá y no se toca [pluralDeducido].
+const pluralesIrregulares = {
+  // -co y -go hacen -chi/-ghi salvo cuando la fuerza de la voz cae más
+  // atrás: amico, medico y psicologo son las que más se usan.
+  'amico': 'amici',
+  'medico': 'medici',
+  'psicologo': 'psicologi',
+  // La i de zio suena fuerte, así que no se come: zii, con dos.
+  'zio': 'zii',
+  'uomo': 'uomini',
+  // Femenina terminada en -o, la excepción más famosa del italiano.
+  'mano': 'mani',
+};
+
+/// Deduce el plural de una palabra italiana.
+///
+/// Igual que [claseDeducida], la app NO usa esto: el plural sale del JSON.
+/// Está para que un test revise de a cientos y avise si alguno quedó mal
+/// escrito, que es un error que si no pasa desapercibido y enseña mal.
+String? pluralDeducido(String palabra, {required bool masculino}) {
+  final p = palabra.toLowerCase();
+  if (p.isEmpty) return null;
+  if (pluralesIrregulares.containsKey(p)) return pluralesIrregulares[p];
+
+  // Las que terminan en consonante o en vocal acentuada no cambian:
+  // lo sport / gli sport, la città / le città.
+  final ultima = p[p.length - 1];
+  if (!_vocales.contains(ultima) || 'àèéìòù'.contains(ultima)) return p;
+
+  final sinUltima = p.substring(0, p.length - 1);
+
+  if (masculino) {
+    // La c y la g necesitan la h para seguir sonando duras: banco → banchi.
+    if (p.endsWith('co')) return '${p.substring(0, p.length - 1)}hi';
+    if (p.endsWith('go')) return '${p.substring(0, p.length - 1)}hi';
+    // -io con la i floja pierde la i: occhio → occhi, no "occhii".
+    if (p.endsWith('io')) return '${p.substring(0, p.length - 2)}i';
+    return '${sinUltima}i';
+  }
+
+  if (p.endsWith('ca')) return '${p.substring(0, p.length - 1)}he';
+  if (p.endsWith('ga')) return '${p.substring(0, p.length - 1)}he';
+  // -cia y -gia pierden la i si viene pegada a una consonante
+  // (arancia → arance), y la conservan si viene detrás de vocal
+  // (camicia → camicie).
+  if (p.endsWith('cia') || p.endsWith('gia')) {
+    final antes = p.length > 3 ? p[p.length - 4] : '';
+    return _vocales.contains(antes)
+        ? '${p.substring(0, p.length - 1)}e'
+        : '${p.substring(0, p.length - 2)}e';
+  }
+  if (p.endsWith('a')) return '${sinUltima}e';
+  // Las femeninas en -e hacen -i igual que las masculinas: chiave → chiavi.
+  return '${sinUltima}i';
+}

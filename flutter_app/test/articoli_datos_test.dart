@@ -83,6 +83,28 @@ void main() {
       }
     });
 
+    test('el plural de cada palabra coincide con la regla', () {
+      // La misma idea que la clase: son cientos escritos a mano, y un plural
+      // mal puesto no se nota mirando, pero enseña mal.
+      for (final s in _datos.sustantivos.where((s) => s.tienePlural)) {
+        expect(
+          s.italianoPlural,
+          pluralDeducido(s.italiano,
+              masculino: s.clase.nombre.startsWith('m')),
+          reason: '"${s.italiano}" tiene el plural "${s.italianoPlural}"',
+        );
+      }
+    });
+
+    test('las irregulares que están declaradas se usan de verdad', () {
+      // Si una queda sin usarse es que la palabra se borró o se escribió
+      // distinto, y la excepción quedó tapando un error futuro.
+      final italianos = _datos.sustantivos.map((s) => s.italiano).toSet();
+      for (final palabra in pluralesIrregulares.keys) {
+        expect(italianos, contains(palabra));
+      }
+    });
+
     test('hay palabras incontables y ninguna trae plural', () {
       // Son las que sostienen el partitivo singular: sin ellas esa categoría
       // se quedaría sin preguntas.
