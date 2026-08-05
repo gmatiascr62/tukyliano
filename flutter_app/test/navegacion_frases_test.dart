@@ -69,7 +69,15 @@ Widget _app({AlmacenamientoClave? clave}) => TukylianoApp(
     );
 
 Future<void> _tocar(WidgetTester tester, String texto) async {
-  await tester.tap(find.widgetWithText(ElevatedButton, texto));
+  // La barra se desliza: si el botón quedó fuera de la pantalla hay que
+  // traerlo antes de tocarlo.
+  final boton = find.widgetWithText(ElevatedButton, texto);
+  await tester.scrollUntilVisible(
+    boton,
+    80,
+    scrollable: find.byType(Scrollable).first,
+  );
+  await tester.tap(boton);
   await tester.pumpAndSettle();
 }
 
@@ -83,13 +91,13 @@ bool _tildado(WidgetTester tester, String texto) {
 }
 
 void main() {
-  testWidgets('Frases lleva a elegir qué practicar, sin pedir ninguna clave',
+  testWidgets('Frasi lleva a elegir qué practicar, sin pedir ninguna clave',
       (tester) async {
     usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    await _tocar(tester, 'Frases');
+    await _tocar(tester, 'Frasi');
 
     expect(find.text('Elegí los verbos a practicar'), findsOneWidget);
     expect(find.widgetWithText(ElevatedButton, 'Empezar'), findsOneWidget);
@@ -97,7 +105,7 @@ void main() {
     expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsNothing);
   });
 
-  testWidgets('volver a Frases deja elegir de nuevo, no cae en la práctica',
+  testWidgets('volver a Frasi deja elegir de nuevo, no cae en la práctica',
       (tester) async {
     usarPantallaDeCelular(tester);
     // Regresión: antes conservaba el paso, así que al volver desde otra
@@ -105,12 +113,12 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    await _tocar(tester, 'Frases');
+    await _tocar(tester, 'Frasi');
     await _tocar(tester, 'Empezar');
     expect(find.textContaining('Tengo mucha hambre'), findsOneWidget);
 
-    await _tocar(tester, 'Verbos');
-    await _tocar(tester, 'Frases');
+    await _tocar(tester, 'Verbi');
+    await _tocar(tester, 'Frasi');
 
     expect(find.text('Elegí los verbos a practicar'), findsOneWidget);
     expect(find.textContaining('Tengo mucha hambre'), findsNothing);
@@ -122,15 +130,15 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    // En Frases se destilda essere y se practica.
-    await _tocar(tester, 'Frases');
+    // En Frasi se destilda essere y se practica.
+    await _tocar(tester, 'Frasi');
     await tester.tap(find.text('essere (ser/estar)'));
     await tester.pump();
     await _tocar(tester, 'Empezar');
 
     // Se pasa por otra sección y se vuelve.
-    await _tocar(tester, 'Verbos');
-    await _tocar(tester, 'Frases');
+    await _tocar(tester, 'Verbi');
+    await _tocar(tester, 'Frasi');
 
     expect(_tildado(tester, 'essere (ser/estar)'), isFalse);
     expect(_tildado(tester, 'avere (tener)'), isTrue);
@@ -141,14 +149,14 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    // En Frases se destilda essere.
-    await _tocar(tester, 'Frases');
+    // En Frasi se destilda essere.
+    await _tocar(tester, 'Frasi');
     await tester.tap(find.text('essere (ser/estar)'));
     await tester.pump();
     await _tocar(tester, 'Empezar');
 
-    // Verbos no se contagia: sigue con todo tildado.
-    await _tocar(tester, 'Verbos');
+    // Verbi no se contagia: sigue con todo tildado.
+    await _tocar(tester, 'Verbi');
     expect(_tildado(tester, 'essere (ser/estar)'), isTrue);
   });
 
@@ -158,7 +166,7 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    await _tocar(tester, 'Verbos');
+    await _tocar(tester, 'Verbi');
     await _tocar(tester, 'Empezar');
 
     // El repositorio devuelve yaAlDia; antes eso se mostraba en pantalla.

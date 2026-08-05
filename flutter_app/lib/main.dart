@@ -4,14 +4,17 @@ import 'constantes.dart';
 import 'datos/almacenamiento_clave.dart';
 import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
+import 'datos/repositorio_preposizioni.dart';
 import 'datos/repositorio_verbos.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_frases.dart';
+import 'pantallas/pantalla_preposizioni.dart';
 import 'pantallas/pantalla_quiz.dart';
 import 'pantallas/pantalla_seleccion.dart';
 import 'tema.dart';
 import 'widgets/barra_superior.dart';
+import 'widgets/proximamente.dart';
 
 void main() {
   runApp(const TukylianoApp());
@@ -24,6 +27,7 @@ class TukylianoApp extends StatelessWidget {
     this.repositorio,
     this.frasesLocales,
     this.articoli,
+    this.preposizioni,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
@@ -31,6 +35,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioVerbos? repositorio;
   final RepositorioFrases? frasesLocales;
   final RepositorioArticoli? articoli;
+  final RepositorioPreposizioni? preposizioni;
 
   @override
   Widget build(BuildContext context) {
@@ -43,6 +48,7 @@ class TukylianoApp extends StatelessWidget {
         repositorio: repositorio,
         frasesLocales: frasesLocales,
         articoli: articoli,
+        preposizioni: preposizioni,
       ),
     );
   }
@@ -57,12 +63,14 @@ class PantallaPrincipal extends StatefulWidget {
     this.repositorio,
     this.frasesLocales,
     this.articoli,
+    this.preposizioni,
   });
 
   final AlmacenamientoClave? almacenClave;
   final RepositorioVerbos? repositorio;
   final RepositorioFrases? frasesLocales;
   final RepositorioArticoli? articoli;
+  final RepositorioPreposizioni? preposizioni;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -75,10 +83,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       widget.frasesLocales ?? RepositorioFrases();
   late final RepositorioArticoli _articoli =
       widget.articoli ?? RepositorioArticoli();
+  late final RepositorioPreposizioni _preposizioni =
+      widget.preposizioni ?? RepositorioPreposizioni();
   late final AlmacenamientoClave _almacenClave =
       widget.almacenClave ?? AlmacenamientoClave();
 
-  Seccion _seccion = Seccion.verbos;
+  Seccion _seccion = Seccion.frases;
   DatosVerbos? _datos;
 
   /// Solo se llena si los verbos no se pudieron cargar: ahí no hay nada que
@@ -110,6 +120,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     _cargarDatos();
     _cargarFrases();
     _cargarArticoli();
+    _cargarPreposizioni();
     _borrarClaveVieja();
   }
 
@@ -130,6 +141,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   Future<void> _cargarArticoli() async {
     await _articoli.cargar();
     await _articoli.verificarActualizacion();
+  }
+
+  /// Igual que los artículos.
+  Future<void> _cargarPreposizioni() async {
+    await _preposizioni.cargar();
+    await _preposizioni.verificarActualizacion();
   }
 
   Future<void> _cargarDatos() async {
@@ -226,6 +243,19 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         return _seccionFrases();
       case Seccion.verbos:
         return _seccionVerbos();
+      case Seccion.preposizioni:
+        return PantallaPreposizioni(repositorio: _preposizioni);
+      case Seccion.racconti:
+        return const Proximamente(
+          icono: Icons.auto_stories_outlined,
+          detalle: 'Cuentos en italiano para leer y traducir, con la '
+              'corrección palabra por palabra.',
+        );
+      case Seccion.chat:
+        return const Proximamente(
+          icono: Icons.chat_bubble_outline,
+          detalle: 'Una charla en italiano que te corrija sobre la marcha.',
+        );
     }
   }
 

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../datos/repositorio_articoli.dart';
 import '../logica/articulos.dart';
 import '../tema.dart';
+import '../widgets/boton_opcion.dart';
 import '../widgets/tarjeta_pregunta.dart';
 import '../widgets/texto_ajustado.dart';
 
@@ -192,27 +193,13 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
     );
   }
 
-  Widget _botonesArticulo(Consigna actual) {
-    final opciones = actual.categoria.opciones;
-    return Row(
-      children: [
-        for (final articulo in opciones) ...[
-          Expanded(
-            child: _BotonArticulo(
-              articulo: articulo,
-              elegido: _elegido == articulo,
-              // Al contestar se marca cuál era la correcta, aunque no sea la
-              // que se tocó.
-              correcto: _mostrandoResultado && articulo == actual.correcto,
-              habilitado: !_mostrandoResultado,
-              onTocar: () => _tocarArticulo(articulo),
-            ),
-          ),
-          if (articulo != opciones.last) const SizedBox(width: 8),
-        ],
-      ],
-    );
-  }
+  Widget _botonesArticulo(Consigna actual) => FilaOpciones(
+        opciones: actual.categoria.opciones,
+        elegido: _elegido,
+        correcta: actual.correcto,
+        mostrandoResultado: _mostrandoResultado,
+        onTocar: _tocarArticulo,
+      );
 
   /// Por qué va ese artículo. Es lo que convierte el ejercicio en algo que se
   /// aprende, en vez de adivinar.
@@ -271,61 +258,6 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
           ),
         ],
       ],
-    );
-  }
-}
-
-class _BotonArticulo extends StatelessWidget {
-  const _BotonArticulo({
-    required this.articulo,
-    required this.elegido,
-    required this.correcto,
-    required this.habilitado,
-    required this.onTocar,
-  });
-
-  final String articulo;
-  final bool elegido;
-  final bool correcto;
-  final bool habilitado;
-  final VoidCallback onTocar;
-
-  @override
-  Widget build(BuildContext context) {
-    final fondo = correcto
-        ? Tema.correcto
-        : elegido
-            ? Tema.verde
-            : Tema.superficie;
-    final colorTexto = correcto || elegido ? Colors.white : Tema.titulo;
-
-    return SizedBox(
-      height: 56,
-      child: Material(
-        color: fondo,
-        borderRadius: BorderRadius.circular(Tema.radio),
-        child: InkWell(
-          onTap: habilitado ? onTocar : null,
-          borderRadius: BorderRadius.circular(Tema.radio),
-          child: Container(
-            alignment: Alignment.center,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(Tema.radio),
-              border: Border.all(
-                color: correcto || elegido ? Colors.transparent : Tema.borde,
-              ),
-            ),
-            child: Text(
-              articulo,
-              style: TextStyle(
-                fontSize: 21,
-                fontWeight: FontWeight.w700,
-                color: colorTexto,
-              ),
-            ),
-          ),
-        ),
-      ),
     );
   }
 }

@@ -2,11 +2,28 @@ import 'package:flutter/material.dart';
 
 import '../tema.dart';
 
-/// Las tres secciones que se navegan desde la barra de arriba.
-enum Seccion { articoli, frases, verbos }
+/// Las secciones que se navegan desde la barra de arriba, en el orden en que
+/// aparecen. Las primeras son las que se ven sin deslizar.
+enum Seccion { frases, verbos, articoli, preposizioni, racconti, chat }
 
-/// Fila de navegación (Articoli / Frases / Verbos). La sección actual queda
-/// resaltada, que en la versión Kivy no se distinguía.
+extension EtiquetaSeccion on Seccion {
+  /// Lo que dice el botón. Van en italiano, aunque el resto de la app le
+  /// hable al alumno en español: son los nombres de los temas.
+  String get etiqueta => switch (this) {
+        Seccion.frases => 'Frasi',
+        Seccion.verbos => 'Verbi',
+        Seccion.articoli => 'Articoli',
+        Seccion.preposizioni => 'Preposizioni',
+        Seccion.racconti => 'Racconti',
+        Seccion.chat => 'Chat',
+      };
+}
+
+/// Fila de navegación. La sección actual queda resaltada.
+///
+/// Se desliza en horizontal porque las seis no entran juntas en un celular, y
+/// achicarlas hasta que entren dejaría "Preposizioni" ilegible. Que la última
+/// quede cortada en el borde es justamente lo que avisa que hay más.
 class BarraSuperior extends StatelessWidget {
   const BarraSuperior({
     super.key,
@@ -26,40 +43,39 @@ class BarraSuperior extends StatelessWidget {
         borderRadius: BorderRadius.circular(Tema.radio),
         boxShadow: Tema.sombra,
       ),
-      child: Row(
-        children: [
-          _boton('Articoli', Seccion.articoli),
-          _boton('Frases', Seccion.frases),
-          _boton('Verbos', Seccion.verbos),
-        ],
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        child: Row(
+          children: [
+            for (final seccion in Seccion.values) _boton(seccion),
+          ],
+        ),
       ),
     );
   }
 
-  Widget _boton(String texto, Seccion seccion) {
+  Widget _boton(Seccion seccion) {
     final activa = seccion == actual;
-    return Expanded(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 2),
-        child: SizedBox(
-          height: 44,
-          child: ElevatedButton(
-            onPressed: () => onSeccion(seccion),
-            style: ElevatedButton.styleFrom(
-              backgroundColor: activa ? Tema.verde : Colors.transparent,
-              foregroundColor: activa ? Colors.white : Tema.textoTenue,
-              elevation: 0,
-              padding: EdgeInsets.zero,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(Tema.radioChico),
-              ),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 2),
+      child: SizedBox(
+        height: 44,
+        child: ElevatedButton(
+          onPressed: () => onSeccion(seccion),
+          style: ElevatedButton.styleFrom(
+            backgroundColor: activa ? Tema.verde : Colors.transparent,
+            foregroundColor: activa ? Colors.white : Tema.textoTenue,
+            elevation: 0,
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(Tema.radioChico),
             ),
-            child: Text(
-              texto,
-              style: TextStyle(
-                fontSize: 15,
-                fontWeight: activa ? FontWeight.w600 : FontWeight.w500,
-              ),
+          ),
+          child: Text(
+            seccion.etiqueta,
+            style: TextStyle(
+              fontSize: 15,
+              fontWeight: activa ? FontWeight.w600 : FontWeight.w500,
             ),
           ),
         ),

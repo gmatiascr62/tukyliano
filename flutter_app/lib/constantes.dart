@@ -29,6 +29,16 @@ const String urlArticoliRemoto =
 /// Copia escribible de los artículos en el celular.
 const String archivoArticoliLocal = 'articoli.json';
 
+/// Frases con un hueco para practicar las preposiciones.
+const String assetPreposizioni = 'assets/preposizioni.json';
+
+/// Las mismas, en GitHub: agregar frases no necesita un APK nuevo.
+const String urlPreposizioniRemoto =
+    'https://raw.githubusercontent.com/gmatiascr62/tukylingo_repo/main/preposizioni.json';
+
+/// Copia escribible de las preposiciones en el celular.
+const String archivoPreposizioniLocal = 'preposizioni.json';
+
 /// Archivo escribible donde se guardan los verbos ya actualizados.
 const String archivoVerbosLocal = 'verbos_local.json';
 

@@ -1,4 +1,5 @@
 import '../modelos/articulo.dart';
+import 'preposiciones.dart';
 
 /// Qué artículo se está practicando.
 ///
@@ -54,17 +55,12 @@ extension DatosCategoria on CategoriaArticulo {
 
 /// Contrae "di" con un artículo determinado: il → del, gli → degli.
 ///
+/// El partitivo es una preposizione articolata más, así que sale de la misma
+/// tabla que usa Preposizioni en vez de estar escrito dos veces.
+///
 /// La app NO usa esto: en la pantalla manda lo que dice el JSON. Existe para
 /// que un test revise que los partitivos del JSON estén bien escritos.
-String? partitivoDe(String determinado) => const {
-      'il': 'del',
-      'lo': 'dello',
-      'la': 'della',
-      "l'": "dell'",
-      'i': 'dei',
-      'gli': 'degli',
-      'le': 'delle',
-    }[determinado];
+String? partitivoDe(String determinado) => contraer('di', determinado);
 
 /// Pega el artículo con la palabra.
 ///
