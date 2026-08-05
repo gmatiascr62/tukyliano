@@ -1,0 +1,989 @@
+{
+ "version": 1,
+ "frases": [
+  {
+   "frase": "Vado ___ Roma",
+   "correcta": "a",
+   "es": "voy a Roma",
+   "opciones": [
+    "alla",
+    "in",
+    "a",
+    "al"
+   ],
+   "explicacion": "Las ciudades van con «a» y sin artículo: a Roma, a Milano, a Buenos Aires."
+  },
+  {
+   "frase": "Sono ___ scuola",
+   "correcta": "a",
+   "es": "estoy en la escuela",
+   "opciones": [
+    "in",
+    "alla",
+    "nella",
+    "a"
+   ],
+   "explicacion": "«a scuola» es fija y va sin artículo. Ojo que el español dice «en» y el italiano «a»."
+  },
+  {
+   "frase": "Vado ___ casa",
+   "correcta": "a",
+   "es": "voy a casa",
+   "opciones": [
+    "in",
+    "a",
+    "nella",
+    "alla"
+   ],
+   "explicacion": "«a casa» es fija, sin artículo. También: torno a casa, sono a casa."
+  },
+  {
+   "frase": "Vado ___ cinema",
+   "correcta": "al",
+   "es": "voy al cine",
+   "opciones": [
+    "in",
+    "allo",
+    "al",
+    "a"
+   ],
+   "explicacion": "Acá el español y el italiano coinciden. «Cinema» es masculino y lleva il."
+  },
+  {
+   "frase": "Vado ___ stazione",
+   "correcta": "alla",
+   "es": "voy a la estación",
+   "opciones": [
+    "al",
+    "alla",
+    "a",
+    "in"
+   ],
+   "explicacion": "«Stazione» es femenino: la stazione."
+  },
+  {
+   "frase": "Andiamo ___ ristorante",
+   "correcta": "al",
+   "es": "vamos al restaurante",
+   "opciones": [
+    "nel",
+    "a",
+    "al",
+    "in"
+   ],
+   "explicacion": "El español dice «al restaurante» y el italiano también: al ristorante, al bar."
+  },
+  {
+   "frase": "Penso ___ amici",
+   "correcta": "agli",
+   "es": "pienso en los amigos",
+   "opciones": [
+    "negli",
+    "dagli",
+    "ai",
+    "agli"
+   ],
+   "explicacion": "«Pensare» pide «a», nunca «in». Y «gli amici» lleva gli porque empieza con vocal."
+  },
+  {
+   "frase": "Do il libro ___ ragazzo",
+   "correcta": "al",
+   "es": "le doy el libro al chico",
+   "opciones": [
+    "del",
+    "al",
+    "allo",
+    "dal"
+   ],
+   "explicacion": "A quién le das algo va con «a»."
+  },
+  {
+   "frase": "Andiamo ___ mare",
+   "correcta": "al",
+   "es": "vamos al mar",
+   "opciones": [
+    "in",
+    "a",
+    "al",
+    "alla"
+   ],
+   "explicacion": "Al mar se va «al mare», pero a la montaña «in montagna». Son fijas y no van juntas."
+  },
+  {
+   "frase": "Vado ___ letto",
+   "correcta": "a",
+   "es": "me voy a la cama",
+   "opciones": [
+    "al",
+    "in",
+    "nel",
+    "a"
+   ],
+   "explicacion": "«a letto» es fija, sin artículo."
+  },
+  {
+   "frase": "Telefono ___ nonna",
+   "correcta": "alla",
+   "es": "la llamo a la abuela",
+   "opciones": [
+    "della",
+    "alla",
+    "a",
+    "dalla"
+   ],
+   "explicacion": "A quién llamás va con «a»."
+  },
+  {
+   "frase": "Studio ___ università",
+   "correcta": "all'",
+   "es": "estudio en la universidad",
+   "opciones": [
+    "in",
+    "alla",
+    "nella",
+    "all'"
+   ],
+   "explicacion": "El español dice «en» y el italiano «a». «Università» empieza con vocal, así que el artículo es l'."
+  },
+  {
+   "frase": "Gioco ___ calcio",
+   "correcta": "a",
+   "es": "juego al fútbol",
+   "opciones": [
+    "nel",
+    "in",
+    "a",
+    "al"
+   ],
+   "explicacion": "Los deportes y los juegos van con «a» sin artículo: gioco a calcio, gioco a carte."
+  },
+  {
+   "frase": "Penso ___ te",
+   "correcta": "a",
+   "es": "pienso en vos",
+   "opciones": [
+    "in",
+    "su",
+    "a",
+    "di"
+   ],
+   "explicacion": "Otra vez: «pensare a», nunca «pensare in»."
+  },
+  {
+   "frase": "Do i regali ___ bambini",
+   "correcta": "ai",
+   "es": "les doy los regalos a los nenes",
+   "opciones": [
+    "dai",
+    "dei",
+    "agli",
+    "ai"
+   ],
+   "explicacion": "«I bambini» lleva i, así que a + i = ai."
+  },
+  {
+   "frase": "Telefono ___ ragazze",
+   "correcta": "alle",
+   "es": "las llamo a las chicas",
+   "opciones": [
+    "alle",
+    "ai",
+    "dalle",
+    "alla"
+   ],
+   "explicacion": "«Ragazze» es femenino plural: le ragazze."
+  },
+  {
+   "frase": "Vado ___ Italia",
+   "correcta": "in",
+   "es": "voy a Italia",
+   "opciones": [
+    "in",
+    "nella",
+    "a",
+    "all'"
+   ],
+   "explicacion": "Los países van con «in» y sin artículo: in Italia, in Francia, in Argentina."
+  },
+  {
+   "frase": "Abito ___ Argentina",
+   "correcta": "in",
+   "es": "vivo en Argentina",
+   "opciones": [
+    "all'",
+    "in",
+    "a",
+    "nell'"
+   ],
+   "explicacion": "País: «in» y sin artículo, aunque en español lleve «la»."
+  },
+  {
+   "frase": "Vado ___ città",
+   "correcta": "in",
+   "es": "voy a la ciudad",
+   "opciones": [
+    "nella",
+    "in",
+    "alla",
+    "a"
+   ],
+   "explicacion": "«in città» es fija: el italiano se come el artículo. Igual: in centro, in banca, in ufficio."
+  },
+  {
+   "frase": "Sono ___ banca",
+   "correcta": "in",
+   "es": "estoy en el banco",
+   "opciones": [
+    "a",
+    "nella",
+    "alla",
+    "in"
+   ],
+   "explicacion": "«in banca» es fija, sin artículo."
+  },
+  {
+   "frase": "Vado ___ ufficio",
+   "correcta": "in",
+   "es": "voy a la oficina",
+   "opciones": [
+    "in",
+    "nell'",
+    "all'",
+    "a"
+   ],
+   "explicacion": "«in ufficio» es fija, sin artículo."
+  },
+  {
+   "frase": "Vado ___ montagna",
+   "correcta": "in",
+   "es": "voy a la montaña",
+   "opciones": [
+    "alla",
+    "in",
+    "a",
+    "nella"
+   ],
+   "explicacion": "A la montaña «in montagna», pero al mar «al mare». Hay que aprenderlas de a pares."
+  },
+  {
+   "frase": "Siamo ___ centro",
+   "correcta": "in",
+   "es": "estamos en el centro",
+   "opciones": [
+    "a",
+    "nel",
+    "al",
+    "in"
+   ],
+   "explicacion": "«in centro» es fija, sin artículo."
+  },
+  {
+   "frase": "La chiave è ___ borsa",
+   "correcta": "nella",
+   "es": "la llave está en la cartera",
+   "opciones": [
+    "sulla",
+    "nella",
+    "alla",
+    "in"
+   ],
+   "explicacion": "Adentro de una cosa concreta sí lleva artículo: nella borsa, nella scatola."
+  },
+  {
+   "frase": "I bambini sono ___ giardino",
+   "correcta": "in",
+   "es": "los nenes están en el jardín",
+   "opciones": [
+    "al",
+    "in",
+    "nel",
+    "dal"
+   ],
+   "explicacion": "«in giardino» es fija, sin artículo."
+  },
+  {
+   "frase": "Vado ___ chiesa",
+   "correcta": "in",
+   "es": "voy a la iglesia",
+   "opciones": [
+    "a",
+    "alla",
+    "nella",
+    "in"
+   ],
+   "explicacion": "«in chiesa» es fija, sin artículo."
+  },
+  {
+   "frase": "Metto i libri ___ zaino",
+   "correcta": "nello",
+   "es": "pongo los libros en la mochila",
+   "opciones": [
+    "nello",
+    "nel",
+    "sullo",
+    "in"
+   ],
+   "explicacion": "«Zaino» empieza con z, así que el artículo es lo."
+  },
+  {
+   "frase": "Sono ___ macchina",
+   "correcta": "in",
+   "es": "estoy en el auto",
+   "opciones": [
+    "in",
+    "nella",
+    "sulla",
+    "alla"
+   ],
+   "explicacion": "Los medios de transporte van con «in» sin artículo: in macchina, in treno, in bicicletta."
+  },
+  {
+   "frase": "Viaggio ___ treno",
+   "correcta": "in",
+   "es": "viajo en tren",
+   "opciones": [
+    "con",
+    "nel",
+    "sul",
+    "in"
+   ],
+   "explicacion": "Medio de transporte: «in treno», sin artículo."
+  },
+  {
+   "frase": "Le scarpe sono ___ armadio",
+   "correcta": "nell'",
+   "es": "los zapatos están en el armario",
+   "opciones": [
+    "in",
+    "nell'",
+    "nel",
+    "sull'"
+   ],
+   "explicacion": "«Armadio» empieza con vocal: l'armadio."
+  },
+  {
+   "frase": "Le chiavi sono ___ tasca",
+   "correcta": "in",
+   "es": "las llaves están en el bolsillo",
+   "opciones": [
+    "alla",
+    "nella",
+    "sulla",
+    "in"
+   ],
+   "explicacion": "«in tasca» es fija, sin artículo."
+  },
+  {
+   "frase": "Lavoro ___ ospedale",
+   "correcta": "in",
+   "es": "trabajo en un hospital",
+   "opciones": [
+    "in",
+    "all'",
+    "nell'",
+    "a"
+   ],
+   "explicacion": "Cuando decís dónde trabajás va «in ospedale», sin artículo."
+  },
+  {
+   "frase": "L'acqua è ___ bottiglie",
+   "correcta": "nelle",
+   "es": "el agua está en las botellas",
+   "opciones": [
+    "alle",
+    "in",
+    "nelle",
+    "sulle"
+   ],
+   "explicacion": "«Bottiglie» es femenino plural: le bottiglie."
+  },
+  {
+   "frase": "Vivo ___ Stati Uniti",
+   "correcta": "negli",
+   "es": "vivo en Estados Unidos",
+   "opciones": [
+    "in",
+    "agli",
+    "negli",
+    "nei"
+   ],
+   "explicacion": "Este país sí lleva artículo porque es plural: gli Stati Uniti."
+  },
+  {
+   "frase": "I pesci sono ___ laghi",
+   "correcta": "nei",
+   "es": "los peces están en los lagos",
+   "opciones": [
+    "in",
+    "sui",
+    "nei",
+    "ai"
+   ],
+   "explicacion": "«Laghi» es masculino plural con consonante: i laghi."
+  },
+  {
+   "frase": "Vado ___ bagno",
+   "correcta": "in",
+   "es": "voy al baño",
+   "opciones": [
+    "al",
+    "a",
+    "in",
+    "nel"
+   ],
+   "explicacion": "«in bagno» es fija, sin artículo."
+  },
+  {
+   "frase": "Vengo ___ Argentina",
+   "correcta": "dall'",
+   "es": "vengo de Argentina",
+   "opciones": [
+    "dall'",
+    "dalla",
+    "da",
+    "dell'"
+   ],
+   "explicacion": "«Venire da» es de dónde venís. Argentina empieza con vocal: l'Argentina."
+  },
+  {
+   "frase": "Vado ___ medico",
+   "correcta": "dal",
+   "es": "voy al médico",
+   "opciones": [
+    "a",
+    "al",
+    "allo",
+    "dal"
+   ],
+   "explicacion": "Para ir a ver a una PERSONA el italiano usa «da», no «a». El español te empuja a «al» y está mal."
+  },
+  {
+   "frase": "Vado ___ dentista",
+   "correcta": "dal",
+   "es": "voy al dentista",
+   "opciones": [
+    "dal",
+    "al",
+    "allo",
+    "a"
+   ],
+   "explicacion": "Igual que con el médico: a las personas se va «da»."
+  },
+  {
+   "frase": "Esco ___ scuola",
+   "correcta": "dalla",
+   "es": "salgo de la escuela",
+   "opciones": [
+    "dalla",
+    "dal",
+    "della",
+    "da"
+   ],
+   "explicacion": "«Uscire da» es de dónde salís."
+  },
+  {
+   "frase": "Esco ___ casa",
+   "correcta": "da",
+   "es": "salgo de casa",
+   "opciones": [
+    "da",
+    "dal",
+    "dalla",
+    "di"
+   ],
+   "explicacion": "«casa» va sin artículo también acá: esco da casa, vengo da casa."
+  },
+  {
+   "frase": "Vado ___ Marco",
+   "correcta": "da",
+   "es": "voy a lo de Marco",
+   "opciones": [
+    "con",
+    "di",
+    "da",
+    "a"
+   ],
+   "explicacion": "«da» con un nombre propio es «a la casa de»: vado da Marco, sono da Luca."
+  },
+  {
+   "frase": "Il treno parte ___ stazione",
+   "correcta": "dalla",
+   "es": "el tren sale de la estación",
+   "opciones": [
+    "della",
+    "dal",
+    "dalla",
+    "da"
+   ],
+   "explicacion": "De dónde sale algo va con «da»."
+  },
+  {
+   "frase": "Torno ___ lavoro",
+   "correcta": "dal",
+   "es": "vuelvo del trabajo",
+   "opciones": [
+    "da",
+    "al",
+    "dal",
+    "del"
+   ],
+   "explicacion": "«Tornare da» es de dónde volvés. Con «del» estarías diciendo de quién es el trabajo."
+  },
+  {
+   "frase": "Prendo il libro ___ scaffale",
+   "correcta": "dallo",
+   "es": "saco el libro del estante",
+   "opciones": [
+    "dallo",
+    "del",
+    "sullo",
+    "dal"
+   ],
+   "explicacion": "«Scaffale» empieza con s + consonante: lo scaffale."
+  },
+  {
+   "frase": "Scendo ___ treno",
+   "correcta": "dal",
+   "es": "bajo del tren",
+   "opciones": [
+    "da",
+    "del",
+    "nel",
+    "dal"
+   ],
+   "explicacion": "De dónde bajás va con «da»."
+  },
+  {
+   "frase": "Vengo ___ Stati Uniti",
+   "correcta": "dagli",
+   "es": "vengo de Estados Unidos",
+   "opciones": [
+    "dagli",
+    "da",
+    "dalle",
+    "dai"
+   ],
+   "explicacion": "gli Stati Uniti, así que da + gli = dagli."
+  },
+  {
+   "frase": "Scendo ___ scale",
+   "correcta": "dalle",
+   "es": "bajo por la escalera",
+   "opciones": [
+    "dal",
+    "dalle",
+    "dalla",
+    "dai"
+   ],
+   "explicacion": "«Le scale» va en plural en italiano, aunque en español digas «la escalera»."
+  },
+  {
+   "frase": "I bambini tornano ___ nonni",
+   "correcta": "dai",
+   "es": "los nenes vuelven de lo de los abuelos",
+   "opciones": [
+    "dai",
+    "dagli",
+    "dalle",
+    "ai"
+   ],
+   "explicacion": "«I nonni» lleva i, así que da + i = dai."
+  },
+  {
+   "frase": "Vengo ___ Roma",
+   "correcta": "da",
+   "es": "vengo de Roma",
+   "opciones": [
+    "da",
+    "dal",
+    "dalla",
+    "di"
+   ],
+   "explicacion": "Las ciudades no llevan artículo: vengo da Roma, torno da Milano."
+  },
+  {
+   "frase": "Il libro è ___ tavolo",
+   "correcta": "sul",
+   "es": "el libro está sobre la mesa",
+   "opciones": [
+    "su",
+    "sulla",
+    "nel",
+    "sul"
+   ],
+   "explicacion": "«Tavolo» es masculino en italiano aunque «mesa» sea femenino en español."
+  },
+  {
+   "frase": "Il gatto è ___ sedia",
+   "correcta": "sulla",
+   "es": "el gato está sobre la silla",
+   "opciones": [
+    "sul",
+    "nella",
+    "su",
+    "sulla"
+   ],
+   "explicacion": "«Sedia» es femenino: la sedia."
+  },
+  {
+   "frase": "Le chiavi sono ___ scaffale",
+   "correcta": "sullo",
+   "es": "las llaves están sobre el estante",
+   "opciones": [
+    "nello",
+    "sullo",
+    "sulla",
+    "sul"
+   ],
+   "explicacion": "«Scaffale» empieza con s + consonante: lo scaffale."
+  },
+  {
+   "frase": "La neve è ___ montagne",
+   "correcta": "sulle",
+   "es": "la nieve está sobre las montañas",
+   "opciones": [
+    "sulla",
+    "nelle",
+    "sui",
+    "sulle"
+   ],
+   "explicacion": "«Montagne» es femenino plural: le montagne."
+  },
+  {
+   "frase": "I libri sono ___ scaffali",
+   "correcta": "sugli",
+   "es": "los libros están sobre los estantes",
+   "opciones": [
+    "sui",
+    "sulle",
+    "sullo",
+    "sugli"
+   ],
+   "explicacion": "«lo scaffale» hace «gli scaffali» en plural, así que su + gli = sugli."
+  },
+  {
+   "frase": "I piatti sono ___ tavoli",
+   "correcta": "sui",
+   "es": "los platos están sobre las mesas",
+   "opciones": [
+    "sulle",
+    "sul",
+    "sugli",
+    "sui"
+   ],
+   "explicacion": "«Tavoli» es masculino plural con consonante: i tavoli."
+  },
+  {
+   "frase": "Il quadro è ___ muro",
+   "correcta": "sul",
+   "es": "el cuadro está en la pared",
+   "opciones": [
+    "sulla",
+    "nel",
+    "al",
+    "sul"
+   ],
+   "explicacion": "El español dice «en la pared» y el italiano «sul muro». Y «muro» es masculino."
+  },
+  {
+   "frase": "La neve è ___ alberi",
+   "correcta": "sugli",
+   "es": "la nieve está sobre los árboles",
+   "opciones": [
+    "sugli",
+    "sulle",
+    "negli",
+    "sui"
+   ],
+   "explicacion": "«Alberi» empieza con vocal, así que lleva gli: su + gli = sugli."
+  },
+  {
+   "frase": "La casa ___ Marco",
+   "correcta": "di",
+   "es": "la casa de Marco",
+   "opciones": [
+    "di",
+    "del",
+    "dal",
+    "da"
+   ],
+   "explicacion": "De quién es algo va con «di». Con nombres propios no lleva artículo."
+  },
+  {
+   "frase": "Un bicchiere ___ vino",
+   "correcta": "di",
+   "es": "un vaso de vino",
+   "opciones": [
+    "del",
+    "da",
+    "di",
+    "dal"
+   ],
+   "explicacion": "De qué está lleno algo va con «di» sin artículo."
+  },
+  {
+   "frase": "Parlo ___ lavoro",
+   "correcta": "del",
+   "es": "hablo del trabajo",
+   "opciones": [
+    "del",
+    "al",
+    "dal",
+    "sul"
+   ],
+   "explicacion": "«Parlare di» es hablar sobre algo. Acá sí lleva artículo: il lavoro."
+  },
+  {
+   "frase": "Il libro ___ studente",
+   "correcta": "dello",
+   "es": "el libro del estudiante",
+   "opciones": [
+    "dallo",
+    "dello",
+    "del",
+    "allo"
+   ],
+   "explicacion": "«Studente» empieza con s + consonante: lo studente."
+  },
+  {
+   "frase": "La macchina ___ nonno",
+   "correcta": "del",
+   "es": "el auto del abuelo",
+   "opciones": [
+    "al",
+    "della",
+    "del",
+    "dal"
+   ],
+   "explicacion": "De quién es: di + il nonno."
+  },
+  {
+   "frase": "Un chilo ___ pane",
+   "correcta": "di",
+   "es": "un kilo de pan",
+   "opciones": [
+    "dal",
+    "di",
+    "del",
+    "da"
+   ],
+   "explicacion": "Las cantidades van con «di» sin artículo: un chilo di pane, un litro di latte."
+  },
+  {
+   "frase": "La porta ___ casa",
+   "correcta": "della",
+   "es": "la puerta de la casa",
+   "opciones": [
+    "dalla",
+    "di",
+    "del",
+    "della"
+   ],
+   "explicacion": "«Casa» es femenino: la casa."
+  },
+  {
+   "frase": "Il colore ___ cielo",
+   "correcta": "del",
+   "es": "el color del cielo",
+   "opciones": [
+    "della",
+    "del",
+    "al",
+    "dal"
+   ],
+   "explicacion": "«Cielo» es masculino con consonante: il cielo."
+  },
+  {
+   "frase": "Ho bisogno ___ aiuto",
+   "correcta": "di",
+   "es": "necesito ayuda",
+   "opciones": [
+    "del",
+    "di",
+    "a",
+    "da"
+   ],
+   "explicacion": "«Avere bisogno di» es necesitar. Sin artículo cuando hablás en general."
+  },
+  {
+   "frase": "Parliamo ___ amici",
+   "correcta": "degli",
+   "es": "hablamos de los amigos",
+   "opciones": [
+    "degli",
+    "dei",
+    "delle",
+    "dai"
+   ],
+   "explicacion": "«gli amici» porque empieza con vocal, así que di + gli = degli."
+  },
+  {
+   "frase": "Ho paura ___ cani",
+   "correcta": "dei",
+   "es": "tengo miedo de los perros",
+   "opciones": [
+    "dai",
+    "dei",
+    "delle",
+    "degli"
+   ],
+   "explicacion": "«Avere paura di» es tener miedo de. «I cani» lleva i."
+  },
+  {
+   "frase": "La lezione ___ italiano",
+   "correcta": "di",
+   "es": "la clase de italiano",
+   "opciones": [
+    "dell'",
+    "di",
+    "dall'",
+    "del"
+   ],
+   "explicacion": "De qué es algo va con «di» sin artículo: lezione di italiano, professore di storia."
+  },
+  {
+   "frase": "Il nome ___ ragazza",
+   "correcta": "della",
+   "es": "el nombre de la chica",
+   "opciones": [
+    "dalla",
+    "del",
+    "della",
+    "di"
+   ],
+   "explicacion": "«Ragazza» es femenino: la ragazza."
+  },
+  {
+   "frase": "Il tetto ___ chiesa",
+   "correcta": "della",
+   "es": "el techo de la iglesia",
+   "opciones": [
+    "del",
+    "dalla",
+    "della",
+    "di"
+   ],
+   "explicacion": "«Chiesa» es femenino: la chiesa."
+  },
+  {
+   "frase": "I tetti ___ case",
+   "correcta": "delle",
+   "es": "los techos de las casas",
+   "opciones": [
+    "dei",
+    "delle",
+    "della",
+    "degli"
+   ],
+   "explicacion": "«Case» es femenino plural: le case."
+  },
+  {
+   "frase": "Parto ___ Roma",
+   "correcta": "per",
+   "es": "salgo para Roma",
+   "opciones": [
+    "in",
+    "da",
+    "a",
+    "per"
+   ],
+   "explicacion": "Hacia dónde salís va con «per»: parto per Roma, il treno per Milano."
+  },
+  {
+   "frase": "Questo è ___ te",
+   "correcta": "per",
+   "es": "esto es para vos",
+   "opciones": [
+    "da",
+    "a",
+    "per",
+    "di"
+   ],
+   "explicacion": "Para quién es algo va con «per»."
+  },
+  {
+   "frase": "Il regalo è ___ nonna",
+   "correcta": "per la",
+   "es": "el regalo es para la abuela",
+   "opciones": [
+    "per la",
+    "perla",
+    "per",
+    "alla"
+   ],
+   "explicacion": "«per» no se pega nunca con el artículo: se escribe «per la», en dos palabras. «Perla» existe, pero es una perla."
+  },
+  {
+   "frase": "I libri sono ___ bambini",
+   "correcta": "per i",
+   "es": "los libros son para los nenes",
+   "opciones": [
+    "per",
+    "ai",
+    "per i",
+    "dei"
+   ],
+   "explicacion": "«per» no se contrae: se escribe «per i», en dos palabras."
+  },
+  {
+   "frase": "Studio ___ tre ore",
+   "correcta": "per",
+   "es": "estudio por tres horas",
+   "opciones": [
+    "in",
+    "da",
+    "a",
+    "per"
+   ],
+   "explicacion": "La duración va con «per»: per tre ore, per due giorni."
+  },
+  {
+   "frase": "Parlo ___ Marco",
+   "correcta": "con",
+   "es": "hablo con Marco",
+   "opciones": [
+    "di",
+    "con",
+    "da",
+    "a"
+   ],
+   "explicacion": "Con quién hacés algo va con «con». Con nombres propios no lleva artículo."
+  },
+  {
+   "frase": "Vengo ___ te",
+   "correcta": "con",
+   "es": "vengo con vos",
+   "opciones": [
+    "a",
+    "con",
+    "per",
+    "da"
+   ],
+   "explicacion": "«con te» es «con vos». No se pega con nada."
+  },
+  {
+   "frase": "Scrivo ___ una penna",
+   "correcta": "con",
+   "es": "escribo con una lapicera",
+   "opciones": [
+    "con",
+    "a",
+    "di",
+    "per"
+   ],
+   "explicacion": "Con qué hacés algo va con «con»."
+  },
+  {
+   "frase": "Vado ___ mia sorella",
+   "correcta": "con",
+   "es": "voy con mi hermana",
+   "opciones": [
+    "a",
+    "per",
+    "da",
+    "con"
+   ],
+   "explicacion": "Con quién vas: «con»."
+  }
+ ]
+}
