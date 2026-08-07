@@ -1,0 +1,820 @@
+{
+ "version": 1,
+ "nombres": [
+  "Marco",
+  "Anna",
+  "Luca",
+  "Roma",
+  "Napoli"
+ ],
+ "vocabulario_comun": [
+  {
+   "it": "ho",
+   "es": "tengo"
+  },
+  {
+   "it": "hai",
+   "es": "tenés"
+  },
+  {
+   "it": "ha",
+   "es": "tiene"
+  },
+  {
+   "it": "abbiamo",
+   "es": "tenemos"
+  },
+  {
+   "it": "avete",
+   "es": "tienen"
+  },
+  {
+   "it": "hanno",
+   "es": "tienen"
+  },
+  {
+   "it": "sono",
+   "es": "soy, están"
+  },
+  {
+   "it": "sei",
+   "es": "sos"
+  },
+  {
+   "it": "è",
+   "es": "es, está"
+  },
+  {
+   "it": "siamo",
+   "es": "somos"
+  },
+  {
+   "it": "siete",
+   "es": "son"
+  },
+  {
+   "it": "faccio",
+   "es": "hago"
+  },
+  {
+   "it": "fa",
+   "es": "hace"
+  },
+  {
+   "it": "fanno",
+   "es": "hacen"
+  },
+  {
+   "it": "voglio",
+   "es": "quiero"
+  },
+  {
+   "it": "vuole",
+   "es": "quiere"
+  },
+  {
+   "it": "vogliono",
+   "es": "quieren"
+  },
+  {
+   "it": "c'è",
+   "es": "hay"
+  }
+ ],
+ "racconti": [
+  {
+   "id": "la-colazione",
+   "titulo": "La colazione",
+   "titulo_es": "El desayuno",
+   "nivel": 1,
+   "tema": "cotidiano",
+   "vocabulario": [
+    {
+     "it": "presto",
+     "es": "temprano"
+    },
+    {
+     "it": "fame",
+     "es": "hambre"
+    },
+    {
+     "it": "anche",
+     "es": "también"
+    },
+    {
+     "it": "prende",
+     "es": "agarra, toma"
+    },
+    {
+     "it": "mette",
+     "es": "pone"
+    },
+    {
+     "it": "poi",
+     "es": "después"
+    },
+    {
+     "it": "caldo/calda",
+     "es": "caliente"
+    },
+    {
+     "it": "beve",
+     "es": "bebe, toma"
+    },
+    {
+     "it": "adesso",
+     "es": "ahora"
+    },
+    {
+     "it": "pronto/pronta",
+     "es": "listo, lista"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Marco è in cucina.",
+     "es": "Marco está en la cocina."
+    },
+    {
+     "it": "È mattina presto.",
+     "es": "Es temprano a la mañana."
+    },
+    {
+     "it": "Marco ha fame.",
+     "es": "Marco tiene hambre."
+    },
+    {
+     "it": "Sul tavolo c'è il pane.",
+     "es": "Sobre la mesa hay pan."
+    },
+    {
+     "it": "C'è anche il burro.",
+     "es": "También hay manteca."
+    },
+    {
+     "it": "Marco prende il pane.",
+     "es": "Marco agarra el pan."
+    },
+    {
+     "it": "Mette il burro sul pane.",
+     "es": "Le pone manteca al pan."
+    },
+    {
+     "it": "Poi fa un caffè.",
+     "es": "Después hace un café."
+    },
+    {
+     "it": "Il caffè è caldo.",
+     "es": "El café está caliente."
+    },
+    {
+     "it": "Marco vuole lo zucchero.",
+     "es": "Marco quiere azúcar."
+    },
+    {
+     "it": "Lo zucchero è nell'armadio.",
+     "es": "El azúcar está en el armario."
+    },
+    {
+     "it": "Marco beve il caffè.",
+     "es": "Marco toma el café."
+    },
+    {
+     "it": "Adesso è pronto per il lavoro.",
+     "es": "Ahora está listo para el trabajo."
+    }
+   ]
+  },
+  {
+   "id": "il-gatto-ha-fame",
+   "titulo": "Il gatto ha fame",
+   "titulo_es": "El gato tiene hambre",
+   "nivel": 1,
+   "tema": "cotidiano",
+   "vocabulario": [
+    {
+     "it": "fame",
+     "es": "hambre"
+    },
+    {
+     "it": "solo",
+     "es": "solo, solamente"
+    },
+    {
+     "it": "beve",
+     "es": "bebe, toma"
+    },
+    {
+     "it": "poi",
+     "es": "después"
+    },
+    {
+     "it": "giardino",
+     "es": "jardín"
+    },
+    {
+     "it": "adesso",
+     "es": "ahora"
+    },
+    {
+     "it": "va",
+     "es": "va"
+    },
+    {
+     "it": "guarda",
+     "es": "mira"
+    },
+    {
+     "it": "vola via",
+     "es": "se vuela"
+    },
+    {
+     "it": "sonno",
+     "es": "sueño"
+    },
+    {
+     "it": "torna",
+     "es": "vuelve"
+    },
+    {
+     "it": "dorme",
+     "es": "duerme"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Il gatto è in cucina.",
+     "es": "El gato está en la cocina."
+    },
+    {
+     "it": "Ha fame.",
+     "es": "Tiene hambre."
+    },
+    {
+     "it": "Vuole il pesce.",
+     "es": "Quiere el pescado."
+    },
+    {
+     "it": "Ma sul tavolo non c'è il pesce.",
+     "es": "Pero sobre la mesa no hay pescado."
+    },
+    {
+     "it": "C'è solo il latte.",
+     "es": "Solo hay leche."
+    },
+    {
+     "it": "Il gatto beve il latte.",
+     "es": "El gato toma la leche."
+    },
+    {
+     "it": "Poi va in giardino.",
+     "es": "Después va al jardín."
+    },
+    {
+     "it": "In giardino c'è un uccello.",
+     "es": "En el jardín hay un pájaro."
+    },
+    {
+     "it": "Il gatto guarda l'uccello.",
+     "es": "El gato mira al pájaro."
+    },
+    {
+     "it": "L'uccello vola via.",
+     "es": "El pájaro se vuela."
+    },
+    {
+     "it": "Adesso il gatto ha sonno.",
+     "es": "Ahora el gato tiene sueño."
+    },
+    {
+     "it": "Torna a casa e dorme sulla sedia.",
+     "es": "Vuelve a casa y duerme en la silla."
+    }
+   ]
+  },
+  {
+   "id": "un-giorno-a-roma",
+   "titulo": "Un giorno a Roma",
+   "titulo_es": "Un día en Roma",
+   "nivel": 2,
+   "tema": "italia",
+   "vocabulario": [
+    {
+     "it": "oggi",
+     "es": "hoy"
+    },
+    {
+     "it": "va",
+     "es": "va"
+    },
+    {
+     "it": "prende",
+     "es": "agarra, toma"
+    },
+    {
+     "it": "otto",
+     "es": "ocho"
+    },
+    {
+     "it": "viaggio",
+     "es": "viaje"
+    },
+    {
+     "it": "lungo/lunga",
+     "es": "largo, larga"
+    },
+    {
+     "it": "arriva",
+     "es": "llega"
+    },
+    {
+     "it": "stazione",
+     "es": "estación"
+    },
+    {
+     "it": "azzurro",
+     "es": "celeste"
+    },
+    {
+     "it": "centro",
+     "es": "centro"
+    },
+    {
+     "it": "a piedi",
+     "es": "a pie"
+    },
+    {
+     "it": "antica",
+     "es": "antigua"
+    },
+    {
+     "it": "sete",
+     "es": "sed"
+    },
+    {
+     "it": "un po'",
+     "es": "un poco"
+    },
+    {
+     "it": "beve",
+     "es": "bebe, toma"
+    },
+    {
+     "it": "poi",
+     "es": "después"
+    },
+    {
+     "it": "buono/buona",
+     "es": "bueno, rico"
+    },
+    {
+     "it": "stanco/stanca",
+     "es": "cansado, cansada"
+    },
+    {
+     "it": "contento/contenta",
+     "es": "contento, contenta"
+    },
+    {
+     "it": "bella",
+     "es": "linda"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Oggi Marco va a Roma.",
+     "es": "Hoy Marco va a Roma."
+    },
+    {
+     "it": "Prende il treno alle otto.",
+     "es": "Toma el tren a las ocho."
+    },
+    {
+     "it": "Il viaggio è lungo.",
+     "es": "El viaje es largo."
+    },
+    {
+     "it": "Arriva alla stazione di Roma.",
+     "es": "Llega a la estación de Roma."
+    },
+    {
+     "it": "Il cielo è azzurro e c'è il sole.",
+     "es": "El cielo está celeste y hay sol."
+    },
+    {
+     "it": "Marco va in centro a piedi.",
+     "es": "Marco va al centro a pie."
+    },
+    {
+     "it": "In piazza c'è una chiesa antica.",
+     "es": "En la plaza hay una iglesia antigua."
+    },
+    {
+     "it": "Marco ha sete.",
+     "es": "Marco tiene sed."
+    },
+    {
+     "it": "Beve un po' d'acqua.",
+     "es": "Toma un poco de agua."
+    },
+    {
+     "it": "Poi vuole un gelato.",
+     "es": "Después quiere un helado."
+    },
+    {
+     "it": "Il gelato al limone è buono.",
+     "es": "El helado de limón está rico."
+    },
+    {
+     "it": "Marco è stanco ma contento.",
+     "es": "Marco está cansado pero contento."
+    },
+    {
+     "it": "Roma è bella.",
+     "es": "Roma es linda."
+    }
+   ]
+  },
+  {
+   "id": "la-pizza-a-napoli",
+   "titulo": "La pizza a Napoli",
+   "titulo_es": "La pizza en Nápoles",
+   "nivel": 2,
+   "tema": "italia",
+   "vocabulario": [
+    {
+     "it": "ristorante",
+     "es": "restaurante"
+    },
+    {
+     "it": "famosa",
+     "es": "famosa"
+    },
+    {
+     "it": "cameriere",
+     "es": "mozo"
+    },
+    {
+     "it": "porta",
+     "es": "trae"
+    },
+    {
+     "it": "guarda",
+     "es": "mira"
+    },
+    {
+     "it": "alto/alta",
+     "es": "alto, alta"
+    },
+    {
+     "it": "domani",
+     "es": "mañana"
+    },
+    {
+     "it": "tornare",
+     "es": "volver"
+    },
+    {
+     "it": "caldo/calda",
+     "es": "caliente"
+    },
+    {
+     "it": "buono/buona",
+     "es": "bueno, rico"
+    },
+    {
+     "it": "contento/contenta",
+     "es": "contento, contenta"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Napoli è una città sul mare.",
+     "es": "Nápoles es una ciudad sobre el mar."
+    },
+    {
+     "it": "Marco e Anna sono al ristorante.",
+     "es": "Marco y Anna están en el restaurante."
+    },
+    {
+     "it": "Vogliono una pizza.",
+     "es": "Quieren una pizza."
+    },
+    {
+     "it": "La pizza di Napoli è famosa.",
+     "es": "La pizza de Nápoles es famosa."
+    },
+    {
+     "it": "Ha il pomodoro e il formaggio.",
+     "es": "Tiene tomate y queso."
+    },
+    {
+     "it": "Il cameriere porta le pizze.",
+     "es": "El mozo trae las pizzas."
+    },
+    {
+     "it": "Sul tavolo c'è una bottiglia di vino.",
+     "es": "Sobre la mesa hay una botella de vino."
+    },
+    {
+     "it": "La pizza è calda e buona.",
+     "es": "La pizza está caliente y rica."
+    },
+    {
+     "it": "Anna è contenta.",
+     "es": "Anna está contenta."
+    },
+    {
+     "it": "Dalla finestra Marco guarda il mare.",
+     "es": "Desde la ventana Marco mira el mar."
+    },
+    {
+     "it": "Il prezzo non è alto.",
+     "es": "El precio no es alto."
+    },
+    {
+     "it": "Domani vogliono tornare.",
+     "es": "Mañana quieren volver."
+    }
+   ]
+  },
+  {
+   "id": "il-primo-giorno-di-lavoro",
+   "titulo": "Il primo giorno di lavoro",
+   "titulo_es": "El primer día de trabajo",
+   "nivel": 2,
+   "tema": "trabajo",
+   "vocabulario": [
+    {
+     "it": "oggi",
+     "es": "hoy"
+    },
+    {
+     "it": "primo",
+     "es": "primer, primero"
+    },
+    {
+     "it": "centro",
+     "es": "centro"
+    },
+    {
+     "it": "arriva",
+     "es": "llega"
+    },
+    {
+     "it": "nove",
+     "es": "nueve"
+    },
+    {
+     "it": "aperta",
+     "es": "abierta"
+    },
+    {
+     "it": "dentro",
+     "es": "adentro"
+    },
+    {
+     "it": "ci sono",
+     "es": "hay (plural)"
+    },
+    {
+     "it": "molti/molte",
+     "es": "muchos, muchas"
+    },
+    {
+     "it": "capo",
+     "es": "jefe"
+    },
+    {
+     "it": "si chiama",
+     "es": "se llama"
+    },
+    {
+     "it": "simpatico",
+     "es": "simpático"
+    },
+    {
+     "it": "interessante",
+     "es": "interesante"
+    },
+    {
+     "it": "fine",
+     "es": "final"
+    },
+    {
+     "it": "stanco/stanca",
+     "es": "cansado, cansada"
+    },
+    {
+     "it": "contento/contenta",
+     "es": "contento, contenta"
+    },
+    {
+     "it": "buono/buona",
+     "es": "bueno, rico"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Oggi è il primo giorno di lavoro di Anna.",
+     "es": "Hoy es el primer día de trabajo de Anna."
+    },
+    {
+     "it": "L'ufficio è in centro.",
+     "es": "La oficina está en el centro."
+    },
+    {
+     "it": "Anna arriva alle nove.",
+     "es": "Anna llega a las nueve."
+    },
+    {
+     "it": "La porta è aperta.",
+     "es": "La puerta está abierta."
+    },
+    {
+     "it": "Dentro c'è un tavolo con un telefono.",
+     "es": "Adentro hay una mesa con un teléfono."
+    },
+    {
+     "it": "Sullo scaffale ci sono molti quaderni.",
+     "es": "Sobre el estante hay muchos cuadernos."
+    },
+    {
+     "it": "Il capo si chiama Luca.",
+     "es": "El jefe se llama Luca."
+    },
+    {
+     "it": "Luca è simpatico.",
+     "es": "Luca es simpático."
+    },
+    {
+     "it": "Anna vuole un caffè.",
+     "es": "Anna quiere un café."
+    },
+    {
+     "it": "Il caffè dell'ufficio non è buono.",
+     "es": "El café de la oficina no es bueno."
+    },
+    {
+     "it": "Ma il lavoro è interessante.",
+     "es": "Pero el trabajo es interesante."
+    },
+    {
+     "it": "Alla fine del giorno Anna è stanca.",
+     "es": "Al final del día Anna está cansada."
+    },
+    {
+     "it": "Ma è contenta.",
+     "es": "Pero está contenta."
+    }
+   ]
+  },
+  {
+   "id": "il-lavoro-di-marco",
+   "titulo": "Il lavoro di Marco",
+   "titulo_es": "El trabajo de Marco",
+   "nivel": 3,
+   "tema": "trabajo",
+   "vocabulario": [
+    {
+     "it": "lavora",
+     "es": "trabaja"
+    },
+    {
+     "it": "ogni",
+     "es": "cada"
+    },
+    {
+     "it": "prende",
+     "es": "agarra, toma"
+    },
+    {
+     "it": "stazione",
+     "es": "estación"
+    },
+    {
+     "it": "vicino",
+     "es": "cerca"
+    },
+    {
+     "it": "poi",
+     "es": "después"
+    },
+    {
+     "it": "molto/molta",
+     "es": "mucho, mucha"
+    },
+    {
+     "it": "deve",
+     "es": "debe, tiene que"
+    },
+    {
+     "it": "rispondere",
+     "es": "contestar"
+    },
+    {
+     "it": "scrive",
+     "es": "escribe"
+    },
+    {
+     "it": "clienti",
+     "es": "clientes"
+    },
+    {
+     "it": "mezzogiorno",
+     "es": "mediodía"
+    },
+    {
+     "it": "mangia",
+     "es": "come"
+    },
+    {
+     "it": "beve",
+     "es": "bebe, toma"
+    },
+    {
+     "it": "colleghi",
+     "es": "compañeros de trabajo"
+    },
+    {
+     "it": "sei",
+     "es": "seis"
+    },
+    {
+     "it": "torna",
+     "es": "vuelve"
+    },
+    {
+     "it": "domani",
+     "es": "mañana"
+    },
+    {
+     "it": "sabato",
+     "es": "sábado"
+    },
+    {
+     "it": "lavorare",
+     "es": "trabajar"
+    },
+    {
+     "it": "stanco/stanca",
+     "es": "cansado, cansada"
+    },
+    {
+     "it": "contento/contenta",
+     "es": "contento, contenta"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Marco lavora in un ufficio in città.",
+     "es": "Marco trabaja en una oficina en la ciudad."
+    },
+    {
+     "it": "Ogni mattina prende l'autobus.",
+     "es": "Cada mañana toma el colectivo."
+    },
+    {
+     "it": "L'ufficio è vicino alla stazione.",
+     "es": "La oficina está cerca de la estación."
+    },
+    {
+     "it": "Marco ha molto lavoro.",
+     "es": "Marco tiene mucho trabajo."
+    },
+    {
+     "it": "Deve rispondere al telefono.",
+     "es": "Tiene que contestar el teléfono."
+    },
+    {
+     "it": "Scrive lettere ai clienti.",
+     "es": "Escribe cartas a los clientes."
+    },
+    {
+     "it": "A mezzogiorno mangia un panino.",
+     "es": "Al mediodía come un sándwich."
+    },
+    {
+     "it": "Poi beve un caffè con i colleghi.",
+     "es": "Después toma un café con los compañeros."
+    },
+    {
+     "it": "Alle sei torna a casa.",
+     "es": "A las seis vuelve a casa."
+    },
+    {
+     "it": "È stanco ma contento.",
+     "es": "Está cansado pero contento."
+    },
+    {
+     "it": "Domani è sabato.",
+     "es": "Mañana es sábado."
+    },
+    {
+     "it": "Non deve lavorare.",
+     "es": "No tiene que trabajar."
+    }
+   ]
+  }
+ ]
+}

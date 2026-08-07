@@ -66,14 +66,21 @@ void main() {
     expect(find.text('Cargando verbos...'), findsOneWidget);
   });
 
-  testWidgets('Racconti y Chat avisan que todavía no están',
+  testWidgets('Racconti entra a los cuentos, no al cartel',
       (WidgetTester tester) async {
     usarPantallaDeCelular(tester);
     await tester.pumpWidget(const TukylianoApp());
     await tester.pumpAndSettle();
 
     await _tocar(tester, 'Racconti');
-    expect(find.text('Próximamente'), findsOneWidget);
+    expect(find.text('Próximamente'), findsNothing);
+    expect(find.text('Cargando verbos...'), findsNothing);
+  });
+
+  testWidgets('Chat avisa que todavía no está', (WidgetTester tester) async {
+    usarPantallaDeCelular(tester);
+    await tester.pumpWidget(const TukylianoApp());
+    await tester.pumpAndSettle();
 
     await _tocar(tester, 'Chat');
     expect(find.text('Próximamente'), findsOneWidget);
