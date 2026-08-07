@@ -39,6 +39,16 @@ const String urlPreposizioniRemoto =
 /// Copia escribible de las preposiciones en el celular.
 const String archivoPreposizioniLocal = 'preposizioni.json';
 
+/// Cuentos para leer que vienen con la app.
+const String assetRacconti = 'assets/racconti.json';
+
+/// Los mismos, en GitHub: agregar cuentos no necesita un APK nuevo.
+const String urlRaccontiRemoto =
+    'https://raw.githubusercontent.com/gmatiascr62/tukylingo_repo/main/racconti.json';
+
+/// Copia escribible de los cuentos en el celular.
+const String archivoRaccontiLocal = 'racconti.json';
+
 /// Archivo escribible donde se guardan los verbos ya actualizados.
 const String archivoVerbosLocal = 'verbos_local.json';
 

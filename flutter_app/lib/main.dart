@@ -5,12 +5,14 @@ import 'datos/almacenamiento_clave.dart';
 import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
 import 'datos/repositorio_preposizioni.dart';
+import 'datos/repositorio_racconti.dart';
 import 'datos/repositorio_verbos.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_preposizioni.dart';
 import 'pantallas/pantalla_quiz.dart';
+import 'pantallas/pantalla_racconti.dart';
 import 'pantallas/pantalla_seleccion.dart';
 import 'tema.dart';
 import 'widgets/barra_superior.dart';
@@ -28,6 +30,7 @@ class TukylianoApp extends StatelessWidget {
     this.frasesLocales,
     this.articoli,
     this.preposizioni,
+    this.racconti,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
@@ -36,6 +39,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioFrases? frasesLocales;
   final RepositorioArticoli? articoli;
   final RepositorioPreposizioni? preposizioni;
+  final RepositorioRacconti? racconti;
 
   @override
   Widget build(BuildContext context) {
@@ -49,6 +53,7 @@ class TukylianoApp extends StatelessWidget {
         frasesLocales: frasesLocales,
         articoli: articoli,
         preposizioni: preposizioni,
+        racconti: racconti,
       ),
     );
   }
@@ -64,6 +69,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.frasesLocales,
     this.articoli,
     this.preposizioni,
+    this.racconti,
   });
 
   final AlmacenamientoClave? almacenClave;
@@ -71,6 +77,7 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioFrases? frasesLocales;
   final RepositorioArticoli? articoli;
   final RepositorioPreposizioni? preposizioni;
+  final RepositorioRacconti? racconti;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -85,6 +92,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       widget.articoli ?? RepositorioArticoli();
   late final RepositorioPreposizioni _preposizioni =
       widget.preposizioni ?? RepositorioPreposizioni();
+  late final RepositorioRacconti _racconti =
+      widget.racconti ?? RepositorioRacconti();
   late final AlmacenamientoClave _almacenClave =
       widget.almacenClave ?? AlmacenamientoClave();
 
@@ -121,6 +130,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     _cargarFrases();
     _cargarArticoli();
     _cargarPreposizioni();
+    _cargarRacconti();
     _borrarClaveVieja();
   }
 
@@ -147,6 +157,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   Future<void> _cargarPreposizioni() async {
     await _preposizioni.cargar();
     await _preposizioni.verificarActualizacion();
+  }
+
+  /// Igual que el resto.
+  Future<void> _cargarRacconti() async {
+    await _racconti.cargar();
+    await _racconti.verificarActualizacion();
   }
 
   Future<void> _cargarDatos() async {
@@ -246,11 +262,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.preposizioni:
         return PantallaPreposizioni(repositorio: _preposizioni);
       case Seccion.racconti:
-        return const Proximamente(
-          icono: Icons.auto_stories_outlined,
-          detalle: 'Cuentos en italiano para leer y traducir, con la '
-              'corrección palabra por palabra.',
-        );
+        return PantallaRacconti(repositorio: _racconti);
       case Seccion.chat:
         return const Proximamente(
           icono: Icons.chat_bubble_outline,
