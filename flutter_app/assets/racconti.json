@@ -1,5 +1,5 @@
 {
- "version": 2,
+ "version": 3,
  "nombres": [
   "Marco",
   "Anna",
@@ -11,7 +11,8 @@
   "Capri",
   "Amalfi",
   "Amalfitana",
-  "Ravello"
+  "Ravello",
+  "Paolo"
  ],
  "vocabulario_comun": [
   {
@@ -1338,6 +1339,485 @@
     {
      "it": "Anna sorride.",
      "es": "Anna sonríe."
+    }
+   ]
+  },
+  {
+   "id": "una-telefonata",
+   "titulo": "Una telefonata",
+   "titulo_es": "Un llamado",
+   "nivel": 5,
+   "tema": "cotidiano",
+   "vocabulario": [
+    {
+     "it": "pronto",
+     "es": "¿hola? (solo al atender el teléfono)"
+    },
+    {
+     "it": "ciao",
+     "es": "hola, chau"
+    },
+    {
+     "it": "come stai",
+     "es": "cómo andás"
+    },
+    {
+     "it": "bene",
+     "es": "bien"
+    },
+    {
+     "it": "grazie",
+     "es": "gracias"
+    },
+    {
+     "it": "tu",
+     "es": "vos"
+    },
+    {
+     "it": "stanco",
+     "es": "cansado"
+    },
+    {
+     "it": "molto",
+     "es": "mucho"
+    },
+    {
+     "it": "anche",
+     "es": "también"
+    },
+    {
+     "it": "io",
+     "es": "yo"
+    },
+    {
+     "it": "sabato",
+     "es": "sábado"
+    },
+    {
+     "it": "lavoro",
+     "es": "trabajo (yo)"
+    },
+    {
+     "it": "beato te",
+     "es": "qué suerte la tuya"
+    },
+    {
+     "it": "senti",
+     "es": "escuchá, mirá"
+    },
+    {
+     "it": "cosa",
+     "es": "qué, cosa"
+    },
+    {
+     "it": "fai",
+     "es": "hacés"
+    },
+    {
+     "it": "no",
+     "es": "no"
+    },
+    {
+     "it": "ah",
+     "es": "ah"
+    },
+    {
+     "it": "sera",
+     "es": "noche, tardecita"
+    },
+    {
+     "it": "niente",
+     "es": "nada"
+    },
+    {
+     "it": "perché",
+     "es": "por qué, porque"
+    },
+    {
+     "it": "cena",
+     "es": "cena"
+    },
+    {
+     "it": "mia/mio",
+     "es": "mi"
+    },
+    {
+     "it": "che bello",
+     "es": "qué bueno"
+    },
+    {
+     "it": "ora",
+     "es": "hora"
+    },
+    {
+     "it": "otto",
+     "es": "ocho"
+    },
+    {
+     "it": "chi",
+     "es": "quién"
+    },
+    {
+     "it": "viene",
+     "es": "viene"
+    },
+    {
+     "it": "sua",
+     "es": "su"
+    },
+    {
+     "it": "porto",
+     "es": "llevo"
+    },
+    {
+     "it": "compro",
+     "es": "compro"
+    },
+    {
+     "it": "allora",
+     "es": "entonces"
+    },
+    {
+     "it": "perfetto",
+     "es": "perfecto"
+    },
+    {
+     "it": "sì",
+     "es": "sí"
+    },
+    {
+     "it": "ottimo",
+     "es": "buenísimo"
+    },
+    {
+     "it": "piace",
+     "es": "gusta"
+    },
+    {
+     "it": "dove",
+     "es": "dónde"
+    },
+    {
+     "it": "abiti",
+     "es": "vivís"
+    },
+    {
+     "it": "adesso",
+     "es": "ahora"
+    },
+    {
+     "it": "via",
+     "es": "calle"
+    },
+    {
+     "it": "dodici",
+     "es": "doce"
+    },
+    {
+     "it": "lontano",
+     "es": "lejos"
+    },
+    {
+     "it": "stazione",
+     "es": "estación"
+    },
+    {
+     "it": "vicino",
+     "es": "cerca"
+    },
+    {
+     "it": "prendo",
+     "es": "tomo"
+    },
+    {
+     "it": "appartamento",
+     "es": "departamento"
+    },
+    {
+     "it": "terzo",
+     "es": "tercer"
+    },
+    {
+     "it": "piano",
+     "es": "piso"
+    },
+    {
+     "it": "ascensore",
+     "es": "ascensor"
+    },
+    {
+     "it": "novanta",
+     "es": "noventa"
+    },
+    {
+     "it": "gradini",
+     "es": "escalones"
+    },
+    {
+     "it": "va bene",
+     "es": "dale, está bien"
+    },
+    {
+     "it": "altra",
+     "es": "otra"
+    },
+    {
+     "it": "dimmi",
+     "es": "decime"
+    },
+    {
+     "it": "puoi",
+     "es": "podés"
+    },
+    {
+     "it": "venire",
+     "es": "venir"
+    },
+    {
+     "it": "un po'",
+     "es": "un poco"
+    },
+    {
+     "it": "prima",
+     "es": "antes"
+    },
+    {
+     "it": "certo",
+     "es": "claro"
+    },
+    {
+     "it": "solo",
+     "es": "solo"
+    },
+    {
+     "it": "vengo",
+     "es": "voy, vengo"
+    },
+    {
+     "it": "sette",
+     "es": "siete"
+    },
+    {
+     "it": "questa",
+     "es": "esta"
+    },
+    {
+     "it": "compleanno",
+     "es": "cumpleaños"
+    },
+    {
+     "it": "tuo",
+     "es": "tu"
+    },
+    {
+     "it": "ricordi",
+     "es": "te acordás"
+    },
+    {
+     "it": "ricordo",
+     "es": "me acuerdo"
+    },
+    {
+     "it": "tutto",
+     "es": "todo"
+    },
+    {
+     "it": "ci vediamo",
+     "es": "nos vemos"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Paolo: Pronto?",
+     "es": "Paolo: ¿Hola?"
+    },
+    {
+     "it": "Marco: Ciao Paolo! Come stai?",
+     "es": "Marco: ¡Hola Paolo! ¿Cómo andás?"
+    },
+    {
+     "it": "Paolo: Bene, grazie. E tu?",
+     "es": "Paolo: Bien, gracias. ¿Y vos?"
+    },
+    {
+     "it": "Marco: Sono stanco. Ho molto lavoro.",
+     "es": "Marco: Estoy cansado. Tengo mucho trabajo."
+    },
+    {
+     "it": "Paolo: Anche io. Ma sabato non lavoro.",
+     "es": "Paolo: Yo también. Pero el sábado no trabajo."
+    },
+    {
+     "it": "Marco: Beato te.",
+     "es": "Marco: Qué suerte la tuya."
+    },
+    {
+     "it": "Paolo: Senti, cosa fai sabato sera?",
+     "es": "Paolo: Escuchá, ¿qué hacés el sábado a la noche?"
+    },
+    {
+     "it": "Marco: Niente. Perché?",
+     "es": "Marco: Nada. ¿Por qué?"
+    },
+    {
+     "it": "Paolo: Faccio una cena a casa mia.",
+     "es": "Paolo: Hago una cena en mi casa."
+    },
+    {
+     "it": "Marco: Che bello! A che ora?",
+     "es": "Marco: ¡Qué bueno! ¿A qué hora?"
+    },
+    {
+     "it": "Paolo: Alle otto.",
+     "es": "Paolo: A las ocho."
+    },
+    {
+     "it": "Marco: Chi viene?",
+     "es": "Marco: ¿Quién viene?"
+    },
+    {
+     "it": "Paolo: Luca, Anna e sua sorella.",
+     "es": "Paolo: Luca, Anna y la hermana."
+    },
+    {
+     "it": "Marco: Anche Anna? Bene!",
+     "es": "Marco: ¿Anna también? ¡Bien!"
+    },
+    {
+     "it": "Paolo: Perché «bene»?",
+     "es": "Paolo: ¿Por qué «bien»?"
+    },
+    {
+     "it": "Marco: Per niente. Cosa porto?",
+     "es": "Marco: Por nada. ¿Qué llevo?"
+    },
+    {
+     "it": "Paolo: Il vino lo compro io.",
+     "es": "Paolo: El vino lo compro yo."
+    },
+    {
+     "it": "Marco: Allora porto il dolce.",
+     "es": "Marco: Entonces llevo el postre."
+    },
+    {
+     "it": "Paolo: Perfetto. Una torta?",
+     "es": "Paolo: Perfecto. ¿Una torta?"
+    },
+    {
+     "it": "Marco: Sì, una torta al cioccolato.",
+     "es": "Marco: Sí, una torta de chocolate."
+    },
+    {
+     "it": "Paolo: Ottimo. A Luca piace il cioccolato.",
+     "es": "Paolo: Buenísimo. A Luca le gusta el chocolate."
+    },
+    {
+     "it": "Marco: E dove abiti adesso?",
+     "es": "Marco: ¿Y dónde vivís ahora?"
+    },
+    {
+     "it": "Paolo: In via Roma, numero dodici.",
+     "es": "Paolo: En la calle Roma, número doce."
+    },
+    {
+     "it": "Marco: È lontano dalla stazione?",
+     "es": "Marco: ¿Está lejos de la estación?"
+    },
+    {
+     "it": "Paolo: No, è molto vicino.",
+     "es": "Paolo: No, está muy cerca."
+    },
+    {
+     "it": "Marco: Bene, prendo il treno.",
+     "es": "Marco: Bien, tomo el tren."
+    },
+    {
+     "it": "Paolo: L'appartamento è al terzo piano.",
+     "es": "Paolo: El departamento está en el tercer piso."
+    },
+    {
+     "it": "Marco: C'è l'ascensore?",
+     "es": "Marco: ¿Hay ascensor?"
+    },
+    {
+     "it": "Paolo: No. Sono novanta gradini.",
+     "es": "Paolo: No. Son noventa escalones."
+    },
+    {
+     "it": "Marco: Con la torta?",
+     "es": "Marco: ¿Con la torta?"
+    },
+    {
+     "it": "Paolo: Sì, con la torta.",
+     "es": "Paolo: Sí, con la torta."
+    },
+    {
+     "it": "Marco: Va bene, va bene.",
+     "es": "Marco: Dale, dale."
+    },
+    {
+     "it": "Paolo: Ah, un'altra cosa.",
+     "es": "Paolo: Ah, otra cosa."
+    },
+    {
+     "it": "Marco: Dimmi.",
+     "es": "Marco: Decime."
+    },
+    {
+     "it": "Paolo: Puoi venire un po' prima?",
+     "es": "Paolo: ¿Podés venir un poco antes?"
+    },
+    {
+     "it": "Marco: Certo. Perché?",
+     "es": "Marco: Claro. ¿Por qué?"
+    },
+    {
+     "it": "Paolo: Per la cucina. Sono solo.",
+     "es": "Paolo: Por la cocina. Estoy solo."
+    },
+    {
+     "it": "Marco: Va bene. Vengo alle sette.",
+     "es": "Marco: Dale. Voy a las siete."
+    },
+    {
+     "it": "Paolo: Grazie, sei un amico.",
+     "es": "Paolo: Gracias, sos un amigo."
+    },
+    {
+     "it": "Marco: Senti, una domanda.",
+     "es": "Marco: Escuchá, una pregunta."
+    },
+    {
+     "it": "Paolo: Sì?",
+     "es": "Paolo: ¿Sí?"
+    },
+    {
+     "it": "Marco: Perché fai questa cena?",
+     "es": "Marco: ¿Por qué hacés esta cena?"
+    },
+    {
+     "it": "Paolo: Come perché? È il mio compleanno.",
+     "es": "Paolo: ¿Cómo por qué? Es mi cumpleaños."
+    },
+    {
+     "it": "Marco: Il tuo compleanno! Certo!",
+     "es": "Marco: ¡Tu cumpleaños! ¡Claro!"
+    },
+    {
+     "it": "Paolo: Tu non ricordi niente.",
+     "es": "Paolo: Vos no te acordás de nada."
+    },
+    {
+     "it": "Marco: Ricordo tutto!",
+     "es": "Marco: ¡Me acuerdo de todo!"
+    },
+    {
+     "it": "Paolo: Marco...",
+     "es": "Paolo: Marco..."
+    },
+    {
+     "it": "Marco: ...Ci vediamo sabato, Paolo.",
+     "es": "Marco: ...Nos vemos el sábado, Paolo."
     }
    ]
   }
