@@ -148,11 +148,22 @@ void main() {
       expect(ids.toSet().length, ids.length);
     });
 
-    test('los cuentos son cortos, para poder leerlos de una', () {
+    test('ningún cuento es demasiado corto ni interminable', () {
+      // Con menos de ocho renglones no es un cuento, es un ejemplo. El techo
+      // es alto a propósito: los largos son justamente los que valen la pena
+      // cuando ya se lee un poco, pero sin scroll infinito.
       for (final r in _datos.racconti) {
         expect(r.lineas.length, greaterThanOrEqualTo(8), reason: r.id);
-        expect(r.lineas.length, lessThanOrEqualTo(25), reason: r.id);
+        expect(r.lineas.length, lessThanOrEqualTo(60), reason: r.id);
       }
+    });
+
+    test('hay al menos un cuento largo y uno corto', () {
+      // Si se fueran todos para el mismo lado, no habría por dónde empezar
+      // ni adónde llegar.
+      final largos = _datos.racconti.map((r) => r.lineas.length);
+      expect(largos.reduce((a, b) => a < b ? a : b), lessThanOrEqualTo(15));
+      expect(largos.reduce((a, b) => a > b ? a : b), greaterThanOrEqualTo(30));
     });
 
     test('vienen ordenados de más fácil a más difícil', () {

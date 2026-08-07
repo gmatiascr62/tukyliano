@@ -1,11 +1,17 @@
 {
- "version": 1,
+ "version": 2,
  "nombres": [
   "Marco",
   "Anna",
   "Luca",
   "Roma",
-  "Napoli"
+  "Napoli",
+  "Italia",
+  "Positano",
+  "Capri",
+  "Amalfi",
+  "Amalfitana",
+  "Ravello"
  ],
  "vocabulario_comun": [
   {
@@ -813,6 +819,525 @@
     {
      "it": "Non deve lavorare.",
      "es": "No tiene que trabajar."
+    }
+   ]
+  },
+  {
+   "id": "una-settimana-in-costiera",
+   "titulo": "Una settimana in Costiera Amalfitana",
+   "titulo_es": "Una semana en la Costa Amalfitana",
+   "nivel": 4,
+   "tema": "italia",
+   "vocabulario": [
+    {
+     "it": "vacanza",
+     "es": "vacaciones"
+    },
+    {
+     "it": "vedere",
+     "es": "ver"
+    },
+    {
+     "it": "costiera",
+     "es": "costa"
+    },
+    {
+     "it": "prendono",
+     "es": "toman, piden"
+    },
+    {
+     "it": "prende",
+     "es": "toma, pide"
+    },
+    {
+     "it": "viaggio",
+     "es": "viaje"
+    },
+    {
+     "it": "dura",
+     "es": "dura"
+    },
+    {
+     "it": "due",
+     "es": "dos"
+    },
+    {
+     "it": "stretta",
+     "es": "angosta"
+    },
+    {
+     "it": "piena",
+     "es": "llena"
+    },
+    {
+     "it": "curve",
+     "es": "curvas"
+    },
+    {
+     "it": "parte",
+     "es": "lado"
+    },
+    {
+     "it": "altra",
+     "es": "otra"
+    },
+    {
+     "it": "paura",
+     "es": "miedo"
+    },
+    {
+     "it": "un po'",
+     "es": "un poco"
+    },
+    {
+     "it": "incredibile",
+     "es": "increíble"
+    },
+    {
+     "it": "dopo",
+     "es": "después"
+    },
+    {
+     "it": "arrivano",
+     "es": "llegan"
+    },
+    {
+     "it": "scogliera",
+     "es": "acantilado"
+    },
+    {
+     "it": "rosa",
+     "es": "rosas"
+    },
+    {
+     "it": "gialle",
+     "es": "amarillas"
+    },
+    {
+     "it": "bianche",
+     "es": "blancas"
+    },
+    {
+     "it": "sembrano",
+     "es": "parecen"
+    },
+    {
+     "it": "scala",
+     "es": "escalera"
+    },
+    {
+     "it": "verso",
+     "es": "hacia"
+    },
+    {
+     "it": "piccolo/piccola",
+     "es": "chico, chica"
+    },
+    {
+     "it": "bello/bella",
+     "es": "lindo, linda"
+    },
+    {
+     "it": "si vede",
+     "es": "se ve"
+    },
+    {
+     "it": "tutto/tutta",
+     "es": "todo, toda"
+    },
+    {
+     "it": "golfo",
+     "es": "golfo"
+    },
+    {
+     "it": "prima",
+     "es": "primera"
+    },
+    {
+     "it": "sera",
+     "es": "noche, tardecita"
+    },
+    {
+     "it": "mangiano",
+     "es": "comen"
+    },
+    {
+     "it": "ristorante",
+     "es": "restaurante"
+    },
+    {
+     "it": "bianco",
+     "es": "blanco"
+    },
+    {
+     "it": "freddo/fredda",
+     "es": "frío, fría"
+    },
+    {
+     "it": "buono/buona",
+     "es": "bueno, rico"
+    },
+    {
+     "it": "fine",
+     "es": "final"
+    },
+    {
+     "it": "arriva",
+     "es": "llega"
+    },
+    {
+     "it": "limoncello",
+     "es": "limoncello"
+    },
+    {
+     "it": "fortissimo",
+     "es": "fortísimo"
+    },
+    {
+     "it": "vanno",
+     "es": "van"
+    },
+    {
+     "it": "spiaggia",
+     "es": "playa"
+    },
+    {
+     "it": "pulita",
+     "es": "limpia"
+    },
+    {
+     "it": "forte",
+     "es": "fuerte"
+    },
+    {
+     "it": "dorme",
+     "es": "duerme"
+    },
+    {
+     "it": "sotto",
+     "es": "abajo de"
+    },
+    {
+     "it": "ombrellone",
+     "es": "sombrilla"
+    },
+    {
+     "it": "guarda",
+     "es": "mira"
+    },
+    {
+     "it": "barca/barche",
+     "es": "barco, barcos"
+    },
+    {
+     "it": "mercoledì",
+     "es": "miércoles"
+    },
+    {
+     "it": "turisti",
+     "es": "turistas"
+    },
+    {
+     "it": "azzurra",
+     "es": "celeste"
+    },
+    {
+     "it": "come",
+     "es": "como"
+    },
+    {
+     "it": "giovedì",
+     "es": "jueves"
+    },
+    {
+     "it": "visitano",
+     "es": "visitan"
+    },
+    {
+     "it": "cima",
+     "es": "cima, arriba"
+    },
+    {
+     "it": "lunga",
+     "es": "larga"
+    },
+    {
+     "it": "conta",
+     "es": "cuenta"
+    },
+    {
+     "it": "gradini",
+     "es": "escalones"
+    },
+    {
+     "it": "sessantadue",
+     "es": "sesenta y dos"
+    },
+    {
+     "it": "stanca",
+     "es": "cansada"
+    },
+    {
+     "it": "contenta",
+     "es": "contenta"
+    },
+    {
+     "it": "venerdì",
+     "es": "viernes"
+    },
+    {
+     "it": "giardino",
+     "es": "jardín"
+    },
+    {
+     "it": "sopra",
+     "es": "arriba de"
+    },
+    {
+     "it": "lì",
+     "es": "ahí"
+    },
+    {
+     "it": "costa",
+     "es": "costa"
+    },
+    {
+     "it": "dice",
+     "es": "dice"
+    },
+    {
+     "it": "più",
+     "es": "más"
+    },
+    {
+     "it": "ultima",
+     "es": "última"
+    },
+    {
+     "it": "compra",
+     "es": "compra"
+    },
+    {
+     "it": "grandi",
+     "es": "grandes"
+    },
+    {
+     "it": "profumo",
+     "es": "perfume"
+    },
+    {
+     "it": "triste",
+     "es": "triste"
+    },
+    {
+     "it": "tornare",
+     "es": "volver"
+    },
+    {
+     "it": "cosa",
+     "es": "cosa"
+    },
+    {
+     "it": "anno",
+     "es": "año"
+    },
+    {
+     "it": "prossimo",
+     "es": "que viene, próximo"
+    },
+    {
+     "it": "torniamo",
+     "es": "volvemos"
+    },
+    {
+     "it": "sorride",
+     "es": "sonríe"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Marco e Anna sono in vacanza.",
+     "es": "Marco y Anna están de vacaciones."
+    },
+    {
+     "it": "Vogliono vedere la Costiera Amalfitana.",
+     "es": "Quieren ver la Costa Amalfitana."
+    },
+    {
+     "it": "Prendono il treno da Roma a Napoli.",
+     "es": "Toman el tren de Roma a Nápoles."
+    },
+    {
+     "it": "Il viaggio dura due ore.",
+     "es": "El viaje dura dos horas."
+    },
+    {
+     "it": "A Napoli prendono l'autobus.",
+     "es": "En Nápoles toman el colectivo."
+    },
+    {
+     "it": "La strada è stretta e piena di curve.",
+     "es": "El camino es angosto y lleno de curvas."
+    },
+    {
+     "it": "Da una parte c'è la montagna.",
+     "es": "De un lado está la montaña."
+    },
+    {
+     "it": "Dall'altra parte c'è il mare.",
+     "es": "Del otro lado está el mar."
+    },
+    {
+     "it": "Anna ha un po' di paura.",
+     "es": "Anna tiene un poco de miedo."
+    },
+    {
+     "it": "Ma il posto è incredibile.",
+     "es": "Pero el lugar es increíble."
+    },
+    {
+     "it": "Dopo un'ora arrivano a Positano.",
+     "es": "Después de una hora llegan a Positano."
+    },
+    {
+     "it": "Le case sono sulla scogliera.",
+     "es": "Las casas están sobre el acantilado."
+    },
+    {
+     "it": "Sono rosa, gialle e bianche.",
+     "es": "Son rosas, amarillas y blancas."
+    },
+    {
+     "it": "Sembrano una scala verso il mare.",
+     "es": "Parecen una escalera hacia el mar."
+    },
+    {
+     "it": "L'albergo è piccolo ma bello.",
+     "es": "El alojamiento es chico pero lindo."
+    },
+    {
+     "it": "Dalla finestra si vede tutto il golfo.",
+     "es": "Desde la ventana se ve todo el golfo."
+    },
+    {
+     "it": "La prima sera mangiano al ristorante.",
+     "es": "La primera noche comen en el restaurante."
+    },
+    {
+     "it": "Anna prende la pasta al limone.",
+     "es": "Anna pide la pasta al limón."
+    },
+    {
+     "it": "Marco prende il pesce.",
+     "es": "Marco pide el pescado."
+    },
+    {
+     "it": "Il vino bianco è freddo e buono.",
+     "es": "El vino blanco está frío y rico."
+    },
+    {
+     "it": "Alla fine arriva il limoncello.",
+     "es": "Al final llega el limoncello."
+    },
+    {
+     "it": "È dolce e fortissimo.",
+     "es": "Es dulce y fortísimo."
+    },
+    {
+     "it": "Il giorno dopo vanno in spiaggia.",
+     "es": "Al día siguiente van a la playa."
+    },
+    {
+     "it": "L'acqua è fredda ma pulita.",
+     "es": "El agua está fría pero limpia."
+    },
+    {
+     "it": "Il sole è forte.",
+     "es": "El sol es fuerte."
+    },
+    {
+     "it": "Anna dorme sotto l'ombrellone.",
+     "es": "Anna duerme abajo de la sombrilla."
+    },
+    {
+     "it": "Marco guarda le barche.",
+     "es": "Marco mira los barcos."
+    },
+    {
+     "it": "Il mercoledì prendono una barca per Capri.",
+     "es": "El miércoles toman un barco para Capri."
+    },
+    {
+     "it": "L'isola è piena di turisti.",
+     "es": "La isla está llena de turistas."
+    },
+    {
+     "it": "Ma l'acqua è azzurra come il cielo.",
+     "es": "Pero el agua es celeste como el cielo."
+    },
+    {
+     "it": "Il giovedì visitano Amalfi.",
+     "es": "El jueves visitan Amalfi."
+    },
+    {
+     "it": "La chiesa è in cima a una scala lunga.",
+     "es": "La iglesia está arriba de una escalera larga."
+    },
+    {
+     "it": "Anna conta i gradini: sono sessantadue.",
+     "es": "Anna cuenta los escalones: son sesenta y dos."
+    },
+    {
+     "it": "Arriva in cima stanca ma contenta.",
+     "es": "Llega arriba cansada pero contenta."
+    },
+    {
+     "it": "Il venerdì vanno a Ravello.",
+     "es": "El viernes van a Ravello."
+    },
+    {
+     "it": "C'è un giardino sopra il mare.",
+     "es": "Hay un jardín arriba del mar."
+    },
+    {
+     "it": "Da lì si vede tutta la costa.",
+     "es": "Desde ahí se ve toda la costa."
+    },
+    {
+     "it": "Anna dice che è il posto più bello d'Italia.",
+     "es": "Anna dice que es el lugar más lindo de Italia."
+    },
+    {
+     "it": "L'ultima mattina Marco compra i limoni.",
+     "es": "La última mañana Marco compra los limones."
+    },
+    {
+     "it": "Sono grandi come arance.",
+     "es": "Son grandes como naranjas."
+    },
+    {
+     "it": "Il profumo è forte e dolce.",
+     "es": "El perfume es fuerte y dulce."
+    },
+    {
+     "it": "Sull'autobus Anna è triste.",
+     "es": "En el colectivo Anna está triste."
+    },
+    {
+     "it": "Non vuole tornare a casa.",
+     "es": "No quiere volver a casa."
+    },
+    {
+     "it": "Ma Marco dice una cosa.",
+     "es": "Pero Marco dice una cosa."
+    },
+    {
+     "it": "L'anno prossimo torniamo.",
+     "es": "El año que viene volvemos."
+    },
+    {
+     "it": "Anna sorride.",
+     "es": "Anna sonríe."
     }
    ]
   }
