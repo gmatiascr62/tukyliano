@@ -1,5 +1,5 @@
 {
- "version": 3,
+ "version": 4,
  "nombres": [
   "Marco",
   "Anna",
@@ -12,7 +12,21 @@
   "Amalfi",
   "Amalfitana",
   "Ravello",
-  "Paolo"
+  "Paolo",
+  "Ferrante",
+  "Vittorio",
+  "Riccardo",
+  "Stefano",
+  "Elena",
+  "Ricci",
+  "Rosa",
+  "Giulia",
+  "Bruni",
+  "Teresa",
+  "Costanza",
+  "Antonio",
+  "Montalcino",
+  "Firenze"
  ],
  "vocabulario_comun": [
   {
@@ -1818,6 +1832,2846 @@
     {
      "it": "Marco: ...Ci vediamo sabato, Paolo.",
      "es": "Marco: ...Nos vemos el sábado, Paolo."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-01",
+   "titulo": "Il segreto dei Ferrante 1",
+   "titulo_es": "El secreto de los Ferrante 1 · El testamento",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "pioveva",
+     "es": "llovía"
+    },
+    {
+     "it": "collina",
+     "es": "colina"
+    },
+    {
+     "it": "vestita di nero",
+     "es": "vestida de negro"
+    },
+    {
+     "it": "era morto",
+     "es": "había muerto"
+    },
+    {
+     "it": "ettari",
+     "es": "hectáreas"
+    },
+    {
+     "it": "vigna",
+     "es": "viña"
+    },
+    {
+     "it": "notaio",
+     "es": "escribano"
+    },
+    {
+     "it": "pelle",
+     "es": "cuero, piel"
+    },
+    {
+     "it": "maggiore / minore",
+     "es": "mayor / menor"
+    },
+    {
+     "it": "cantina",
+     "es": "bodega"
+    },
+    {
+     "it": "busta",
+     "es": "sobre"
+    },
+    {
+     "it": "sano di mente",
+     "es": "en pleno uso de sus facultades"
+    },
+    {
+     "it": "salti",
+     "es": "saltee (usted)"
+    },
+    {
+     "it": "ha alzato",
+     "es": "levantó"
+    },
+    {
+     "it": "ha ripetuto",
+     "es": "repitió"
+    },
+    {
+     "it": "sarebbe",
+     "es": "sería"
+    },
+    {
+     "it": "ha gridato",
+     "es": "gritó"
+    },
+    {
+     "it": "ha battuto",
+     "es": "golpeó"
+    },
+    {
+     "it": "è caduto",
+     "es": "se cayó"
+    },
+    {
+     "it": "pavimento",
+     "es": "piso"
+    },
+    {
+     "it": "follia",
+     "es": "locura"
+    },
+    {
+     "it": "ha firmato",
+     "es": "firmó"
+    },
+    {
+     "it": "testimoni",
+     "es": "testigos"
+    },
+    {
+     "it": "resta",
+     "es": "queda"
+    },
+    {
+     "it": "soldi",
+     "es": "plata, dinero"
+    },
+    {
+     "it": "sconosciuta",
+     "es": "desconocida"
+    },
+    {
+     "it": "si sentiva",
+     "es": "se oía"
+    },
+    {
+     "it": "aveva lasciato cadere",
+     "es": "había dejado caer"
+    },
+    {
+     "it": "vassoio",
+     "es": "bandeja"
+    },
+    {
+     "it": "rotte",
+     "es": "rotas"
+    },
+    {
+     "it": "tremavano",
+     "es": "temblaban"
+    },
+    {
+     "it": "lentamente",
+     "es": "despacio"
+    },
+    {
+     "it": "mi scusi",
+     "es": "disculpe"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Pioveva sulla collina di Montalcino.",
+     "es": "Llovía sobre la colina de Montalcino."
+    },
+    {
+     "it": "La villa dei Ferrante era piena di gente vestita di nero.",
+     "es": "La villa de los Ferrante estaba llena de gente vestida de negro."
+    },
+    {
+     "it": "Vittorio Ferrante era morto giovedì notte.",
+     "es": "Vittorio Ferrante había muerto el jueves a la noche."
+    },
+    {
+     "it": "Aveva ottantatré anni e trecento ettari di vigna.",
+     "es": "Tenía ochenta y tres años y trescientas hectáreas de viña."
+    },
+    {
+     "it": "Il notaio è arrivato alle cinque.",
+     "es": "El escribano llegó a las cinco."
+    },
+    {
+     "it": "Aveva una borsa di pelle e la faccia di chi sa qualcosa.",
+     "es": "Tenía un maletín de cuero y la cara del que sabe algo."
+    },
+    {
+     "it": "Riccardo, il figlio maggiore, guardava l'orologio.",
+     "es": "Riccardo, el hijo mayor, miraba el reloj."
+    },
+    {
+     "it": "«Cominciamo,» ha detto. «Ho una riunione a Firenze.»",
+     "es": "«Empecemos», dijo. «Tengo una reunión en Florencia»."
+    },
+    {
+     "it": "Stefano, il fratello minore, non ha detto niente.",
+     "es": "Stefano, el hermano menor, no dijo nada."
+    },
+    {
+     "it": "Beveva il terzo bicchiere di vino del padre.",
+     "es": "Se tomaba el tercer vaso de vino del padre."
+    },
+    {
+     "it": "In fondo alla sala, Rosa serviva il caffè.",
+     "es": "Al fondo de la sala, Rosa servía el café."
+    },
+    {
+     "it": "Era entrata in quella casa a diciannove anni.",
+     "es": "Había entrado en esa casa a los diecinueve años."
+    },
+    {
+     "it": "Adesso ne aveva sessantotto.",
+     "es": "Ahora tenía sesenta y ocho."
+    },
+    {
+     "it": "Il notaio ha aperto la busta.",
+     "es": "El escribano abrió el sobre."
+    },
+    {
+     "it": "«Io, Vittorio Ferrante, sano di mente...»",
+     "es": "«Yo, Vittorio Ferrante, en pleno uso de mis facultades...»"
+    },
+    {
+     "it": "«Salti,» ha detto Riccardo. «Vada alla vigna.»",
+     "es": "«Saltee», dijo Riccardo. «Vaya a la viña»."
+    },
+    {
+     "it": "Il notaio ha alzato gli occhi.",
+     "es": "El escribano levantó los ojos."
+    },
+    {
+     "it": "«La vigna, la villa e la cantina...»",
+     "es": "«La viña, la villa y la bodega...»"
+    },
+    {
+     "it": "Ha fatto una pausa troppo lunga.",
+     "es": "Hizo una pausa demasiado larga."
+    },
+    {
+     "it": "«...vanno a Elena Ricci.»",
+     "es": "«...van para Elena Ricci»."
+    },
+    {
+     "it": "Nessuno ha capito.",
+     "es": "Nadie entendió."
+    },
+    {
+     "it": "«Chi?» ha detto Stefano.",
+     "es": "«¿Quién?», dijo Stefano."
+    },
+    {
+     "it": "«Elena Ricci,» ha ripetuto il notaio.",
+     "es": "«Elena Ricci», repitió el escribano."
+    },
+    {
+     "it": "«E chi sarebbe questa Elena Ricci?» ha gridato Riccardo.",
+     "es": "«¿Y quién sería esta Elena Ricci?», gritó Riccardo."
+    },
+    {
+     "it": "«Non lo so. Io leggo quello che c'è scritto.»",
+     "es": "«No sé. Yo leo lo que está escrito»."
+    },
+    {
+     "it": "Riccardo si è alzato e ha battuto la mano sul tavolo.",
+     "es": "Riccardo se levantó y golpeó la mano sobre la mesa."
+    },
+    {
+     "it": "Un bicchiere è caduto sul pavimento.",
+     "es": "Un vaso se cayó al piso."
+    },
+    {
+     "it": "«Questa è una follia. Mio padre era malato.»",
+     "es": "«Esto es una locura. Mi padre estaba enfermo»."
+    },
+    {
+     "it": "«Suo padre ha firmato tre mesi fa,» ha detto il notaio.",
+     "es": "«Su padre firmó hace tres meses», dijo el escribano."
+    },
+    {
+     "it": "«Davanti a due testimoni.»",
+     "es": "«Delante de dos testigos»."
+    },
+    {
+     "it": "«E a noi?» ha chiesto Stefano piano. «A noi cosa resta?»",
+     "es": "«¿Y a nosotros?», preguntó Stefano bajito. «¿A nosotros qué nos queda?»"
+    },
+    {
+     "it": "«La casa di Firenze. E i soldi in banca.»",
+     "es": "«La casa de Florencia. Y la plata del banco»."
+    },
+    {
+     "it": "«I soldi in banca,» ha ripetuto Riccardo. «Ottantamila euro.»",
+     "es": "«La plata del banco», repitió Riccardo. «Ochenta mil euros»."
+    },
+    {
+     "it": "«Ottantamila euro e trecento ettari a una sconosciuta.»",
+     "es": "«Ochenta mil euros, y trescientas hectáreas para una desconocida»."
+    },
+    {
+     "it": "Nel silenzio si sentiva solo la pioggia.",
+     "es": "En el silencio se oía solo la lluvia."
+    },
+    {
+     "it": "Poi si è sentito un altro rumore.",
+     "es": "Después se oyó otro ruido."
+    },
+    {
+     "it": "In fondo alla sala, Rosa aveva lasciato cadere il vassoio.",
+     "es": "Al fondo de la sala, Rosa había dejado caer la bandeja."
+    },
+    {
+     "it": "Le tazze erano rotte per terra.",
+     "es": "Las tazas estaban rotas en el piso."
+    },
+    {
+     "it": "Rosa guardava il pavimento e non si muoveva.",
+     "es": "Rosa miraba el piso y no se movía."
+    },
+    {
+     "it": "Aveva le mani che tremavano.",
+     "es": "Le temblaban las manos."
+    },
+    {
+     "it": "«Rosa,» ha detto Stefano. «Tutto bene?»",
+     "es": "«Rosa», dijo Stefano. «¿Todo bien?»"
+    },
+    {
+     "it": "Rosa ha alzato la testa lentamente.",
+     "es": "Rosa levantó la cabeza despacio."
+    },
+    {
+     "it": "«Sì,» ha detto. «Mi scusi.»",
+     "es": "«Sí», dijo. «Disculpe»."
+    },
+    {
+     "it": "Ma non guardava lui.",
+     "es": "Pero no lo miraba a él."
+    },
+    {
+     "it": "Guardava la finestra, e fuori pioveva sempre più forte.",
+     "es": "Miraba la ventana, y afuera llovía cada vez más fuerte."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-02",
+   "titulo": "Il segreto dei Ferrante 2",
+   "titulo_es": "El secreto de los Ferrante 2 · La llegada",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "valigia",
+     "es": "valija"
+    },
+    {
+     "it": "ladra / ladre",
+     "es": "ladrona / ladronas"
+    },
+    {
+     "it": "ha risposto",
+     "es": "contestó"
+    },
+    {
+     "it": "si è fermata",
+     "es": "se paró, se detuvo"
+    },
+    {
+     "it": "cancello",
+     "es": "portón"
+    },
+    {
+     "it": "è rimasta",
+     "es": "se quedó"
+    },
+    {
+     "it": "suonare",
+     "es": "tocar el timbre"
+    },
+    {
+     "it": "è diventata",
+     "es": "se puso, se volvió"
+    },
+    {
+     "it": "si è girata",
+     "es": "se dio vuelta"
+    },
+    {
+     "it": "salotto",
+     "es": "living"
+    },
+    {
+     "it": "conosceva",
+     "es": "conocía"
+    },
+    {
+     "it": "rabbia",
+     "es": "rabia, bronca"
+    },
+    {
+     "it": "ha posato",
+     "es": "apoyó"
+    },
+    {
+     "it": "filari",
+     "es": "hileras de vides"
+    },
+    {
+     "it": "non è riuscito a",
+     "es": "no pudo, no logró"
+    },
+    {
+     "it": "è sceso",
+     "es": "bajó"
+    },
+    {
+     "it": "botti",
+     "es": "toneles"
+    },
+    {
+     "it": "torcia",
+     "es": "linterna"
+    },
+    {
+     "it": "stava rubando",
+     "es": "estaba robando"
+    },
+    {
+     "it": "stava leggendo",
+     "es": "estaba leyendo"
+    },
+    {
+     "it": "legno",
+     "es": "madera"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Elena Ricci è arrivata il martedì mattina.",
+     "es": "Elena Ricci llegó el martes a la mañana."
+    },
+    {
+     "it": "Non aveva una macchina.",
+     "es": "No tenía auto."
+    },
+    {
+     "it": "È arrivata a piedi dalla strada, con una valigia piccola.",
+     "es": "Llegó a pie desde la ruta, con una valija chica."
+    },
+    {
+     "it": "Riccardo la guardava dalla finestra del primo piano.",
+     "es": "Riccardo la miraba desde la ventana del primer piso."
+    },
+    {
+     "it": "«Non sembra una ladra,» ha detto Stefano.",
+     "es": "«No parece una ladrona», dijo Stefano."
+    },
+    {
+     "it": "«Le ladre non sembrano mai ladre,» ha risposto Riccardo.",
+     "es": "«Las ladronas nunca parecen ladronas», contestó Riccardo."
+    },
+    {
+     "it": "Elena si è fermata davanti al cancello.",
+     "es": "Elena se paró delante del portón."
+    },
+    {
+     "it": "È rimasta lì un minuto, senza suonare.",
+     "es": "Se quedó ahí un minuto, sin tocar el timbre."
+    },
+    {
+     "it": "Guardava la villa come si guarda una fotografia vecchia.",
+     "es": "Miraba la villa como se mira una foto vieja."
+    },
+    {
+     "it": "Poi ha suonato.",
+     "es": "Después tocó."
+    },
+    {
+     "it": "Rosa è andata ad aprire.",
+     "es": "Rosa fue a abrir."
+    },
+    {
+     "it": "Le due donne si sono guardate.",
+     "es": "Las dos mujeres se miraron."
+    },
+    {
+     "it": "Rosa è diventata bianca.",
+     "es": "Rosa se puso blanca."
+    },
+    {
+     "it": "«Buongiorno,» ha detto Elena. «Sono Elena Ricci.»",
+     "es": "«Buen día», dijo Elena. «Soy Elena Ricci»."
+    },
+    {
+     "it": "«Lo so chi è,» ha detto Rosa.",
+     "es": "«Ya sé quién es», dijo Rosa."
+    },
+    {
+     "it": "E si è girata subito verso la cucina.",
+     "es": "Y se dio vuelta enseguida hacia la cocina."
+    },
+    {
+     "it": "Nel salotto, Riccardo non le ha dato la mano.",
+     "es": "En el living, Riccardo no le dio la mano."
+    },
+    {
+     "it": "«Lei conosceva mio padre?»",
+     "es": "«¿Usted conocía a mi padre?»"
+    },
+    {
+     "it": "«No,» ha detto Elena.",
+     "es": "«No», dijo Elena."
+    },
+    {
+     "it": "«Non l'ha mai visto?»",
+     "es": "«¿Nunca lo vio?»"
+    },
+    {
+     "it": "«Mai.»",
+     "es": "«Nunca»."
+    },
+    {
+     "it": "«E allora perché le ha lasciato trecento ettari?»",
+     "es": "«¿Y entonces por qué le dejó trescientas hectáreas?»"
+    },
+    {
+     "it": "«Non lo so.»",
+     "es": "«No sé»."
+    },
+    {
+     "it": "«Non lo sa,» ha ripetuto Riccardo.",
+     "es": "«No sabe», repitió Riccardo."
+    },
+    {
+     "it": "«Non lo so,» ha detto Elena un'altra volta.",
+     "es": "«No sé», dijo Elena otra vez."
+    },
+    {
+     "it": "Aveva una voce calma che faceva rabbia.",
+     "es": "Tenía una voz tranquila que daba rabia."
+    },
+    {
+     "it": "Stefano le ha portato un bicchiere d'acqua.",
+     "es": "Stefano le trajo un vaso de agua."
+    },
+    {
+     "it": "«Ha fatto molta strada?»",
+     "es": "«¿Hizo mucho viaje?»"
+    },
+    {
+     "it": "«Sono partita da Napoli stamattina.»",
+     "es": "«Salí de Nápoles esta mañana»."
+    },
+    {
+     "it": "«Napoli,» ha detto Riccardo. «Interessante.»",
+     "es": "«Nápoles», dijo Riccardo. «Interesante»."
+    },
+    {
+     "it": "«Riccardo,» ha detto Stefano.",
+     "es": "«Riccardo», dijo Stefano."
+    },
+    {
+     "it": "«Cosa? Sto facendo domande normali.»",
+     "es": "«¿Qué? Estoy haciendo preguntas normales»."
+    },
+    {
+     "it": "Elena ha bevuto l'acqua e ha posato il bicchiere.",
+     "es": "Elena tomó el agua y apoyó el vaso."
+    },
+    {
+     "it": "«Non voglio la vigna,» ha detto.",
+     "es": "«No quiero la viña», dijo."
+    },
+    {
+     "it": "I due fratelli si sono guardati.",
+     "es": "Los dos hermanos se miraron."
+    },
+    {
+     "it": "«Come, scusi?» ha detto Riccardo.",
+     "es": "«¿Cómo, perdón?», dijo Riccardo."
+    },
+    {
+     "it": "«Ho detto che non la voglio.»",
+     "es": "«Dije que no la quiero»."
+    },
+    {
+     "it": "«E allora perché è venuta?»",
+     "es": "«¿Y entonces por qué vino?»"
+    },
+    {
+     "it": "Elena ha guardato fuori, verso i filari.",
+     "es": "Elena miró afuera, hacia las hileras de vides."
+    },
+    {
+     "it": "«Perché voglio sapere perché me l'ha lasciata.»",
+     "es": "«Porque quiero saber por qué me la dejó»."
+    },
+    {
+     "it": "Quella notte Stefano non è riuscito a dormire.",
+     "es": "Esa noche Stefano no pudo dormir."
+    },
+    {
+     "it": "Alle due si è alzato per bere.",
+     "es": "A las dos se levantó a tomar agua."
+    },
+    {
+     "it": "Dalla finestra della cucina ha visto una luce nella cantina.",
+     "es": "Desde la ventana de la cocina vio una luz en la bodega."
+    },
+    {
+     "it": "È sceso.",
+     "es": "Bajó."
+    },
+    {
+     "it": "Elena era lì, in mezzo alle botti, con una torcia in mano.",
+     "es": "Elena estaba ahí, en medio de los toneles, con una linterna en la mano."
+    },
+    {
+     "it": "Non stava rubando niente.",
+     "es": "No estaba robando nada."
+    },
+    {
+     "it": "Stava leggendo le date scritte sul legno.",
+     "es": "Estaba leyendo las fechas escritas en la madera."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-03",
+   "titulo": "Il segreto dei Ferrante 3",
+   "titulo_es": "El secreto de los Ferrante 3 · La mujer de la cocina",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "si svegliava",
+     "es": "se despertaba"
+    },
+    {
+     "it": "restava",
+     "es": "se quedaba"
+    },
+    {
+     "it": "al buio",
+     "es": "a oscuras"
+    },
+    {
+     "it": "mi chiami",
+     "es": "llámeme"
+    },
+    {
+     "it": "tagliare",
+     "es": "cortar"
+    },
+    {
+     "it": "dica",
+     "es": "diga"
+    },
+    {
+     "it": "coltello",
+     "es": "cuchillo"
+    },
+    {
+     "it": "aveva fatto il suo nome",
+     "es": "había dicho su nombre"
+    },
+    {
+     "it": "non l'aveva guardata",
+     "es": "no la había mirado"
+    },
+    {
+     "it": "paese",
+     "es": "pueblo"
+    },
+    {
+     "it": "cimitero",
+     "es": "cementerio"
+    },
+    {
+     "it": "tomba",
+     "es": "tumba"
+    },
+    {
+     "it": "accanto",
+     "es": "al lado"
+    },
+    {
+     "it": "piangeva",
+     "es": "lloraba"
+    },
+    {
+     "it": "l'aspettava",
+     "es": "la esperaba"
+    },
+    {
+     "it": "cartellina",
+     "es": "carpeta"
+    },
+    {
+     "it": "avvocato",
+     "es": "abogado"
+    },
+    {
+     "it": "fare causa",
+     "es": "hacer juicio"
+    },
+    {
+     "it": "fatela",
+     "es": "háganlo"
+    },
+    {
+     "it": "servivano",
+     "es": "servían"
+    },
+    {
+     "it": "strana",
+     "es": "rara"
+    },
+    {
+     "it": "l'ha invitata",
+     "es": "la invitó"
+    },
+    {
+     "it": "stava andando giù",
+     "es": "se estaba yendo, bajaba"
+    },
+    {
+     "it": "veniva",
+     "es": "venía"
+    },
+    {
+     "it": "duro",
+     "es": "duro"
+    },
+    {
+     "it": "fino al buio",
+     "es": "hasta que oscureció"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Rosa non dormiva più bene da una settimana.",
+     "es": "Rosa hacía una semana que no dormía bien."
+    },
+    {
+     "it": "Ogni notte si svegliava alle quattro.",
+     "es": "Cada noche se despertaba a las cuatro."
+    },
+    {
+     "it": "Poi restava seduta sul letto, al buio.",
+     "es": "Después se quedaba sentada en la cama, a oscuras."
+    },
+    {
+     "it": "La mattina dopo, Elena è entrata in cucina presto.",
+     "es": "A la mañana siguiente, Elena entró temprano a la cocina."
+    },
+    {
+     "it": "«Buongiorno.»",
+     "es": "«Buen día»."
+    },
+    {
+     "it": "«Buongiorno, signorina.»",
+     "es": "«Buen día, señorita»."
+    },
+    {
+     "it": "«Mi chiami Elena, per favore.»",
+     "es": "«Llámeme Elena, por favor»."
+    },
+    {
+     "it": "Rosa ha continuato a tagliare il pane.",
+     "es": "Rosa siguió cortando el pan."
+    },
+    {
+     "it": "«Rosa, posso chiederle una cosa?»",
+     "es": "«Rosa, ¿le puedo preguntar una cosa?»"
+    },
+    {
+     "it": "«Dica.»",
+     "es": "«Diga»."
+    },
+    {
+     "it": "«Ieri, quando mi ha aperto la porta.»",
+     "es": "«Ayer, cuando me abrió la puerta»."
+    },
+    {
+     "it": "«Sì?»",
+     "es": "«¿Sí?»"
+    },
+    {
+     "it": "«Lei ha detto: lo so chi è.»",
+     "es": "«Usted dijo: ya sé quién es»."
+    },
+    {
+     "it": "Il coltello si è fermato.",
+     "es": "El cuchillo se detuvo."
+    },
+    {
+     "it": "«Ho detto così perché il notaio aveva fatto il suo nome.»",
+     "es": "«Lo dije porque el escribano había dicho su nombre»."
+    },
+    {
+     "it": "«Ah,» ha detto Elena. «Certo.»",
+     "es": "«Ah», dijo Elena. «Claro»."
+    },
+    {
+     "it": "Ma Rosa non l'aveva guardata negli occhi.",
+     "es": "Pero Rosa no la había mirado a los ojos."
+    },
+    {
+     "it": "Quel pomeriggio Elena è andata in paese.",
+     "es": "Esa tarde Elena fue al pueblo."
+    },
+    {
+     "it": "Voleva vedere il cimitero.",
+     "es": "Quería ver el cementerio."
+    },
+    {
+     "it": "Ha trovato la tomba dei Ferrante subito: era la più grande.",
+     "es": "Encontró la tumba de los Ferrante enseguida: era la más grande."
+    },
+    {
+     "it": "Vittorio Ferrante, 1941-2024.",
+     "es": "Vittorio Ferrante, 1941-2024."
+    },
+    {
+     "it": "Accanto, sua moglie Costanza.",
+     "es": "Al lado, su mujer Costanza."
+    },
+    {
+     "it": "Elena è rimasta lì mezz'ora.",
+     "es": "Elena se quedó ahí media hora."
+    },
+    {
+     "it": "Non piangeva. Non conosceva quell'uomo.",
+     "es": "No lloraba. No conocía a ese hombre."
+    },
+    {
+     "it": "Quando è tornata, Riccardo l'aspettava nel salotto.",
+     "es": "Cuando volvió, Riccardo la esperaba en el living."
+    },
+    {
+     "it": "Aveva una cartellina in mano.",
+     "es": "Tenía una carpeta en la mano."
+    },
+    {
+     "it": "«Ho parlato con il mio avvocato.»",
+     "es": "«Hablé con mi abogado»."
+    },
+    {
+     "it": "«Bene.»",
+     "es": "«Bien»."
+    },
+    {
+     "it": "«Dice che possiamo fare causa.»",
+     "es": "«Dice que podemos hacer juicio»."
+    },
+    {
+     "it": "«Fatela.»",
+     "es": "«Háganlo»."
+    },
+    {
+     "it": "Riccardo si è fermato.",
+     "es": "Riccardo se frenó."
+    },
+    {
+     "it": "Aveva preparato altre tre frasi e adesso non servivano più.",
+     "es": "Tenía preparadas otras tres frases y ahora ya no servían."
+    },
+    {
+     "it": "«Lei è strana,» ha detto.",
+     "es": "«Usted es rara», dijo."
+    },
+    {
+     "it": "«Me l'hanno detto altre volte.»",
+     "es": "«Ya me lo dijeron otras veces»."
+    },
+    {
+     "it": "Quella sera Stefano l'ha invitata a camminare tra i filari.",
+     "es": "Esa tarde Stefano la invitó a caminar entre las vides."
+    },
+    {
+     "it": "Il sole stava andando giù dietro la collina.",
+     "es": "El sol se estaba yendo detrás de la colina."
+    },
+    {
+     "it": "«Mio padre veniva qui ogni sera,» ha detto Stefano.",
+     "es": "«Mi padre venía acá todas las tardes», dijo Stefano."
+    },
+    {
+     "it": "«Da solo?»",
+     "es": "«¿Solo?»"
+    },
+    {
+     "it": "«Sempre da solo.»",
+     "es": "«Siempre solo»."
+    },
+    {
+     "it": "«Che uomo era?»",
+     "es": "«¿Qué clase de hombre era?»"
+    },
+    {
+     "it": "Stefano ci ha pensato.",
+     "es": "Stefano lo pensó."
+    },
+    {
+     "it": "«Duro. Con tutti.»",
+     "es": "«Duro. Con todos»."
+    },
+    {
+     "it": "«E con lei?»",
+     "es": "«¿Y con usted?»"
+    },
+    {
+     "it": "«Con me di più.»",
+     "es": "«Conmigo más»."
+    },
+    {
+     "it": "Hanno camminato in silenzio fino al buio.",
+     "es": "Caminaron en silencio hasta que oscureció."
+    },
+    {
+     "it": "Dalla finestra della cucina, Rosa li guardava.",
+     "es": "Desde la ventana de la cocina, Rosa los miraba."
+    },
+    {
+     "it": "E piangeva.",
+     "es": "Y lloraba."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-04",
+   "titulo": "Il segreto dei Ferrante 4",
+   "titulo_es": "El secreto de los Ferrante 4 · El hombre de Florencia",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "investigatore",
+     "es": "investigador"
+    },
+    {
+     "it": "lo ha incontrato",
+     "es": "se encontró con él"
+    },
+    {
+     "it": "costa",
+     "es": "cuesta"
+    },
+    {
+     "it": "tremila / duemila",
+     "es": "tres mil / dos mil"
+    },
+    {
+     "it": "ha telefonato",
+     "es": "llamó por teléfono"
+    },
+    {
+     "it": "nata",
+     "es": "nacida"
+    },
+    {
+     "it": "avanti",
+     "es": "siga, adelante"
+    },
+    {
+     "it": "certificato",
+     "es": "certificado"
+    },
+    {
+     "it": "ha stretto",
+     "es": "apretó"
+    },
+    {
+     "it": "ignoto",
+     "es": "desconocido"
+    },
+    {
+     "it": "succede",
+     "es": "pasa, sucede"
+    },
+    {
+     "it": "libreria",
+     "es": "librería"
+    },
+    {
+     "it": "debiti",
+     "es": "deudas"
+    },
+    {
+     "it": "pulita",
+     "es": "limpia"
+    },
+    {
+     "it": "ho controllato",
+     "es": "investigué, revisé"
+    },
+    {
+     "it": "non si è mosso",
+     "es": "no se movió"
+    },
+    {
+     "it": "stendeva / stendere",
+     "es": "tendía / tender la ropa"
+    },
+    {
+     "it": "lenzuola",
+     "es": "sábanas"
+    },
+    {
+     "it": "è nata",
+     "es": "nació"
+    },
+    {
+     "it": "spesso",
+     "es": "seguido, a menudo"
+    },
+    {
+     "it": "dappertutto",
+     "es": "por todos lados"
+    },
+    {
+     "it": "guardi",
+     "es": "mire (usted)"
+    },
+    {
+     "it": "in fretta",
+     "es": "rápido, apurado"
+    },
+    {
+     "it": "bussare",
+     "es": "golpear la puerta"
+    },
+    {
+     "it": "puliva",
+     "es": "limpiaba"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "L'investigatore si chiamava Bruni.",
+     "es": "El investigador se llamaba Bruni."
+    },
+    {
+     "it": "Riccardo lo ha incontrato in un bar di Firenze.",
+     "es": "Riccardo se encontró con él en un bar de Florencia."
+    },
+    {
+     "it": "«Voglio sapere tutto di questa donna.»",
+     "es": "«Quiero saber todo de esta mujer»."
+    },
+    {
+     "it": "«Tutto costa,» ha detto Bruni.",
+     "es": "«Todo cuesta», dijo Bruni."
+    },
+    {
+     "it": "«Quanto?»",
+     "es": "«¿Cuánto?»"
+    },
+    {
+     "it": "«Tremila.»",
+     "es": "«Tres mil»."
+    },
+    {
+     "it": "«Duemila.»",
+     "es": "«Dos mil»."
+    },
+    {
+     "it": "«Tremila,» ha ripetuto Bruni, e ha bevuto il caffè.",
+     "es": "«Tres mil», repitió Bruni, y tomó el café."
+    },
+    {
+     "it": "Riccardo ha pagato.",
+     "es": "Riccardo pagó."
+    },
+    {
+     "it": "Bruni ha telefonato dopo nove giorni.",
+     "es": "Bruni llamó nueve días después."
+    },
+    {
+     "it": "«Elena Ricci, trentaquattro anni, nata a Napoli.»",
+     "es": "«Elena Ricci, treinta y cuatro años, nacida en Nápoles»."
+    },
+    {
+     "it": "«Avanti.»",
+     "es": "«Siga»."
+    },
+    {
+     "it": "«Madre: Teresa Ricci, morta nel duemilanove.»",
+     "es": "«Madre: Teresa Ricci, muerta en dos mil nueve»."
+    },
+    {
+     "it": "«Padre?»",
+     "es": "«¿Padre?»"
+    },
+    {
+     "it": "«Sul certificato non c'è.»",
+     "es": "«En el certificado no figura»."
+    },
+    {
+     "it": "Riccardo ha stretto il telefono.",
+     "es": "Riccardo apretó el teléfono."
+    },
+    {
+     "it": "«Non c'è?»",
+     "es": "«¿No figura?»"
+    },
+    {
+     "it": "«Padre ignoto. Succede.»",
+     "es": "«Padre desconocido. Pasa»."
+    },
+    {
+     "it": "«Altro?»",
+     "es": "«¿Algo más?»"
+    },
+    {
+     "it": "«Ha lavorato dodici anni in una libreria. Non ha debiti.»",
+     "es": "«Trabajó doce años en una librería. No tiene deudas»."
+    },
+    {
+     "it": "«Non è possibile. Tutti hanno qualcosa.»",
+     "es": "«No puede ser. Todos tienen algo»."
+    },
+    {
+     "it": "«Lei no,» ha detto Bruni. «È la persona più pulita che ho controllato.»",
+     "es": "«Ella no», dijo Bruni. «Es la persona más limpia que investigué»."
+    },
+    {
+     "it": "Riccardo ha chiuso il telefono e non si è mosso per un minuto.",
+     "es": "Riccardo cortó y no se movió por un minuto."
+    },
+    {
+     "it": "Poi è andato a cercare Rosa.",
+     "es": "Después fue a buscar a Rosa."
+    },
+    {
+     "it": "L'ha trovata che stendeva le lenzuola in giardino.",
+     "es": "La encontró tendiendo las sábanas en el jardín."
+    },
+    {
+     "it": "«Rosa, lei lavora qui da quanto?»",
+     "es": "«Rosa, ¿hace cuánto que trabaja acá?»"
+    },
+    {
+     "it": "«Da quarantanove anni.»",
+     "es": "«Hace cuarenta y nueve años»."
+    },
+    {
+     "it": "«Quindi c'era quando è nata Elena Ricci.»",
+     "es": "«Así que estaba cuando nació Elena Ricci»."
+    },
+    {
+     "it": "Rosa ha continuato a stendere.",
+     "es": "Rosa siguió tendiendo."
+    },
+    {
+     "it": "«Non conosco nessuna Elena Ricci.»",
+     "es": "«No conozco a ninguna Elena Ricci»."
+    },
+    {
+     "it": "«Mio padre andava spesso a Napoli?»",
+     "es": "«¿Mi padre iba seguido a Nápoles?»"
+    },
+    {
+     "it": "«Suo padre andava dappertutto.»",
+     "es": "«Su padre iba a todos lados»."
+    },
+    {
+     "it": "«Rosa.»",
+     "es": "«Rosa»."
+    },
+    {
+     "it": "«Signor Riccardo, io stendo le lenzuola.»",
+     "es": "«Señor Riccardo, yo tiendo las sábanas»."
+    },
+    {
+     "it": "«Rosa, guardi che se lei sa qualcosa...»",
+     "es": "«Rosa, mire que si usted sabe algo...»"
+    },
+    {
+     "it": "«Io non so niente.»",
+     "es": "«Yo no sé nada»."
+    },
+    {
+     "it": "Ha detto quelle tre parole troppo in fretta.",
+     "es": "Dijo esas tres palabras demasiado rápido."
+    },
+    {
+     "it": "Quella sera Riccardo ha bevuto molto.",
+     "es": "Esa noche Riccardo tomó mucho."
+    },
+    {
+     "it": "Alle undici è entrato nella stanza di Elena senza bussare.",
+     "es": "A las once entró al cuarto de Elena sin golpear."
+    },
+    {
+     "it": "«Chi era sua madre?»",
+     "es": "«¿Quién era su madre?»"
+    },
+    {
+     "it": "Elena era seduta sul letto con un libro.",
+     "es": "Elena estaba sentada en la cama con un libro."
+    },
+    {
+     "it": "«Una donna che puliva le case,» ha detto. «Come Rosa.»",
+     "es": "«Una mujer que limpiaba casas», dijo. «Como Rosa»."
+    },
+    {
+     "it": "«E suo padre?»",
+     "es": "«¿Y su padre?»"
+    },
+    {
+     "it": "Elena ha chiuso il libro.",
+     "es": "Elena cerró el libro."
+    },
+    {
+     "it": "«Non l'ho mai conosciuto. È per questo che sono qui.»",
+     "es": "«Nunca lo conocí. Por eso estoy acá»."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-05",
+   "titulo": "Il segreto dei Ferrante 5",
+   "titulo_es": "El secreto de los Ferrante 5 · La tormenta",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "temporale",
+     "es": "tormenta"
+    },
+    {
+     "it": "è andata via la luce",
+     "es": "se cortó la luz"
+    },
+    {
+     "it": "candela",
+     "es": "vela"
+    },
+    {
+     "it": "corrente",
+     "es": "corriente eléctrica"
+    },
+    {
+     "it": "sono corsi",
+     "es": "corrieron"
+    },
+    {
+     "it": "prato",
+     "es": "pasto, prado"
+    },
+    {
+     "it": "bagnati fino alle ossa",
+     "es": "empapados hasta los huesos"
+    },
+    {
+     "it": "ha acceso",
+     "es": "prendió"
+    },
+    {
+     "it": "benzina",
+     "es": "nafta"
+    },
+    {
+     "it": "tremava",
+     "es": "temblaba"
+    },
+    {
+     "it": "si è tolto",
+     "es": "se sacó"
+    },
+    {
+     "it": "giacca",
+     "es": "campera, saco"
+    },
+    {
+     "it": "gliel'ha data",
+     "es": "se la dio"
+    },
+    {
+     "it": "odi",
+     "es": "odiás"
+    },
+    {
+     "it": "ti ho vista",
+     "es": "te vi"
+    },
+    {
+     "it": "guardavi",
+     "es": "mirabas"
+    },
+    {
+     "it": "ha sorriso",
+     "es": "sonrió"
+    },
+    {
+     "it": "diceva",
+     "es": "decía"
+    },
+    {
+     "it": "mente",
+     "es": "miente"
+    },
+    {
+     "it": "zitti",
+     "es": "callados"
+    },
+    {
+     "it": "si stava consumando",
+     "es": "se estaba consumiendo"
+    },
+    {
+     "it": "l'ha baciata",
+     "es": "la besó"
+    },
+    {
+     "it": "non si è tirata indietro",
+     "es": "no se echó atrás"
+    },
+    {
+     "it": "di colpo",
+     "es": "de golpe"
+    },
+    {
+     "it": "aveva visto",
+     "es": "había visto"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Il temporale è arrivato di venerdì.",
+     "es": "La tormenta llegó un viernes."
+    },
+    {
+     "it": "Alle sette è andata via la luce in tutta la collina.",
+     "es": "A las siete se cortó la luz en toda la colina."
+    },
+    {
+     "it": "Stefano ha preso due torce e una candela.",
+     "es": "Stefano agarró dos linternas y una vela."
+    },
+    {
+     "it": "«Le botti,» ha detto Elena. «Se manca la corrente...»",
+     "es": "«Los toneles», dijo Elena. «Si falta la corriente...»"
+    },
+    {
+     "it": "«Lo so. Vieni.»",
+     "es": "«Ya sé. Vení»."
+    },
+    {
+     "it": "Sono corsi giù per il prato sotto l'acqua.",
+     "es": "Corrieron por el pasto bajo la lluvia."
+    },
+    {
+     "it": "Sono arrivati in cantina bagnati fino alle ossa.",
+     "es": "Llegaron a la bodega empapados hasta los huesos."
+    },
+    {
+     "it": "Stefano ha acceso il generatore.",
+     "es": "Stefano prendió el generador."
+    },
+    {
+     "it": "Il motore ha fatto rumore e poi si è fermato.",
+     "es": "El motor hizo ruido y después se paró."
+    },
+    {
+     "it": "«Manca la benzina.»",
+     "es": "«Falta nafta»."
+    },
+    {
+     "it": "«E adesso?»",
+     "es": "«¿Y ahora?»"
+    },
+    {
+     "it": "«Adesso aspettiamo.»",
+     "es": "«Ahora esperamos»."
+    },
+    {
+     "it": "Si sono seduti per terra, in mezzo alle botti.",
+     "es": "Se sentaron en el piso, en medio de los toneles."
+    },
+    {
+     "it": "Elena tremava dal freddo.",
+     "es": "Elena temblaba de frío."
+    },
+    {
+     "it": "Stefano si è tolto la giacca e gliel'ha data.",
+     "es": "Stefano se sacó la campera y se la dio."
+    },
+    {
+     "it": "«Grazie.»",
+     "es": "«Gracias»."
+    },
+    {
+     "it": "Fuori il temporale non finiva.",
+     "es": "Afuera la tormenta no terminaba."
+    },
+    {
+     "it": "«Posso chiederti una cosa?» ha detto Elena.",
+     "es": "«¿Te puedo preguntar una cosa?», dijo Elena."
+    },
+    {
+     "it": "«Dimmi.»",
+     "es": "«Decime»."
+    },
+    {
+     "it": "«Perché non mi odi come tuo fratello?»",
+     "es": "«¿Por qué no me odiás como tu hermano?»"
+    },
+    {
+     "it": "Stefano ha guardato la candela.",
+     "es": "Stefano miró la vela."
+    },
+    {
+     "it": "«Perché ti ho vista in cantina quella notte.»",
+     "es": "«Porque te vi en la bodega esa noche»."
+    },
+    {
+     "it": "«E allora?»",
+     "es": "«¿Y qué?»"
+    },
+    {
+     "it": "«Una ladra guarda i prezzi. Tu guardavi le date.»",
+     "es": "«Una ladrona mira los precios. Vos mirabas las fechas»."
+    },
+    {
+     "it": "Elena ha sorriso per la prima volta in due settimane.",
+     "es": "Elena sonrió por primera vez en dos semanas."
+    },
+    {
+     "it": "«Mio padre mi diceva sempre una cosa,» ha detto Stefano.",
+     "es": "«Mi padre me decía siempre una cosa», dijo Stefano."
+    },
+    {
+     "it": "«Cosa?»",
+     "es": "«¿Qué cosa?»"
+    },
+    {
+     "it": "«Che il vino non mente mai.»",
+     "es": "«Que el vino nunca miente»."
+    },
+    {
+     "it": "«E le persone?»",
+     "es": "«¿Y las personas?»"
+    },
+    {
+     "it": "«Le persone sempre.»",
+     "es": "«Las personas siempre»."
+    },
+    {
+     "it": "Sono rimasti zitti.",
+     "es": "Se quedaron callados."
+    },
+    {
+     "it": "La candela si stava consumando.",
+     "es": "La vela se estaba consumiendo."
+    },
+    {
+     "it": "«Elena.»",
+     "es": "«Elena»."
+    },
+    {
+     "it": "«Sì?»",
+     "es": "«¿Sí?»"
+    },
+    {
+     "it": "Non le ha detto niente.",
+     "es": "No le dijo nada."
+    },
+    {
+     "it": "L'ha baciata.",
+     "es": "La besó."
+    },
+    {
+     "it": "Lei non si è tirata indietro.",
+     "es": "Ella no se echó atrás."
+    },
+    {
+     "it": "Poi si è alzata di colpo.",
+     "es": "Después se levantó de golpe."
+    },
+    {
+     "it": "«Non possiamo.»",
+     "es": "«No podemos»."
+    },
+    {
+     "it": "«Perché no?»",
+     "es": "«¿Por qué no?»"
+    },
+    {
+     "it": "«Perché non so chi sono,» ha detto Elena.",
+     "es": "«Porque no sé quién soy», dijo Elena."
+    },
+    {
+     "it": "«Io lo so chi sei.»",
+     "es": "«Yo sé quién sos»."
+    },
+    {
+     "it": "«No, Stefano. Non lo sai.»",
+     "es": "«No, Stefano. No lo sabés»."
+    },
+    {
+     "it": "È uscita sotto la pioggia senza la giacca.",
+     "es": "Salió bajo la lluvia sin la campera."
+    },
+    {
+     "it": "Stefano è rimasto seduto con la candela in mano.",
+     "es": "Stefano se quedó sentado con la vela en la mano."
+    },
+    {
+     "it": "Sopra di loro, alla finestra della villa, c'era una luce.",
+     "es": "Arriba de ellos, en la ventana de la villa, había una luz."
+    },
+    {
+     "it": "Rosa aveva visto tutto.",
+     "es": "Rosa había visto todo."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-06",
+   "titulo": "Il segreto dei Ferrante 6",
+   "titulo_es": "El secreto de los Ferrante 6 · La foto",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "ha svuotato",
+     "es": "vació"
+    },
+    {
+     "it": "studio",
+     "es": "escritorio (la habitación)"
+    },
+    {
+     "it": "mobili",
+     "es": "muebles"
+    },
+    {
+     "it": "causa",
+     "es": "juicio"
+    },
+    {
+     "it": "cassetto",
+     "es": "cajón"
+    },
+    {
+     "it": "scrivania",
+     "es": "escritorio (el mueble)"
+    },
+    {
+     "it": "scatola di latta",
+     "es": "caja de lata"
+    },
+    {
+     "it": "vendemmia",
+     "es": "vendimia"
+    },
+    {
+     "it": "capelli scuri",
+     "es": "pelo oscuro"
+    },
+    {
+     "it": "incinta",
+     "es": "embarazada"
+    },
+    {
+     "it": "ha girato",
+     "es": "dio vuelta"
+    },
+    {
+     "it": "non dirlo mai",
+     "es": "no lo digas nunca"
+    },
+    {
+     "it": "era nata",
+     "es": "había nacido"
+    },
+    {
+     "it": "stava lavando",
+     "es": "estaba lavando"
+    },
+    {
+     "it": "le ha messo",
+     "es": "le puso"
+    },
+    {
+     "it": "rubinetto",
+     "es": "canilla"
+    },
+    {
+     "it": "credendo",
+     "es": "creyendo"
+    },
+    {
+     "it": "fosse",
+     "es": "fuera, era"
+    },
+    {
+     "it": "santo",
+     "es": "santo"
+    },
+    {
+     "it": "si è asciugata",
+     "es": "se secó"
+    },
+    {
+     "it": "grembiule",
+     "es": "delantal"
+    },
+    {
+     "it": "improvvisamente",
+     "es": "de repente"
+    },
+    {
+     "it": "vecchissima",
+     "es": "viejísima"
+    },
+    {
+     "it": "chiami",
+     "es": "llame (usted)"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "La domenica Riccardo ha svuotato lo studio del padre.",
+     "es": "El domingo Riccardo vació el escritorio del padre."
+    },
+    {
+     "it": "Voleva vendere i mobili prima della causa.",
+     "es": "Quería vender los muebles antes del juicio."
+    },
+    {
+     "it": "Nel terzo cassetto della scrivania c'era una scatola di latta.",
+     "es": "En el tercer cajón del escritorio había una caja de lata."
+    },
+    {
+     "it": "Dentro c'erano vecchie fotografie.",
+     "es": "Adentro había fotos viejas."
+    },
+    {
+     "it": "Il padre da giovane. La vendemmia del 1968. Un cane.",
+     "es": "El padre de joven. La vendimia del 1968. Un perro."
+    },
+    {
+     "it": "E poi una foto diversa.",
+     "es": "Y después una foto distinta."
+    },
+    {
+     "it": "Vittorio Ferrante, giovane, in una strada di Napoli.",
+     "es": "Vittorio Ferrante, joven, en una calle de Nápoles."
+    },
+    {
+     "it": "Accanto a lui una donna con i capelli scuri.",
+     "es": "Al lado de él una mujer de pelo oscuro."
+    },
+    {
+     "it": "La donna era incinta.",
+     "es": "La mujer estaba embarazada."
+    },
+    {
+     "it": "Riccardo ha girato la fotografia.",
+     "es": "Riccardo dio vuelta la foto."
+    },
+    {
+     "it": "Dietro c'era una data: maggio 1990.",
+     "es": "Atrás había una fecha: mayo de 1990."
+    },
+    {
+     "it": "E tre parole: «Non dirlo mai.»",
+     "es": "Y tres palabras: «No lo digas nunca»."
+    },
+    {
+     "it": "Riccardo è rimasto seduto sul pavimento dello studio per un'ora.",
+     "es": "Riccardo se quedó sentado en el piso del escritorio por una hora."
+    },
+    {
+     "it": "Elena era nata nel 1990.",
+     "es": "Elena había nacido en 1990."
+    },
+    {
+     "it": "Alle otto è sceso in cucina con la foto in mano.",
+     "es": "A las ocho bajó a la cocina con la foto en la mano."
+    },
+    {
+     "it": "Rosa stava lavando i piatti.",
+     "es": "Rosa estaba lavando los platos."
+    },
+    {
+     "it": "Le ha messo la fotografia sul tavolo.",
+     "es": "Le puso la foto sobre la mesa."
+    },
+    {
+     "it": "Rosa ha guardato la foto e ha chiuso il rubinetto.",
+     "es": "Rosa miró la foto y cerró la canilla."
+    },
+    {
+     "it": "«Chi è questa donna, Rosa?»",
+     "es": "«¿Quién es esta mujer, Rosa?»"
+    },
+    {
+     "it": "«Non lo so.»",
+     "es": "«No sé»."
+    },
+    {
+     "it": "«Rosa.»",
+     "es": "«Rosa»."
+    },
+    {
+     "it": "«Le ho detto che non lo so.»",
+     "es": "«Le dije que no sé»."
+    },
+    {
+     "it": "«Mia madre era viva nel 1990.»",
+     "es": "«Mi madre estaba viva en 1990»."
+    },
+    {
+     "it": "Rosa non ha risposto.",
+     "es": "Rosa no contestó."
+    },
+    {
+     "it": "«Mia madre è morta credendo che quell'uomo fosse un santo.»",
+     "es": "«Mi madre se murió creyendo que ese hombre era un santo»."
+    },
+    {
+     "it": "«Suo padre non era un santo.»",
+     "es": "«Su padre no era ningún santo»."
+    },
+    {
+     "it": "«Allora lei sa qualcosa.»",
+     "es": "«Entonces usted sabe algo»."
+    },
+    {
+     "it": "Rosa si è asciugata le mani nel grembiule.",
+     "es": "Rosa se secó las manos en el delantal."
+    },
+    {
+     "it": "Poi si è seduta, e sembrava improvvisamente vecchissima.",
+     "es": "Después se sentó, y de repente parecía viejísima."
+    },
+    {
+     "it": "«Chiami suo fratello,» ha detto. «E chiami la ragazza.»",
+     "es": "«Llame a su hermano», dijo. «Y llame a la chica»."
+    },
+    {
+     "it": "«Perché?»",
+     "es": "«¿Por qué?»"
+    },
+    {
+     "it": "«Perché lo devo dire una volta sola.»",
+     "es": "«Porque lo tengo que decir una sola vez»."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-07",
+   "titulo": "Il segreto dei Ferrante 7",
+   "titulo_es": "El secreto de los Ferrante 7 · La confesión",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "sedersi",
+     "es": "sentarse"
+    },
+    {
+     "it": "in piedi",
+     "es": "parado, de pie"
+    },
+    {
+     "it": "si sieda",
+     "es": "siéntese"
+    },
+    {
+     "it": "albergo",
+     "es": "hotel"
+    },
+    {
+     "it": "vada avanti",
+     "es": "siga"
+    },
+    {
+     "it": "aspettava una bambina",
+     "es": "esperaba una nena"
+    },
+    {
+     "it": "l'ho presa",
+     "es": "la agarré"
+    },
+    {
+     "it": "l'ho letta",
+     "es": "la leí"
+    },
+    {
+     "it": "gliel'ho data",
+     "es": "se la di"
+    },
+    {
+     "it": "ha nascosto",
+     "es": "escondió"
+    },
+    {
+     "it": "malata di cuore",
+     "es": "enferma del corazón"
+    },
+    {
+     "it": "l'avrebbe ammazzata",
+     "es": "la habría matado"
+    },
+    {
+     "it": "si è preso la testa tra le mani",
+     "es": "se agarró la cabeza"
+    },
+    {
+     "it": "quindi",
+     "es": "así que"
+    },
+    {
+     "it": "vostra",
+     "es": "de ustedes"
+    },
+    {
+     "it": "l'ha fermata",
+     "es": "la frenó"
+    },
+    {
+     "it": "non riusciva a",
+     "es": "no podía, no lograba"
+    },
+    {
+     "it": "né... né",
+     "es": "ni... ni"
+    },
+    {
+     "it": "è partito",
+     "es": "se fue"
+    },
+    {
+     "it": "salutare",
+     "es": "saludar"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Si sono seduti tutti e quattro nella sala grande.",
+     "es": "Se sentaron los cuatro en la sala grande."
+    },
+    {
+     "it": "La stessa sala del testamento.",
+     "es": "La misma sala del testamento."
+    },
+    {
+     "it": "Rosa non voleva sedersi. È rimasta in piedi.",
+     "es": "Rosa no quería sentarse. Se quedó parada."
+    },
+    {
+     "it": "«Nel 1989 suo padre è andato a Napoli per lavoro.»",
+     "es": "«En 1989 su padre fue a Nápoles por trabajo»."
+    },
+    {
+     "it": "«Andava sempre a Napoli,» ha detto Riccardo.",
+     "es": "«Iba siempre a Nápoles», dijo Riccardo."
+    },
+    {
+     "it": "«Sì. Ma quell'anno ci è rimasto sette mesi.»",
+     "es": "«Sí. Pero ese año se quedó siete meses»."
+    },
+    {
+     "it": "Rosa parlava piano e guardava il pavimento.",
+     "es": "Rosa hablaba bajito y miraba el piso."
+    },
+    {
+     "it": "«Là ha conosciuto una donna. Si chiamava Teresa.»",
+     "es": "«Allá conoció a una mujer. Se llamaba Teresa»."
+    },
+    {
+     "it": "Elena si è alzata in piedi.",
+     "es": "Elena se paró."
+    },
+    {
+     "it": "«Si sieda, signorina. Per favore.»",
+     "es": "«Siéntese, señorita. Por favor»."
+    },
+    {
+     "it": "Elena si è seduta.",
+     "es": "Elena se sentó."
+    },
+    {
+     "it": "«Teresa lavorava in un albergo. Aveva ventidue anni.»",
+     "es": "«Teresa trabajaba en un hotel. Tenía veintidós años»."
+    },
+    {
+     "it": "«Vada avanti,» ha detto Riccardo.",
+     "es": "«Siga», dijo Riccardo."
+    },
+    {
+     "it": "«Nel 1990 Teresa ha scritto una lettera a questa casa.»",
+     "es": "«En 1990 Teresa escribió una carta a esta casa»."
+    },
+    {
+     "it": "«Che diceva?»",
+     "es": "«¿Qué decía?»"
+    },
+    {
+     "it": "«Che aspettava una bambina.»",
+     "es": "«Que esperaba una nena»."
+    },
+    {
+     "it": "Nella sala non si sentiva niente.",
+     "es": "En la sala no se oía nada."
+    },
+    {
+     "it": "«La lettera l'ho presa io,» ha detto Rosa.",
+     "es": "«La carta la agarré yo», dijo Rosa."
+    },
+    {
+     "it": "«Come, l'ha presa lei?»",
+     "es": "«¿Cómo, la agarró usted?»"
+    },
+    {
+     "it": "«L'ho letta e non gliel'ho data.»",
+     "es": "«La leí y no se la di»."
+    },
+    {
+     "it": "«Lei ha nascosto una lettera per trentaquattro anni?»",
+     "es": "«¿Usted escondió una carta durante treinta y cuatro años?»"
+    },
+    {
+     "it": "«Sì.»",
+     "es": "«Sí»."
+    },
+    {
+     "it": "Riccardo si è alzato.",
+     "es": "Riccardo se levantó."
+    },
+    {
+     "it": "«Perché?»",
+     "es": "«¿Por qué?»"
+    },
+    {
+     "it": "«Perché la signora Costanza era malata di cuore,» ha detto Rosa.",
+     "es": "«Porque la señora Costanza estaba enferma del corazón», dijo Rosa."
+    },
+    {
+     "it": "«E quella lettera l'avrebbe ammazzata.»",
+     "es": "«Y esa carta la habría matado»."
+    },
+    {
+     "it": "Stefano si è preso la testa tra le mani.",
+     "es": "Stefano se agarró la cabeza con las manos."
+    },
+    {
+     "it": "«Quindi Elena è...»",
+     "es": "«Así que Elena es...»"
+    },
+    {
+     "it": "Rosa non ha risposto.",
+     "es": "Rosa no contestó."
+    },
+    {
+     "it": "«Rosa. Dica la parola.»",
+     "es": "«Rosa. Diga la palabra»."
+    },
+    {
+     "it": "«Elena è figlia di Vittorio Ferrante,» ha detto Rosa.",
+     "es": "«Elena es hija de Vittorio Ferrante», dijo Rosa."
+    },
+    {
+     "it": "«È vostra sorella.»",
+     "es": "«Es la hermana de ustedes»."
+    },
+    {
+     "it": "Elena si è alzata e ha camminato verso la porta.",
+     "es": "Elena se levantó y caminó hacia la puerta."
+    },
+    {
+     "it": "Nessuno l'ha fermata.",
+     "es": "Nadie la frenó."
+    },
+    {
+     "it": "Stefano guardava il pavimento.",
+     "es": "Stefano miraba el piso."
+    },
+    {
+     "it": "Non riusciva a guardare né lei né suo fratello.",
+     "es": "No podía mirar ni a ella ni a su hermano."
+    },
+    {
+     "it": "Quella notte è partito per Firenze senza salutare.",
+     "es": "Esa noche se fue a Florencia sin saludar."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-08",
+   "titulo": "Il segreto dei Ferrante 8",
+   "titulo_es": "El secreto de los Ferrante 8 · El casamiento",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "si è sposato",
+     "es": "se casó"
+    },
+    {
+     "it": "era fissato",
+     "es": "estaba arreglado, fijado"
+    },
+    {
+     "it": "sposa / sposi",
+     "es": "novia / novios"
+    },
+    {
+     "it": "stava succedendo",
+     "es": "estaba pasando"
+    },
+    {
+     "it": "vigliacco",
+     "es": "cobarde"
+    },
+    {
+     "it": "sorridi",
+     "es": "sonreí"
+    },
+    {
+     "it": "a un certo punto",
+     "es": "en un momento"
+    },
+    {
+     "it": "le ho rubato",
+     "es": "le robé"
+    },
+    {
+     "it": "ha salvato",
+     "es": "salvó"
+    },
+    {
+     "it": "ha appoggiato",
+     "es": "apoyó"
+    },
+    {
+     "it": "forchetta",
+     "es": "tenedor"
+    },
+    {
+     "it": "barba",
+     "es": "barba"
+    },
+    {
+     "it": "non riesco a stare via",
+     "es": "no aguanto estar lejos"
+    },
+    {
+     "it": "vattene",
+     "es": "andate"
+    },
+    {
+     "it": "invitati",
+     "es": "invitados"
+    },
+    {
+     "it": "ha attraversato",
+     "es": "cruzó"
+    },
+    {
+     "it": "schiaffo",
+     "es": "cachetazo"
+    },
+    {
+     "it": "ti sei innamorato",
+     "es": "te enamoraste"
+    },
+    {
+     "it": "sta' zitto",
+     "es": "callate"
+    },
+    {
+     "it": "giardiniere",
+     "es": "jardinero"
+    },
+    {
+     "it": "si è messa a piangere",
+     "es": "se puso a llorar"
+    },
+    {
+     "it": "se n'è andata",
+     "es": "se fue"
+    },
+    {
+     "it": "l'ha seguita",
+     "es": "la siguió"
+    },
+    {
+     "it": "aspetti",
+     "es": "espere"
+    },
+    {
+     "it": "la lasci stare",
+     "es": "déjelo así"
+    },
+    {
+     "it": "già",
+     "es": "ya"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Riccardo si è sposato tre settimane dopo.",
+     "es": "Riccardo se casó tres semanas después."
+    },
+    {
+     "it": "Il matrimonio era fissato da un anno.",
+     "es": "El casamiento estaba arreglado desde hacía un año."
+    },
+    {
+     "it": "La sposa si chiamava Giulia.",
+     "es": "La novia se llamaba Giulia."
+    },
+    {
+     "it": "Non capiva niente di quello che stava succedendo.",
+     "es": "No entendía nada de lo que estaba pasando."
+    },
+    {
+     "it": "«Perché tuo fratello non c'è?» ha chiesto in chiesa.",
+     "es": "«¿Por qué no está tu hermano?», preguntó en la iglesia."
+    },
+    {
+     "it": "«Perché è un vigliacco.»",
+     "es": "«Porque es un cobarde»."
+    },
+    {
+     "it": "«Riccardo, ti sposi. Sorridi.»",
+     "es": "«Riccardo, te estás casando. Sonreí»."
+    },
+    {
+     "it": "Elena non è andata al matrimonio.",
+     "es": "Elena no fue al casamiento."
+    },
+    {
+     "it": "È rimasta nella villa vuota, con Rosa.",
+     "es": "Se quedó en la villa vacía, con Rosa."
+    },
+    {
+     "it": "Le due donne hanno mangiato in cucina, in silenzio.",
+     "es": "Las dos mujeres comieron en la cocina, en silencio."
+    },
+    {
+     "it": "«Perché non mi odia?» ha detto Rosa a un certo punto.",
+     "es": "«¿Por qué no me odia?», dijo Rosa en un momento."
+    },
+    {
+     "it": "«Non lo so.»",
+     "es": "«No sé»."
+    },
+    {
+     "it": "«Io le ho rubato un padre.»",
+     "es": "«Yo le robé un padre»."
+    },
+    {
+     "it": "«Lei ha salvato una donna malata.»",
+     "es": "«Usted salvó a una mujer enferma»."
+    },
+    {
+     "it": "Rosa ha appoggiato la forchetta.",
+     "es": "Rosa apoyó el tenedor."
+    },
+    {
+     "it": "«Signorina...»",
+     "es": "«Señorita...»"
+    },
+    {
+     "it": "«Elena.»",
+     "es": "«Elena»."
+    },
+    {
+     "it": "«Elena. C'è una cosa che...»",
+     "es": "«Elena. Hay una cosa que...»"
+    },
+    {
+     "it": "In quel momento è entrato Stefano.",
+     "es": "En ese momento entró Stefano."
+    },
+    {
+     "it": "Era tornato da Firenze e aveva la barba di dieci giorni.",
+     "es": "Había vuelto de Florencia y tenía barba de diez días."
+    },
+    {
+     "it": "«Sei tornato,» ha detto Elena.",
+     "es": "«Volviste», dijo Elena."
+    },
+    {
+     "it": "«Non riesco a stare via.»",
+     "es": "«No aguanto estar lejos»."
+    },
+    {
+     "it": "«Stefano, siamo fratelli.»",
+     "es": "«Stefano, somos hermanos»."
+    },
+    {
+     "it": "«Lo so.»",
+     "es": "«Ya sé»."
+    },
+    {
+     "it": "«Allora vattene.»",
+     "es": "«Entonces andate»."
+    },
+    {
+     "it": "Alle sei sono arrivati gli sposi con cinquanta invitati.",
+     "es": "A las seis llegaron los novios con cincuenta invitados."
+    },
+    {
+     "it": "Riccardo ha visto suo fratello vicino alla porta.",
+     "es": "Riccardo vio a su hermano cerca de la puerta."
+    },
+    {
+     "it": "Ha attraversato il salotto e gli ha dato uno schiaffo davanti a tutti.",
+     "es": "Cruzó el living y le dio un cachetazo delante de todos."
+    },
+    {
+     "it": "Il rumore ha fermato la musica.",
+     "es": "El ruido frenó la música."
+    },
+    {
+     "it": "«Ti sei innamorato di nostra sorella,» ha detto Riccardo.",
+     "es": "«Te enamoraste de nuestra hermana», dijo Riccardo."
+    },
+    {
+     "it": "«Sta' zitto.»",
+     "es": "«Callate»."
+    },
+    {
+     "it": "«Lo sanno tutti. Lo sa anche il giardiniere.»",
+     "es": "«Lo saben todos. Lo sabe hasta el jardinero»."
+    },
+    {
+     "it": "Giulia si è messa a piangere e se n'è andata.",
+     "es": "Giulia se puso a llorar y se fue."
+    },
+    {
+     "it": "Gli invitati guardavano il pavimento.",
+     "es": "Los invitados miraban el piso."
+    },
+    {
+     "it": "Elena è uscita in giardino.",
+     "es": "Elena salió al jardín."
+    },
+    {
+     "it": "Rosa l'ha seguita.",
+     "es": "Rosa la siguió."
+    },
+    {
+     "it": "«Elena, aspetti.»",
+     "es": "«Elena, espere»."
+    },
+    {
+     "it": "«Rosa, la lasci stare.»",
+     "es": "«Rosa, déjelo así»."
+    },
+    {
+     "it": "«Ma io devo dirle una cosa.»",
+     "es": "«Pero yo le tengo que decir una cosa»."
+    },
+    {
+     "it": "«Domani.»",
+     "es": "«Mañana»."
+    },
+    {
+     "it": "«Non c'è un domani per tutto,» ha detto Rosa.",
+     "es": "«No hay un mañana para todo», dijo Rosa."
+    },
+    {
+     "it": "Ma Elena era già dentro.",
+     "es": "Pero Elena ya estaba adentro."
+    }
+   ]
+  },
+  {
+   "id": "ferrante-09",
+   "titulo": "Il segreto dei Ferrante 9",
+   "titulo_es": "El secreto de los Ferrante 9 · La valija",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "se ne andava",
+     "es": "se iba"
+    },
+    {
+     "it": "rinunciava",
+     "es": "renunciaba"
+    },
+    {
+     "it": "non sarebbe più tornata",
+     "es": "no iba a volver nunca más"
+    },
+    {
+     "it": "è scesa",
+     "es": "bajó"
+    },
+    {
+     "it": "un'ultima volta",
+     "es": "una última vez"
+    },
+    {
+     "it": "con la stessa mano",
+     "es": "con la misma letra"
+    },
+    {
+     "it": "è salita",
+     "es": "subió"
+    },
+    {
+     "it": "vestito buono",
+     "es": "vestido bueno, de salir"
+    },
+    {
+     "it": "mi lasci passare",
+     "es": "déjeme pasar"
+    },
+    {
+     "it": "ha tirato fuori",
+     "es": "sacó"
+    },
+    {
+     "it": "tasca",
+     "es": "bolsillo"
+    },
+    {
+     "it": "gialla",
+     "es": "amarilla"
+    },
+    {
+     "it": "francobollo",
+     "es": "estampilla"
+    },
+    {
+     "it": "perché la legga",
+     "es": "para que la lea"
+    },
+    {
+     "it": "fogli",
+     "es": "hojas"
+    },
+    {
+     "it": "gradini",
+     "es": "escalones"
+    },
+    {
+     "it": "che cosa ha fatto",
+     "es": "qué hizo"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Elena ha preparato la valigia il lunedì mattina.",
+     "es": "Elena preparó la valija el lunes a la mañana."
+    },
+    {
+     "it": "Non era grande.",
+     "es": "No era grande."
+    },
+    {
+     "it": "Era arrivata con poco e se ne andava con poco.",
+     "es": "Había llegado con poco y se iba con poco."
+    },
+    {
+     "it": "Ha lasciato una lettera sul tavolo della cucina.",
+     "es": "Dejó una carta sobre la mesa de la cocina."
+    },
+    {
+     "it": "Diceva tre cose.",
+     "es": "Decía tres cosas."
+    },
+    {
+     "it": "Che rinunciava alla vigna.",
+     "es": "Que renunciaba a la viña."
+    },
+    {
+     "it": "Che la lasciava ai due fratelli.",
+     "es": "Que se la dejaba a los dos hermanos."
+    },
+    {
+     "it": "Che non sarebbe più tornata.",
+     "es": "Que no iba a volver nunca más."
+    },
+    {
+     "it": "Poi è scesa in cantina un'ultima volta.",
+     "es": "Después bajó a la bodega una última vez."
+    },
+    {
+     "it": "Voleva vedere le date sul legno.",
+     "es": "Quería ver las fechas en la madera."
+    },
+    {
+     "it": "Le date erano gli anni delle vendemmie.",
+     "es": "Las fechas eran los años de las vendimias."
+    },
+    {
+     "it": "Una botte diceva: 1990.",
+     "es": "Un tonel decía: 1990."
+    },
+    {
+     "it": "Sotto, con la stessa mano, c'era scritta una parola.",
+     "es": "Abajo, con la misma letra, había escrita una palabra."
+    },
+    {
+     "it": "«Elena.»",
+     "es": "«Elena»."
+    },
+    {
+     "it": "Elena è rimasta a guardare quella parola molto tempo.",
+     "es": "Elena se quedó mirando esa palabra mucho tiempo."
+    },
+    {
+     "it": "Quando è salita, Rosa era in piedi davanti alla porta.",
+     "es": "Cuando subió, Rosa estaba parada delante de la puerta."
+    },
+    {
+     "it": "Aveva un vestito buono, quello della domenica.",
+     "es": "Tenía un vestido bueno, el de los domingos."
+    },
+    {
+     "it": "«Se ne va.»",
+     "es": "«Se va»."
+    },
+    {
+     "it": "«Sì.»",
+     "es": "«Sí»."
+    },
+    {
+     "it": "«Non può.»",
+     "es": "«No puede»."
+    },
+    {
+     "it": "«Rosa, mi lasci passare.»",
+     "es": "«Rosa, déjeme pasar»."
+    },
+    {
+     "it": "«No.»",
+     "es": "«No»."
+    },
+    {
+     "it": "Elena ha posato la valigia.",
+     "es": "Elena apoyó la valija."
+    },
+    {
+     "it": "«Cosa vuole da me?»",
+     "es": "«¿Qué quiere de mí?»"
+    },
+    {
+     "it": "Rosa ha tirato fuori dalla tasca una busta gialla.",
+     "es": "Rosa sacó del bolsillo un sobre amarillo."
+    },
+    {
+     "it": "Era vecchia e aveva un francobollo del 1990.",
+     "es": "Era viejo y tenía una estampilla de 1990."
+    },
+    {
+     "it": "«Questa è la lettera di sua madre.»",
+     "es": "«Esta es la carta de su madre»."
+    },
+    {
+     "it": "«Quella che ha nascosto.»",
+     "es": "«La que escondió»."
+    },
+    {
+     "it": "«Sì.»",
+     "es": "«Sí»."
+    },
+    {
+     "it": "«E perché me la dà adesso?»",
+     "es": "«¿Y por qué me la da ahora?»"
+    },
+    {
+     "it": "«Perché la legga.»",
+     "es": "«Para que la lea»."
+    },
+    {
+     "it": "Elena ha aperto la busta.",
+     "es": "Elena abrió el sobre."
+    },
+    {
+     "it": "Dentro c'erano due fogli.",
+     "es": "Adentro había dos hojas."
+    },
+    {
+     "it": "Ha letto il primo e non ha capito.",
+     "es": "Leyó la primera y no entendió."
+    },
+    {
+     "it": "Ha letto il secondo e si è seduta sui gradini.",
+     "es": "Leyó la segunda y se sentó en los escalones."
+    },
+    {
+     "it": "«Rosa,» ha detto. «Questa lettera non parla di una bambina.»",
+     "es": "«Rosa», dijo. «Esta carta no habla de una nena»."
+    },
+    {
+     "it": "«No.»",
+     "es": "«No»."
+    },
+    {
+     "it": "«Questa lettera parla di soldi.»",
+     "es": "«Esta carta habla de plata»."
+    },
+    {
+     "it": "«Sì.»",
+     "es": "«Sí»."
+    },
+    {
+     "it": "«Mia madre non gli ha mai scritto che era incinta.»",
+     "es": "«Mi madre nunca le escribió que estaba embarazada»."
+    },
+    {
+     "it": "«No.»",
+     "es": "«No»."
+    },
+    {
+     "it": "Elena ha alzato gli occhi.",
+     "es": "Elena levantó los ojos."
+    },
+    {
+     "it": "«Rosa, che cosa ha fatto lei?»",
+     "es": "«Rosa, ¿qué hizo usted?»"
+    }
+   ]
+  },
+  {
+   "id": "ferrante-10",
+   "titulo": "Il segreto dei Ferrante 10",
+   "titulo_es": "El secreto de los Ferrante 10 · La verdad",
+   "nivel": 6,
+   "tema": "novela",
+   "graduado": false,
+   "vocabulario": [
+    {
+     "it": "qualsiasi",
+     "es": "cualquiera"
+    },
+    {
+     "it": "amante",
+     "es": "amante"
+    },
+    {
+     "it": "nonno",
+     "es": "abuelo"
+    },
+    {
+     "it": "ha perso",
+     "es": "perdió"
+    },
+    {
+     "it": "documenti",
+     "es": "documentos"
+    },
+    {
+     "it": "glieli ha fatti firmare",
+     "es": "se los hizo firmar"
+    },
+    {
+     "it": "gli ha rubato",
+     "es": "le robó"
+    },
+    {
+     "it": "legalmente",
+     "es": "legalmente"
+    },
+    {
+     "it": "chiedeva indietro",
+     "es": "pedía de vuelta"
+    },
+    {
+     "it": "lo stesso",
+     "es": "igual, de todos modos"
+    },
+    {
+     "it": "intorno",
+     "es": "alrededor"
+    },
+    {
+     "it": "vuol dire",
+     "es": "quiere decir"
+    },
+    {
+     "it": "disturbava",
+     "es": "molestaba"
+    },
+    {
+     "it": "succedevano",
+     "es": "pasaban"
+    },
+    {
+     "it": "proteggere",
+     "es": "proteger"
+    },
+    {
+     "it": "doveva ancora nascere",
+     "es": "todavía no había nacido"
+    },
+    {
+     "it": "non si tocca",
+     "es": "no se toca"
+    },
+    {
+     "it": "l'avrebbe distrutta",
+     "es": "la habría destruido"
+    },
+    {
+     "it": "tribunale",
+     "es": "juzgado"
+    },
+    {
+     "it": "giudice",
+     "es": "juez"
+    },
+    {
+     "it": "toglieva",
+     "es": "sacaba"
+    },
+    {
+     "it": "ha mentito",
+     "es": "mintió"
+    },
+    {
+     "it": "terra",
+     "es": "tierra"
+    },
+    {
+     "it": "non era mai stata sua",
+     "es": "nunca había sido suya"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Sono andate a sedersi in cucina, come due donne qualsiasi.",
+     "es": "Se fueron a sentar a la cocina, como dos mujeres cualquiera."
+    },
+    {
+     "it": "Rosa ha fatto il caffè.",
+     "es": "Rosa hizo café."
+    },
+    {
+     "it": "Non sapeva fare altro nei momenti difficili.",
+     "es": "No sabía hacer otra cosa en los momentos difíciles."
+    },
+    {
+     "it": "«Sua madre non era l'amante di Vittorio,» ha detto.",
+     "es": "«Su madre no era la amante de Vittorio», dijo."
+    },
+    {
+     "it": "«E allora chi era?»",
+     "es": "«¿Y entonces quién era?»"
+    },
+    {
+     "it": "«Era la figlia di Antonio Ricci.»",
+     "es": "«Era la hija de Antonio Ricci»."
+    },
+    {
+     "it": "«Mio nonno.»",
+     "es": "«Mi abuelo»."
+    },
+    {
+     "it": "«Sì. E Antonio Ricci aveva una vigna qui vicino.»",
+     "es": "«Sí. Y Antonio Ricci tenía una viña acá cerca»."
+    },
+    {
+     "it": "Elena non ha detto niente.",
+     "es": "Elena no dijo nada."
+    },
+    {
+     "it": "«Nel 1987 suo nonno ha perso tutto.»",
+     "es": "«En 1987 su abuelo perdió todo»."
+    },
+    {
+     "it": "«Come?»",
+     "es": "«¿Cómo?»"
+    },
+    {
+     "it": "«Ha firmato dei documenti che non aveva letto.»",
+     "es": "«Firmó unos documentos que no había leído»."
+    },
+    {
+     "it": "«Chi glieli ha fatti firmare?»",
+     "es": "«¿Quién se los hizo firmar?»"
+    },
+    {
+     "it": "Rosa ha guardato la tazza.",
+     "es": "Rosa miró la taza."
+    },
+    {
+     "it": "«Vittorio.»",
+     "es": "«Vittorio»."
+    },
+    {
+     "it": "«Vittorio Ferrante gli ha rubato la vigna.»",
+     "es": "«Vittorio Ferrante le robó la viña»."
+    },
+    {
+     "it": "«Legalmente. Ma sì.»",
+     "es": "«Legalmente. Pero sí»."
+    },
+    {
+     "it": "«E dopo?»",
+     "es": "«¿Y después?»"
+    },
+    {
+     "it": "«Antonio Ricci è morto due anni dopo.»",
+     "es": "«Antonio Ricci se murió dos años después»."
+    },
+    {
+     "it": "«Teresa è andata a Napoli.»",
+     "es": "«Teresa se fue a Nápoles»."
+    },
+    {
+     "it": "«E la lettera?»",
+     "es": "«¿Y la carta?»"
+    },
+    {
+     "it": "«Teresa chiedeva indietro quello che era suo. Niente di più.»",
+     "es": "«Teresa pedía de vuelta lo que era suyo. Nada más»."
+    },
+    {
+     "it": "Elena ha guardato i due fogli sul tavolo.",
+     "es": "Elena miró las dos hojas sobre la mesa."
+    },
+    {
+     "it": "«E lei l'ha nascosta lo stesso.»",
+     "es": "«Y usted la escondió igual»."
+    },
+    {
+     "it": "«Sì.»",
+     "es": "«Sí»."
+    },
+    {
+     "it": "«Perché?»",
+     "es": "«¿Por qué?»"
+    },
+    {
+     "it": "Rosa ha messo le mani intorno alla tazza.",
+     "es": "Rosa puso las manos alrededor de la taza."
+    },
+    {
+     "it": "«Perché in quegli anni Vittorio Ferrante non era un uomo buono.»",
+     "es": "«Porque en esos años Vittorio Ferrante no era un hombre bueno»."
+    },
+    {
+     "it": "«Cosa vuol dire?»",
+     "es": "«¿Qué quiere decir?»"
+    },
+    {
+     "it": "«Vuol dire che a chi lo disturbava succedevano delle cose.»",
+     "es": "«Quiere decir que al que lo molestaba le pasaban cosas»."
+    },
+    {
+     "it": "Elena ha capito piano.",
+     "es": "Elena entendió de a poco."
+    },
+    {
+     "it": "«Lei ha nascosto la lettera per proteggere mia madre.»",
+     "es": "«Usted escondió la carta para proteger a mi madre»."
+    },
+    {
+     "it": "«E lei. Lei doveva ancora nascere.»",
+     "es": "«Y a usted. Usted todavía no había nacido»."
+    },
+    {
+     "it": "«Ma allora perché ha detto a tutti che ero sua figlia?»",
+     "es": "«¿Pero entonces por qué le dijo a todos que yo era hija de él?»"
+    },
+    {
+     "it": "Rosa ha alzato gli occhi per la prima volta.",
+     "es": "Rosa levantó los ojos por primera vez."
+    },
+    {
+     "it": "«Perché una figlia non si tocca,» ha detto.",
+     "es": "«Porque a una hija no se la toca», dijo."
+    },
+    {
+     "it": "«Se lei era una sconosciuta, Riccardo l'avrebbe distrutta in tribunale.»",
+     "es": "«Si usted era una desconocida, Riccardo la habría destruido en el juzgado»."
+    },
+    {
+     "it": "«Ma se era una Ferrante, nessun giudice le toglieva niente.»",
+     "es": "«Pero si era una Ferrante, ningún juez le sacaba nada»."
+    },
+    {
+     "it": "Elena ha appoggiato la testa alle mani.",
+     "es": "Elena apoyó la cabeza en las manos."
+    },
+    {
+     "it": "«Rosa, lei ha mentito davanti a tutti.»",
+     "es": "«Rosa, usted mintió delante de todos»."
+    },
+    {
+     "it": "«Ho mentito due volte in cinquant'anni.»",
+     "es": "«Mentí dos veces en cincuenta años»."
+    },
+    {
+     "it": "«Tutte e due per proteggere qualcuno.»",
+     "es": "«Las dos para proteger a alguien»."
+    },
+    {
+     "it": "«E Vittorio? Perché mi ha lasciato la vigna?»",
+     "es": "«¿Y Vittorio? ¿Por qué me dejó la viña?»"
+    },
+    {
+     "it": "«Perché prima di morire ha capito una cosa.»",
+     "es": "«Porque antes de morirse entendió una cosa»."
+    },
+    {
+     "it": "«Cosa?»",
+     "es": "«¿Qué cosa?»"
+    },
+    {
+     "it": "«Che quella terra non era mai stata sua.»",
+     "es": "«Que esa tierra nunca había sido suya»."
+    },
+    {
+     "it": "Elena ha guardato fuori dalla finestra.",
+     "es": "Elena miró por la ventana."
+    },
+    {
+     "it": "I filari erano gli stessi che aveva visto suo nonno.",
+     "es": "Las hileras eran las mismas que había visto su abuelo."
+    },
+    {
+     "it": "«Rosa.»",
+     "es": "«Rosa»."
+    },
+    {
+     "it": "«Sì?»",
+     "es": "«¿Sí?»"
+    },
+    {
+     "it": "«Stefano non è mio fratello.»",
+     "es": "«Stefano no es mi hermano»."
+    },
+    {
+     "it": "Rosa ha sorriso per la prima volta da un mese.",
+     "es": "Rosa sonrió por primera vez en un mes."
+    },
+    {
+     "it": "«No,» ha detto. «Non lo è.»",
+     "es": "«No», dijo. «No lo es»."
+    },
+    {
+     "it": "Elena si è alzata e ha lasciato la valigia in cucina.",
+     "es": "Elena se levantó y dejó la valija en la cocina."
     }
    ]
   }
