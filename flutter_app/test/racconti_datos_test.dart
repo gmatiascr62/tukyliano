@@ -82,12 +82,17 @@ void main() {
       expect(_datos.racconti.length, (crudo['racconti'] as List).length);
     });
 
-    test('ninguna palabra sale de la nada', () {
+    test('ninguna palabra sale de la nada, en los graduados', () {
       // Esta es la que hace que "cuento graduado" sea algo verificado y no
       // una promesa: cada palabra italiana tiene que estar practicada en otra
       // sección o declarada en el vocabulario del cuento. Si se cuela una
       // palabra nueva sin glosar, acá salta.
-      for (final r in _datos.racconti) {
+      //
+      // Los que declaran graduado:false quedan afuera a propósito: la novela
+      // usa todos los tiempos verbales y glosarlos uno por uno daría cientos
+      // de entradas. La marca es por cuento justamente para no aflojar esto
+      // para todos.
+      for (final r in _datos.racconti.where((r) => r.graduado)) {
         final declaradas = _declaradas(r);
         for (final linea in r.lineas) {
           for (final palabra in _palabras(linea.italiano)) {
@@ -166,6 +171,42 @@ void main() {
       expect(largos.reduce((a, b) => a > b ? a : b), greaterThanOrEqualTo(30));
     });
 
+    test('un cuento corto no puede zafar de ser graduado', () {
+      // La marca es una excepción para los largos, no una puerta para dejar
+      // de glosar. Contar cuántos son graduados no sirve como límite: una
+      // novela de diez capítulos gana por número siendo una sola obra. Lo
+      // que sí se puede exigir es que quien no glosa tenga la excusa de ser
+      // largo. Un cuento de doce renglones no la tiene.
+      for (final r in _datos.racconti.where((r) => !r.graduado)) {
+        expect(r.lineas.length, greaterThanOrEqualTo(30), reason: r.id);
+      }
+    });
+
+    test('los cortos siguen todos graduados', () {
+      for (final r in _datos.racconti.where((r) => r.lineas.length < 30)) {
+        expect(r.graduado, isTrue, reason: r.id);
+      }
+    });
+
+    test('los no graduados igual glosan lo que hace falta', () {
+      // No prometen cubrirlo todo, pero un cuento sin ninguna glosa sería
+      // ilegible.
+      for (final r in _datos.racconti.where((r) => !r.graduado)) {
+        expect(r.vocabulario.length, greaterThanOrEqualTo(10), reason: r.id);
+      }
+    });
+
+    test('los capítulos de la novela salen en orden', () {
+      // Comparten nivel, así que el desempate tiene que ser el orden del
+      // JSON. Sin eso saldrían barajados y la novela no se podría leer.
+      final capitulos = _datos.racconti
+          .where((r) => r.id.startsWith('ferrante-'))
+          .map((r) => r.id)
+          .toList();
+      expect(capitulos, isNotEmpty);
+      expect(capitulos, orderedEquals(List.of(capitulos)..sort()));
+    });
+
     test('vienen ordenados de más fácil a más difícil', () {
       final niveles = _datos.racconti.map((r) => r.nivel).toList();
       expect(niveles, orderedEquals(List.of(niveles)..sort()));
@@ -207,6 +248,33 @@ void main() {
       ''') as Map<String, dynamic>);
 
       expect(datos.racconti.single.titulo, 'uno');
+    });
+
+    test('graduado es true si el JSON no dice nada', () {
+      final datos = DatosRacconti.desdeJson(jsonDecode('''
+        {"racconti": [
+          {"id": "callado", "lineas": [{"it": "Ciao.", "es": "Hola."}]},
+          {"id": "marcado", "graduado": false,
+           "lineas": [{"it": "Ciao.", "es": "Hola."}]}
+        ]}
+      ''') as Map<String, dynamic>);
+
+      expect(datos.racconti[0].graduado, isTrue);
+      expect(datos.racconti[1].graduado, isFalse);
+    });
+
+    test('a igual nivel mantiene el orden del JSON', () {
+      final datos = DatosRacconti.desdeJson(jsonDecode('''
+        {"racconti": [
+          {"id": "cap1", "nivel": 6, "lineas": [{"it": "a", "es": "a"}]},
+          {"id": "cap2", "nivel": 6, "lineas": [{"it": "b", "es": "b"}]},
+          {"id": "facil", "nivel": 1, "lineas": [{"it": "c", "es": "c"}]},
+          {"id": "cap3", "nivel": 6, "lineas": [{"it": "d", "es": "d"}]}
+        ]}
+      ''') as Map<String, dynamic>);
+
+      expect(datos.racconti.map((r) => r.id),
+          ['facil', 'cap1', 'cap2', 'cap3']);
     });
 
     test('ordena por nivel', () {

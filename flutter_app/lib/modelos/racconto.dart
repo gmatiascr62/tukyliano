@@ -33,6 +33,7 @@ class Racconto {
     required this.lineas,
     this.nivel = 1,
     this.vocabulario = const [],
+    this.graduado = true,
   });
 
   final String id;
@@ -46,6 +47,16 @@ class Racconto {
   /// Las palabras nuevas del cuento. Son las que de verdad frenan la lectura:
   /// una frase entera se adivina por contexto, una palabra suelta no.
   final List<PalabraGlosada> vocabulario;
+
+  /// Si el cuento se compromete a usar solo palabras ya practicadas o
+  /// glosadas. Los cortos sí, y un test lo verifica palabra por palabra.
+  ///
+  /// Los largos declaran false: una novela con todos los tiempos verbales
+  /// necesitaría cientos de glosas y el panel dejaría de servir. Se glosa lo
+  /// que de verdad frena y se lee con esfuerzo, que es de lo que se trata.
+  /// La marca es por cuento justamente para no aflojar la garantía de los
+  /// demás.
+  final bool graduado;
 
   static Racconto? desdeJson(Map<String, dynamic> json) {
     final id = json['id'] as String? ?? '';
@@ -71,6 +82,7 @@ class Racconto {
       titulo: json['titulo'] as String? ?? id,
       tituloEspanol: json['titulo_es'] as String? ?? '',
       nivel: json['nivel'] as int? ?? 1,
+      graduado: json['graduado'] as bool? ?? true,
       lineas: lineas,
       vocabulario: [
         for (final item in (json['vocabulario'] as List?) ?? const [])
@@ -114,11 +126,19 @@ class DatosRacconti {
         if (racconto != null) racconti.add(racconto);
       }
     }
-    racconti.sort((a, b) => a.nivel.compareTo(b.nivel));
+    // Por nivel, y a igual nivel en el orden en que vienen en el JSON. El
+    // desempate por posición no es un detalle: los capítulos de una novela
+    // comparten nivel, y sin esto podrían salir barajados.
+    final porNivel = [
+      for (var i = 0; i < racconti.length; i++) (i, racconti[i]),
+    ]..sort((a, b) {
+        final nivel = a.$2.nivel.compareTo(b.$2.nivel);
+        return nivel != 0 ? nivel : a.$1.compareTo(b.$1);
+      });
 
     return DatosRacconti(
       version: json['version'] as int? ?? 0,
-      racconti: racconti,
+      racconti: [for (final (_, r) in porNivel) r],
       vocabularioComun: [
         for (final item in (json['vocabulario_comun'] as List?) ?? const [])
           ?PalabraGlosada.desdeJson(item),
