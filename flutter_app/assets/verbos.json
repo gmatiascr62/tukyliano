@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 8,
   "verbos": {
     "volere": {
       "traduccion": "querer",
@@ -36,6 +36,120 @@
           "noi": {"italiano": "vorremo", "espanol": "nosotros querremos"},
           "voi": {"italiano": "vorrete", "espanol": "ustedes querrán"},
           "loro": {"italiano": "vorranno", "espanol": "ellos querrán"}
+        }
+      }
+    },
+    "fare": {
+      "traduccion": "hacer",
+      "gerundio": {"italiano": "facendo", "espanol": "haciendo"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "faccio", "espanol": "yo hago"},
+          "tu": {"italiano": "fai", "espanol": "tú haces"},
+          "lui/lei": {"italiano": "fa", "espanol": "él/ella hace"},
+          "noi": {"italiano": "facciamo", "espanol": "nosotros hacemos"},
+          "voi": {"italiano": "fate", "espanol": "ustedes hacen"},
+          "loro": {"italiano": "fanno", "espanol": "ellos hacen"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho fatto", "espanol": "yo hice"},
+          "tu": {"italiano": "hai fatto", "espanol": "tú hiciste"},
+          "lui/lei": {"italiano": "ha fatto", "espanol": "él/ella hizo"},
+          "noi": {"italiano": "abbiamo fatto", "espanol": "nosotros hicimos"},
+          "voi": {"italiano": "avete fatto", "espanol": "ustedes hicieron"},
+          "loro": {"italiano": "hanno fatto", "espanol": "ellos hicieron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "facevo", "espanol": "yo hacía"},
+          "tu": {"italiano": "facevi", "espanol": "tú hacías"},
+          "lui/lei": {"italiano": "faceva", "espanol": "él/ella hacía"},
+          "noi": {"italiano": "facevamo", "espanol": "nosotros hacíamos"},
+          "voi": {"italiano": "facevate", "espanol": "ustedes hacían"},
+          "loro": {"italiano": "facevano", "espanol": "ellos hacían"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "farò", "espanol": "yo haré"},
+          "tu": {"italiano": "farai", "espanol": "tú harás"},
+          "lui/lei": {"italiano": "farà", "espanol": "él/ella hará"},
+          "noi": {"italiano": "faremo", "espanol": "nosotros haremos"},
+          "voi": {"italiano": "farete", "espanol": "ustedes harán"},
+          "loro": {"italiano": "faranno", "espanol": "ellos harán"}
+        }
+      }
+    },
+    "essere": {
+      "traduccion": "ser/estar",
+      "gerundio": {"italiano": "essendo", "espanol": "siendo/estando"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "sono", "espanol": "yo soy/estoy"},
+          "tu": {"italiano": "sei", "espanol": "tú eres/estás"},
+          "lui/lei": {"italiano": "è", "espanol": "él/ella es/está"},
+          "noi": {"italiano": "siamo", "espanol": "nosotros somos/estamos"},
+          "voi": {"italiano": "siete", "espanol": "ustedes son/están"},
+          "loro": {"italiano": "sono", "espanol": "ellos son/están"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "sono stato", "espanol": "yo estuve"},
+          "tu": {"italiano": "sei stato", "espanol": "tú estuviste"},
+          "lui/lei": {"italiano": "è stato", "espanol": "él/ella estuvo"},
+          "noi": {"italiano": "siamo stati", "espanol": "nosotros estuvimos"},
+          "voi": {"italiano": "siete stati", "espanol": "ustedes estuvieron"},
+          "loro": {"italiano": "sono stati", "espanol": "ellos estuvieron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "ero", "espanol": "yo era/estaba"},
+          "tu": {"italiano": "eri", "espanol": "tú eras/estabas"},
+          "lui/lei": {"italiano": "era", "espanol": "él/ella era/estaba"},
+          "noi": {"italiano": "eravamo", "espanol": "nosotros éramos/estábamos"},
+          "voi": {"italiano": "eravate", "espanol": "ustedes eran/estaban"},
+          "loro": {"italiano": "erano", "espanol": "ellos eran/estaban"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "sarò", "espanol": "yo seré/estaré"},
+          "tu": {"italiano": "sarai", "espanol": "tú serás/estarás"},
+          "lui/lei": {"italiano": "sarà", "espanol": "él/ella será/estará"},
+          "noi": {"italiano": "saremo", "espanol": "nosotros seremos/estaremos"},
+          "voi": {"italiano": "sarete", "espanol": "ustedes serán/estarán"},
+          "loro": {"italiano": "saranno", "espanol": "ellos serán/estarán"}
+        }
+      }
+    },
+    "avere": {
+      "traduccion": "haber/tener",
+      "gerundio": {"italiano": "avendo", "espanol": "teniendo/habiendo"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "ho", "espanol": "yo tengo"},
+          "tu": {"italiano": "hai", "espanol": "tú tienes"},
+          "lui/lei": {"italiano": "ha", "espanol": "él/ella tiene"},
+          "noi": {"italiano": "abbiamo", "espanol": "nosotros tenemos"},
+          "voi": {"italiano": "avete", "espanol": "ustedes tienen"},
+          "loro": {"italiano": "hanno", "espanol": "ellos tienen"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho avuto", "espanol": "yo tuve/he tenido"},
+          "tu": {"italiano": "hai avuto", "espanol": "tú tuviste/has tenido"},
+          "lui/lei": {"italiano": "ha avuto", "espanol": "él/ella tuvo/ha tenido"},
+          "noi": {"italiano": "abbiamo avuto", "espanol": "nosotros tuvimos/hemos tenido"},
+          "voi": {"italiano": "avete avuto", "espanol": "ustedes tuvieron/han tenido"},
+          "loro": {"italiano": "hanno avuto", "espanol": "ellos tuvieron/han tenido"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "avevo", "espanol": "yo tenía"},
+          "tu": {"italiano": "avevi", "espanol": "tú tenías"},
+          "lui/lei": {"italiano": "aveva", "espanol": "él/ella tenía"},
+          "noi": {"italiano": "avevamo", "espanol": "nosotros teníamos"},
+          "voi": {"italiano": "avevate", "espanol": "ustedes tenían"},
+          "loro": {"italiano": "avevano", "espanol": "ellos tenían"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "avrò", "espanol": "yo tendré"},
+          "tu": {"italiano": "avrai", "espanol": "tú tendrás"},
+          "lui/lei": {"italiano": "avrà", "espanol": "él/ella tendrá"},
+          "noi": {"italiano": "avremo", "espanol": "nosotros tendremos"},
+          "voi": {"italiano": "avrete", "espanol": "ustedes tendrán"},
+          "loro": {"italiano": "avranno", "espanol": "ellos tendrán"}
         }
       }
     }
