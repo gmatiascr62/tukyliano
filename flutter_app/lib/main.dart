@@ -8,8 +8,10 @@ import 'datos/repositorio_preposizioni.dart';
 import 'datos/repositorio_racconti.dart';
 import 'datos/repositorio_verbos.dart';
 import 'datos/voz.dart';
+import 'ia/gemini.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
+import 'pantallas/pantalla_chat.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_preposizioni.dart';
 import 'pantallas/pantalla_quiz.dart';
@@ -17,7 +19,6 @@ import 'pantallas/pantalla_racconti.dart';
 import 'pantallas/pantalla_seleccion.dart';
 import 'tema.dart';
 import 'widgets/barra_superior.dart';
-import 'widgets/proximamente.dart';
 
 void main() {
   runApp(const TukylianoApp());
@@ -33,6 +34,7 @@ class TukylianoApp extends StatelessWidget {
     this.preposizioni,
     this.racconti,
     this.voz,
+    this.gemini,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
@@ -43,6 +45,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioPreposizioni? preposizioni;
   final RepositorioRacconti? racconti;
   final Voz? voz;
+  final Gemini? gemini;
 
   @override
   Widget build(BuildContext context) {
@@ -58,6 +61,7 @@ class TukylianoApp extends StatelessWidget {
         preposizioni: preposizioni,
         racconti: racconti,
         voz: voz,
+        gemini: gemini,
       ),
     );
   }
@@ -75,6 +79,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.preposizioni,
     this.racconti,
     this.voz,
+    this.gemini,
   });
 
   final AlmacenamientoClave? almacenClave;
@@ -84,6 +89,7 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioPreposizioni? preposizioni;
   final RepositorioRacconti? racconti;
   final Voz? voz;
+  final Gemini? gemini;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -141,12 +147,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     _cargarArticoli();
     _cargarPreposizioni();
     _cargarRacconti();
-    _borrarClaveVieja();
   }
-
-  /// La app ya no usa Gemini, así que la clave guardada no tiene por qué
-  /// seguir en el celular. Se borra una vez, en silencio.
-  Future<void> _borrarClaveVieja() => _almacenClave.borrar();
 
   /// Las frases se leen al arrancar y, si hay internet, se chequea si GitHub
   /// tiene una tanda nueva. No bloquea nada: si falla, se sigue con las que
@@ -274,9 +275,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.racconti:
         return PantallaRacconti(repositorio: _racconti, voz: _voz);
       case Seccion.chat:
-        return const Proximamente(
-          icono: Icons.chat_bubble_outline,
-          detalle: 'Una charla en italiano que te corrija sobre la marcha.',
+        // Sin key ni nada que guarde el estado: al cambiar de sección esta
+        // pantalla se destruye y la charla se olvida, que es lo que se pidió.
+        return PantallaChat(
+          almacenClave: _almacenClave,
+          voz: _voz,
+          gemini: widget.gemini,
         );
     }
   }

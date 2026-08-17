@@ -4,6 +4,8 @@ import '../datos/repositorio_racconti.dart';
 import '../datos/voz.dart';
 import '../modelos/racconto.dart';
 import '../tema.dart';
+import '../widgets/pastilla.dart';
+import '../widgets/selector_de_voz.dart';
 
 /// Cuentos para leer en italiano.
 ///
@@ -153,7 +155,7 @@ class _TarjetaRacconto extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  _Pastilla(texto: 'Nivel ${racconto.nivel}'),
+                  Pastilla(texto: 'Nivel ${racconto.nivel}'),
                   const SizedBox(height: 5),
                   Text(
                     '${racconto.lineas.length} frases',
@@ -167,106 +169,6 @@ class _TarjetaRacconto extends StatelessWidget {
             ],
           ),
         ),
-      ),
-    );
-  }
-}
-
-/// Pastilla verde. Sirve de etiqueta (el nivel) y de botón chico (la voz y la
-/// velocidad); cuando está [activa] se invierte el color.
-class _Pastilla extends StatelessWidget {
-  const _Pastilla({
-    required this.texto,
-    this.icono,
-    this.activa = false,
-    this.alTocar,
-  });
-
-  final String texto;
-  final IconData? icono;
-  final bool activa;
-  final VoidCallback? alTocar;
-
-  @override
-  Widget build(BuildContext context) {
-    final color = activa ? Colors.white : Tema.verdeOscuro;
-    final contenido = Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-      child: Row(
-        children: [
-          if (icono != null) ...[
-            Icon(icono, size: 15, color: color),
-            const SizedBox(width: 4),
-          ],
-          Text(
-            texto,
-            style: TextStyle(
-              fontSize: 12.5,
-              fontWeight: FontWeight.w600,
-              color: color,
-            ),
-          ),
-        ],
-      ),
-    );
-
-    return Material(
-      color: activa ? Tema.verde : Tema.verdeSuave,
-      borderRadius: BorderRadius.circular(20),
-      child: alTocar == null
-          ? contenido
-          : InkWell(
-              onTap: alTocar,
-              borderRadius: BorderRadius.circular(20),
-              child: contenido,
-            ),
-    );
-  }
-}
-
-/// Elige entre las voces italianas que tiene el celular.
-///
-/// Los nombres son ciudades: los códigos que da Android ("it-it-x-itc-local")
-/// no dicen si la voz es de hombre o de mujer, así que ponerle un nombre de
-/// persona sería adivinar.
-class _SelectorDeVoz extends StatelessWidget {
-  const _SelectorDeVoz({
-    required this.voces,
-    required this.elegida,
-    required this.alElegir,
-  });
-
-  final List<VozItaliana> voces;
-  final VozItaliana elegida;
-  final ValueChanged<VozItaliana> alElegir;
-
-  @override
-  Widget build(BuildContext context) {
-    return PopupMenuButton<VozItaliana>(
-      tooltip: 'Elegir la voz',
-      onSelected: alElegir,
-      itemBuilder: (_) => [
-        for (final voz in voces)
-          PopupMenuItem(
-            value: voz,
-            child: Row(
-              children: [
-                Icon(
-                  voz.id == elegida.id
-                      ? Icons.radio_button_checked
-                      : Icons.radio_button_unchecked,
-                  size: 18,
-                  color: Tema.verde,
-                ),
-                const SizedBox(width: 8),
-                Text(voz.nombre),
-              ],
-            ),
-          ),
-      ],
-      child: _Pastilla(
-        texto: elegida.nombre,
-        icono: Icons.record_voice_over_outlined,
       ),
     );
   }
@@ -464,14 +366,14 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
           children: [
             // Con una sola voz instalada no hay nada que elegir.
             if (voces.length > 1 && elegida != null) ...[
-              _SelectorDeVoz(
+              SelectorDeVoz(
                 voces: voces,
                 elegida: elegida,
                 alElegir: _cambiarVoz,
               ),
               const SizedBox(width: 6),
             ],
-            _Pastilla(
+            Pastilla(
               texto: 'Lento',
               icono: Icons.slow_motion_video,
               activa: _lenta,

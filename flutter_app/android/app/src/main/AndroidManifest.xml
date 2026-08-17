@@ -52,5 +52,11 @@
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE"/>
         </intent>
+        <!-- Por lo mismo: sin esto no se ve ningún navegador y el link para
+             sacar la clave de la IA no abre nada. -->
+        <intent>
+            <action android:name="android.intent.action.VIEW"/>
+            <data android:scheme="https"/>
+        </intent>
     </queries>
 </manifest>

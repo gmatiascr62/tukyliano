@@ -4,28 +4,45 @@ import 'package:path_provider/path_provider.dart';
 
 const String archivoClave = 'gemini_key.txt';
 
-/// Acceso al archivo donde la app guardaba la clave de Gemini.
+/// La clave de la API de Gemini, guardada en el celular.
 ///
-/// La app ya no usa IA, así que esto queda solo para borrar la clave que
-/// pueda haber quedado de una versión anterior: es una credencial y no tiene
-/// por qué seguir en el celular.
-/// La clave NUNCA va en el código ni en el repo: la pega el usuario y queda
-/// solo en el celular.
+/// La clave NUNCA va en el código, ni en el repo, ni dentro del APK: el repo es
+/// público y Google revoca las claves que encuentra publicadas. La pega el
+/// usuario una sola vez y queda en la carpeta privada de la app, que ninguna
+/// otra app puede leer.
 class AlmacenamientoClave {
+  AlmacenamientoClave({Future<Directory?> Function()? carpeta})
+      : _carpeta = carpeta ?? _carpetaDeLaApp;
+
+  /// Devuelve null cuando no hay dónde guardar (los tests): ahí la clave vale
+  /// solo para la sesión abierta.
+  final Future<Directory?> Function() _carpeta;
+
+  static Future<Directory?> _carpetaDeLaApp() =>
+      getApplicationDocumentsDirectory();
+
   File? _archivo;
 
-  Future<File> _obtenerArchivo() async {
-    if (_archivo != null) return _archivo!;
-    final dir = await getApplicationDocumentsDirectory();
-    return _archivo = File('${dir.path}/$archivoClave');
+  Future<File?> _obtenerArchivo() async {
+    if (_archivo != null) return _archivo;
+    try {
+      final dir = await _carpeta();
+      return dir == null ? null : _archivo = File('${dir.path}/$archivoClave');
+    } catch (_) {
+      return null;
+    }
   }
 
   /// Devuelve la clave guardada, o null si todavía no se cargó ninguna.
+  ///
+  /// El archivo se lee y se escribe con las versiones "Sync": es una línea de
+  /// texto, tarda menos que un cuadro de animación, y así lo único asincrónico
+  /// que queda es averiguar la carpeta.
   Future<String?> cargar() async {
     try {
       final archivo = await _obtenerArchivo();
-      if (!await archivo.exists()) return null;
-      final clave = (await archivo.readAsString()).trim();
+      if (archivo == null || !archivo.existsSync()) return null;
+      final clave = archivo.readAsStringSync().trim();
       return clave.isEmpty ? null : clave;
     } catch (_) {
       return null;
@@ -33,15 +50,21 @@ class AlmacenamientoClave {
   }
 
   Future<void> guardar(String clave) async {
-    final archivo = await _obtenerArchivo();
-    await archivo.writeAsString(clave.trim());
+    try {
+      final archivo = await _obtenerArchivo();
+      archivo?.writeAsStringSync(clave.trim());
+    } catch (_) {
+      // Si no se puede escribir, la clave igual sirve para esta sesión: se va
+      // a volver a pedir la próxima vez.
+    }
   }
 
-  /// Borra el archivo si existe.
+  /// Borra el archivo si existe. Se usa cuando la clave dejó de funcionar: no
+  /// tiene sentido guardar una credencial que ya no vale.
   Future<void> borrar() async {
     try {
       final archivo = await _obtenerArchivo();
-      if (await archivo.exists()) await archivo.delete();
+      if (archivo != null && archivo.existsSync()) archivo.deleteSync();
     } catch (_) {
       // Si no se puede borrar, igual se vuelve a pedir la clave.
     }
