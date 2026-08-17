@@ -36,14 +36,29 @@ const _dos = '''
 /// Voz de mentira: anota lo que se le pidió decir. En los tests no hay motor
 /// de voz, así que la de verdad no se puede usar.
 class _VozFalsa implements Voz {
-  _VozFalsa({this.hayItaliano = true});
+  _VozFalsa({this.hayItaliano = true, this.cuantasVoces = 2});
 
   /// False imita el celular sin la voz italiana instalada.
   final bool hayItaliano;
 
+  /// Cuántas voces italianas tiene el celular. Con una sola no hay selector.
+  final int cuantasVoces;
+
   final dicho = <String>[];
   int callados = 0;
   bool? lenta;
+
+  @override
+  late final List<VozItaliana> voces = [
+    for (var i = 0; i < cuantasVoces; i++)
+      VozItaliana(id: 'it-it-x-v$i-local', nombre: nombresDeVoces[i]),
+  ];
+
+  @override
+  VozItaliana? vozElegida;
+
+  @override
+  Future<void> usarVoz(VozItaliana voz) async => vozElegida = voz;
 
   @override
   Future<bool> preparar() async => hayItaliano;
@@ -282,6 +297,46 @@ void main() {
 
       await _tocar(tester, 'Lento');
       expect(voz.lenta, isFalse);
+    });
+
+    testWidgets('se puede elegir entre las voces del celular', (tester) async {
+      final voz = _VozFalsa();
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      // La pastilla muestra la voz en uso, con nombre de ciudad.
+      expect(find.text('Roma'), findsOneWidget);
+
+      await _tocar(tester, 'Roma');
+      await _tocar(tester, 'Milano');
+
+      expect(voz.vozElegida?.nombre, 'Milano');
+      expect(find.text('Milano'), findsOneWidget);
+      expect(find.text('Roma'), findsNothing);
+    });
+
+    testWidgets('al elegir una voz la hace hablar para escucharla',
+        (tester) async {
+      // Sin esto habría que buscar un renglón para saber cómo suena.
+      final voz = _VozFalsa();
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      await _tocar(tester, 'Roma');
+      await _tocar(tester, 'Milano');
+
+      expect(voz.dicho, ['Milano']);
+    });
+
+    testWidgets('con una sola voz instalada no hay nada que elegir',
+        (tester) async {
+      final voz = _VozFalsa(cuantasVoces: 1);
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      expect(find.text('Roma'), findsNothing);
+      // La velocidad sí sigue estando.
+      expect(find.text('Lento'), findsOneWidget);
     });
 
     testWidgets('salir del cuento corta lo que se esté diciendo',
