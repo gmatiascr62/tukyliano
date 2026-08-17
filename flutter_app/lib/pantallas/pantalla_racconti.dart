@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../datos/repositorio_racconti.dart';
+import '../datos/voz.dart';
 import '../modelos/racconto.dart';
 import '../tema.dart';
 
@@ -8,13 +9,14 @@ import '../tema.dart';
 ///
 /// A diferencia de las otras secciones acá no hay puntaje ni respuestas: es
 /// leer. El cuento se muestra entero, como cuento, y se toca el renglón que
-/// no se entiende para ver la traducción. Frase por frase con un botón de
-/// "Siguiente" volvería a ser un ejercicio, y de esos ya hay tres.
+/// no se entiende para ver la traducción y escucharla. Frase por frase con un
+/// botón de "Siguiente" volvería a ser un ejercicio, y de esos ya hay tres.
 class PantallaRacconti extends StatefulWidget {
-  const PantallaRacconti({super.key, this.repositorio});
+  const PantallaRacconti({super.key, this.repositorio, this.voz});
 
-  /// Inyectable para los tests.
+  /// Inyectables para los tests.
   final RepositorioRacconti? repositorio;
+  final Voz? voz;
 
   @override
   State<PantallaRacconti> createState() => _PantallaRaccontiState();
@@ -23,10 +25,15 @@ class PantallaRacconti extends StatefulWidget {
 class _PantallaRaccontiState extends State<PantallaRacconti> {
   late final RepositorioRacconti _repositorio =
       widget.repositorio ?? RepositorioRacconti();
+  late final Voz _voz = widget.voz ?? VozDelSistema();
 
   List<Racconto> _racconti = const [];
   Racconto? _abierto;
   bool _cargando = true;
+
+  /// False cuando el celular no tiene la voz italiana instalada. Ahí no se
+  /// habla: leer italiano con los sonidos de otro idioma enseña mal.
+  bool _puedeHablar = false;
 
   @override
   void initState() {
@@ -34,11 +41,19 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
     _cargar();
   }
 
+  @override
+  void dispose() {
+    _voz.callar();
+    super.dispose();
+  }
+
   Future<void> _cargar() async {
     await _repositorio.cargar();
+    final puedeHablar = await _voz.preparar();
     if (!mounted) return;
     setState(() {
       _racconti = _repositorio.datos.racconti;
+      _puedeHablar = puedeHablar;
       _cargando = false;
     });
   }
@@ -58,7 +73,12 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
     if (abierto != null) {
       return _VistaRacconto(
         racconto: abierto,
-        alVolver: () => setState(() => _abierto = null),
+        voz: _voz,
+        puedeHablar: _puedeHablar,
+        alVolver: () {
+          _voz.callar();
+          setState(() => _abierto = null);
+        },
       );
     }
 
@@ -179,9 +199,16 @@ class _Pastilla extends StatelessWidget {
 
 /// El cuento abierto.
 class _VistaRacconto extends StatefulWidget {
-  const _VistaRacconto({required this.racconto, required this.alVolver});
+  const _VistaRacconto({
+    required this.racconto,
+    required this.voz,
+    required this.puedeHablar,
+    required this.alVolver,
+  });
 
   final Racconto racconto;
+  final Voz voz;
+  final bool puedeHablar;
   final VoidCallback alVolver;
 
   @override
@@ -192,11 +219,33 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
   /// Los renglones que están mostrando la traducción.
   final _reveladas = <int>{};
   bool _vocabularioAbierto = false;
+  bool _lenta = false;
 
+  /// Tocar un renglón lo revela y lo pronuncia. Volver a tocarlo lo esconde,
+  /// esta vez callado: si hablara al esconderlo no habría forma de tapar la
+  /// traducción sin escuchar la frase de nuevo.
   void _tocarLinea(int i) {
+    final revelando = !_reveladas.contains(i);
     setState(() {
-      if (!_reveladas.remove(i)) _reveladas.add(i);
+      if (revelando) {
+        _reveladas.add(i);
+      } else {
+        _reveladas.remove(i);
+      }
     });
+    if (!widget.puedeHablar) return;
+    if (revelando) {
+      widget.voz.decir(widget.racconto.lineas[i].italiano);
+    } else {
+      widget.voz.callar();
+    }
+  }
+
+  Future<void> _cambiarVelocidad() async {
+    final lenta = !_lenta;
+    await widget.voz.usarVelocidadLenta(lenta);
+    if (!mounted) return;
+    setState(() => _lenta = lenta);
   }
 
   bool get _todasReveladas =>
@@ -256,10 +305,7 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
           ],
         ),
         const SizedBox(height: 6),
-        const Text(
-          'Tocá el renglón que no entiendas',
-          style: TextStyle(fontSize: 12.5, color: Tema.textoTenue),
-        ),
+        _ayuda(),
         const SizedBox(height: 10),
         Expanded(
           child: SingleChildScrollView(
@@ -271,6 +317,11 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
                     linea: racconto.lineas[i],
                     revelada: _reveladas.contains(i),
                     alTocar: () => _tocarLinea(i),
+                    // El altavoz solo aparece en el renglón revelado, para
+                    // poder repetirlo sin tener que taparlo y destaparlo.
+                    alRepetir: widget.puedeHablar
+                        ? () => widget.voz.decir(racconto.lineas[i].italiano)
+                        : null,
                   ),
                 if (racconto.vocabulario.isNotEmpty) ...[
                   const SizedBox(height: 14),
@@ -299,6 +350,58 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
           ),
         ),
         const SizedBox(height: 10),
+      ],
+    );
+  }
+
+  /// La línea de abajo del título. Dice qué hacer, y si el celular no tiene
+  /// la voz italiana lo avisa en vez de dejar que la app hable mal.
+  Widget _ayuda() {
+    if (!widget.puedeHablar) {
+      return const Text(
+        'Tocá el renglón que no entiendas. Para escucharlo, instalá la voz '
+        'italiana en Ajustes → Idiomas → Texto a voz.',
+        style: TextStyle(fontSize: 12.5, height: 1.3, color: Tema.textoTenue),
+      );
+    }
+
+    return Row(
+      children: [
+        const Expanded(
+          child: Text(
+            'Tocá el renglón para verlo y escucharlo',
+            style: TextStyle(fontSize: 12.5, color: Tema.textoTenue),
+          ),
+        ),
+        InkWell(
+          onTap: _cambiarVelocidad,
+          borderRadius: BorderRadius.circular(20),
+          child: Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+            decoration: BoxDecoration(
+              color: _lenta ? Tema.verde : Tema.verdeSuave,
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Row(
+              children: [
+                Icon(
+                  Icons.slow_motion_video,
+                  size: 15,
+                  color: _lenta ? Colors.white : Tema.verdeOscuro,
+                ),
+                const SizedBox(width: 4),
+                Text(
+                  'Lento',
+                  style: TextStyle(
+                    fontSize: 12.5,
+                    fontWeight: FontWeight.w600,
+                    color: _lenta ? Colors.white : Tema.verdeOscuro,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
       ],
     );
   }
@@ -388,11 +491,15 @@ class _Linea extends StatelessWidget {
     required this.linea,
     required this.revelada,
     required this.alTocar,
+    this.alRepetir,
   });
 
   final LineaRacconto linea;
   final bool revelada;
   final VoidCallback alTocar;
+
+  /// Null cuando no se puede hablar; entonces no se dibuja el altavoz.
+  final VoidCallback? alRepetir;
 
   @override
   Widget build(BuildContext context) {
@@ -417,13 +524,33 @@ class _Linea extends StatelessWidget {
             ),
             if (revelada) ...[
               const SizedBox(height: 3),
-              Text(
-                linea.espanol,
-                style: const TextStyle(
-                  fontSize: 14.5,
-                  height: 1.35,
-                  color: Tema.verdeOscuro,
-                ),
+              Row(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Expanded(
+                    child: Text(
+                      linea.espanol,
+                      style: const TextStyle(
+                        fontSize: 14.5,
+                        height: 1.35,
+                        color: Tema.verdeOscuro,
+                      ),
+                    ),
+                  ),
+                  if (alRepetir != null)
+                    InkWell(
+                      onTap: alRepetir,
+                      borderRadius: BorderRadius.circular(20),
+                      child: const Padding(
+                        padding: EdgeInsets.all(4),
+                        child: Icon(
+                          Icons.volume_up_outlined,
+                          size: 19,
+                          color: Tema.verde,
+                        ),
+                      ),
+                    ),
+                ],
               ),
             ],
           ],

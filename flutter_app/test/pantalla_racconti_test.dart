@@ -3,6 +3,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/repositorio_racconti.dart';
+import 'package:tukyliano/datos/voz.dart';
 import 'package:tukyliano/pantallas/pantalla_racconti.dart';
 import 'package:tukyliano/tema.dart';
 
@@ -32,17 +33,50 @@ const _dos = '''
   }
 ''';
 
+/// Voz de mentira: anota lo que se le pidió decir. En los tests no hay motor
+/// de voz, así que la de verdad no se puede usar.
+class _VozFalsa implements Voz {
+  _VozFalsa({this.hayItaliano = true});
+
+  /// False imita el celular sin la voz italiana instalada.
+  final bool hayItaliano;
+
+  final dicho = <String>[];
+  int callados = 0;
+  bool? lenta;
+
+  @override
+  Future<bool> preparar() async => hayItaliano;
+
+  @override
+  Future<void> decir(String texto) async {
+    if (!hayItaliano) throw StateError('no debería hablar sin voz italiana');
+    dicho.add(texto);
+  }
+
+  @override
+  Future<void> callar() async => callados++;
+
+  @override
+  Future<void> usarVelocidadLenta(bool valor) async => lenta = valor;
+}
+
 RepositorioRacconti _repo(String json) => RepositorioRacconti(
       leerAsset: (_) async => json,
       cliente: MockClient((_) async => http.Response('', 404)),
       carpeta: () async => null,
     );
 
-Future<void> _abrir(WidgetTester tester, String json) async {
+Future<void> _abrir(WidgetTester tester, String json, {Voz? voz}) async {
   usarPantallaDeCelular(tester);
   await tester.pumpWidget(MaterialApp(
     theme: Tema.datos,
-    home: Scaffold(body: PantallaRacconti(repositorio: _repo(json))),
+    home: Scaffold(
+      body: PantallaRacconti(
+        repositorio: _repo(json),
+        voz: voz ?? _VozFalsa(),
+      ),
+    ),
   ));
   await tester.pumpAndSettle();
 }
@@ -170,6 +204,127 @@ void main() {
       await _tocar(tester, 'La colazione');
 
       expect(find.text('Marco está en la cocina.'), findsNothing);
+    });
+  });
+
+  group('el audio', () {
+    testWidgets('tocar un renglón lo pronuncia en italiano', (tester) async {
+      final voz = _VozFalsa();
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      await _tocar(tester, 'Marco è in cucina.');
+
+      expect(voz.dicho, ['Marco è in cucina.']);
+    });
+
+    testWidgets('dice el italiano, nunca la traducción', (tester) async {
+      // Escuchar el español no enseña nada y además taparía el italiano.
+      final voz = _VozFalsa();
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      await _tocar(tester, 'Marco è in cucina.');
+
+      expect(voz.dicho.single, isNot(contains('cocina')));
+    });
+
+    testWidgets('esconder un renglón calla en vez de repetirlo',
+        (tester) async {
+      // Si hablara al esconderlo no habría forma de tapar la traducción sin
+      // escuchar la frase otra vez.
+      final voz = _VozFalsa();
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      await _tocar(tester, 'Marco è in cucina.');
+      await _tocar(tester, 'Marco è in cucina.');
+
+      expect(voz.dicho.length, 1);
+      expect(voz.callados, greaterThan(0));
+    });
+
+    testWidgets('el altavoz repite el renglón sin taparlo', (tester) async {
+      final voz = _VozFalsa();
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+      await _tocar(tester, 'Marco è in cucina.');
+
+      await tester.tap(find.byIcon(Icons.volume_up_outlined));
+      await tester.pumpAndSettle();
+
+      expect(voz.dicho, ['Marco è in cucina.', 'Marco è in cucina.']);
+      // Y sigue revelado.
+      expect(find.text('Marco está en la cocina.'), findsOneWidget);
+    });
+
+    testWidgets('el altavoz aparece solo en los renglones revelados',
+        (tester) async {
+      await _abrir(tester, _dos);
+      await _tocar(tester, 'La colazione');
+
+      expect(find.byIcon(Icons.volume_up_outlined), findsNothing);
+
+      await _tocar(tester, 'Marco è in cucina.');
+      expect(find.byIcon(Icons.volume_up_outlined), findsOneWidget);
+    });
+
+    testWidgets('el botón de lento cambia la velocidad y vuelve',
+        (tester) async {
+      final voz = _VozFalsa();
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      expect(voz.lenta, isNull);
+
+      await _tocar(tester, 'Lento');
+      expect(voz.lenta, isTrue);
+
+      await _tocar(tester, 'Lento');
+      expect(voz.lenta, isFalse);
+    });
+
+    testWidgets('salir del cuento corta lo que se esté diciendo',
+        (tester) async {
+      final voz = _VozFalsa();
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+      await _tocar(tester, 'Marco è in cucina.');
+
+      final antes = voz.callados;
+      await tester.tap(find.byIcon(Icons.arrow_back));
+      await tester.pumpAndSettle();
+
+      expect(voz.callados, greaterThan(antes));
+    });
+  });
+
+  group('sin la voz italiana instalada', () {
+    testWidgets('no habla, porque lo leería con los sonidos de otro idioma',
+        (tester) async {
+      // La voz falsa tira si le piden hablar sin italiano: si la pantalla lo
+      // intentara, este test explota en vez de pasar por casualidad.
+      final voz = _VozFalsa(hayItaliano: false);
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      await _tocar(tester, 'Marco è in cucina.');
+
+      expect(voz.dicho, isEmpty);
+      // Pero la traducción se revela igual: leer sigue funcionando.
+      expect(find.text('Marco está en la cocina.'), findsOneWidget);
+    });
+
+    testWidgets('avisa cómo instalarla en vez de callarse la boca',
+        (tester) async {
+      final voz = _VozFalsa(hayItaliano: false);
+      await _abrir(tester, _dos, voz: voz);
+      await _tocar(tester, 'La colazione');
+
+      expect(find.textContaining('instalá la voz italiana'), findsOneWidget);
+      // Y no ofrece ni el altavoz ni la velocidad, que no harían nada.
+      expect(find.byIcon(Icons.volume_up_outlined), findsNothing);
+      expect(find.text('Lento'), findsNothing);
     });
   });
 

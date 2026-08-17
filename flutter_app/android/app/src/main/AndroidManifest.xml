@@ -46,5 +46,11 @@
             <action android:name="android.intent.action.PROCESS_TEXT"/>
             <data android:mimeType="text/plain"/>
         </intent>
+        <!-- Desde Android 11 una app no ve las otras si no las declara acá.
+             Sin esto el motor de texto a voz es invisible y los cuentos no
+             suenan, sin ningún error que lo explique. -->
+        <intent>
+            <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
     </queries>
 </manifest>
