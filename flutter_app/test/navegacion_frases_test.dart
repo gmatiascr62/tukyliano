@@ -174,14 +174,15 @@ void main() {
     expect(find.textContaining('Buscando verbos'), findsNothing);
   });
 
-  testWidgets('borra la clave de Gemini que quedó guardada de antes',
-      (tester) async {
+  testWidgets('no toca la clave de Gemini guardada', (tester) async {
+    // El chat la necesita: si al arrancar se borrara, habría que pegarla de
+    // nuevo cada vez que se abre la app.
     usarPantallaDeCelular(tester);
-    final clave = _ClaveFalsa('CLAVE-VIEJA');
+    final clave = _ClaveFalsa('CLAVE-GUARDADA');
 
     await tester.pumpWidget(_app(clave: clave));
     await tester.pumpAndSettle();
 
-    expect(clave.guardada, isNull);
+    expect(clave.guardada, 'CLAVE-GUARDADA');
   });
 }

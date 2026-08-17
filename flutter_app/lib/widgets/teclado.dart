@@ -18,9 +18,27 @@ const double altoTecla = 58;
 /// Teclado italiano propio (letras + acentos + espacio + borrar). Se usa en
 /// vez del teclado nativo para tener las vocales acentuadas a mano.
 class Teclado extends StatelessWidget {
-  const Teclado({super.key, required this.onTecla});
+  const Teclado({
+    super.key,
+    required this.onTecla,
+    this.teclasExtra = const [],
+  });
 
   final ValueChanged<String> onTecla;
+
+  /// Teclas que hacen falta solo en algunas pantallas y se suman al final de
+  /// la fila de los acentos. En el chat son la almohadilla y los signos; en
+  /// los ejercicios de escribir no van, porque ahí solo se escriben palabras.
+  final List<String> teclasExtra;
+
+  /// Las filas con las teclas extra ya agregadas.
+  List<List<String>> get _filas {
+    if (teclasExtra.isEmpty) return filasTeclado;
+    return [
+      ...filasTeclado.take(filasTeclado.length - 1),
+      [...filasTeclado.last, ...teclasExtra],
+    ];
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +54,7 @@ class Teclado extends StatelessWidget {
         // ocupar toda la fila, porque el Column centra a sus hijos.
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          for (final fila in filasTeclado) ...[
+          for (final fila in _filas) ...[
             _Fila(teclas: fila, onTecla: onTecla),
             const SizedBox(height: 6),
           ],

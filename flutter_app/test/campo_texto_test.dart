@@ -114,4 +114,43 @@ void main() {
     expect(_escala(tester), lessThan(1));
     expect(_texto(tester).overflow, TextOverflow.visible);
   });
+
+  group('el campo del chat', () {
+    Future<void> mostrar(WidgetTester tester, String texto) =>
+        tester.pumpWidget(MaterialApp(
+          theme: Tema.datos,
+          home: Scaffold(
+            body: Padding(
+              padding: const EdgeInsets.all(14),
+              child: CampoTexto(texto: texto, multilinea: true),
+            ),
+          ),
+        ));
+
+    const largo = 'ciao Tuky, oggi vado al lavoro in autobus e dopo mangio '
+        'una pizza con i miei amici';
+
+    testWidgets('un mensaje largo corta de renglón en vez de achicarse',
+        (tester) async {
+      // Achicarlo como en los ejercicios lo dejaría ilegible: en el chat se
+      // escriben frases enteras, no una palabra.
+      _celular(tester);
+      await mostrar(tester, largo);
+
+      expect(find.byType(FittedBox), findsNothing);
+      expect(tester.widget<Text>(find.text(largo)).data, largo);
+    });
+
+    testWidgets('el recuadro crece pero tiene un techo', (tester) async {
+      _celular(tester);
+      await mostrar(tester, 'ciao');
+      final corto = tester.getSize(find.byType(CampoTexto)).height;
+
+      await mostrar(tester, largo);
+      final crecido = tester.getSize(find.byType(CampoTexto)).height;
+
+      expect(crecido, greaterThan(corto));
+      expect(crecido, lessThanOrEqualTo(108));
+    });
+  });
 }

@@ -8,6 +8,7 @@ import 'package:tukyliano/pantallas/pantalla_racconti.dart';
 import 'package:tukyliano/tema.dart';
 
 import 'util_pantalla.dart';
+import 'voz_falsa.dart';
 
 const _dos = '''
   {
@@ -33,49 +34,6 @@ const _dos = '''
   }
 ''';
 
-/// Voz de mentira: anota lo que se le pidió decir. En los tests no hay motor
-/// de voz, así que la de verdad no se puede usar.
-class _VozFalsa implements Voz {
-  _VozFalsa({this.hayItaliano = true, this.cuantasVoces = 2});
-
-  /// False imita el celular sin la voz italiana instalada.
-  final bool hayItaliano;
-
-  /// Cuántas voces italianas tiene el celular. Con una sola no hay selector.
-  final int cuantasVoces;
-
-  final dicho = <String>[];
-  int callados = 0;
-  bool? lenta;
-
-  @override
-  late final List<VozItaliana> voces = [
-    for (var i = 0; i < cuantasVoces; i++)
-      VozItaliana(id: 'it-it-x-v$i-local', nombre: nombresDeVoces[i]),
-  ];
-
-  @override
-  VozItaliana? vozElegida;
-
-  @override
-  Future<void> usarVoz(VozItaliana voz) async => vozElegida = voz;
-
-  @override
-  Future<bool> preparar() async => hayItaliano;
-
-  @override
-  Future<void> decir(String texto) async {
-    if (!hayItaliano) throw StateError('no debería hablar sin voz italiana');
-    dicho.add(texto);
-  }
-
-  @override
-  Future<void> callar() async => callados++;
-
-  @override
-  Future<void> usarVelocidadLenta(bool valor) async => lenta = valor;
-}
-
 RepositorioRacconti _repo(String json) => RepositorioRacconti(
       leerAsset: (_) async => json,
       cliente: MockClient((_) async => http.Response('', 404)),
@@ -89,7 +47,7 @@ Future<void> _abrir(WidgetTester tester, String json, {Voz? voz}) async {
     home: Scaffold(
       body: PantallaRacconti(
         repositorio: _repo(json),
-        voz: voz ?? _VozFalsa(),
+        voz: voz ?? VozFalsa(),
       ),
     ),
   ));
@@ -224,7 +182,7 @@ void main() {
 
   group('el audio', () {
     testWidgets('tocar un renglón lo pronuncia en italiano', (tester) async {
-      final voz = _VozFalsa();
+      final voz = VozFalsa();
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
@@ -235,7 +193,7 @@ void main() {
 
     testWidgets('dice el italiano, nunca la traducción', (tester) async {
       // Escuchar el español no enseña nada y además taparía el italiano.
-      final voz = _VozFalsa();
+      final voz = VozFalsa();
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
@@ -248,7 +206,7 @@ void main() {
         (tester) async {
       // Si hablara al esconderlo no habría forma de tapar la traducción sin
       // escuchar la frase otra vez.
-      final voz = _VozFalsa();
+      final voz = VozFalsa();
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
@@ -260,7 +218,7 @@ void main() {
     });
 
     testWidgets('el altavoz repite el renglón sin taparlo', (tester) async {
-      final voz = _VozFalsa();
+      final voz = VozFalsa();
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
       await _tocar(tester, 'Marco è in cucina.');
@@ -286,7 +244,7 @@ void main() {
 
     testWidgets('el botón de lento cambia la velocidad y vuelve',
         (tester) async {
-      final voz = _VozFalsa();
+      final voz = VozFalsa();
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
@@ -300,7 +258,7 @@ void main() {
     });
 
     testWidgets('se puede elegir entre las voces del celular', (tester) async {
-      final voz = _VozFalsa();
+      final voz = VozFalsa();
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
@@ -318,7 +276,7 @@ void main() {
     testWidgets('al elegir una voz la hace hablar para escucharla',
         (tester) async {
       // Sin esto habría que buscar un renglón para saber cómo suena.
-      final voz = _VozFalsa();
+      final voz = VozFalsa();
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
@@ -330,7 +288,7 @@ void main() {
 
     testWidgets('con una sola voz instalada no hay nada que elegir',
         (tester) async {
-      final voz = _VozFalsa(cuantasVoces: 1);
+      final voz = VozFalsa(cuantasVoces: 1);
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
@@ -341,7 +299,7 @@ void main() {
 
     testWidgets('salir del cuento corta lo que se esté diciendo',
         (tester) async {
-      final voz = _VozFalsa();
+      final voz = VozFalsa();
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
       await _tocar(tester, 'Marco è in cucina.');
@@ -359,7 +317,7 @@ void main() {
         (tester) async {
       // La voz falsa tira si le piden hablar sin italiano: si la pantalla lo
       // intentara, este test explota en vez de pasar por casualidad.
-      final voz = _VozFalsa(hayItaliano: false);
+      final voz = VozFalsa(hayItaliano: false);
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
@@ -372,7 +330,7 @@ void main() {
 
     testWidgets('avisa cómo instalarla en vez de callarse la boca',
         (tester) async {
-      final voz = _VozFalsa(hayItaliano: false);
+      final voz = VozFalsa(hayItaliano: false);
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 

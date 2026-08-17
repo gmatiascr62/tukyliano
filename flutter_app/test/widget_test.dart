@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:tukyliano/datos/almacenamiento_clave.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/widgets/barra_superior.dart';
 
@@ -77,12 +78,19 @@ void main() {
     expect(find.text('Cargando verbos...'), findsNothing);
   });
 
-  testWidgets('Chat avisa que todavía no está', (WidgetTester tester) async {
+  testWidgets('Chat entra a la charla y pide la clave de la IA',
+      (WidgetTester tester) async {
     usarPantallaDeCelular(tester);
-    await tester.pumpWidget(const TukylianoApp());
+    // Sin carpeta no hay clave guardada, que es lo que pasa la primera vez.
+    await tester.pumpWidget(TukylianoApp(
+      almacenClave: AlmacenamientoClave(carpeta: () async => null),
+    ));
     await tester.pumpAndSettle();
 
     await _tocar(tester, 'Chat');
-    expect(find.text('Próximamente'), findsOneWidget);
+    expect(
+      find.text('Necesitás una clave gratis de la IA (Gemini)'),
+      findsOneWidget,
+    );
   });
 }
