@@ -153,7 +153,7 @@ class _TarjetaRacconto extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  _Pastilla('Nivel ${racconto.nivel}'),
+                  _Pastilla(texto: 'Nivel ${racconto.nivel}'),
                   const SizedBox(height: 5),
                   Text(
                     '${racconto.lineas.length} frases',
@@ -172,26 +172,101 @@ class _TarjetaRacconto extends StatelessWidget {
   }
 }
 
+/// Pastilla verde. Sirve de etiqueta (el nivel) y de botón chico (la voz y la
+/// velocidad); cuando está [activa] se invierte el color.
 class _Pastilla extends StatelessWidget {
-  const _Pastilla(this.texto);
+  const _Pastilla({
+    required this.texto,
+    this.icono,
+    this.activa = false,
+    this.alTocar,
+  });
 
   final String texto;
+  final IconData? icono;
+  final bool activa;
+  final VoidCallback? alTocar;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-      decoration: BoxDecoration(
-        color: Tema.verdeSuave,
-        borderRadius: BorderRadius.circular(20),
+    final color = activa ? Colors.white : Tema.verdeOscuro;
+    final contenido = Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+      child: Row(
+        children: [
+          if (icono != null) ...[
+            Icon(icono, size: 15, color: color),
+            const SizedBox(width: 4),
+          ],
+          Text(
+            texto,
+            style: TextStyle(
+              fontSize: 12.5,
+              fontWeight: FontWeight.w600,
+              color: color,
+            ),
+          ),
+        ],
       ),
-      child: Text(
-        texto,
-        style: const TextStyle(
-          fontSize: 12,
-          fontWeight: FontWeight.w600,
-          color: Tema.verdeOscuro,
-        ),
+    );
+
+    return Material(
+      color: activa ? Tema.verde : Tema.verdeSuave,
+      borderRadius: BorderRadius.circular(20),
+      child: alTocar == null
+          ? contenido
+          : InkWell(
+              onTap: alTocar,
+              borderRadius: BorderRadius.circular(20),
+              child: contenido,
+            ),
+    );
+  }
+}
+
+/// Elige entre las voces italianas que tiene el celular.
+///
+/// Los nombres son ciudades: los códigos que da Android ("it-it-x-itc-local")
+/// no dicen si la voz es de hombre o de mujer, así que ponerle un nombre de
+/// persona sería adivinar.
+class _SelectorDeVoz extends StatelessWidget {
+  const _SelectorDeVoz({
+    required this.voces,
+    required this.elegida,
+    required this.alElegir,
+  });
+
+  final List<VozItaliana> voces;
+  final VozItaliana elegida;
+  final ValueChanged<VozItaliana> alElegir;
+
+  @override
+  Widget build(BuildContext context) {
+    return PopupMenuButton<VozItaliana>(
+      tooltip: 'Elegir la voz',
+      onSelected: alElegir,
+      itemBuilder: (_) => [
+        for (final voz in voces)
+          PopupMenuItem(
+            value: voz,
+            child: Row(
+              children: [
+                Icon(
+                  voz.id == elegida.id
+                      ? Icons.radio_button_checked
+                      : Icons.radio_button_unchecked,
+                  size: 18,
+                  color: Tema.verde,
+                ),
+                const SizedBox(width: 8),
+                Text(voz.nombre),
+              ],
+            ),
+          ),
+      ],
+      child: _Pastilla(
+        texto: elegida.nombre,
+        icono: Icons.record_voice_over_outlined,
       ),
     );
   }
@@ -246,6 +321,15 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
     await widget.voz.usarVelocidadLenta(lenta);
     if (!mounted) return;
     setState(() => _lenta = lenta);
+  }
+
+  Future<void> _cambiarVoz(VozItaliana voz) async {
+    await widget.voz.usarVoz(voz);
+    if (!mounted) return;
+    // Se dice el nombre para escuchar en el acto cómo suena la elegida.
+    await widget.voz.decir(voz.nombre);
+    if (!mounted) return;
+    setState(() {});
   }
 
   bool get _todasReveladas =>
@@ -365,42 +449,35 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
       );
     }
 
-    return Row(
+    final voces = widget.voz.voces;
+    final elegida = widget.voz.vozElegida ?? (voces.isEmpty ? null : voces.first);
+
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Expanded(
-          child: Text(
-            'Tocá el renglón para verlo y escucharlo',
-            style: TextStyle(fontSize: 12.5, color: Tema.textoTenue),
-          ),
+        const Text(
+          'Tocá el renglón para verlo y escucharlo',
+          style: TextStyle(fontSize: 12.5, color: Tema.textoTenue),
         ),
-        InkWell(
-          onTap: _cambiarVelocidad,
-          borderRadius: BorderRadius.circular(20),
-          child: Container(
-            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
-            decoration: BoxDecoration(
-              color: _lenta ? Tema.verde : Tema.verdeSuave,
-              borderRadius: BorderRadius.circular(20),
+        const SizedBox(height: 6),
+        Row(
+          children: [
+            // Con una sola voz instalada no hay nada que elegir.
+            if (voces.length > 1 && elegida != null) ...[
+              _SelectorDeVoz(
+                voces: voces,
+                elegida: elegida,
+                alElegir: _cambiarVoz,
+              ),
+              const SizedBox(width: 6),
+            ],
+            _Pastilla(
+              texto: 'Lento',
+              icono: Icons.slow_motion_video,
+              activa: _lenta,
+              alTocar: _cambiarVelocidad,
             ),
-            child: Row(
-              children: [
-                Icon(
-                  Icons.slow_motion_video,
-                  size: 15,
-                  color: _lenta ? Colors.white : Tema.verdeOscuro,
-                ),
-                const SizedBox(width: 4),
-                Text(
-                  'Lento',
-                  style: TextStyle(
-                    fontSize: 12.5,
-                    fontWeight: FontWeight.w600,
-                    color: _lenta ? Colors.white : Tema.verdeOscuro,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          ],
         ),
       ],
     );

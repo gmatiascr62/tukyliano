@@ -7,6 +7,7 @@ import 'datos/repositorio_frases.dart';
 import 'datos/repositorio_preposizioni.dart';
 import 'datos/repositorio_racconti.dart';
 import 'datos/repositorio_verbos.dart';
+import 'datos/voz.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_frases.dart';
@@ -31,6 +32,7 @@ class TukylianoApp extends StatelessWidget {
     this.articoli,
     this.preposizioni,
     this.racconti,
+    this.voz,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
@@ -40,6 +42,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioArticoli? articoli;
   final RepositorioPreposizioni? preposizioni;
   final RepositorioRacconti? racconti;
+  final Voz? voz;
 
   @override
   Widget build(BuildContext context) {
@@ -54,6 +57,7 @@ class TukylianoApp extends StatelessWidget {
         articoli: articoli,
         preposizioni: preposizioni,
         racconti: racconti,
+        voz: voz,
       ),
     );
   }
@@ -70,6 +74,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.articoli,
     this.preposizioni,
     this.racconti,
+    this.voz,
   });
 
   final AlmacenamientoClave? almacenClave;
@@ -78,6 +83,7 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioArticoli? articoli;
   final RepositorioPreposizioni? preposizioni;
   final RepositorioRacconti? racconti;
+  final Voz? voz;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -94,6 +100,10 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       widget.preposizioni ?? RepositorioPreposizioni();
   late final RepositorioRacconti _racconti =
       widget.racconti ?? RepositorioRacconti();
+
+  /// La voz vive acá y no en la pantalla de cuentos: así la que se elige
+  /// sigue elegida al pasar por otra sección y volver.
+  late final Voz _voz = widget.voz ?? VozDelSistema();
   late final AlmacenamientoClave _almacenClave =
       widget.almacenClave ?? AlmacenamientoClave();
 
@@ -262,7 +272,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.preposizioni:
         return PantallaPreposizioni(repositorio: _preposizioni);
       case Seccion.racconti:
-        return PantallaRacconti(repositorio: _racconti);
+        return PantallaRacconti(repositorio: _racconti, voz: _voz);
       case Seccion.chat:
         return const Proximamente(
           icono: Icons.chat_bubble_outline,
