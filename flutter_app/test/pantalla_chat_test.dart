@@ -311,6 +311,41 @@ void main() {
     });
   });
 
+  group('la corrección', () {
+    testWidgets('no se muestra si corrige con la misma frase que escribí',
+        (tester) async {
+      // Lo que pasó practicando: "io vado al lavoro" está bien escrito y la
+      // corrección repetía la frase igual.
+      await _abrir(
+        tester,
+        respuesta: 'Correzione: io vado al lavoro\n'
+            'Lavori sempre così presto la mattina?',
+      );
+
+      await _escribir(tester, 'io vado al lavoro');
+      await _enviar(tester);
+
+      expect(find.textContaining('Correzione'), findsNothing);
+      expect(
+        find.text('Lavori sempre così presto la mattina?'),
+        findsOneWidget,
+      );
+    });
+
+    testWidgets('la corrección de verdad sí se muestra', (tester) async {
+      await _abrir(
+        tester,
+        respuesta: 'Correzione: io vado al lavoro\nChe lavoro fai?',
+      );
+
+      await _escribir(tester, 'io ando al lavoro');
+      await _enviar(tester);
+
+      expect(find.textContaining('Correzione: io vado al lavoro'),
+          findsOneWidget);
+    });
+  });
+
   group('solo escuchar', () {
     testWidgets('la respuesta se dice y no se muestra', (tester) async {
       final voz = VozFalsa();
