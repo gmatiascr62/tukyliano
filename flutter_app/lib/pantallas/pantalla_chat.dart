@@ -131,11 +131,12 @@ class _PantallaChatState extends State<PantallaChat> {
     try {
       final contestado = await _gemini.charlar(_conversacion.contenidos(), clave);
       if (!mounted) return;
-      // Cuando el mensaje era solo un pedido de traducción se muestra solo la
-      // traducción, aunque la IA haya agregado charla de más.
+      // Dos recortes, por si la IA no siguió las instrucciones: cuando el
+      // mensaje era solo un pedido de traducción se muestra solo la traducción,
+      // y en la charla no se muestra una corrección que repite lo que escribió.
       final respuesta = esSoloTraduccion(texto)
           ? soloLasTraducciones(contestado)
-          : contestado;
+          : sinCorreccionRepetida(contestado, texto);
       setState(() {
         if (_soloEscuchar) _tapados.add(_conversacion.mensajes.length);
         _conversacion.agregar(Mensaje.deLaIa(respuesta));

@@ -25,10 +25,16 @@ que está aprendiendo italiano. Tenés que seguir estas reglas siempre:
    Nada de italiano literario ni palabras raras.
 2. Contestá poco: dos o tres frases como máximo, y terminá siempre con una
    pregunta para que la charla siga.
-3. Si lo que escribió tiene un error de italiano, corregilo en el primer
-   renglón, con este formato exacto y en un solo renglón:
+3. Lo normal es NO corregir: contestá la charla y listo. La corrección es la
+   excepción y va solo cuando escribió algo que un italiano no diría, como un
+   verbo mal conjugado, una preposición equivocada o una palabra mal escrita.
+   Ahí, y solo ahí, ponela en el primer renglón, con este formato exacto:
    Correzione: la frase bien escrita
-   Si no hay errores, no pongas ninguna corrección. No expliques la regla.
+   Nunca escribas un renglón de corrección que repita la frase tal como la
+   escribió: si la frase está bien, no hay corrección y no va ese renglón.
+   Poner el sujeto (io, tu, lui) no es un error: en italiano se puede omitir,
+   pero decirlo también está bien. Nunca lo corrijas por eso.
+   No expliques la regla ni agregues comentarios sobre la corrección.
 4. Todo lo que venga entre almohadillas (#) no es parte de la charla: es un
    pedido de traducción. Puede ser una palabra (#manteca#) o una frase entera
    (#como estas?#). Contestá cada pedido en su propio renglón, arriba de todo,
@@ -129,6 +135,57 @@ bool esSoloTraduccion(String mensaje) {
       .map((trozo) => trozo.texto)
       .join();
   return afuera.replaceAll(_noEsLetra, '').isEmpty;
+}
+
+/// Cómo empieza el renglón de la corrección. Se acepta con cualquier
+/// mayúscula y con espacios antes de los dos puntos.
+final RegExp _empiezaCorreccion = RegExp(
+  r'^correzione\s*:',
+  caseSensitive: false,
+);
+
+/// Signos que no cambian lo que dice una frase.
+final RegExp _signos = RegExp(r'[.,;:!?¡¿"“”]');
+final RegExp _espacios = RegExp(r'\s+');
+
+/// Deja la frase comparable: sin mayúsculas, sin signos y con un solo espacio
+/// entre palabras.
+///
+/// Los acentos y los apóstrofos NO se tocan a propósito: escribir "perche" en
+/// vez de "perché", o "l'acqua" en vez de "lacqua", son justamente los errores
+/// que la corrección tiene que mostrar.
+String _comparable(String texto) => texto
+    .toLowerCase()
+    .replaceAll(_signos, '')
+    .replaceAll(_espacios, ' ')
+    .trim();
+
+/// Saca el renglón de corrección cuando corrige con la misma frase que se
+/// escribió, que no es una corrección.
+///
+/// Pasa seguido: las instrucciones le dejan un lugar donde va la corrección y
+/// el modelo lo llena aunque la frase esté bien, o repite la charla anterior
+/// donde sí había corregido algo. Que se muestre solo cuando de verdad cambió
+/// algo no puede depender de que la IA se porte bien.
+///
+/// Si al sacarlo no queda nada se devuelve la respuesta entera: antes mostrar
+/// una corrección al pedo que una burbuja vacía.
+String sinCorreccionRepetida(String respuesta, String mensaje) {
+  final escrito = _comparable(mensaje);
+  final quedan = [
+    for (final renglon in respuesta.split('\n'))
+      if (!_esCorreccionDe(renglon, escrito)) renglon,
+  ];
+
+  final limpio = quedan.join('\n').trim();
+  return limpio.isEmpty ? respuesta : limpio;
+}
+
+bool _esCorreccionDe(String renglon, String escritoComparable) {
+  final texto = renglon.trim();
+  final marca = _empiezaCorreccion.matchAsPrefix(texto);
+  if (marca == null) return false;
+  return _comparable(texto.substring(marca.end)) == escritoComparable;
 }
 
 /// Un renglón de traducción: '#manteca# = #burro#'.

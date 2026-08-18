@@ -119,6 +119,75 @@ void main() {
     });
   });
 
+  group('la corrección', () {
+    test('la que repite la frase tal cual se escribió no se muestra', () {
+      // Es el caso que apareció practicando: "io vado al lavoro" está bien y
+      // la corrección decía exactamente lo mismo.
+      const contestado = 'Correzione: io vado al lavoro\n'
+          'Lavori sempre così presto la mattina?';
+
+      expect(
+        sinCorreccionRepetida(contestado, 'io vado al lavoro'),
+        'Lavori sempre così presto la mattina?',
+      );
+    });
+
+    test('tampoco si lo único que cambió son mayúsculas o signos', () {
+      const contestado = 'Correzione: Io vado al lavoro.\nChe lavoro fai?';
+
+      expect(
+        sinCorreccionRepetida(contestado, 'io vado al lavoro'),
+        'Che lavoro fai?',
+      );
+    });
+
+    test('la corrección de verdad se muestra', () {
+      const contestado = 'Correzione: io vado al lavoro\nChe lavoro fai?';
+
+      // Acá sí corrigió: el alumno había escrito el verbo mal.
+      expect(
+        sinCorreccionRepetida(contestado, 'io ando al lavoro'),
+        contestado,
+      );
+    });
+
+    test('un acento que falta es una corrección de verdad', () {
+      // Si se compararan las frases sin acentos, esta se perdería, y es
+      // justamente una de las que hay que mostrar.
+      const contestado = 'Correzione: perché vai al lavoro?\nE tu?';
+
+      expect(
+        sinCorreccionRepetida(contestado, 'perche vai al lavoro?'),
+        contestado,
+      );
+    });
+
+    test('un apóstrofo que falta también', () {
+      const contestado = "Correzione: bevo l'acqua\nCosa mangi?";
+
+      expect(sinCorreccionRepetida(contestado, 'bevo lacqua'), contestado);
+    });
+
+    test('una respuesta sin corrección queda igual', () {
+      const contestado = 'Bene! Lavori sempre così presto?';
+
+      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), contestado);
+    });
+
+    test('si no queda nada se muestra la respuesta entera', () {
+      // Antes una corrección al pedo que una burbuja vacía.
+      const contestado = 'Correzione: io vado al lavoro';
+
+      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), contestado);
+    });
+
+    test('la marca se reconoce con cualquier mayúscula', () {
+      const contestado = 'correzione : io vado al lavoro\nE tu?';
+
+      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), 'E tu?');
+    });
+  });
+
   group('el mensaje que se le manda a la IA', () {
     test('sin pedidos va tal cual se escribió', () {
       expect(textoParaLaIa('ciao, sto bene'), 'ciao, sto bene');
@@ -247,6 +316,13 @@ void main() {
     test('piden italiano simple y respuestas cortas', () {
       expect(promptDeChat, contains('italiano simple'));
       expect(promptDeChat, contains('Correzione:'));
+    });
+
+    test('ponen la corrección como la excepción, no como la regla', () {
+      expect(promptDeChat, contains('Lo normal es NO corregir'));
+      expect(promptDeChat, contains('Nunca escribas un renglón de corrección'));
+      // Decir "io vado" en vez de "vado" no es un error, y era lo que corregía.
+      expect(promptDeChat, contains('Poner el sujeto'));
     });
 
     test('no piden markdown, que se leería en voz alta', () {
