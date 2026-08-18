@@ -281,6 +281,34 @@ void main() {
 
       expect(find.text('#manteca# = #burro#\nChe cucini?'), findsOneWidget);
     });
+
+    testWidgets('un pedido suelto muestra solo la traducción', (tester) async {
+      // Pedir una palabra es ir al diccionario: la charla de más se recorta,
+      // aunque la IA la haya escrito igual.
+      await _abrir(
+        tester,
+        respuesta: '#manteca# = #burro#\n\nCapisco, cosa prepari?',
+      );
+
+      await _escribir(tester, '#manteca#');
+      await _enviar(tester);
+
+      expect(find.text('#manteca# = #burro#'), findsOneWidget);
+      expect(find.textContaining('Capisco'), findsNothing);
+    });
+
+    testWidgets('un pedido en medio de una frase no corta la charla',
+        (tester) async {
+      await _abrir(
+        tester,
+        respuesta: '#manteca# = #burro#\n\nCapisco, cosa prepari?',
+      );
+
+      await _escribir(tester, 'mi serve #manteca#');
+      await _enviar(tester);
+
+      expect(find.textContaining('Capisco, cosa prepari?'), findsOneWidget);
+    });
   });
 
   group('solo escuchar', () {
