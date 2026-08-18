@@ -21,9 +21,10 @@ import 'pantalla_clave_ia.dart';
 /// - Se escribe con el teclado propio, igual que en el resto de la app: así
 ///   están a mano las vocales acentuadas, y se le suman la almohadilla y los
 ///   signos que hacen falta acá.
-/// - Cualquier cosa entre almohadillas es un pedido de traducción: escribir
-///   '#manteca#' en medio de la charla hace que la IA conteste '#burro#' y
-///   siga hablando. Sirve para no cortar la charla cuando falta una palabra.
+/// - Cualquier cosa entre almohadillas es un pedido de traducción, en los dos
+///   sentidos: '#manteca#' contesta '#burro#' y '#finestra#' contesta
+///   '#ventana#'. Si el mensaje es solo el pedido, la respuesta es solo la
+///   traducción; si está en medio de una frase, la charla sigue.
 /// - En "Solo escuchar" las respuestas no se leen: se escuchan. Es el modo
 ///   difícil, y para eso está el ojito por si una no se entendió.
 ///
@@ -128,8 +129,13 @@ class _PantallaChatState extends State<PantallaChat> {
     _irAlFinal();
 
     try {
-      final respuesta = await _gemini.charlar(_conversacion.contenidos(), clave);
+      final contestado = await _gemini.charlar(_conversacion.contenidos(), clave);
       if (!mounted) return;
+      // Cuando el mensaje era solo un pedido de traducción se muestra solo la
+      // traducción, aunque la IA haya agregado charla de más.
+      final respuesta = esSoloTraduccion(texto)
+          ? soloLasTraducciones(contestado)
+          : contestado;
       setState(() {
         if (_soloEscuchar) _tapados.add(_conversacion.mensajes.length);
         _conversacion.agregar(Mensaje.deLaIa(respuesta));

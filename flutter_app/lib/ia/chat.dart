@@ -34,14 +34,20 @@ que está aprendiendo italiano. Tenés que seguir estas reglas siempre:
    (#como estas?#). Contestá cada pedido en su propio renglón, arriba de todo,
    con este formato exacto:
    #manteca# = #burro#
-   Si lo que está entre # está en español, traducilo al italiano; si está en
-   italiano, traducilo al español. Después de las traducciones seguí la charla
-   normalmente en italiano, como si el pedido no hubiera pasado.
-5. El orden es: primero las traducciones, después la corrección, y al final tu
-   respuesta a la charla.
-6. No uses markdown, ni asteriscos, ni emojis, ni listas numeradas: el texto se
+5. La traducción va SIEMPRE al otro idioma, nunca al mismo. Fijate primero en
+   qué idioma está escrito lo que te dieron:
+   - si está en español, traducilo al italiano: #ventana# = #finestra#
+   - si está en italiano, traducilo al español: #finestra# = #ventana#
+   Nunca devuelvas la misma palabra que te dieron.
+6. Si el mensaje es SOLO un pedido de traducción (no hay nada más escrito fuera
+   de las almohadillas), contestá únicamente la traducción y nada más: sin
+   saludos, sin preguntas, sin comentarios y sin seguir la charla.
+   Si además de las almohadillas escribió otra cosa, ahí sí: primero las
+   traducciones, después la corrección, y al final tu respuesta a la charla,
+   como si el pedido no hubiera pasado.
+7. No uses markdown, ni asteriscos, ni emojis, ni listas numeradas: el texto se
    lee en voz alta.
-7. Cuando tengas que escribir en español, usá el de Latinoamérica: "ustedes",
+8. Cuando tengas que escribir en español, usá el de Latinoamérica: "ustedes",
    nunca "vosotros".
 ''';
 
@@ -107,6 +113,48 @@ List<String> pedidosDeTraduccion(String texto) => [
 /// pronunciaría el símbolo.
 String sinMarcas(String texto) => texto.replaceAll(marcaTraduccion, '');
 
+/// Cualquier cosa que no sea una letra: espacios, signos, números.
+final RegExp _noEsLetra = RegExp(r'[^\p{L}]', unicode: true);
+
+/// True cuando el mensaje es solo un pedido de traducción, sin nada más
+/// escrito afuera de las almohadillas.
+///
+/// Es la diferencia entre las dos formas de usar el chat: '#manteca#' es ir al
+/// diccionario y se contesta solo con la traducción, mientras que 'mi serve la
+/// #manteca#' es charlar y ahí la charla sigue.
+bool esSoloTraduccion(String mensaje) {
+  if (pedidosDeTraduccion(mensaje).isEmpty) return false;
+  final afuera = partirPorMarcas(mensaje)
+      .where((trozo) => !trozo.marcada)
+      .map((trozo) => trozo.texto)
+      .join();
+  return afuera.replaceAll(_noEsLetra, '').isEmpty;
+}
+
+/// Un renglón de traducción: '#manteca# = #burro#'.
+final RegExp _renglonTraducido = RegExp(
+  '$marcaTraduccion[^$marcaTraduccion]+$marcaTraduccion'
+  r'\s*=\s*'
+  '$marcaTraduccion[^$marcaTraduccion]+$marcaTraduccion',
+);
+
+/// Deja solo los renglones de traducción de la respuesta.
+///
+/// Las instrucciones ya le piden a la IA que cuando el mensaje sea solo un
+/// pedido conteste solo la traducción, pero a veces igual saluda o pregunta
+/// algo. Recortarlo acá lo vuelve seguro y no una cuestión de suerte.
+///
+/// Si no hay ni un renglón con el formato esperado se devuelve la respuesta
+/// entera: es mejor mostrar algo raro que no mostrar nada.
+String soloLasTraducciones(String respuesta) {
+  final renglones = respuesta
+      .split('\n')
+      .map((renglon) => renglon.trim())
+      .where((renglon) => _renglonTraducido.hasMatch(renglon))
+      .toList();
+  return renglones.isEmpty ? respuesta : renglones.join('\n');
+}
+
 /// El mensaje tal como se le manda a la IA.
 ///
 /// Cuando hay un pedido de traducción se le suma un recordatorio del formato.
@@ -118,10 +166,20 @@ String textoParaLaIa(String mensaje) {
   if (pedidos.isEmpty) return mensaje;
 
   final ejemplos = pedidos.map((p) => '#$p# = #(traducción)#').join(', ');
+  const direccion = 'Si está en español traducilo al italiano; si está en '
+      'italiano traducilo al español. Nunca devuelvas la misma palabra.';
+
+  if (esSoloTraduccion(mensaje)) {
+    return '$mensaje\n\n'
+        '(Esto es solo un pedido de traducción, no es charla. Contestá '
+        'únicamente $ejemplos, un renglón por pedido, y nada más: sin saludos, '
+        'sin preguntas y sin comentarios. $direccion)';
+  }
+
   return '$mensaje\n\n'
       '(Recordá: lo que está entre # es un pedido de traducción. Empezá tu '
       'respuesta con $ejemplos, un renglón por pedido, y después seguí la '
-      'charla en italiano.)';
+      'charla en italiano. $direccion)';
 }
 
 /// La charla: los mensajes que se dijeron, en orden.

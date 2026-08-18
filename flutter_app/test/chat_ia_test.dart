@@ -70,9 +70,82 @@ void main() {
     });
   });
 
+  group('pedir solo la traducción', () {
+    test('una palabra sola entre almohadillas es solo un pedido', () {
+      expect(esSoloTraduccion('#manteca#'), isTrue);
+    });
+
+    test('una frase sola entre almohadillas también', () {
+      expect(esSoloTraduccion('#como estás?#'), isTrue);
+    });
+
+    test('varios pedidos pegados siguen siendo solo un pedido', () {
+      // Los espacios y los signos de afuera no son charla.
+      expect(esSoloTraduccion('#manteca# #pan#'), isTrue);
+      expect(esSoloTraduccion('  #manteca# , #pan# ?'), isTrue);
+    });
+
+    test('con algo escrito afuera es charla, no un pedido suelto', () {
+      expect(esSoloTraduccion('mi serve la #manteca#'), isFalse);
+    });
+
+    test('sin almohadillas no es un pedido', () {
+      expect(esSoloTraduccion('ciao, come stai?'), isFalse);
+      expect(esSoloTraduccion('#mante'), isFalse);
+    });
+
+    test('de la respuesta se queda solo el renglón de la traducción', () {
+      // Le pedimos que no charle, pero a veces igual charla: acá se recorta.
+      const contestado = '#manteca# = #burro#\n\n'
+          'Capisco, ti piace cucinare. Cosa prepari?';
+
+      expect(soloLasTraducciones(contestado), '#manteca# = #burro#');
+    });
+
+    test('se quedan todos los renglones si hubo varios pedidos', () {
+      const contestado = '#manteca# = #burro#\n#pan# = #pane#\nChe cucini?';
+
+      expect(
+        soloLasTraducciones(contestado),
+        '#manteca# = #burro#\n#pan# = #pane#',
+      );
+    });
+
+    test('si no vino ningún renglón con el formato se muestra todo', () {
+      // Antes mostrar algo raro que dejar la burbuja vacía.
+      const contestado = 'Non ho capito, puoi ripetere?';
+
+      expect(soloLasTraducciones(contestado), contestado);
+    });
+  });
+
   group('el mensaje que se le manda a la IA', () {
     test('sin pedidos va tal cual se escribió', () {
       expect(textoParaLaIa('ciao, sto bene'), 'ciao, sto bene');
+    });
+
+    test('un pedido suelto pide solo la traducción', () {
+      final texto = textoParaLaIa('#manteca#');
+
+      expect(texto, contains('únicamente #manteca# = #(traducción)#'));
+      expect(texto, contains('sin preguntas'));
+      expect(texto, isNot(contains('seguí la charla')));
+    });
+
+    test('un pedido en medio de la charla no la corta', () {
+      final texto = textoParaLaIa('mi serve la #manteca#');
+
+      expect(texto, contains('después seguí la charla'));
+    });
+
+    test('siempre le recuerda para qué lado traducir', () {
+      for (final mensaje in ['#manteca#', 'mi serve la #manteca#']) {
+        expect(
+          textoParaLaIa(mensaje),
+          contains('Si está en español traducilo al italiano'),
+          reason: mensaje,
+        );
+      }
     });
 
     test('con un pedido se le recuerda el formato de la respuesta', () {
@@ -150,7 +223,7 @@ void main() {
       final turnos = charla.contenidos();
 
       expect(_texto(turnos[2]), '#manteca#');
-      expect(_texto(turnos[4]), contains('Recordá'));
+      expect(_texto(turnos[4]), contains('pedido de traducción'));
     });
   });
 
@@ -158,6 +231,17 @@ void main() {
     test('explican el formato de las traducciones con el ejemplo pedido', () {
       expect(promptDeChat, contains('#manteca# = #burro#'));
       expect(promptDeChat, contains('#como estas?#'));
+    });
+
+    test('explican los dos sentidos de la traducción, con un ejemplo de cada',
+        () {
+      expect(promptDeChat, contains('#ventana# = #finestra#'));
+      expect(promptDeChat, contains('#finestra# = #ventana#'));
+      expect(promptDeChat, contains('Nunca devuelvas la misma palabra'));
+    });
+
+    test('piden no charlar cuando el mensaje es solo un pedido', () {
+      expect(promptDeChat, contains('SOLO un pedido de traducción'));
     });
 
     test('piden italiano simple y respuestas cortas', () {
