@@ -29,8 +29,14 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
       widget.repositorio ?? RepositorioRacconti();
   late final Voz _voz = widget.voz ?? VozDelSistema();
 
-  List<Racconto> _racconti = const [];
+  List<Obra> _obras = const [];
+
+  /// La obra elegida, cuando tiene capítulos y hay que elegir uno.
+  Obra? _abierta;
+
+  /// El capítulo (o el cuento suelto) que se está leyendo.
   Racconto? _abierto;
+
   bool _cargando = true;
 
   /// False cuando el celular no tiene la voz italiana instalada. Ahí no se
@@ -54,10 +60,29 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
     final puedeHablar = await _voz.preparar();
     if (!mounted) return;
     setState(() {
-      _racconti = _repositorio.datos.racconti;
+      _obras = _repositorio.datos.obras;
       _puedeHablar = puedeHablar;
       _cargando = false;
     });
+  }
+
+  /// Tocar una obra: si es un cuento suelto se abre para leer, y si tiene
+  /// capítulos primero hay que elegir cuál.
+  void _abrirObra(Obra obra) {
+    setState(() {
+      if (obra.tieneCapitulos) {
+        _abierta = obra;
+      } else {
+        _abierto = obra.capitulos.first;
+      }
+    });
+  }
+
+  /// Volver desde la lectura: a los capítulos si venía de una obra, y a la
+  /// lista si era un cuento suelto.
+  void _cerrarLectura() {
+    _voz.callar();
+    setState(() => _abierto = null);
   }
 
   @override
@@ -77,14 +102,20 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
         racconto: abierto,
         voz: _voz,
         puedeHablar: _puedeHablar,
-        alVolver: () {
-          _voz.callar();
-          setState(() => _abierto = null);
-        },
+        alVolver: _cerrarLectura,
       );
     }
 
-    if (_racconti.isEmpty) {
+    final abierta = _abierta;
+    if (abierta != null) {
+      return _VistaObra(
+        obra: abierta,
+        alVolver: () => setState(() => _abierta = null),
+        alElegir: (capitulo) => setState(() => _abierto = capitulo),
+      );
+    }
+
+    if (_obras.isEmpty) {
       return const Center(
         child: Text(
           'Todavía no hay cuentos cargados.',
@@ -96,20 +127,154 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
 
     return ListView.separated(
       padding: const EdgeInsets.symmetric(vertical: 12),
-      itemCount: _racconti.length,
+      itemCount: _obras.length,
       separatorBuilder: (_, _) => const SizedBox(height: 10),
-      itemBuilder: (_, i) => _TarjetaRacconto(
-        racconto: _racconti[i],
-        alTocar: () => setState(() => _abierto = _racconti[i]),
+      itemBuilder: (_, i) => _TarjetaObra(
+        obra: _obras[i],
+        alTocar: () => _abrirObra(_obras[i]),
       ),
     );
   }
 }
 
-class _TarjetaRacconto extends StatelessWidget {
-  const _TarjetaRacconto({required this.racconto, required this.alTocar});
+/// La tarjeta de la lista. Una novela entera es una sola: dice cuántos
+/// capítulos tiene en vez de cuántas frases.
+class _TarjetaObra extends StatelessWidget {
+  const _TarjetaObra({required this.obra, required this.alTocar});
 
-  final Racconto racconto;
+  final Obra obra;
+  final VoidCallback alTocar;
+
+  @override
+  Widget build(BuildContext context) {
+    return _Tarjeta(
+      titulo: obra.titulo,
+      subtitulo: obra.tituloEspanol,
+      pastilla: 'Nivel ${obra.nivel}',
+      detalle: obra.tieneCapitulos
+          ? '${obra.capitulos.length} capítulos'
+          : '${obra.cuantasLineas} frases',
+      alTocar: alTocar,
+    );
+  }
+}
+
+/// Los capítulos de una obra, para elegir por dónde seguir.
+class _VistaObra extends StatelessWidget {
+  const _VistaObra({
+    required this.obra,
+    required this.alVolver,
+    required this.alElegir,
+  });
+
+  final Obra obra;
+  final VoidCallback alVolver;
+  final ValueChanged<Racconto> alElegir;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const SizedBox(height: 8),
+        _Encabezado(
+          titulo: obra.titulo,
+          subtitulo: obra.tituloEspanol,
+          alVolver: alVolver,
+          tooltipVolver: 'Volver a los cuentos',
+        ),
+        const SizedBox(height: 6),
+        Text(
+          '${obra.capitulos.length} capítulos · '
+          '${obra.cuantasLineas} frases en total',
+          style: const TextStyle(fontSize: 12.5, color: Tema.textoTenue),
+        ),
+        const SizedBox(height: 10),
+        Expanded(
+          child: ListView.separated(
+            padding: const EdgeInsets.only(bottom: 12),
+            itemCount: obra.capitulos.length,
+            separatorBuilder: (_, _) => const SizedBox(height: 10),
+            itemBuilder: (_, i) {
+              final capitulo = obra.capitulos[i];
+              return _Tarjeta(
+                titulo: capitulo.titulo,
+                subtitulo: capitulo.tituloEspanol,
+                pastilla: '${i + 1}',
+                detalle: '${capitulo.lineas.length} frases',
+                alTocar: () => alElegir(capitulo),
+              );
+            },
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+/// El título de arriba con la flecha para volver. Lo comparten la lista de
+/// capítulos y el cuento abierto.
+class _Encabezado extends StatelessWidget {
+  const _Encabezado({
+    required this.titulo,
+    required this.subtitulo,
+    required this.alVolver,
+    required this.tooltipVolver,
+  });
+
+  final String titulo;
+  final String subtitulo;
+  final VoidCallback alVolver;
+  final String tooltipVolver;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        IconButton(
+          onPressed: alVolver,
+          icon: const Icon(Icons.arrow_back, color: Tema.verdeOscuro),
+          tooltip: tooltipVolver,
+          padding: EdgeInsets.zero,
+          constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+        ),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                titulo,
+                style: const TextStyle(
+                  fontSize: 19,
+                  fontWeight: FontWeight.w700,
+                  color: Tema.titulo,
+                ),
+              ),
+              Text(
+                subtitulo,
+                style: const TextStyle(fontSize: 13, color: Tema.textoTenue),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _Tarjeta extends StatelessWidget {
+  const _Tarjeta({
+    required this.titulo,
+    required this.subtitulo,
+    required this.pastilla,
+    required this.detalle,
+    required this.alTocar,
+  });
+
+  final String titulo;
+  final String subtitulo;
+  final String pastilla;
+  final String detalle;
   final VoidCallback alTocar;
 
   @override
@@ -133,7 +298,7 @@ class _TarjetaRacconto extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      racconto.titulo,
+                      titulo,
                       style: const TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.w600,
@@ -142,7 +307,7 @@ class _TarjetaRacconto extends StatelessWidget {
                     ),
                     const SizedBox(height: 3),
                     Text(
-                      racconto.tituloEspanol,
+                      subtitulo,
                       style: const TextStyle(
                         fontSize: 14,
                         color: Tema.textoTenue,
@@ -155,10 +320,10 @@ class _TarjetaRacconto extends StatelessWidget {
               Column(
                 crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
-                  Pastilla(texto: 'Nivel ${racconto.nivel}'),
+                  Pastilla(texto: pastilla),
                   const SizedBox(height: 5),
                   Text(
-                    '${racconto.lineas.length} frases',
+                    detalle,
                     style: const TextStyle(
                       fontSize: 12,
                       color: Tema.textoTenue,
@@ -257,38 +422,13 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 8),
-        Row(
-          children: [
-            IconButton(
-              onPressed: widget.alVolver,
-              icon: const Icon(Icons.arrow_back, color: Tema.verdeOscuro),
-              tooltip: 'Volver a los cuentos',
-              padding: EdgeInsets.zero,
-              constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
-            ),
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    racconto.titulo,
-                    style: const TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w700,
-                      color: Tema.titulo,
-                    ),
-                  ),
-                  Text(
-                    racconto.tituloEspanol,
-                    style: const TextStyle(
-                      fontSize: 13,
-                      color: Tema.textoTenue,
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ],
+        _Encabezado(
+          titulo: racconto.titulo,
+          subtitulo: racconto.tituloEspanol,
+          alVolver: widget.alVolver,
+          tooltipVolver: racconto.esCapitulo
+              ? 'Volver a los capítulos'
+              : 'Volver a los cuentos',
         ),
         const SizedBox(height: 6),
         _ayuda(),

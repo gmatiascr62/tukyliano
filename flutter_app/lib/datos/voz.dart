@@ -14,15 +14,18 @@ class VozItaliana {
   final String nombre;
 }
 
-/// Los nombres que se les ponen, en orden.
+/// Las dos voces que se ofrecen, por el lugar que ocupan en la lista ordenada
+/// que da el celular.
 ///
-/// Son ciudades y no nombres de persona porque los códigos de Android no
-/// dicen si la voz es de hombre o de mujer, y ponerle "Marco" a una voz
-/// femenina sería peor que no ponerle nada.
-const nombresDeVoces = [
-  'Roma', 'Milano', 'Napoli', 'Torino',
-  'Firenze', 'Venezia', 'Bologna', 'Palermo',
-];
+/// El celular reporta muchas voces italianas, pero varias suenan casi igual y
+/// otras suenan mal. Estas dos están escuchadas y elegidas: son las que antes
+/// se llamaban Milano (de mujer) y Firenze (de varón). Ahora que se sabe de
+/// quién es cada una llevan nombre de persona en vez de nombre de ciudad.
+///
+/// Va por posición y no por el código de Android ("it-it-x-itc-local") porque
+/// esos códigos no son los mismos en todos los celulares. La lista se ordena
+/// siempre igual, así que la posición sí es estable.
+const vocesOfrecidas = <int, String>{1: 'Giulia', 4: 'Lorenzo'};
 
 /// Lee italiano en voz alta usando el motor que ya trae el celular.
 ///
@@ -88,6 +91,9 @@ class VozDelSistema implements Voz {
       await _motor.setSpeechRate(_velocidadNormal);
       _voces = await _buscarVoces();
       _listo = true;
+      // Se fija la primera en el acto: si no, la pastilla mostraría una voz y
+      // el motor hablaría con la que él tiene de fábrica, que es otra.
+      if (_voces.isNotEmpty) await usarVoz(_voces.first);
       return true;
     } catch (_) {
       // Sin motor de voz en el celular no se habla, pero la app sigue.
@@ -95,11 +101,15 @@ class VozDelSistema implements Voz {
     }
   }
 
-  /// Las voces italianas que reporta el motor, con nombre puesto.
+  /// Las dos voces elegidas, con su nombre puesto.
   ///
-  /// Se ordenan por id antes de nombrarlas para que la misma voz se llame
-  /// siempre igual: si el motor las devolviera en otro orden, "Roma" pasaría
-  /// a ser otra y el alumno no entendería por qué cambió.
+  /// Se ordenan por id antes de buscarlas para que la misma voz sea siempre la
+  /// misma: si el motor las devolviera en otro orden, Giulia pasaría a ser otra
+  /// y el alumno no entendería por qué cambió.
+  ///
+  /// Si el celular tiene menos voces de las esperadas quedan menos de dos, o
+  /// ninguna. Eso no rompe nada: sin nada que elegir no aparece el selector y
+  /// se habla con la voz de fábrica.
   Future<List<VozItaliana>> _buscarVoces() async {
     try {
       final crudas = await _motor.getVoices;
@@ -118,10 +128,8 @@ class VozDelSistema implements Voz {
 
       return [
         for (final (i, id) in ids.indexed)
-          VozItaliana(
-            id: id,
-            nombre: i < nombresDeVoces.length ? nombresDeVoces[i] : id,
-          ),
+          if (vocesOfrecidas[i] case final nombre?)
+            VozItaliana(id: id, nombre: nombre),
       ];
     } catch (_) {
       // Si el motor no sabe listar voces igual se puede hablar con la de

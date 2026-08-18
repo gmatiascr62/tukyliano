@@ -8,7 +8,7 @@ class VozFalsa implements Voz {
   /// False imita el celular sin la voz italiana instalada.
   final bool hayItaliano;
 
-  /// Cuántas voces italianas tiene el celular. Con una sola no hay selector.
+  /// Cuántas de las voces ofrecidas encontró. Con una sola no hay selector.
   final int cuantasVoces;
 
   final dicho = <String>[];
@@ -18,7 +18,10 @@ class VozFalsa implements Voz {
   @override
   late final List<VozItaliana> voces = [
     for (var i = 0; i < cuantasVoces; i++)
-      VozItaliana(id: 'it-it-x-v$i-local', nombre: nombresDeVoces[i]),
+      VozItaliana(
+        id: 'it-it-x-v$i-local',
+        nombre: vocesOfrecidas.values.elementAt(i),
+      ),
   ];
 
   @override
@@ -28,7 +31,13 @@ class VozFalsa implements Voz {
   Future<void> usarVoz(VozItaliana voz) async => vozElegida = voz;
 
   @override
-  Future<bool> preparar() async => hayItaliano;
+  Future<bool> preparar() async {
+    if (!hayItaliano) return false;
+    // La voz de verdad fija la primera al prepararse, así la pastilla muestra
+    // la que de verdad suena.
+    if (voces.isNotEmpty) await usarVoz(voces.first);
+    return true;
+  }
 
   @override
   Future<void> decir(String texto) async {

@@ -34,12 +34,30 @@ class Racconto {
     this.nivel = 1,
     this.vocabulario = const [],
     this.graduado = true,
+    this.serie = '',
+    this.serieTitulo = '',
+    this.serieTituloEspanol = '',
   });
 
   final String id;
   final String titulo;
   final String tituloEspanol;
   final List<LineaRacconto> lineas;
+
+  /// La obra a la que pertenece, cuando es un capítulo y no un cuento suelto.
+  /// Vacío en los cuentos.
+  ///
+  /// Una novela son diez capítulos, pero es una sola cosa: en la lista tiene
+  /// que ocupar un renglón y no diez. Los capítulos que comparten esta marca se
+  /// agrupan en una tarjeta sola.
+  final String serie;
+
+  /// Cómo se llama la obra. Va repetido en cada capítulo para que el JSON siga
+  /// siendo una lista plana; se usa el primero que venga.
+  final String serieTitulo;
+  final String serieTituloEspanol;
+
+  bool get esCapitulo => serie.isNotEmpty;
 
   /// Para ordenarlos de más fácil a más difícil.
   final int nivel;
@@ -83,6 +101,9 @@ class Racconto {
       tituloEspanol: json['titulo_es'] as String? ?? '',
       nivel: json['nivel'] as int? ?? 1,
       graduado: json['graduado'] as bool? ?? true,
+      serie: json['serie'] as String? ?? '',
+      serieTitulo: json['serie_titulo'] as String? ?? '',
+      serieTituloEspanol: json['serie_titulo_es'] as String? ?? '',
       lineas: lineas,
       vocabulario: [
         for (final item in (json['vocabulario'] as List?) ?? const [])
@@ -90,6 +111,78 @@ class Racconto {
       ],
     );
   }
+}
+
+/// Una entrada de la lista de lectura: un cuento suelto, o una obra entera con
+/// sus capítulos adentro.
+///
+/// Existe para que la novela no ocupe diez renglones de la lista. Un cuento
+/// suelto también es una obra, de un capítulo: así la pantalla tiene una sola
+/// clase de cosa para mostrar.
+class Obra {
+  const Obra({
+    required this.titulo,
+    required this.tituloEspanol,
+    required this.capitulos,
+    this.serie = '',
+  });
+
+  /// Vacío cuando es un cuento suelto.
+  final String serie;
+
+  final String titulo;
+  final String tituloEspanol;
+
+  /// En orden de lectura. Nunca está vacía.
+  final List<Racconto> capitulos;
+
+  bool get tieneCapitulos => capitulos.length > 1;
+
+  /// El del primer capítulo: una obra se empieza por el principio.
+  int get nivel => capitulos.first.nivel;
+
+  int get cuantasLineas =>
+      capitulos.fold(0, (total, c) => total + c.lineas.length);
+}
+
+/// Agrupa los capítulos de cada obra, respetando el orden en que vienen.
+///
+/// La obra queda en el lugar de su primer capítulo, así la lista sigue yendo
+/// de más fácil a más difícil.
+List<Obra> agruparEnObras(List<Racconto> racconti) {
+  final obras = <Obra>[];
+  final porSerie = <String, List<Racconto>>{};
+
+  for (final racconto in racconti) {
+    if (!racconto.esCapitulo) {
+      obras.add(Obra(
+        titulo: racconto.titulo,
+        tituloEspanol: racconto.tituloEspanol,
+        capitulos: [racconto],
+      ));
+      continue;
+    }
+
+    final capitulos = porSerie[racconto.serie];
+    if (capitulos != null) {
+      capitulos.add(racconto);
+      continue;
+    }
+
+    // El primer capítulo es el que pone el título y el lugar en la lista.
+    final nuevos = [racconto];
+    porSerie[racconto.serie] = nuevos;
+    obras.add(Obra(
+      serie: racconto.serie,
+      titulo: racconto.serieTitulo.isEmpty
+          ? racconto.titulo
+          : racconto.serieTitulo,
+      tituloEspanol: racconto.serieTituloEspanol,
+      capitulos: nuevos,
+    ));
+  }
+
+  return obras;
 }
 
 /// Todo lo que trae racconti.json.
@@ -103,6 +196,10 @@ class DatosRacconti {
 
   final int version;
   final List<Racconto> racconti;
+
+  /// Los mismos cuentos, pero con los capítulos de cada novela agrupados. Es lo
+  /// que muestra la lista.
+  List<Obra> get obras => agruparEnObras(racconti);
 
   /// Palabras que aparecen en varios cuentos y que ya se practican en otras
   /// secciones (las formas de avere, essere, fare y volere). No se muestran:
