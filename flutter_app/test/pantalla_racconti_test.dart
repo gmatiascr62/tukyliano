@@ -34,6 +34,40 @@ const _dos = '''
   }
 ''';
 
+/// Un cuento suelto y una novela de dos capítulos.
+const _conNovela = '''
+  {
+    "version": 1,
+    "racconti": [
+      {
+        "id": "la-colazione", "titulo": "La colazione",
+        "titulo_es": "El desayuno", "nivel": 1,
+        "vocabulario": [],
+        "lineas": [{"it": "Marco ha fame.", "es": "Marco tiene hambre."}]
+      },
+      {
+        "id": "saga-01", "titulo": "Capitolo 1 · Il testamento",
+        "titulo_es": "Capítulo 1 · El testamento", "nivel": 6,
+        "serie": "la-saga", "serie_titulo": "Il segreto dei Ferrante",
+        "serie_titulo_es": "El secreto de los Ferrante",
+        "vocabulario": [],
+        "lineas": [
+          {"it": "Il vecchio è morto.", "es": "El viejo murió."},
+          {"it": "Nessuno piange.", "es": "Nadie llora."}
+        ]
+      },
+      {
+        "id": "saga-02", "titulo": "Capitolo 2 · L'arrivo",
+        "titulo_es": "Capítulo 2 · La llegada", "nivel": 6,
+        "serie": "la-saga", "serie_titulo": "Il segreto dei Ferrante",
+        "serie_titulo_es": "El secreto de los Ferrante",
+        "vocabulario": [],
+        "lineas": [{"it": "Lei arriva.", "es": "Ella llega."}]
+      }
+    ]
+  }
+''';
+
 RepositorioRacconti _repo(String json) => RepositorioRacconti(
       leerAsset: (_) async => json,
       cliente: MockClient((_) async => http.Response('', 404)),
@@ -87,6 +121,78 @@ void main() {
       await _abrir(tester, 'esto no es JSON');
 
       expect(find.textContaining('Todavía no hay cuentos'), findsOneWidget);
+    });
+  });
+
+  group('la novela en la lista', () {
+    testWidgets('ocupa un renglón solo, no uno por capítulo', (tester) async {
+      await _abrir(tester, _conNovela);
+
+      expect(find.text('Il segreto dei Ferrante'), findsOneWidget);
+      expect(find.text('El secreto de los Ferrante'), findsOneWidget);
+      // Los capítulos están adentro, no en la lista.
+      expect(find.textContaining('Capitolo 1'), findsNothing);
+      expect(find.textContaining('Capitolo 2'), findsNothing);
+    });
+
+    testWidgets('dice cuántos capítulos tiene, no cuántas frases',
+        (tester) async {
+      await _abrir(tester, _conNovela);
+
+      expect(find.text('2 capítulos'), findsOneWidget);
+      // El cuento suelto sigue contando frases.
+      expect(find.text('1 frases'), findsOneWidget);
+    });
+
+    testWidgets('tocarla lleva a elegir el capítulo', (tester) async {
+      await _abrir(tester, _conNovela);
+      await _tocar(tester, 'Il segreto dei Ferrante');
+
+      expect(find.text('Capitolo 1 · Il testamento'), findsOneWidget);
+      expect(find.text("Capitolo 2 · L'arrivo"), findsOneWidget);
+      // Todavía no se está leyendo nada.
+      expect(find.text('Il vecchio è morto.'), findsNothing);
+    });
+
+    testWidgets('el capítulo elegido se abre para leer', (tester) async {
+      await _abrir(tester, _conNovela);
+      await _tocar(tester, 'Il segreto dei Ferrante');
+      await _tocar(tester, 'Capitolo 1 · Il testamento');
+
+      expect(find.text('Il vecchio è morto.'), findsOneWidget);
+      expect(find.text('Nessuno piange.'), findsOneWidget);
+      expect(find.text("Capitolo 2 · L'arrivo"), findsNothing);
+    });
+
+    testWidgets('volver desde el capítulo lleva a los capítulos, no a la lista',
+        (tester) async {
+      await _abrir(tester, _conNovela);
+      await _tocar(tester, 'Il segreto dei Ferrante');
+      await _tocar(tester, 'Capitolo 1 · Il testamento');
+      await tester.tap(find.byIcon(Icons.arrow_back));
+      await tester.pumpAndSettle();
+
+      expect(find.text("Capitolo 2 · L'arrivo"), findsOneWidget);
+      expect(find.text('La colazione'), findsNothing);
+    });
+
+    testWidgets('volver otra vez sí lleva a la lista de cuentos',
+        (tester) async {
+      await _abrir(tester, _conNovela);
+      await _tocar(tester, 'Il segreto dei Ferrante');
+      await tester.tap(find.byIcon(Icons.arrow_back));
+      await tester.pumpAndSettle();
+
+      expect(find.text('La colazione'), findsOneWidget);
+      expect(find.text('Il segreto dei Ferrante'), findsOneWidget);
+    });
+
+    testWidgets('un cuento suelto se abre derecho, sin pasar por capítulos',
+        (tester) async {
+      await _abrir(tester, _conNovela);
+      await _tocar(tester, 'La colazione');
+
+      expect(find.text('Marco ha fame.'), findsOneWidget);
     });
   });
 
@@ -262,15 +368,15 @@ void main() {
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
-      // La pastilla muestra la voz en uso, con nombre de ciudad.
-      expect(find.text('Roma'), findsOneWidget);
+      // La pastilla muestra la voz en uso, con nombre de persona.
+      expect(find.text('Giulia'), findsOneWidget);
 
-      await _tocar(tester, 'Roma');
-      await _tocar(tester, 'Milano');
+      await _tocar(tester, 'Giulia');
+      await _tocar(tester, 'Lorenzo');
 
-      expect(voz.vozElegida?.nombre, 'Milano');
-      expect(find.text('Milano'), findsOneWidget);
-      expect(find.text('Roma'), findsNothing);
+      expect(voz.vozElegida?.nombre, 'Lorenzo');
+      expect(find.text('Lorenzo'), findsOneWidget);
+      expect(find.text('Giulia'), findsNothing);
     });
 
     testWidgets('al elegir una voz la hace hablar para escucharla',
@@ -280,10 +386,10 @@ void main() {
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
-      await _tocar(tester, 'Roma');
-      await _tocar(tester, 'Milano');
+      await _tocar(tester, 'Giulia');
+      await _tocar(tester, 'Lorenzo');
 
-      expect(voz.dicho, ['Milano']);
+      expect(voz.dicho, ['Lorenzo']);
     });
 
     testWidgets('con una sola voz instalada no hay nada que elegir',
@@ -292,7 +398,7 @@ void main() {
       await _abrir(tester, _dos, voz: voz);
       await _tocar(tester, 'La colazione');
 
-      expect(find.text('Roma'), findsNothing);
+      expect(find.text('Giulia'), findsNothing);
       // La velocidad sí sigue estando.
       expect(find.text('Lento'), findsOneWidget);
     });

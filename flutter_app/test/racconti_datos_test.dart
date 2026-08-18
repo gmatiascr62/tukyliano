@@ -207,6 +207,52 @@ void main() {
       expect(capitulos, orderedEquals(List.of(capitulos)..sort()));
     });
 
+    test('la novela es una sola entrada de la lista, con sus 10 capítulos', () {
+      // Diez capítulos son una obra, no diez cuentos: en la lista tiene que
+      // ocupar un renglón.
+      final novelas = _datos.obras.where((o) => o.tieneCapitulos).toList();
+
+      expect(novelas.length, 1);
+      expect(novelas.single.titulo, 'Il segreto dei Ferrante');
+      expect(novelas.single.capitulos.length, 10);
+      expect(
+        novelas.single.capitulos.map((c) => c.id),
+        orderedEquals([for (var i = 1; i <= 10; i++) 'ferrante-${i.toString().padLeft(2, '0')}']),
+      );
+    });
+
+    test('los cuentos sueltos siguen siendo uno cada uno', () {
+      final sueltos = _datos.obras.where((o) => !o.tieneCapitulos);
+
+      expect(sueltos.length, 8);
+      for (final obra in sueltos) {
+        expect(obra.serie, isEmpty, reason: obra.titulo);
+      }
+    });
+
+    test('todos los capítulos declaran la misma serie y el mismo título', () {
+      // Un typo en la marca partiría la novela en dos tarjetas.
+      final capitulos =
+          _datos.racconti.where((r) => r.id.startsWith('ferrante-'));
+
+      expect(capitulos.map((c) => c.serie).toSet(), {'il-segreto-dei-ferrante'});
+      expect(capitulos.map((c) => c.serieTitulo).toSet(),
+          {'Il segreto dei Ferrante'});
+      expect(capitulos.map((c) => c.serieTituloEspanol).toSet().length, 1);
+    });
+
+    test('cada capítulo dice qué número es en su título', () {
+      for (final (i, capitulo) in _datos.obras
+          .firstWhere((o) => o.tieneCapitulos)
+          .capitulos
+          .indexed) {
+        expect(capitulo.titulo, startsWith('Capitolo ${i + 1} ·'),
+            reason: capitulo.id);
+        expect(capitulo.tituloEspanol, startsWith('Capítulo ${i + 1} ·'),
+            reason: capitulo.id);
+      }
+    });
+
     test('vienen ordenados de más fácil a más difícil', () {
       final niveles = _datos.racconti.map((r) => r.nivel).toList();
       expect(niveles, orderedEquals(List.of(niveles)..sort()));
@@ -219,6 +265,77 @@ void main() {
           (r as Map<String, dynamic>)['tema'],
       };
       expect(temas, containsAll(['cotidiano', 'italia', 'trabajo']));
+    });
+  });
+
+  group('agrupar en obras', () {
+    /// Tres cuentos, dos de ellos capítulos de la misma obra.
+    DatosRacconti mezcla({String serie = 'saga'}) =>
+        DatosRacconti.desdeJson(jsonDecode('''
+          {"racconti": [
+            {"id": "suelto", "titulo": "Suelto",
+             "lineas": [{"it": "Ciao.", "es": "Hola."}]},
+            {"id": "cap-1", "titulo": "Capitolo 1", "serie": "$serie",
+             "serie_titulo": "La saga", "serie_titulo_es": "La saga en español",
+             "lineas": [{"it": "Uno.", "es": "Uno."}]},
+            {"id": "cap-2", "titulo": "Capitolo 2", "serie": "$serie",
+             "serie_titulo": "La saga",
+             "lineas": [{"it": "Due.", "es": "Dos."}]}
+          ]}
+        ''') as Map<String, dynamic>);
+
+    test('los capítulos de una serie entran en una obra sola', () {
+      final obras = mezcla().obras;
+
+      expect(obras.length, 2);
+      expect(obras.first.titulo, 'Suelto');
+      expect(obras.first.tieneCapitulos, isFalse);
+      expect(obras.last.titulo, 'La saga');
+      expect(obras.last.tituloEspanol, 'La saga en español');
+      expect(obras.last.capitulos.map((c) => c.id), ['cap-1', 'cap-2']);
+    });
+
+    test('un cuento suelto también es una obra, de un capítulo', () {
+      // Así la pantalla tiene una sola clase de cosa para mostrar.
+      final suelto = mezcla().obras.first;
+
+      expect(suelto.capitulos.single.id, 'suelto');
+      expect(suelto.serie, isEmpty);
+    });
+
+    test('la obra queda en el lugar de su primer capítulo', () {
+      // Si se fuera al final, la lista dejaría de ir de fácil a difícil.
+      final obras = DatosRacconti.desdeJson(jsonDecode('''
+        {"racconti": [
+          {"id": "cap-1", "serie": "saga", "serie_titulo": "La saga",
+           "nivel": 1, "lineas": [{"it": "Uno.", "es": "Uno."}]},
+          {"id": "otro", "titulo": "Otro", "nivel": 2,
+           "lineas": [{"it": "Ciao.", "es": "Hola."}]},
+          {"id": "cap-2", "serie": "saga", "serie_titulo": "La saga",
+           "nivel": 1, "lineas": [{"it": "Due.", "es": "Dos."}]}
+        ]}
+      ''') as Map<String, dynamic>).obras;
+
+      expect(obras.map((o) => o.titulo), ['La saga', 'Otro']);
+      expect(obras.first.capitulos.length, 2);
+    });
+
+    test('el nivel y las frases de la obra salen de sus capítulos', () {
+      final saga = mezcla().obras.last;
+
+      expect(saga.nivel, saga.capitulos.first.nivel);
+      expect(saga.cuantasLineas, 2);
+    });
+
+    test('sin serie_titulo se usa el título del primer capítulo', () {
+      final obras = DatosRacconti.desdeJson(jsonDecode('''
+        {"racconti": [
+          {"id": "cap-1", "titulo": "Capitolo 1", "serie": "saga",
+           "lineas": [{"it": "Uno.", "es": "Uno."}]}
+        ]}
+      ''') as Map<String, dynamic>).obras;
+
+      expect(obras.single.titulo, 'Capitolo 1');
     });
   });
 
