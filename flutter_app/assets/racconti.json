@@ -1,5 +1,5 @@
 {
- "version": 5,
+ "version": 6,
  "nombres": [
   "Marco",
   "Anna",
@@ -105,6 +105,7 @@
  "racconti": [
   {
    "id": "la-colazione",
+   "imagen": "colazione",
    "titulo": "La colazione",
    "titulo_es": "El desayuno",
    "nivel": 1,
@@ -208,6 +209,7 @@
   },
   {
    "id": "il-gatto-ha-fame",
+   "imagen": "gatto",
    "titulo": "Il gatto ha fame",
    "titulo_es": "El gato tiene hambre",
    "nivel": 1,
@@ -315,6 +317,7 @@
   },
   {
    "id": "un-giorno-a-roma",
+   "imagen": "roma",
    "titulo": "Un giorno a Roma",
    "titulo_es": "Un día en Roma",
    "nivel": 2,
@@ -458,6 +461,7 @@
   },
   {
    "id": "la-pizza-a-napoli",
+   "imagen": "pizza",
    "titulo": "La pizza a Napoli",
    "titulo_es": "La pizza en Nápoles",
    "nivel": 2,
@@ -561,6 +565,7 @@
   },
   {
    "id": "il-primo-giorno-di-lavoro",
+   "imagen": "lavoro",
    "titulo": "Il primo giorno di lavoro",
    "titulo_es": "El primer día de trabajo",
    "nivel": 2,
@@ -692,6 +697,7 @@
   },
   {
    "id": "il-lavoro-di-marco",
+   "imagen": "ufficio",
    "titulo": "Il lavoro di Marco",
    "titulo_es": "El trabajo de Marco",
    "nivel": 3,
@@ -839,6 +845,7 @@
   },
   {
    "id": "una-settimana-in-costiera",
+   "imagen": "mare",
    "titulo": "Una settimana in Costiera Amalfitana",
    "titulo_es": "Una semana en la Costa Amalfitana",
    "nivel": 4,
@@ -1358,6 +1365,7 @@
   },
   {
    "id": "una-telefonata",
+   "imagen": "telefono",
    "titulo": "Una telefonata",
    "titulo_es": "Un llamado",
    "nivel": 5,
@@ -1837,6 +1845,7 @@
   },
   {
    "id": "ferrante-01",
+   "imagen": "mistero",
    "titulo": "Capitolo 1 · Il testamento",
    "titulo_es": "Capítulo 1 · El testamento",
    "serie": "il-segreto-dei-ferrante",
@@ -2164,6 +2173,7 @@
   },
   {
    "id": "ferrante-02",
+   "imagen": "mistero",
    "titulo": "Capitolo 2 · L'arrivo",
    "titulo_es": "Capítulo 2 · La llegada",
    "serie": "il-segreto-dei-ferrante",
@@ -2451,6 +2461,7 @@
   },
   {
    "id": "ferrante-03",
+   "imagen": "mistero",
    "titulo": "Capitolo 3 · La donna in cucina",
    "titulo_es": "Capítulo 3 · La mujer de la cocina",
    "serie": "il-segreto-dei-ferrante",
@@ -2758,6 +2769,7 @@
   },
   {
    "id": "ferrante-04",
+   "imagen": "mistero",
    "titulo": "Capitolo 4 · L'uomo di Firenze",
    "titulo_es": "Capítulo 4 · El hombre de Florencia",
    "serie": "il-segreto-dei-ferrante",
@@ -3053,6 +3065,7 @@
   },
   {
    "id": "ferrante-05",
+   "imagen": "mistero",
    "titulo": "Capitolo 5 · Il temporale",
    "titulo_es": "Capítulo 5 · La tormenta",
    "serie": "il-segreto-dei-ferrante",
@@ -3356,6 +3369,7 @@
   },
   {
    "id": "ferrante-06",
+   "imagen": "mistero",
    "titulo": "Capitolo 6 · La fotografia",
    "titulo_es": "Capítulo 6 · La foto",
    "serie": "il-segreto-dei-ferrante",
@@ -3595,6 +3609,7 @@
   },
   {
    "id": "ferrante-07",
+   "imagen": "mistero",
    "titulo": "Capitolo 7 · La confessione",
    "titulo_es": "Capítulo 7 · La confesión",
    "serie": "il-segreto-dei-ferrante",
@@ -3838,6 +3853,7 @@
   },
   {
    "id": "ferrante-08",
+   "imagen": "mistero",
    "titulo": "Capitolo 8 · Il matrimonio",
    "titulo_es": "Capítulo 8 · El casamiento",
    "serie": "il-segreto-dei-ferrante",
@@ -4125,6 +4141,7 @@
   },
   {
    "id": "ferrante-09",
+   "imagen": "mistero",
    "titulo": "Capitolo 9 · La valigia",
    "titulo_es": "Capítulo 9 · La valija",
    "serie": "il-segreto-dei-ferrante",
@@ -4380,6 +4397,7 @@
   },
   {
    "id": "ferrante-10",
+   "imagen": "mistero",
    "titulo": "Capitolo 10 · La verità",
    "titulo_es": "Capítulo 10 · La verdad",
    "serie": "il-segreto-dei-ferrante",

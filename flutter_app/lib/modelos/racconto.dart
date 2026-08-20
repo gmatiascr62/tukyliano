@@ -37,6 +37,7 @@ class Racconto {
     this.serie = '',
     this.serieTitulo = '',
     this.serieTituloEspanol = '',
+    this.imagen = '',
   });
 
   final String id;
@@ -56,6 +57,10 @@ class Racconto {
   /// siendo una lista plana; se usa el primero que venga.
   final String serieTitulo;
   final String serieTituloEspanol;
+
+  /// Qué portada le toca. Es un nombre del catálogo que tiene la app; vacío o
+  /// desconocido usa la de por defecto.
+  final String imagen;
 
   bool get esCapitulo => serie.isNotEmpty;
 
@@ -104,6 +109,7 @@ class Racconto {
       serie: json['serie'] as String? ?? '',
       serieTitulo: json['serie_titulo'] as String? ?? '',
       serieTituloEspanol: json['serie_titulo_es'] as String? ?? '',
+      imagen: json['imagen'] as String? ?? '',
       lineas: lineas,
       vocabulario: [
         for (final item in (json['vocabulario'] as List?) ?? const [])
@@ -138,8 +144,9 @@ class Obra {
 
   bool get tieneCapitulos => capitulos.length > 1;
 
-  /// El del primer capítulo: una obra se empieza por el principio.
+  /// Los del primer capítulo: una obra se empieza por el principio.
   int get nivel => capitulos.first.nivel;
+  String get imagen => capitulos.first.imagen;
 
   int get cuantasLineas =>
       capitulos.fold(0, (total, c) => total + c.lineas.length);
