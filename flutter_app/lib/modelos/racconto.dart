@@ -1,9 +1,17 @@
 /// Un renglón del cuento, con su traducción.
 class LineaRacconto {
-  const LineaRacconto({required this.italiano, required this.espanol});
+  const LineaRacconto({
+    required this.italiano,
+    required this.espanol,
+    this.cuadro = 0,
+  });
 
   final String italiano;
   final String espanol;
+
+  /// Qué cuadro de la historia ilustra este renglón, o 0 si no tiene. Es el
+  /// número de la foto dentro del juego que declara el cuento.
+  final int cuadro;
 }
 
 /// Una palabra del cuento que todavía no se practicó en ninguna sección.
@@ -38,6 +46,7 @@ class Racconto {
     this.serieTitulo = '',
     this.serieTituloEspanol = '',
     this.imagen = '',
+    this.foto = '',
   });
 
   final String id;
@@ -58,9 +67,31 @@ class Racconto {
   final String serieTitulo;
   final String serieTituloEspanol;
 
-  /// Qué portada le toca. Es un nombre del catálogo que tiene la app; vacío o
-  /// desconocido usa la de por defecto.
+  /// Qué portada le toca. Es un nombre del catálogo de dibujos que tiene la
+  /// app; vacío o desconocido usa la de por defecto.
   final String imagen;
+
+  /// El juego de fotos del cuento, cuando tiene. Es un nombre, no un archivo:
+  /// de "gatto" salen "gatto-tapa" (la miniatura de la lista), "gatto-portada"
+  /// (la grande de arriba) y "gatto-1", "gatto-2"... (los cuadros de la
+  /// historia). Un cuento sin fotos se sigue viendo con el dibujo.
+  final String foto;
+
+  bool get tieneFotos => foto.isNotEmpty;
+
+  /// La miniatura cuadrada de la lista.
+  String get fotoTapa => foto.isEmpty ? '' : '$foto-tapa';
+
+  /// La grande, la que se ve al abrir el cuento.
+  String get fotoPortada => foto.isEmpty ? '' : '$foto-portada';
+
+  /// El cuadro que ilustra el renglón [indice], o vacío si ese renglón no
+  /// tiene ninguno.
+  String fotoDeLinea(int indice) {
+    if (foto.isEmpty || indice < 0 || indice >= lineas.length) return '';
+    final cuadro = lineas[indice].cuadro;
+    return cuadro <= 0 ? '' : '$foto-$cuadro';
+  }
 
   bool get esCapitulo => serie.isNotEmpty;
 
@@ -93,6 +124,7 @@ class Racconto {
         lineas.add(LineaRacconto(
           italiano: italiano,
           espanol: item['es'] as String? ?? '',
+          cuadro: item['cuadro'] as int? ?? 0,
         ));
       }
     }
@@ -110,6 +142,7 @@ class Racconto {
       serieTitulo: json['serie_titulo'] as String? ?? '',
       serieTituloEspanol: json['serie_titulo_es'] as String? ?? '',
       imagen: json['imagen'] as String? ?? '',
+      foto: json['foto'] as String? ?? '',
       lineas: lineas,
       vocabulario: [
         for (final item in (json['vocabulario'] as List?) ?? const [])
@@ -147,6 +180,7 @@ class Obra {
   /// Los del primer capítulo: una obra se empieza por el principio.
   int get nivel => capitulos.first.nivel;
   String get imagen => capitulos.first.imagen;
+  String get fotoTapa => capitulos.first.fotoTapa;
 
   int get cuantasLineas =>
       capitulos.fold(0, (total, c) => total + c.lineas.length);

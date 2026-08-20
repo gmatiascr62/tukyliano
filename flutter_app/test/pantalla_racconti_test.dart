@@ -43,8 +43,12 @@ const _conNovela = '''
       {
         "id": "la-colazione", "titulo": "La colazione",
         "titulo_es": "El desayuno", "nivel": 1, "imagen": "colazione",
+        "foto": "gatto",
         "vocabulario": [],
-        "lineas": [{"it": "Marco ha fame.", "es": "Marco tiene hambre."}]
+        "lineas": [
+          {"it": "Marco ha fame.", "es": "Marco tiene hambre."},
+          {"it": "Beve il latte.", "es": "Toma la leche.", "cuadro": 2}
+        ]
       },
       {
         "id": "saga-01", "titulo": "Capitolo 1 · Il testamento",
@@ -146,6 +150,58 @@ void main() {
     });
   });
 
+  group('las fotos', () {
+    testWidgets('el cuento con fotos muestra la foto y no el dibujo',
+        (tester) async {
+      await _abrir(tester, _conNovela);
+
+      final fotos = tester
+          .widgetList<PortadaRacconto>(find.byType(PortadaRacconto))
+          .map((p) => p.foto)
+          .toList();
+
+      expect(fotos, ['gatto-tapa', '']);
+    });
+
+    testWidgets('al abrirlo se ve la foto grande arriba', (tester) async {
+      await _abrir(tester, _conNovela);
+      await _tocar(tester, 'La colazione');
+
+      final fotos = tester
+          .widgetList<FotoDelCuento>(find.byType(FotoDelCuento))
+          .map((f) => f.nombre)
+          .toList();
+
+      // La portada arriba y el cuadro de la segunda frase.
+      expect(fotos, ['gatto-portada', 'gatto-2']);
+    });
+
+    testWidgets('el cuadro va en la frase que ilustra', (tester) async {
+      await _abrir(tester, _conNovela);
+      await _tocar(tester, 'La colazione');
+
+      final linea = find.ancestor(
+        of: find.text('Beve il latte.'),
+        matching: find.byType(Column),
+      );
+      expect(
+        find.descendant(of: linea.first, matching: find.byType(FotoDelCuento)),
+        findsOneWidget,
+      );
+      // La primera frase no tiene cuadro, así que no le aparece ninguno.
+      expect(find.byType(FotoDelCuento), findsNWidgets(2));
+    });
+
+    testWidgets('un cuento sin fotos se sigue viendo con el dibujo',
+        (tester) async {
+      await _abrir(tester, _dos);
+      await _tocar(tester, 'La colazione');
+
+      expect(find.byType(FotoDelCuento), findsNothing);
+      expect(find.byType(PortadaRacconto), findsOneWidget);
+    });
+  });
+
   group('la novela en la lista', () {
     testWidgets('ocupa un renglón solo, no uno por capítulo', (tester) async {
       await _abrir(tester, _conNovela);
@@ -163,7 +219,7 @@ void main() {
 
       expect(find.text('2 capítulos'), findsOneWidget);
       // El cuento suelto sigue contando frases.
-      expect(find.text('1 frases'), findsOneWidget);
+      expect(find.text('2 frases'), findsOneWidget);
     });
 
     testWidgets('la presentación de la obra lleva su dibujo', (tester) async {

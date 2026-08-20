@@ -1,5 +1,5 @@
 {
- "version": 6,
+ "version": 7,
  "nombres": [
   "Marco",
   "Anna",
@@ -210,6 +210,7 @@
   {
    "id": "il-gatto-ha-fame",
    "imagen": "gatto",
+   "foto": "gatto",
    "titulo": "Il gatto ha fame",
    "titulo_es": "El gato tiene hambre",
    "nivel": 1,
@@ -283,35 +284,43 @@
     },
     {
      "it": "C'è solo il latte.",
-     "es": "Solo hay leche."
+     "es": "Solo hay leche.",
+     "cuadro": 1
     },
     {
      "it": "Il gatto beve il latte.",
-     "es": "El gato toma la leche."
+     "es": "El gato toma la leche.",
+     "cuadro": 2
     },
     {
      "it": "Poi va in giardino.",
-     "es": "Después va al jardín."
+     "es": "Después va al jardín.",
+     "cuadro": 3
     },
     {
      "it": "In giardino c'è un uccello.",
-     "es": "En el jardín hay un pájaro."
+     "es": "En el jardín hay un pájaro.",
+     "cuadro": 4
     },
     {
      "it": "Il gatto guarda l'uccello.",
-     "es": "El gato mira al pájaro."
+     "es": "El gato mira al pájaro.",
+     "cuadro": 5
     },
     {
      "it": "L'uccello vola via.",
-     "es": "El pájaro se vuela."
+     "es": "El pájaro se vuela.",
+     "cuadro": 6
     },
     {
      "it": "Adesso il gatto ha sonno.",
-     "es": "Ahora el gato tiene sueño."
+     "es": "Ahora el gato tiene sueño.",
+     "cuadro": 7
     },
     {
      "it": "Torna a casa e dorme sulla sedia.",
-     "es": "Vuelve a casa y duerme en la silla."
+     "es": "Vuelve a casa y duerme en la silla.",
+     "cuadro": 8
     }
    ]
   },

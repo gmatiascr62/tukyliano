@@ -53,24 +53,104 @@ const portadaPorDefecto = Portada(dibujo: Dibujo.libro, color: Tema.verde);
 
 Portada portadaDe(String nombre) => portadas[nombre] ?? portadaPorDefecto;
 
+/// Dónde vive cada foto. Van adentro del APK y no se bajan de internet: son
+/// pocas y chicas, y así el cuento se ve igual sin señal.
+String rutaDeFoto(String nombre) => 'assets/racconti/$nombre.jpg';
+
+/// Una foto del cuento, con el dibujo de respaldo.
+///
+/// El respaldo importa: el JSON puede nombrar una foto que este APK todavía no
+/// trae (los cuentos se actualizan solos, las fotos no). En ese caso se ve el
+/// dibujo en vez de un cartel de error.
+class FotoRacconto extends StatelessWidget {
+  const FotoRacconto({
+    super.key,
+    required this.nombre,
+    required this.respaldo,
+    this.ancho,
+    this.alto,
+    this.fit = BoxFit.cover,
+  });
+
+  final String nombre;
+
+  /// Lo que se muestra si la foto no está en el APK.
+  final Widget respaldo;
+
+  final double? ancho;
+  final double? alto;
+  final BoxFit fit;
+
+  @override
+  Widget build(BuildContext context) {
+    if (nombre.isEmpty) return respaldo;
+    return Image.asset(
+      rutaDeFoto(nombre),
+      width: ancho,
+      height: alto,
+      fit: fit,
+      errorBuilder: (_, _, _) => respaldo,
+    );
+  }
+}
+
+/// La foto ancha de arriba del cuento, con las esquinas redondeadas.
+class FotoDelCuento extends StatelessWidget {
+  const FotoDelCuento({super.key, required this.nombre});
+
+  final String nombre;
+
+  @override
+  Widget build(BuildContext context) {
+    if (nombre.isEmpty) return const SizedBox.shrink();
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(Tema.radio),
+      child: FotoRacconto(
+        nombre: nombre,
+        ancho: double.infinity,
+        fit: BoxFit.fitWidth,
+        // Si falta, no se muestra nada: el cuento se lee igual.
+        respaldo: const SizedBox.shrink(),
+      ),
+    );
+  }
+}
+
 /// El cuadradito de la lista y del encabezado.
 class PortadaRacconto extends StatelessWidget {
-  const PortadaRacconto({super.key, required this.imagen, this.lado = 54});
+  const PortadaRacconto({
+    super.key,
+    required this.imagen,
+    this.foto = '',
+    this.lado = 54,
+  });
 
   final String imagen;
+
+  /// La miniatura del juego de fotos, cuando el cuento tiene. Si está, se ve
+  /// en lugar del dibujo.
+  final String foto;
+
   final double lado;
 
   @override
   Widget build(BuildContext context) {
     final portada = portadaDe(imagen);
 
+    final dibujo = Container(
+      width: lado,
+      height: lado,
+      decoration: BoxDecoration(gradient: _degradado(portada.color)),
+      child: CustomPaint(painter: DibujoPortada(portada.dibujo)),
+    );
+
     return ClipRRect(
       borderRadius: BorderRadius.circular(Tema.radioChico),
-      child: Container(
-        width: lado,
-        height: lado,
-        decoration: BoxDecoration(gradient: _degradado(portada.color)),
-        child: CustomPaint(painter: DibujoPortada(portada.dibujo)),
+      child: FotoRacconto(
+        nombre: foto,
+        ancho: lado,
+        alto: lado,
+        respaldo: dibujo,
       ),
     );
   }
