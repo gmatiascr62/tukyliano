@@ -5,6 +5,7 @@ import '../datos/voz.dart';
 import '../modelos/racconto.dart';
 import '../tema.dart';
 import '../widgets/pastilla.dart';
+import '../widgets/portada_racconto.dart';
 import '../widgets/selector_de_voz.dart';
 
 /// Cuentos para leer en italiano.
@@ -148,6 +149,7 @@ class _TarjetaObra extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return _Tarjeta(
+      imagen: obra.imagen,
       titulo: obra.titulo,
       subtitulo: obra.tituloEspanol,
       pastilla: 'Nivel ${obra.nivel}',
@@ -177,13 +179,19 @@ class _VistaObra extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 8),
-        _Encabezado(
-          titulo: obra.titulo,
-          subtitulo: obra.tituloEspanol,
-          alVolver: alVolver,
-          tooltipVolver: 'Volver a los cuentos',
+        Row(
+          children: [
+            _BotonVolver(alVolver: alVolver, tooltip: 'Volver a los cuentos'),
+            Expanded(
+              child: BandaPortada(
+                imagen: obra.imagen,
+                titulo: obra.titulo,
+                subtitulo: obra.tituloEspanol,
+              ),
+            ),
+          ],
         ),
-        const SizedBox(height: 6),
+        const SizedBox(height: 8),
         Text(
           '${obra.capitulos.length} capítulos · '
           '${obra.cuantasLineas} frases en total',
@@ -198,6 +206,7 @@ class _VistaObra extends StatelessWidget {
             itemBuilder: (_, i) {
               final capitulo = obra.capitulos[i];
               return _Tarjeta(
+                imagen: capitulo.imagen,
                 titulo: capitulo.titulo,
                 subtitulo: capitulo.tituloEspanol,
                 pastilla: '${i + 1}',
@@ -216,12 +225,14 @@ class _VistaObra extends StatelessWidget {
 /// capítulos y el cuento abierto.
 class _Encabezado extends StatelessWidget {
   const _Encabezado({
+    required this.imagen,
     required this.titulo,
     required this.subtitulo,
     required this.alVolver,
     required this.tooltipVolver,
   });
 
+  final String imagen;
   final String titulo;
   final String subtitulo;
   final VoidCallback alVolver;
@@ -231,13 +242,9 @@ class _Encabezado extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        IconButton(
-          onPressed: alVolver,
-          icon: const Icon(Icons.arrow_back, color: Tema.verdeOscuro),
-          tooltip: tooltipVolver,
-          padding: EdgeInsets.zero,
-          constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
-        ),
+        _BotonVolver(alVolver: alVolver, tooltip: tooltipVolver),
+        PortadaRacconto(imagen: imagen, lado: 40),
+        const SizedBox(width: 10),
         Expanded(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -262,8 +269,28 @@ class _Encabezado extends StatelessWidget {
   }
 }
 
+/// La flecha de atrás, igual en las tres pantallas.
+class _BotonVolver extends StatelessWidget {
+  const _BotonVolver({required this.alVolver, required this.tooltip});
+
+  final VoidCallback alVolver;
+  final String tooltip;
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      onPressed: alVolver,
+      icon: const Icon(Icons.arrow_back, color: Tema.verdeOscuro),
+      tooltip: tooltip,
+      padding: EdgeInsets.zero,
+      constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
+    );
+  }
+}
+
 class _Tarjeta extends StatelessWidget {
   const _Tarjeta({
+    required this.imagen,
     required this.titulo,
     required this.subtitulo,
     required this.pastilla,
@@ -271,6 +298,7 @@ class _Tarjeta extends StatelessWidget {
     required this.alTocar,
   });
 
+  final String imagen;
   final String titulo;
   final String subtitulo;
   final String pastilla;
@@ -293,6 +321,8 @@ class _Tarjeta extends StatelessWidget {
           ),
           child: Row(
             children: [
+              PortadaRacconto(imagen: imagen),
+              const SizedBox(width: 12),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -423,6 +453,7 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
       children: [
         const SizedBox(height: 8),
         _Encabezado(
+          imagen: racconto.imagen,
           titulo: racconto.titulo,
           subtitulo: racconto.tituloEspanol,
           alVolver: widget.alVolver,

@@ -6,6 +6,7 @@ import 'package:tukyliano/datos/repositorio_racconti.dart';
 import 'package:tukyliano/datos/voz.dart';
 import 'package:tukyliano/pantallas/pantalla_racconti.dart';
 import 'package:tukyliano/tema.dart';
+import 'package:tukyliano/widgets/portada_racconto.dart';
 
 import 'util_pantalla.dart';
 import 'voz_falsa.dart';
@@ -41,13 +42,14 @@ const _conNovela = '''
     "racconti": [
       {
         "id": "la-colazione", "titulo": "La colazione",
-        "titulo_es": "El desayuno", "nivel": 1,
+        "titulo_es": "El desayuno", "nivel": 1, "imagen": "colazione",
         "vocabulario": [],
         "lineas": [{"it": "Marco ha fame.", "es": "Marco tiene hambre."}]
       },
       {
         "id": "saga-01", "titulo": "Capitolo 1 · Il testamento",
         "titulo_es": "Capítulo 1 · El testamento", "nivel": 6,
+        "imagen": "mistero",
         "serie": "la-saga", "serie_titulo": "Il segreto dei Ferrante",
         "serie_titulo_es": "El secreto de los Ferrante",
         "vocabulario": [],
@@ -122,6 +124,26 @@ void main() {
 
       expect(find.textContaining('Todavía no hay cuentos'), findsOneWidget);
     });
+
+    testWidgets('cada cuento muestra su portada', (tester) async {
+      await _abrir(tester, _conNovela);
+
+      final dibujos = tester
+          .widgetList<PortadaRacconto>(find.byType(PortadaRacconto))
+          .map((p) => portadaDe(p.imagen).dibujo)
+          .toList();
+
+      // La del desayuno y la de la novela: la de la obra sale del primer
+      // capítulo.
+      expect(dibujos, [Dibujo.taza, Dibujo.villa]);
+    });
+
+    testWidgets('el cuento sin portada declarada se ve igual', (tester) async {
+      await _abrir(tester, _dos);
+
+      expect(find.byType(PortadaRacconto), findsNWidgets(2));
+      expect(find.text('La colazione'), findsOneWidget);
+    });
   });
 
   group('la novela en la lista', () {
@@ -142,6 +164,15 @@ void main() {
       expect(find.text('2 capítulos'), findsOneWidget);
       // El cuento suelto sigue contando frases.
       expect(find.text('1 frases'), findsOneWidget);
+    });
+
+    testWidgets('la presentación de la obra lleva su dibujo', (tester) async {
+      await _abrir(tester, _conNovela);
+      await _tocar(tester, 'Il segreto dei Ferrante');
+
+      final banda = tester.widget<BandaPortada>(find.byType(BandaPortada));
+      expect(banda.imagen, 'mistero');
+      expect(banda.titulo, 'Il segreto dei Ferrante');
     });
 
     testWidgets('tocarla lleva a elegir el capítulo', (tester) async {

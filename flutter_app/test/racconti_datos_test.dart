@@ -8,6 +8,7 @@ import 'package:tukyliano/datos/repositorio_racconti.dart';
 import 'package:tukyliano/logica/preposiciones.dart';
 import 'package:tukyliano/modelos/articulo.dart';
 import 'package:tukyliano/modelos/racconto.dart';
+import 'package:tukyliano/widgets/portada_racconto.dart';
 
 final _json = File('assets/racconti.json').readAsStringSync();
 final _datos =
@@ -250,6 +251,31 @@ void main() {
             reason: capitulo.id);
         expect(capitulo.tituloEspanol, startsWith('Capítulo ${i + 1} ·'),
             reason: capitulo.id);
+      }
+    });
+
+    test('cada cuento pide una portada que existe', () {
+      // Un nombre mal escrito no rompe nada (se usa la de por defecto), pero
+      // el cuento se vería genérico sin que nadie se diera cuenta.
+      for (final r in _datos.racconti) {
+        expect(r.imagen, isNotEmpty, reason: r.id);
+        expect(portadas, contains(r.imagen), reason: r.id);
+      }
+    });
+
+    test('los capítulos de la novela comparten la portada', () {
+      final novela = _datos.obras.firstWhere((o) => o.tieneCapitulos);
+
+      expect(novela.imagen, 'mistero');
+      expect(novela.capitulos.map((c) => c.imagen).toSet(), {'mistero'});
+    });
+
+    test('los cuentos seguidos no repiten portada', () {
+      // Dos tarjetas iguales pegadas se leen como la misma cosa.
+      final imagenes = _datos.obras.map((o) => o.imagen).toList();
+
+      for (var i = 1; i < imagenes.length; i++) {
+        expect(imagenes[i], isNot(imagenes[i - 1]), reason: 'obra $i');
       }
     });
 
