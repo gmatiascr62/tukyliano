@@ -150,6 +150,7 @@ class _TarjetaObra extends StatelessWidget {
   Widget build(BuildContext context) {
     return _Tarjeta(
       imagen: obra.imagen,
+      foto: obra.fotoTapa,
       titulo: obra.titulo,
       subtitulo: obra.tituloEspanol,
       pastilla: 'Nivel ${obra.nivel}',
@@ -207,6 +208,7 @@ class _VistaObra extends StatelessWidget {
               final capitulo = obra.capitulos[i];
               return _Tarjeta(
                 imagen: capitulo.imagen,
+                foto: capitulo.fotoTapa,
                 titulo: capitulo.titulo,
                 subtitulo: capitulo.tituloEspanol,
                 pastilla: '${i + 1}',
@@ -226,6 +228,7 @@ class _VistaObra extends StatelessWidget {
 class _Encabezado extends StatelessWidget {
   const _Encabezado({
     required this.imagen,
+    required this.foto,
     required this.titulo,
     required this.subtitulo,
     required this.alVolver,
@@ -233,6 +236,7 @@ class _Encabezado extends StatelessWidget {
   });
 
   final String imagen;
+  final String foto;
   final String titulo;
   final String subtitulo;
   final VoidCallback alVolver;
@@ -243,7 +247,7 @@ class _Encabezado extends StatelessWidget {
     return Row(
       children: [
         _BotonVolver(alVolver: alVolver, tooltip: tooltipVolver),
-        PortadaRacconto(imagen: imagen, lado: 40),
+        PortadaRacconto(imagen: imagen, foto: foto, lado: 40),
         const SizedBox(width: 10),
         Expanded(
           child: Column(
@@ -291,6 +295,7 @@ class _BotonVolver extends StatelessWidget {
 class _Tarjeta extends StatelessWidget {
   const _Tarjeta({
     required this.imagen,
+    required this.foto,
     required this.titulo,
     required this.subtitulo,
     required this.pastilla,
@@ -299,6 +304,7 @@ class _Tarjeta extends StatelessWidget {
   });
 
   final String imagen;
+  final String foto;
   final String titulo;
   final String subtitulo;
   final String pastilla;
@@ -321,7 +327,7 @@ class _Tarjeta extends StatelessWidget {
           ),
           child: Row(
             children: [
-              PortadaRacconto(imagen: imagen),
+              PortadaRacconto(imagen: imagen, foto: foto),
               const SizedBox(width: 12),
               Expanded(
                 child: Column(
@@ -454,6 +460,7 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
         const SizedBox(height: 8),
         _Encabezado(
           imagen: racconto.imagen,
+          foto: racconto.fotoTapa,
           titulo: racconto.titulo,
           subtitulo: racconto.tituloEspanol,
           alVolver: widget.alVolver,
@@ -469,9 +476,14 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                if (racconto.tieneFotos) ...[
+                  FotoDelCuento(nombre: racconto.fotoPortada),
+                  const SizedBox(height: 6),
+                ],
                 for (var i = 0; i < racconto.lineas.length; i++)
                   _Linea(
                     linea: racconto.lineas[i],
+                    foto: racconto.fotoDeLinea(i),
                     revelada: _reveladas.contains(i),
                     alTocar: () => _tocarLinea(i),
                     // El altavoz solo aparece en el renglón revelado, para
@@ -639,12 +651,18 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
 class _Linea extends StatelessWidget {
   const _Linea({
     required this.linea,
+    required this.foto,
     required this.revelada,
     required this.alTocar,
     this.alRepetir,
   });
 
   final LineaRacconto linea;
+
+  /// El cuadro que ilustra este renglón, o vacío. Va arriba del texto: primero
+  /// se ve la escena y después se lee la frase, como en un cuento ilustrado.
+  final String foto;
+
   final bool revelada;
   final VoidCallback alTocar;
 
@@ -661,6 +679,13 @@ class _Linea extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
+            // Más aire arriba que abajo: así el cuadro se lee pegado a la
+            // frase que ilustra y no a la anterior.
+            if (foto.isNotEmpty) ...[
+              const SizedBox(height: 12),
+              FotoDelCuento(nombre: foto),
+              const SizedBox(height: 5),
+            ],
             Text(
               linea.italiano,
               style: TextStyle(

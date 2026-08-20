@@ -72,6 +72,9 @@ flutter:
     - assets/articoli.json
     - assets/preposizioni.json
     - assets/racconti.json
+    # Las ilustraciones de los cuentos. Van en el APK y no se bajan: son pocas
+    # y chicas, y así el cuento se ve igual sin señal.
+    - assets/racconti/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

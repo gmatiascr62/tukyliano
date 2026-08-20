@@ -254,6 +254,67 @@ void main() {
       }
     });
 
+    test('las fotos que declara un cuento están en el APK', () {
+      // El JSON se actualiza solo, las fotos vienen adentro del APK: si el
+      // cuento nombra una que no está, el cuadro no aparecería y nadie se
+      // enteraría hasta abrirlo.
+      for (final r in _datos.racconti.where((r) => r.tieneFotos)) {
+        final esperadas = [
+          r.fotoTapa,
+          r.fotoPortada,
+          for (var i = 0; i < r.lineas.length; i++)
+            if (r.fotoDeLinea(i).isNotEmpty) r.fotoDeLinea(i),
+        ];
+        for (final foto in esperadas) {
+          expect(File(rutaDeFoto(foto)).existsSync(), isTrue,
+              reason: '${r.id}: falta ${rutaDeFoto(foto)}');
+        }
+      }
+    });
+
+    test('no sobra ninguna foto sin usar', () {
+      // Si sobra un archivo es que la frase cambió y el cuadro quedó colgado,
+      // pesando en el APK para nada.
+      final usadas = {
+        for (final r in _datos.racconti.where((r) => r.tieneFotos)) ...[
+          '${r.fotoTapa}.jpg',
+          '${r.fotoPortada}.jpg',
+          for (var i = 0; i < r.lineas.length; i++)
+            if (r.fotoDeLinea(i).isNotEmpty) '${r.fotoDeLinea(i)}.jpg',
+        ],
+      };
+      final enDisco = Directory('assets/racconti')
+          .listSync()
+          .whereType<File>()
+          .map((f) => f.uri.pathSegments.last)
+          .toSet();
+
+      expect(enDisco.difference(usadas), isEmpty);
+    });
+
+    test('el cuento con fotos las reparte por la historia', () {
+      final gatto =
+          _datos.racconti.firstWhere((r) => r.id == 'il-gatto-ha-fame');
+      final conCuadro = [
+        for (var i = 0; i < gatto.lineas.length; i++)
+          if (gatto.fotoDeLinea(i).isNotEmpty) i,
+      ];
+
+      // Los cuadros van en las frases que ilustran, no todos juntos al final.
+      expect(conCuadro.length, 8);
+      expect(gatto.fotoDeLinea(4), 'gatto-1');
+      expect(gatto.fotoDeLinea(11), 'gatto-8');
+      // Y ningún número repetido.
+      final numeros = gatto.lineas.map((l) => l.cuadro).where((c) => c > 0);
+      expect(numeros.toSet().length, numeros.length);
+    });
+
+    test('un cuadro sin cuento con fotos no tiene sentido', () {
+      for (final r in _datos.racconti.where((r) => !r.tieneFotos)) {
+        expect(r.lineas.every((l) => l.cuadro == 0), isTrue, reason: r.id);
+      }
+    });
+
     test('cada cuento pide una portada que existe', () {
       // Un nombre mal escrito no rompe nada (se usa la de por defecto), pero
       // el cuento se vería genérico sin que nadie se diera cuenta.
