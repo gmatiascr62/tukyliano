@@ -72,17 +72,19 @@ class Racconto {
   final String imagen;
 
   /// El juego de fotos del cuento, cuando tiene. Es un nombre, no un archivo:
-  /// de "gatto" salen "gatto-tapa" (la miniatura de la lista), "gatto-portada"
-  /// (la grande de arriba) y "gatto-1", "gatto-2"... (los cuadros de la
-  /// historia). Un cuento sin fotos se sigue viendo con el dibujo.
+  /// de "gatto" salen "gatto-tapa" (la miniatura del encabezado),
+  /// "gatto-portada" (la tapa grande de la lista) y "gatto-1", "gatto-2"...
+  /// (los cuadros de la historia). Un cuento sin fotos se sigue viendo con el
+  /// dibujo.
   final String foto;
 
   bool get tieneFotos => foto.isNotEmpty;
 
-  /// La miniatura cuadrada de la lista.
+  /// La miniatura cuadrada que va al lado del título, adentro del cuento.
   String get fotoTapa => foto.isEmpty ? '' : '$foto-tapa';
 
-  /// La grande, la que se ve al abrir el cuento.
+  /// La tapa grande de la lista. Trae el título adentro, así que donde se
+  /// muestra no hace falta escribirlo al lado.
   String get fotoPortada => foto.isEmpty ? '' : '$foto-portada';
 
   /// El cuadro que ilustra el renglón [indice], o vacío si ese renglón no
@@ -181,6 +183,7 @@ class Obra {
   int get nivel => capitulos.first.nivel;
   String get imagen => capitulos.first.imagen;
   String get fotoTapa => capitulos.first.fotoTapa;
+  String get fotoPortada => capitulos.first.fotoPortada;
 
   int get cuantasLineas =>
       capitulos.fold(0, (total, c) => total + c.lineas.length);

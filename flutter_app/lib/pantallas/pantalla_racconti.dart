@@ -140,6 +140,10 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
 
 /// La tarjeta de la lista. Una novela entera es una sola: dice cuántos
 /// capítulos tiene en vez de cuántas frases.
+///
+/// El cuento que tiene tapa ilustrada se muestra con la tapa sola, grande: el
+/// título, el nivel y cuántas frases son ya están adentro del dibujo, así que
+/// repetirlos al lado sería decir dos veces lo mismo.
 class _TarjetaObra extends StatelessWidget {
   const _TarjetaObra({required this.obra, required this.alTocar});
 
@@ -148,7 +152,7 @@ class _TarjetaObra extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return _Tarjeta(
+    final renglon = _Tarjeta(
       imagen: obra.imagen,
       foto: obra.fotoTapa,
       titulo: obra.titulo,
@@ -158,6 +162,24 @@ class _TarjetaObra extends StatelessWidget {
           ? '${obra.capitulos.length} capítulos'
           : '${obra.cuantasLineas} frases',
       alTocar: alTocar,
+    );
+
+    if (obra.fotoPortada.isEmpty) return renglon;
+
+    return Material(
+      color: Tema.superficie,
+      borderRadius: BorderRadius.circular(Tema.radio),
+      clipBehavior: Clip.antiAlias,
+      child: InkWell(
+        onTap: alTocar,
+        child: FotoRacconto(
+          nombre: obra.fotoPortada,
+          ancho: double.infinity,
+          fit: BoxFit.fitWidth,
+          // Si la tapa no está en este APK, queda el renglón de siempre.
+          respaldo: renglon,
+        ),
+      ),
     );
   }
 }
@@ -476,10 +498,6 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                if (racconto.tieneFotos) ...[
-                  FotoDelCuento(nombre: racconto.fotoPortada),
-                  const SizedBox(height: 6),
-                ],
                 for (var i = 0; i < racconto.lineas.length; i++)
                   _Linea(
                     linea: racconto.lineas[i],

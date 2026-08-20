@@ -94,6 +94,15 @@ Future<void> _abrir(WidgetTester tester, String json, {Voz? voz}) async {
   await tester.pumpAndSettle();
 }
 
+/// Los nombres de las fotos que se están mostrando. PortadaRacconto también
+/// usa FotoRacconto (con el nombre vacío) para poder caer en el dibujo, así
+/// que se filtran las vacías.
+List<String> _fotos(WidgetTester tester) => tester
+    .widgetList<FotoRacconto>(find.byType(FotoRacconto))
+    .map((f) => f.nombre)
+    .where((n) => n.isNotEmpty)
+    .toList();
+
 Future<void> _tocar(WidgetTester tester, String texto) async {
   await tester.tap(find.text(texto));
   await tester.pumpAndSettle();
@@ -130,6 +139,18 @@ void main() {
     });
 
     testWidgets('cada cuento muestra su portada', (tester) async {
+      await _abrir(tester, _dos);
+
+      final dibujos = tester
+          .widgetList<PortadaRacconto>(find.byType(PortadaRacconto))
+          .map((p) => portadaDe(p.imagen).dibujo)
+          .toList();
+
+      expect(dibujos.length, 2);
+    });
+
+    testWidgets('la obra sin fotos usa el dibujo del primer capítulo',
+        (tester) async {
       await _abrir(tester, _conNovela);
 
       final dibujos = tester
@@ -137,9 +158,8 @@ void main() {
           .map((p) => portadaDe(p.imagen).dibujo)
           .toList();
 
-      // La del desayuno y la de la novela: la de la obra sale del primer
-      // capítulo.
-      expect(dibujos, [Dibujo.taza, Dibujo.villa]);
+      // Solo la novela: el cuento con tapa ilustrada no dibuja nada.
+      expect(dibujos, [Dibujo.villa]);
     });
 
     testWidgets('el cuento sin portada declarada se ve igual', (tester) async {
@@ -151,34 +171,36 @@ void main() {
   });
 
   group('las fotos', () {
-    testWidgets('el cuento con fotos muestra la foto y no el dibujo',
-        (tester) async {
+    testWidgets('en la lista se ve la tapa grande, sola', (tester) async {
+      // La tapa ya trae adentro el título, el nivel y cuántas frases son:
+      // ponerlos al lado sería decir dos veces lo mismo.
       await _abrir(tester, _conNovela);
 
-      final fotos = tester
-          .widgetList<PortadaRacconto>(find.byType(PortadaRacconto))
-          .map((p) => p.foto)
-          .toList();
-
-      expect(fotos, ['gatto-tapa', '']);
+      expect(_fotos(tester), ['gatto-portada']);
+      expect(find.text('La colazione'), findsNothing);
+      expect(find.text('El desayuno'), findsNothing);
     });
 
-    testWidgets('al abrirlo se ve la foto grande arriba', (tester) async {
+    testWidgets('adentro del cuento la tapa ya no aparece', (tester) async {
       await _abrir(tester, _conNovela);
-      await _tocar(tester, 'La colazione');
+      // Se entra tocando la tapa: en la lista no hay texto de ese cuento.
+      await tester.tap(find.byType(FotoRacconto).first);
+      await tester.pumpAndSettle();
 
       final fotos = tester
           .widgetList<FotoDelCuento>(find.byType(FotoDelCuento))
           .map((f) => f.nombre)
           .toList();
 
-      // La portada arriba y el cuadro de la segunda frase.
-      expect(fotos, ['gatto-portada', 'gatto-2']);
+      // Solo el cuadro de la segunda frase: la tapa quedó en la lista.
+      expect(fotos, ['gatto-2']);
+      expect(find.text('Marco ha fame.'), findsOneWidget);
     });
 
     testWidgets('el cuadro va en la frase que ilustra', (tester) async {
       await _abrir(tester, _conNovela);
-      await _tocar(tester, 'La colazione');
+      await tester.tap(find.byType(FotoRacconto).first);
+      await tester.pumpAndSettle();
 
       final linea = find.ancestor(
         of: find.text('Beve il latte.'),
@@ -189,7 +211,7 @@ void main() {
         findsOneWidget,
       );
       // La primera frase no tiene cuadro, así que no le aparece ninguno.
-      expect(find.byType(FotoDelCuento), findsNWidgets(2));
+      expect(find.byType(FotoDelCuento), findsOneWidget);
     });
 
     testWidgets('un cuento sin fotos se sigue viendo con el dibujo',
@@ -218,8 +240,6 @@ void main() {
       await _abrir(tester, _conNovela);
 
       expect(find.text('2 capítulos'), findsOneWidget);
-      // El cuento suelto sigue contando frases.
-      expect(find.text('2 frases'), findsOneWidget);
     });
 
     testWidgets('la presentación de la obra lleva su dibujo', (tester) async {
@@ -270,14 +290,16 @@ void main() {
       await tester.tap(find.byIcon(Icons.arrow_back));
       await tester.pumpAndSettle();
 
-      expect(find.text('La colazione'), findsOneWidget);
+      // La tapa ilustrada del otro cuento vuelve a estar.
+      expect(_fotos(tester), ['gatto-portada']);
       expect(find.text('Il segreto dei Ferrante'), findsOneWidget);
     });
 
     testWidgets('un cuento suelto se abre derecho, sin pasar por capítulos',
         (tester) async {
       await _abrir(tester, _conNovela);
-      await _tocar(tester, 'La colazione');
+      await tester.tap(find.byType(FotoRacconto).first);
+      await tester.pumpAndSettle();
 
       expect(find.text('Marco ha fame.'), findsOneWidget);
     });
