@@ -94,7 +94,14 @@ class FotoRacconto extends StatelessWidget {
   }
 }
 
-/// La foto ancha de arriba del cuento, con las esquinas redondeadas.
+/// Hasta dónde puede crecer un cuadro de la historia.
+///
+/// Los cuadros no siempre son apaisados: los hay verticales, y a lo ancho de
+/// la pantalla ocuparían media pantalla cada uno. Con el techo, el que es alto
+/// se achica y queda centrado, y el apaisado ni se entera porque nunca llega.
+const double altoMaximoDeCuadro = 300;
+
+/// Una foto de la historia, con las esquinas redondeadas.
 class FotoDelCuento extends StatelessWidget {
   const FotoDelCuento({super.key, required this.nombre});
 
@@ -105,12 +112,17 @@ class FotoDelCuento extends StatelessWidget {
     if (nombre.isEmpty) return const SizedBox.shrink();
     return ClipRRect(
       borderRadius: BorderRadius.circular(Tema.radio),
-      child: FotoRacconto(
-        nombre: nombre,
-        ancho: double.infinity,
-        fit: BoxFit.fitWidth,
-        // Si falta, no se muestra nada: el cuento se lee igual.
-        respaldo: const SizedBox.shrink(),
+      child: ConstrainedBox(
+        constraints: const BoxConstraints(maxHeight: altoMaximoDeCuadro),
+        child: FotoRacconto(
+          nombre: nombre,
+          ancho: double.infinity,
+          // Entero y sin recortar: en un cuadro vertical, recortar se comería
+          // la cara o la taza, que es justo lo que explica la frase.
+          fit: BoxFit.contain,
+          // Si falta, no se muestra nada: el cuento se lee igual.
+          respaldo: const SizedBox.shrink(),
+        ),
       ),
     );
   }

@@ -1,5 +1,5 @@
 {
- "version": 9,
+ "version": 10,
  "nombres": [
   "Marco",
   "Anna",
@@ -106,104 +106,97 @@
   {
    "id": "la-colazione",
    "imagen": "colazione",
+   "foto": "colazione",
    "titulo": "La colazione",
    "titulo_es": "El desayuno",
    "nivel": 1,
    "tema": "cotidiano",
    "vocabulario": [
-    {
-     "it": "presto",
-     "es": "temprano"
-    },
-    {
-     "it": "fame",
-     "es": "hambre"
-    },
-    {
-     "it": "anche",
-     "es": "también"
-    },
-    {
-     "it": "prende",
-     "es": "agarra, toma"
-    },
-    {
-     "it": "mette",
-     "es": "pone"
-    },
-    {
-     "it": "poi",
-     "es": "después"
-    },
-    {
-     "it": "caldo/calda",
-     "es": "caliente"
-    },
-    {
-     "it": "beve",
-     "es": "bebe, toma"
-    },
-    {
-     "it": "adesso",
-     "es": "ahora"
-    },
-    {
-     "it": "pronto/pronta",
-     "es": "listo, lista"
-    }
+    {"it": "si sveglia", "es": "se despierta"},
+    {"it": "presto", "es": "temprano"},
+    {"it": "va", "es": "va"},
+    {"it": "accende", "es": "enciende"},
+    {"it": "macchina", "es": "máquina"},
+    {"it": "esce", "es": "sale"},
+    {"it": "tazza", "es": "taza"},
+    {"it": "versa", "es": "sirve, vierte"},
+    {"it": "poi", "es": "después"},
+    {"it": "mette", "es": "pone"},
+    {"it": "chiaro/chiara", "es": "claro, clara"},
+    {"it": "prende", "es": "agarra, toma"},
+    {"it": "biscotto/biscotti", "es": "galletita, galletitas"},
+    {"it": "barattolo", "es": "frasco"},
+    {"it": "piatto", "es": "plato"},
+    {"it": "colazione", "es": "desayuno"},
+    {"it": "mangia", "es": "come"},
+    {"it": "adesso", "es": "ahora"},
+    {"it": "pronto/pronta", "es": "listo, lista"}
    ],
    "lineas": [
     {
-     "it": "Marco è in cucina.",
-     "es": "Marco está en la cocina."
+     "it": "Marco si sveglia presto.",
+     "es": "Marco se despierta temprano.",
+     "cuadro": 1
     },
     {
-     "it": "È mattina presto.",
-     "es": "Es temprano a la mañana."
+     "it": "Va in cucina.",
+     "es": "Va a la cocina.",
+     "cuadro": 2
     },
     {
-     "it": "Marco ha fame.",
-     "es": "Marco tiene hambre."
+     "it": "Accende la macchina del caffè.",
+     "es": "Enciende la cafetera.",
+     "cuadro": 3
     },
     {
-     "it": "Sul tavolo c'è il pane.",
-     "es": "Sobre la mesa hay pan."
+     "it": "Il caffè esce dalla macchina.",
+     "es": "El café sale de la máquina.",
+     "cuadro": 4
     },
     {
-     "it": "C'è anche il burro.",
-     "es": "También hay manteca."
+     "it": "Marco prende la tazza.",
+     "es": "Marco agarra la taza.",
+     "cuadro": 5
     },
     {
-     "it": "Marco prende il pane.",
-     "es": "Marco agarra el pan."
+     "it": "Versa il caffè nella tazza.",
+     "es": "Sirve el café en la taza.",
+     "cuadro": 6
     },
     {
-     "it": "Mette il burro sul pane.",
-     "es": "Le pone manteca al pan."
+     "it": "Poi mette il latte.",
+     "es": "Después le pone la leche.",
+     "cuadro": 7
     },
     {
-     "it": "Poi fa un caffè.",
-     "es": "Después hace un café."
+     "it": "Adesso il caffè è chiaro.",
+     "es": "Ahora el café está claro.",
+     "cuadro": 8
     },
     {
-     "it": "Il caffè è caldo.",
-     "es": "El café está caliente."
+     "it": "Marco prende un biscotto dal barattolo.",
+     "es": "Marco saca una galletita del frasco.",
+     "cuadro": 9
     },
     {
-     "it": "Marco vuole lo zucchero.",
-     "es": "Marco quiere azúcar."
+     "it": "Mette i biscotti sul piatto.",
+     "es": "Pone las galletitas en el plato.",
+     "cuadro": 10
     },
     {
-     "it": "Lo zucchero è nell'armadio.",
-     "es": "El azúcar está en el armario."
+     "it": "La colazione è sul tavolo.",
+     "es": "El desayuno está sobre la mesa.",
+     "cuadro": 11
     },
     {
-     "it": "Marco beve il caffè.",
-     "es": "Marco toma el café."
+     "it": "Marco mangia un biscotto.",
+     "es": "Marco come una galletita.",
+     "cuadro": 12
     },
     {
      "it": "Adesso è pronto per il lavoro.",
-     "es": "Ahora está listo para el trabajo."
+     "es": "Ahora está listo para el trabajo.",
+     "cuadro": 13
     }
    ]
   },
