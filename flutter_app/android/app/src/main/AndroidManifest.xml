@@ -3,6 +3,9 @@
          debug y profile, así que el APK de release quedaba sin internet: no
          bajaba los verbos nuevos ni podía hablar con Gemini. -->
     <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- Para poder abrir el instalador con la actualización que la app se baja
+         sola. Android igual le pregunta al usuario la primera vez. -->
+    <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
 
     <application
         android:label="Tukyliano F"

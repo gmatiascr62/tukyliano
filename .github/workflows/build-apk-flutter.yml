@@ -14,6 +14,9 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    # Para poder publicar la Release con el APK adjunto.
+    permissions:
+      contents: write
     defaults:
       run:
         working-directory: flutter_app
@@ -32,17 +35,44 @@ jobs:
           channel: stable
           cache: true
 
+      # La firma de verdad, sin la cual Android no deja actualizar la app
+      # encima de la instalada. El archivo se arma acá a partir del secreto y
+      # nunca queda en el repo, que es público. Si el secreto todavía no está
+      # cargado, el build sigue con la firma de debug.
+      - name: Preparar la firma
+        id: firma
+        env:
+          KEYSTORE_BASE64: ${{ secrets.KEYSTORE_BASE64 }}
+        run: |
+          if [ -n "$KEYSTORE_BASE64" ]; then
+            echo "$KEYSTORE_BASE64" | base64 -d > android/app/tukyliano.jks
+            echo "propia=si" >> "$GITHUB_OUTPUT"
+            echo "Firma propia lista."
+          else
+            echo "propia=no" >> "$GITHUB_OUTPUT"
+            echo "Sin KEYSTORE_BASE64: se firma con la de debug."
+          fi
+
       - name: Bajar dependencias
         run: flutter pub get
 
       - name: Revisar el código
         run: flutter analyze
 
-      # Release en vez de debug: el APK pasa de ~160 MB a ~25 MB. Se firma con
-      # la clave de debug (ver android/app/build.gradle.kts), así que se
-      # instala igual sin tener que generar un keystore.
+      # Release en vez de debug: el APK pasa de ~160 MB a ~25 MB.
+      #
+      # El número de build es el del workflow, que siempre sube. Es lo que mira
+      # Android para saber si un APK es más nuevo que el instalado, y lo que
+      # mira la app para avisar que hay una versión nueva. Va también por
+      # dart-define para que el código pueda leerlo.
       - name: Build APK
-        run: flutter build apk --release
+        env:
+          TUKYLIANO_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
+        run: |
+          flutter build apk --release \
+            --build-name=1.0.${{ github.run_number }} \
+            --build-number=${{ github.run_number }} \
+            --dart-define=BUILD=${{ github.run_number }}
 
       # La plantilla de Flutter pone el permiso de INTERNET solo en los
       # manifests de debug y profile. Ya pasó una vez que el APK de release
@@ -66,3 +96,22 @@ jobs:
         with:
           name: tukyliano-flutter-apk
           path: flutter_app/Tukyliano.apk
+
+      # La Release es de donde la app se baja la actualización: el artefacto de
+      # arriba pide estar logueado en GitHub y se borra a los 90 días, así que
+      # no sirve para eso.
+      #
+      # Solo se publica si el APK va firmado con la clave propia. Uno firmado
+      # con la de debug no se puede instalar encima del anterior, así que
+      # ofrecerlo como actualización sería mandar al usuario a un callejón.
+      - name: Publicar la Release
+        if: >-
+          github.ref == 'refs/heads/main' &&
+          steps.firma.outputs.propia == 'si'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create "v1.0.${{ github.run_number }}" Tukyliano.apk \
+            --repo "${{ github.repository }}" \
+            --title "Tukyliano 1.0.${{ github.run_number }}" \
+            --notes "$(git log -1 --pretty=%s)"

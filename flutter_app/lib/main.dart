@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import 'constantes.dart';
+import 'datos/actualizacion.dart';
 import 'datos/almacenamiento_clave.dart';
 import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
@@ -18,6 +19,7 @@ import 'pantallas/pantalla_quiz.dart';
 import 'pantallas/pantalla_racconti.dart';
 import 'pantallas/pantalla_seleccion.dart';
 import 'tema.dart';
+import 'widgets/aviso_actualizacion.dart';
 import 'widgets/barra_superior.dart';
 
 void main() {
@@ -35,6 +37,7 @@ class TukylianoApp extends StatelessWidget {
     this.racconti,
     this.voz,
     this.gemini,
+    this.actualizacion,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
@@ -46,6 +49,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioRacconti? racconti;
   final Voz? voz;
   final Gemini? gemini;
+  final Actualizacion? actualizacion;
 
   @override
   Widget build(BuildContext context) {
@@ -62,6 +66,7 @@ class TukylianoApp extends StatelessWidget {
         racconti: racconti,
         voz: voz,
         gemini: gemini,
+        actualizacion: actualizacion,
       ),
     );
   }
@@ -80,6 +85,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.racconti,
     this.voz,
     this.gemini,
+    this.actualizacion,
   });
 
   final AlmacenamientoClave? almacenClave;
@@ -90,6 +96,7 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioRacconti? racconti;
   final Voz? voz;
   final Gemini? gemini;
+  final Actualizacion? actualizacion;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -254,6 +261,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           child: Column(
             children: [
               BarraSuperior(onSeccion: _irA, actual: _seccion),
+              // Arriba de todo y sin ocupar nada cuando no hay novedades.
+              AvisoActualizacion(actualizacion: widget.actualizacion),
               Expanded(child: _cuerpo()),
             ],
           ),
