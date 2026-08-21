@@ -1,5 +1,5 @@
 {
- "version": 7,
+ "version": 8,
  "nombres": [
   "Marco",
   "Anna",
@@ -471,6 +471,7 @@
   {
    "id": "la-pizza-a-napoli",
    "imagen": "pizza",
+   "foto": "pizza",
    "titulo": "La pizza a Napoli",
    "titulo_es": "La pizza en Nápoles",
    "nivel": 2,
@@ -524,19 +525,23 @@
    "lineas": [
     {
      "it": "Napoli è una città sul mare.",
-     "es": "Nápoles es una ciudad sobre el mar."
+     "es": "Nápoles es una ciudad sobre el mar.",
+     "cuadro": 1
     },
     {
      "it": "Marco e Anna sono al ristorante.",
-     "es": "Marco y Anna están en el restaurante."
+     "es": "Marco y Anna están en el restaurante.",
+     "cuadro": 2
     },
     {
      "it": "Vogliono una pizza.",
-     "es": "Quieren una pizza."
+     "es": "Quieren una pizza.",
+     "cuadro": 3
     },
     {
      "it": "La pizza di Napoli è famosa.",
-     "es": "La pizza de Nápoles es famosa."
+     "es": "La pizza de Nápoles es famosa.",
+     "cuadro": 4
     },
     {
      "it": "Ha il pomodoro e il formaggio.",
@@ -544,31 +549,38 @@
     },
     {
      "it": "Il cameriere porta le pizze.",
-     "es": "El mozo trae las pizzas."
+     "es": "El mozo trae las pizzas.",
+     "cuadro": 5
     },
     {
      "it": "Sul tavolo c'è una bottiglia di vino.",
-     "es": "Sobre la mesa hay una botella de vino."
+     "es": "Sobre la mesa hay una botella de vino.",
+     "cuadro": 6
     },
     {
      "it": "La pizza è calda e buona.",
-     "es": "La pizza está caliente y rica."
+     "es": "La pizza está caliente y rica.",
+     "cuadro": 7
     },
     {
      "it": "Anna è contenta.",
-     "es": "Anna está contenta."
+     "es": "Anna está contenta.",
+     "cuadro": 8
     },
     {
      "it": "Dalla finestra Marco guarda il mare.",
-     "es": "Desde la ventana Marco mira el mar."
+     "es": "Desde la ventana Marco mira el mar.",
+     "cuadro": 9
     },
     {
      "it": "Il prezzo non è alto.",
-     "es": "El precio no es alto."
+     "es": "El precio no es alto.",
+     "cuadro": 10
     },
     {
      "it": "Domani vogliono tornare.",
-     "es": "Mañana quieren volver."
+     "es": "Mañana quieren volver.",
+     "cuadro": 11
     }
    ]
   },
