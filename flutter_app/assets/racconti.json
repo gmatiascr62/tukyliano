@@ -1,5 +1,5 @@
 {
- "version": 8,
+ "version": 9,
  "nombres": [
   "Marco",
   "Anna",
@@ -867,6 +867,7 @@
   {
    "id": "una-settimana-in-costiera",
    "imagen": "mare",
+   "foto": "costiera",
    "titulo": "Una settimana in Costiera Amalfitana",
    "titulo_es": "Una semana en la Costa Amalfitana",
    "nivel": 4,
@@ -1208,7 +1209,8 @@
     },
     {
      "it": "Prendono il treno da Roma a Napoli.",
-     "es": "Toman el tren de Roma a Nápoles."
+     "es": "Toman el tren de Roma a Nápoles.",
+     "cuadro": 1
     },
     {
      "it": "Il viaggio dura due ore.",
@@ -1216,7 +1218,8 @@
     },
     {
      "it": "A Napoli prendono l'autobus.",
-     "es": "En Nápoles toman el colectivo."
+     "es": "En Nápoles toman el colectivo.",
+     "cuadro": 2
     },
     {
      "it": "La strada è stretta e piena di curve.",
@@ -1240,7 +1243,8 @@
     },
     {
      "it": "Dopo un'ora arrivano a Positano.",
-     "es": "Después de una hora llegan a Positano."
+     "es": "Después de una hora llegan a Positano.",
+     "cuadro": 3
     },
     {
      "it": "Le case sono sulla scogliera.",
@@ -1264,7 +1268,8 @@
     },
     {
      "it": "La prima sera mangiano al ristorante.",
-     "es": "La primera noche comen en el restaurante."
+     "es": "La primera noche comen en el restaurante.",
+     "cuadro": 4
     },
     {
      "it": "Anna prende la pasta al limone.",
@@ -1288,7 +1293,8 @@
     },
     {
      "it": "Il giorno dopo vanno in spiaggia.",
-     "es": "Al día siguiente van a la playa."
+     "es": "Al día siguiente van a la playa.",
+     "cuadro": 5
     },
     {
      "it": "L'acqua è fredda ma pulita.",
@@ -1308,7 +1314,8 @@
     },
     {
      "it": "Il mercoledì prendono una barca per Capri.",
-     "es": "El miércoles toman un barco para Capri."
+     "es": "El miércoles toman un barco para Capri.",
+     "cuadro": 6
     },
     {
      "it": "L'isola è piena di turisti.",
@@ -1320,7 +1327,8 @@
     },
     {
      "it": "Il giovedì visitano Amalfi.",
-     "es": "El jueves visitan Amalfi."
+     "es": "El jueves visitan Amalfi.",
+     "cuadro": 7
     },
     {
      "it": "La chiesa è in cima a una scala lunga.",
@@ -1336,7 +1344,8 @@
     },
     {
      "it": "Il venerdì vanno a Ravello.",
-     "es": "El viernes van a Ravello."
+     "es": "El viernes van a Ravello.",
+     "cuadro": 8
     },
     {
      "it": "C'è un giardino sopra il mare.",
@@ -1352,7 +1361,8 @@
     },
     {
      "it": "L'ultima mattina Marco compra i limoni.",
-     "es": "La última mañana Marco compra los limones."
+     "es": "La última mañana Marco compra los limones.",
+     "cuadro": 9
     },
     {
      "it": "Sono grandi come arance.",
