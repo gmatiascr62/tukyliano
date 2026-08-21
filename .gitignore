@@ -1,3 +1,5 @@
+# Sobras de la app Kivy, que ya no está: quedan por si alguien clona un
+# commit viejo y la compila.
 __pycache__/
 *.pyc
 .buildozer/
