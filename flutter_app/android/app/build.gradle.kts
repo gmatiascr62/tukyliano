@@ -15,9 +15,14 @@ android {
     }
 
     defaultConfig {
-        // Durante la migración lleva el sufijo ".flutter" para que esta app y
-        // la versión Kivy (org.gmatiascr62.tukyliano) puedan convivir en el
-        // mismo celular y se puedan comparar. Al terminar la fase 5 se saca.
+        // El sufijo ".flutter" viene de cuando esta app y la versión Kivy
+        // tenían que convivir en el mismo celular. La Kivy ya no está, pero el
+        // identificador se queda igual: para Android es el nombre de la app, y
+        // cambiarlo la convertiría en otra distinta. Quien la tenga instalada
+        // tendría que desinstalarla y volver a instalarla a mano, perdiendo la
+        // clave de la IA, y el aviso de actualización no serviría para ese
+        // salto (instalaría una segunda app al lado). No vale ese precio por
+        // un nombre que no se ve: el que se ve es el label de arriba.
         applicationId = "org.gmatiascr62.tukyliano.flutter"
         // You can update the following values to match your application needs.
         // For more information, see: https://flutter.dev/to/review-gradle-config.
