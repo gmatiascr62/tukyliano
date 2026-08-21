@@ -91,6 +91,42 @@ jobs:
       - name: Renombrar el APK
         run: mv build/app/outputs/flutter-apk/app-release.apk Tukyliano.apk
 
+      # De esto depende que la app se pueda actualizar: Android solo instala
+      # encima si la firma es la misma de siempre. Si alguien regenerara el
+      # keystore, cada actualización empezaría a fallar en el celular sin que
+      # nada acá se quejara. La huella no es un secreto: viene adentro de todos
+      # los APK publicados.
+      - name: Verificar que la firma sea la de siempre
+        if: steps.firma.outputs.propia == 'si'
+        run: |
+          ESPERADA="998e217186e4095d3500e6dbad5a0a58215355b1b0a3fbcba11e0d72abd4f57a"
+
+          # apksigner entiende las firmas v2 y v3, que son las que usa Android
+          # moderno. keytool solo lee la v1, así que queda de respaldo.
+          APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner 2>/dev/null | sort -V | tail -1 || true)
+          HUELLA=""
+          if [ -n "$APKSIGNER" ]; then
+            HUELLA=$("$APKSIGNER" verify --print-certs Tukyliano.apk \
+              | grep -m1 -i 'SHA-256 digest' | awk '{print $NF}')
+          fi
+          if [ -z "$HUELLA" ]; then
+            HUELLA=$(keytool -printcert -jarfile Tukyliano.apk 2>/dev/null \
+              | grep -m1 'SHA256:' | awk '{print $NF}' | tr -d ':' | tr 'A-F' 'a-f')
+          fi
+
+          if [ -z "$HUELLA" ]; then
+            echo "ERROR: no se pudo leer la firma del APK."
+            exit 1
+          fi
+          echo "Firma del APK: $HUELLA"
+          if [ "$HUELLA" != "$ESPERADA" ]; then
+            echo "ERROR: el APK está firmado con otra clave."
+            echo "Se esperaba: $ESPERADA"
+            echo "Con esta firma no se puede instalar encima de la que ya está"
+            echo "instalada en el celular."
+            exit 1
+          fi
+
       - name: Subir APK como artefacto
         uses: actions/upload-artifact@v4
         with:
