@@ -43,3 +43,10 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# La firma del APK. El repo es público: si esto se subiera, cualquiera podría
+# firmar una "actualización" de Tukyliano que el celular aceptaría como buena.
+# Vive solo en los secretos de GitHub.
+*.jks
+*.keystore
+key.properties

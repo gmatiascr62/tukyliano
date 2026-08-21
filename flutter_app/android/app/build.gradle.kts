@@ -27,11 +27,36 @@ android {
         versionName = flutter.versionName
     }
 
+    // La firma de verdad. Android solo deja actualizar una app si el APK nuevo
+    // está firmado con la misma clave que el instalado, así que sin esto cada
+    // build sería una app distinta y habría que desinstalar para actualizar.
+    //
+    // El archivo de la firma NUNCA va en el repo, que es público: lo arma el
+    // workflow a partir de un secreto de GitHub. Cuando no está (compilando
+    // en una máquina cualquiera) se sigue firmando con la de debug, así
+    // `flutter build` funciona igual.
+    val archivoFirma = file("tukyliano.jks")
+    val claveFirma = System.getenv("TUKYLIANO_KEYSTORE_PASSWORD")
+    val hayFirmaPropia = archivoFirma.exists() && !claveFirma.isNullOrEmpty()
+
+    if (hayFirmaPropia) {
+        signingConfigs {
+            create("tukyliano") {
+                storeFile = archivoFirma
+                storePassword = claveFirma
+                keyAlias = "tukyliano"
+                keyPassword = claveFirma
+            }
+        }
+    }
+
     buildTypes {
         release {
-            // TODO: Add your own signing config for the release build.
-            // Signing with the debug keys for now, so `flutter run --release` works.
-            signingConfig = signingConfigs.getByName("debug")
+            signingConfig = if (hayFirmaPropia) {
+                signingConfigs.getByName("tukyliano")
+            } else {
+                signingConfigs.getByName("debug")
+            }
         }
     }
 }
