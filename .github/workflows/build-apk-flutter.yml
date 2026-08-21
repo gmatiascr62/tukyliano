@@ -53,11 +53,21 @@ jobs:
             echo "Sin KEYSTORE_BASE64: se firma con la de debug."
           fi
 
+      # Con reintentos porque pub.dev a veces contesta 403 al pedirle los
+      # avisos de seguridad de los paquetes, y eso tira el build entero sin
+      # que haya nada roto de este lado.
       - name: Bajar dependencias
-        run: flutter pub get
+        run: |
+          for intento in 1 2 3; do
+            if flutter pub get; then exit 0; fi
+            echo "pub get falló (intento $intento). Reintentando en 15s..."
+            sleep 15
+          done
+          echo "ERROR: pub get falló tres veces."
+          exit 1
 
       - name: Revisar el código
-        run: flutter analyze
+        run: flutter analyze --no-pub
 
       # Release en vez de debug: el APK pasa de ~160 MB a ~25 MB.
       #
@@ -69,7 +79,7 @@ jobs:
         env:
           TUKYLIANO_KEYSTORE_PASSWORD: ${{ secrets.KEYSTORE_PASSWORD }}
         run: |
-          flutter build apk --release \
+          flutter build apk --release --no-pub \
             --build-name=1.0.${{ github.run_number }} \
             --build-number=${{ github.run_number }} \
             --dart-define=BUILD=${{ github.run_number }}
