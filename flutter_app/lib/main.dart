@@ -120,7 +120,10 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   late final AlmacenamientoClave _almacenClave =
       widget.almacenClave ?? AlmacenamientoClave();
 
-  Seccion _seccion = Seccion.frases;
+  /// Se abre en Racconti: es lo que se hace cuando se agarra la app sin un
+  /// plan, y las otras secciones piden elegir verbos y tiempos antes de
+  /// empezar.
+  Seccion _seccion = Seccion.racconti;
   DatosVerbos? _datos;
 
   /// Solo se llena si los verbos no se pudieron cargar: ahí no hay nada que

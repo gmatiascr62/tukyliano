@@ -38,14 +38,17 @@ void main() {
     }
   });
 
-  testWidgets('arranca en Frasi, que es la primera de la barra',
+  testWidgets('arranca en Racconti, que es la primera de la barra',
       (WidgetTester tester) async {
+    // Es lo que se hace cuando se agarra la app sin un plan: leer. Las otras
+    // secciones piden elegir verbos y tiempos antes de empezar.
     usarPantallaDeCelular(tester);
     await tester.pumpWidget(const TukylianoApp());
     await tester.pumpAndSettle();
 
-    // Frasi depende de los verbos, que sin path_provider no llegan.
-    expect(find.text('Cargando verbos...'), findsOneWidget);
+    expect(Seccion.values.first, Seccion.racconti);
+    // Ni la pantalla de Verbi ni la de Frasi, que son las que esperan verbos.
+    expect(find.text('Cargando verbos...'), findsNothing);
   });
 
   testWidgets('la barra cambia de sección', (WidgetTester tester) async {

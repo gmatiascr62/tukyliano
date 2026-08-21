@@ -4,7 +4,7 @@ import '../tema.dart';
 
 /// Las secciones que se navegan desde la barra de arriba, en el orden en que
 /// aparecen. Las primeras son las que se ven sin deslizar.
-enum Seccion { frases, verbos, articoli, preposizioni, racconti, chat }
+enum Seccion { racconti, frases, verbos, articoli, preposizioni, chat }
 
 extension EtiquetaSeccion on Seccion {
   /// Lo que dice el botón. Van en italiano, aunque el resto de la app le
