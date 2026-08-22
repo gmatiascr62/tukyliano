@@ -1,5 +1,5 @@
 {
- "version": 10,
+ "version": 11,
  "nombres": [
   "Marco",
   "Anna",
@@ -1390,6 +1390,7 @@
   {
    "id": "una-telefonata",
    "imagen": "telefono",
+   "foto": "telefonata",
    "titulo": "Una telefonata",
    "titulo_es": "Un llamado",
    "nivel": 5,
@@ -1679,15 +1680,18 @@
     },
     {
      "it": "Marco: Ciao Paolo! Come stai?",
-     "es": "Marco: ¡Hola Paolo! ¿Cómo andás?"
+     "es": "Marco: ¡Hola Paolo! ¿Cómo andás?",
+     "cuadro": 1
     },
     {
      "it": "Paolo: Bene, grazie. E tu?",
-     "es": "Paolo: Bien, gracias. ¿Y vos?"
+     "es": "Paolo: Bien, gracias. ¿Y vos?",
+     "cuadro": 2
     },
     {
      "it": "Marco: Sono stanco. Ho molto lavoro.",
-     "es": "Marco: Estoy cansado. Tengo mucho trabajo."
+     "es": "Marco: Estoy cansado. Tengo mucho trabajo.",
+     "cuadro": 3
     },
     {
      "it": "Paolo: Anche io. Ma sabato non lavoro.",
@@ -1707,27 +1711,33 @@
     },
     {
      "it": "Paolo: Faccio una cena a casa mia.",
-     "es": "Paolo: Hago una cena en mi casa."
+     "es": "Paolo: Hago una cena en mi casa.",
+     "cuadro": 4
     },
     {
      "it": "Marco: Che bello! A che ora?",
-     "es": "Marco: ¡Qué bueno! ¿A qué hora?"
+     "es": "Marco: ¡Qué bueno! ¿A qué hora?",
+     "cuadro": 5
     },
     {
      "it": "Paolo: Alle otto.",
-     "es": "Paolo: A las ocho."
+     "es": "Paolo: A las ocho.",
+     "cuadro": 6
     },
     {
      "it": "Marco: Chi viene?",
-     "es": "Marco: ¿Quién viene?"
+     "es": "Marco: ¿Quién viene?",
+     "cuadro": 7
     },
     {
      "it": "Paolo: Luca, Anna e sua sorella.",
-     "es": "Paolo: Luca, Anna y la hermana."
+     "es": "Paolo: Luca, Anna y la hermana.",
+     "cuadro": 8
     },
     {
      "it": "Marco: Anche Anna? Bene!",
-     "es": "Marco: ¿Anna también? ¡Bien!"
+     "es": "Marco: ¿Anna también? ¡Bien!",
+     "cuadro": 9
     },
     {
      "it": "Paolo: Perché «bene»?",
