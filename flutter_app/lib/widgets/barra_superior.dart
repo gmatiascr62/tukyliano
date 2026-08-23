@@ -4,7 +4,7 @@ import '../tema.dart';
 
 /// Las secciones que se navegan desde la barra de arriba, en el orden en que
 /// aparecen. Las primeras son las que se ven sin deslizar.
-enum Seccion { racconti, frases, verbos, articoli, preposizioni, chat }
+enum Seccion { racconti, frases, verbos, articoli, preposizioni, via, ci, ne, chat }
 
 extension EtiquetaSeccion on Seccion {
   /// Lo que dice el botón. Van en italiano, aunque el resto de la app le
@@ -14,6 +14,9 @@ extension EtiquetaSeccion on Seccion {
         Seccion.verbos => 'Verbi',
         Seccion.articoli => 'Articoli',
         Seccion.preposizioni => 'Preposizioni',
+        Seccion.via => 'Via',
+        Seccion.ci => 'Ci',
+        Seccion.ne => 'Ne',
         Seccion.racconti => 'Racconti',
         Seccion.chat => 'Chat',
       };
@@ -21,7 +24,7 @@ extension EtiquetaSeccion on Seccion {
 
 /// Fila de navegación. La sección actual queda resaltada.
 ///
-/// Se desliza en horizontal porque las seis no entran juntas en un celular, y
+/// Se desliza en horizontal porque no entran juntas en un celular, y
 /// achicarlas hasta que entren dejaría "Preposizioni" ilegible. Que la última
 /// quede cortada en el borde es justamente lo que avisa que hay más.
 class BarraSuperior extends StatelessWidget {

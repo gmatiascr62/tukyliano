@@ -24,7 +24,7 @@ void main() {
   // En los tests no hay plugins de plataforma, así que la carga de verbos
   // (path_provider) falla y la sección Verbi queda sin datos. Acá se verifica
   // la navegación; el parseo se prueba en modelo_verbo_test.dart.
-  testWidgets('la barra trae las seis secciones, en italiano',
+  testWidgets('la barra trae todas las secciones, en italiano',
       (WidgetTester tester) async {
     usarPantallaDeCelular(tester);
     await tester.pumpWidget(const TukylianoApp());
@@ -79,6 +79,20 @@ void main() {
     await _tocar(tester, 'Racconti');
     expect(find.text('Próximamente'), findsNothing);
     expect(find.text('Cargando verbos...'), findsNothing);
+  });
+
+  testWidgets('Via, Ci y Ne ya tienen su botón, pero todavía no el ejercicio',
+      (WidgetTester tester) async {
+    // El botón se agregó antes que el contenido: hasta que estén las frases,
+    // la sección tiene que decirlo en vez de mostrar una pantalla vacía.
+    usarPantallaDeCelular(tester);
+    await tester.pumpWidget(const TukylianoApp());
+    await tester.pumpAndSettle();
+
+    for (final seccion in [Seccion.via, Seccion.ci, Seccion.ne]) {
+      await _tocar(tester, seccion.etiqueta);
+      expect(find.text('Próximamente'), findsOneWidget, reason: seccion.name);
+    }
   });
 
   testWidgets('Chat entra a la charla y pide la clave de la IA',
