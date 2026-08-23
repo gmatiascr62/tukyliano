@@ -6,6 +6,7 @@ import 'package:tukyliano/datos/repositorio_articoli.dart';
 import 'package:tukyliano/logica/articulos.dart';
 import 'package:tukyliano/pantallas/pantalla_articoli.dart';
 import 'package:tukyliano/tema.dart';
+import 'package:tukyliano/widgets/boton_opcion.dart';
 
 import 'util_pantalla.dart';
 
@@ -89,6 +90,22 @@ Future<void> _abrir(
   ));
   await tester.pumpAndSettle();
 }
+
+/// Sin fijar categoría: la que manda es la pastilla que esté activa.
+Future<void> _abrirConGrupos(WidgetTester tester, String json) async {
+  usarPantallaDeCelular(tester);
+  await tester.pumpWidget(MaterialApp(
+    theme: Tema.datos,
+    home: Scaffold(body: PantallaArticoli(repositorio: _repo(json))),
+  ));
+  await tester.pumpAndSettle();
+}
+
+/// Los artículos que se están ofreciendo para contestar.
+List<String> _botones(WidgetTester tester) => tester
+    .widgetList<BotonOpcion>(find.byType(BotonOpcion))
+    .map((b) => b.texto)
+    .toList();
 
 Future<void> _tocar(WidgetTester tester, String texto) async {
   await tester.tap(find.text(texto));
@@ -406,5 +423,95 @@ void main() {
     await _abrir(tester, 'esto no es JSON');
 
     expect(find.textContaining('Todavía no hay palabras'), findsOneWidget);
+  });
+
+  group('las tres familias', () {
+    testWidgets('arranca con las dos mezcladas', (tester) async {
+      await _abrirConGrupos(tester, _soloZaino);
+
+      for (final grupo in ['Determinati', 'Indeterminati', 'Todos']) {
+        expect(find.text(grupo), findsOneWidget, reason: grupo);
+      }
+      // Mezclado puede tocar cualquiera de las cinco categorías.
+      expect(_botones(tester), isNotEmpty);
+    });
+
+    testWidgets('Determinati solo pregunta il, lo, la, l\' y sus plurales',
+        (tester) async {
+      await _abrirConGrupos(tester, _soloZaino);
+      await _tocar(tester, 'Determinati');
+
+      // Con una sola palabra, las preguntas posibles son el singular y el
+      // plural: los botones tienen que ser los de esas dos categorías.
+      for (var i = 0; i < 6; i++) {
+        expect(
+          _botones(tester),
+          anyOf(equals(['il', 'lo', 'la', "l'"]), equals(['i', 'gli', 'le'])),
+        );
+        await _tocar(tester, _botones(tester).first);
+        await _tocar(tester, 'Verificar');
+        await _tocar(tester, 'Siguiente');
+      }
+    });
+
+    testWidgets('Indeterminati pregunta un, uno, una y los partitivos',
+        (tester) async {
+      await _abrirConGrupos(tester, _soloZaino);
+      await _tocar(tester, 'Indeterminati');
+
+      for (var i = 0; i < 6; i++) {
+        expect(
+          _botones(tester),
+          anyOf(
+            equals(['un', 'uno', 'una', "un'"]),
+            equals(['del', 'dello', 'della', "dell'"]),
+            equals(['dei', 'degli', 'delle']),
+          ),
+        );
+        await _tocar(tester, _botones(tester).first);
+        await _tocar(tester, 'Verificar');
+        await _tocar(tester, 'Siguiente');
+      }
+    });
+
+    testWidgets('cambiar de familia no borra el puntaje', (tester) async {
+      await _abrirConGrupos(tester, _soloZaino);
+      await _tocar(tester, 'Determinati');
+      await _tocar(tester, _botones(tester).first);
+      await _tocar(tester, 'Verificar');
+
+      await _tocar(tester, 'Indeterminati');
+
+      // Sea acierto o error, la cuenta sigue en 1 respondida.
+      expect(find.textContaining('/1'), findsOneWidget);
+    });
+  });
+
+  group('la explicación', () {
+    testWidgets('el botón de info abre la tabla de los artículos',
+        (tester) async {
+      await _abrirConGrupos(tester, _soloZaino);
+      await tester.tap(find.byIcon(Icons.info_outline));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Cuándo va lo y no il'), findsOneWidget);
+      expect(find.text('lo zaino · gli zaini (masculino con s impura, z, gn, ps, pn, x, y)'),
+          findsOneWidget);
+    });
+
+    testWidgets('explica el partitivo, que no se deduce de la clase',
+        (tester) async {
+      await _abrirConGrupos(tester, _soloZaino);
+      await tester.tap(find.byIcon(Icons.info_outline));
+      await tester.pumpAndSettle();
+
+      // La tabla del partitivo está al final de la hoja.
+      await tester.drag(find.byType(ListView), const Offset(0, -900));
+      await tester.pumpAndSettle();
+      await tester.drag(find.byType(ListView), const Offset(0, -900));
+      await tester.pumpAndSettle();
+
+      expect(find.text('di + lo = dello · dello zucchero'), findsOneWidget);
+    });
   });
 }
