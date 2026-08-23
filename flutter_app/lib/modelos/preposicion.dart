@@ -1,5 +1,4 @@
-/// Marca dónde va el hueco en la frase.
-const hueco = '___';
+import '../constantes.dart';
 
 /// Una frase con un hueco donde falta la preposición.
 class FrasePreposicion {

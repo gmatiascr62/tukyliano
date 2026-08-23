@@ -6,6 +6,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/repositorio_preposizioni.dart';
 import 'package:tukyliano/logica/preposiciones.dart';
+import 'package:tukyliano/constantes.dart';
 import 'package:tukyliano/modelos/preposicion.dart';
 
 final _json = File('assets/preposizioni.json').readAsStringSync();

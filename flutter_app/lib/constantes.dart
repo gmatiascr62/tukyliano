@@ -39,6 +39,20 @@ const String urlPreposizioniRemoto =
 /// Copia escribible de las preposiciones en el celular.
 const String archivoPreposizioniLocal = 'preposizioni.json';
 
+/// Frases con hueco para practicar el «via» pegado al verbo.
+const String assetVia = 'assets/via.json';
+
+/// Las mismas, en GitHub: agregar frases no necesita un APK nuevo.
+const String urlViaRemoto =
+    'https://raw.githubusercontent.com/gmatiascr62/tukylingo_repo/main/via.json';
+
+/// Copia escribible del via en el celular.
+const String archivoViaLocal = 'via.json';
+
+/// Marca dónde va el hueco en una frase para completar. La usan Preposizioni
+/// y las partículas.
+const String hueco = '___';
+
 /// Cuentos para leer que vienen con la app.
 const String assetRacconti = 'assets/racconti.json';
 

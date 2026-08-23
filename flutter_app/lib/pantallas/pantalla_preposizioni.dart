@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../constantes.dart';
 import '../datos/repositorio_preposizioni.dart';
 import '../logica/preposiciones.dart';
 import '../modelos/preposicion.dart';

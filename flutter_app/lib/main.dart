@@ -5,6 +5,7 @@ import 'datos/actualizacion.dart';
 import 'datos/almacenamiento_clave.dart';
 import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
+import 'datos/repositorio_particelle.dart';
 import 'datos/repositorio_preposizioni.dart';
 import 'datos/repositorio_racconti.dart';
 import 'datos/repositorio_verbos.dart';
@@ -19,6 +20,7 @@ import 'pantallas/pantalla_proximamente.dart';
 import 'pantallas/pantalla_quiz.dart';
 import 'pantallas/pantalla_racconti.dart';
 import 'pantallas/pantalla_seleccion.dart';
+import 'pantallas/pantalla_via.dart';
 import 'tema.dart';
 import 'widgets/aviso_actualizacion.dart';
 import 'widgets/barra_superior.dart';
@@ -36,6 +38,7 @@ class TukylianoApp extends StatelessWidget {
     this.articoli,
     this.preposizioni,
     this.racconti,
+    this.via,
     this.voz,
     this.gemini,
     this.actualizacion,
@@ -48,6 +51,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioArticoli? articoli;
   final RepositorioPreposizioni? preposizioni;
   final RepositorioRacconti? racconti;
+  final RepositorioParticelle? via;
   final Voz? voz;
   final Gemini? gemini;
   final Actualizacion? actualizacion;
@@ -65,6 +69,7 @@ class TukylianoApp extends StatelessWidget {
         articoli: articoli,
         preposizioni: preposizioni,
         racconti: racconti,
+        via: via,
         voz: voz,
         gemini: gemini,
         actualizacion: actualizacion,
@@ -84,6 +89,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.articoli,
     this.preposizioni,
     this.racconti,
+    this.via,
     this.voz,
     this.gemini,
     this.actualizacion,
@@ -95,6 +101,7 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioArticoli? articoli;
   final RepositorioPreposizioni? preposizioni;
   final RepositorioRacconti? racconti;
+  final RepositorioParticelle? via;
   final Voz? voz;
   final Gemini? gemini;
   final Actualizacion? actualizacion;
@@ -114,6 +121,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       widget.preposizioni ?? RepositorioPreposizioni();
   late final RepositorioRacconti _racconti =
       widget.racconti ?? RepositorioRacconti();
+  late final RepositorioParticelle _via =
+      widget.via ?? RepositorioParticelle.via();
 
   /// La voz vive acá y no en la pantalla de cuentos: así la que se elige
   /// sigue elegida al pasar por otra sección y volver.
@@ -158,6 +167,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     _cargarArticoli();
     _cargarPreposizioni();
     _cargarRacconti();
+    _cargarVia();
   }
 
   /// Las frases se leen al arrancar y, si hay internet, se chequea si GitHub
@@ -185,6 +195,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   Future<void> _cargarRacconti() async {
     await _racconti.cargar();
     await _racconti.verificarActualizacion();
+  }
+
+  /// Igual que el resto.
+  Future<void> _cargarVia() async {
+    await _via.cargar();
+    await _via.verificarActualizacion();
   }
 
   Future<void> _cargarDatos() async {
@@ -286,10 +302,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.preposizioni:
         return PantallaPreposizioni(repositorio: _preposizioni);
       case Seccion.via:
-        return const PantallaProximamente(
-          adelanto: 'El via que se le pega al verbo y le cambia el sentido: '
-              'andare via, portare via, buttare via.',
-        );
+        return PantallaVia(repositorio: _via);
       case Seccion.ci:
         return const PantallaProximamente(
           adelanto: 'El ci que reemplaza un lugar (vado a Roma: ci vado) y el '

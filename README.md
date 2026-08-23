@@ -14,13 +14,14 @@ algún commit viejo aparecen `main.py` o `buildozer.spec`, son de esa.
 | Verbi | Conjugar: sale un verbo, un tiempo y una persona. |
 | Articoli | El artículo que va con cada sustantivo, incluidos los partitivos. |
 | Preposizioni | Completar el hueco con la preposición, simple o articulada. |
+| Via | El «via» que se le pega al verbo (andare via, buttare via). Se elige el verbo o se escribe la frase entera, y un botón explica cómo se usa. |
 | Racconti | Cuentos para leer en italiano; se toca el renglón para ver la traducción y escucharlo. |
 | Chat | Charla con Gemini, que corrige sobre la marcha y traduce lo que se ponga entre almohadillas. |
 
 ## Los datos van aparte
 
-Los verbos, las frases, los sustantivos, las preposiciones y los cuentos no
-están en el código: viven en [tukylingo_repo](https://github.com/gmatiascr62/tukylingo_repo)
+Los verbos, las frases, los sustantivos, las preposiciones, el via y los
+cuentos no están en el código: viven en [tukylingo_repo](https://github.com/gmatiascr62/tukylingo_repo)
 y la app los chequea al arrancar. **Agregar o corregir contenido no necesita un
 APK nuevo**: se edita el JSON de ese repo, se le sube el número de `version` y
 el celular se lo baja solo la próxima vez que abre la app.
