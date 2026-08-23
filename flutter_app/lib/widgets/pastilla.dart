@@ -25,6 +25,10 @@ class Pastilla extends StatelessWidget {
     final contenido = Padding(
       padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Row(
+        // Se achica al texto en vez de estirarse. En una fila daba igual
+        // (queda sin ancho fijo), pero adentro de un Wrap cada pastilla se
+        // llevaba el renglón entero.
+        mainAxisSize: MainAxisSize.min,
         children: [
           if (icono != null) ...[
             Icon(icono, size: 15, color: color),
