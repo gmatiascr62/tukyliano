@@ -1,7 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
+import 'package:tukyliano/constantes.dart';
 import 'package:tukyliano/datos/almacenamiento_clave.dart';
+import 'package:tukyliano/datos/repositorio_particelle.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/widgets/barra_superior.dart';
 
@@ -19,6 +23,21 @@ Future<void> _tocar(WidgetTester tester, String texto) async {
   await tester.tap(boton);
   await tester.pumpAndSettle();
 }
+
+RepositorioParticelle _viaConUnaFrase() => RepositorioParticelle(
+      asset: assetVia,
+      urlRemoto: urlViaRemoto,
+      archivoLocal: archivoViaLocal,
+      leerAsset: (_) async => '''
+        {"version": 1, "frases": [
+          {"frase": "___ via, è tardi.", "correcta": "Vado", "es": "me voy",
+           "opciones": ["Vado", "Porto", "Butto", "Mando"],
+           "explicacion": "andare via = irse.", "persona": "io"}
+        ]}
+      ''',
+      cliente: MockClient((_) async => http.Response('', 404)),
+      carpeta: () async => null,
+    );
 
 void main() {
   // En los tests no hay plugins de plataforma, así que la carga de verbos
@@ -81,7 +100,7 @@ void main() {
     expect(find.text('Cargando verbos...'), findsNothing);
   });
 
-  testWidgets('Via, Ci y Ne ya tienen su botón, pero todavía no el ejercicio',
+  testWidgets('Ci y Ne ya tienen su botón, pero todavía no el ejercicio',
       (WidgetTester tester) async {
     // El botón se agregó antes que el contenido: hasta que estén las frases,
     // la sección tiene que decirlo en vez de mostrar una pantalla vacía.
@@ -89,10 +108,25 @@ void main() {
     await tester.pumpWidget(const TukylianoApp());
     await tester.pumpAndSettle();
 
-    for (final seccion in [Seccion.via, Seccion.ci, Seccion.ne]) {
+    for (final seccion in [Seccion.ci, Seccion.ne]) {
       await _tocar(tester, seccion.etiqueta);
       expect(find.text('Próximamente'), findsOneWidget, reason: seccion.name);
     }
+  });
+
+  testWidgets('Via entra a la práctica, con sus dos modos',
+      (WidgetTester tester) async {
+    usarPantallaDeCelular(tester);
+    // Con el repositorio de verdad el asset no llega a leerse en un test de
+    // widgets (no hay plataforma), así que se le pasa una frase a mano: lo que
+    // se está probando es que la barra lleve al ejercicio y no al cartel.
+    await tester.pumpWidget(TukylianoApp(via: _viaConUnaFrase()));
+    await tester.pumpAndSettle();
+
+    await _tocar(tester, 'Via');
+    expect(find.text('Próximamente'), findsNothing);
+    expect(find.text('Elegir'), findsOneWidget);
+    expect(find.text('Escribir'), findsOneWidget);
   });
 
   testWidgets('Chat entra a la charla y pide la clave de la IA',
