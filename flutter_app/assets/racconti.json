@@ -1,5 +1,5 @@
 {
- "version": 11,
+ "version": 12,
  "nombres": [
   "Marco",
   "Anna",
@@ -320,6 +320,7 @@
   {
    "id": "un-giorno-a-roma",
    "imagen": "roma",
+   "foto": "roma",
    "titulo": "Un giorno a Roma",
    "titulo_es": "Un día en Roma",
    "nivel": 2,
@@ -409,55 +410,68 @@
    "lineas": [
     {
      "it": "Oggi Marco va a Roma.",
-     "es": "Hoy Marco va a Roma."
+     "es": "Hoy Marco va a Roma.",
+     "cuadro": 1
     },
     {
      "it": "Prende il treno alle otto.",
-     "es": "Toma el tren a las ocho."
+     "es": "Toma el tren a las ocho.",
+     "cuadro": 2
     },
     {
      "it": "Il viaggio è lungo.",
-     "es": "El viaje es largo."
+     "es": "El viaje es largo.",
+     "cuadro": 3
     },
     {
      "it": "Arriva alla stazione di Roma.",
-     "es": "Llega a la estación de Roma."
+     "es": "Llega a la estación de Roma.",
+     "cuadro": 4
     },
     {
      "it": "Il cielo è azzurro e c'è il sole.",
-     "es": "El cielo está celeste y hay sol."
+     "es": "El cielo está celeste y hay sol.",
+     "cuadro": 5
     },
     {
      "it": "Marco va in centro a piedi.",
-     "es": "Marco va al centro a pie."
+     "es": "Marco va al centro a pie.",
+     "cuadro": 6
     },
     {
      "it": "In piazza c'è una chiesa antica.",
-     "es": "En la plaza hay una iglesia antigua."
+     "es": "En la plaza hay una iglesia antigua.",
+     "cuadro": 7
     },
     {
      "it": "Marco ha sete.",
-     "es": "Marco tiene sed."
+     "es": "Marco tiene sed.",
+     "cuadro": 8
     },
     {
      "it": "Beve un po' d'acqua.",
-     "es": "Toma un poco de agua."
+     "es": "Toma un poco de agua.",
+     "cuadro": 9
     },
     {
      "it": "Poi vuole un gelato.",
-     "es": "Después quiere un helado."
+     "es": "Después quiere un helado.",
+     "cuadro": 10
     },
     {
      "it": "Il gelato al limone è buono.",
-     "es": "El helado de limón está rico."
+     "es": "El helado de limón está rico.",
+     "cuadro": 11
     },
     {
      "it": "Marco è stanco ma contento.",
-     "es": "Marco está cansado pero contento."
+     "es": "Marco está cansado pero contento.",
+     "cuadro": 12
     },
     {
      "it": "Roma è bella.",
-     "es": "Roma es linda."
+     "es": "Roma es linda.",
+     "cuadro": 13
     }
    ]
   },
