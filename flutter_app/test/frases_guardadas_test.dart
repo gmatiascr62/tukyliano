@@ -7,11 +7,19 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/constantes.dart';
 import 'package:tukyliano/datos/repositorio_frases.dart';
+import 'package:tukyliano/modelos/verbo.dart';
 
 /// Lee el asset de verdad desde el disco. No usa rootBundle a propósito: así
 /// el test verifica el archivo que se empaqueta, sin depender del binding.
 final _json = File('assets/frases.json').readAsStringSync();
 final _frases = (jsonDecode(_json) as Map<String, dynamic>)['frases'] as List;
+
+/// Los verbos que trae la app. Las frases tienen que cubrirlos a todos: un
+/// verbo sin frases aparece en la lista de Frasi y después no se puede
+/// practicar.
+final _verbos = DatosVerbos.desdeJson(
+    jsonDecode(File('assets/verbos.json').readAsStringSync())
+        as Map<String, dynamic>);
 
 RepositorioFrases _repo({String? asset, String remoto = '', int codigo = 404}) =>
     RepositorioFrases(
@@ -26,12 +34,29 @@ void main() {
     // Se afirman invariantes, no cantidades exactas: las frases crecen seguido
     // y el test no tiene que romperse cada vez que se suman.
     test('cubre todas las formas de los verbos que trae la app', () {
+      // La cuenta sale de los verbos y no de un número escrito acá: cuando se
+      // agrega un verbo, este test avisa si quedó sin frases en vez de pasar
+      // igual.
       final formas = _frases
           .map((f) => RepositorioFrases.claveDe(
               f['verbo'] as String, f['tiempo'] as String, f['persona'] as String))
           .toSet();
-      // 4 verbos x (4 tiempos x 6 personas + gerundio).
-      expect(formas.length, 100);
+
+      final faltan = <String>[];
+      for (final verbo in _verbos.verbos.values) {
+        for (final tiempo in verbo.tiempos.entries) {
+          for (final persona in tiempo.value.keys) {
+            final clave =
+                RepositorioFrases.claveDe(verbo.nombre, tiempo.key, persona);
+            if (!formas.contains(clave)) faltan.add(clave);
+          }
+        }
+      }
+
+      expect(faltan, isEmpty);
+      // Y al revés: ninguna frase de un verbo que la app no tiene.
+      expect(_frases.map((f) => f['verbo']).toSet().length,
+          _verbos.verbos.length);
     });
 
     test('cada forma tiene al menos una frase', () {

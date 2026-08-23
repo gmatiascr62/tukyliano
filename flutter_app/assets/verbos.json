@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "verbos": {
     "volere": {
       "traduccion": "querer",
@@ -150,6 +150,234 @@
           "noi": {"italiano": "avremo", "espanol": "nosotros tendremos"},
           "voi": {"italiano": "avrete", "espanol": "ustedes tendrán"},
           "loro": {"italiano": "avranno", "espanol": "ellos tendrán"}
+        }
+      }
+    },
+    "andare": {
+      "traduccion": "ir",
+      "gerundio": {"italiano": "andando", "espanol": "yendo"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "vado", "espanol": "yo voy"},
+          "tu": {"italiano": "vai", "espanol": "tú vas"},
+          "lui/lei": {"italiano": "va", "espanol": "él/ella va"},
+          "noi": {"italiano": "andiamo", "espanol": "nosotros vamos"},
+          "voi": {"italiano": "andate", "espanol": "ustedes van"},
+          "loro": {"italiano": "vanno", "espanol": "ellos van"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "sono andato", "espanol": "yo fui"},
+          "tu": {"italiano": "sei andato", "espanol": "tú fuiste"},
+          "lui/lei": {"italiano": "è andato", "espanol": "él/ella fue"},
+          "noi": {"italiano": "siamo andati", "espanol": "nosotros fuimos"},
+          "voi": {"italiano": "siete andati", "espanol": "ustedes fueron"},
+          "loro": {"italiano": "sono andati", "espanol": "ellos fueron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "andavo", "espanol": "yo iba"},
+          "tu": {"italiano": "andavi", "espanol": "tú ibas"},
+          "lui/lei": {"italiano": "andava", "espanol": "él/ella iba"},
+          "noi": {"italiano": "andavamo", "espanol": "nosotros íbamos"},
+          "voi": {"italiano": "andavate", "espanol": "ustedes iban"},
+          "loro": {"italiano": "andavano", "espanol": "ellos iban"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "andrò", "espanol": "yo iré"},
+          "tu": {"italiano": "andrai", "espanol": "tú irás"},
+          "lui/lei": {"italiano": "andrà", "espanol": "él/ella irá"},
+          "noi": {"italiano": "andremo", "espanol": "nosotros iremos"},
+          "voi": {"italiano": "andrete", "espanol": "ustedes irán"},
+          "loro": {"italiano": "andranno", "espanol": "ellos irán"}
+        }
+      }
+    },
+    "venire": {
+      "traduccion": "venir",
+      "gerundio": {"italiano": "venendo", "espanol": "viniendo"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "vengo", "espanol": "yo vengo"},
+          "tu": {"italiano": "vieni", "espanol": "tú vienes"},
+          "lui/lei": {"italiano": "viene", "espanol": "él/ella viene"},
+          "noi": {"italiano": "veniamo", "espanol": "nosotros venimos"},
+          "voi": {"italiano": "venite", "espanol": "ustedes vienen"},
+          "loro": {"italiano": "vengono", "espanol": "ellos vienen"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "sono venuto", "espanol": "yo vine"},
+          "tu": {"italiano": "sei venuto", "espanol": "tú viniste"},
+          "lui/lei": {"italiano": "è venuto", "espanol": "él/ella vino"},
+          "noi": {"italiano": "siamo venuti", "espanol": "nosotros vinimos"},
+          "voi": {"italiano": "siete venuti", "espanol": "ustedes vinieron"},
+          "loro": {"italiano": "sono venuti", "espanol": "ellos vinieron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "venivo", "espanol": "yo venía"},
+          "tu": {"italiano": "venivi", "espanol": "tú venías"},
+          "lui/lei": {"italiano": "veniva", "espanol": "él/ella venía"},
+          "noi": {"italiano": "venivamo", "espanol": "nosotros veníamos"},
+          "voi": {"italiano": "venivate", "espanol": "ustedes venían"},
+          "loro": {"italiano": "venivano", "espanol": "ellos venían"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "verrò", "espanol": "yo vendré"},
+          "tu": {"italiano": "verrai", "espanol": "tú vendrás"},
+          "lui/lei": {"italiano": "verrà", "espanol": "él/ella vendrá"},
+          "noi": {"italiano": "verremo", "espanol": "nosotros vendremos"},
+          "voi": {"italiano": "verrete", "espanol": "ustedes vendrán"},
+          "loro": {"italiano": "verranno", "espanol": "ellos vendrán"}
+        }
+      }
+    },
+    "potere": {
+      "traduccion": "poder",
+      "gerundio": {"italiano": "potendo", "espanol": "pudiendo"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "posso", "espanol": "yo puedo"},
+          "tu": {"italiano": "puoi", "espanol": "tú puedes"},
+          "lui/lei": {"italiano": "può", "espanol": "él/ella puede"},
+          "noi": {"italiano": "possiamo", "espanol": "nosotros podemos"},
+          "voi": {"italiano": "potete", "espanol": "ustedes pueden"},
+          "loro": {"italiano": "possono", "espanol": "ellos pueden"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho potuto", "espanol": "yo pude"},
+          "tu": {"italiano": "hai potuto", "espanol": "tú pudiste"},
+          "lui/lei": {"italiano": "ha potuto", "espanol": "él/ella pudo"},
+          "noi": {"italiano": "abbiamo potuto", "espanol": "nosotros pudimos"},
+          "voi": {"italiano": "avete potuto", "espanol": "ustedes pudieron"},
+          "loro": {"italiano": "hanno potuto", "espanol": "ellos pudieron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "potevo", "espanol": "yo podía"},
+          "tu": {"italiano": "potevi", "espanol": "tú podías"},
+          "lui/lei": {"italiano": "poteva", "espanol": "él/ella podía"},
+          "noi": {"italiano": "potevamo", "espanol": "nosotros podíamos"},
+          "voi": {"italiano": "potevate", "espanol": "ustedes podían"},
+          "loro": {"italiano": "potevano", "espanol": "ellos podían"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "potrò", "espanol": "yo podré"},
+          "tu": {"italiano": "potrai", "espanol": "tú podrás"},
+          "lui/lei": {"italiano": "potrà", "espanol": "él/ella podrá"},
+          "noi": {"italiano": "potremo", "espanol": "nosotros podremos"},
+          "voi": {"italiano": "potrete", "espanol": "ustedes podrán"},
+          "loro": {"italiano": "potranno", "espanol": "ellos podrán"}
+        }
+      }
+    },
+    "dovere": {
+      "traduccion": "deber, tener que",
+      "gerundio": {"italiano": "dovendo", "espanol": "debiendo"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "devo", "espanol": "yo debo"},
+          "tu": {"italiano": "devi", "espanol": "tú debes"},
+          "lui/lei": {"italiano": "deve", "espanol": "él/ella debe"},
+          "noi": {"italiano": "dobbiamo", "espanol": "nosotros debemos"},
+          "voi": {"italiano": "dovete", "espanol": "ustedes deben"},
+          "loro": {"italiano": "devono", "espanol": "ellos deben"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho dovuto", "espanol": "yo debí"},
+          "tu": {"italiano": "hai dovuto", "espanol": "tú debiste"},
+          "lui/lei": {"italiano": "ha dovuto", "espanol": "él/ella debió"},
+          "noi": {"italiano": "abbiamo dovuto", "espanol": "nosotros debimos"},
+          "voi": {"italiano": "avete dovuto", "espanol": "ustedes debieron"},
+          "loro": {"italiano": "hanno dovuto", "espanol": "ellos debieron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "dovevo", "espanol": "yo debía"},
+          "tu": {"italiano": "dovevi", "espanol": "tú debías"},
+          "lui/lei": {"italiano": "doveva", "espanol": "él/ella debía"},
+          "noi": {"italiano": "dovevamo", "espanol": "nosotros debíamos"},
+          "voi": {"italiano": "dovevate", "espanol": "ustedes debían"},
+          "loro": {"italiano": "dovevano", "espanol": "ellos debían"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "dovrò", "espanol": "yo deberé"},
+          "tu": {"italiano": "dovrai", "espanol": "tú deberás"},
+          "lui/lei": {"italiano": "dovrà", "espanol": "él/ella deberá"},
+          "noi": {"italiano": "dovremo", "espanol": "nosotros deberemos"},
+          "voi": {"italiano": "dovrete", "espanol": "ustedes deberán"},
+          "loro": {"italiano": "dovranno", "espanol": "ellos deberán"}
+        }
+      }
+    },
+    "sapere": {
+      "traduccion": "saber",
+      "gerundio": {"italiano": "sapendo", "espanol": "sabiendo"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "so", "espanol": "yo sé"},
+          "tu": {"italiano": "sai", "espanol": "tú sabes"},
+          "lui/lei": {"italiano": "sa", "espanol": "él/ella sabe"},
+          "noi": {"italiano": "sappiamo", "espanol": "nosotros sabemos"},
+          "voi": {"italiano": "sapete", "espanol": "ustedes saben"},
+          "loro": {"italiano": "sanno", "espanol": "ellos saben"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho saputo", "espanol": "yo supe"},
+          "tu": {"italiano": "hai saputo", "espanol": "tú supiste"},
+          "lui/lei": {"italiano": "ha saputo", "espanol": "él/ella supo"},
+          "noi": {"italiano": "abbiamo saputo", "espanol": "nosotros supimos"},
+          "voi": {"italiano": "avete saputo", "espanol": "ustedes supieron"},
+          "loro": {"italiano": "hanno saputo", "espanol": "ellos supieron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "sapevo", "espanol": "yo sabía"},
+          "tu": {"italiano": "sapevi", "espanol": "tú sabías"},
+          "lui/lei": {"italiano": "sapeva", "espanol": "él/ella sabía"},
+          "noi": {"italiano": "sapevamo", "espanol": "nosotros sabíamos"},
+          "voi": {"italiano": "sapevate", "espanol": "ustedes sabían"},
+          "loro": {"italiano": "sapevano", "espanol": "ellos sabían"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "saprò", "espanol": "yo sabré"},
+          "tu": {"italiano": "saprai", "espanol": "tú sabrás"},
+          "lui/lei": {"italiano": "saprà", "espanol": "él/ella sabrá"},
+          "noi": {"italiano": "sapremo", "espanol": "nosotros sabremos"},
+          "voi": {"italiano": "saprete", "espanol": "ustedes sabrán"},
+          "loro": {"italiano": "sapranno", "espanol": "ellos sabrán"}
+        }
+      }
+    },
+    "conoscere": {
+      "traduccion": "conocer",
+      "gerundio": {"italiano": "conoscendo", "espanol": "conociendo"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "conosco", "espanol": "yo conozco"},
+          "tu": {"italiano": "conosci", "espanol": "tú conoces"},
+          "lui/lei": {"italiano": "conosce", "espanol": "él/ella conoce"},
+          "noi": {"italiano": "conosciamo", "espanol": "nosotros conocemos"},
+          "voi": {"italiano": "conoscete", "espanol": "ustedes conocen"},
+          "loro": {"italiano": "conoscono", "espanol": "ellos conocen"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho conosciuto", "espanol": "yo conocí"},
+          "tu": {"italiano": "hai conosciuto", "espanol": "tú conociste"},
+          "lui/lei": {"italiano": "ha conosciuto", "espanol": "él/ella conoció"},
+          "noi": {"italiano": "abbiamo conosciuto", "espanol": "nosotros conocimos"},
+          "voi": {"italiano": "avete conosciuto", "espanol": "ustedes conocieron"},
+          "loro": {"italiano": "hanno conosciuto", "espanol": "ellos conocieron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "conoscevo", "espanol": "yo conocía"},
+          "tu": {"italiano": "conoscevi", "espanol": "tú conocías"},
+          "lui/lei": {"italiano": "conosceva", "espanol": "él/ella conocía"},
+          "noi": {"italiano": "conoscevamo", "espanol": "nosotros conocíamos"},
+          "voi": {"italiano": "conoscevate", "espanol": "ustedes conocían"},
+          "loro": {"italiano": "conoscevano", "espanol": "ellos conocían"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "conoscerò", "espanol": "yo conoceré"},
+          "tu": {"italiano": "conoscerai", "espanol": "tú conocerás"},
+          "lui/lei": {"italiano": "conoscerà", "espanol": "él/ella conocerá"},
+          "noi": {"italiano": "conosceremo", "espanol": "nosotros conoceremos"},
+          "voi": {"italiano": "conoscerete", "espanol": "ustedes conocerán"},
+          "loro": {"italiano": "conosceranno", "espanol": "ellos conocerán"}
         }
       }
     }
