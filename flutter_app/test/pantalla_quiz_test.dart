@@ -4,6 +4,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 import 'package:tukyliano/pantallas/pantalla_quiz.dart';
+import 'package:tukyliano/widgets/boton_opcion.dart';
+import 'package:tukyliano/widgets/teclado.dart';
 
 import 'util_pantalla.dart';
 
@@ -32,6 +34,27 @@ Future<void> _escribir(WidgetTester tester, String palabra) async {
     await tester.pump();
   }
 }
+
+/// Un verbo entero, para que el modo de elegir tenga de dónde sacar los
+/// distractores: las otras personas del mismo tiempo.
+final _verboCompleto = DatosVerbos.desdeJson(jsonDecode('''
+  {"verbos": {"andare": {"traduccion": "ir", "tiempos": {
+    "presente": {
+      "io": {"italiano": "vado", "espanol": "yo voy"},
+      "tu": {"italiano": "vai", "espanol": "tú vas"},
+      "lui/lei": {"italiano": "va", "espanol": "él/ella va"},
+      "noi": {"italiano": "andiamo", "espanol": "nosotros vamos"},
+      "voi": {"italiano": "andate", "espanol": "ustedes van"},
+      "loro": {"italiano": "vanno", "espanol": "ellos van"}
+    }
+  }}}}
+''') as Map<String, dynamic>);
+
+/// Lo que dicen los cuatro botones de respuesta.
+List<String> _opciones(WidgetTester tester) => tester
+    .widgetList<BotonOpcion>(find.byType(BotonOpcion))
+    .map((b) => b.texto)
+    .toList();
 
 void main() {
   testWidgets('muestra la pregunta en español y el puntaje en cero',
@@ -121,5 +144,80 @@ void main() {
     await tester.pumpWidget(_app(viejos));
 
     expect(find.textContaining('No hay verbos con datos cargados'), findsOneWidget);
+  });
+
+  group('las dos formas de contestar', () {
+    testWidgets('arranca en Escribir, con el teclado', (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(_verboCompleto));
+
+      expect(find.byType(Teclado), findsOneWidget);
+      expect(find.byType(BotonOpcion), findsNothing);
+      expect(find.text('Escribí la conjugación...'), findsOneWidget);
+    });
+
+    testWidgets('en Elegir ofrece cuatro formas del mismo verbo',
+        (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(_verboCompleto));
+
+      await tester.tap(find.text('Elegir'));
+      await tester.pumpAndSettle();
+
+      // Sin teclado: se contesta tocando.
+      expect(find.byType(Teclado), findsNothing);
+      final opciones = _opciones(tester);
+      expect(opciones.length, 4);
+      expect(
+        opciones.toSet().difference(
+            {'vado', 'vai', 'va', 'andiamo', 'andate', 'vanno'}),
+        isEmpty,
+        reason: '$opciones',
+      );
+    });
+
+    testWidgets('tocando la correcta suma, igual que escribiéndola',
+        (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(_unicaConjugacion));
+
+      await tester.tap(find.text('Elegir'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(BotonOpcion, 'sono'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.widgetWithText(ElevatedButton, 'Verificar'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('¡Correcto!'), findsOneWidget);
+      expect(find.text('Puntaje: 1/1'), findsOneWidget);
+    });
+
+    testWidgets('sin tocar ninguna no se puede verificar', (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(_verboCompleto));
+
+      await tester.tap(find.text('Elegir'));
+      await tester.pumpAndSettle();
+
+      final boton = tester.widget<ElevatedButton>(
+        find.widgetWithText(ElevatedButton, 'Verificar'),
+      );
+      expect(boton.onPressed, isNull);
+    });
+
+    testWidgets('cambiar de modo borra lo que se había escrito',
+        (tester) async {
+      usarPantallaDeCelular(tester);
+      await tester.pumpWidget(_app(_unicaConjugacion));
+
+      await _escribir(tester, 'son');
+      await tester.tap(find.text('Elegir'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Escribir'));
+      await tester.pumpAndSettle();
+
+      // Vuelve el cartel de vacío, no lo que estaba a medio escribir.
+      expect(find.text('Escribí la conjugación...'), findsOneWidget);
+    });
   });
 }

@@ -1,14 +1,23 @@
 import 'package:flutter/material.dart';
 
 import '../constantes.dart';
+import '../logica/modo_respuesta.dart';
+import '../logica/opciones_conjugacion.dart';
 import '../logica/seleccion_azar.dart';
 import '../modelos/verbo.dart';
 import '../tema.dart';
+import '../widgets/boton_opcion.dart';
 import '../widgets/campo_texto.dart';
+import '../widgets/pastilla.dart';
 import '../widgets/tarjeta_pregunta.dart';
 import '../widgets/teclado.dart';
 
 /// Quiz de conjugaciones. Equivale a QuizVerbos de la app Kivy.
+///
+/// Se puede contestar de dos formas, igual que en la sección Via: tocando cuál
+/// de cuatro formas del mismo verbo es la que va, o escribiéndola entera. La
+/// primera sirve para reconocer la terminación cuando todavía no sale sola; la
+/// segunda es la de verdad, porque hablando nadie te ofrece opciones.
 class PantallaQuiz extends StatefulWidget {
   const PantallaQuiz({
     super.key,
@@ -33,6 +42,13 @@ class _PantallaQuizState extends State<PantallaQuiz> {
   Color _colorFeedback = Tema.texto;
   bool _mostrandoResultado = false;
 
+  ModoRespuesta _modo = ModoRespuesta.escribir;
+
+  /// Los cuatro botones del modo de elegir. Se sortean una vez por pregunta:
+  /// si se recalcularan en cada build, cambiarían de lugar solos.
+  List<String> _opciones = const [];
+  String _elegida = '';
+
   Combo? _combo;
   String _mensajeSinDatos = '';
 
@@ -53,10 +69,37 @@ class _PantallaQuizState extends State<PantallaQuiz> {
       _mensajeSinDatos = combo == null
           ? 'No hay verbos con datos cargados.\nRevisá verbos.json / data.json.'
           : '';
-      _textoActual = '';
-      _feedback = '';
-      _mostrandoResultado = false;
+      _opciones = combo == null ? const [] : opcionesDeConjugacion(combo);
+      _limpiar();
     });
+  }
+
+  void _limpiar() {
+    _textoActual = '';
+    _elegida = '';
+    _feedback = '';
+    _mostrandoResultado = false;
+  }
+
+  /// Cambiar de modo deja la misma pregunta pero borra lo contestado: pasar a
+  /// escribir con la respuesta ya elegida sería copiarla.
+  void _cambiarModo(ModoRespuesta modo) {
+    if (modo == _modo) return;
+    setState(() {
+      _modo = modo;
+      _limpiar();
+    });
+  }
+
+  /// Si hay algo contestado. Con el botón siempre activo, tocar "Verificar"
+  /// sin contestar no hacía nada y parecía que la app se había colgado.
+  bool get _hayRespuesta => _modo == ModoRespuesta.elegir
+      ? _elegida.isNotEmpty
+      : _textoActual.trim().isNotEmpty;
+
+  void _tocarOpcion(String opcion) {
+    if (_mostrandoResultado) return;
+    setState(() => _elegida = opcion);
   }
 
   void _onTecla(String tecla) {
@@ -72,7 +115,9 @@ class _PantallaQuizState extends State<PantallaQuiz> {
   }
 
   void _verificar() {
-    final respuesta = _textoActual.trim().toLowerCase();
+    final respuesta = _modo == ModoRespuesta.elegir
+        ? _elegida.toLowerCase()
+        : _textoActual.trim().toLowerCase();
     if (respuesta.isEmpty || _combo == null) return;
 
     final correcta = _combo!.conjugacion.italiano.toLowerCase();
@@ -105,8 +150,8 @@ class _PantallaQuizState extends State<PantallaQuiz> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                const SizedBox(height: 12),
-                Center(child: ChipPuntaje(puntaje: _puntaje, total: _total)),
+                const SizedBox(height: 10),
+                _encabezado(),
                 const SizedBox(height: 12),
                 TarjetaPregunta(
                   etiqueta: _combo == null ? '' : 'Traducí al italiano',
@@ -115,7 +160,16 @@ class _PantallaQuizState extends State<PantallaQuiz> {
                       : "'${_combo!.conjugacion.espanol}'",
                 ),
                 const SizedBox(height: 14),
-                CampoTexto(texto: _textoActual),
+                if (_modo == ModoRespuesta.escribir)
+                  CampoTexto(texto: _textoActual)
+                else if (_opciones.isNotEmpty)
+                  FilaOpciones(
+                    opciones: _opciones,
+                    elegido: _elegida,
+                    correcta: _combo?.conjugacion.italiano ?? '',
+                    mostrandoResultado: _mostrandoResultado,
+                    onTocar: _tocarOpcion,
+                  ),
                 // Alto fijo siempre: si cambiara al aparecer el texto, se
                 // recalcularía el layout entero (el bug que tuvo Kivy).
                 SizedBox(
@@ -130,7 +184,8 @@ class _PantallaQuizState extends State<PantallaQuiz> {
                 SizedBox(
                   height: 58,
                   child: ElevatedButton(
-                    onPressed: _accionBoton,
+                    onPressed:
+                        _hayRespuesta || _mostrandoResultado ? _accionBoton : null,
                     style: Tema.botonPrincipal,
                     child: Text(
                       _mostrandoResultado ? 'Siguiente' : 'Verificar',
@@ -146,7 +201,29 @@ class _PantallaQuizState extends State<PantallaQuiz> {
             ),
           ),
         ),
-        Teclado(onTecla: _onTecla),
+        if (_modo == ModoRespuesta.escribir) Teclado(onTecla: _onTecla),
+      ],
+    );
+  }
+
+  /// Puntaje y las dos formas de contestar.
+  Widget _encabezado() {
+    return Column(
+      children: [
+        ChipPuntaje(puntaje: _puntaje, total: _total),
+        const SizedBox(height: 10),
+        Row(
+          children: [
+            for (final modo in ModoRespuesta.values) ...[
+              Pastilla(
+                texto: modo.etiqueta,
+                activa: _modo == modo,
+                alTocar: () => _cambiarModo(modo),
+              ),
+              const SizedBox(width: 6),
+            ],
+          ],
+        ),
       ],
     );
   }
