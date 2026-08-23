@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../constantes.dart';
 import '../datos/repositorio_particelle.dart';
 import '../logica/correccion.dart';
+import '../logica/modo_respuesta.dart';
 import '../logica/seleccion_azar.dart';
 import '../modelos/particella.dart';
 import '../tema.dart';
@@ -14,24 +15,6 @@ import '../widgets/hoja_ayuda.dart';
 import '../widgets/pastilla.dart';
 import '../widgets/tarjeta_pregunta.dart';
 import '../widgets/teclado.dart';
-
-/// Las dos formas de contestar la misma frase.
-enum ModoVia {
-  /// Se toca cuál de los verbos va. Rápido, y es el que enseña qué verbo pide
-  /// cada sentido: irse, llevarse, tirar, echar.
-  elegir,
-
-  /// Se escribe la frase entera. Es más difícil porque además del verbo hay
-  /// que acomodar el «via» en su lugar: buttalo via, l'ho portato via.
-  escribir,
-}
-
-extension _EtiquetaModo on ModoVia {
-  String get etiqueta => switch (this) {
-        ModoVia.elegir => 'Elegir',
-        ModoVia.escribir => 'Escribir',
-      };
-}
 
 /// Práctica del «via» pegado al verbo.
 ///
@@ -56,7 +39,7 @@ class _PantallaViaState extends State<PantallaVia> {
 
   List<FraseParticella> _frases = const [];
   FraseParticella? _actual;
-  ModoVia _modo = ModoVia.elegir;
+  ModoRespuesta _modo = ModoRespuesta.elegir;
 
   String _elegida = '';
   String _texto = '';
@@ -103,7 +86,7 @@ class _PantallaViaState extends State<PantallaVia> {
 
   /// Cambiar de modo deja la misma frase pero borra lo contestado: si no, se
   /// pasaría a escribir con la respuesta ya elegida a la vista.
-  void _cambiarModo(ModoVia modo) {
+  void _cambiarModo(ModoRespuesta modo) {
     if (modo == _modo) return;
     setState(() {
       _modo = modo;
@@ -122,13 +105,13 @@ class _PantallaViaState extends State<PantallaVia> {
   }
 
   bool get _hayRespuesta => switch (_modo) {
-        ModoVia.elegir => _elegida.isNotEmpty,
-        ModoVia.escribir => _texto.trim().isNotEmpty,
+        ModoRespuesta.elegir => _elegida.isNotEmpty,
+        ModoRespuesta.escribir => _texto.trim().isNotEmpty,
       };
 
   bool get _acerto => switch (_modo) {
-        ModoVia.elegir => _actual != null && _elegida == _actual!.correcta,
-        ModoVia.escribir => todoAcertado(_correccion),
+        ModoRespuesta.elegir => _actual != null && _elegida == _actual!.correcta,
+        ModoRespuesta.escribir => todoAcertado(_correccion),
       };
 
   void _accionBoton() {
@@ -140,7 +123,7 @@ class _PantallaViaState extends State<PantallaVia> {
     if (actual == null || !_hayRespuesta) return;
 
     setState(() {
-      if (_modo == ModoVia.escribir) {
+      if (_modo == ModoRespuesta.escribir) {
         _correccion = corregir(correcta: actual.resuelta, respuesta: _texto);
       }
       _total++;
@@ -181,7 +164,7 @@ class _PantallaViaState extends State<PantallaVia> {
                 const SizedBox(height: 10),
                 _encabezado(),
                 const SizedBox(height: 12),
-                if (_modo == ModoVia.elegir) ...[
+                if (_modo == ModoRespuesta.elegir) ...[
                   _tarjetaConHueco(actual),
                   const SizedBox(height: 16),
                   FilaOpciones(
@@ -232,7 +215,7 @@ class _PantallaViaState extends State<PantallaVia> {
             ),
           ),
         ),
-        if (_modo == ModoVia.escribir)
+        if (_modo == ModoRespuesta.escribir)
           // El apóstrofo hace falta acá y no en las otras pantallas: la mitad
           // de las frases lo llevan (l'ho buttato via, vent'anni).
           Teclado(onTecla: _onTecla, teclasExtra: const ["'"]),
@@ -252,7 +235,7 @@ class _PantallaViaState extends State<PantallaVia> {
         const SizedBox(height: 10),
         Row(
           children: [
-            for (final modo in ModoVia.values) ...[
+            for (final modo in ModoRespuesta.values) ...[
               Pastilla(
                 texto: modo.etiqueta,
                 activa: _modo == modo,
@@ -381,7 +364,7 @@ class _PantallaViaState extends State<PantallaVia> {
   /// verde lo que escribió y en rojo lo que le faltó. En el de elegir alcanza
   /// con mostrarla entera.
   Widget _frasePintada(FraseParticella actual) {
-    if (_modo == ModoVia.elegir) {
+    if (_modo == ModoRespuesta.elegir) {
       return Text(
         _acerto ? '¡Correcto!' : 'Va: ${actual.resuelta}',
         maxLines: 2,

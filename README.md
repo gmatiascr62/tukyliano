@@ -11,7 +11,7 @@ algún commit viejo aparecen `main.py` o `buildozer.spec`, son de esa.
 | Sección | Qué se practica |
 |---|---|
 | Frasi | Se lee una frase en español y se escribe en italiano. Corrige palabra por palabra, en verde y rojo. |
-| Verbi | Conjugar: sale un verbo, un tiempo y una persona. |
+| Verbi | Conjugar: sale un verbo, un tiempo y una persona. Se contesta escribiendo o eligiendo entre cuatro formas del mismo verbo. |
 | Articoli | El artículo que va con cada sustantivo. Se practican los determinados, los indeterminados (con los partitivos) o los dos mezclados, y un botón explica la tabla entera. |
 | Preposizioni | Completar el hueco con la preposición, simple o articulada. Se elige con cuáles practicar (se pueden dejar dos prendidas y el resto apagadas) y un botón explica la tabla. |
 | Via | El «via» que se le pega al verbo (andare via, buttare via). Se elige el verbo o se escribe la frase entera, y un botón explica cómo se usa. |
