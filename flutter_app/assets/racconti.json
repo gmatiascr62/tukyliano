@@ -1,5 +1,5 @@
 {
- "version": 12,
+ "version": 13,
  "nombres": [
   "Marco",
   "Anna",
@@ -1888,6 +1888,789 @@
     {
      "it": "Marco: ...Ci vediamo sabato, Paolo.",
      "es": "Marco: ...Nos vemos el sábado, Paolo."
+    }
+   ]
+  },
+  {
+   "id": "vado-al-supermercato",
+   "imagen": "colazione",
+   "foto": "supermercato",
+   "titulo": "Vado al supermercato",
+   "titulo_es": "Voy al supermercado",
+   "nivel": 5,
+   "tema": "cotidiano",
+   "vocabulario": [
+    {
+     "it": "oggi",
+     "es": "hoy"
+    },
+    {
+     "it": "sabato",
+     "es": "sábado"
+    },
+    {
+     "it": "nove",
+     "es": "nueve"
+    },
+    {
+     "it": "devo",
+     "es": "tengo que"
+    },
+    {
+     "it": "fare",
+     "es": "hacer"
+    },
+    {
+     "it": "spesa",
+     "es": "las compras (fare la spesa: hacer las compras)"
+    },
+    {
+     "it": "prima",
+     "es": "antes, primero"
+    },
+    {
+     "it": "uscire",
+     "es": "salir"
+    },
+    {
+     "it": "controllo/controllare",
+     "es": "reviso, fijarse"
+    },
+    {
+     "it": "cosa",
+     "es": "qué, cosa"
+    },
+    {
+     "it": "manca",
+     "es": "falta"
+    },
+    {
+     "it": "apro",
+     "es": "abro"
+    },
+    {
+     "it": "frigorifero",
+     "es": "heladera"
+    },
+    {
+     "it": "vedo",
+     "es": "veo"
+    },
+    {
+     "it": "quasi",
+     "es": "casi"
+    },
+    {
+     "it": "vuoto",
+     "es": "vacío"
+    },
+    {
+     "it": "servono",
+     "es": "me hacen falta, necesito"
+    },
+    {
+     "it": "uova",
+     "es": "huevos"
+    },
+    {
+     "it": "guardo",
+     "es": "miro"
+    },
+    {
+     "it": "anche",
+     "es": "también"
+    },
+    {
+     "it": "dispensa",
+     "es": "despensa"
+    },
+    {
+     "it": "più",
+     "es": "más"
+    },
+    {
+     "it": "sta",
+     "es": "está"
+    },
+    {
+     "it": "finendo",
+     "es": "terminando"
+    },
+    {
+     "it": "lista",
+     "es": "lista"
+    },
+    {
+     "it": "dimenticare/dimenticato",
+     "es": "olvidarse, olvidado"
+    },
+    {
+     "it": "niente",
+     "es": "nada"
+    },
+    {
+     "it": "prendo",
+     "es": "agarro, tomo"
+    },
+    {
+     "it": "portafoglio",
+     "es": "billetera"
+    },
+    {
+     "it": "esco",
+     "es": "salgo"
+    },
+    {
+     "it": "chiudo",
+     "es": "cierro"
+    },
+    {
+     "it": "supermercato",
+     "es": "supermercado"
+    },
+    {
+     "it": "molto",
+     "es": "muy, mucho"
+    },
+    {
+     "it": "lontano",
+     "es": "lejos"
+    },
+    {
+     "it": "decido",
+     "es": "decido"
+    },
+    {
+     "it": "andarci",
+     "es": "ir ahí"
+    },
+    {
+     "it": "dopo",
+     "es": "después"
+    },
+    {
+     "it": "circa",
+     "es": "más o menos"
+    },
+    {
+     "it": "dieci",
+     "es": "diez"
+    },
+    {
+     "it": "minuti/minuto",
+     "es": "minutos, minuto"
+    },
+    {
+     "it": "arrivo/arriva",
+     "es": "llego, llega"
+    },
+    {
+     "it": "ingresso",
+     "es": "entrada"
+    },
+    {
+     "it": "carrello",
+     "es": "carrito"
+    },
+    {
+     "it": "entro",
+     "es": "entro"
+    },
+    {
+     "it": "vado",
+     "es": "voy"
+    },
+    {
+     "it": "reparto",
+     "es": "sección"
+    },
+    {
+     "it": "pomodori",
+     "es": "tomates"
+    },
+    {
+     "it": "bell'",
+     "es": "lindo, buen (bell'aspetto: buen aspecto)"
+    },
+    {
+     "it": "aspetto",
+     "es": "aspecto; espero"
+    },
+    {
+     "it": "quindi",
+     "es": "así que"
+    },
+    {
+     "it": "alcuni",
+     "es": "algunos"
+    },
+    {
+     "it": "compro",
+     "es": "compro"
+    },
+    {
+     "it": "patate",
+     "es": "papas"
+    },
+    {
+     "it": "due",
+     "es": "dos"
+    },
+    {
+     "it": "cipolle",
+     "es": "cebollas"
+    },
+    {
+     "it": "mele",
+     "es": "manzanas"
+    },
+    {
+     "it": "offerta",
+     "es": "oferta"
+    },
+    {
+     "it": "questa",
+     "es": "esta"
+    },
+    {
+     "it": "metto",
+     "es": "pongo"
+    },
+    {
+     "it": "chilo",
+     "es": "kilo"
+    },
+    {
+     "it": "sacchetto",
+     "es": "bolsita"
+    },
+    {
+     "it": "poi",
+     "es": "después"
+    },
+    {
+     "it": "passo/passa/passando",
+     "es": "paso, pasa, pasando"
+    },
+    {
+     "it": "latticini",
+     "es": "lácteos"
+    },
+    {
+     "it": "pezzo",
+     "es": "pedazo"
+    },
+    {
+     "it": "data",
+     "es": "fecha"
+    },
+    {
+     "it": "scadenza",
+     "es": "vencimiento"
+    },
+    {
+     "it": "metterli",
+     "es": "ponerlos"
+    },
+    {
+     "it": "confezione",
+     "es": "envase"
+    },
+    {
+     "it": "siano",
+     "es": "estén, sean"
+    },
+    {
+     "it": "rotte",
+     "es": "rotas"
+    },
+    {
+     "it": "continuo",
+     "es": "sigo"
+    },
+    {
+     "it": "verso",
+     "es": "hacia"
+    },
+    {
+     "it": "tantissimi",
+     "es": "muchísimos"
+    },
+    {
+     "it": "tipi",
+     "es": "tipos"
+    },
+    {
+     "it": "tra",
+     "es": "entre"
+    },
+    {
+     "it": "cui",
+     "es": "que, el cual (tra cui: entre los que)"
+    },
+    {
+     "it": "scegliere/scelgo",
+     "es": "elegir, elijo"
+    },
+    {
+     "it": "fine",
+     "es": "final (alla fine: al final)"
+    },
+    {
+     "it": "pacco",
+     "es": "paquete"
+    },
+    {
+     "it": "spaghetti",
+     "es": "espaguetis"
+    },
+    {
+     "it": "confronto",
+     "es": "comparo"
+    },
+    {
+     "it": "quello",
+     "es": "ese, el que"
+    },
+    {
+     "it": "conveniente",
+     "es": "conveniente"
+    },
+    {
+     "it": "davanti",
+     "es": "delante"
+    },
+    {
+     "it": "panetteria",
+     "es": "panadería"
+    },
+    {
+     "it": "sento",
+     "es": "siento, huelo"
+    },
+    {
+     "it": "profumo",
+     "es": "olor, perfume"
+    },
+    {
+     "it": "appena",
+     "es": "recién"
+    },
+    {
+     "it": "sfornato",
+     "es": "recién horneado"
+    },
+    {
+     "it": "resisto",
+     "es": "resisto"
+    },
+    {
+     "it": "pagnotta",
+     "es": "hogaza de pan"
+    },
+    {
+     "it": "andare",
+     "es": "ir"
+    },
+    {
+     "it": "cassa/casse",
+     "es": "caja, cajas"
+    },
+    {
+     "it": "nuovo",
+     "es": "nuevo (di nuovo: de nuevo)"
+    },
+    {
+     "it": "accorgo",
+     "es": "me doy cuenta"
+    },
+    {
+     "it": "detersivo",
+     "es": "detergente"
+    },
+    {
+     "it": "torno",
+     "es": "vuelvo"
+    },
+    {
+     "it": "indietro",
+     "es": "atrás"
+    },
+    {
+     "it": "cerco",
+     "es": "busco"
+    },
+    {
+     "it": "prodotti",
+     "es": "productos"
+    },
+    {
+     "it": "carta",
+     "es": "tarjeta; papel (carta igienica)"
+    },
+    {
+     "it": "igienica",
+     "es": "higiénica"
+    },
+    {
+     "it": "adesso",
+     "es": "ahora"
+    },
+    {
+     "it": "credo",
+     "es": "creo"
+    },
+    {
+     "it": "avere",
+     "es": "tener"
+    },
+    {
+     "it": "tutto/tutti/tutta",
+     "es": "todo, todos, toda"
+    },
+    {
+     "it": "abbastanza",
+     "es": "bastante"
+    },
+    {
+     "it": "pieno/piene",
+     "es": "lleno, llenas"
+    },
+    {
+     "it": "dirigo",
+     "es": "me dirijo"
+    },
+    {
+     "it": "diverse",
+     "es": "varias"
+    },
+    {
+     "it": "persone",
+     "es": "personas"
+    },
+    {
+     "it": "fila",
+     "es": "fila"
+    },
+    {
+     "it": "me",
+     "es": "mí"
+    },
+    {
+     "it": "qualche",
+     "es": "algún, unos"
+    },
+    {
+     "it": "finalmente",
+     "es": "finalmente, por fin"
+    },
+    {
+     "it": "mio",
+     "es": "mi"
+    },
+    {
+     "it": "turno",
+     "es": "turno"
+    },
+    {
+     "it": "nastro",
+     "es": "cinta"
+    },
+    {
+     "it": "trasportatore",
+     "es": "transportadora"
+    },
+    {
+     "it": "cassiera",
+     "es": "cajera"
+    },
+    {
+     "it": "volta",
+     "es": "vez (uno alla volta: uno por vez)"
+    },
+    {
+     "it": "intanto",
+     "es": "mientras tanto"
+    },
+    {
+     "it": "dice",
+     "es": "dice"
+    },
+    {
+     "it": "totale",
+     "es": "total"
+    },
+    {
+     "it": "quarantasette",
+     "es": "cuarenta y siete"
+    },
+    {
+     "it": "euro",
+     "es": "euros"
+    },
+    {
+     "it": "cinquanta",
+     "es": "cincuenta"
+    },
+    {
+     "it": "pagare",
+     "es": "pagar"
+    },
+    {
+     "it": "avvicino",
+     "es": "acerco"
+    },
+    {
+     "it": "terminale",
+     "es": "posnet, terminal"
+    },
+    {
+     "it": "secondo",
+     "es": "segundo"
+    },
+    {
+     "it": "pagamento",
+     "es": "pago"
+    },
+    {
+     "it": "viene",
+     "es": "viene; es (viene accettato: es aceptado)"
+    },
+    {
+     "it": "accettato",
+     "es": "aceptado"
+    },
+    {
+     "it": "scontrino",
+     "es": "ticket"
+    },
+    {
+     "it": "ringrazio",
+     "es": "agradezco"
+    },
+    {
+     "it": "sistemo",
+     "es": "acomodo, guardo"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Oggi è sabato mattina.",
+     "es": "Hoy es sábado a la mañana."
+    },
+    {
+     "it": "Sono le nove e devo fare la spesa.",
+     "es": "Son las nueve y tengo que hacer las compras.",
+     "cuadro": 1
+    },
+    {
+     "it": "Prima di uscire, controllo cosa manca in casa.",
+     "es": "Antes de salir, reviso qué falta en casa."
+    },
+    {
+     "it": "Apro il frigorifero e vedo che è quasi vuoto.",
+     "es": "Abro la heladera y veo que está casi vacía."
+    },
+    {
+     "it": "Mi servono latte, uova, verdura e formaggio.",
+     "es": "Necesito leche, huevos, verdura y queso."
+    },
+    {
+     "it": "Guardo anche nella dispensa.",
+     "es": "También miro en la despensa."
+    },
+    {
+     "it": "Non c'è più pasta e sta finendo il riso.",
+     "es": "Ya no hay fideos y se está terminando el arroz."
+    },
+    {
+     "it": "Faccio una lista per non dimenticare niente.",
+     "es": "Hago una lista para no olvidarme de nada.",
+     "cuadro": 2
+    },
+    {
+     "it": "Prendo le chiavi, il portafoglio e una borsa.",
+     "es": "Agarro las llaves, la billetera y una bolsa."
+    },
+    {
+     "it": "Esco di casa e chiudo la porta.",
+     "es": "Salgo de casa y cierro la puerta.",
+     "cuadro": 3
+    },
+    {
+     "it": "Il supermercato non è molto lontano.",
+     "es": "El supermercado no está muy lejos."
+    },
+    {
+     "it": "Decido di andarci a piedi.",
+     "es": "Decido ir caminando.",
+     "cuadro": 4
+    },
+    {
+     "it": "Dopo circa dieci minuti arrivo all'ingresso.",
+     "es": "Después de unos diez minutos llego a la entrada.",
+     "cuadro": 5
+    },
+    {
+     "it": "Prendo un carrello e entro nel supermercato.",
+     "es": "Agarro un carrito y entro al supermercado.",
+     "cuadro": 6
+    },
+    {
+     "it": "Per prima cosa vado al reparto frutta e verdura.",
+     "es": "Primero voy a la sección de frutas y verduras."
+    },
+    {
+     "it": "I pomodori hanno un bell'aspetto, quindi ne prendo alcuni.",
+     "es": "Los tomates tienen buen aspecto, así que agarro algunos.",
+     "cuadro": 7
+    },
+    {
+     "it": "Compro anche dell'insalata, delle patate e due cipolle.",
+     "es": "También compro lechuga, papas y dos cebollas.",
+     "cuadro": 8
+    },
+    {
+     "it": "Le mele sono in offerta questa settimana.",
+     "es": "Las manzanas están en oferta esta semana."
+    },
+    {
+     "it": "Ne metto un chilo in un sacchetto.",
+     "es": "Pongo un kilo en una bolsita."
+    },
+    {
+     "it": "Poi passo al reparto dei latticini.",
+     "es": "Después paso a la sección de lácteos."
+    },
+    {
+     "it": "Prendo una bottiglia di latte e un pezzo di formaggio.",
+     "es": "Agarro una botella de leche y un pedazo de queso.",
+     "cuadro": 9
+    },
+    {
+     "it": "Controllo la data di scadenza prima di metterli nel carrello.",
+     "es": "Reviso la fecha de vencimiento antes de ponerlos en el carrito."
+    },
+    {
+     "it": "Mi servono anche le uova.",
+     "es": "También necesito huevos.",
+     "cuadro": 10
+    },
+    {
+     "it": "Apro la confezione per controllare che non siano rotte.",
+     "es": "Abro el envase para controlar que no estén rotos."
+    },
+    {
+     "it": "Continuo verso il reparto della pasta e del riso.",
+     "es": "Sigo hacia la sección de los fideos y el arroz."
+    },
+    {
+     "it": "Ci sono tantissimi tipi di pasta tra cui scegliere.",
+     "es": "Hay muchísimos tipos de fideos para elegir."
+    },
+    {
+     "it": "Alla fine prendo un pacco di spaghetti e uno di penne.",
+     "es": "Al final agarro un paquete de espaguetis y uno de penne.",
+     "cuadro": 12
+    },
+    {
+     "it": "Confronto i prezzi del riso e scelgo quello più conveniente.",
+     "es": "Comparo los precios del arroz y elijo el más conveniente."
+    },
+    {
+     "it": "Passando davanti alla panetteria sento profumo di pane appena sfornato.",
+     "es": "Al pasar por la panadería siento olor a pan recién horneado."
+    },
+    {
+     "it": "Non resisto e compro una pagnotta.",
+     "es": "No me resisto y compro una hogaza de pan.",
+     "cuadro": 11
+    },
+    {
+     "it": "Prima di andare alla cassa controllo di nuovo la lista.",
+     "es": "Antes de ir a la caja reviso de nuevo la lista."
+    },
+    {
+     "it": "Mi accorgo che ho dimenticato il detersivo.",
+     "es": "Me doy cuenta de que me olvidé el detergente.",
+     "cuadro": 13
+    },
+    {
+     "it": "Torno indietro e cerco il reparto dei prodotti per la casa.",
+     "es": "Vuelvo atrás y busco la sección de los productos para la casa."
+    },
+    {
+     "it": "Prendo il detersivo e anche della carta igienica.",
+     "es": "Agarro el detergente y también papel higiénico.",
+     "cuadro": 14
+    },
+    {
+     "it": "Adesso credo di avere tutto.",
+     "es": "Ahora creo que tengo todo."
+    },
+    {
+     "it": "Il carrello è abbastanza pieno.",
+     "es": "El carrito está bastante lleno.",
+     "cuadro": 15
+    },
+    {
+     "it": "Mi dirigo verso le casse.",
+     "es": "Me dirijo hacia las cajas."
+    },
+    {
+     "it": "Ci sono diverse persone in fila davanti a me.",
+     "es": "Hay varias personas en la fila delante de mí."
+    },
+    {
+     "it": "Aspetto qualche minuto e finalmente arriva il mio turno.",
+     "es": "Espero unos minutos y finalmente llega mi turno."
+    },
+    {
+     "it": "Metto tutti i prodotti sul nastro trasportatore.",
+     "es": "Pongo todos los productos sobre la cinta transportadora.",
+     "cuadro": 16
+    },
+    {
+     "it": "La cassiera passa i prodotti uno alla volta.",
+     "es": "La cajera pasa los productos uno por uno."
+    },
+    {
+     "it": "Intanto metto la spesa nelle borse.",
+     "es": "Mientras tanto pongo las compras en las bolsas."
+    },
+    {
+     "it": "La cassiera mi dice che il totale è quarantasette euro e cinquanta.",
+     "es": "La cajera me dice que el total es cuarenta y siete euros con cincuenta."
+    },
+    {
+     "it": "Decido di pagare con la carta.",
+     "es": "Decido pagar con tarjeta."
+    },
+    {
+     "it": "Avvicino la carta al terminale e aspetto qualche secondo.",
+     "es": "Acerco la tarjeta al posnet y espero unos segundos.",
+     "cuadro": 17
+    },
+    {
+     "it": "Il pagamento viene accettato.",
+     "es": "El pago es aceptado."
+    },
+    {
+     "it": "Prendo lo scontrino e ringrazio la cassiera.",
+     "es": "Agarro el ticket y le agradezco a la cajera."
+    },
+    {
+     "it": "Esco dal supermercato con le borse piene.",
+     "es": "Salgo del supermercado con las bolsas llenas.",
+     "cuadro": 18
+    },
+    {
+     "it": "Torno a casa a piedi e sistemo tutta la spesa.",
+     "es": "Vuelvo a casa caminando y guardo todas las compras."
+    },
+    {
+     "it": "Finalmente il frigorifero è di nuovo pieno!",
+     "es": "¡Por fin la heladera está llena otra vez!"
     }
    ]
   },

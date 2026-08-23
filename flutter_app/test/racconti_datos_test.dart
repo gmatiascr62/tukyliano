@@ -225,7 +225,7 @@ void main() {
     test('los cuentos sueltos siguen siendo uno cada uno', () {
       final sueltos = _datos.obras.where((o) => !o.tieneCapitulos);
 
-      expect(sueltos.length, 8);
+      expect(sueltos.length, 9);
       for (final obra in sueltos) {
         expect(obra.serie, isEmpty, reason: obra.titulo);
       }
