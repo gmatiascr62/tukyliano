@@ -71,6 +71,21 @@ List<String> formasDe(String preposicion) => [
   return null;
 }
 
+/// Igual que [separar], pero también entiende las que no se contraen y por eso
+/// se escriben en dos palabras: "per la" → per + la.
+({String preposicion, String? articulo})? analizar(String respuesta) {
+  final palabras = respuesta.split(' ');
+  if (palabras.length == 1) return separar(respuesta);
+  if (palabras.length != 2) return null;
+  if (!preposicionesSimples.contains(palabras[0])) return null;
+  if (!articulosDeterminados.contains(palabras[1])) return null;
+  return (preposicion: palabras[0], articulo: palabras[1]);
+}
+
+/// De qué preposición viene una respuesta: "nella" y "in" son las dos de in.
+/// Es lo que deja practicar de a una preposición por vez.
+String? preposicionDe(String respuesta) => analizar(respuesta)?.preposicion;
+
 /// Cómo se explica una contracción en una línea: "in + la = nella".
 String? cuentaDe(String forma) {
   final partes = separar(forma);

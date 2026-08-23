@@ -4,7 +4,10 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/repositorio_preposizioni.dart';
 import 'package:tukyliano/pantallas/pantalla_preposizioni.dart';
+import 'package:tukyliano/logica/preposiciones.dart';
 import 'package:tukyliano/tema.dart';
+import 'package:tukyliano/widgets/boton_opcion.dart';
+import 'package:tukyliano/widgets/pastilla.dart';
 
 import 'util_pantalla.dart';
 
@@ -47,6 +50,26 @@ const _soloRegalo = '''
   }
 ''';
 
+/// Tres frases, una de cada preposición, para probar los botones de arriba.
+const _tresPreposiciones = '''
+  {
+    "version": 1,
+    "frases": [
+      {"frase": "Vado ___ città", "correcta": "in", "es": "voy a la ciudad",
+       "opciones": ["a", "in", "alla", "nella"],
+       "explicacion": "«in città» es fija."},
+      {"frase": "Il regalo è ___ nonna", "correcta": "per la",
+       "es": "el regalo es para la abuela",
+       "opciones": ["per la", "perla", "per", "alla"],
+       "explicacion": "«per» no se pega nunca con el artículo."},
+      {"frase": "Il libro è ___ tavolo", "correcta": "sul",
+       "es": "el libro está sobre la mesa",
+       "opciones": ["sul", "nel", "al", "sullo"],
+       "explicacion": "su + il = sul."}
+    ]
+  }
+''';
+
 RepositorioPreposizioni _repo(String json) => RepositorioPreposizioni(
       leerAsset: (_) async => json,
       cliente: MockClient((_) async => http.Response('', 404)),
@@ -62,8 +85,23 @@ Future<void> _abrir(WidgetTester tester, String json) async {
   await tester.pumpAndSettle();
 }
 
+/// Toca un botón de respuesta. Va por el widget y no por el texto porque las
+/// pastillas de arriba dicen lo mismo: "in" es a la vez una preposición que se
+/// puede apagar y una de las opciones para contestar.
 Future<void> _tocar(WidgetTester tester, String texto) async {
-  await tester.tap(find.text(texto));
+  await tester.tap(find.widgetWithText(BotonOpcion, texto));
+  await tester.pumpAndSettle();
+}
+
+/// Toca uno de los botones grandes de abajo (Verificar, Siguiente).
+Future<void> _tocarBoton(WidgetTester tester, String texto) async {
+  await tester.tap(find.widgetWithText(ElevatedButton, texto));
+  await tester.pumpAndSettle();
+}
+
+/// Prende o apaga una preposición de las de arriba.
+Future<void> _tocarPastilla(WidgetTester tester, String texto) async {
+  await tester.tap(find.widgetWithText(Pastilla, texto));
   await tester.pumpAndSettle();
 }
 
@@ -89,7 +127,7 @@ void main() {
     await _abrir(tester, _soloCitta);
 
     for (final opcion in ['a', 'in', 'alla', 'nella']) {
-      expect(find.text(opcion), findsOneWidget);
+      expect(find.widgetWithText(BotonOpcion, opcion), findsOneWidget);
     }
   });
 
@@ -124,7 +162,7 @@ void main() {
       await _abrir(tester, _soloCitta);
 
       await _tocar(tester, 'in');
-      await _tocar(tester, 'Verificar');
+      await _tocarBoton(tester, 'Verificar');
 
       expect(find.text('¡Correcto!'), findsOneWidget);
       expect(find.text('Puntaje: 1/1'), findsOneWidget);
@@ -137,7 +175,7 @@ void main() {
       await _abrir(tester, _soloCitta);
 
       await _tocar(tester, 'alla');
-      await _tocar(tester, 'Verificar');
+      await _tocarBoton(tester, 'Verificar');
 
       expect(find.text('Va: Vado in città'), findsOneWidget);
       expect(find.text('Puntaje: 0/1'), findsOneWidget);
@@ -148,7 +186,7 @@ void main() {
       await _abrir(tester, _soloCitta);
 
       await _tocar(tester, 'alla');
-      await _tocar(tester, 'Verificar');
+      await _tocarBoton(tester, 'Verificar');
       await _tocar(tester, 'in');
 
       // Sigue mostrando lo que se contestó, no lo último que se tocó.
@@ -161,8 +199,8 @@ void main() {
       await _abrir(tester, _soloCitta);
 
       await _tocar(tester, 'in');
-      await _tocar(tester, 'Verificar');
-      await _tocar(tester, 'Siguiente');
+      await _tocarBoton(tester, 'Verificar');
+      await _tocarBoton(tester, 'Siguiente');
 
       expect(_fraseEnPantalla(tester), 'Vado ___ città');
       expect(find.text('¡Correcto!'), findsNothing);
@@ -175,7 +213,7 @@ void main() {
     await _abrir(tester, _soloBorsa);
 
     await _tocar(tester, 'nella');
-    await _tocar(tester, 'Verificar');
+    await _tocarBoton(tester, 'Verificar');
 
     expect(find.text('in + la = nella'), findsOneWidget);
   });
@@ -184,7 +222,7 @@ void main() {
     await _abrir(tester, _soloCitta);
 
     await _tocar(tester, 'in');
-    await _tocar(tester, 'Verificar');
+    await _tocarBoton(tester, 'Verificar');
 
     // "in" es la preposición sola: no hay nada que sumar.
     expect(find.textContaining(' = '), findsNothing);
@@ -195,7 +233,7 @@ void main() {
     await _abrir(tester, _soloRegalo);
 
     await _tocar(tester, 'per la');
-    await _tocar(tester, 'Verificar');
+    await _tocarBoton(tester, 'Verificar');
 
     expect(_fraseEnPantalla(tester), 'Il regalo è per la nonna');
     expect(find.text('¡Correcto!'), findsOneWidget);
@@ -207,7 +245,7 @@ void main() {
     await _abrir(tester, _soloBorsa);
 
     await _tocar(tester, 'in');
-    await _tocar(tester, 'Verificar');
+    await _tocarBoton(tester, 'Verificar');
 
     final explicacion = tester.getRect(find.textContaining('cosa concreta'));
     final boton =
@@ -228,4 +266,121 @@ void main() {
 
     expect(find.textContaining('Todavía no hay frases'), findsOneWidget);
   });
+
+  group('elegir con cuáles practicar', () {
+    testWidgets('arrancan las siete prendidas', (tester) async {
+      await _abrir(tester, _tresPreposiciones);
+
+      for (final p in preposicionesSimples) {
+        expect(find.widgetWithText(Pastilla, p), findsOneWidget, reason: p);
+      }
+      expect(find.widgetWithText(Pastilla, 'Todas'), findsOneWidget);
+    });
+
+    testWidgets('apagar una la saca de la práctica', (tester) async {
+      await _abrir(tester, _tresPreposiciones);
+
+      // Quedan solo las frases de per: las otras dos preposiciones apagadas.
+      for (final p in preposicionesSimples) {
+        if (p != 'per') await _tocarPastilla(tester, p);
+      }
+
+      for (var i = 0; i < 4; i++) {
+        expect(_fraseEnPantalla(tester), 'Il regalo è ___ nonna');
+        await _tocar(tester, 'per la');
+        await _tocarBoton(tester, 'Verificar');
+        await _tocarBoton(tester, 'Siguiente');
+      }
+    });
+
+    testWidgets('se pueden dejar dos prendidas', (tester) async {
+      await _abrir(tester, _tresPreposiciones);
+
+      // Solo in y su: la frase de per no tiene que salir nunca.
+      for (final p in preposicionesSimples) {
+        if (p != 'in' && p != 'su') await _tocarPastilla(tester, p);
+      }
+
+      for (var i = 0; i < 6; i++) {
+        expect(
+          _fraseEnPantalla(tester),
+          anyOf('Vado ___ città', 'Il libro è ___ tavolo'),
+        );
+        await _tocar(tester, _opcionCorrecta(tester));
+        await _tocarBoton(tester, 'Verificar');
+        await _tocarBoton(tester, 'Siguiente');
+      }
+    });
+
+    testWidgets('la última prendida no se puede apagar', (tester) async {
+      await _abrir(tester, _tresPreposiciones);
+
+      for (final p in preposicionesSimples) {
+        await _tocarPastilla(tester, p);
+      }
+
+      // Alguna quedó prendida: sin ninguna no habría nada que practicar.
+      final prendidas = tester
+          .widgetList<Pastilla>(find.byType(Pastilla))
+          .where((p) => p.activa && p.texto != 'Todas');
+      expect(prendidas.length, 1);
+    });
+
+    testWidgets('con una preposición sin frases lo dice', (tester) async {
+      // El JSON de prueba solo tiene in, per y su: si se practica una de las
+      // otras, el hueco es de la selección y no de los datos.
+      await _abrir(tester, _tresPreposiciones);
+      for (final p in preposicionesSimples) {
+        if (p != 'di') await _tocarPastilla(tester, p);
+      }
+
+      expect(find.text('No hay frases para lo que elegiste arriba.'),
+          findsOneWidget);
+      // Y se puede volver sin salir de la sección.
+      await _tocarPastilla(tester, 'Todas');
+      expect(find.textContaining('No hay frases'), findsNothing);
+    });
+
+    testWidgets('Todas las vuelve a prender', (tester) async {
+      await _abrir(tester, _tresPreposiciones);
+      await _tocarPastilla(tester, 'in');
+      await _tocarPastilla(tester, 'su');
+
+      await _tocarPastilla(tester, 'Todas');
+
+      final prendidas = tester
+          .widgetList<Pastilla>(find.byType(Pastilla))
+          .where((p) => p.activa);
+      expect(prendidas.length, preposicionesSimples.length + 1);
+    });
+  });
+
+  group('la explicación', () {
+    testWidgets('el botón de info abre la tabla', (tester) async {
+      await _abrir(tester, _soloCitta);
+      await tester.tap(find.byIcon(Icons.info_outline));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Cinco se pegan con el artículo'), findsOneWidget);
+
+      await tester.drag(find.byType(ListView), const Offset(0, -500));
+      await tester.pumpAndSettle();
+      expect(find.text('per y con no se pegan nunca'), findsOneWidget);
+    });
+
+    testWidgets('avisa dónde el español dice otra cosa', (tester) async {
+      await _abrir(tester, _soloCitta);
+      await tester.tap(find.byIcon(Icons.info_outline));
+      await tester.pumpAndSettle();
+
+      await tester.drag(find.byType(ListView), const Offset(0, -900));
+      await tester.pumpAndSettle();
+
+      expect(find.text('vado in città (voy a la ciudad)'), findsOneWidget);
+    });
+  });
 }
+
+/// El botón que hay que tocar para acertar la frase que está en pantalla.
+String _opcionCorrecta(WidgetTester tester) =>
+    _fraseEnPantalla(tester).startsWith('Vado') ? 'in' : 'sul';

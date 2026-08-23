@@ -22,17 +22,6 @@ RepositorioPreposizioni _repo(
       carpeta: () async => null,
     );
 
-/// Parte lo que va en el hueco. "nella" es una sola palabra, "per la" son dos
-/// porque per no se contrae.
-({String preposicion, String? articulo})? _analizar(String respuesta) {
-  final palabras = respuesta.split(' ');
-  if (palabras.length == 1) return separar(respuesta);
-  if (palabras.length != 2) return null;
-  if (!preposicionesSimples.contains(palabras[0])) return null;
-  if (!articulosDeterminados.contains(palabras[1])) return null;
-  return (preposicion: palabras[0], articulo: palabras[1]);
-}
-
 void main() {
   group('el asset de preposiciones', () {
     test('tiene frases y ninguna se descartó al leerla', () {
@@ -74,14 +63,14 @@ void main() {
       // La red de contención: si una quedó mal escrita ("nela", "sul'"),
       // acá no se puede analizar y salta.
       for (final f in _datos.frases) {
-        expect(_analizar(f.correcta), isNotNull,
+        expect(analizar(f.correcta), isNotNull,
             reason: '"${f.correcta}" en "${f.frase}"');
       }
     });
 
     test('las contracciones del JSON coinciden con la tabla', () {
       for (final f in _datos.frases) {
-        final partes = _analizar(f.correcta)!;
+        final partes = analizar(f.correcta)!;
         final articulo = partes.articulo;
         if (articulo == null) continue;
 
@@ -103,7 +92,7 @@ void main() {
       for (final f in _datos.frases) {
         for (final opcion in f.opciones) {
           if (aProposito.contains(opcion)) continue;
-          expect(_analizar(opcion), isNotNull,
+          expect(analizar(opcion), isNotNull,
               reason: '"$opcion" en "${f.frase}"');
         }
       }
@@ -123,7 +112,7 @@ void main() {
 
     test('están practicadas las siete preposiciones', () {
       final usadas = {
-        for (final f in _datos.frases) _analizar(f.correcta)!.preposicion,
+        for (final f in _datos.frases) analizar(f.correcta)!.preposicion,
       };
       expect(usadas, containsAll(preposicionesSimples));
     });
@@ -132,16 +121,16 @@ void main() {
       // Las dos mitades del problema: elegir la preposición y saber si se
       // pega. Si faltara una, media práctica se perdería.
       final conArticulo =
-          _datos.frases.where((f) => _analizar(f.correcta)!.articulo != null);
+          _datos.frases.where((f) => analizar(f.correcta)!.articulo != null);
       final sinArticulo =
-          _datos.frases.where((f) => _analizar(f.correcta)!.articulo == null);
+          _datos.frases.where((f) => analizar(f.correcta)!.articulo == null);
       expect(conArticulo, isNotEmpty);
       expect(sinArticulo, isNotEmpty);
     });
 
     test('se practican los siete artículos de la tabla', () {
       final usados = {
-        for (final f in _datos.frases) _analizar(f.correcta)!.articulo,
+        for (final f in _datos.frases) analizar(f.correcta)!.articulo,
       }..remove(null);
       expect(usados, containsAll(articulosDeterminados));
     });

@@ -13,7 +13,7 @@ algún commit viejo aparecen `main.py` o `buildozer.spec`, son de esa.
 | Frasi | Se lee una frase en español y se escribe en italiano. Corrige palabra por palabra, en verde y rojo. |
 | Verbi | Conjugar: sale un verbo, un tiempo y una persona. |
 | Articoli | El artículo que va con cada sustantivo. Se practican los determinados, los indeterminados (con los partitivos) o los dos mezclados, y un botón explica la tabla entera. |
-| Preposizioni | Completar el hueco con la preposición, simple o articulada. |
+| Preposizioni | Completar el hueco con la preposición, simple o articulada. Se elige con cuáles practicar (se pueden dejar dos prendidas y el resto apagadas) y un botón explica la tabla. |
 | Via | El «via» que se le pega al verbo (andare via, buttare via). Se elige el verbo o se escribe la frase entera, y un botón explica cómo se usa. |
 | Racconti | Cuentos para leer en italiano; se toca el renglón para ver la traducción y escucharlo. |
 | Chat | Charla con Gemini, que corrige sobre la marcha y traduce lo que se ponga entre almohadillas. |
