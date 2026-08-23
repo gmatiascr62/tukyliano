@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "frases": [
   {
    "frase": "Vado ___ Roma",
@@ -984,6 +984,222 @@
     "con"
    ],
    "explicacion": "Con quién vas: «con»."
+  },
+  {
+   "frase": "Vado al cinema ___ Anna.",
+   "correcta": "con",
+   "es": "voy al cine con Anna",
+   "opciones": [
+    "a",
+    "con",
+    "di",
+    "per"
+   ],
+   "explicacion": "Con la gente va siempre «con», sin artículo delante del nombre."
+  },
+  {
+   "frase": "Bevo il caffè ___ latte.",
+   "correcta": "con il",
+   "es": "tomo el café con leche",
+   "opciones": [
+    "con il",
+    "nel",
+    "del",
+    "con"
+   ],
+   "explicacion": "«con» no se contrae nunca: con + il son dos palabras."
+  },
+  {
+   "frase": "Esco ___ miei amici.",
+   "correcta": "con i",
+   "es": "salgo con mis amigos",
+   "opciones": [
+    "con i",
+    "con",
+    "dei",
+    "ai"
+   ],
+   "explicacion": "Otra vez separadas: con + i = «con i», no «coi»."
+  },
+  {
+   "frase": "Scrivo ___ penna rossa.",
+   "correcta": "con la",
+   "es": "escribo con la lapicera roja",
+   "opciones": [
+    "nella",
+    "alla",
+    "con la",
+    "con"
+   ],
+   "explicacion": "El instrumento va con «con»: con la penna, con il coltello."
+  },
+  {
+   "frase": "Vengo ___ te.",
+   "correcta": "con",
+   "es": "voy con vos",
+   "opciones": [
+    "con",
+    "per",
+    "da",
+    "a"
+   ],
+   "explicacion": "Con los pronombres: con me, con te, con lui."
+  },
+  {
+   "frase": "Taglio il pane ___ coltello.",
+   "correcta": "con il",
+   "es": "corto el pan con el cuchillo",
+   "opciones": [
+    "con il",
+    "con",
+    "nel",
+    "sul"
+   ],
+   "explicacion": "Igual que arriba: «con il», en dos palabras."
+  },
+  {
+   "frase": "Parlo ___ direttore domani.",
+   "correcta": "con il",
+   "es": "hablo con el director mañana",
+   "opciones": [
+    "al",
+    "con il",
+    "dal",
+    "con"
+   ],
+   "explicacion": "«parlare con» es hablar con alguien; «parlare a» suena a dirigirle la palabra."
+  },
+  {
+   "frase": "Questo regalo è ___ te.",
+   "correcta": "per",
+   "es": "este regalo es para vos",
+   "opciones": [
+    "a",
+    "di",
+    "per",
+    "da"
+   ],
+   "explicacion": "Para quién va con «per»: per te, per Marco."
+  },
+  {
+   "frase": "Parto ___ Roma domani.",
+   "correcta": "per",
+   "es": "salgo para Roma mañana",
+   "opciones": [
+    "a",
+    "per",
+    "in",
+    "da"
+   ],
+   "explicacion": "«partire per» es salir hacia un lugar; «vado a Roma» es llegar."
+  },
+  {
+   "frase": "Ho comprato i biglietti ___ concerto.",
+   "correcta": "per il",
+   "es": "compré las entradas para el concierto",
+   "opciones": [
+    "per il",
+    "al",
+    "nel",
+    "per"
+   ],
+   "explicacion": "«per» tampoco se pega: per + il = «per il»."
+  },
+  {
+   "frase": "Grazie ___ tutto.",
+   "correcta": "per",
+   "es": "gracias por todo",
+   "opciones": [
+    "di",
+    "per",
+    "da",
+    "a"
+   ],
+   "explicacion": "«grazie per» y «grazie di» se usan las dos, pero per es la más común."
+  },
+  {
+   "frase": "Il treno ___ Milano parte alle sei.",
+   "correcta": "per",
+   "es": "el tren para Milán sale a las seis",
+   "opciones": [
+    "a",
+    "di",
+    "per",
+    "da"
+   ],
+   "explicacion": "El destino de un transporte va con «per»."
+  },
+  {
+   "frase": "Questi fiori sono ___ maestre.",
+   "correcta": "per le",
+   "es": "estas flores son para las maestras",
+   "opciones": [
+    "alle",
+    "delle",
+    "per le",
+    "per"
+   ],
+   "explicacion": "per + le = «per le», separadas."
+  },
+  {
+   "frase": "Mettiamo la tovaglia ___ tavolo.",
+   "correcta": "sul",
+   "es": "ponemos el mantel sobre la mesa",
+   "opciones": [
+    "nel",
+    "sul",
+    "al",
+    "sullo"
+   ],
+   "explicacion": "su + il = sul."
+  },
+  {
+   "frase": "Le foto sono ___ parete.",
+   "correcta": "sulla",
+   "es": "las fotos están en la pared",
+   "opciones": [
+    "nella",
+    "alla",
+    "sulla",
+    "sul"
+   ],
+   "explicacion": "El español dice «en» y el italiano «su»: sulla parete."
+  },
+  {
+   "frase": "Salgo ___ treno alle otto.",
+   "correcta": "sul",
+   "es": "me subo al tren a las ocho",
+   "opciones": [
+    "sul",
+    "nel",
+    "al",
+    "dal"
+   ],
+   "explicacion": "«salire su» es subirse a algo: sul treno, sull'autobus."
+  },
+  {
+   "frase": "Conto ___ di te.",
+   "correcta": "su",
+   "es": "cuento con vos",
+   "opciones": [
+    "su",
+    "con",
+    "per",
+    "a"
+   ],
+   "explicacion": "«contare su» es contar con alguien, aunque el español diga «con»."
+  },
+  {
+   "frase": "Ho letto un articolo ___ giornali.",
+   "correcta": "sui",
+   "es": "leí un artículo en los diarios",
+   "opciones": [
+    "nei",
+    "dai",
+    "sui",
+    "ai"
+   ],
+   "explicacion": "su + i = sui."
   }
  ]
 }

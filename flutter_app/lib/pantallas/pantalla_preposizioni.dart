@@ -8,6 +8,8 @@ import '../logica/preposiciones.dart';
 import '../modelos/preposicion.dart';
 import '../tema.dart';
 import '../widgets/boton_opcion.dart';
+import '../widgets/hoja_ayuda.dart';
+import '../widgets/pastilla.dart';
 import '../widgets/tarjeta_pregunta.dart';
 
 /// Práctica de preposiciones: se muestra una frase italiana con un hueco y
@@ -18,6 +20,9 @@ import '../widgets/tarjeta_pregunta.dart';
 /// artículo (a + il = al, que es una tabla sin excepciones). La traducción al
 /// español debajo de la frase es la que resuelve el primero, y de paso marca
 /// dónde el español miente: "voy a la ciudad" pero "vado in città".
+///
+/// Arriba se elige con cuáles practicar: se pueden dejar dos prendidas y el
+/// resto apagadas, para machacar justo las que no salen.
 class PantallaPreposizioni extends StatefulWidget {
   const PantallaPreposizioni({super.key, this.repositorio});
 
@@ -33,6 +38,12 @@ class _PantallaPreposizioniState extends State<PantallaPreposizioni> {
       widget.repositorio ?? RepositorioPreposizioni();
   final _azar = Random();
 
+  /// Con cuáles se está practicando. Arranca con todas prendidas.
+  final Set<String> _elegidas = {...preposicionesSimples};
+
+  /// Todas las frases del JSON, y las que entran en la práctica según lo que
+  /// esté prendido arriba.
+  List<FrasePreposicion> _todas = const [];
   List<FrasePreposicion> _frases = const [];
   FrasePreposicion? _actual;
   String _elegida = '';
@@ -49,8 +60,42 @@ class _PantallaPreposizioniState extends State<PantallaPreposizioni> {
   Future<void> _empezar() async {
     await _repositorio.cargar();
     if (!mounted) return;
-    _frases = _repositorio.datos.frases;
+    _todas = _repositorio.datos.frases;
+    _filtrar();
+  }
+
+  void _filtrar() {
+    _frases = [
+      for (final f in _todas)
+        if (_elegidas.contains(preposicionDe(f.correcta))) f,
+    ];
     _nueva();
+  }
+
+  /// Prende o apaga una preposición. La última prendida no se puede apagar:
+  /// sin ninguna no quedaría nada para practicar.
+  void _alternar(String preposicion) {
+    if (_elegidas.contains(preposicion) && _elegidas.length == 1) return;
+    setState(() {
+      if (!_elegidas.remove(preposicion)) _elegidas.add(preposicion);
+      _filtrar();
+    });
+  }
+
+  void _todasPrendidas() {
+    if (_elegidas.length == preposicionesSimples.length) return;
+    setState(() {
+      _elegidas.addAll(preposicionesSimples);
+      _filtrar();
+    });
+  }
+
+  void _abrirAyuda() {
+    mostrarAyuda(
+      context,
+      titulo: 'Cómo funcionan las preposiciones',
+      secciones: ayudaDeLasPreposizioni,
+    );
   }
 
   void _nueva() {
@@ -94,12 +139,25 @@ class _PantallaPreposizioniState extends State<PantallaPreposizioni> {
   Widget build(BuildContext context) {
     final actual = _actual;
     if (actual == null) {
-      return const Center(
-        child: Text(
-          'Todavía no hay frases cargadas.',
-          textAlign: TextAlign.center,
-          style: TextStyle(fontSize: 16, color: Tema.textoTenue),
-        ),
+      return Column(
+        children: [
+          const SizedBox(height: 10),
+          _encabezado(),
+          Expanded(
+            child: Center(
+              child: Text(
+                // Con frases cargadas, el hueco es de la selección de arriba
+                // y no de los datos: decirlo evita buscar el problema donde
+                // no está.
+                _todas.isEmpty
+                    ? 'Todavía no hay frases cargadas.'
+                    : 'No hay frases para lo que elegiste arriba.',
+                textAlign: TextAlign.center,
+                style: const TextStyle(fontSize: 16, color: Tema.textoTenue),
+              ),
+            ),
+          ),
+        ],
       );
     }
 
@@ -107,8 +165,8 @@ class _PantallaPreposizioniState extends State<PantallaPreposizioni> {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          const SizedBox(height: 12),
-          Center(child: ChipPuntaje(puntaje: _puntaje, total: _total)),
+          const SizedBox(height: 10),
+          _encabezado(),
           const SizedBox(height: 12),
           _tarjeta(actual),
           const SizedBox(height: 16),
@@ -144,6 +202,53 @@ class _PantallaPreposizioniState extends State<PantallaPreposizioni> {
           const SizedBox(height: 10),
         ],
       ),
+    );
+  }
+
+  /// Puntaje, las preposiciones que se están practicando y la explicación.
+  Widget _encabezado() {
+    return Column(
+      children: [
+        ChipPuntaje(puntaje: _puntaje, total: _total),
+        const SizedBox(height: 10),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Pasan a dos renglones cuando no entran: son siete y en un
+            // celular angosto no van en una fila sola.
+            Expanded(
+              child: Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  Pastilla(
+                    texto: 'Todas',
+                    activa: _elegidas.length == preposicionesSimples.length,
+                    alTocar: _todasPrendidas,
+                  ),
+                  for (final p in preposicionesSimples)
+                    Pastilla(
+                      texto: p,
+                      activa: _elegidas.contains(p),
+                      alTocar: () => _alternar(p),
+                    ),
+                ],
+              ),
+            ),
+            SizedBox(
+              width: 34,
+              height: 34,
+              child: IconButton(
+                onPressed: _abrirAyuda,
+                padding: EdgeInsets.zero,
+                icon: const Icon(Icons.info_outline),
+                color: Tema.verde,
+                tooltip: 'Cómo funcionan las preposiciones',
+              ),
+            ),
+          ],
+        ),
+      ],
     );
   }
 
@@ -275,3 +380,61 @@ class _PantallaPreposizioniState extends State<PantallaPreposizioni> {
     );
   }
 }
+
+/// Lo que explica el botón de info: la tabla de las contracciones y los
+/// lugares donde el español empuja a poner otra cosa.
+const List<SeccionAyuda> ayudaDeLasPreposizioni = [
+  SeccionAyuda(
+    titulo: 'Las siete',
+    ejemplos: [
+      'di = de (di Marco, di legno)',
+      'a = a, en (a Roma, alle otto)',
+      'da = de, desde, a lo de (da Milano, dal medico)',
+      'in = en, a (in Italia, in macchina)',
+      'su = sobre, en (sul tavolo)',
+      'per = para, por (per te)',
+      'con = con (con Anna)',
+    ],
+  ),
+  SeccionAyuda(
+    titulo: 'Cinco se pegan con el artículo',
+    cuerpo: 'di, a, da, in y su se juntan con el determinado y forman una sola '
+        'palabra. La tabla no tiene ninguna excepción.',
+    ejemplos: [
+      'di: del, dello, della, dell\', dei, degli, delle',
+      "a: al, allo, alla, all', ai, agli, alle",
+      "da: dal, dallo, dalla, dall', dai, dagli, dalle",
+      "in: nel, nello, nella, nell', nei, negli, nelle",
+      "su: sul, sullo, sulla, sull', sui, sugli, sulle",
+    ],
+  ),
+  SeccionAyuda(
+    titulo: 'per y con no se pegan nunca',
+    cuerpo: 'Van siempre en dos palabras. "Perla" existe en italiano, pero es '
+        'una perla.',
+    ejemplos: [
+      'per la nonna (no "perla nonna")',
+      'con il treno, con gli amici',
+    ],
+  ),
+  SeccionAyuda(
+    titulo: 'Ciudades con a, países con in',
+    ejemplos: [
+      'vado a Roma, a Milano, a Napoli',
+      'vado in Italia, in Francia, in Argentina',
+      'sono a casa, vado a casa (casa va con a y sin artículo)',
+    ],
+  ),
+  SeccionAyuda(
+    titulo: 'Las que el español dice al revés',
+    cuerpo: 'Acá es donde se pierde el tiempo si no se sabe de memoria.',
+    ejemplos: [
+      'vado in città (voy a la ciudad)',
+      'sono in banca, in ufficio, in centro',
+      'vado in macchina, in treno, in bici (voy en auto, en tren)',
+      'a scuola, a teatro, a letto (sin artículo)',
+      'vado dal medico, da Marco (a lo del médico, a lo de Marco)',
+      'la penna è sul tavolo (está sobre la mesa)',
+    ],
+  ),
+];
