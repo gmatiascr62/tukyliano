@@ -15,6 +15,7 @@ import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_chat.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_preposizioni.dart';
+import 'pantallas/pantalla_proximamente.dart';
 import 'pantallas/pantalla_quiz.dart';
 import 'pantallas/pantalla_racconti.dart';
 import 'pantallas/pantalla_seleccion.dart';
@@ -284,6 +285,21 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         return _seccionVerbos();
       case Seccion.preposizioni:
         return PantallaPreposizioni(repositorio: _preposizioni);
+      case Seccion.via:
+        return const PantallaProximamente(
+          adelanto: 'El via que se le pega al verbo y le cambia el sentido: '
+              'andare via, portare via, buttare via.',
+        );
+      case Seccion.ci:
+        return const PantallaProximamente(
+          adelanto: 'El ci que reemplaza un lugar (vado a Roma: ci vado) y el '
+              "de c'è, ci sono.",
+        );
+      case Seccion.ne:
+        return const PantallaProximamente(
+          adelanto: 'El ne de la cantidad y del "de eso": ne ho due, ne '
+              'parliamo domani.',
+        );
       case Seccion.racconti:
         return PantallaRacconti(repositorio: _racconti, voz: _voz);
       case Seccion.chat:
