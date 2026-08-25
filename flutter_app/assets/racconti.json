@@ -1,5 +1,5 @@
 {
- "version": 13,
+ "version": 14,
  "nombres": [
   "Marco",
   "Anna",
@@ -594,6 +594,7 @@
   {
    "id": "il-primo-giorno-di-lavoro",
    "imagen": "lavoro",
+   "foto": "primo-giorno",
    "titulo": "Il primo giorno di lavoro",
    "titulo_es": "El primer día de trabajo",
    "nivel": 2,
@@ -671,55 +672,68 @@
    "lineas": [
     {
      "it": "Oggi è il primo giorno di lavoro di Anna.",
-     "es": "Hoy es el primer día de trabajo de Anna."
+     "es": "Hoy es el primer día de trabajo de Anna.",
+     "cuadro": 1
     },
     {
      "it": "L'ufficio è in centro.",
-     "es": "La oficina está en el centro."
+     "es": "La oficina está en el centro.",
+     "cuadro": 2
     },
     {
      "it": "Anna arriva alle nove.",
-     "es": "Anna llega a las nueve."
+     "es": "Anna llega a las nueve.",
+     "cuadro": 3
     },
     {
      "it": "La porta è aperta.",
-     "es": "La puerta está abierta."
+     "es": "La puerta está abierta.",
+     "cuadro": 4
     },
     {
      "it": "Dentro c'è un tavolo con un telefono.",
-     "es": "Adentro hay una mesa con un teléfono."
+     "es": "Adentro hay una mesa con un teléfono.",
+     "cuadro": 5
     },
     {
      "it": "Sullo scaffale ci sono molti quaderni.",
-     "es": "Sobre el estante hay muchos cuadernos."
+     "es": "Sobre el estante hay muchos cuadernos.",
+     "cuadro": 6
     },
     {
      "it": "Il capo si chiama Luca.",
-     "es": "El jefe se llama Luca."
+     "es": "El jefe se llama Luca.",
+     "cuadro": 7
     },
     {
      "it": "Luca è simpatico.",
-     "es": "Luca es simpático."
+     "es": "Luca es simpático.",
+     "cuadro": 8
     },
     {
      "it": "Anna vuole un caffè.",
-     "es": "Anna quiere un café."
+     "es": "Anna quiere un café.",
+     "cuadro": 9
     },
     {
      "it": "Il caffè dell'ufficio non è buono.",
-     "es": "El café de la oficina no es bueno."
+     "es": "El café de la oficina no es bueno.",
+     "cuadro": 10
     },
     {
      "it": "Ma il lavoro è interessante.",
-     "es": "Pero el trabajo es interesante."
+     "es": "Pero el trabajo es interesante.",
+     "cuadro": 11
     },
     {
      "it": "Alla fine del giorno Anna è stanca.",
-     "es": "Al final del día Anna está cansada."
+     "es": "Al final del día Anna está cansada.",
+     "cuadro": 12
     },
     {
      "it": "Ma è contenta.",
-     "es": "Pero está contenta."
+     "es": "Pero está contenta.",
+     "cuadro": 13
     }
    ]
   },
