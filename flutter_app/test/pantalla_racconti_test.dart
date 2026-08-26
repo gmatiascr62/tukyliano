@@ -288,12 +288,15 @@ void main() {
     });
 
     testWidgets('la presentación de la obra lleva su dibujo', (tester) async {
+      // Sin foto propia, el encabezado sigue siendo el dibujo de siempre.
       await _abrir(tester, _conNovela);
       await _tocar(tester, 'Il segreto dei Ferrante');
 
-      final banda = tester.widget<BandaPortada>(find.byType(BandaPortada));
-      expect(banda.imagen, 'mistero');
-      expect(banda.titulo, 'Il segreto dei Ferrante');
+      final portada =
+          tester.widget<PortadaRacconto>(find.byType(PortadaRacconto).first);
+      expect(portada.imagen, 'mistero');
+      expect(portada.foto, isEmpty);
+      expect(find.text('Il segreto dei Ferrante'), findsOneWidget);
     });
 
     testWidgets('tocarla lleva a elegir el capítulo', (tester) async {
@@ -630,6 +633,20 @@ void main() {
         _fotos(tester),
         containsAll(['ferrante-01-portada', 'ferrante-02-portada']),
       );
+    });
+
+    testWidgets('arriba se ve la tapa chica de la obra, no el dibujo',
+        (tester) async {
+      // Es el mismo encabezado que adentro del cuento: con la novela
+      // ilustrada, el dibujo viejo ahí arriba desentonaba.
+      await _abrir(tester, _novelaConTapas);
+      await _cargarImagenes(tester);
+      await tester.tap(find.byType(FotoRacconto).first);
+      await tester.pumpAndSettle();
+
+      final portada =
+          tester.widget<PortadaRacconto>(find.byType(PortadaRacconto).first);
+      expect(portada.foto, 'ferrante-tapa');
     });
 
     testWidgets('el capítulo se abre igual tocando su tapa', (tester) async {
