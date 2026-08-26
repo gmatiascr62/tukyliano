@@ -202,17 +202,16 @@ class _VistaObra extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
         const SizedBox(height: 8),
-        Row(
-          children: [
-            _BotonVolver(alVolver: alVolver, tooltip: 'Volver a los cuentos'),
-            Expanded(
-              child: BandaPortada(
-                imagen: obra.imagen,
-                titulo: obra.titulo,
-                subtitulo: obra.tituloEspanol,
-              ),
-            ),
-          ],
+        // El mismo encabezado que adentro del cuento: la tapa chica de la
+        // obra al lado del título. Antes era la banda con el dibujo, que
+        // ahora que la obra tiene foto quedaba mostrando la portada vieja.
+        _Encabezado(
+          imagen: obra.imagen,
+          foto: obra.fotoTapa,
+          titulo: obra.titulo,
+          subtitulo: obra.tituloEspanol,
+          alVolver: alVolver,
+          tooltipVolver: 'Volver a los cuentos',
         ),
         const SizedBox(height: 8),
         Text(
