@@ -1,5 +1,5 @@
 {
- "version": 14,
+ "version": 15,
  "nombres": [
   "Marco",
   "Anna",
@@ -740,6 +740,7 @@
   {
    "id": "il-lavoro-di-marco",
    "imagen": "ufficio",
+   "foto": "lavoro-marco",
    "titulo": "Il lavoro di Marco",
    "titulo_es": "El trabajo de Marco",
    "nivel": 3,
@@ -837,51 +838,63 @@
    "lineas": [
     {
      "it": "Marco lavora in un ufficio in città.",
-     "es": "Marco trabaja en una oficina en la ciudad."
+     "es": "Marco trabaja en una oficina en la ciudad.",
+     "cuadro": 1
     },
     {
      "it": "Ogni mattina prende l'autobus.",
-     "es": "Cada mañana toma el colectivo."
+     "es": "Cada mañana toma el colectivo.",
+     "cuadro": 2
     },
     {
      "it": "L'ufficio è vicino alla stazione.",
-     "es": "La oficina está cerca de la estación."
+     "es": "La oficina está cerca de la estación.",
+     "cuadro": 3
     },
     {
      "it": "Marco ha molto lavoro.",
-     "es": "Marco tiene mucho trabajo."
+     "es": "Marco tiene mucho trabajo.",
+     "cuadro": 4
     },
     {
      "it": "Deve rispondere al telefono.",
-     "es": "Tiene que contestar el teléfono."
+     "es": "Tiene que contestar el teléfono.",
+     "cuadro": 5
     },
     {
      "it": "Scrive lettere ai clienti.",
-     "es": "Escribe cartas a los clientes."
+     "es": "Escribe cartas a los clientes.",
+     "cuadro": 6
     },
     {
      "it": "A mezzogiorno mangia un panino.",
-     "es": "Al mediodía come un sándwich."
+     "es": "Al mediodía come un sándwich.",
+     "cuadro": 7
     },
     {
      "it": "Poi beve un caffè con i colleghi.",
-     "es": "Después toma un café con los compañeros."
+     "es": "Después toma un café con los compañeros.",
+     "cuadro": 8
     },
     {
      "it": "Alle sei torna a casa.",
-     "es": "A las seis vuelve a casa."
+     "es": "A las seis vuelve a casa.",
+     "cuadro": 9
     },
     {
      "it": "È stanco ma contento.",
-     "es": "Está cansado pero contento."
+     "es": "Está cansado pero contento.",
+     "cuadro": 10
     },
     {
      "it": "Domani è sabato.",
-     "es": "Mañana es sábado."
+     "es": "Mañana es sábado.",
+     "cuadro": 11
     },
     {
      "it": "Non deve lavorare.",
-     "es": "No tiene que trabajar."
+     "es": "No tiene que trabajar.",
+     "cuadro": 12
     }
    ]
   },
