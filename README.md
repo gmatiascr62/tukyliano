@@ -15,7 +15,7 @@ algún commit viejo aparecen `main.py` o `buildozer.spec`, son de esa.
 | Articoli | El artículo que va con cada sustantivo. Se practican los determinados, los indeterminados (con los partitivos) o los dos mezclados, y un botón explica la tabla entera. |
 | Preposizioni | Completar el hueco con la preposición, simple o articulada. Se elige con cuáles practicar (se pueden dejar dos prendidas y el resto apagadas) y un botón explica la tabla. |
 | Via | El «via» que se le pega al verbo (andare via, buttare via). Se elige el verbo o se escribe la frase entera, y un botón explica cómo se usa. |
-| Racconti | Cuentos para leer en italiano; se toca el renglón para ver la traducción y escucharlo. |
+| Racconti | Cuentos para leer en italiano; se toca el renglón para ver la traducción y escucharlo. La novela ocupa un solo renglón de la lista y adentro están sus capítulos, cada uno con su tapa. |
 | Chat | Charla con Gemini, que corrige sobre la marcha y traduce lo que se ponga entre almohadillas. |
 
 ## Los datos van aparte

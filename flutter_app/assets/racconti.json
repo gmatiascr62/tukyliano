@@ -1,5 +1,5 @@
 {
- "version": 15,
+ "version": 16,
  "nombres": [
   "Marco",
   "Anna",
@@ -2704,6 +2704,8 @@
   {
    "id": "ferrante-01",
    "imagen": "mistero",
+   "foto": "ferrante-01",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 1 · Il testamento",
    "titulo_es": "Capítulo 1 · El testamento",
    "serie": "il-segreto-dei-ferrante",
@@ -3032,6 +3034,8 @@
   {
    "id": "ferrante-02",
    "imagen": "mistero",
+   "foto": "ferrante-02",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 2 · L'arrivo",
    "titulo_es": "Capítulo 2 · La llegada",
    "serie": "il-segreto-dei-ferrante",
@@ -3320,6 +3324,8 @@
   {
    "id": "ferrante-03",
    "imagen": "mistero",
+   "foto": "ferrante-03",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 3 · La donna in cucina",
    "titulo_es": "Capítulo 3 · La mujer de la cocina",
    "serie": "il-segreto-dei-ferrante",
@@ -3628,6 +3634,8 @@
   {
    "id": "ferrante-04",
    "imagen": "mistero",
+   "foto": "ferrante-04",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 4 · L'uomo di Firenze",
    "titulo_es": "Capítulo 4 · El hombre de Florencia",
    "serie": "il-segreto-dei-ferrante",
@@ -3924,6 +3932,8 @@
   {
    "id": "ferrante-05",
    "imagen": "mistero",
+   "foto": "ferrante-05",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 5 · Il temporale",
    "titulo_es": "Capítulo 5 · La tormenta",
    "serie": "il-segreto-dei-ferrante",
@@ -4228,6 +4238,8 @@
   {
    "id": "ferrante-06",
    "imagen": "mistero",
+   "foto": "ferrante-06",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 6 · La fotografia",
    "titulo_es": "Capítulo 6 · La foto",
    "serie": "il-segreto-dei-ferrante",
@@ -4468,6 +4480,8 @@
   {
    "id": "ferrante-07",
    "imagen": "mistero",
+   "foto": "ferrante-07",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 7 · La confessione",
    "titulo_es": "Capítulo 7 · La confesión",
    "serie": "il-segreto-dei-ferrante",
@@ -4712,6 +4726,8 @@
   {
    "id": "ferrante-08",
    "imagen": "mistero",
+   "foto": "ferrante-08",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 8 · Il matrimonio",
    "titulo_es": "Capítulo 8 · El casamiento",
    "serie": "il-segreto-dei-ferrante",
@@ -5000,6 +5016,8 @@
   {
    "id": "ferrante-09",
    "imagen": "mistero",
+   "foto": "ferrante-09",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 9 · La valigia",
    "titulo_es": "Capítulo 9 · La valija",
    "serie": "il-segreto-dei-ferrante",
@@ -5256,6 +5274,8 @@
   {
    "id": "ferrante-10",
    "imagen": "mistero",
+   "foto": "ferrante-10",
+   "serie_foto": "ferrante",
    "titulo": "Capitolo 10 · La verità",
    "titulo_es": "Capítulo 10 · La verdad",
    "serie": "il-segreto-dei-ferrante",
