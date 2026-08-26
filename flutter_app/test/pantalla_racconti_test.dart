@@ -74,6 +74,32 @@ const _conNovela = '''
   }
 ''';
 
+/// La novela con tapa propia y tapa por capítulo, como la de verdad.
+const _novelaConTapas = '''
+  {
+    "version": 1,
+    "racconti": [
+      {
+        "id": "saga-01", "titulo": "Capitolo 1 · Il testamento",
+        "titulo_es": "Capítulo 1 · El testamento", "nivel": 6,
+        "imagen": "mistero", "foto": "ferrante-01", "serie_foto": "ferrante",
+        "serie": "la-saga", "serie_titulo": "Il segreto dei Ferrante",
+        "serie_titulo_es": "El secreto de los Ferrante",
+        "vocabulario": [],
+        "lineas": [{"it": "Il vecchio è morto.", "es": "El viejo murió."}]
+      },
+      {
+        "id": "saga-02", "titulo": "Capitolo 2 · L'arrivo",
+        "titulo_es": "Capítulo 2 · La llegada", "nivel": 6,
+        "imagen": "mistero", "foto": "ferrante-02", "serie_foto": "ferrante",
+        "serie": "la-saga", "serie_titulo": "Il segreto dei Ferrante",
+        "vocabulario": [],
+        "lineas": [{"it": "Lei arriva.", "es": "Ella llega."}]
+      }
+    ]
+  }
+''';
+
 RepositorioRacconti _repo(String json) => RepositorioRacconti(
       leerAsset: (_) async => json,
       cliente: MockClient((_) async => http.Response('', 404)),
@@ -102,6 +128,25 @@ List<String> _fotos(WidgetTester tester) => tester
     .map((f) => f.nombre)
     .where((n) => n.isNotEmpty)
     .toList();
+
+/// Deja las fotos dibujadas de verdad.
+///
+/// Sin esto una tapa mide cero de alto mientras el archivo se está leyendo, y
+/// para los finders queda fuera de pantalla: no se la encuentra ni se la puede
+/// tocar. La lectura del asset es de verdad, así que va adentro de runAsync.
+Future<void> _cargarImagenes(WidgetTester tester) async {
+  final pendientes = find
+      .byType(Image, skipOffstage: false)
+      .evaluate()
+      .map((e) => (e, (e.widget as Image).image))
+      .toList();
+  await tester.runAsync(() async {
+    for (final (elemento, proveedor) in pendientes) {
+      await precacheImage(proveedor, elemento);
+    }
+  });
+  await tester.pump();
+}
 
 Future<void> _tocar(WidgetTester tester, String texto) async {
   await tester.tap(find.text(texto));
@@ -562,5 +607,45 @@ void main() {
     final facil = tester.getRect(find.text('La colazione'));
     final dificil = tester.getRect(find.text('Il lavoro'));
     expect(facil.top, lessThan(dificil.top));
+  });
+
+  group('la novela con tapas', () {
+    testWidgets('en la lista se ve la tapa de la obra, no la del capítulo 1',
+        (tester) async {
+      await _abrir(tester, _novelaConTapas);
+      await _cargarImagenes(tester);
+
+      expect(_fotos(tester), ['ferrante-portada']);
+    });
+
+    testWidgets('adentro, cada capítulo muestra su propia tapa',
+        (tester) async {
+      await _abrir(tester, _novelaConTapas);
+      await _cargarImagenes(tester);
+      await tester.tap(find.byType(FotoRacconto).first);
+      await tester.pumpAndSettle();
+      await _cargarImagenes(tester);
+
+      expect(
+        _fotos(tester),
+        containsAll(['ferrante-01-portada', 'ferrante-02-portada']),
+      );
+    });
+
+    testWidgets('el capítulo se abre igual tocando su tapa', (tester) async {
+      await _abrir(tester, _novelaConTapas);
+      await _cargarImagenes(tester);
+      await tester.tap(find.byType(FotoRacconto).first);
+      await tester.pumpAndSettle();
+      await _cargarImagenes(tester);
+      await tester.tap(
+        find.byWidgetPredicate(
+          (w) => w is FotoRacconto && w.nombre == 'ferrante-01-portada',
+        ),
+      );
+      await tester.pumpAndSettle();
+
+      expect(find.text('Il vecchio è morto.'), findsOneWidget);
+    });
   });
 }

@@ -272,6 +272,27 @@ void main() {
       }
     });
 
+    test('la tapa de una obra con capítulos también está', () {
+      // La novela declara su propia tapa, aparte de la de cada capítulo: es
+      // la que se ve en la lista de cuentos.
+      for (final obra in _datos.obras.where((o) => o.tieneCapitulos)) {
+        for (final foto in [obra.fotoTapa, obra.fotoPortada]) {
+          expect(foto, isNotEmpty, reason: obra.titulo);
+          expect(File(rutaDeFoto(foto)).existsSync(), isTrue,
+              reason: '${obra.titulo}: falta ${rutaDeFoto(foto)}');
+        }
+      }
+    });
+
+    test('la obra no usa la tapa de su primer capítulo', () {
+      // Si las compartieran, la lista mostraría "Capitolo 1" como si fuera la
+      // tapa de la novela entera.
+      for (final obra in _datos.obras.where((o) => o.tieneCapitulos)) {
+        expect(obra.fotoPortada, isNot(obra.capitulos.first.fotoPortada),
+            reason: obra.titulo);
+      }
+    });
+
     test('no sobra ninguna foto sin usar', () {
       // Si sobra un archivo es que la frase cambió y el cuadro quedó colgado,
       // pesando en el APK para nada.
@@ -281,6 +302,11 @@ void main() {
           '${r.fotoPortada}.jpg',
           for (var i = 0; i < r.lineas.length; i++)
             if (r.fotoDeLinea(i).isNotEmpty) '${r.fotoDeLinea(i)}.jpg',
+        ],
+        // Las de la obra entera, que no son de ningún capítulo en particular.
+        for (final o in _datos.obras.where((o) => o.fotoPortada.isNotEmpty)) ...[
+          '${o.fotoTapa}.jpg',
+          '${o.fotoPortada}.jpg',
         ],
       };
       final enDisco = Directory('assets/racconti')

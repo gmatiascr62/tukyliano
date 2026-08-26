@@ -221,26 +221,71 @@ class _VistaObra extends StatelessWidget {
           style: const TextStyle(fontSize: 12.5, color: Tema.textoTenue),
         ),
         const SizedBox(height: 10),
-        Expanded(
-          child: ListView.separated(
-            padding: const EdgeInsets.only(bottom: 12),
-            itemCount: obra.capitulos.length,
-            separatorBuilder: (_, _) => const SizedBox(height: 10),
-            itemBuilder: (_, i) {
-              final capitulo = obra.capitulos[i];
-              return _Tarjeta(
-                imagen: capitulo.imagen,
-                foto: capitulo.fotoTapa,
-                titulo: capitulo.titulo,
-                subtitulo: capitulo.tituloEspanol,
-                pastilla: '${i + 1}',
-                detalle: '${capitulo.lineas.length} frases',
-                alTocar: () => alElegir(capitulo),
-              );
-            },
-          ),
-        ),
+        Expanded(child: _capitulos()),
       ],
+    );
+  }
+
+  /// Los capítulos, de a dos por renglón cuando tienen tapa propia.
+  ///
+  /// Las tapas son verticales y traen adentro el número, el título y cuántas
+  /// frases son, así que a lo ancho de la pantalla ocuparían media pantalla
+  /// cada una y habría que deslizar diez veces para ver la novela entera. De a
+  /// dos entran cinco renglones y se leen como los lomos de una biblioteca.
+  Widget _capitulos() {
+    final conTapa =
+        obra.capitulos.every((c) => c.fotoPortada.isNotEmpty);
+
+    if (!conTapa) {
+      return ListView.separated(
+        padding: const EdgeInsets.only(bottom: 12),
+        itemCount: obra.capitulos.length,
+        separatorBuilder: (_, _) => const SizedBox(height: 10),
+        itemBuilder: (_, i) => _renglon(i),
+      );
+    }
+
+    return GridView.builder(
+      padding: const EdgeInsets.only(bottom: 12),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 2,
+        mainAxisSpacing: 10,
+        crossAxisSpacing: 10,
+        // El alto de las tapas que vienen dibujadas.
+        childAspectRatio: 298 / 489,
+      ),
+      itemCount: obra.capitulos.length,
+      itemBuilder: (_, i) {
+        final capitulo = obra.capitulos[i];
+        return Material(
+          color: Tema.superficie,
+          borderRadius: BorderRadius.circular(Tema.radio),
+          clipBehavior: Clip.antiAlias,
+          child: InkWell(
+            onTap: () => alElegir(capitulo),
+            child: FotoRacconto(
+              nombre: capitulo.fotoPortada,
+              ancho: double.infinity,
+              fit: BoxFit.cover,
+              // Si la tapa no está en este APK, queda el renglón de siempre.
+              respaldo: _renglon(i),
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  Widget _renglon(int i) {
+    final capitulo = obra.capitulos[i];
+    return _Tarjeta(
+      imagen: capitulo.imagen,
+      foto: capitulo.fotoTapa,
+      titulo: capitulo.titulo,
+      subtitulo: capitulo.tituloEspanol,
+      pastilla: '${i + 1}',
+      detalle: '${capitulo.lineas.length} frases',
+      alTocar: () => alElegir(capitulo),
     );
   }
 }

@@ -47,6 +47,7 @@ class Racconto {
     this.serieTituloEspanol = '',
     this.imagen = '',
     this.foto = '',
+    this.serieFoto = '',
   });
 
   final String id;
@@ -70,6 +71,15 @@ class Racconto {
   /// Qué portada le toca. Es un nombre del catálogo de dibujos que tiene la
   /// app; vacío o desconocido usa la de por defecto.
   final String imagen;
+
+  /// El juego de fotos de la obra entera, cuando es un capítulo. Va repetido
+  /// en cada capítulo, igual que el título de la serie.
+  ///
+  /// Es aparte de [foto] porque son dos tapas distintas: la de la obra es la
+  /// que se ve en la lista de cuentos, y la del capítulo la que se ve adentro,
+  /// al elegir por dónde seguir. Sin esto, la lista mostraría la tapa del
+  /// primer capítulo como si fuera la de la novela.
+  final String serieFoto;
 
   /// El juego de fotos del cuento, cuando tiene. Es un nombre, no un archivo:
   /// de "gatto" salen "gatto-tapa" (la miniatura del encabezado),
@@ -145,6 +155,7 @@ class Racconto {
       serieTituloEspanol: json['serie_titulo_es'] as String? ?? '',
       imagen: json['imagen'] as String? ?? '',
       foto: json['foto'] as String? ?? '',
+      serieFoto: json['serie_foto'] as String? ?? '',
       lineas: lineas,
       vocabulario: [
         for (final item in (json['vocabulario'] as List?) ?? const [])
@@ -182,8 +193,15 @@ class Obra {
   /// Los del primer capítulo: una obra se empieza por el principio.
   int get nivel => capitulos.first.nivel;
   String get imagen => capitulos.first.imagen;
-  String get fotoTapa => capitulos.first.fotoTapa;
-  String get fotoPortada => capitulos.first.fotoPortada;
+
+  /// El nombre de las fotos de la obra: el propio si lo declara, y si no el
+  /// del primer capítulo, que es el caso de los cuentos sueltos.
+  String get _foto => capitulos.first.serieFoto.isNotEmpty
+      ? capitulos.first.serieFoto
+      : capitulos.first.foto;
+
+  String get fotoTapa => _foto.isEmpty ? '' : '$_foto-tapa';
+  String get fotoPortada => _foto.isEmpty ? '' : '$_foto-portada';
 
   int get cuantasLineas =>
       capitulos.fold(0, (total, c) => total + c.lineas.length);
