@@ -158,6 +158,10 @@ class _PantallaQuizState extends State<PantallaQuiz> {
                   texto: _combo == null
                       ? _mensajeSinDatos
                       : "'${_combo!.conjugacion.espanol}'",
+                  // Con el teclado abajo el alto se pelea con el resto: la
+                  // consigna es una línea sola, así que se achica y el botón
+                  // entra sin tener que deslizar.
+                  alto: _modo == ModoRespuesta.escribir ? 104 : 150,
                 ),
                 const SizedBox(height: 14),
                 if (_modo == ModoRespuesta.escribir)
@@ -181,26 +185,25 @@ class _PantallaQuizState extends State<PantallaQuiz> {
                     ),
                   ),
                 ),
-                SizedBox(
-                  height: 58,
-                  child: ElevatedButton(
-                    onPressed:
-                        _hayRespuesta || _mostrandoResultado ? _accionBoton : null,
-                    style: Tema.botonPrincipal,
-                    child: Text(
-                      _mostrandoResultado ? 'Siguiente' : 'Verificar',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
               ],
             ),
           ),
         ),
+        // El botón va afuera del scroll, pegado arriba del teclado: adentro
+        // se iba de la pantalla y había que deslizar a ciegas para verificar.
+        SizedBox(
+          height: 58,
+          child: ElevatedButton(
+            onPressed:
+                _hayRespuesta || _mostrandoResultado ? _accionBoton : null,
+            style: Tema.botonPrincipal,
+            child: Text(
+              _mostrandoResultado ? 'Siguiente' : 'Verificar',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
         if (_modo == ModoRespuesta.escribir) Teclado(onTecla: _onTecla),
       ],
     );

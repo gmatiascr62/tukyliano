@@ -178,7 +178,8 @@ class _PantallaViaState extends State<PantallaVia> {
                   TarjetaPregunta(
                     etiqueta: 'Escribí en italiano, con el via',
                     texto: "'${actual.espanol}'",
-                    alto: 130,
+                    // Chica: abajo va el teclado y el botón tiene que entrar.
+                    alto: 112,
                   ),
                   const SizedBox(height: 12),
                   CampoTexto(
@@ -194,27 +195,25 @@ class _PantallaViaState extends State<PantallaVia> {
                   child: _resultado(actual),
                 ),
                 const SizedBox(height: 4),
-                SizedBox(
-                  height: 58,
-                  child: ElevatedButton(
-                    onPressed: _hayRespuesta || _mostrandoResultado
-                        ? _accionBoton
-                        : null,
-                    style: Tema.botonPrincipal,
-                    child: Text(
-                      _mostrandoResultado ? 'Siguiente' : 'Verificar',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
               ],
             ),
           ),
         ),
+        // Afuera del scroll y pegado arriba del teclado, para que no se vaya
+        // de la pantalla cuando el teclado ocupa media pantalla.
+        SizedBox(
+          height: 58,
+          child: ElevatedButton(
+            onPressed:
+                _hayRespuesta || _mostrandoResultado ? _accionBoton : null,
+            style: Tema.botonPrincipal,
+            child: Text(
+              _mostrandoResultado ? 'Siguiente' : 'Verificar',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
         if (_modo == ModoRespuesta.escribir)
           // El apóstrofo hace falta acá y no en las otras pantallas: la mitad
           // de las frases lo llevan (l'ho buttato via, vent'anni).
