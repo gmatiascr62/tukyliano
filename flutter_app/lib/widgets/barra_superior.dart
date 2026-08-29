@@ -4,11 +4,22 @@ import '../tema.dart';
 
 /// Las secciones que se navegan desde la barra de arriba, en el orden en que
 /// aparecen. Las primeras son las que se ven sin deslizar.
-enum Seccion { racconti, frases, verbos, articoli, preposizioni, via, ci, ne, chat }
+enum Seccion {
+  racconti,
+  leer,
+  frases,
+  verbos,
+  articoli,
+  preposizioni,
+  via,
+  ci,
+  ne,
+  chat,
+}
 
 extension EtiquetaSeccion on Seccion {
-  /// Lo que dice el botón. Van en italiano, aunque el resto de la app le
-  /// hable al alumno en español: son los nombres de los temas.
+  /// Lo que dice el botón. Casi todas van en italiano, aunque el resto de la
+  /// app le hable al alumno en español: son los nombres de los temas.
   String get etiqueta => switch (this) {
         Seccion.frases => 'Frasi',
         Seccion.verbos => 'Verbi',
@@ -18,6 +29,7 @@ extension EtiquetaSeccion on Seccion {
         Seccion.ci => 'Ci',
         Seccion.ne => 'Ne',
         Seccion.racconti => 'Racconti',
+        Seccion.leer => 'Leer',
         Seccion.chat => 'Chat',
       };
 }
