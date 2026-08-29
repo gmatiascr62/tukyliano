@@ -206,6 +206,9 @@ class _PantallaFrasesState extends State<PantallaFrases> {
                 TarjetaPregunta(
                   etiqueta: _fraseEs.isEmpty ? '' : 'Escribí en italiano',
                   texto: _fraseEs.isEmpty ? _mensajePantalla : "'$_fraseEs'",
+                  // Abajo van el campo, la pista, la corrección, el botón y
+                  // el teclado: con el alto de siempre no entraba todo.
+                  alto: 124,
                 ),
                 const SizedBox(height: 14),
                 CampoTexto(
@@ -218,25 +221,23 @@ class _PantallaFrasesState extends State<PantallaFrases> {
                 // Alto fijo siempre, para que el layout no salte al aparecer
                 // el texto (el bug que tuvo la versión Kivy).
                 SizedBox(height: 40, child: Center(child: _respuestaWidget())),
-                SizedBox(
-                  height: 58,
-                  child: ElevatedButton(
-                    onPressed: _ocupado ? null : _accionBoton,
-                    style: Tema.botonPrincipal,
-                    child: Text(
-                      _mostrandoResultado ? 'Siguiente' : 'Verificar',
-                      style: const TextStyle(
-                        fontSize: 20,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 10),
               ],
             ),
           ),
         ),
+        // Afuera del scroll: pegado arriba del teclado, siempre a la vista.
+        SizedBox(
+          height: 58,
+          child: ElevatedButton(
+            onPressed: _ocupado ? null : _accionBoton,
+            style: Tema.botonPrincipal,
+            child: Text(
+              _mostrandoResultado ? 'Siguiente' : 'Verificar',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            ),
+          ),
+        ),
+        const SizedBox(height: 10),
         Teclado(onTecla: _onTecla),
       ],
     );
