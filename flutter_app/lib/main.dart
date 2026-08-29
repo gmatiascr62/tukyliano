@@ -301,6 +301,11 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         return _seccionVerbos();
       case Seccion.preposizioni:
         return PantallaPreposizioni(repositorio: _preposizioni);
+      case Seccion.leer:
+        return const PantallaProximamente(
+          adelanto: 'Otra forma de leer, al lado de los cuentos. Todavía no '
+              'tiene contenido.',
+        );
       case Seccion.via:
         return PantallaVia(repositorio: _via);
       case Seccion.ci:
