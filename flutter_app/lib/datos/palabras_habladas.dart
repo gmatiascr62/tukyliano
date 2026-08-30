@@ -6,12 +6,15 @@ List<PalabraHablada> get palabrasParaDecir => [
       ...numerosParaDecir,
     ];
 
-/// Las diez palabras de la prueba, una por cada sonido que el castellano hace
-/// pronunciar mal.
+/// Las palabras agrupadas por el sonido que el castellano hace pronunciar mal.
 ///
-/// Van escritas acá y no en un JSON a propósito: esto es una prueba para ver
-/// si el micrófono del celular sirve para corregir. Si sirve, pasan a un JSON
-/// como el resto y ahí se pueden agregar palabras sin sacar un APK nuevo.
+/// Son todas palabras de uso diario: la idea es que practicar el sonido sirva
+/// también para acordarse de la palabra. El sonido de cada una se muestra en
+/// la tarjeta, así se ve qué es lo que hay que mirar.
+///
+/// Van escritas acá y no en un JSON porque el contenido todavía se está
+/// armando. Cuando se asiente pasan al JSON como el resto, y ahí se pueden
+/// agregar sin sacar un APK nuevo.
 const List<PalabraHablada> sonidosParaDecir = [
   PalabraHablada(
     italiano: 'cinque',
@@ -26,16 +29,88 @@ const List<PalabraHablada> sonidosParaDecir = [
     sonido: 'ci = ch',
   ),
   PalabraHablada(
+    italiano: 'dolce',
+    espanol: 'dulce, postre',
+    pista: 'dól-che',
+    sonido: 'ce = che',
+  ),
+  PalabraHablada(
+    italiano: 'cena',
+    espanol: 'cena',
+    pista: 'ché-na',
+    sonido: 'ce = che',
+  ),
+  PalabraHablada(
+    italiano: 'felice',
+    espanol: 'feliz',
+    pista: 'fe-lí-che',
+    sonido: 'ce = che',
+  ),
+  PalabraHablada(
+    italiano: 'cioccolato',
+    espanol: 'chocolate',
+    pista: 'cho-co-lá-to',
+    sonido: 'ci = ch',
+  ),
+  PalabraHablada(
+    italiano: 'arrivederci',
+    espanol: 'hasta luego',
+    pista: 'a-rri-ve-dér-chi',
+    sonido: 'ci = ch',
+  ),
+  PalabraHablada(
+    italiano: 'bacio',
+    espanol: 'beso',
+    pista: 'bá-cho',
+    sonido: 'ci = ch',
+  ),
+  PalabraHablada(
+    italiano: 'città',
+    espanol: 'ciudad',
+    pista: 'chit-tá',
+    sonido: 'ci = ch',
+  ),
+  PalabraHablada(
     italiano: 'chiesa',
     espanol: 'iglesia',
     pista: 'quié-sa',
     sonido: 'chi = qui',
   ),
   PalabraHablada(
-    italiano: 'famiglia',
-    espanol: 'familia',
-    pista: 'fa-mí-lia, con la lengua contra el paladar',
-    sonido: 'gli',
+    italiano: 'perché',
+    espanol: 'por qué, porque',
+    pista: 'per-qué',
+    sonido: 'che = que',
+  ),
+  PalabraHablada(
+    italiano: 'chiave',
+    espanol: 'llave',
+    pista: 'quiá-ve',
+    sonido: 'chi = qui',
+  ),
+  PalabraHablada(
+    italiano: 'bicchiere',
+    espanol: 'vaso',
+    pista: 'bic-quié-re',
+    sonido: 'chi = qui',
+  ),
+  PalabraHablada(
+    italiano: 'anche',
+    espanol: 'también',
+    pista: 'án-que',
+    sonido: 'che = que',
+  ),
+  PalabraHablada(
+    italiano: 'macchina',
+    espanol: 'auto',
+    pista: 'mác-qui-na',
+    sonido: 'chi = qui',
+  ),
+  PalabraHablada(
+    italiano: 'amiche',
+    espanol: 'amigas',
+    pista: 'a-mí-que',
+    sonido: 'che = que',
   ),
   PalabraHablada(
     italiano: 'gnocchi',
@@ -44,15 +119,159 @@ const List<PalabraHablada> sonidosParaDecir = [
     sonido: 'gn = ñ',
   ),
   PalabraHablada(
+    italiano: 'signora',
+    espanol: 'señora',
+    pista: 'si-ñó-ra',
+    sonido: 'gn = ñ',
+  ),
+  PalabraHablada(
+    italiano: 'bagno',
+    espanol: 'baño',
+    pista: 'bá-ño',
+    sonido: 'gn = ñ',
+  ),
+  PalabraHablada(
+    italiano: 'montagna',
+    espanol: 'montaña',
+    pista: 'mon-tá-ña',
+    sonido: 'gn = ñ',
+  ),
+  PalabraHablada(
+    italiano: 'compagno',
+    espanol: 'compañero',
+    pista: 'com-pá-ño',
+    sonido: 'gn = ñ',
+  ),
+  PalabraHablada(
+    italiano: 'lasagne',
+    espanol: 'lasaña',
+    pista: 'la-zá-ñe',
+    sonido: 'gn = ñ',
+  ),
+  PalabraHablada(
+    italiano: 'sogno',
+    espanol: 'sueño',
+    pista: 'só-ño',
+    sonido: 'gn = ñ',
+  ),
+  PalabraHablada(
+    italiano: 'famiglia',
+    espanol: 'familia',
+    pista: 'fa-mí-lia, con la lengua contra el paladar',
+    sonido: 'gli',
+  ),
+  PalabraHablada(
+    italiano: 'figlio',
+    espanol: 'hijo',
+    pista: 'fí-lio',
+    sonido: 'gli',
+  ),
+  PalabraHablada(
+    italiano: 'aglio',
+    espanol: 'ajo',
+    pista: 'á-lio',
+    sonido: 'gli',
+  ),
+  PalabraHablada(
+    italiano: 'moglie',
+    espanol: 'esposa',
+    pista: 'mó-lie',
+    sonido: 'gli',
+  ),
+  PalabraHablada(
+    italiano: 'meglio',
+    espanol: 'mejor',
+    pista: 'mé-lio',
+    sonido: 'gli',
+  ),
+  PalabraHablada(
+    italiano: 'biglietto',
+    espanol: 'boleto, entrada',
+    pista: 'bi-liét-to',
+    sonido: 'gli',
+  ),
+  PalabraHablada(
+    italiano: 'luglio',
+    espanol: 'julio',
+    pista: 'lú-lio',
+    sonido: 'gli',
+  ),
+  PalabraHablada(
+    italiano: 'voglio',
+    espanol: 'quiero',
+    pista: 'vó-lio',
+    sonido: 'gli',
+  ),
+  PalabraHablada(
     italiano: 'pesce',
     espanol: 'pescado',
     pista: 'pé-she',
     sonido: 'sce = sh',
   ),
   PalabraHablada(
+    italiano: 'sciare',
+    espanol: 'esquiar',
+    pista: 'shá-re',
+    sonido: 'sci = sh',
+  ),
+  PalabraHablada(
+    italiano: 'uscita',
+    espanol: 'salida',
+    pista: 'u-shí-ta',
+    sonido: 'sci = sh',
+  ),
+  PalabraHablada(
+    italiano: 'prosciutto',
+    espanol: 'jamón crudo',
+    pista: 'pro-shút-to',
+    sonido: 'sci = sh',
+  ),
+  PalabraHablada(
+    italiano: 'conoscere',
+    espanol: 'conocer',
+    pista: 'co-nó-she-re',
+    sonido: 'sce = sh',
+  ),
+  PalabraHablada(
+    italiano: 'asciugamano',
+    espanol: 'toalla',
+    pista: 'a-shu-ga-má-no',
+    sonido: 'sci = sh',
+  ),
+  PalabraHablada(
     italiano: 'scuola',
     espanol: 'escuela',
     pista: 'scuó-la, sin la e de adelante',
+    sonido: 'sc = sk',
+  ),
+  PalabraHablada(
+    italiano: 'scusa',
+    espanol: 'perdón',
+    pista: 'scú-sa, sin la e de adelante',
+    sonido: 'sc = sk',
+  ),
+  PalabraHablada(
+    italiano: 'scarpe',
+    espanol: 'zapatos',
+    pista: 'scár-pe, sin la e de adelante',
+    sonido: 'sc = sk',
+  ),
+  PalabraHablada(
+    italiano: 'bosco',
+    espanol: 'bosque',
+    pista: 'bós-co',
+    sonido: 'sc = sk',
+  ),
+  PalabraHablada(
+    italiano: 'fresco',
+    espanol: 'fresco',
+    pista: 'frés-co',
+    sonido: 'sc = sk',
+  ),
+  PalabraHablada(
+    italiano: 'maschera',
+    espanol: 'máscara',
+    pista: 'más-que-ra',
     sonido: 'sc = sk',
   ),
   PalabraHablada(
@@ -62,16 +281,136 @@ const List<PalabraHablada> sonidosParaDecir = [
     sonido: 'doble consonante',
   ),
   PalabraHablada(
-    italiano: 'pizza',
-    espanol: 'pizza',
-    pista: 'pít-tsa',
-    sonido: 'zz = ts',
+    italiano: 'anno',
+    espanol: 'año',
+    pista: 'án-no, con la n larga',
+    sonido: 'doble consonante',
+  ),
+  PalabraHablada(
+    italiano: 'bello',
+    espanol: 'lindo',
+    pista: 'bél-lo, con la l larga',
+    sonido: 'doble consonante',
+  ),
+  PalabraHablada(
+    italiano: 'terra',
+    espanol: 'tierra',
+    pista: 'tér-ra',
+    sonido: 'doble consonante',
+  ),
+  PalabraHablada(
+    italiano: 'mamma',
+    espanol: 'mamá',
+    pista: 'mám-ma',
+    sonido: 'doble consonante',
+  ),
+  PalabraHablada(
+    italiano: 'freddo',
+    espanol: 'frío',
+    pista: 'fréd-do',
+    sonido: 'doble consonante',
+  ),
+  PalabraHablada(
+    italiano: 'cappuccino',
+    espanol: 'capuchino',
+    pista: 'cap-put-chí-no',
+    sonido: 'doble consonante',
+  ),
+  PalabraHablada(
+    italiano: 'spaghetti',
+    espanol: 'espaguetis',
+    pista: 'spa-guét-ti',
+    sonido: 'doble consonante',
   ),
   PalabraHablada(
     italiano: 'grazie',
     espanol: 'gracias',
     pista: 'grá-tsie',
     sonido: 'z = ts',
+  ),
+  PalabraHablada(
+    italiano: 'pizza',
+    espanol: 'pizza',
+    pista: 'pít-tsa',
+    sonido: 'zz = ts',
+  ),
+  PalabraHablada(
+    italiano: 'piazza',
+    espanol: 'plaza',
+    pista: 'piát-tsa',
+    sonido: 'zz = ts',
+  ),
+  PalabraHablada(
+    italiano: 'stazione',
+    espanol: 'estación',
+    pista: 'sta-tsió-ne',
+    sonido: 'z = ts',
+  ),
+  PalabraHablada(
+    italiano: 'ragazzo',
+    espanol: 'chico',
+    pista: 'ra-gát-tso',
+    sonido: 'zz = ts',
+  ),
+  PalabraHablada(
+    italiano: 'colazione',
+    espanol: 'desayuno',
+    pista: 'co-la-tsió-ne',
+    sonido: 'z = ts',
+  ),
+  PalabraHablada(
+    italiano: 'zucchero',
+    espanol: 'azúcar',
+    pista: 'dzúc-que-ro',
+    sonido: 'z = ds',
+  ),
+  PalabraHablada(
+    italiano: 'zio',
+    espanol: 'tío',
+    pista: 'dzí-o',
+    sonido: 'z = ds',
+  ),
+  PalabraHablada(
+    italiano: 'treno',
+    espanol: 'tren',
+    pista: 'tré-no',
+    sonido: 'r fuerte',
+  ),
+  PalabraHablada(
+    italiano: 'birra',
+    espanol: 'cerveza',
+    pista: 'bír-ra',
+    sonido: 'r fuerte',
+  ),
+  PalabraHablada(
+    italiano: 'arrivare',
+    espanol: 'llegar',
+    pista: 'a-rri-vá-re',
+    sonido: 'r fuerte',
+  ),
+  PalabraHablada(
+    italiano: 'parlare',
+    espanol: 'hablar',
+    pista: 'par-lá-re',
+    sonido: 'r fuerte',
+  ),
+  PalabraHablada(
+    italiano: 'ghiaccio',
+    espanol: 'hielo',
+    pista: 'guiác-cho',
+    sonido: 'gh = gu',
+  ),
+  PalabraHablada(
+    italiano: 'funghi',
+    espanol: 'hongos',
+    pista: 'fún-gui',
+    sonido: 'gh = gu',
+  ),
+  PalabraHablada(
+    italiano: 'lunghi',
+    espanol: 'largos',
+    pista: 'lún-gui',
+    sonido: 'gh = gu',
   ),
 ];
 

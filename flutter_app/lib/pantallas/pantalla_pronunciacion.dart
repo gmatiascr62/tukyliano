@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 
 import '../datos/escucha.dart';
@@ -14,15 +16,19 @@ import '../widgets/tarjeta_pregunta.dart';
 /// celular contesta si entendió.
 ///
 /// Dos tandas: los sonidos que el castellano hace pronunciar mal, y los
-/// números del 0 al 30. Las palabras están escritas en Dart y no en un JSON
-/// porque el contenido todavía se está armando; cuando se asiente, pasan al
-/// JSON como el resto y ahí se agregan sin sacar un APK nuevo.
+/// números del 0 al 30. Dentro de cada una las palabras salen mezcladas, pero
+/// sin repetir ninguna hasta haber pasado por todas.
+///
+/// Las palabras están escritas en Dart y no en un JSON porque el contenido
+/// todavía se está armando; cuando se asiente, pasan al JSON como el resto y
+/// ahí se agregan sin sacar un APK nuevo.
 class PantallaPronunciacion extends StatefulWidget {
   const PantallaPronunciacion({
     super.key,
     required this.voz,
     this.escucha,
     this.palabras,
+    this.azar,
   });
 
   final Voz voz;
@@ -32,6 +38,9 @@ class PantallaPronunciacion extends StatefulWidget {
 
   /// Con qué se practica. Inyectable para los tests; en la app son todas.
   final List<PalabraHablada>? palabras;
+
+  /// Inyectable para que los tests puedan predecir el orden.
+  final Random? azar;
 
   @override
   State<PantallaPronunciacion> createState() => _PantallaPronunciacionState();
@@ -44,6 +53,12 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   late final Escucha _escucha = widget.escucha ?? EscuchaDelCelular();
   late final List<PalabraHablada> _palabras =
       widget.palabras ?? palabrasParaDecir;
+  late final Random _azar = widget.azar ?? Random();
+
+  /// En qué orden se van a mostrar las palabras del grupo. Se mezcla una vez
+  /// y se recorre entera: así salen al azar pero sin repetir ninguna hasta
+  /// haber pasado por todas.
+  List<int> _orden = const [];
 
   late GrupoHabla _grupo =
       _grupos.isEmpty ? GrupoHabla.sonidos : _grupos.first;
@@ -67,7 +82,20 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   @override
   void initState() {
     super.initState();
+    _mezclar();
     _prepararVoz();
+  }
+
+  /// [anterior] es la palabra que se acaba de ver, para no arrancar la vuelta
+  /// nueva con la misma.
+  void _mezclar({int? anterior}) {
+    _orden = [for (var i = 0; i < _lista.length; i++) i]..shuffle(_azar);
+    // Que la primera de la vuelta nueva no sea la última de la anterior: se
+    // vería como una repetición justo donde no se nota que empezó otra vuelta.
+    if (_orden.length > 1 && _orden.first == anterior) {
+      _orden[0] = _orden[1];
+      _orden[1] = anterior!;
+    }
   }
 
   @override
@@ -92,15 +120,16 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   List<PalabraHablada> get _lista =>
       [for (final p in _palabras) if (p.grupo == _grupo) p];
 
-  PalabraHablada get _palabra => _lista[_cual];
+  PalabraHablada get _palabra => _lista[_orden[_cual]];
 
-  /// Cambiar de grupo arranca de nuevo desde la primera palabra. El puntaje se
+  /// Cambiar de grupo mezcla la tanda nueva y arranca de cero. El puntaje se
   /// mantiene: es el de toda la vuelta, no el del grupo.
   void _cambiarGrupo(GrupoHabla grupo) {
     if (grupo == _grupo) return;
     setState(() {
       _grupo = grupo;
       _cual = 0;
+      _mezclar();
       _momento = _Momento.quieta;
       _oido = null;
       _parcial = '';
@@ -170,7 +199,12 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
 
   void _siguiente() {
     setState(() {
-      _cual = (_cual + 1) % _lista.length;
+      _cual++;
+      if (_cual >= _orden.length) {
+        // Se dieron todas: se mezcla de nuevo para la vuelta que viene.
+        _mezclar(anterior: _orden.isEmpty ? null : _orden.last);
+        _cual = 0;
+      }
       _momento = _Momento.quieta;
       _oido = null;
       _parcial = '';
@@ -533,12 +567,14 @@ const List<SeccionAyuda> ayudaDeLaPronunciacion = [
     cuerpo: 'Estos son los que el castellano hace pronunciar mal, y por eso '
         'son los de esta lista.',
     ejemplos: [
-      'ci, ce = ch: cinque, ciao, dolce',
-      'chi, che = qui, que: chiesa, perché',
-      'gn = ñ: gnocchi, signora',
-      'gli = como la ll, con la lengua en el paladar: famiglia',
-      'sce, sci = sh: pesce, sciare',
-      'z = ts: grazie, pizza',
+      'ci, ce = ch: cinque, dolce, felice',
+      'chi, che = qui, que: chiesa, perché, macchina',
+      'gn = ñ: gnocchi, signora, bagno',
+      'gli = como la ll, con la lengua en el paladar: famiglia, figlio',
+      'sce, sci = sh: pesce, sciare, prosciutto',
+      'sc con a, o, u = sk: scuola, scusa, bosco',
+      'z = ts: grazie, pizza, stazione',
+      'gh = gu: ghiaccio, funghi',
       'La doble consonante se apoya: nonna no es nona.',
     ],
   ),

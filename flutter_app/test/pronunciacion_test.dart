@@ -63,12 +63,24 @@ void main() {
   });
 
   group('las palabras de la prueba', () {
-    test('los sonidos son diez y no se repiten', () {
-      expect(sonidosParaDecir.length, 10);
+    test('los sonidos son unos cuantos y no se repiten', () {
+      expect(sonidosParaDecir.length, greaterThanOrEqualTo(50));
       expect(
         sonidosParaDecir.map((p) => p.italiano).toSet().length,
         sonidosParaDecir.length,
       );
+    });
+
+    test('cada sonido tiene varias palabras para practicarlo', () {
+      // Con una sola palabra por sonido no se practica el sonido: se aprende
+      // esa palabra de memoria.
+      final cuantas = <String, int>{};
+      for (final palabra in sonidosParaDecir) {
+        cuantas[palabra.sonido] = (cuantas[palabra.sonido] ?? 0) + 1;
+      }
+      for (final entrada in cuantas.entries) {
+        expect(entrada.value, greaterThanOrEqualTo(2), reason: entrada.key);
+      }
     });
 
     test('los números van del 0 al 30, en orden y sin faltar ninguno', () {
