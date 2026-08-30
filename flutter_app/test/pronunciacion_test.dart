@@ -2,6 +2,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/escucha.dart';
 import 'package:tukyliano/datos/palabras_habladas.dart';
 import 'package:tukyliano/logica/pronunciacion.dart';
+import 'package:tukyliano/modelos/palabra_hablada.dart';
 
 ComoSalio _decir(String palabra, String oido, {List<String> otras = const []}) {
   return comparar(
@@ -62,12 +63,37 @@ void main() {
   });
 
   group('las palabras de la prueba', () {
-    test('son diez y no se repiten', () {
-      expect(palabrasParaDecir.length, 10);
+    test('los sonidos son diez y no se repiten', () {
+      expect(sonidosParaDecir.length, 10);
       expect(
-        palabrasParaDecir.map((p) => p.italiano).toSet().length,
-        palabrasParaDecir.length,
+        sonidosParaDecir.map((p) => p.italiano).toSet().length,
+        sonidosParaDecir.length,
       );
+    });
+
+    test('los números van del 0 al 30, en orden y sin faltar ninguno', () {
+      expect(numerosParaDecir.length, 31);
+      for (final (i, numero) in numerosParaDecir.indexed) {
+        expect(numero.sonido, '$i', reason: numero.italiano);
+        expect(numero.grupo, GrupoHabla.numeros, reason: numero.italiano);
+      }
+    });
+
+    test('cada número se reconoce dicho o escrito con cifra', () {
+      // Android devuelve "23" cuando se dice "ventitré", así que las dos
+      // formas tienen que dar bien.
+      for (final (i, numero) in numerosParaDecir.indexed) {
+        expect(
+          _decir(numero.italiano, numero.italiano),
+          ComoSalio.bien,
+          reason: numero.italiano,
+        );
+        expect(
+          _decir(numero.italiano, '$i'),
+          ComoSalio.bien,
+          reason: '$i = ${numero.italiano}',
+        );
+      }
     });
 
     test('cada una se compara consigo misma sin ayuda', () {

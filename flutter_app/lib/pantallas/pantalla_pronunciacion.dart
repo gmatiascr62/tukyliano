@@ -13,16 +13,16 @@ import '../widgets/tarjeta_pregunta.dart';
 /// Práctica de pronunciación: aparece una palabra, se la dice en voz alta y el
 /// celular contesta si entendió.
 ///
-/// Esto es una prueba, con diez palabras escritas a mano. Lo que se está
-/// probando no es la lista sino el micrófono: si el reconocedor de Android
-/// corrige de verdad o si perdona cualquier cosa. Recién después se arma el
-/// contenido en serio.
+/// Dos tandas: los sonidos que el castellano hace pronunciar mal, y los
+/// números del 0 al 30. Las palabras están escritas en Dart y no en un JSON
+/// porque el contenido todavía se está armando; cuando se asiente, pasan al
+/// JSON como el resto y ahí se agregan sin sacar un APK nuevo.
 class PantallaPronunciacion extends StatefulWidget {
   const PantallaPronunciacion({
     super.key,
     required this.voz,
     this.escucha,
-    this.palabras = palabrasParaDecir,
+    this.palabras,
   });
 
   final Voz voz;
@@ -30,7 +30,8 @@ class PantallaPronunciacion extends StatefulWidget {
   /// Inyectable para los tests, donde no hay micrófono.
   final Escucha? escucha;
 
-  final List<PalabraHablada> palabras;
+  /// Con qué se practica. Inyectable para los tests; en la app son todas.
+  final List<PalabraHablada>? palabras;
 
   @override
   State<PantallaPronunciacion> createState() => _PantallaPronunciacionState();
@@ -41,7 +42,11 @@ enum _Momento { quieta, escuchando, contestada }
 
 class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   late final Escucha _escucha = widget.escucha ?? EscuchaDelCelular();
+  late final List<PalabraHablada> _palabras =
+      widget.palabras ?? palabrasParaDecir;
 
+  late GrupoHabla _grupo =
+      _grupos.isEmpty ? GrupoHabla.sonidos : _grupos.first;
   int _cual = 0;
   _Momento _momento = _Momento.quieta;
   LoEscuchado? _oido;
@@ -77,7 +82,32 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
     setState(() => _puedeHablar = listo);
   }
 
-  PalabraHablada get _palabra => widget.palabras[_cual];
+  /// Los grupos que hay para elegir. Si hay uno solo no se muestran las
+  /// pastillas: no habría nada que elegir.
+  List<GrupoHabla> get _grupos => [
+        for (final grupo in GrupoHabla.values)
+          if (_palabras.any((palabra) => palabra.grupo == grupo)) grupo,
+      ];
+
+  List<PalabraHablada> get _lista =>
+      [for (final p in _palabras) if (p.grupo == _grupo) p];
+
+  PalabraHablada get _palabra => _lista[_cual];
+
+  /// Cambiar de grupo arranca de nuevo desde la primera palabra. El puntaje se
+  /// mantiene: es el de toda la vuelta, no el del grupo.
+  void _cambiarGrupo(GrupoHabla grupo) {
+    if (grupo == _grupo) return;
+    setState(() {
+      _grupo = grupo;
+      _cual = 0;
+      _momento = _Momento.quieta;
+      _oido = null;
+      _parcial = '';
+      _volumen = 0;
+      _como = ComoSalio.nada;
+    });
+  }
 
   Future<void> _decir() async {
     if (!_puedeHablar) return;
@@ -127,7 +157,7 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
 
   void _siguiente() {
     setState(() {
-      _cual = (_cual + 1) % widget.palabras.length;
+      _cual = (_cual + 1) % _lista.length;
       _momento = _Momento.quieta;
       _oido = null;
       _parcial = '';
@@ -146,7 +176,7 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.palabras.isEmpty) {
+    if (_lista.isEmpty) {
       return const Center(
         child: Text(
           'Todavía no hay palabras cargadas.',
@@ -206,14 +236,26 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
         const SizedBox(height: 10),
         Row(
           children: [
-            Pastilla(texto: _palabra.sonido),
-            const SizedBox(width: 6),
-            Pastilla(
-              texto: 'Escuchar',
-              icono: Icons.volume_up,
-              alTocar: _puedeHablar ? _decir : null,
+            Expanded(
+              child: Wrap(
+                spacing: 6,
+                runSpacing: 6,
+                children: [
+                  if (_grupos.length > 1)
+                    for (final grupo in _grupos)
+                      Pastilla(
+                        texto: grupo.etiqueta,
+                        activa: grupo == _grupo,
+                        alTocar: () => _cambiarGrupo(grupo),
+                      ),
+                  Pastilla(
+                    texto: 'Escuchar',
+                    icono: Icons.volume_up,
+                    alTocar: _puedeHablar ? _decir : null,
+                  ),
+                ],
+              ),
             ),
-            const Spacer(),
             SizedBox(
               width: 34,
               height: 34,
@@ -278,6 +320,10 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
               color: Tema.verdeOscuro,
             ),
           ),
+          const SizedBox(height: 10),
+          // Qué mirar de esta palabra: el sonido que se practica, o la cifra
+          // cuando es un número.
+          Pastilla(texto: _palabra.sonido),
         ],
       ),
     );
@@ -480,6 +526,17 @@ const List<SeccionAyuda> ayudaDeLaPronunciacion = [
       'sce, sci = sh: pesce, sciare',
       'z = ts: grazie, pizza',
       'La doble consonante se apoya: nonna no es nona.',
+    ],
+  ),
+  SeccionAyuda(
+    titulo: 'Los números',
+    cuerpo: 'Del 0 al 30. Ojo con estos, que son los que más se traban:',
+    ejemplos: [
+      'zero arranca con la z italiana: dzé-ro',
+      'dieci y todos los de la familia llevan "chi": dié-chi, ún-di-chi',
+      'quattro, sette y otto apoyan la doble consonante',
+      'ventuno y ventotto se comen la i de venti',
+      'due son dos golpes: dú-e, no "due" como en castellano',
     ],
   ),
 ];
