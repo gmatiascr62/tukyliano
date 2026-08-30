@@ -142,6 +142,31 @@ void main() {
     expect(find.text('Puntaje: 0/1'), findsOneWidget);
   });
 
+  testWidgets('apenas entiende la palabra corta el micrófono',
+      (WidgetTester tester) async {
+    // Sin esto había que esperar los segundos que Android se toma para
+    // decidir que terminaste de hablar, aunque ya te hubiera entendido.
+    final escucha = EscuchaFalsa(parciales: const ['cin', 'cinque']);
+    await _abrir(tester, escucha: escucha);
+    await _hablar(tester);
+
+    expect(escucha.cortadas, greaterThan(0));
+    expect(find.text('¡Bien dicho!'), findsOneWidget);
+  });
+
+  testWidgets('si lo que entiende no es la palabra, sigue escuchando',
+      (WidgetTester tester) async {
+    final escucha = EscuchaFalsa(
+      parciales: const ['quin', 'quinque'],
+      respuesta: const LoEscuchado(mejor: 'quinque', alternativas: ['quinque']),
+    );
+    await _abrir(tester, escucha: escucha);
+    await _hablar(tester);
+
+    expect(escucha.cortadas, 0);
+    expect(find.text('Entendió otra cosa.'), findsOneWidget);
+  });
+
   testWidgets('el silencio no cuenta como error', (WidgetTester tester) async {
     await _abrir(tester, escucha: EscuchaFalsa());
     await _hablar(tester);

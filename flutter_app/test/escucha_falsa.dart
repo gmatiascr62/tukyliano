@@ -28,6 +28,7 @@ class EscuchaFalsa implements Escucha {
 
   int escuchadas = 0;
   int cortadas = 0;
+  bool _cortada = false;
 
   @override
   bool get listo => puedeEscuchar;
@@ -42,13 +43,23 @@ class EscuchaFalsa implements Escucha {
   }) async {
     escuchadas++;
     if (!puedeEscuchar) return null;
+    _cortada = false;
+
+    LoEscuchado? ultimo;
     for (final parcial in parciales) {
+      ultimo = LoEscuchado(mejor: parcial, alternativas: [parcial]);
       alOir?.call(parcial);
       alSonido?.call(0.5);
+      // Como el micrófono de verdad: si lo cortan a mitad de camino, contesta
+      // con lo último que llegó a entender.
+      if (_cortada) return ultimo;
     }
     return respuesta;
   }
 
   @override
-  Future<void> cortar() async => cortadas++;
+  Future<void> cortar() async {
+    cortadas++;
+    _cortada = true;
+  }
 }
