@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'constantes.dart';
 import 'datos/actualizacion.dart';
 import 'datos/almacenamiento_clave.dart';
+import 'datos/escucha.dart';
 import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
 import 'datos/repositorio_particelle.dart';
@@ -16,6 +17,7 @@ import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_chat.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_preposizioni.dart';
+import 'pantallas/pantalla_pronunciacion.dart';
 import 'pantallas/pantalla_proximamente.dart';
 import 'pantallas/pantalla_quiz.dart';
 import 'pantallas/pantalla_racconti.dart';
@@ -40,6 +42,7 @@ class TukylianoApp extends StatelessWidget {
     this.racconti,
     this.via,
     this.voz,
+    this.escucha,
     this.gemini,
     this.actualizacion,
   });
@@ -53,6 +56,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioRacconti? racconti;
   final RepositorioParticelle? via;
   final Voz? voz;
+  final Escucha? escucha;
   final Gemini? gemini;
   final Actualizacion? actualizacion;
 
@@ -71,6 +75,7 @@ class TukylianoApp extends StatelessWidget {
         racconti: racconti,
         via: via,
         voz: voz,
+        escucha: escucha,
         gemini: gemini,
         actualizacion: actualizacion,
       ),
@@ -91,6 +96,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.racconti,
     this.via,
     this.voz,
+    this.escucha,
     this.gemini,
     this.actualizacion,
   });
@@ -103,6 +109,7 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioRacconti? racconti;
   final RepositorioParticelle? via;
   final Voz? voz;
+  final Escucha? escucha;
   final Gemini? gemini;
   final Actualizacion? actualizacion;
 
@@ -302,10 +309,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.preposizioni:
         return PantallaPreposizioni(repositorio: _preposizioni);
       case Seccion.leer:
-        return const PantallaProximamente(
-          adelanto: 'Otra forma de leer, al lado de los cuentos. Todavía no '
-              'tiene contenido.',
-        );
+        return PantallaPronunciacion(voz: _voz, escucha: widget.escucha);
       case Seccion.via:
         return PantallaVia(repositorio: _via);
       case Seccion.ci:
