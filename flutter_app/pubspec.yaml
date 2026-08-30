@@ -40,6 +40,7 @@ dependencies:
   # Abre el navegador en la página donde se saca la clave de la IA.
   url_launcher: ^6.3.2
   open_filex: ^4.7.0
+  speech_to_text: ^7.4.0
 
 dev_dependencies:
   flutter_test:

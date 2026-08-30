@@ -9,7 +9,9 @@ import 'package:tukyliano/datos/repositorio_particelle.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/widgets/barra_superior.dart';
 
+import 'escucha_falsa.dart';
 import 'util_pantalla.dart';
+import 'voz_falsa.dart';
 
 Future<void> _tocar(WidgetTester tester, String texto) async {
   // La barra se desliza, así que los últimos botones arrancan fuera de la
@@ -100,7 +102,7 @@ void main() {
     expect(find.text('Cargando verbos...'), findsNothing);
   });
 
-  testWidgets('Leer, Ci y Ne ya tienen su botón, pero todavía no el contenido',
+  testWidgets('Ci y Ne ya tienen su botón, pero todavía no el contenido',
       (WidgetTester tester) async {
     // El botón se agregó antes que el contenido: hasta que estén las frases,
     // la sección tiene que decirlo en vez de mostrar una pantalla vacía.
@@ -108,10 +110,25 @@ void main() {
     await tester.pumpWidget(const TukylianoApp());
     await tester.pumpAndSettle();
 
-    for (final seccion in [Seccion.leer, Seccion.ci, Seccion.ne]) {
+    for (final seccion in [Seccion.ci, Seccion.ne]) {
       await _tocar(tester, seccion.etiqueta);
       expect(find.text('Próximamente'), findsOneWidget, reason: seccion.name);
     }
+  });
+
+  testWidgets('Leer entra a la pronunciación', (WidgetTester tester) async {
+    usarPantallaDeCelular(tester);
+    // Con el micrófono de verdad no hay plugin en un test, así que se inyecta
+    // uno de mentira: lo que se prueba es que la barra lleve al ejercicio.
+    await tester.pumpWidget(TukylianoApp(
+      voz: VozFalsa(),
+      escucha: EscuchaFalsa(),
+    ));
+    await tester.pumpAndSettle();
+
+    await _tocar(tester, 'Leer');
+    expect(find.text('Próximamente'), findsNothing);
+    expect(find.text('DECILA EN VOZ ALTA'), findsOneWidget);
   });
 
   testWidgets('Via entra a la práctica, con sus dos modos',

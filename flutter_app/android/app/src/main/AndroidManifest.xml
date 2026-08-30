@@ -6,6 +6,10 @@
     <!-- Para poder abrir el instalador con la actualización que la app se baja
          sola. Android igual le pregunta al usuario la primera vez. -->
     <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES"/>
+    <!-- Para la práctica de pronunciación: la app graba lo que se dice y se lo
+         pasa al reconocedor de voz de Android. Android igual pide permiso al
+         usuario la primera vez que se toca el micrófono. -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO"/>
 
     <application
         android:label="Tukyliano"
@@ -54,6 +58,11 @@
              suenan, sin ningún error que lo explique. -->
         <intent>
             <action android:name="android.intent.action.TTS_SERVICE"/>
+        </intent>
+        <!-- Y sin esto el reconocedor de voz es invisible: la pronunciación
+             diría que el celular no puede escuchar aunque sí pueda. -->
+        <intent>
+            <action android:name="android.speech.RecognitionService"/>
         </intent>
         <!-- Por lo mismo: sin esto no se ve ningún navegador y el link para
              sacar la clave de la IA no abre nada. -->
