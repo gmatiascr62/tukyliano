@@ -108,11 +108,26 @@ void main() {
     await _abrir(tester, escucha: EscuchaFalsa());
     await _hablar(tester);
 
+    expect(find.text('No te escuché. Probá de nuevo.'), findsOneWidget);
+    expect(find.text('Puntaje: 0/0'), findsOneWidget);
+  });
+
+  testWidgets('muestra el detalle técnico del micrófono',
+      (WidgetTester tester) async {
+    // Mientras esto sea una prueba, el detalle es lo único que dice por qué un
+    // celular no escucha: sin él, todas las fallas se ven igual.
+    await _abrir(
+      tester,
+      escucha: EscuchaFalsa(
+        diagnostico: 'idioma: it_IT · error: error_no_match',
+      ),
+    );
+    await _hablar(tester);
+
     expect(
-      find.text('No te escuché. Probá de nuevo, más cerca.'),
+      find.text('idioma: it_IT · error: error_no_match'),
       findsOneWidget,
     );
-    expect(find.text('Puntaje: 0/0'), findsOneWidget);
   });
 
   testWidgets('sin micrófono avisa por qué no pasa nada',
