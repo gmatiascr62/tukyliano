@@ -45,6 +45,12 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   int _cual = 0;
   _Momento _momento = _Momento.quieta;
   LoEscuchado? _oido;
+
+  /// Lo que se va entendiendo mientras se habla, y cuánto ruido entra por el
+  /// micrófono. Los dos son solo para mostrar que el micrófono está vivo: sin
+  /// esto, un intento fallido y un micrófono muerto se ven igual.
+  String _parcial = '';
+  double _volumen = 0;
   ComoSalio _como = ComoSalio.nada;
   int _puntaje = 0;
   int _total = 0;
@@ -91,9 +97,18 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
     setState(() {
       _momento = _Momento.escuchando;
       _oido = null;
+      _parcial = '';
+      _volumen = 0;
     });
 
-    final oido = await _escucha.escuchar();
+    final oido = await _escucha.escuchar(
+      alOir: (parcial) {
+        if (mounted) setState(() => _parcial = parcial);
+      },
+      alSonido: (volumen) {
+        if (mounted) setState(() => _volumen = volumen);
+      },
+    );
     if (!mounted) return;
 
     final como = comparar(esperada: _palabra.italiano, oido: oido);
@@ -115,6 +130,8 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       _cual = (_cual + 1) % widget.palabras.length;
       _momento = _Momento.quieta;
       _oido = null;
+      _parcial = '';
+      _volumen = 0;
       _como = ComoSalio.nada;
     });
   }
@@ -289,10 +306,52 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
         ),
         const SizedBox(height: 8),
         Text(
-          escuchando ? 'Escuchando...' : 'Tocá y decila',
+          escuchando ? 'Escuchando... (tocá para cortar)' : 'Tocá y decila',
           style: const TextStyle(fontSize: 14, color: Tema.textoTenue),
         ),
+        if (escuchando) ...[
+          const SizedBox(height: 8),
+          _barraDeSonido(),
+          if (_parcial.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(
+              _parcial,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 15,
+                fontStyle: FontStyle.italic,
+                color: Tema.verdeOscuro,
+              ),
+            ),
+          ],
+        ],
       ],
+    );
+  }
+
+  /// Cuánto ruido está entrando por el micrófono.
+  ///
+  /// Es lo que separa "el micrófono no anda" de "te escuchó pero no te
+  /// entendió": si la barra no se mueve mientras se habla, el problema es el
+  /// micrófono y no la pronunciación.
+  Widget _barraDeSonido() {
+    return Container(
+      width: 140,
+      height: 6,
+      decoration: BoxDecoration(
+        color: Tema.borde,
+        borderRadius: BorderRadius.circular(3),
+      ),
+      child: FractionallySizedBox(
+        alignment: Alignment.centerLeft,
+        widthFactor: _volumen.clamp(0.0, 1.0),
+        child: Container(
+          decoration: BoxDecoration(
+            color: Tema.verde,
+            borderRadius: BorderRadius.circular(3),
+          ),
+        ),
+      ),
     );
   }
 
@@ -314,7 +373,7 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       ComoSalio.nada => (
           Icons.hearing_disabled,
           Tema.textoTenue,
-          'No te escuché. Probá de nuevo, más cerca.',
+          'No te escuché. Probá de nuevo.',
         ),
     };
 
@@ -357,17 +416,35 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   }
 
   Widget _aviso() {
-    if (_escucha.problema.isEmpty) return const SizedBox.shrink();
+    final problema = _escucha.problema;
+    final detalle = _escucha.diagnostico;
+    if (problema.isEmpty && detalle.isEmpty) return const SizedBox.shrink();
+
     return Padding(
       padding: const EdgeInsets.only(top: 8),
-      child: Text(
-        _escucha.problema,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          fontSize: 13.5,
-          height: 1.3,
-          color: Tema.incorrecto,
-        ),
+      child: Column(
+        children: [
+          if (problema.isNotEmpty)
+            Text(
+              problema,
+              textAlign: TextAlign.center,
+              style: const TextStyle(
+                fontSize: 13.5,
+                height: 1.3,
+                color: Tema.incorrecto,
+              ),
+            ),
+          // El detalle técnico no es para el alumno: está mientras esto sea
+          // una prueba, para poder averiguar por qué un celular no escucha.
+          if (detalle.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(
+              detalle,
+              textAlign: TextAlign.center,
+              style: const TextStyle(fontSize: 11, color: Tema.textoTenue),
+            ),
+          ],
+        ],
       ),
     );
   }
