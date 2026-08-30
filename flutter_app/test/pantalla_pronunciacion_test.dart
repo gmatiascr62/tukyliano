@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/escucha.dart';
+import 'package:tukyliano/datos/palabras_habladas.dart';
 import 'package:tukyliano/modelos/palabra_hablada.dart';
 import 'package:tukyliano/pantallas/pantalla_pronunciacion.dart';
 import 'package:tukyliano/tema.dart';
+import 'package:tukyliano/widgets/pastilla.dart';
 
 import 'escucha_falsa.dart';
 import 'util_pantalla.dart';
@@ -49,6 +51,42 @@ Future<void> _hablar(WidgetTester tester) async {
 }
 
 void main() {
+  testWidgets('con un solo grupo no muestra las pastillas de elegir',
+      (WidgetTester tester) async {
+    // Las dos palabras de prueba son de sonidos: no habría nada que elegir.
+    await _abrir(tester, escucha: EscuchaFalsa());
+
+    expect(find.text('Sonidos'), findsNothing);
+    expect(find.text('Números'), findsNothing);
+  });
+
+  testWidgets('las pastillas cambian de grupo y arrancan de la primera',
+      (WidgetTester tester) async {
+    usarPantallaDeCelular(tester);
+    await tester.pumpWidget(MaterialApp(
+      theme: Tema.datos,
+      home: Scaffold(
+        body: PantallaPronunciacion(
+          voz: VozFalsa(),
+          escucha: EscuchaFalsa(),
+          palabras: [..._dos, ...numerosParaDecir],
+        ),
+      ),
+    ));
+    await tester.pumpAndSettle();
+
+    expect(find.text('cinque'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(Pastilla, 'Números'));
+    await tester.pumpAndSettle();
+    expect(find.text('zero'), findsOneWidget);
+    expect(find.text('cero'), findsOneWidget);
+
+    await tester.tap(find.widgetWithText(Pastilla, 'Sonidos'));
+    await tester.pumpAndSettle();
+    expect(find.text('cinque'), findsOneWidget);
+  });
+
   testWidgets('muestra la palabra, la traducción y cómo suena',
       (WidgetTester tester) async {
     await _abrir(tester, escucha: EscuchaFalsa());

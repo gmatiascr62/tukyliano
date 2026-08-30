@@ -18,7 +18,8 @@ enum ComoSalio {
 /// Los números que el reconocedor devuelve como cifra.
 ///
 /// Es el caso más molesto: se dice "cinque" perfecto y Android escribe "5",
-/// así que sin esto la palabra daría siempre mal.
+/// así que sin esto la palabra daría siempre mal. Llegan hasta el 30, que es
+/// hasta donde se practican.
 const Map<String, String> numerosEnLetras = {
   '0': 'zero',
   '1': 'uno',
@@ -41,6 +42,18 @@ const Map<String, String> numerosEnLetras = {
   '18': 'diciotto',
   '19': 'diciannove',
   '20': 'venti',
+  '21': 'ventuno',
+  '22': 'ventidue',
+  // Sin tilde a propósito: acá se compara contra texto ya normalizado, y
+  // "ventitré" pierde la tilde antes de llegar.
+  '23': 'ventitre',
+  '24': 'ventiquattro',
+  '25': 'venticinque',
+  '26': 'ventisei',
+  '27': 'ventisette',
+  '28': 'ventotto',
+  '29': 'ventinove',
+  '30': 'trenta',
 };
 
 const Map<String, String> _sinTilde = {
