@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/escucha.dart';
@@ -11,18 +13,30 @@ import 'escucha_falsa.dart';
 import 'util_pantalla.dart';
 import 'voz_falsa.dart';
 
-const _dos = [
+/// Casi todos los tests van con una sola palabra: el orden es al azar, así que
+/// con más de una no se sabría cuál está en pantalla.
+const _una = [
   PalabraHablada(
     italiano: 'cinque',
     espanol: 'cinco',
     pista: 'chín-cue',
     sonido: 'ci = ch',
   ),
+];
+
+const _tres = [
+  ..._una,
   PalabraHablada(
     italiano: 'gnocchi',
     espanol: 'ñoquis',
     pista: 'ñó-qui',
     sonido: 'gn = ñ',
+  ),
+  PalabraHablada(
+    italiano: 'pesce',
+    espanol: 'pescado',
+    pista: 'pé-she',
+    sonido: 'sce = sh',
   ),
 ];
 
@@ -30,6 +44,7 @@ Future<void> _abrir(
   WidgetTester tester, {
   required EscuchaFalsa escucha,
   VozFalsa? voz,
+  List<PalabraHablada> palabras = _una,
 }) async {
   usarPantallaDeCelular(tester);
   await tester.pumpWidget(MaterialApp(
@@ -38,7 +53,10 @@ Future<void> _abrir(
       body: PantallaPronunciacion(
         voz: voz ?? VozFalsa(),
         escucha: escucha,
-        palabras: _dos,
+        palabras: palabras,
+        // Semilla fija: los tests que miran el orden necesitan que no cambie
+        // de una corrida a otra.
+        azar: Random(7),
       ),
     ),
   ));
@@ -50,43 +68,17 @@ Future<void> _hablar(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
+/// Cuál de las palabras está en pantalla.
+String _enPantalla(List<PalabraHablada> palabras) {
+  for (final palabra in palabras) {
+    if (find.text(palabra.italiano).evaluate().isNotEmpty) {
+      return palabra.italiano;
+    }
+  }
+  return '';
+}
+
 void main() {
-  testWidgets('con un solo grupo no muestra las pastillas de elegir',
-      (WidgetTester tester) async {
-    // Las dos palabras de prueba son de sonidos: no habría nada que elegir.
-    await _abrir(tester, escucha: EscuchaFalsa());
-
-    expect(find.text('Sonidos'), findsNothing);
-    expect(find.text('Números'), findsNothing);
-  });
-
-  testWidgets('las pastillas cambian de grupo y arrancan de la primera',
-      (WidgetTester tester) async {
-    usarPantallaDeCelular(tester);
-    await tester.pumpWidget(MaterialApp(
-      theme: Tema.datos,
-      home: Scaffold(
-        body: PantallaPronunciacion(
-          voz: VozFalsa(),
-          escucha: EscuchaFalsa(),
-          palabras: [..._dos, ...numerosParaDecir],
-        ),
-      ),
-    ));
-    await tester.pumpAndSettle();
-
-    expect(find.text('cinque'), findsOneWidget);
-
-    await tester.tap(find.widgetWithText(Pastilla, 'Números'));
-    await tester.pumpAndSettle();
-    expect(find.text('zero'), findsOneWidget);
-    expect(find.text('cero'), findsOneWidget);
-
-    await tester.tap(find.widgetWithText(Pastilla, 'Sonidos'));
-    await tester.pumpAndSettle();
-    expect(find.text('cinque'), findsOneWidget);
-  });
-
   testWidgets('muestra la palabra, la traducción y cómo suena',
       (WidgetTester tester) async {
     await _abrir(tester, escucha: EscuchaFalsa());
@@ -226,33 +218,82 @@ void main() {
     expect(voz.callados, greaterThan(0));
   });
 
-  testWidgets('"Otra palabra" pasa a la siguiente y limpia el resultado',
-      (WidgetTester tester) async {
-    await _abrir(
-      tester,
-      escucha: EscuchaFalsa(
-        respuesta: const LoEscuchado(mejor: 'cinque', alternativas: ['cinque']),
-      ),
-    );
-    await _hablar(tester);
-    await tester.tap(find.text('Otra palabra'));
-    await tester.pumpAndSettle();
+  group('el orden', () {
+    testWidgets('pasa por todas las palabras antes de repetir una',
+        (WidgetTester tester) async {
+      await _abrir(tester, escucha: EscuchaFalsa(), palabras: _tres);
 
-    expect(find.text('gnocchi'), findsOneWidget);
-    expect(find.text('¡Bien dicho!'), findsNothing);
-    // El puntaje sí se conserva: es de toda la vuelta, no de la palabra.
-    expect(find.text('Puntaje: 1/1'), findsOneWidget);
-  });
+      final vistas = <String>[_enPantalla(_tres)];
+      for (var i = 1; i < _tres.length; i++) {
+        await tester.tap(find.text('Otra palabra'));
+        await tester.pumpAndSettle();
+        vistas.add(_enPantalla(_tres));
+      }
 
-  testWidgets('después de la última vuelve a la primera',
-      (WidgetTester tester) async {
-    await _abrir(tester, escucha: EscuchaFalsa());
+      expect(vistas.toSet().length, _tres.length, reason: vistas.join(', '));
+    });
 
-    for (var i = 0; i < _dos.length; i++) {
+    testWidgets('al dar la vuelta no repite la última que se vio',
+        (WidgetTester tester) async {
+      await _abrir(tester, escucha: EscuchaFalsa(), palabras: _tres);
+
+      for (var i = 1; i < _tres.length; i++) {
+        await tester.tap(find.text('Otra palabra'));
+        await tester.pumpAndSettle();
+      }
+      final ultima = _enPantalla(_tres);
+
       await tester.tap(find.text('Otra palabra'));
       await tester.pumpAndSettle();
-    }
 
-    expect(find.text('cinque'), findsOneWidget);
+      expect(_enPantalla(_tres), isNot(ultima));
+    });
+
+    testWidgets('"Otra palabra" limpia el resultado pero deja el puntaje',
+        (WidgetTester tester) async {
+      await _abrir(
+        tester,
+        escucha: EscuchaFalsa(
+          respuesta: const LoEscuchado(mejor: 'cinque', alternativas: ['cinque']),
+        ),
+      );
+      await _hablar(tester);
+      await tester.tap(find.text('Otra palabra'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('¡Bien dicho!'), findsNothing);
+      // El puntaje sí se conserva: es de toda la vuelta, no de la palabra.
+      expect(find.text('Puntaje: 1/1'), findsOneWidget);
+    });
+  });
+
+  group('los grupos', () {
+    testWidgets('con uno solo no muestra las pastillas de elegir',
+        (WidgetTester tester) async {
+      // La palabra de prueba es de sonidos: no habría nada que elegir.
+      await _abrir(tester, escucha: EscuchaFalsa());
+
+      expect(find.text('Sonidos'), findsNothing);
+      expect(find.text('Números'), findsNothing);
+    });
+
+    testWidgets('las pastillas cambian la tanda', (WidgetTester tester) async {
+      await _abrir(
+        tester,
+        escucha: EscuchaFalsa(),
+        palabras: [..._una, ...numerosParaDecir],
+      );
+
+      expect(find.text('cinque'), findsOneWidget);
+
+      await tester.tap(find.widgetWithText(Pastilla, 'Números'));
+      await tester.pumpAndSettle();
+      expect(find.text('cinque'), findsNothing);
+      expect(_enPantalla(numerosParaDecir), isNotEmpty);
+
+      await tester.tap(find.widgetWithText(Pastilla, 'Sonidos'));
+      await tester.pumpAndSettle();
+      expect(find.text('cinque'), findsOneWidget);
+    });
   });
 }
