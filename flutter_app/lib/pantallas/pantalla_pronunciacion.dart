@@ -133,7 +133,12 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
 
     final oido = await _escucha.escuchar(
       alOir: (parcial) {
-        if (mounted) setState(() => _parcial = parcial);
+        if (!mounted) return;
+        setState(() => _parcial = parcial);
+        // Apenas se entiende la palabra no hay nada más que esperar. Cortar
+        // acá ahorra los segundos que Android se toma para decidir que
+        // terminaste de hablar, que es la espera que se hacía larga.
+        if (_esLaPalabra(parcial)) _escucha.cortar();
       },
       alSonido: (volumen) {
         if (mounted) setState(() => _volumen = volumen);
@@ -154,6 +159,14 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       }
     });
   }
+
+  /// Si lo que se entendió a medio camino ya es la palabra buscada.
+  bool _esLaPalabra(String parcial) =>
+      comparar(
+        esperada: _palabra.italiano,
+        oido: LoEscuchado(mejor: parcial),
+      ) ==
+      ComoSalio.bien;
 
   void _siguiente() {
     setState(() {
@@ -512,6 +525,7 @@ const List<SeccionAyuda> ayudaDeLaPronunciacion = [
       'Casi siempre necesita internet.',
       'Hablá cerca y sin ruido atrás.',
       'Decí la palabra sola, sin agregar nada.',
+      'Apenas te entiende corta solo: no hay que esperar.',
     ],
   ),
   SeccionAyuda(

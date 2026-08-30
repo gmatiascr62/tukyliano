@@ -69,7 +69,7 @@ class EscuchaDelCelular implements Escucha {
   /// Cuánto se deja hablar y cuánto silencio corta la escucha. Android tiene
   /// además su propio corte por pausa, más corto, que no se puede cambiar.
   static const _cuantoEscucha = Duration(seconds: 12);
-  static const _cuantoSilencio = Duration(seconds: 4);
+  static const _cuantoSilencio = Duration(seconds: 3);
 
   bool _listo = false;
   String _problema = '';
