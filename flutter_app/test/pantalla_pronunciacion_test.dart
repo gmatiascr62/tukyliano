@@ -78,6 +78,29 @@ String _enPantalla(List<PalabraHablada> palabras) {
   return '';
 }
 
+const _frase = [
+  PalabraHablada(
+    italiano: 'il conto per favore',
+    espanol: 'la cuenta, por favor',
+    pista: 'cón-to',
+    sonido: 'en el bar',
+    grupo: GrupoHabla.frases,
+  ),
+];
+
+/// De qué color salió cada palabra de la frase en pantalla.
+List<Color?> _colores(WidgetTester tester, String frase) {
+  final texto = tester.widget<Text>(
+    find.byWidgetPredicate(
+      (w) => w is Text && w.textSpan != null && w.textSpan!.toPlainText() == frase,
+    ),
+  );
+  return [
+    for (final hijo in (texto.textSpan! as TextSpan).children!)
+      (hijo as TextSpan).style?.color,
+  ];
+}
+
 void main() {
   testWidgets('muestra la palabra, la traducción y cómo suena',
       (WidgetTester tester) async {
@@ -264,6 +287,61 @@ void main() {
       expect(find.text('¡Bien dicho!'), findsNothing);
       // El puntaje sí se conserva: es de toda la vuelta, no de la palabra.
       expect(find.text('Puntaje: 1/1'), findsOneWidget);
+    });
+  });
+
+  group('las frases', () {
+    testWidgets('pinta de verde las palabras a medida que salen',
+        (WidgetTester tester) async {
+      await _abrir(
+        tester,
+        escucha: EscuchaFalsa(parciales: const ['il conto']),
+        palabras: _frase,
+      );
+      await _hablar(tester);
+
+      final colores = _colores(tester, 'il conto per favore');
+      expect(colores[0], Tema.correcto);
+      expect(colores[1], Tema.correcto);
+      expect(colores[2], Tema.titulo);
+      expect(colores[3], Tema.titulo);
+    });
+
+    testWidgets('al terminar la frase corta el micrófono',
+        (WidgetTester tester) async {
+      final escucha = EscuchaFalsa(
+        parciales: const ['il conto', 'il conto per favore'],
+      );
+      await _abrir(tester, escucha: escucha, palabras: _frase);
+      await _hablar(tester);
+
+      expect(escucha.cortadas, greaterThan(0));
+      expect(find.text('¡Bien dicho!'), findsOneWidget);
+      expect(
+        _colores(tester, 'il conto per favore'),
+        everyElement(Tema.correcto),
+      );
+    });
+
+    testWidgets('si se traba, dice en qué palabra',
+        (WidgetTester tester) async {
+      await _abrir(
+        tester,
+        escucha: EscuchaFalsa(
+          parciales: const ['il conto'],
+          respuesta: const LoEscuchado(mejor: 'il conto', alternativas: []),
+        ),
+        palabras: _frase,
+      );
+      await _hablar(tester);
+
+      expect(find.text('Te trabaste en «per».'), findsOneWidget);
+    });
+
+    testWidgets('el botón dice "Otra frase"', (WidgetTester tester) async {
+      await _abrir(tester, escucha: EscuchaFalsa(), palabras: _frase);
+
+      expect(find.text('Otra frase'), findsOneWidget);
     });
   });
 

@@ -90,20 +90,48 @@ String normalizar(String texto) {
   return palabras.join(' ');
 }
 
+/// El texto normalizado, partido en palabras.
+List<String> enPalabras(String texto) {
+  final limpio = normalizar(texto);
+  return limpio.isEmpty ? const [] : limpio.split(' ');
+}
+
+/// Cuántas palabras seguidas, contando desde el principio, ya se dijeron bien.
+///
+/// Sirve para ir pintando de verde una frase mientras se la dice. Se avanza
+/// solo cuando llega la palabra que toca, así que decir otra cosa no adelanta;
+/// y se saltean las que el reconocedor mete de más, que pasa seguido mientras
+/// va corrigiendo lo que escribió.
+int cuantasSeguidas({required String esperada, required String oido}) {
+  final faltan = enPalabras(esperada);
+  if (faltan.isEmpty) return 0;
+
+  var van = 0;
+  for (final dicha in enPalabras(oido)) {
+    if (van >= faltan.length) break;
+    if (dicha == faltan[van]) van++;
+  }
+  return van;
+}
+
 /// Compara lo que se pidió decir con lo que el celular escuchó.
 ///
-/// Que la palabra aparezca en las alternativas y no en la primera cuenta como
-/// [ComoSalio.casi]: el reconocedor la consideró, así que algo se entendió,
+/// Que aparezca en las alternativas y no en la primera cuenta como
+/// [ComoSalio.casi]: el reconocedor lo consideró, así que algo se entendió,
 /// pero no fue lo primero que le vino.
 ComoSalio comparar({required String esperada, required LoEscuchado? oido}) {
   if (oido == null || oido.vacio) return ComoSalio.nada;
 
-  final objetivo = normalizar(esperada);
-  if (objetivo.isEmpty) return ComoSalio.nada;
-  if (normalizar(oido.mejor) == objetivo) return ComoSalio.bien;
+  final cuantas = enPalabras(esperada).length;
+  if (cuantas == 0) return ComoSalio.nada;
 
+  if (cuantasSeguidas(esperada: esperada, oido: oido.mejor) == cuantas) {
+    return ComoSalio.bien;
+  }
   for (final otra in oido.alternativas) {
-    if (normalizar(otra) == objetivo) return ComoSalio.casi;
+    if (cuantasSeguidas(esperada: esperada, oido: otra) == cuantas) {
+      return ComoSalio.casi;
+    }
   }
   return ComoSalio.mal;
 }
