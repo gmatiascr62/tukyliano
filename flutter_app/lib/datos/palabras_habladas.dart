@@ -4,6 +4,7 @@ import '../modelos/palabra_hablada.dart';
 List<PalabraHablada> get palabrasParaDecir => [
       ...sonidosParaDecir,
       ...numerosParaDecir,
+      ...frasesParaDecir,
     ];
 
 /// Las palabras agrupadas por el sonido que el castellano hace pronunciar mal.
@@ -637,5 +638,224 @@ const List<PalabraHablada> numerosParaDecir = [
     pista: 'trén-ta',
     sonido: '30',
     grupo: GrupoHabla.numeros,
+  ),
+];
+
+/// Frases enteras, para practicar el ritmo y no solo la palabra suelta.
+///
+/// Son cortas y de las que se usan de verdad: pedir algo, no entender, moverse.
+/// Ninguna lleva apóstrofo a propósito ("dov'è"): el reconocedor a veces lo
+/// escribe separado y la palabra no coincidiría por un detalle que no tiene
+/// nada que ver con la pronunciación.
+const List<PalabraHablada> frasesParaDecir = [
+  PalabraHablada(
+    italiano: 'Buongiorno, come sta?',
+    espanol: 'Buen día, ¿cómo está?',
+    pista: 'buon-yór-no',
+    sonido: 'saludos',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Buonasera, signora.',
+    espanol: 'Buenas tardes, señora.',
+    pista: 'si-ñó-ra, con la ñ',
+    sonido: 'saludos',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Mi chiamo Marco.',
+    espanol: 'Me llamo Marco.',
+    pista: 'quiá-mo, no chiamo',
+    sonido: 'presentarse',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Piacere di conoscerti.',
+    espanol: 'Un gusto conocerte.',
+    pista: 'co-nó-she-re',
+    sonido: 'presentarse',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Sono qui in vacanza.',
+    espanol: 'Estoy acá de vacaciones.',
+    pista: 'va-cán-tsa',
+    sonido: 'presentarse',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Grazie mille, arrivederci.',
+    espanol: 'Mil gracias, hasta luego.',
+    pista: 'grá-tsie, a-rri-ve-dér-chi',
+    sonido: 'saludos',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Un caffè, per favore.',
+    espanol: 'Un café, por favor.',
+    pista: 'caf-fé, con la doble f',
+    sonido: 'en el bar',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Vorrei un cappuccino.',
+    espanol: 'Quisiera un capuchino.',
+    pista: 'cap-put-chí-no',
+    sonido: 'en el bar',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Vorrei una birra fredda.',
+    espanol: 'Quisiera una cerveza fría.',
+    pista: 'bír-ra, fréd-da',
+    sonido: 'en el bar',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Il conto, per favore.',
+    espanol: 'La cuenta, por favor.',
+    pista: 'cón-to',
+    sonido: 'en el bar',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Questo formaggio è buonissimo.',
+    espanol: 'Este queso está riquísimo.',
+    pista: 'for-mád-yo',
+    sonido: 'en la mesa',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Vorrei prenotare un tavolo.',
+    espanol: 'Quisiera reservar una mesa.',
+    pista: 'pre-no-tá-re',
+    sonido: 'en la mesa',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Ho fame e ho sete.',
+    espanol: 'Tengo hambre y sed.',
+    pista: 'ó fá-me, la h no suena',
+    sonido: 'en la mesa',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Quanto costa questo?',
+    espanol: '¿Cuánto cuesta esto?',
+    pista: 'cuán-to cós-ta',
+    sonido: 'comprar',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Dove posso comprare i biglietti?',
+    espanol: '¿Dónde puedo comprar los boletos?',
+    pista: 'bi-liét-ti',
+    sonido: 'comprar',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Accetta la carta?',
+    espanol: '¿Acepta tarjeta?',
+    pista: 'at-chét-ta',
+    sonido: 'comprar',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Scusi, non capisco.',
+    espanol: 'Perdón, no entiendo.',
+    pista: 'scú-si, sin la e de adelante',
+    sonido: 'no entender',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Puoi ripetere, per favore?',
+    espanol: '¿Podés repetir, por favor?',
+    pista: 'ri-pé-te-re',
+    sonido: 'no entender',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Parli più lentamente, per favore.',
+    espanol: 'Hable más despacio, por favor.',
+    pista: 'len-ta-mén-te',
+    sonido: 'no entender',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Come si dice in italiano?',
+    espanol: '¿Cómo se dice en italiano?',
+    pista: 'dí-che',
+    sonido: 'no entender',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Dove si trova la stazione?',
+    espanol: '¿Dónde queda la estación?',
+    pista: 'sta-tsió-ne',
+    sonido: 'moverse',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Il treno parte alle nove.',
+    espanol: 'El tren sale a las nueve.',
+    pista: 'tré-no, con la r fuerte',
+    sonido: 'moverse',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'A che ora apre il museo?',
+    espanol: '¿A qué hora abre el museo?',
+    pista: 'que ó-ra',
+    sonido: 'moverse',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Vado a scuola in macchina.',
+    espanol: 'Voy a la escuela en auto.',
+    pista: 'scuó-la, mác-qui-na',
+    sonido: 'moverse',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Mi sono perso.',
+    espanol: 'Me perdí.',
+    pista: 'pér-so',
+    sonido: 'moverse',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'La mia famiglia è grande.',
+    espanol: 'Mi familia es grande.',
+    pista: 'fa-mí-lia, con la lengua en el paladar',
+    sonido: 'la familia',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Mio figlio ha cinque anni.',
+    espanol: 'Mi hijo tiene cinco años.',
+    pista: 'fí-lio, chín-cue',
+    sonido: 'la familia',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Domani andiamo in montagna.',
+    espanol: 'Mañana vamos a la montaña.',
+    pista: 'mon-tá-ña',
+    sonido: 'planes',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Che ore sono?',
+    espanol: '¿Qué hora es?',
+    pista: 'que ó-re',
+    sonido: 'planes',
+    grupo: GrupoHabla.frases,
+  ),
+  PalabraHablada(
+    italiano: 'Oggi fa freddo.',
+    espanol: 'Hoy hace frío.',
+    pista: 'ód-yi, fréd-do',
+    sonido: 'el tiempo',
+    grupo: GrupoHabla.frases,
   ),
 ];

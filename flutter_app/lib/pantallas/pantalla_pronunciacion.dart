@@ -15,9 +15,12 @@ import '../widgets/tarjeta_pregunta.dart';
 /// Práctica de pronunciación: aparece una palabra, se la dice en voz alta y el
 /// celular contesta si entendió.
 ///
-/// Dos tandas: los sonidos que el castellano hace pronunciar mal, y los
-/// números del 0 al 30. Dentro de cada una las palabras salen mezcladas, pero
-/// sin repetir ninguna hasta haber pasado por todas.
+/// Tres tandas: los sonidos que el castellano hace pronunciar mal, los números
+/// del 0 al 30, y frases enteras. Dentro de cada una salen mezcladas, pero sin
+/// repetir ninguna hasta haber pasado por todas.
+///
+/// En las frases se va pintando de verde palabra por palabra a medida que se
+/// dicen, y el micrófono se corta solo al llegar al final.
 ///
 /// Las palabras están escritas en Dart y no en un JSON porque el contenido
 /// todavía se está armando; cuando se asiente, pasan al JSON como el resto y
@@ -71,6 +74,11 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   /// esto, un intento fallido y un micrófono muerto se ven igual.
   String _parcial = '';
   double _volumen = 0;
+
+  /// Cuántas palabras seguidas, desde el principio, ya se dijeron bien. Es lo
+  /// que se va pintando de verde. No baja aunque el reconocedor se corrija a
+  /// sí mismo: verlas volver a negro parecería que se perdió lo que ya salió.
+  int _acertadas = 0;
   ComoSalio _como = ComoSalio.nada;
   int _puntaje = 0;
   int _total = 0;
@@ -134,6 +142,7 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       _oido = null;
       _parcial = '';
       _volumen = 0;
+      _acertadas = 0;
       _como = ComoSalio.nada;
     });
   }
@@ -158,16 +167,20 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       _oido = null;
       _parcial = '';
       _volumen = 0;
+      _acertadas = 0;
     });
 
     final oido = await _escucha.escuchar(
       alOir: (parcial) {
         if (!mounted) return;
-        setState(() => _parcial = parcial);
-        // Apenas se entiende la palabra no hay nada más que esperar. Cortar
-        // acá ahorra los segundos que Android se toma para decidir que
-        // terminaste de hablar, que es la espera que se hacía larga.
-        if (_esLaPalabra(parcial)) _escucha.cortar();
+        setState(() {
+          _parcial = parcial;
+          _acertadas = max(_acertadas, _cuantasVan(parcial));
+        });
+        // Apenas está dicho entero no hay nada más que esperar. Cortar acá
+        // ahorra los segundos que Android se toma para decidir que terminaste
+        // de hablar, que es la espera que se hacía larga.
+        if (_acertadas == _cuantasPalabras) _escucha.cortar();
       },
       alSonido: (volumen) {
         if (mounted) setState(() => _volumen = volumen);
@@ -178,6 +191,9 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
     final como = comparar(esperada: _palabra.italiano, oido: oido);
     setState(() {
       _oido = oido;
+      if (oido != null) {
+        _acertadas = max(_acertadas, _cuantasVan(oido.mejor));
+      }
       _como = como;
       _momento = _Momento.contestada;
       // Solo se cuenta cuando se llegó a escuchar algo: un intento en el que
@@ -189,13 +205,12 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
     });
   }
 
-  /// Si lo que se entendió a medio camino ya es la palabra buscada.
-  bool _esLaPalabra(String parcial) =>
-      comparar(
-        esperada: _palabra.italiano,
-        oido: LoEscuchado(mejor: parcial),
-      ) ==
-      ComoSalio.bien;
+  /// De cuántas palabras es lo que hay que decir.
+  int get _cuantasPalabras => enPalabras(_palabra.italiano).length;
+
+  /// Cuántas van dichas, según lo que se entendió hasta ahora.
+  int _cuantasVan(String oido) =>
+      cuantasSeguidas(esperada: _palabra.italiano, oido: oido);
 
   void _siguiente() {
     setState(() {
@@ -209,6 +224,7 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       _oido = null;
       _parcial = '';
       _volumen = 0;
+      _acertadas = 0;
       _como = ComoSalio.nada;
     });
   }
@@ -265,9 +281,9 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
           child: ElevatedButton(
             onPressed: _momento == _Momento.escuchando ? null : _siguiente,
             style: Tema.botonPrincipal,
-            child: const Text(
-              'Otra palabra',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+            child: Text(
+              'Otra ${_grupo.cosa}',
+              style: const TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
             ),
           ),
         ),
@@ -342,15 +358,7 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
             ),
           ),
           const SizedBox(height: 12),
-          Text(
-            _palabra.italiano,
-            textAlign: TextAlign.center,
-            style: const TextStyle(
-              fontSize: 34,
-              fontWeight: FontWeight.w700,
-              color: Tema.titulo,
-            ),
-          ),
+          _texto(),
           const SizedBox(height: 8),
           Text(
             _palabra.espanol,
@@ -373,6 +381,41 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
           Pastilla(texto: _palabra.sonido),
         ],
       ),
+    );
+  }
+
+  /// La primera palabra que no llegó a salir.
+  String _laQueFalta() {
+    final palabras = _palabra.italiano.split(' ');
+    return _acertadas < palabras.length ? palabras[_acertadas] : palabras.last;
+  }
+
+  /// Lo que hay que decir, palabra por palabra: las que ya salieron bien van
+  /// en verde, así se ve por dónde va la frase mientras se la dice.
+  Widget _texto() {
+    final palabras = _palabra.italiano.split(' ');
+    // Una frase entera no entra en el tamaño de una palabra sola.
+    final tamano = _palabra.italiano.length > 22 ? 24.0 : 34.0;
+
+    return Text.rich(
+      TextSpan(
+        style: TextStyle(
+          fontSize: tamano,
+          height: 1.25,
+          fontWeight: FontWeight.w700,
+          color: Tema.titulo,
+        ),
+        children: [
+          for (final (i, palabra) in palabras.indexed)
+            TextSpan(
+              text: i == 0 ? palabra : ' $palabra',
+              style: TextStyle(
+                color: i < _acertadas ? Tema.correcto : Tema.titulo,
+              ),
+            ),
+        ],
+      ),
+      textAlign: TextAlign.center,
     );
   }
 
@@ -462,7 +505,15 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
           Tema.verdeOscuro,
           'Casi: te entendió, pero dudó.',
         ),
-      ComoSalio.mal => (Icons.cancel, Tema.incorrecto, 'Entendió otra cosa.'),
+      ComoSalio.mal => (
+          Icons.cancel,
+          Tema.incorrecto,
+          // En una frase a medio decir, "entendió otra cosa" no explica nada:
+          // lo que pasó es que se trabó en alguna palabra.
+          _acertadas > 0
+              ? 'Te trabaste en «${_laQueFalta()}».'
+              : 'Entendió otra cosa.',
+        ),
       ComoSalio.nada => (
           Icons.hearing_disabled,
           Tema.textoTenue,
@@ -560,6 +611,7 @@ const List<SeccionAyuda> ayudaDeLaPronunciacion = [
       'Hablá cerca y sin ruido atrás.',
       'Decí la palabra sola, sin agregar nada.',
       'Apenas te entiende corta solo: no hay que esperar.',
+      'En las frases, cada palabra se pone verde cuando te sale.',
     ],
   ),
   SeccionAyuda(

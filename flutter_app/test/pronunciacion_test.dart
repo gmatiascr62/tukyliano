@@ -31,6 +31,33 @@ void main() {
     });
   });
 
+  group('cuantasSeguidas', () {
+    const frase = 'il conto per favore';
+
+    test('cuenta las palabras que ya salieron, desde el principio', () {
+      expect(cuantasSeguidas(esperada: frase, oido: ''), 0);
+      expect(cuantasSeguidas(esperada: frase, oido: 'il'), 1);
+      expect(cuantasSeguidas(esperada: frase, oido: 'il conto'), 2);
+      expect(cuantasSeguidas(esperada: frase, oido: 'Il conto, per favore.'), 4);
+    });
+
+    test('no avanza si se dice otra cosa', () {
+      expect(cuantasSeguidas(esperada: frase, oido: 'il canto per favore'), 1);
+    });
+
+    test('saltea lo que el reconocedor mete de más', () {
+      // Mientras corrige lo que escribió llegan palabras sueltas que no van.
+      expect(
+        cuantasSeguidas(esperada: frase, oido: 'il eh conto per favore'),
+        4,
+      );
+    });
+
+    test('empezar por el medio no cuenta', () {
+      expect(cuantasSeguidas(esperada: frase, oido: 'per favore'), 0);
+    });
+  });
+
   group('comparar', () {
     test('el reconocedor entendió la palabra', () {
       expect(_decir('cinque', 'cinque'), ComoSalio.bien);
@@ -80,6 +107,30 @@ void main() {
       }
       for (final entrada in cuantas.entries) {
         expect(entrada.value, greaterThanOrEqualTo(2), reason: entrada.key);
+      }
+    });
+
+    test('las frases son cortas, con traducción y sin apóstrofos', () {
+      expect(frasesParaDecir.length, greaterThanOrEqualTo(20));
+      for (final frase in frasesParaDecir) {
+        expect(frase.grupo, GrupoHabla.frases, reason: frase.italiano);
+        expect(
+          enPalabras(frase.italiano).length,
+          inInclusiveRange(2, 7),
+          reason: frase.italiano,
+        );
+        // El reconocedor a veces escribe el apóstrofo separado ("dov'è" como
+        // "dove è"), y la frase no coincidiría por algo que no tiene nada que
+        // ver con la pronunciación.
+        expect(frase.italiano, isNot(contains("'")), reason: frase.italiano);
+        // La tarjeta pinta de verde partiendo por espacios, y el avance se
+        // cuenta sobre el texto normalizado: si no dieran lo mismo, el verde
+        // quedaría corrido respecto de lo que se dijo.
+        expect(
+          frase.italiano.split(' ').length,
+          enPalabras(frase.italiano).length,
+          reason: frase.italiano,
+        );
       }
     });
 
