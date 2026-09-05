@@ -110,13 +110,13 @@ void main() {
       }
     });
 
-    test('las frases son cortas, con traducción y sin apóstrofos', () {
+    test('las frases son largas, con traducción y sin apóstrofos', () {
       expect(frasesParaDecir.length, greaterThanOrEqualTo(20));
       for (final frase in frasesParaDecir) {
         expect(frase.grupo, GrupoHabla.frases, reason: frase.italiano);
         expect(
           enPalabras(frase.italiano).length,
-          inInclusiveRange(2, 7),
+          inInclusiveRange(8, 12),
           reason: frase.italiano,
         );
         // El reconocedor a veces escribe el apóstrofo separado ("dov'è" como

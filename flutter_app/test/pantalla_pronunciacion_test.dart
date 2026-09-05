@@ -80,8 +80,8 @@ String _enPantalla(List<PalabraHablada> palabras) {
 
 const _frase = [
   PalabraHablada(
-    italiano: 'il conto per favore',
-    espanol: 'la cuenta, por favor',
+    italiano: 'il conto per favore possiamo pagare con la carta',
+    espanol: 'la cuenta por favor, ¿podemos pagar con tarjeta?',
     pista: 'cón-to',
     sonido: 'en el bar',
     grupo: GrupoHabla.frases,
@@ -190,24 +190,6 @@ void main() {
     expect(find.text('Puntaje: 0/0'), findsOneWidget);
   });
 
-  testWidgets('muestra el detalle técnico del micrófono',
-      (WidgetTester tester) async {
-    // Mientras esto sea una prueba, el detalle es lo único que dice por qué un
-    // celular no escucha: sin él, todas las fallas se ven igual.
-    await _abrir(
-      tester,
-      escucha: EscuchaFalsa(
-        diagnostico: 'idioma: it_IT · error: error_no_match',
-      ),
-    );
-    await _hablar(tester);
-
-    expect(
-      find.text('idioma: it_IT · error: error_no_match'),
-      findsOneWidget,
-    );
-  });
-
   testWidgets('sin micrófono avisa por qué no pasa nada',
       (WidgetTester tester) async {
     await _abrir(
@@ -300,17 +282,23 @@ void main() {
       );
       await _hablar(tester);
 
-      final colores = _colores(tester, 'il conto per favore');
+      final colores = _colores(
+        tester,
+        'il conto per favore possiamo pagare con la carta',
+      );
       expect(colores[0], Tema.correcto);
       expect(colores[1], Tema.correcto);
       expect(colores[2], Tema.titulo);
-      expect(colores[3], Tema.titulo);
+      expect(colores.last, Tema.titulo);
     });
 
     testWidgets('al terminar la frase corta el micrófono',
         (WidgetTester tester) async {
       final escucha = EscuchaFalsa(
-        parciales: const ['il conto', 'il conto per favore'],
+        parciales: const [
+          'il conto',
+          'il conto per favore possiamo pagare con la carta',
+        ],
       );
       await _abrir(tester, escucha: escucha, palabras: _frase);
       await _hablar(tester);
@@ -318,7 +306,7 @@ void main() {
       expect(escucha.cortadas, greaterThan(0));
       expect(find.text('¡Bien dicho!'), findsOneWidget);
       expect(
-        _colores(tester, 'il conto per favore'),
+        _colores(tester, 'il conto per favore possiamo pagare con la carta'),
         everyElement(Tema.correcto),
       );
     });

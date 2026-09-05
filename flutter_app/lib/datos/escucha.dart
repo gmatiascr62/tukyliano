@@ -42,20 +42,11 @@ abstract class Escucha {
   /// hay nada que avisar.
   String get problema;
 
-  /// Detalle técnico de la última escucha: qué idioma se usó, en qué estado
-  /// quedó el motor y qué código de error tiró Android. No es para el alumno;
-  /// es para poder averiguar por qué un celular no escucha.
-  String get diagnostico;
-
   /// Escucha una vez y devuelve lo que oyó, o null si no oyó nada.
   ///
-  /// [alOir] va recibiendo lo que se entiende mientras se habla, y [alSonido]
-  /// cuánto ruido entra por el micrófono (0 a 1). Los dos son para mostrar en
-  /// pantalla que el micrófono está vivo.
-  Future<LoEscuchado?> escuchar({
-    void Function(String parcial)? alOir,
-    void Function(double volumen)? alSonido,
-  });
+  /// [alOir] va recibiendo lo que se entiende mientras se habla. No se muestra
+  /// tal cual: la pantalla lo usa para ir marcando por dónde va la frase.
+  Future<LoEscuchado?> escuchar({void Function(String parcial)? alOir});
 
   /// Corta una escucha a mitad de camino.
   Future<void> cortar();
@@ -66,10 +57,11 @@ class EscuchaDelCelular implements Escucha {
 
   final SpeechToText _motor;
 
-  /// Cuánto se deja hablar y cuánto silencio corta la escucha. Android tiene
-  /// además su propio corte por pausa, más corto, que no se puede cambiar.
-  static const _cuantoEscucha = Duration(seconds: 12);
-  static const _cuantoSilencio = Duration(seconds: 3);
+  /// Cuánto dura una escucha como mucho. No hay corte por silencio de este
+  /// lado: Android igual termina solo en cuanto se hace una pausa, y eso no se
+  /// puede cambiar, así que la pantalla vuelve a llamar hasta que se termine
+  /// la frase o se toque el botón.
+  static const _cuantoEscucha = Duration(seconds: 30);
 
   bool _listo = false;
   String _problema = '';
@@ -77,17 +69,11 @@ class EscuchaDelCelular implements Escucha {
   /// El idioma que se le termina pidiendo al reconocedor: el que reporta el
   /// celular, porque no todos lo nombran igual ("it_IT", "it-IT", "it").
   String _idiomaUsado = '';
-  String _ultimoEstado = '';
-  String _ultimoError = '';
 
   /// La escucha en curso y lo último que se entendió mientras se hablaba.
   Completer<LoEscuchado?>? _turno;
   LoEscuchado? _ultimoParcial;
   Timer? _vigia;
-
-  /// Recién cuando se escuchó una vez hay algo técnico que contar; antes, el
-  /// detalle sería inventado.
-  bool _huboEscucha = false;
 
   @override
   bool get listo => _listo;
@@ -96,24 +82,12 @@ class EscuchaDelCelular implements Escucha {
   String get problema => _problema;
 
   @override
-  String get diagnostico => !_huboEscucha
-      ? ''
-      : [
-          'idioma: ${_idiomaUsado.isEmpty ? 'el del celular' : _idiomaUsado}',
-          if (_ultimoEstado.isNotEmpty) 'estado: $_ultimoEstado',
-          if (_ultimoError.isNotEmpty) 'error: $_ultimoError',
-        ].join(' · ');
-
-  @override
   Future<bool> preparar() async {
     if (_listo) return true;
     try {
       // initialize es también lo que pide el permiso del micrófono la primera
       // vez; si el usuario lo niega, devuelve false.
-      _listo = await _motor.initialize(
-        onError: _alFallar,
-        onStatus: _alCambiarEstado,
-      );
+      _listo = await _motor.initialize(onError: _alFallar);
     } catch (_) {
       _listo = false;
     }
@@ -161,18 +135,13 @@ class EscuchaDelCelular implements Escucha {
   }
 
   @override
-  Future<LoEscuchado?> escuchar({
-    void Function(String parcial)? alOir,
-    void Function(double volumen)? alSonido,
-  }) async {
+  Future<LoEscuchado?> escuchar({void Function(String parcial)? alOir}) async {
     if (!await preparar()) return null;
     await cortar();
 
     final turno = Completer<LoEscuchado?>();
     _turno = turno;
-    _huboEscucha = true;
     _ultimoParcial = null;
-    _ultimoError = '';
     _problema = '';
 
     try {
@@ -190,7 +159,6 @@ class EscuchaDelCelular implements Escucha {
           }
           if (resultado.finalResult) _terminar(oido);
         },
-        onSoundLevelChange: alSonido == null ? null : (n) => alSonido(_nivel(n)),
         listenOptions: SpeechListenOptions(
           // Vacío significa "el idioma del celular": es lo último que queda si
           // no se pudo averiguar cuál es el italiano.
@@ -201,7 +169,6 @@ class EscuchaDelCelular implements Escucha {
           partialResults: true,
           cancelOnError: false,
           listenFor: _cuantoEscucha,
-          pauseFor: _cuantoSilencio,
         ),
       );
     } catch (_) {
@@ -213,7 +180,7 @@ class EscuchaDelCelular implements Escucha {
     _vigilar();
     // Red de seguridad por si el motor se cuelga sin contestar ni fallar.
     return turno.future.timeout(
-      _cuantoEscucha + const Duration(seconds: 8),
+      _cuantoEscucha + const Duration(seconds: 5),
       onTimeout: () {
         cortar();
         return _ultimoParcial;
@@ -269,17 +236,7 @@ class EscuchaDelCelular implements Escucha {
     if (turno != null && !turno.isCompleted) turno.complete(oido);
   }
 
-  /// Android manda el volumen en una escala rara que va más o menos de -2 a
-  /// 10. Acá se lo lleva a 0 a 1, que es lo que necesita la barrita.
-  double _nivel(double crudo) {
-    final normalizado = (crudo + 2) / 12;
-    return normalizado.clamp(0, 1).toDouble();
-  }
-
-  void _alCambiarEstado(String estado) => _ultimoEstado = estado;
-
   void _alFallar(SpeechRecognitionError error) {
-    _ultimoError = error.errorMsg;
     _problema = _explicar(error.errorMsg);
     // Los errores permanentes cortan la escucha; los pasajeros no, que el
     // motor sigue intentando.
