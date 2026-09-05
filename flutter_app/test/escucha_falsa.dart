@@ -7,7 +7,6 @@ class EscuchaFalsa implements Escucha {
     this.respuesta,
     this.puedeEscuchar = true,
     this.problema = '',
-    this.diagnostico = '',
     this.parciales = const [],
   });
 
@@ -23,9 +22,6 @@ class EscuchaFalsa implements Escucha {
   @override
   String problema;
 
-  @override
-  String diagnostico;
-
   int escuchadas = 0;
   int cortadas = 0;
   bool _cortada = false;
@@ -37,10 +33,7 @@ class EscuchaFalsa implements Escucha {
   Future<bool> preparar() async => puedeEscuchar;
 
   @override
-  Future<LoEscuchado?> escuchar({
-    void Function(String parcial)? alOir,
-    void Function(double volumen)? alSonido,
-  }) async {
+  Future<LoEscuchado?> escuchar({void Function(String parcial)? alOir}) async {
     escuchadas++;
     if (!puedeEscuchar) return null;
     _cortada = false;
@@ -49,7 +42,6 @@ class EscuchaFalsa implements Escucha {
     for (final parcial in parciales) {
       ultimo = LoEscuchado(mejor: parcial, alternativas: [parcial]);
       alOir?.call(parcial);
-      alSonido?.call(0.5);
       // Como el micrófono de verdad: si lo cortan a mitad de camino, contesta
       // con lo último que llegó a entender.
       if (_cortada) return ultimo;

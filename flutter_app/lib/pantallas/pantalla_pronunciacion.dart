@@ -69,11 +69,9 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   _Momento _momento = _Momento.quieta;
   LoEscuchado? _oido;
 
-  /// Lo que se va entendiendo mientras se habla, y cuánto ruido entra por el
-  /// micrófono. Los dos son solo para mostrar que el micrófono está vivo: sin
-  /// esto, un intento fallido y un micrófono muerto se ven igual.
-  String _parcial = '';
-  double _volumen = 0;
+  /// True cuando se tocó el botón para cortar. Es lo único, además de
+  /// terminar la frase, que detiene la escucha.
+  bool _pararon = false;
 
   /// Cuántas palabras seguidas, desde el principio, ya se dijeron bien. Es lo
   /// que se va pintando de verde. No baja aunque el reconocedor se corrija a
@@ -140,8 +138,6 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       _mezclar();
       _momento = _Momento.quieta;
       _oido = null;
-      _parcial = '';
-      _volumen = 0;
       _acertadas = 0;
       _como = ComoSalio.nada;
     });
@@ -152,8 +148,16 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
     await widget.voz.decir(_palabra.italiano);
   }
 
+  /// Cuánto se sigue escuchando en total, y cuántas veces se vuelve a llamar
+  /// al micrófono. Android termina la escucha en cuanto se hace una pausa y no
+  /// hay forma de evitarlo, así que se la reanuda; el tope está para que no
+  /// quede grabando para siempre si se deja el celular tirado.
+  static const _cuantoEnTotal = Duration(seconds: 60);
+  static const _cuantasVeces = 8;
+
   Future<void> _escuchar() async {
     if (_momento == _Momento.escuchando) {
+      _pararon = true;
       await _escucha.cortar();
       return;
     }
@@ -165,35 +169,38 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
     setState(() {
       _momento = _Momento.escuchando;
       _oido = null;
-      _parcial = '';
-      _volumen = 0;
       _acertadas = 0;
+      _pararon = false;
     });
 
-    final oido = await _escucha.escuchar(
-      alOir: (parcial) {
-        if (!mounted) return;
-        setState(() {
-          _parcial = parcial;
-          _acertadas = max(_acertadas, _cuantasVan(parcial));
-        });
-        // Apenas está dicho entero no hay nada más que esperar. Cortar acá
-        // ahorra los segundos que Android se toma para decidir que terminaste
-        // de hablar, que es la espera que se hacía larga.
-        if (_acertadas == _cuantasPalabras) _escucha.cortar();
-      },
-      alSonido: (volumen) {
-        if (mounted) setState(() => _volumen = volumen);
-      },
-    );
-    if (!mounted) return;
+    final arranco = DateTime.now();
+    LoEscuchado? oido;
 
-    final como = comparar(esperada: _palabra.italiano, oido: oido);
+    for (var vez = 0; vez < _cuantasVeces; vez++) {
+      final escuchado = await _escucha.escuchar(
+        alOir: (parcial) {
+          if (!mounted) return;
+          setState(() => _acertadas = max(_acertadas, _cuantasVan(parcial)));
+          // Apenas está dicha entera no hay nada más que esperar.
+          if (_acertadas == _cuantasPalabras) _escucha.cortar();
+        },
+      );
+      if (!mounted) return;
+
+      if (escuchado != null && !escuchado.vacio) {
+        oido = escuchado;
+        setState(() => _acertadas = max(_acertadas, _cuantasVan(oido!.mejor)));
+      }
+
+      if (_pararon || _acertadas == _cuantasPalabras) break;
+      if (DateTime.now().difference(arranco) > _cuantoEnTotal) break;
+    }
+
+    final como = _acertadas == _cuantasPalabras
+        ? ComoSalio.bien
+        : comparar(esperada: _palabra.italiano, oido: oido);
     setState(() {
       _oido = oido;
-      if (oido != null) {
-        _acertadas = max(_acertadas, _cuantasVan(oido.mejor));
-      }
       _como = como;
       _momento = _Momento.contestada;
       // Solo se cuenta cuando se llegó a escuchar algo: un intento en el que
@@ -222,8 +229,6 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       }
       _momento = _Momento.quieta;
       _oido = null;
-      _parcial = '';
-      _volumen = 0;
       _acertadas = 0;
       _como = ComoSalio.nada;
     });
@@ -394,8 +399,14 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   /// en verde, así se ve por dónde va la frase mientras se la dice.
   Widget _texto() {
     final palabras = _palabra.italiano.split(' ');
-    // Una frase entera no entra en el tamaño de una palabra sola.
-    final tamano = _palabra.italiano.length > 22 ? 24.0 : 34.0;
+    // Una frase entera no entra en el tamaño de una palabra sola, y una
+    // frase larga tampoco en el de una corta.
+    final largo = _palabra.italiano.length;
+    final tamano = largo > 42
+        ? 21.0
+        : largo > 22
+            ? 24.0
+            : 34.0;
 
     return Text.rich(
       TextSpan(
@@ -442,52 +453,10 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
         ),
         const SizedBox(height: 8),
         Text(
-          escuchando ? 'Escuchando... (tocá para cortar)' : 'Tocá y decila',
+          escuchando ? 'Escuchando...' : 'Tocá y decila',
           style: const TextStyle(fontSize: 14, color: Tema.textoTenue),
         ),
-        if (escuchando) ...[
-          const SizedBox(height: 8),
-          _barraDeSonido(),
-          if (_parcial.isNotEmpty) ...[
-            const SizedBox(height: 6),
-            Text(
-              _parcial,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 15,
-                fontStyle: FontStyle.italic,
-                color: Tema.verdeOscuro,
-              ),
-            ),
-          ],
-        ],
       ],
-    );
-  }
-
-  /// Cuánto ruido está entrando por el micrófono.
-  ///
-  /// Es lo que separa "el micrófono no anda" de "te escuchó pero no te
-  /// entendió": si la barra no se mueve mientras se habla, el problema es el
-  /// micrófono y no la pronunciación.
-  Widget _barraDeSonido() {
-    return Container(
-      width: 140,
-      height: 6,
-      decoration: BoxDecoration(
-        color: Tema.borde,
-        borderRadius: BorderRadius.circular(3),
-      ),
-      child: FractionallySizedBox(
-        alignment: Alignment.centerLeft,
-        widthFactor: _volumen.clamp(0.0, 1.0),
-        child: Container(
-          decoration: BoxDecoration(
-            color: Tema.verde,
-            borderRadius: BorderRadius.circular(3),
-          ),
-        ),
-      ),
     );
   }
 
@@ -560,35 +529,17 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
   }
 
   Widget _aviso() {
-    final problema = _escucha.problema;
-    final detalle = _escucha.diagnostico;
-    if (problema.isEmpty && detalle.isEmpty) return const SizedBox.shrink();
-
+    if (_escucha.problema.isEmpty) return const SizedBox.shrink();
     return Padding(
       padding: const EdgeInsets.only(top: 8),
-      child: Column(
-        children: [
-          if (problema.isNotEmpty)
-            Text(
-              problema,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 13.5,
-                height: 1.3,
-                color: Tema.incorrecto,
-              ),
-            ),
-          // El detalle técnico no es para el alumno: está mientras esto sea
-          // una prueba, para poder averiguar por qué un celular no escucha.
-          if (detalle.isNotEmpty) ...[
-            const SizedBox(height: 6),
-            Text(
-              detalle,
-              textAlign: TextAlign.center,
-              style: const TextStyle(fontSize: 11, color: Tema.textoTenue),
-            ),
-          ],
-        ],
+      child: Text(
+        _escucha.problema,
+        textAlign: TextAlign.center,
+        style: const TextStyle(
+          fontSize: 13.5,
+          height: 1.3,
+          color: Tema.incorrecto,
+        ),
       ),
     );
   }
@@ -610,7 +561,7 @@ const List<SeccionAyuda> ayudaDeLaPronunciacion = [
       'Casi siempre necesita internet.',
       'Hablá cerca y sin ruido atrás.',
       'Decí la palabra sola, sin agregar nada.',
-      'Apenas te entiende corta solo: no hay que esperar.',
+      'Al terminar corta solo; si no, tocá el botón para parar.',
       'En las frases, cada palabra se pone verde cuando te sale.',
     ],
   ),
