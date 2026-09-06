@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../datos/progreso.dart';
 import '../constantes.dart';
 import '../logica/modo_respuesta.dart';
 import '../logica/opciones_conjugacion.dart';
@@ -23,12 +24,18 @@ class PantallaQuiz extends StatefulWidget {
     super.key,
     required this.verbos,
     required this.tiempos,
+    this.progreso,
   });
 
   final List<Verbo> verbos;
   final List<String> tiempos;
 
   /// Mensaje del chequeo de verbos nuevos.
+
+
+  /// Para sumar los aciertos al progreso general. Null en los tests que no lo
+  /// miran.
+  final Progreso? progreso;
 
   @override
   State<PantallaQuiz> createState() => _PantallaQuizState();
@@ -127,6 +134,7 @@ class _PantallaQuizState extends State<PantallaQuiz> {
       _total++;
       if (acerto) {
         _puntaje++;
+        widget.progreso?.acerto();
         _feedback = '¡Correcto!';
         _colorFeedback = Tema.correcto;
       } else {

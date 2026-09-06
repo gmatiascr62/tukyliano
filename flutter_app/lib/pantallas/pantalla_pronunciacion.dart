@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../datos/progreso.dart';
 import '../datos/escucha.dart';
 import '../datos/palabras_habladas.dart';
 import '../datos/voz.dart';
@@ -32,6 +33,7 @@ class PantallaPronunciacion extends StatefulWidget {
     this.escucha,
     this.palabras,
     this.azar,
+    this.progreso,
   });
 
   final Voz voz;
@@ -44,6 +46,11 @@ class PantallaPronunciacion extends StatefulWidget {
 
   /// Inyectable para que los tests puedan predecir el orden.
   final Random? azar;
+
+
+  /// Para sumar los aciertos al progreso general. Null en los tests que no lo
+  /// miran.
+  final Progreso? progreso;
 
   @override
   State<PantallaPronunciacion> createState() => _PantallaPronunciacionState();
@@ -207,7 +214,10 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       // no se oyó nada no es un error de pronunciación.
       if (como != ComoSalio.nada) {
         _total++;
-        if (como == ComoSalio.bien) _puntaje++;
+        if (como == ComoSalio.bien) {
+          _puntaje++;
+          widget.progreso?.acerto();
+        }
       }
     });
   }

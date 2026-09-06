@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../datos/progreso.dart';
 import '../constantes.dart';
 import '../datos/repositorio_preposizioni.dart';
 import '../logica/preposiciones.dart';
@@ -24,10 +25,15 @@ import '../widgets/tarjeta_pregunta.dart';
 /// Arriba se elige con cuáles practicar: se pueden dejar dos prendidas y el
 /// resto apagadas, para machacar justo las que no salen.
 class PantallaPreposizioni extends StatefulWidget {
-  const PantallaPreposizioni({super.key, this.repositorio});
+  const PantallaPreposizioni({super.key, this.repositorio, this.progreso});
 
   /// Inyectable para los tests.
   final RepositorioPreposizioni? repositorio;
+
+
+  /// Para sumar los aciertos al progreso general. Null en los tests que no lo
+  /// miran.
+  final Progreso? progreso;
 
   @override
   State<PantallaPreposizioni> createState() => _PantallaPreposizioniState();
@@ -128,7 +134,10 @@ class _PantallaPreposizioniState extends State<PantallaPreposizioni> {
     if (_elegida.isEmpty || _actual == null) return;
     setState(() {
       _total++;
-      if (_acerto) _puntaje++;
+      if (_acerto) {
+        _puntaje++;
+        widget.progreso?.acerto();
+      }
       _mostrandoResultado = true;
     });
   }
