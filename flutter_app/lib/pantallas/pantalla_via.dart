@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../datos/progreso.dart';
 import '../constantes.dart';
 import '../datos/repositorio_particelle.dart';
 import '../logica/correccion.dart';
@@ -23,10 +24,15 @@ import '../widgets/teclado.dart';
 /// español no hay nada parecido —se dice todo con el mismo verbo reflexivo—,
 /// así que el error típico no es escribir mal el «via» sino no ponerlo.
 class PantallaVia extends StatefulWidget {
-  const PantallaVia({super.key, this.repositorio});
+  const PantallaVia({super.key, this.repositorio, this.progreso});
 
   /// Inyectable para los tests.
   final RepositorioParticelle? repositorio;
+
+
+  /// Para sumar los aciertos al progreso general. Null en los tests que no lo
+  /// miran.
+  final Progreso? progreso;
 
   @override
   State<PantallaVia> createState() => _PantallaViaState();
@@ -127,7 +133,10 @@ class _PantallaViaState extends State<PantallaVia> {
         _correccion = corregir(correcta: actual.resuelta, respuesta: _texto);
       }
       _total++;
-      if (_acerto) _puntaje++;
+      if (_acerto) {
+        _puntaje++;
+        widget.progreso?.acerto();
+      }
       _mostrandoResultado = true;
     });
   }

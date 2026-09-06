@@ -9,13 +9,17 @@ import 'datos/repositorio_frases.dart';
 import 'datos/repositorio_particelle.dart';
 import 'datos/repositorio_preposizioni.dart';
 import 'datos/repositorio_racconti.dart';
+import 'datos/progreso.dart';
 import 'datos/repositorio_verbos.dart';
 import 'datos/voz.dart';
 import 'ia/gemini.dart';
+import 'modelos/seccion.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_chat.dart';
 import 'pantallas/pantalla_frases.dart';
+import 'pantallas/pantalla_gramatica.dart';
+import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_preposizioni.dart';
 import 'pantallas/pantalla_pronunciacion.dart';
 import 'pantallas/pantalla_proximamente.dart';
@@ -25,7 +29,7 @@ import 'pantallas/pantalla_seleccion.dart';
 import 'pantallas/pantalla_via.dart';
 import 'tema.dart';
 import 'widgets/aviso_actualizacion.dart';
-import 'widgets/barra_superior.dart';
+import 'widgets/encabezado.dart';
 
 void main() {
   runApp(const TukylianoApp());
@@ -43,6 +47,7 @@ class TukylianoApp extends StatelessWidget {
     this.via,
     this.voz,
     this.escucha,
+    this.progreso,
     this.gemini,
     this.actualizacion,
   });
@@ -57,6 +62,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioParticelle? via;
   final Voz? voz;
   final Escucha? escucha;
+  final Progreso? progreso;
   final Gemini? gemini;
   final Actualizacion? actualizacion;
 
@@ -76,6 +82,7 @@ class TukylianoApp extends StatelessWidget {
         via: via,
         voz: voz,
         escucha: escucha,
+        progreso: progreso,
         gemini: gemini,
         actualizacion: actualizacion,
       ),
@@ -97,6 +104,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.via,
     this.voz,
     this.escucha,
+    this.progreso,
     this.gemini,
     this.actualizacion,
   });
@@ -110,6 +118,7 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioParticelle? via;
   final Voz? voz;
   final Escucha? escucha;
+  final Progreso? progreso;
   final Gemini? gemini;
   final Actualizacion? actualizacion;
 
@@ -137,10 +146,16 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   late final AlmacenamientoClave _almacenClave =
       widget.almacenClave ?? AlmacenamientoClave();
 
-  /// Se abre en Racconti: es lo que se hace cuando se agarra la app sin un
-  /// plan, y las otras secciones piden elegir verbos y tiempos antes de
-  /// empezar.
-  Seccion _seccion = Seccion.racconti;
+  /// Lo que se lleva hecho. Vive acá porque lo alimentan casi todas las
+  /// secciones y lo muestra el inicio.
+  late final Progreso _progreso = widget.progreso ?? Progreso();
+
+  /// Dónde se está parado. Null es el inicio, con los cuatro botones.
+  Seccion? _seccion;
+
+  /// True cuando se entró a gramática pero todavía no se eligió cuál.
+  bool _eligiendoTema = false;
+
   DatosVerbos? _datos;
 
   /// Solo se llena si los verbos no se pudieron cargar: ahí no hay nada que
@@ -175,6 +190,13 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     _cargarPreposizioni();
     _cargarRacconti();
     _cargarVia();
+    _cargarProgreso();
+  }
+
+  Future<void> _cargarProgreso() async {
+    await _progreso.cargar();
+    if (!mounted) return;
+    setState(() {});
   }
 
   /// Las frases se leen al arrancar y, si hay internet, se chequea si GitHub
@@ -232,13 +254,59 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   void _irA(Seccion seccion) {
     setState(() {
       _seccion = seccion;
+      _eligiendoTema = false;
       // Tocar "Verbos" o "Frases" lleva a elegir qué practicar, como en la app
       // Kivy. Si se conservara el paso, al volver desde otra sección caía
       // directo en la práctica y no se podía cambiar la selección.
       if (seccion == Seccion.verbos) _eligiendoVerbos = true;
       if (seccion == Seccion.frases) _eligiendoFrases = true;
     });
+    // Entrar a practicar ya cuenta como haber practicado hoy, aunque después
+    // no se acierte nada.
+    _progreso.practico();
   }
+
+  void _irAlDestino(Destino destino) {
+    switch (destino) {
+      case Destino.racconti:
+        _irA(Seccion.racconti);
+      case Destino.hablar:
+        _irA(Seccion.hablar);
+      case Destino.chat:
+        _irA(Seccion.chat);
+      case Destino.gramatica:
+        setState(() {
+          _seccion = null;
+          _eligiendoTema = true;
+        });
+    }
+  }
+
+  /// Un paso para atrás. Desde una sección de gramática se vuelve a la lista
+  /// de temas, no al inicio: es de donde se entró.
+  void _volver() {
+    setState(() {
+      if (_seccion != null && _esDeGramatica(_seccion!)) {
+        _seccion = null;
+        _eligiendoTema = true;
+      } else {
+        _seccion = null;
+        _eligiendoTema = false;
+      }
+    });
+  }
+
+  static bool _esDeGramatica(Seccion seccion) => const {
+        Seccion.frases,
+        Seccion.verbos,
+        Seccion.articoli,
+        Seccion.preposizioni,
+        Seccion.via,
+        Seccion.ci,
+        Seccion.ne,
+      }.contains(seccion);
+
+  bool get _enElInicio => _seccion == null && !_eligiendoTema;
 
   void _empezarFrases(List<String> verbos, List<String> tiempos) {
     setState(() {
@@ -281,37 +349,64 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Column(
-            children: [
-              BarraSuperior(onSeccion: _irA, actual: _seccion),
-              // Arriba de todo y sin ocupar nada cuando no hay novedades.
-              AvisoActualizacion(actualizacion: widget.actualizacion),
-              Expanded(child: _cuerpo()),
-            ],
+    return PopScope(
+      // El botón de atrás del celular hace lo mismo que la flecha; desde el
+      // inicio sí cierra la app, que es lo que se espera.
+      canPop: _enElInicio,
+      onPopInvokedWithResult: (salio, _) {
+        if (!salio) _volver();
+      },
+      child: Scaffold(
+        body: SafeArea(
+          child: Padding(
+            padding: const EdgeInsets.all(14),
+            child: Column(
+              children: [
+                if (!_enElInicio) ...[
+                  Encabezado(titulo: _titulo(), alVolver: _volver),
+                  const SizedBox(height: 6),
+                ],
+                // Arriba de todo y sin ocupar nada cuando no hay novedades.
+                AvisoActualizacion(actualizacion: widget.actualizacion),
+                Expanded(child: _cuerpo()),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
+  String _titulo() =>
+      _seccion?.etiqueta ?? (_eligiendoTema ? 'Gramática' : 'Tukyliano');
+
   Widget _cuerpo() {
-    switch (_seccion) {
+    final seccion = _seccion;
+    if (seccion == null) {
+      if (_eligiendoTema) return PantallaGramatica(alElegir: _irA);
+      return PantallaInicio(progreso: _progreso, alElegir: _irAlDestino);
+    }
+
+    switch (seccion) {
       case Seccion.articoli:
-        return PantallaArticoli(repositorio: _articoli);
+        return PantallaArticoli(repositorio: _articoli, progreso: _progreso);
       case Seccion.frases:
         return _seccionFrases();
       case Seccion.verbos:
         return _seccionVerbos();
       case Seccion.preposizioni:
-        return PantallaPreposizioni(repositorio: _preposizioni);
-      case Seccion.leer:
-        return PantallaPronunciacion(voz: _voz, escucha: widget.escucha);
+        return PantallaPreposizioni(
+          repositorio: _preposizioni,
+          progreso: _progreso,
+        );
+      case Seccion.hablar:
+        return PantallaPronunciacion(
+          voz: _voz,
+          escucha: widget.escucha,
+          progreso: _progreso,
+        );
       case Seccion.via:
-        return PantallaVia(repositorio: _via);
+        return PantallaVia(repositorio: _via, progreso: _progreso);
       case Seccion.ci:
         return const PantallaProximamente(
           adelanto: 'El ci que reemplaza un lugar (vado a Roma: ci vado) y el '
@@ -364,6 +459,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       verbos: _resolverVerbos(_verbosFrases),
       tiempos: _tiemposFrases ?? tiemposDisponibles,
       frasesLocales: _frasesLocales,
+      progreso: _progreso,
     );
   }
 
@@ -393,6 +489,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       key: ValueKey(_generacionQuiz),
       verbos: _resolverVerbos(_verbosElegidos),
       tiempos: _tiemposElegidos ?? tiemposDisponibles,
+      progreso: _progreso,
     );
   }
 }

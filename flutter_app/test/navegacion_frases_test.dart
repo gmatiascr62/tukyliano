@@ -6,8 +6,10 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/almacenamiento_clave.dart';
 import 'package:tukyliano/datos/repositorio_frases.dart';
+import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/datos/repositorio_verbos.dart';
 import 'package:tukyliano/main.dart';
+import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 
 import 'util_pantalla.dart';
@@ -66,18 +68,27 @@ Widget _app({AlmacenamientoClave? clave}) => TukylianoApp(
       almacenClave: clave ?? _ClaveFalsa(),
       repositorio: _RepoFalso(),
       frasesLocales: _frasesFalsas(),
+      progreso: Progreso(carpeta: () async => null),
     );
 
+/// Entra a un tema de gramática desde el inicio: primero el botón redondo,
+/// después la tarjeta del tema.
+Future<void> _irA(WidgetTester tester, String tema) async {
+  if (find.byIcon(Icons.arrow_back).evaluate().isNotEmpty) {
+    // Se está adentro de algo: hay que salir hasta el inicio.
+    while (find.byIcon(Icons.arrow_back).evaluate().isNotEmpty) {
+      await tester.tap(find.byIcon(Icons.arrow_back));
+      await tester.pumpAndSettle();
+    }
+  }
+  await tester.tap(find.byIcon(Destino.gramatica.icono));
+  await tester.pumpAndSettle();
+  await tester.tap(find.text(tema));
+  await tester.pumpAndSettle();
+}
+
 Future<void> _tocar(WidgetTester tester, String texto) async {
-  // La barra se desliza: si el botón quedó fuera de la pantalla hay que
-  // traerlo antes de tocarlo.
-  final boton = find.widgetWithText(ElevatedButton, texto);
-  await tester.scrollUntilVisible(
-    boton,
-    80,
-    scrollable: find.byType(Scrollable).first,
-  );
-  await tester.tap(boton);
+  await tester.tap(find.widgetWithText(ElevatedButton, texto));
   await tester.pumpAndSettle();
 }
 
@@ -97,7 +108,7 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    await _tocar(tester, 'Frasi');
+    await _irA(tester, 'Frasi');
 
     expect(find.text('Elegí los verbos a practicar'), findsOneWidget);
     expect(find.widgetWithText(ElevatedButton, 'Empezar'), findsOneWidget);
@@ -113,12 +124,12 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    await _tocar(tester, 'Frasi');
+    await _irA(tester, 'Frasi');
     await _tocar(tester, 'Empezar');
     expect(find.textContaining('Tengo mucha hambre'), findsOneWidget);
 
-    await _tocar(tester, 'Verbi');
-    await _tocar(tester, 'Frasi');
+    await _irA(tester, 'Verbi');
+    await _irA(tester, 'Frasi');
 
     expect(find.text('Elegí los verbos a practicar'), findsOneWidget);
     expect(find.textContaining('Tengo mucha hambre'), findsNothing);
@@ -131,14 +142,14 @@ void main() {
     await tester.pumpAndSettle();
 
     // En Frasi se destilda essere y se practica.
-    await _tocar(tester, 'Frasi');
+    await _irA(tester, 'Frasi');
     await tester.tap(find.text('essere (ser/estar)'));
     await tester.pump();
     await _tocar(tester, 'Empezar');
 
     // Se pasa por otra sección y se vuelve.
-    await _tocar(tester, 'Verbi');
-    await _tocar(tester, 'Frasi');
+    await _irA(tester, 'Verbi');
+    await _irA(tester, 'Frasi');
 
     expect(_tildado(tester, 'essere (ser/estar)'), isFalse);
     expect(_tildado(tester, 'avere (tener)'), isTrue);
@@ -150,13 +161,13 @@ void main() {
     await tester.pumpAndSettle();
 
     // En Frasi se destilda essere.
-    await _tocar(tester, 'Frasi');
+    await _irA(tester, 'Frasi');
     await tester.tap(find.text('essere (ser/estar)'));
     await tester.pump();
     await _tocar(tester, 'Empezar');
 
     // Verbi no se contagia: sigue con todo tildado.
-    await _tocar(tester, 'Verbi');
+    await _irA(tester, 'Verbi');
     expect(_tildado(tester, 'essere (ser/estar)'), isTrue);
   });
 
@@ -166,7 +177,7 @@ void main() {
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
 
-    await _tocar(tester, 'Verbi');
+    await _irA(tester, 'Verbi');
     await _tocar(tester, 'Empezar');
 
     // El repositorio devuelve yaAlDia; antes eso se mostraba en pantalla.

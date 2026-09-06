@@ -11,6 +11,7 @@ import 'package:tukyliano/ia/chat.dart';
 import 'package:tukyliano/ia/gemini.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
+import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/tema.dart';
 
 import 'util_pantalla.dart';
@@ -450,24 +451,28 @@ void main() {
       ));
       await tester.pumpAndSettle();
 
-      Future<void> irA(String seccion) async {
-        final boton = find.widgetWithText(ElevatedButton, seccion);
-        await tester.scrollUntilVisible(
-          boton,
-          80,
-          scrollable: find.byType(Scrollable).first,
-        );
-        await tester.tap(boton);
+      // Volver al inicio y entrar a otra cosa: es lo que destruye la pantalla
+      // del chat y, con ella, la charla.
+      Future<void> volverAlInicio() async {
+        while (find.byIcon(Icons.arrow_back).evaluate().isNotEmpty) {
+          await tester.tap(find.byIcon(Icons.arrow_back));
+          await tester.pumpAndSettle();
+        }
+      }
+
+      Future<void> irA(Destino destino) async {
+        await volverAlInicio();
+        await tester.tap(find.byIcon(destino.icono));
         await tester.pumpAndSettle();
       }
 
-      await irA('Chat');
+      await irA(Destino.chat);
       await _escribir(tester, 'ciao');
       await _enviar(tester);
       expect(find.text('Bene! E tu?'), findsOneWidget);
 
-      await irA('Frasi');
-      await irA('Chat');
+      await irA(Destino.gramatica);
+      await irA(Destino.chat);
 
       // Ni lo que escribí ni lo que contestó: la charla arranca de cero.
       expect(find.text('ciao'), findsNothing);

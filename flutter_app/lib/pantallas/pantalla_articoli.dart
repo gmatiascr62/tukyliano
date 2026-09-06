@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../datos/progreso.dart';
 import '../datos/repositorio_articoli.dart';
 import '../logica/articulos.dart';
 import '../tema.dart';
@@ -59,7 +60,12 @@ extension DatosGrupo on GrupoArticoli {
 /// Arriba se elige con qué familia practicar: los determinados, los
 /// indeterminados (con el partitivo adentro) o las dos mezcladas.
 class PantallaArticoli extends StatefulWidget {
-  const PantallaArticoli({super.key, this.repositorio, this.categorias});
+  const PantallaArticoli({
+    super.key,
+    this.repositorio,
+    this.categorias,
+    this.progreso,
+  });
 
   /// Inyectable para los tests.
   final RepositorioArticoli? repositorio;
@@ -67,6 +73,11 @@ class PantallaArticoli extends StatefulWidget {
   /// Con qué categorías arranca. Por defecto, todas. Los tests la usan para
   /// fijar una sola y poder afirmar cuál es la respuesta.
   final Set<CategoriaArticulo>? categorias;
+
+
+  /// Para sumar los aciertos al progreso general. Null en los tests que no lo
+  /// miran.
+  final Progreso? progreso;
 
   @override
   State<PantallaArticoli> createState() => _PantallaArticoliState();
@@ -161,7 +172,10 @@ class _PantallaArticoliState extends State<PantallaArticoli> {
     if (_elegido.isEmpty || _actual == null) return;
     setState(() {
       _total++;
-      if (_acerto) _puntaje++;
+      if (_acerto) {
+        _puntaje++;
+        widget.progreso?.acerto();
+      }
       _mostrandoResultado = true;
     });
   }

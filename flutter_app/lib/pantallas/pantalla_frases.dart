@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../datos/progreso.dart';
 import '../constantes.dart';
 import '../datos/repositorio_frases.dart';
 import '../logica/correccion.dart';
@@ -20,6 +21,7 @@ class PantallaFrases extends StatefulWidget {
     required this.verbos,
     required this.tiempos,
     this.frasesLocales,
+    this.progreso,
   });
 
   final List<Verbo> verbos;
@@ -27,6 +29,11 @@ class PantallaFrases extends StatefulWidget {
 
   /// Inyectable para los tests.
   final RepositorioFrases? frasesLocales;
+
+
+  /// Para sumar los aciertos al progreso general. Null en los tests que no lo
+  /// miran.
+  final Progreso? progreso;
 
   @override
   State<PantallaFrases> createState() => _PantallaFrasesState();
@@ -128,6 +135,7 @@ class _PantallaFrasesState extends State<PantallaFrases> {
       );
       _mostrandoResultado = true;
     });
+    if (todoAcertado(_correccion)) widget.progreso?.acerto();
   }
 
   /// La pista viene con la frase, así que mostrarla no cuesta nada: solo se
