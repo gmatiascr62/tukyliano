@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../datos/progreso.dart';
 import '../logica/nivel.dart';
 import '../tema.dart';
+import '../widgets/texto_ajustado.dart';
 
 /// A dónde lleva cada uno de los cuatro botones del inicio.
 enum Destino { racconti, hablar, gramatica, chat }
@@ -164,12 +165,18 @@ class _AnilloDeNivel extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 3),
-              Text(
-                nivel.nombre,
-                style: const TextStyle(
-                  fontSize: 26,
-                  fontWeight: FontWeight.w700,
-                  color: Tema.titulo,
+              // "Principiante" no entra al tamaño de "Alunno" y se salía del
+              // anillo. Se achica solo el que no entra, en vez de bajarle el
+              // tamaño a todos.
+              SizedBox(
+                width: tamano - 44,
+                child: TextoAjustado(
+                  nivel.nombre,
+                  estilo: const TextStyle(
+                    fontSize: 26,
+                    fontWeight: FontWeight.w700,
+                    color: Tema.titulo,
+                  ),
                 ),
               ),
             ],

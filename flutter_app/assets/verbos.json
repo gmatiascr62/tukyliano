@@ -1,5 +1,5 @@
 {
-  "version": 9,
+  "version": 10,
   "verbos": {
     "volere": {
       "traduccion": "querer",
@@ -378,6 +378,82 @@
           "noi": {"italiano": "conosceremo", "espanol": "nosotros conoceremos"},
           "voi": {"italiano": "conoscerete", "espanol": "ustedes conocerán"},
           "loro": {"italiano": "conosceranno", "espanol": "ellos conocerán"}
+        }
+      }
+    },
+    "lavorare": {
+      "traduccion": "trabajar",
+      "gerundio": {"italiano": "lavorando", "espanol": "trabajando"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "lavoro", "espanol": "yo trabajo"},
+          "tu": {"italiano": "lavori", "espanol": "tú trabajas"},
+          "lui/lei": {"italiano": "lavora", "espanol": "él/ella trabaja"},
+          "noi": {"italiano": "lavoriamo", "espanol": "nosotros trabajamos"},
+          "voi": {"italiano": "lavorate", "espanol": "ustedes trabajan"},
+          "loro": {"italiano": "lavorano", "espanol": "ellos trabajan"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho lavorato", "espanol": "yo trabajé"},
+          "tu": {"italiano": "hai lavorato", "espanol": "tú trabajaste"},
+          "lui/lei": {"italiano": "ha lavorato", "espanol": "él/ella trabajó"},
+          "noi": {"italiano": "abbiamo lavorato", "espanol": "nosotros hemos trabajado"},
+          "voi": {"italiano": "avete lavorato", "espanol": "ustedes trabajaron"},
+          "loro": {"italiano": "hanno lavorato", "espanol": "ellos trabajaron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "lavoravo", "espanol": "yo trabajaba"},
+          "tu": {"italiano": "lavoravi", "espanol": "tú trabajabas"},
+          "lui/lei": {"italiano": "lavorava", "espanol": "él/ella trabajaba"},
+          "noi": {"italiano": "lavoravamo", "espanol": "nosotros trabajábamos"},
+          "voi": {"italiano": "lavoravate", "espanol": "ustedes trabajaban"},
+          "loro": {"italiano": "lavoravano", "espanol": "ellos trabajaban"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "lavorerò", "espanol": "yo trabajaré"},
+          "tu": {"italiano": "lavorerai", "espanol": "tú trabajarás"},
+          "lui/lei": {"italiano": "lavorerà", "espanol": "él/ella trabajará"},
+          "noi": {"italiano": "lavoreremo", "espanol": "nosotros trabajaremos"},
+          "voi": {"italiano": "lavorerete", "espanol": "ustedes trabajarán"},
+          "loro": {"italiano": "lavoreranno", "espanol": "ellos trabajarán"}
+        }
+      }
+    },
+    "guardare": {
+      "traduccion": "mirar",
+      "gerundio": {"italiano": "guardando", "espanol": "mirando"},
+      "tiempos": {
+        "presente": {
+          "io": {"italiano": "guardo", "espanol": "yo miro"},
+          "tu": {"italiano": "guardi", "espanol": "tú miras"},
+          "lui/lei": {"italiano": "guarda", "espanol": "él/ella mira"},
+          "noi": {"italiano": "guardiamo", "espanol": "nosotros miramos"},
+          "voi": {"italiano": "guardate", "espanol": "ustedes miran"},
+          "loro": {"italiano": "guardano", "espanol": "ellos miran"}
+        },
+        "passato_prossimo": {
+          "io": {"italiano": "ho guardato", "espanol": "yo miré"},
+          "tu": {"italiano": "hai guardato", "espanol": "tú miraste"},
+          "lui/lei": {"italiano": "ha guardato", "espanol": "él/ella miró"},
+          "noi": {"italiano": "abbiamo guardato", "espanol": "nosotros hemos mirado"},
+          "voi": {"italiano": "avete guardato", "espanol": "ustedes miraron"},
+          "loro": {"italiano": "hanno guardato", "espanol": "ellos miraron"}
+        },
+        "imperfetto": {
+          "io": {"italiano": "guardavo", "espanol": "yo miraba"},
+          "tu": {"italiano": "guardavi", "espanol": "tú mirabas"},
+          "lui/lei": {"italiano": "guardava", "espanol": "él/ella miraba"},
+          "noi": {"italiano": "guardavamo", "espanol": "nosotros mirábamos"},
+          "voi": {"italiano": "guardavate", "espanol": "ustedes miraban"},
+          "loro": {"italiano": "guardavano", "espanol": "ellos miraban"}
+        },
+        "futuro_semplice": {
+          "io": {"italiano": "guarderò", "espanol": "yo miraré"},
+          "tu": {"italiano": "guarderai", "espanol": "tú mirarás"},
+          "lui/lei": {"italiano": "guarderà", "espanol": "él/ella mirará"},
+          "noi": {"italiano": "guarderemo", "espanol": "nosotros miraremos"},
+          "voi": {"italiano": "guarderete", "espanol": "ustedes mirarán"},
+          "loro": {"italiano": "guarderanno", "espanol": "ellos mirarán"}
         }
       }
     }

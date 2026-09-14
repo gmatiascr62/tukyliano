@@ -101,15 +101,10 @@ Future<_Espia> _abrir(
   return espia;
 }
 
-/// Escribe con el teclado propio de la app, tecla por tecla.
+/// Escribe con el teclado del celular, que es el que usa el chat.
 Future<void> _escribir(WidgetTester tester, String texto) async {
-  for (final letra in texto.split('')) {
-    final tecla = letra == ' '
-        ? find.widgetWithText(ElevatedButton, 'espacio')
-        : find.widgetWithText(ElevatedButton, letra);
-    await tester.tap(tecla);
-    await tester.pump();
-  }
+  await tester.enterText(find.byType(TextField), texto);
+  await tester.pump();
 }
 
 ElevatedButton _botonEnviar(WidgetTester tester) => tester.widget<ElevatedButton>(
@@ -197,13 +192,18 @@ void main() {
       expect(find.text('Escribí en italiano...'), findsOneWidget);
     });
 
-    testWidgets('el teclado propio tiene la almohadilla y los acentos',
+    testWidgets('usa el teclado del celular, con corrector',
         (tester) async {
+      // En el resto de la app el teclado es propio: corregir una conjugación
+      // a medio escribir le resolvería el ejercicio al alumno. Acá son frases
+      // enteras y el corrector ayuda.
       await _abrir(tester);
 
-      expect(find.widgetWithText(ElevatedButton, '#'), findsOneWidget);
-      expect(find.widgetWithText(ElevatedButton, '?'), findsOneWidget);
-      expect(find.widgetWithText(ElevatedButton, 'è'), findsOneWidget);
+      final campo = tester.widget<TextField>(find.byType(TextField));
+      expect(campo.autocorrect, isTrue);
+      expect(campo.enableSuggestions, isTrue);
+      // Y no está el teclado propio de la app.
+      expect(find.widgetWithText(ElevatedButton, 'è'), findsNothing);
     });
 
     testWidgets('vacío no se puede enviar', (tester) async {

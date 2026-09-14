@@ -330,11 +330,6 @@ void main() {
     });
   });
 
-  test('el teclado del chat trae la almohadilla', () {
-    // Sin esta tecla no habría forma de pedir una traducción.
-    expect(teclasDelChat, contains('#'));
-  });
-
   test('no hay ninguna clave de la API en el código', () {
     // El repo es público y Google revoca las claves que encuentra publicadas:
     // ya pasó una vez. La clave se pega en el celular y vive solo ahí.
