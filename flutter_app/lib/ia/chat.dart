@@ -10,11 +10,6 @@ const String saludoInicial = 'Ciao! Sono Tuky. Come stai oggi?';
 /// La almohadilla que marca un pedido de traducción: #manteca#.
 const String marcaTraduccion = '#';
 
-/// Teclas que el teclado propio agrega solo en el chat. La almohadilla es
-/// imprescindible (es como se piden las traducciones) y los signos hacen falta
-/// para escribir una pregunta.
-const List<String> teclasDelChat = ['#', '?', '.', ','];
-
 /// Las instrucciones que se le dan a la IA una sola vez, al principio de cada
 /// charla. Están acá y no en la pantalla para poder verificarlas en los tests.
 const String promptDeChat = '''

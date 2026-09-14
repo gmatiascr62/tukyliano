@@ -6,12 +6,9 @@ import '../datos/almacenamiento_clave.dart';
 import '../datos/voz.dart';
 import '../ia/chat.dart';
 import '../ia/gemini.dart';
-import '../logica/seleccion_azar.dart';
 import '../tema.dart';
-import '../widgets/campo_texto.dart';
 import '../widgets/pastilla.dart';
 import '../widgets/selector_de_voz.dart';
-import '../widgets/teclado.dart';
 import 'pantalla_clave_ia.dart';
 
 /// Charla en italiano con la IA.
@@ -53,6 +50,12 @@ class _PantallaChatState extends State<PantallaChat> {
   final _conversacion = Conversacion();
   final _scroll = ScrollController();
 
+  /// El chat escribe con el teclado de Android y no con el propio de la app:
+  /// acá se escriben frases enteras y el corrector del celular ayuda de
+  /// verdad. En los ejercicios sigue el teclado propio, donde corregir
+  /// automáticamente arruinaría la consigna.
+  final _campo = TextEditingController();
+
   /// Los mensajes de la IA que están tapados, por su posición en la charla.
   /// Solo se tapan los que llegan con el modo prendido: prenderlo no borra de
   /// la pantalla lo que ya se leyó.
@@ -62,7 +65,6 @@ class _PantallaChatState extends State<PantallaChat> {
   bool _buscandoClave = true;
   String _errorClave = '';
 
-  String _escrito = '';
   bool _esperando = false;
 
   bool _puedeHablar = false;
@@ -82,6 +84,7 @@ class _PantallaChatState extends State<PantallaChat> {
   void dispose() {
     _voz.callar();
     _scroll.dispose();
+    _campo.dispose();
     super.dispose();
   }
 
@@ -109,21 +112,17 @@ class _PantallaChatState extends State<PantallaChat> {
     });
   }
 
-  void _onTecla(String tecla) {
-    setState(() => _escrito = aplicarTecla(_escrito, tecla));
-  }
-
   bool get _puedeEnviar =>
-      !_esperando && _escrito.trim().isNotEmpty && _clave != null;
+      !_esperando && _campo.text.trim().isNotEmpty && _clave != null;
 
   Future<void> _enviar() async {
-    final texto = _escrito.trim();
+    final texto = _campo.text.trim();
     final clave = _clave;
     if (_esperando || texto.isEmpty || clave == null) return;
 
     setState(() {
       _conversacion.agregar(Mensaje.mia(texto));
-      _escrito = '';
+      _campo.clear();
       _esperando = true;
     });
     _irAlFinal();
@@ -265,13 +264,7 @@ class _PantallaChatState extends State<PantallaChat> {
           // pegado al último, como en cualquier chat.
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            Expanded(
-              child: CampoTexto(
-                texto: _escrito,
-                placeholderTexto: 'Escribí en italiano...',
-                multilinea: true,
-              ),
-            ),
+            Expanded(child: _campoDeTexto()),
             const SizedBox(width: 8),
             SizedBox(
               width: 62,
@@ -287,10 +280,53 @@ class _PantallaChatState extends State<PantallaChat> {
           ],
         ),
         const SizedBox(height: 8),
-        // Las teclas extra son las de acá: sin la almohadilla no se podrían
-        // pedir traducciones.
-        Teclado(onTecla: _onTecla, teclasExtra: teclasDelChat),
       ],
+    );
+  }
+
+  /// El campo donde se escribe, con el teclado del celular.
+  ///
+  /// Acá sí conviene el corrector: son frases largas y el idioma lo pone el
+  /// teclado, no la app. En el resto de la app el teclado es propio, porque
+  /// corregir una conjugación a medio escribir sería resolverle el ejercicio
+  /// al alumno.
+  Widget _campoDeTexto() {
+    return Container(
+      constraints: const BoxConstraints(minHeight: 62, maxHeight: 108),
+      decoration: BoxDecoration(
+        color: Tema.superficie,
+        borderRadius: BorderRadius.circular(Tema.radio),
+        border: Border.all(color: Tema.borde, width: 2),
+      ),
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 4),
+      child: TextField(
+        controller: _campo,
+        // Que el botón de enviar se prenda al escribir la primera letra.
+        onChanged: (_) => setState(() {}),
+        minLines: 1,
+        maxLines: null,
+        keyboardType: TextInputType.multiline,
+        textInputAction: TextInputAction.newline,
+        textCapitalization: TextCapitalization.sentences,
+        autocorrect: true,
+        enableSuggestions: true,
+        style: const TextStyle(
+          fontSize: 17,
+          height: 1.3,
+          fontWeight: FontWeight.w600,
+          color: Tema.texto,
+        ),
+        cursorColor: Tema.verde,
+        decoration: const InputDecoration(
+          border: InputBorder.none,
+          hintText: 'Escribí en italiano...',
+          hintStyle: TextStyle(
+            fontSize: 17,
+            fontWeight: FontWeight.w400,
+            color: Tema.textoTenue,
+          ),
+        ),
+      ),
     );
   }
 
