@@ -69,6 +69,25 @@ void main() {
       expect(porForma.values.every((n) => n >= 1), isTrue);
     });
 
+    test('el italiano de cada frase trae su conjugación', () {
+      // En la app, la frase cuyo italiano no traiga la conjugación esperada se
+      // descarta en silencio: si era la única de esa forma, la forma deja de
+      // salir. Acá se ve en el build, que es donde se puede arreglar.
+      final sinLaForma = <String>[];
+      for (final f in _frases) {
+        final verbo = _verbos.verbos[f['verbo']];
+        final esperada =
+            verbo?.tiempos[f['tiempo']]?[f['persona']]?.italiano ?? '';
+        final italiano = (f['italiano'] as String).toLowerCase();
+        if (esperada.isEmpty || !italiano.contains(esperada.toLowerCase())) {
+          sinLaForma.add('${f['verbo']} ${f['tiempo']}/${f['persona']}: '
+              '"${f['italiano']}" no trae "$esperada"');
+        }
+      }
+
+      expect(sinLaForma, isEmpty);
+    });
+
     test('no repite la misma frase en español', () {
       final espanoles = _frases.map((f) => f['espanol']).toList();
       expect(espanoles.toSet().length, espanoles.length);

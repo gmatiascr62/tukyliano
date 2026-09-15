@@ -1,5 +1,5 @@
 {
- "version": 7,
+ "version": 8,
  "frases": [
   {
    "verbo": "volere",
@@ -12258,6 +12258,750 @@
    "pista": "el cine = il cinema"
   },
   {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Voy a la farmacia",
+   "italiano": "Vado in farmacia",
+   "pista": "a la farmacia = in farmacia"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Voy al trabajo en bici",
+   "italiano": "Vado al lavoro in bici",
+   "pista": "en bici = in bici"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Voy al parque a caminar",
+   "italiano": "Vado al parco a camminare",
+   "pista": "parque = parco"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Vas al supermercado hoy?",
+   "italiano": "Vai al supermercato oggi?",
+   "pista": "supermercado = supermercato"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Vas siempre a pie",
+   "italiano": "Vai sempre a piedi",
+   "pista": "a pie = a piedi"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Vas al bar conmigo?",
+   "italiano": "Vai al bar con me?",
+   "pista": "conmigo = con me"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi hermano va al banco",
+   "italiano": "Mio fratello va in banca",
+   "pista": "banco = banca"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Ella va a la playa",
+   "italiano": "Lei va in spiaggia",
+   "pista": "playa = spiaggia"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "El tren va a Milán",
+   "italiano": "Il treno va a Milano",
+   "pista": "tren = treno"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Vamos al parque el domingo",
+   "italiano": "Andiamo al parco domenica",
+   "pista": "domingo = domenica"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Vamos a Florencia en tren",
+   "italiano": "Andiamo a Firenze in treno",
+   "pista": "en tren = in treno"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Vamos al restaurante esta noche",
+   "italiano": "Andiamo al ristorante stasera",
+   "pista": "esta noche = stasera"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes van al teatro?",
+   "italiano": "Andate a teatro?",
+   "pista": "al teatro = a teatro"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes van al campo",
+   "italiano": "Andate in campagna",
+   "pista": "el campo = la campagna"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes van en auto?",
+   "italiano": "Andate in macchina?",
+   "pista": "auto = macchina"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos van al estadio",
+   "italiano": "Loro vanno allo stadio",
+   "pista": "estadio = stadio"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Los chicos van a dormir",
+   "italiano": "I bambini vanno a dormire",
+   "pista": "chicos = bambini"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellas van a la fiesta",
+   "italiano": "Loro vanno alla festa",
+   "pista": "fiesta = festa"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Fui al banco esta mañana",
+   "italiano": "Sono andato in banca stamattina",
+   "pista": "esta mañana = stamattina"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Fui al médico el lunes",
+   "italiano": "Sono andato dal medico lunedì",
+   "pista": "lunes = lunedì"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Ayer fui al supermercado",
+   "italiano": "Ieri sono andato al supermercato",
+   "pista": "ayer = ieri"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Fui hasta ahí a pie",
+   "italiano": "Sono andato lì a piedi",
+   "pista": "a pie = a piedi"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Fuiste al mercado hoy?",
+   "italiano": "Sei andato al mercato oggi?",
+   "pista": "hoy = oggi"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Fuiste solo a la fiesta",
+   "italiano": "Sei andato da solo alla festa",
+   "pista": "solo = da solo"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Adónde fuiste ayer?",
+   "italiano": "Dove sei andato ieri?",
+   "pista": "adónde = dove"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Fuiste a Roma en tren",
+   "italiano": "Sei andato a Roma in treno",
+   "pista": "en tren = in treno"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Mi hermano fue al dentista",
+   "italiano": "Mio fratello è andato dal dentista",
+   "pista": "al dentista = dal dentista"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Él fue a Milán ayer",
+   "italiano": "Lui è andato a Milano ieri",
+   "pista": "ayer = ieri"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Marco fue a la escuela",
+   "italiano": "Marco è andato a scuola",
+   "pista": "escuela = scuola"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Él fue solo al parque",
+   "italiano": "Lui è andato al parco da solo",
+   "pista": "solo = da solo"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Fuimos al teatro el sábado",
+   "italiano": "Siamo andati a teatro sabato",
+   "pista": "sábado = sabato"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Fuimos a comer afuera",
+   "italiano": "Siamo andati a mangiare fuori",
+   "pista": "afuera = fuori"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "No fuimos a Venecia",
+   "italiano": "Non siamo andati a Venezia",
+   "pista": "no = non"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Fuimos juntos al cine",
+   "italiano": "Siamo andati insieme al cinema",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes fueron al mar?",
+   "italiano": "Siete andati al mare?",
+   "pista": "mar = mare"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes fueron temprano al trabajo",
+   "italiano": "Siete andati presto al lavoro",
+   "pista": "temprano = presto"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes fueron a la montaña?",
+   "italiano": "Siete andati in montagna?",
+   "pista": "montaña = montagna"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes fueron en auto",
+   "italiano": "Siete andati in macchina",
+   "pista": "auto = macchina"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos fueron a la playa",
+   "italiano": "Loro sono andati in spiaggia",
+   "pista": "playa = spiaggia"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos fueron al concierto",
+   "italiano": "Loro sono andati al concerto",
+   "pista": "concierto = concerto"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Los chicos fueron a dormir",
+   "italiano": "I bambini sono andati a dormire",
+   "pista": "chicos = bambini"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos fueron de vacaciones",
+   "italiano": "Loro sono andati in vacanza",
+   "pista": "de vacaciones = in vacanza"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "De chico iba al mar",
+   "italiano": "Da bambino andavo al mare",
+   "pista": "de chico = da bambino"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Iba a la escuela a pie",
+   "italiano": "Andavo a scuola a piedi",
+   "pista": "a pie = a piedi"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Antes iba siempre al bar",
+   "italiano": "Prima andavo sempre al bar",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Iba al trabajo en bici",
+   "italiano": "Andavo al lavoro in bici",
+   "pista": "en bici = in bici"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Ibas al mar de chico?",
+   "italiano": "Andavi al mare da bambino?",
+   "pista": "de chico = da bambino"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Ibas siempre apurado",
+   "italiano": "Andavi sempre di fretta",
+   "pista": "apurado = di fretta"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Ibas al cine los viernes",
+   "italiano": "Andavi al cinema il venerdì",
+   "pista": "viernes = venerdì"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Ibas a la montaña?",
+   "italiano": "Andavi in montagna?",
+   "pista": "a la montaña = in montagna"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi abuelo iba a pescar",
+   "italiano": "Mio nonno andava a pescare",
+   "pista": "pescar = pescare"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella iba temprano al mercado",
+   "italiano": "Lei andava al mercato presto",
+   "pista": "temprano = presto"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "El tren iba muy lento",
+   "italiano": "Il treno andava molto lento",
+   "pista": "muy = molto"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi hermana iba a danza",
+   "italiano": "Mia sorella andava a danza",
+   "pista": "hermana = sorella"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Íbamos siempre al mismo bar",
+   "italiano": "Andavamo sempre nello stesso bar",
+   "pista": "el mismo = lo stesso"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "De chicos íbamos al río",
+   "italiano": "Da bambini andavamo al fiume",
+   "pista": "río = fiume"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Íbamos al campo en verano",
+   "italiano": "Andavamo in campagna d'estate",
+   "pista": "en verano = d'estate"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Íbamos juntos a la escuela",
+   "italiano": "Andavamo insieme a scuola",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes iban al teatro?",
+   "italiano": "Andavate a teatro?",
+   "pista": "al teatro = a teatro"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes iban seguido a Roma",
+   "italiano": "Andavate spesso a Roma",
+   "pista": "seguido = spesso"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes iban en tren?",
+   "italiano": "Andavate in treno?",
+   "pista": "en tren = in treno"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes iban al mar",
+   "italiano": "Andavate al mare",
+   "pista": "mar = mare"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos iban juntos al parque",
+   "italiano": "Loro andavano al parco insieme",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Los chicos iban a dormir tarde",
+   "italiano": "I bambini andavano a dormire tardi",
+   "pista": "tarde = tardi"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos iban despacio",
+   "italiano": "Loro andavano piano",
+   "pista": "despacio = piano"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellas iban a misa",
+   "italiano": "Loro andavano a messa",
+   "pista": "misa = messa"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Mañana iré al banco",
+   "italiano": "Domani andrò in banca",
+   "pista": "banco = banca"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Iré a Roma en agosto",
+   "italiano": "Andrò a Roma ad agosto",
+   "pista": "en agosto = ad agosto"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Iré al médico la semana próxima",
+   "italiano": "Andrò dal medico la prossima settimana",
+   "pista": "semana próxima = prossima settimana"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Iré a verte pronto",
+   "italiano": "Andrò a trovarti presto",
+   "pista": "a verte = a trovarti"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Irás al concierto?",
+   "italiano": "Andrai al concerto?",
+   "pista": "concierto = concerto"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Irás vos primero",
+   "italiano": "Andrai tu per primo",
+   "pista": "primero = per primo"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Irás al mar este verano?",
+   "italiano": "Andrai al mare quest'estate?",
+   "pista": "este verano = quest'estate"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Irás a Nápoles en tren",
+   "italiano": "Andrai a Napoli in treno",
+   "pista": "en tren = in treno"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo irá a la universidad",
+   "italiano": "Mio figlio andrà all'università",
+   "pista": "universidad = università"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Ella irá al dentista mañana",
+   "italiano": "Lei andrà dal dentista domani",
+   "pista": "al dentista = dal dentista"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "El paquete irá por correo",
+   "italiano": "Il pacco andrà per posta",
+   "pista": "paquete = pacco"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Marco irá a vivir afuera",
+   "italiano": "Marco andrà a vivere all'estero",
+   "pista": "afuera = all'estero"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Iremos al cine el viernes",
+   "italiano": "Andremo al cinema venerdì",
+   "pista": "viernes = venerdì"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Iremos de vacaciones en julio",
+   "italiano": "Andremo in vacanza a luglio",
+   "pista": "de vacaciones = in vacanza"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Iremos a comer pizza",
+   "italiano": "Andremo a mangiare la pizza",
+   "pista": "comer = mangiare"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Iremos hasta allá en auto",
+   "italiano": "Andremo lì in macchina",
+   "pista": "hasta allá = lì"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes irán a la fiesta?",
+   "italiano": "Andrete alla festa?",
+   "pista": "fiesta = festa"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes irán primero",
+   "italiano": "Andrete per primi",
+   "pista": "primero = per primi"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes irán en avión?",
+   "italiano": "Andrete in aereo?",
+   "pista": "avión = aereo"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes irán a Roma",
+   "italiano": "Andrete a Roma",
+   "pista": "a Roma = a Roma"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos irán a la montaña",
+   "italiano": "Loro andranno in montagna",
+   "pista": "a la montaña = in montagna"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Los chicos irán a la escuela",
+   "italiano": "I bambini andranno a scuola",
+   "pista": "chicos = bambini"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos irán al mar",
+   "italiano": "Loro andranno al mare",
+   "pista": "mar = mare"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellas irán solas",
+   "italiano": "Loro andranno da sole",
+   "pista": "solas = da sole"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Estoy yendo al trabajo",
+   "italiano": "Sto andando al lavoro",
+   "pista": "trabajo = lavoro"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Estamos yendo para allá",
+   "italiano": "Stiamo andando lì",
+   "pista": "para allá = lì"
+  },
+  {
+   "verbo": "andare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Está yendo todo bien",
+   "italiano": "Sta andando tutto bene",
+   "pista": "todo bien = tutto bene"
+  },
+  {
    "verbo": "venire",
    "tiempo": "presente",
    "persona": "io",
@@ -12512,6 +13256,750 @@
    "espanol": "Estoy viniendo a pie",
    "italiano": "Sto venendo a piedi",
    "pista": "a pie = a piedi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Vengo con vos al bar",
+   "italiano": "Vengo con te al bar",
+   "pista": "con vos = con te"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Vengo enseguida",
+   "italiano": "Vengo subito",
+   "pista": "enseguida = subito"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Vengo de la oficina",
+   "italiano": "Vengo dall'ufficio",
+   "pista": "de la oficina = dall'ufficio"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Venís a comer?",
+   "italiano": "Vieni a mangiare?",
+   "pista": "comer = mangiare"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Venís conmigo al cine?",
+   "italiano": "Vieni con me al cinema?",
+   "pista": "conmigo = con me"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Venís siempre tarde",
+   "italiano": "Vieni sempre tardi",
+   "pista": "tarde = tardi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Ella viene de Milán",
+   "italiano": "Lei viene da Milano",
+   "pista": "de Milán = da Milano"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi hermano viene mañana",
+   "italiano": "Mio fratello viene domani",
+   "pista": "mañana = domani"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "El colectivo viene ahora",
+   "italiano": "L'autobus viene adesso",
+   "pista": "colectivo = autobus"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Venimos en auto",
+   "italiano": "Veniamo in macchina",
+   "pista": "auto = macchina"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Venimos todos los martes",
+   "italiano": "Veniamo ogni martedì",
+   "pista": "todos los martes = ogni martedì"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Venimos a saludar",
+   "italiano": "Veniamo a salutare",
+   "pista": "saludar = salutare"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes vienen a cenar?",
+   "italiano": "Venite a cena?",
+   "pista": "cenar = a cena"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes vienen de lejos",
+   "italiano": "Venite da lontano",
+   "pista": "de lejos = da lontano"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes vienen en tren?",
+   "italiano": "Venite in treno?",
+   "pista": "en tren = in treno"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos vienen el domingo",
+   "italiano": "Loro vengono domenica",
+   "pista": "domingo = domenica"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Los chicos vienen a jugar",
+   "italiano": "I bambini vengono a giocare",
+   "pista": "jugar = giocare"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellas vienen con nosotros",
+   "italiano": "Loro vengono con noi",
+   "pista": "con nosotros = con noi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Vine en tren",
+   "italiano": "Sono venuto in treno",
+   "pista": "en tren = in treno"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Vine a buscarte",
+   "italiano": "Sono venuto a prenderti",
+   "pista": "a buscarte = a prenderti"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Vine ayer a la noche",
+   "italiano": "Sono venuto ieri sera",
+   "pista": "ayer a la noche = ieri sera"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Vine caminando hasta acá",
+   "italiano": "Sono venuto qui a piedi",
+   "pista": "caminando = a piedi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Viniste solo?",
+   "italiano": "Sei venuto da solo?",
+   "pista": "solo = da solo"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Viniste temprano hoy",
+   "italiano": "Sei venuto presto oggi",
+   "pista": "temprano = presto"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Por qué no viniste?",
+   "italiano": "Perché non sei venuto?",
+   "pista": "por qué = perché"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Viniste con tu hermana",
+   "italiano": "Sei venuto con tua sorella",
+   "pista": "tu hermana = tua sorella"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Él vino a la fiesta",
+   "italiano": "Lui è venuto alla festa",
+   "pista": "a la fiesta = alla festa"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Marco vino a ayudarme",
+   "italiano": "Marco è venuto ad aiutarmi",
+   "pista": "a ayudarme = ad aiutarmi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Mi primo vino de Roma",
+   "italiano": "Mio cugino è venuto da Roma",
+   "pista": "primo = cugino"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Nadie vino a la reunión",
+   "italiano": "Nessuno è venuto alla riunione",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Vinimos a pie",
+   "italiano": "Siamo venuti a piedi",
+   "pista": "a pie = a piedi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Vinimos a ver la casa",
+   "italiano": "Siamo venuti a vedere la casa",
+   "pista": "ver = vedere"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Vinimos juntos en auto",
+   "italiano": "Siamo venuti insieme in macchina",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Vinimos el año pasado",
+   "italiano": "Siamo venuti l'anno scorso",
+   "pista": "año pasado = anno scorso"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes vinieron en auto?",
+   "italiano": "Siete venuti in macchina?",
+   "pista": "auto = macchina"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes vinieron muy tarde",
+   "italiano": "Siete venuti molto tardi",
+   "pista": "muy tarde = molto tardi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Cuándo vinieron ustedes?",
+   "italiano": "Quando siete venuti?",
+   "pista": "cuándo = quando"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes vinieron a la fiesta",
+   "italiano": "Siete venuti alla festa",
+   "pista": "a la fiesta = alla festa"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos vinieron de Nápoles",
+   "italiano": "Loro sono venuti da Napoli",
+   "pista": "de Nápoles = da Napoli"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Todos vinieron a saludar",
+   "italiano": "Sono venuti tutti a salutare",
+   "pista": "todos = tutti"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Los chicos vinieron corriendo",
+   "italiano": "I bambini sono venuti di corsa",
+   "pista": "corriendo = di corsa"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos vinieron en taxi",
+   "italiano": "Loro sono venuti in taxi",
+   "pista": "en taxi = in taxi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Antes venía todos los días",
+   "italiano": "Prima venivo ogni giorno",
+   "pista": "todos los días = ogni giorno"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Venía al trabajo a pie",
+   "italiano": "Venivo al lavoro a piedi",
+   "pista": "a pie = a piedi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "De chico venía acá",
+   "italiano": "Da bambino venivo qui",
+   "pista": "de chico = da bambino"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Venía siempre con mi perro",
+   "italiano": "Venivo sempre con il mio cane",
+   "pista": "perro = cane"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Venías seguido?",
+   "italiano": "Venivi spesso?",
+   "pista": "seguido = spesso"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Venías siempre tarde",
+   "italiano": "Venivi sempre tardi",
+   "pista": "siempre = sempre"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Antes venías en bici",
+   "italiano": "Prima venivi in bici",
+   "pista": "en bici = in bici"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Venías vos también?",
+   "italiano": "Venivi anche tu?",
+   "pista": "también = anche"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi abuela venía los domingos",
+   "italiano": "Mia nonna veniva la domenica",
+   "pista": "abuela = nonna"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Él venía de muy lejos",
+   "italiano": "Lui veniva da molto lontano",
+   "pista": "lejos = lontano"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella venía a estudiar acá",
+   "italiano": "Lei veniva a studiare qui",
+   "pista": "estudiar = studiare"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "El médico venía a casa",
+   "italiano": "Il medico veniva a casa",
+   "pista": "médico = medico"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Veníamos todos los veranos",
+   "italiano": "Venivamo tutte le estati",
+   "pista": "verano = estate"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Veníamos a comer acá",
+   "italiano": "Venivamo a mangiare qui",
+   "pista": "comer = mangiare"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Antes veníamos en tren",
+   "italiano": "Prima venivamo in treno",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Veníamos con los chicos",
+   "italiano": "Venivamo con i bambini",
+   "pista": "chicos = bambini"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes venían seguido?",
+   "italiano": "Venivate spesso?",
+   "pista": "seguido = spesso"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes venían en verano",
+   "italiano": "Venivate d'estate",
+   "pista": "en verano = d'estate"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes venían solos?",
+   "italiano": "Venivate da soli?",
+   "pista": "solos = da soli"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes venían a la playa",
+   "italiano": "Venivate in spiaggia",
+   "pista": "playa = spiaggia"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos venían todos los años",
+   "italiano": "Loro venivano ogni anno",
+   "pista": "todos los años = ogni anno"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Los turistas venían en verano",
+   "italiano": "I turisti venivano d'estate",
+   "pista": "turistas = turisti"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellas venían a la iglesia",
+   "italiano": "Loro venivano in chiesa",
+   "pista": "iglesia = chiesa"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos venían a pie",
+   "italiano": "Loro venivano a piedi",
+   "pista": "a pie = a piedi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Vendré mañana a la mañana",
+   "italiano": "Verrò domani mattina",
+   "pista": "a la mañana = mattina"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Vendré a buscarte",
+   "italiano": "Verrò a prenderti",
+   "pista": "a buscarte = a prenderti"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Vendré en tren",
+   "italiano": "Verrò in treno",
+   "pista": "en tren = in treno"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Vendré con mi hermana",
+   "italiano": "Verrò con mia sorella",
+   "pista": "hermana = sorella"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Vendrás a la fiesta?",
+   "italiano": "Verrai alla festa?",
+   "pista": "a la fiesta = alla festa"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Vendrás con nosotros",
+   "italiano": "Verrai con noi",
+   "pista": "con nosotros = con noi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Vendrás el sábado?",
+   "italiano": "Verrai sabato?",
+   "pista": "sábado = sabato"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Vendrás más tarde",
+   "italiano": "Verrai più tardi",
+   "pista": "más tarde = più tardi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Ella vendrá en agosto",
+   "italiano": "Lei verrà ad agosto",
+   "pista": "en agosto = ad agosto"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo vendrá conmigo",
+   "italiano": "Mio figlio verrà con me",
+   "pista": "hijo = figlio"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "El técnico vendrá el lunes",
+   "italiano": "Il tecnico verrà lunedì",
+   "pista": "técnico = tecnico"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Nadie vendrá a esta hora",
+   "italiano": "Nessuno verrà a quest'ora",
+   "pista": "a esta hora = a quest'ora"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Vendremos el año próximo",
+   "italiano": "Verremo l'anno prossimo",
+   "pista": "año próximo = anno prossimo"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Vendremos a visitarte",
+   "italiano": "Verremo a trovarti",
+   "pista": "a visitarte = a trovarti"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Vendremos en auto",
+   "italiano": "Verremo in macchina",
+   "pista": "auto = macchina"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Vendremos con los chicos",
+   "italiano": "Verremo con i bambini",
+   "pista": "chicos = bambini"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes vendrán a cenar?",
+   "italiano": "Verrete a cena?",
+   "pista": "cenar = a cena"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes vendrán en avión",
+   "italiano": "Verrete in aereo",
+   "pista": "avión = aereo"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes vendrán el domingo?",
+   "italiano": "Verrete domenica?",
+   "pista": "domingo = domenica"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes vendrán más tarde",
+   "italiano": "Verrete più tardi",
+   "pista": "más tarde = più tardi"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos vendrán a la tarde",
+   "italiano": "Loro verranno nel pomeriggio",
+   "pista": "a la tarde = nel pomeriggio"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Los chicos vendrán después",
+   "italiano": "I bambini verranno dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos vendrán en tren",
+   "italiano": "Loro verranno in treno",
+   "pista": "en tren = in treno"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos vendrán de Roma",
+   "italiano": "Loro verranno da Roma",
+   "pista": "de Roma = da Roma"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Estoy viniendo para allá",
+   "italiano": "Sto venendo lì",
+   "pista": "para allá = lì"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Estamos viniendo en auto",
+   "italiano": "Stiamo venendo in macchina",
+   "pista": "auto = macchina"
+  },
+  {
+   "verbo": "venire",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Está viniendo mucha gente",
+   "italiano": "Sta venendo molta gente",
+   "pista": "mucha = molta"
   },
   {
    "verbo": "potere",
@@ -12770,6 +14258,750 @@
    "pista": "ayudar = aiutare"
   },
   {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "No puedo salir hoy",
+   "italiano": "Non posso uscire oggi",
+   "pista": "salir = uscire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "¿Puedo pagar con tarjeta?",
+   "italiano": "Posso pagare con la carta?",
+   "pista": "tarjeta = carta"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Puedo llegar a las ocho",
+   "italiano": "Posso arrivare alle otto",
+   "pista": "a las ocho = alle otto"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Podés dormir acá",
+   "italiano": "Puoi dormire qui",
+   "pista": "dormir = dormire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Podés ayudarme un momento?",
+   "italiano": "Puoi aiutarmi un momento?",
+   "pista": "ayudarme = aiutarmi"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "No podés estacionar acá",
+   "italiano": "Non puoi parcheggiare qui",
+   "pista": "estacionar = parcheggiare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo no puede venir",
+   "italiano": "Mio figlio non può venire",
+   "pista": "venir = venire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Ella puede trabajar de noche",
+   "italiano": "Lei può lavorare di notte",
+   "pista": "de noche = di notte"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Esto puede esperar",
+   "italiano": "Questo può aspettare",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Podemos comer afuera hoy",
+   "italiano": "Possiamo mangiare fuori oggi",
+   "pista": "afuera = fuori"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "No podemos llegar tarde",
+   "italiano": "Non possiamo arrivare tardi",
+   "pista": "tarde = tardi"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Podemos vernos el sábado",
+   "italiano": "Possiamo vederci sabato",
+   "pista": "vernos = vederci"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes pueden entrar ahora",
+   "italiano": "Potete entrare adesso",
+   "pista": "entrar = entrare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Pueden esperar un minuto?",
+   "italiano": "Potete aspettare un minuto?",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes no pueden fumar acá",
+   "italiano": "Non potete fumare qui",
+   "pista": "fumar = fumare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos pueden venir el lunes",
+   "italiano": "Loro possono venire lunedì",
+   "pista": "lunes = lunedì"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Los chicos pueden jugar afuera",
+   "italiano": "I bambini possono giocare fuori",
+   "pista": "jugar = giocare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos no pueden entender",
+   "italiano": "Loro non possono capire",
+   "pista": "entender = capire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "No pude dormir anoche",
+   "italiano": "Non ho potuto dormire stanotte",
+   "pista": "anoche = stanotte"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Pude terminar el trabajo",
+   "italiano": "Ho potuto finire il lavoro",
+   "pista": "terminar = finire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "No pude venir ayer",
+   "italiano": "Non ho potuto venire ieri",
+   "pista": "ayer = ieri"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Pude hablar con él",
+   "italiano": "Ho potuto parlare con lui",
+   "pista": "hablar = parlare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Pudiste descansar?",
+   "italiano": "Hai potuto riposare?",
+   "pista": "descansar = riposare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "No pudiste avisarme",
+   "italiano": "Non hai potuto avvisarmi",
+   "pista": "avisarme = avvisarmi"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Pudiste ver la película?",
+   "italiano": "Hai potuto vedere il film?",
+   "pista": "película = film"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Pudiste llegar a tiempo",
+   "italiano": "Hai potuto arrivare in tempo",
+   "pista": "a tiempo = in tempo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Ella no pudo venir",
+   "italiano": "Lei non ha potuto venire",
+   "pista": "venir = venire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Mi hermano pudo estudiar",
+   "italiano": "Mio fratello ha potuto studiare",
+   "pista": "estudiar = studiare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Él pudo arreglar el auto",
+   "italiano": "Lui ha potuto riparare la macchina",
+   "pista": "arreglar = riparare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Nadie pudo ayudarla",
+   "italiano": "Nessuno ha potuto aiutarla",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "No pudimos ir al cine",
+   "italiano": "Non abbiamo potuto andare al cinema",
+   "pista": "cine = cinema"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Pudimos comprar la casa",
+   "italiano": "Abbiamo potuto comprare la casa",
+   "pista": "comprar = comprare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "No pudimos hablar con nadie",
+   "italiano": "Non abbiamo potuto parlare con nessuno",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Pudimos descansar el domingo",
+   "italiano": "Abbiamo potuto riposare domenica",
+   "pista": "descansar = riposare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes pudieron dormir bien?",
+   "italiano": "Avete potuto dormire bene?",
+   "pista": "bien = bene"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes no pudieron entrar",
+   "italiano": "Non avete potuto entrare",
+   "pista": "entrar = entrare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Pudieron ustedes terminar?",
+   "italiano": "Avete potuto finire?",
+   "pista": "terminar = finire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes pudieron verlo ayer",
+   "italiano": "Avete potuto vederlo ieri",
+   "pista": "verlo = vederlo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos no pudieron venir",
+   "italiano": "Loro non hanno potuto venire",
+   "pista": "venir = venire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Los chicos pudieron jugar",
+   "italiano": "I bambini hanno potuto giocare",
+   "pista": "jugar = giocare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos pudieron vender todo",
+   "italiano": "Loro hanno potuto vendere tutto",
+   "pista": "vender = vendere"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellas no pudieron estudiar",
+   "italiano": "Loro non hanno potuto studiare",
+   "pista": "estudiar = studiare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "No podía dormir de chico",
+   "italiano": "Non potevo dormire da bambino",
+   "pista": "de chico = da bambino"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Podía trabajar desde casa",
+   "italiano": "Potevo lavorare da casa",
+   "pista": "desde casa = da casa"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "No podía decir nada",
+   "italiano": "Non potevo dire niente",
+   "pista": "nada = niente"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Antes podía correr más",
+   "italiano": "Prima potevo correre di più",
+   "pista": "correr = correre"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Podías avisarme antes",
+   "italiano": "Potevi avvisarmi prima",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "No podías saberlo",
+   "italiano": "Non potevi saperlo",
+   "pista": "saberlo = saperlo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Podías verlo desde ahí?",
+   "italiano": "Potevi vederlo da lì?",
+   "pista": "desde ahí = da lì"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Podías quedarte más tiempo",
+   "italiano": "Potevi restare di più",
+   "pista": "quedarte = restare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi abuelo no podía caminar",
+   "italiano": "Mio nonno non poteva camminare",
+   "pista": "caminar = camminare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella podía cantar muy bien",
+   "italiano": "Lei poteva cantare molto bene",
+   "pista": "cantar = cantare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Nadie podía entrar ahí",
+   "italiano": "Nessuno poteva entrare lì",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Él podía comer de todo",
+   "italiano": "Lui poteva mangiare di tutto",
+   "pista": "de todo = di tutto"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "No podíamos salir de noche",
+   "italiano": "Non potevamo uscire di notte",
+   "pista": "de noche = di notte"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Podíamos jugar en la calle",
+   "italiano": "Potevamo giocare per strada",
+   "pista": "en la calle = per strada"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "No podíamos hacer ruido",
+   "italiano": "Non potevamo fare rumore",
+   "pista": "ruido = rumore"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Podíamos quedarnos hasta tarde",
+   "italiano": "Potevamo restare fino a tardi",
+   "pista": "hasta tarde = fino a tardi"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes podían elegir",
+   "italiano": "Potevate scegliere",
+   "pista": "elegir = scegliere"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes no podían esperar?",
+   "italiano": "Non potevate aspettare?",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes podían venir antes",
+   "italiano": "Potevate venire prima",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes no podían saberlo",
+   "italiano": "Non potevate saperlo",
+   "pista": "saberlo = saperlo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos no podían pagar",
+   "italiano": "Loro non potevano pagare",
+   "pista": "pagar = pagare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Los chicos podían mirar televisión",
+   "italiano": "I bambini potevano guardare la televisione",
+   "pista": "televisión = televisione"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos podían trabajar tranquilos",
+   "italiano": "Loro potevano lavorare tranquilli",
+   "pista": "tranquilos = tranquilli"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellas no podían dormir",
+   "italiano": "Loro non potevano dormire",
+   "pista": "dormir = dormire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Mañana podré descansar",
+   "italiano": "Domani potrò riposare",
+   "pista": "descansar = riposare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "No podré venir el lunes",
+   "italiano": "Non potrò venire lunedì",
+   "pista": "lunes = lunedì"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Podré ayudarte más tarde",
+   "italiano": "Potrò aiutarti più tardi",
+   "pista": "ayudarte = aiutarti"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Podré pagar el mes próximo",
+   "italiano": "Potrò pagare il mese prossimo",
+   "pista": "mes próximo = mese prossimo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Podrás elegir después",
+   "italiano": "Potrai scegliere dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Podrás venir el sábado?",
+   "italiano": "Potrai venire sabato?",
+   "pista": "sábado = sabato"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "No podrás entrar sin entrada",
+   "italiano": "Non potrai entrare senza biglietto",
+   "pista": "entrada = biglietto"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Podrás dormir en el tren",
+   "italiano": "Potrai dormire in treno",
+   "pista": "en el tren = in treno"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Ella podrá empezar el lunes",
+   "italiano": "Lei potrà iniziare lunedì",
+   "pista": "empezar = iniziare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo podrá estudiar afuera",
+   "italiano": "Mio figlio potrà studiare all'estero",
+   "pista": "afuera = all'estero"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Nadie podrá ayudarnos",
+   "italiano": "Nessuno potrà aiutarci",
+   "pista": "ayudarnos = aiutarci"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Él podrá volver en julio",
+   "italiano": "Lui potrà tornare a luglio",
+   "pista": "volver = tornare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Podremos vernos en agosto",
+   "italiano": "Potremo vederci ad agosto",
+   "pista": "vernos = vederci"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "No podremos llegar a tiempo",
+   "italiano": "Non potremo arrivare in tempo",
+   "pista": "a tiempo = in tempo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Podremos comer juntos mañana",
+   "italiano": "Potremo mangiare insieme domani",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Podremos hablar más tranquilos",
+   "italiano": "Potremo parlare più tranquilli",
+   "pista": "tranquilos = tranquilli"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes podrán entrar después",
+   "italiano": "Potrete entrare dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes podrán venir?",
+   "italiano": "Potrete venire?",
+   "pista": "venir = venire"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes podrán descansar mañana",
+   "italiano": "Potrete riposare domani",
+   "pista": "descansar = riposare"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes no podrán pagar así",
+   "italiano": "Non potrete pagare così",
+   "pista": "así = così"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos podrán decidir mañana",
+   "italiano": "Loro potranno decidere domani",
+   "pista": "decidir = decidere"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Los chicos podrán jugar afuera",
+   "italiano": "I bambini potranno giocare fuori",
+   "pista": "afuera = fuori"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos no podrán venir",
+   "italiano": "Loro non potranno venire",
+   "pista": "no = non"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellas podrán trabajar acá",
+   "italiano": "Loro potranno lavorare qui",
+   "pista": "acá = qui"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Pudiendo elegir, elijo esto",
+   "italiano": "Potendo scegliere, scelgo questo",
+   "pista": "elijo = scelgo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "No pudiendo venir, llamo",
+   "italiano": "Non potendo venire, chiamo",
+   "pista": "llamo = chiamo"
+  },
+  {
+   "verbo": "potere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Pudiendo dormir, descanso mejor",
+   "italiano": "Potendo dormire, riposo meglio",
+   "pista": "mejor = meglio"
+  },
+  {
    "verbo": "dovere",
    "tiempo": "presente",
    "persona": "io",
@@ -13024,6 +15256,750 @@
    "espanol": "Debiendo trabajar, me quedo",
    "italiano": "Dovendo lavorare, resto",
    "pista": "me quedo = resto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Tengo que irme ahora",
+   "italiano": "Devo andare via adesso",
+   "pista": "irme = andare via"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Tengo que estudiar esta noche",
+   "italiano": "Devo studiare stasera",
+   "pista": "esta noche = stasera"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Tengo que llamar al médico",
+   "italiano": "Devo chiamare il medico",
+   "pista": "llamar = chiamare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Tenés que descansar más",
+   "italiano": "Devi riposare di più",
+   "pista": "más = di più"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Tenés que trabajar mañana?",
+   "italiano": "Devi lavorare domani?",
+   "pista": "mañana = domani"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Tenés que probar esto",
+   "italiano": "Devi provare questo",
+   "pista": "probar = provare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Ella tiene que salir temprano",
+   "italiano": "Lei deve uscire presto",
+   "pista": "temprano = presto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo tiene que estudiar",
+   "italiano": "Mio figlio deve studiare",
+   "pista": "hijo = figlio"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "El tren tiene que llegar",
+   "italiano": "Il treno deve arrivare",
+   "pista": "llegar = arrivare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Tenemos que comprar pan",
+   "italiano": "Dobbiamo comprare il pane",
+   "pista": "pan = pane"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Tenemos que hablar un momento",
+   "italiano": "Dobbiamo parlare un momento",
+   "pista": "hablar = parlare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Tenemos que salir ya",
+   "italiano": "Dobbiamo uscire subito",
+   "pista": "ya = subito"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes tienen que esperar",
+   "italiano": "Dovete aspettare",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes tienen que trabajar?",
+   "italiano": "Dovete lavorare?",
+   "pista": "trabajar = lavorare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes tienen que pagar antes",
+   "italiano": "Dovete pagare prima",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos tienen que volver",
+   "italiano": "Loro devono tornare",
+   "pista": "volver = tornare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Los chicos tienen que dormir",
+   "italiano": "I bambini devono dormire",
+   "pista": "chicos = bambini"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos tienen que decidir hoy",
+   "italiano": "Loro devono decidere oggi",
+   "pista": "decidir = decidere"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Tuve que salir corriendo",
+   "italiano": "Ho dovuto uscire di corsa",
+   "pista": "corriendo = di corsa"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Tuve que pagar todo",
+   "italiano": "Ho dovuto pagare tutto",
+   "pista": "todo = tutto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Tuve que esperar dos horas",
+   "italiano": "Ho dovuto aspettare due ore",
+   "pista": "dos horas = due ore"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Tuve que cambiar el auto",
+   "italiano": "Ho dovuto cambiare la macchina",
+   "pista": "cambiar = cambiare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Tuviste que trabajar ayer?",
+   "italiano": "Hai dovuto lavorare ieri?",
+   "pista": "ayer = ieri"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Tuviste que volver solo",
+   "italiano": "Hai dovuto tornare da solo",
+   "pista": "solo = da solo"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Tuviste que estudiar mucho",
+   "italiano": "Hai dovuto studiare molto",
+   "pista": "mucho = molto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Tuviste que llamar un taxi?",
+   "italiano": "Hai dovuto chiamare un taxi?",
+   "pista": "llamar = chiamare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Ella tuvo que irse antes",
+   "italiano": "Lei ha dovuto andare via prima",
+   "pista": "irse = andare via"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Mi papá tuvo que vender",
+   "italiano": "Mio padre ha dovuto vendere",
+   "pista": "papá = padre"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Él tuvo que quedarse en casa",
+   "italiano": "Lui ha dovuto restare a casa",
+   "pista": "quedarse = restare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "El médico tuvo que operar",
+   "italiano": "Il medico ha dovuto operare",
+   "pista": "operar = operare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Tuvimos que esperar afuera",
+   "italiano": "Abbiamo dovuto aspettare fuori",
+   "pista": "afuera = fuori"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Tuvimos que cambiar de tren",
+   "italiano": "Abbiamo dovuto cambiare treno",
+   "pista": "cambiar = cambiare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Tuvimos que volver a casa",
+   "italiano": "Abbiamo dovuto tornare a casa",
+   "pista": "volver = tornare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Tuvimos que pagar más",
+   "italiano": "Abbiamo dovuto pagare di più",
+   "pista": "más = di più"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes tuvieron que esperar?",
+   "italiano": "Avete dovuto aspettare?",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes tuvieron que salir",
+   "italiano": "Avete dovuto uscire",
+   "pista": "salir = uscire"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Tuvieron ustedes que pagar?",
+   "italiano": "Avete dovuto pagare?",
+   "pista": "pagar = pagare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes tuvieron que volver antes",
+   "italiano": "Avete dovuto tornare prima",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos tuvieron que mudarse",
+   "italiano": "Loro hanno dovuto traslocare",
+   "pista": "mudarse = traslocare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Los chicos tuvieron que estudiar",
+   "italiano": "I bambini hanno dovuto studiare",
+   "pista": "estudiar = studiare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos tuvieron que esperar mucho",
+   "italiano": "Loro hanno dovuto aspettare molto",
+   "pista": "mucho = molto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellas tuvieron que irse",
+   "italiano": "Loro hanno dovuto andare via",
+   "pista": "irse = andare via"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Tenía que levantarme temprano",
+   "italiano": "Dovevo alzarmi presto",
+   "pista": "levantarme = alzarmi"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Tenía que estudiar todas las noches",
+   "italiano": "Dovevo studiare ogni sera",
+   "pista": "todas las noches = ogni sera"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Tenía que trabajar los sábados",
+   "italiano": "Dovevo lavorare il sabato",
+   "pista": "sábado = sabato"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "No tenía que decir eso",
+   "italiano": "Non dovevo dire questo",
+   "pista": "eso = questo"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Tenías que avisarme",
+   "italiano": "Dovevi avvisarmi",
+   "pista": "avisarme = avvisarmi"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Tenías que trabajar tanto?",
+   "italiano": "Dovevi lavorare così tanto?",
+   "pista": "tanto = così tanto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Tenías que esperar un poco",
+   "italiano": "Dovevi aspettare un po'",
+   "pista": "un poco = un po'"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "No tenías que pagar vos",
+   "italiano": "Non dovevi pagare tu",
+   "pista": "vos = tu"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella tenía que cuidar al nene",
+   "italiano": "Lei doveva badare al bambino",
+   "pista": "cuidar = badare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi abuelo tenía que caminar mucho",
+   "italiano": "Mio nonno doveva camminare molto",
+   "pista": "abuelo = nonno"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Él tenía que viajar seguido",
+   "italiano": "Lui doveva viaggiare spesso",
+   "pista": "seguido = spesso"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella tenía que estudiar más",
+   "italiano": "Lei doveva studiare di più",
+   "pista": "más = di più"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Teníamos que volver temprano",
+   "italiano": "Dovevamo tornare presto",
+   "pista": "temprano = presto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Teníamos que limpiar la casa",
+   "italiano": "Dovevamo pulire la casa",
+   "pista": "limpiar = pulire"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "No teníamos que gastar tanto",
+   "italiano": "Non dovevamo spendere tanto",
+   "pista": "gastar = spendere"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Teníamos que esperar el tren",
+   "italiano": "Dovevamo aspettare il treno",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes tenían que avisar",
+   "italiano": "Dovevate avvisare",
+   "pista": "avisar = avvisare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes tenían que estudiar?",
+   "italiano": "Dovevate studiare?",
+   "pista": "estudiar = studiare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes tenían que venir antes",
+   "italiano": "Dovevate venire prima",
+   "pista": "venir = venire"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "No tenían que hacer eso",
+   "italiano": "Non dovevate fare questo",
+   "pista": "hacer = fare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos tenían que trabajar de noche",
+   "italiano": "Loro dovevano lavorare di notte",
+   "pista": "de noche = di notte"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Los chicos tenían que dormir",
+   "italiano": "I bambini dovevano dormire",
+   "pista": "dormir = dormire"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos tenían que pagar el alquiler",
+   "italiano": "Loro dovevano pagare l'affitto",
+   "pista": "alquiler = affitto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellas tenían que salir temprano",
+   "italiano": "Loro dovevano uscire presto",
+   "pista": "salir = uscire"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Tendré que trabajar el domingo",
+   "italiano": "Dovrò lavorare domenica",
+   "pista": "domingo = domenica"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Tendré que comprar otro",
+   "italiano": "Dovrò comprare un altro",
+   "pista": "otro = un altro"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Tendré que llamarlo mañana",
+   "italiano": "Dovrò chiamarlo domani",
+   "pista": "llamarlo = chiamarlo"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Tendré que esperar hasta julio",
+   "italiano": "Dovrò aspettare fino a luglio",
+   "pista": "hasta = fino a"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Tendrás que decidir vos",
+   "italiano": "Dovrai decidere tu",
+   "pista": "decidir = decidere"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Tendrás que viajar mucho?",
+   "italiano": "Dovrai viaggiare molto?",
+   "pista": "viajar = viaggiare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Tendrás que estudiar más",
+   "italiano": "Dovrai studiare di più",
+   "pista": "más = di più"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Tendrás que pagar después",
+   "italiano": "Dovrai pagare dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Ella tendrá que mudarse",
+   "italiano": "Lei dovrà traslocare",
+   "pista": "mudarse = traslocare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo tendrá que elegir",
+   "italiano": "Mio figlio dovrà scegliere",
+   "pista": "elegir = scegliere"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Él tendrá que volver mañana",
+   "italiano": "Lui dovrà tornare domani",
+   "pista": "volver = tornare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "El auto tendrá que esperar",
+   "italiano": "La macchina dovrà aspettare",
+   "pista": "auto = macchina"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Tendremos que salir temprano",
+   "italiano": "Dovremo uscire presto",
+   "pista": "temprano = presto"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Tendremos que hablar con ellos",
+   "italiano": "Dovremo parlare con loro",
+   "pista": "con ellos = con loro"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Tendremos que comprar todo",
+   "italiano": "Dovremo comprare tutto",
+   "pista": "comprar = comprare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Tendremos que esperar el verano",
+   "italiano": "Dovremo aspettare l'estate",
+   "pista": "verano = estate"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes tendrán que venir",
+   "italiano": "Dovrete venire",
+   "pista": "venir = venire"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes tendrán que pagar?",
+   "italiano": "Dovrete pagare?",
+   "pista": "pagar = pagare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes tendrán que esperar afuera",
+   "italiano": "Dovrete aspettare fuori",
+   "pista": "afuera = fuori"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes tendrán que decidir",
+   "italiano": "Dovrete decidere",
+   "pista": "decidir = decidere"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos tendrán que trabajar más",
+   "italiano": "Loro dovranno lavorare di più",
+   "pista": "más = di più"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Los chicos tendrán que estudiar",
+   "italiano": "I bambini dovranno studiare",
+   "pista": "estudiar = studiare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos tendrán que volver",
+   "italiano": "Loro dovranno tornare",
+   "pista": "volver = tornare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellas tendrán que esperar",
+   "italiano": "Loro dovranno aspettare",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Debiendo salir, me apuro",
+   "italiano": "Dovendo uscire, mi sbrigo",
+   "pista": "me apuro = mi sbrigo"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Debiendo pagar, busco plata",
+   "italiano": "Dovendo pagare, cerco soldi",
+   "pista": "plata = soldi"
+  },
+  {
+   "verbo": "dovere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Debiendo esperar, leo algo",
+   "italiano": "Dovendo aspettare, leggo qualcosa",
+   "pista": "algo = qualcosa"
   },
   {
    "verbo": "sapere",
@@ -13282,6 +16258,750 @@
    "pista": "la respuesta = la risposta"
   },
   {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "No sé nada de eso",
+   "italiano": "Non so niente di questo",
+   "pista": "nada = niente"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Sé cocinar bien",
+   "italiano": "So cucinare bene",
+   "pista": "cocinar = cucinare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "No sé dónde está",
+   "italiano": "Non so dov'è",
+   "pista": "dónde está = dov'è"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Sabés nadar?",
+   "italiano": "Sai nuotare?",
+   "pista": "nadar = nuotare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Vos sabés la verdad",
+   "italiano": "Tu sai la verità",
+   "pista": "la verdad = la verità"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Sabés a qué hora empieza?",
+   "italiano": "Sai a che ora inizia?",
+   "pista": "a qué hora = a che ora"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Ella sabe hablar italiano",
+   "italiano": "Lei sa parlare italiano",
+   "pista": "hablar = parlare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi hermano sabe manejar",
+   "italiano": "Mio fratello sa guidare",
+   "pista": "manejar = guidare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Nadie sabe la respuesta",
+   "italiano": "Nessuno sa la risposta",
+   "pista": "respuesta = risposta"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Sabemos que es tarde",
+   "italiano": "Sappiamo che è tardi",
+   "pista": "tarde = tardi"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "No sabemos el precio",
+   "italiano": "Non sappiamo il prezzo",
+   "pista": "precio = prezzo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Sabemos dónde vive",
+   "italiano": "Sappiamo dove abita",
+   "pista": "vive = abita"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes saben el camino?",
+   "italiano": "Sapete la strada?",
+   "pista": "camino = strada"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes saben cocinar bien",
+   "italiano": "Sapete cucinare bene",
+   "pista": "bien = bene"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes saben qué pasó?",
+   "italiano": "Sapete cosa è successo?",
+   "pista": "qué pasó = cosa è successo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos saben todo",
+   "italiano": "Loro sanno tutto",
+   "pista": "todo = tutto"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Los chicos saben leer",
+   "italiano": "I bambini sanno leggere",
+   "pista": "leer = leggere"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellas saben la dirección",
+   "italiano": "Loro sanno l'indirizzo",
+   "pista": "dirección = indirizzo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Lo supe ayer",
+   "italiano": "L'ho saputo ieri",
+   "pista": "lo supe = l'ho saputo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Supe la noticia tarde",
+   "italiano": "Ho saputo la notizia tardi",
+   "pista": "noticia = notizia"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "No supe qué decir",
+   "italiano": "Non ho saputo cosa dire",
+   "pista": "qué decir = cosa dire"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Supe todo por mi hermana",
+   "italiano": "Ho saputo tutto da mia sorella",
+   "pista": "por = da"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Cómo lo supiste?",
+   "italiano": "Come l'hai saputo?",
+   "pista": "cómo = come"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Supiste la verdad enseguida",
+   "italiano": "Hai saputo la verità subito",
+   "pista": "enseguida = subito"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Supiste algo de Marco?",
+   "italiano": "Hai saputo qualcosa di Marco?",
+   "pista": "algo = qualcosa"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "No supiste esperar",
+   "italiano": "Non hai saputo aspettare",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Ella supo todo después",
+   "italiano": "Lei ha saputo tutto dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Mi mamá lo supo hoy",
+   "italiano": "Mia madre l'ha saputo oggi",
+   "pista": "mamá = madre"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Él no supo responder",
+   "italiano": "Lui non ha saputo rispondere",
+   "pista": "responder = rispondere"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Nadie supo explicarlo",
+   "italiano": "Nessuno ha saputo spiegarlo",
+   "pista": "explicarlo = spiegarlo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Supimos la noticia anoche",
+   "italiano": "Abbiamo saputo la notizia ieri sera",
+   "pista": "anoche = ieri sera"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "No supimos nada más",
+   "italiano": "Non abbiamo saputo niente di più",
+   "pista": "nada más = niente di più"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Supimos que se mudaron",
+   "italiano": "Abbiamo saputo che hanno traslocato",
+   "pista": "se mudaron = hanno traslocato"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Supimos todo por el diario",
+   "italiano": "Abbiamo saputo tutto dal giornale",
+   "pista": "diario = giornale"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes supieron algo?",
+   "italiano": "Avete saputo qualcosa?",
+   "pista": "algo = qualcosa"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes lo supieron antes",
+   "italiano": "L'avete saputo prima",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Cuándo lo supieron ustedes?",
+   "italiano": "Quando l'avete saputo?",
+   "pista": "cuándo = quando"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes no supieron esperar",
+   "italiano": "Non avete saputo aspettare",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos supieron la verdad",
+   "italiano": "Loro hanno saputo la verità",
+   "pista": "verdad = verità"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Los vecinos lo supieron ayer",
+   "italiano": "I vicini l'hanno saputo ieri",
+   "pista": "vecinos = vicini"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos no supieron qué hacer",
+   "italiano": "Loro non hanno saputo cosa fare",
+   "pista": "qué hacer = cosa fare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellas supieron todo enseguida",
+   "italiano": "Loro hanno saputo tutto subito",
+   "pista": "enseguida = subito"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Yo sabía que venías",
+   "italiano": "Sapevo che venivi",
+   "pista": "sabía = sapevo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "No sabía nada de vos",
+   "italiano": "Non sapevo niente di te",
+   "pista": "de vos = di te"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Sabía la respuesta",
+   "italiano": "Sapevo la risposta",
+   "pista": "respuesta = risposta"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "De chico no sabía nadar",
+   "italiano": "Da bambino non sapevo nuotare",
+   "pista": "nadar = nuotare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Vos sabías la verdad",
+   "italiano": "Tu sapevi la verità",
+   "pista": "sabías = sapevi"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Sabías que se mudó?",
+   "italiano": "Sapevi che ha traslocato?",
+   "pista": "se mudó = ha traslocato"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "No sabías dónde estaba",
+   "italiano": "Non sapevi dov'era",
+   "pista": "dónde estaba = dov'era"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Sabías cocinar muy bien",
+   "italiano": "Sapevi cucinare molto bene",
+   "pista": "cocinar = cucinare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella sabía hablar tres idiomas",
+   "italiano": "Lei sapeva parlare tre lingue",
+   "pista": "idiomas = lingue"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi abuela sabía muchas historias",
+   "italiano": "Mia nonna sapeva tante storie",
+   "pista": "historias = storie"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Él no sabía la dirección",
+   "italiano": "Lui non sapeva l'indirizzo",
+   "pista": "dirección = indirizzo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Nadie sabía nada",
+   "italiano": "Nessuno sapeva niente",
+   "pista": "nada = niente"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Sabíamos que era difícil",
+   "italiano": "Sapevamo che era difficile",
+   "pista": "difícil = difficile"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "No sabíamos qué hacer",
+   "italiano": "Non sapevamo cosa fare",
+   "pista": "qué hacer = cosa fare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Sabíamos todo desde antes",
+   "italiano": "Sapevamo tutto da prima",
+   "pista": "desde antes = da prima"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "No sabíamos el camino",
+   "italiano": "Non sapevamo la strada",
+   "pista": "camino = strada"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes sabían la noticia?",
+   "italiano": "Sapevate la notizia?",
+   "pista": "noticia = notizia"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes no sabían nada",
+   "italiano": "Non sapevate niente",
+   "pista": "nada = niente"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes sabían manejar?",
+   "italiano": "Sapevate guidare?",
+   "pista": "manejar = guidare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes sabían dónde vivía",
+   "italiano": "Sapevate dove abitava",
+   "pista": "vivía = abitava"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos sabían todo de mí",
+   "italiano": "Loro sapevano tutto di me",
+   "pista": "de mí = di me"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Los chicos sabían la canción",
+   "italiano": "I bambini sapevano la canzone",
+   "pista": "canción = canzone"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos no sabían esperar",
+   "italiano": "Loro non sapevano aspettare",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellas sabían coser",
+   "italiano": "Loro sapevano cucire",
+   "pista": "coser = cucire"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Mañana sabré el resultado",
+   "italiano": "Domani saprò il risultato",
+   "pista": "resultado = risultato"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Sabré qué hacer",
+   "italiano": "Saprò cosa fare",
+   "pista": "qué hacer = cosa fare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "No sabré la respuesta",
+   "italiano": "Non saprò la risposta",
+   "pista": "respuesta = risposta"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Sabré todo la semana próxima",
+   "italiano": "Saprò tutto la prossima settimana",
+   "pista": "semana próxima = prossima settimana"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Vos sabrás qué decir",
+   "italiano": "Tu saprai cosa dire",
+   "pista": "qué decir = cosa dire"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Sabrás llegar solo?",
+   "italiano": "Saprai arrivare da solo?",
+   "pista": "solo = da solo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Sabrás la verdad pronto",
+   "italiano": "Saprai la verità presto",
+   "pista": "pronto = presto"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "No sabrás nada hasta mañana",
+   "italiano": "Non saprai niente fino a domani",
+   "pista": "hasta mañana = fino a domani"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Ella sabrá el precio",
+   "italiano": "Lei saprà il prezzo",
+   "pista": "precio = prezzo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo sabrá elegir",
+   "italiano": "Mio figlio saprà scegliere",
+   "pista": "elegir = scegliere"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Él sabrá la respuesta mañana",
+   "italiano": "Lui saprà la risposta domani",
+   "pista": "mañana = domani"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Nadie sabrá nada",
+   "italiano": "Nessuno saprà niente",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Sabremos la verdad después",
+   "italiano": "Sapremo la verità dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "No sabremos el resultado hoy",
+   "italiano": "Non sapremo il risultato oggi",
+   "pista": "hoy = oggi"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Sabremos qué hacer",
+   "italiano": "Sapremo cosa fare",
+   "pista": "qué = cosa"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Sabremos todo en agosto",
+   "italiano": "Sapremo tutto ad agosto",
+   "pista": "en agosto = ad agosto"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes sabrán el camino?",
+   "italiano": "Saprete la strada?",
+   "pista": "camino = strada"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes sabrán qué decir",
+   "italiano": "Saprete cosa dire",
+   "pista": "qué decir = cosa dire"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes lo sabrán mañana",
+   "italiano": "Lo saprete domani",
+   "pista": "mañana = domani"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes sabrán esperar?",
+   "italiano": "Saprete aspettare?",
+   "pista": "esperar = aspettare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos sabrán la noticia",
+   "italiano": "Loro sapranno la notizia",
+   "pista": "noticia = notizia"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Los chicos sabrán el camino",
+   "italiano": "I bambini sapranno la strada",
+   "pista": "chicos = bambini"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos lo sabrán después",
+   "italiano": "Lo sapranno dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellas sabrán qué hacer",
+   "italiano": "Loro sapranno cosa fare",
+   "pista": "qué hacer = cosa fare"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Sabiendo italiano, viajo tranquilo",
+   "italiano": "Sapendo l'italiano, viaggio tranquillo",
+   "pista": "tranquilo = tranquillo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "No sabiendo nada, pregunto",
+   "italiano": "Non sapendo niente, chiedo",
+   "pista": "pregunto = chiedo"
+  },
+  {
+   "verbo": "sapere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Sabiendo cocinar, como mejor",
+   "italiano": "Sapendo cucinare, mangio meglio",
+   "pista": "mejor = meglio"
+  },
+  {
    "verbo": "conoscere",
    "tiempo": "presente",
    "persona": "io",
@@ -13538,6 +17258,750 @@
    "pista": "camino = cammino"
   },
   {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Conozco un buen restaurante",
+   "italiano": "Conosco un buon ristorante",
+   "pista": "buen = buon"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "No conozco esta ciudad",
+   "italiano": "Non conosco questa città",
+   "pista": "ciudad = città"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Conozco a su hermana",
+   "italiano": "Conosco sua sorella",
+   "pista": "su hermana = sua sorella"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Conocés Roma?",
+   "italiano": "Conosci Roma?",
+   "pista": "conocés = conosci"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Vos conocés el camino",
+   "italiano": "Tu conosci la strada",
+   "pista": "camino = strada"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Conocés algún médico?",
+   "italiano": "Conosci un medico?",
+   "pista": "algún = un"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Ella conoce bien Italia",
+   "italiano": "Lei conosce bene l'Italia",
+   "pista": "bien = bene"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi hermano conoce el lugar",
+   "italiano": "Mio fratello conosce il posto",
+   "pista": "lugar = posto"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Nadie conoce esa historia",
+   "italiano": "Nessuno conosce questa storia",
+   "pista": "historia = storia"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Conocemos un bar barato",
+   "italiano": "Conosciamo un bar economico",
+   "pista": "barato = economico"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "No conocemos a nadie acá",
+   "italiano": "Non conosciamo nessuno qui",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Conocemos bien el barrio",
+   "italiano": "Conosciamo bene il quartiere",
+   "pista": "barrio = quartiere"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes conocen la ciudad?",
+   "italiano": "Conoscete la città?",
+   "pista": "ciudad = città"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes conocen a mi hermana",
+   "italiano": "Conoscete mia sorella",
+   "pista": "hermana = sorella"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes conocen este lugar?",
+   "italiano": "Conoscete questo posto?",
+   "pista": "lugar = posto"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos conocen el camino",
+   "italiano": "Loro conoscono la strada",
+   "pista": "camino = strada"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Los chicos conocen la canción",
+   "italiano": "I bambini conoscono la canzone",
+   "pista": "canción = canzone"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellas conocen a todos",
+   "italiano": "Loro conoscono tutti",
+   "pista": "a todos = tutti"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Conocí a Marco en Roma",
+   "italiano": "Ho conosciuto Marco a Roma",
+   "pista": "en Roma = a Roma"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Conocí gente linda ahí",
+   "italiano": "Ho conosciuto brava gente lì",
+   "pista": "gente linda = brava gente"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Conocí a tu hermano ayer",
+   "italiano": "Ho conosciuto tuo fratello ieri",
+   "pista": "ayer = ieri"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Conocí ese lugar de chico",
+   "italiano": "Ho conosciuto quel posto da bambino",
+   "pista": "de chico = da bambino"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Dónde lo conociste?",
+   "italiano": "Dove l'hai conosciuto?",
+   "pista": "dónde = dove"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Conociste a mi papá",
+   "italiano": "Hai conosciuto mio padre",
+   "pista": "papá = padre"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Conociste gente nueva?",
+   "italiano": "Hai conosciuto gente nuova?",
+   "pista": "nueva = nuova"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Lo conociste el año pasado",
+   "italiano": "L'hai conosciuto l'anno scorso",
+   "pista": "año pasado = anno scorso"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Ella conoció a mi familia",
+   "italiano": "Lei ha conosciuto la mia famiglia",
+   "pista": "familia = famiglia"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Él conoció Italia de joven",
+   "italiano": "Lui ha conosciuto l'Italia da giovane",
+   "pista": "de joven = da giovane"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Mi mamá lo conoció ayer",
+   "italiano": "Mia madre l'ha conosciuto ieri",
+   "pista": "mamá = madre"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Marco conoció a su esposa acá",
+   "italiano": "Marco ha conosciuto sua moglie qui",
+   "pista": "esposa = moglie"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Conocimos un lugar hermoso",
+   "italiano": "Abbiamo conosciuto un posto bellissimo",
+   "pista": "hermoso = bellissimo"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Conocimos a sus padres",
+   "italiano": "Abbiamo conosciuto i suoi genitori",
+   "pista": "padres = genitori"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Conocimos Venecia en invierno",
+   "italiano": "Abbiamo conosciuto Venezia d'inverno",
+   "pista": "en invierno = d'inverno"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Conocimos gente de todo el mundo",
+   "italiano": "Abbiamo conosciuto gente di tutto il mondo",
+   "pista": "mundo = mondo"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes conocieron a Marco?",
+   "italiano": "Avete conosciuto Marco?",
+   "pista": "conocieron = avete conosciuto"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes conocieron Italia",
+   "italiano": "Avete conosciuto l'Italia",
+   "pista": "Italia = l'Italia"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Dónde lo conocieron ustedes?",
+   "italiano": "Dove l'avete conosciuto?",
+   "pista": "dónde = dove"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes conocieron a mi hermana",
+   "italiano": "Avete conosciuto mia sorella",
+   "pista": "hermana = sorella"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos conocieron a mucha gente",
+   "italiano": "Loro hanno conosciuto molta gente",
+   "pista": "mucha = molta"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Los chicos conocieron el mar",
+   "italiano": "I bambini hanno conosciuto il mare",
+   "pista": "mar = mare"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos conocieron Roma juntos",
+   "italiano": "Loro hanno conosciuto Roma insieme",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellas conocieron a mi mamá",
+   "italiano": "Loro hanno conosciuto mia madre",
+   "pista": "mamá = madre"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Conocía bien esa calle",
+   "italiano": "Conoscevo bene quella strada",
+   "pista": "calle = strada"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "No conocía a nadie",
+   "italiano": "Non conoscevo nessuno",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Conocía todos los vecinos",
+   "italiano": "Conoscevo tutti i vicini",
+   "pista": "vecinos = vicini"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "De chico conocía el bosque",
+   "italiano": "Da bambino conoscevo il bosco",
+   "pista": "bosque = bosco"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Conocías ese restaurante?",
+   "italiano": "Conoscevi quel ristorante?",
+   "pista": "ese = quel"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Vos conocías la verdad",
+   "italiano": "Tu conoscevi la verità",
+   "pista": "verdad = verità"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "No conocías la ciudad",
+   "italiano": "Non conoscevi la città",
+   "pista": "ciudad = città"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Conocías a mi hermano",
+   "italiano": "Conoscevi mio fratello",
+   "pista": "hermano = fratello"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi abuelo conocía el mar",
+   "italiano": "Mio nonno conosceva il mare",
+   "pista": "abuelo = nonno"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella conocía a todos ahí",
+   "italiano": "Lei conosceva tutti lì",
+   "pista": "ahí = lì"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Él conocía bien el idioma",
+   "italiano": "Lui conosceva bene la lingua",
+   "pista": "idioma = lingua"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Nadie conocía ese camino",
+   "italiano": "Nessuno conosceva quella strada",
+   "pista": "camino = strada"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Conocíamos el lugar de antes",
+   "italiano": "Conoscevamo il posto da prima",
+   "pista": "de antes = da prima"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "No conocíamos a sus padres",
+   "italiano": "Non conoscevamo i suoi genitori",
+   "pista": "padres = genitori"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Conocíamos todas las calles",
+   "italiano": "Conoscevamo tutte le strade",
+   "pista": "calles = strade"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Conocíamos bien esa historia",
+   "italiano": "Conoscevamo bene quella storia",
+   "pista": "historia = storia"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes conocían el lugar?",
+   "italiano": "Conoscevate il posto?",
+   "pista": "lugar = posto"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes conocían a mi papá",
+   "italiano": "Conoscevate mio padre",
+   "pista": "papá = padre"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes no conocían Roma?",
+   "italiano": "Non conoscevate Roma?",
+   "pista": "no = non"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes conocían la verdad",
+   "italiano": "Conoscevate la verità",
+   "pista": "verdad = verità"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos conocían todo el barrio",
+   "italiano": "Loro conoscevano tutto il quartiere",
+   "pista": "barrio = quartiere"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Los chicos conocían la historia",
+   "italiano": "I bambini conoscevano la storia",
+   "pista": "historia = storia"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos no conocían a nadie",
+   "italiano": "Loro non conoscevano nessuno",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellas conocían bien la ciudad",
+   "italiano": "Loro conoscevano bene la città",
+   "pista": "ciudad = città"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Conoceré a su familia mañana",
+   "italiano": "Conoscerò la sua famiglia domani",
+   "pista": "familia = famiglia"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Conoceré Roma en abril",
+   "italiano": "Conoscerò Roma ad aprile",
+   "pista": "en abril = ad aprile"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Pronto conoceré la verdad",
+   "italiano": "Presto conoscerò la verità",
+   "pista": "pronto = presto"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Conoceré gente nueva ahí",
+   "italiano": "Conoscerò gente nuova lì",
+   "pista": "ahí = lì"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Conocerás a mi hermana",
+   "italiano": "Conoscerai mia sorella",
+   "pista": "hermana = sorella"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Conocerás Italia este verano?",
+   "italiano": "Conoscerai l'Italia quest'estate?",
+   "pista": "este verano = quest'estate"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Conocerás el lugar pronto",
+   "italiano": "Conoscerai il posto presto",
+   "pista": "lugar = posto"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Conocerás gente nueva",
+   "italiano": "Conoscerai gente nuova",
+   "pista": "nueva = nuova"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Ella conocerá a mis padres",
+   "italiano": "Lei conoscerà i miei genitori",
+   "pista": "padres = genitori"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo conocerá el mar",
+   "italiano": "Mio figlio conoscerà il mare",
+   "pista": "mar = mare"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Él conocerá la ciudad mañana",
+   "italiano": "Lui conoscerà la città domani",
+   "pista": "mañana = domani"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Nadie conocerá la verdad",
+   "italiano": "Nessuno conoscerà la verità",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Conoceremos Venecia en mayo",
+   "italiano": "Conosceremo Venezia a maggio",
+   "pista": "en mayo = a maggio"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Conoceremos a su novio",
+   "italiano": "Conosceremo il suo ragazzo",
+   "pista": "novio = ragazzo"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Conoceremos el lugar juntos",
+   "italiano": "Conosceremo il posto insieme",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Conoceremos gente de todas partes",
+   "italiano": "Conosceremo gente di tutte le parti",
+   "pista": "de todas partes = di tutte le parti"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes conocerán a Marco?",
+   "italiano": "Conoscerete Marco?",
+   "pista": "conocerán = conoscerete"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes conocerán la ciudad",
+   "italiano": "Conoscerete la città",
+   "pista": "ciudad = città"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes conocerán a mi familia",
+   "italiano": "Conoscerete la mia famiglia",
+   "pista": "familia = famiglia"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Cuándo conocerán ustedes Roma?",
+   "italiano": "Quando conoscerete Roma?",
+   "pista": "cuándo = quando"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos conocerán el mar",
+   "italiano": "Loro conosceranno il mare",
+   "pista": "mar = mare"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Los chicos conocerán la nieve",
+   "italiano": "I bambini conosceranno la neve",
+   "pista": "nieve = neve"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos conocerán a mis padres",
+   "italiano": "Loro conosceranno i miei genitori",
+   "pista": "padres = genitori"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellas conocerán la verdad",
+   "italiano": "Loro conosceranno la verità",
+   "pista": "verdad = verità"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Conociendo el camino, llego antes",
+   "italiano": "Conoscendo la strada, arrivo prima",
+   "pista": "llego = arrivo"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Conociéndolo, no me sorprende",
+   "italiano": "Conoscendolo, non mi sorprende",
+   "pista": "no me sorprende = non mi sorprende"
+  },
+  {
+   "verbo": "conoscere",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Conociendo Roma, camino tranquilo",
+   "italiano": "Conoscendo Roma, cammino tranquillo",
+   "pista": "tranquilo = tranquillo"
+  },
+  {
    "verbo": "lavorare",
    "tiempo": "presente",
    "persona": "io",
@@ -13738,6 +18202,806 @@
    "pista": "ahora = adesso"
   },
   {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Trabajo de lunes a viernes",
+   "italiano": "Lavoro dal lunedì al venerdì",
+   "pista": "de lunes a viernes = dal lunedì al venerdì"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Trabajo cerca de casa",
+   "italiano": "Lavoro vicino a casa",
+   "pista": "cerca = vicino"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Trabajo ocho horas por día",
+   "italiano": "Lavoro otto ore al giorno",
+   "pista": "por día = al giorno"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "No trabajo los domingos",
+   "italiano": "Non lavoro la domenica",
+   "pista": "domingo = domenica"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Dónde trabajás ahora?",
+   "italiano": "Dove lavori adesso?",
+   "pista": "dónde = dove"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Trabajás demasiado",
+   "italiano": "Lavori troppo",
+   "pista": "demasiado = troppo"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Trabajás en el centro?",
+   "italiano": "Lavori in centro?",
+   "pista": "en el centro = in centro"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Trabajás muy bien",
+   "italiano": "Lavori molto bene",
+   "pista": "muy bien = molto bene"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi papá trabaja en el banco",
+   "italiano": "Mio padre lavora in banca",
+   "pista": "banco = banca"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Ella trabaja en un hospital",
+   "italiano": "Lei lavora in un ospedale",
+   "pista": "hospital = ospedale"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Marco trabaja de noche",
+   "italiano": "Marco lavora di notte",
+   "pista": "de noche = di notte"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi vecino trabaja en casa",
+   "italiano": "Il mio vicino lavora a casa",
+   "pista": "vecino = vicino"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Trabajamos todos los días",
+   "italiano": "Lavoriamo tutti i giorni",
+   "pista": "todos los días = tutti i giorni"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Trabajamos en el mismo lugar",
+   "italiano": "Lavoriamo nello stesso posto",
+   "pista": "el mismo lugar = lo stesso posto"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "No trabajamos en agosto",
+   "italiano": "Non lavoriamo ad agosto",
+   "pista": "en agosto = ad agosto"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Trabajamos mucho esta semana",
+   "italiano": "Lavoriamo molto questa settimana",
+   "pista": "esta semana = questa settimana"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes trabajan mucho",
+   "italiano": "Lavorate molto",
+   "pista": "mucho = molto"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes trabajan acá?",
+   "italiano": "Lavorate qui?",
+   "pista": "acá = qui"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes trabajan los domingos",
+   "italiano": "Lavorate la domenica",
+   "pista": "los domingos = la domenica"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes trabajan juntos?",
+   "italiano": "Lavorate insieme?",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos trabajan en el campo",
+   "italiano": "Loro lavorano in campagna",
+   "pista": "el campo = la campagna"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Mis hermanos trabajan conmigo",
+   "italiano": "I miei fratelli lavorano con me",
+   "pista": "conmigo = con me"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellas trabajan en una tienda",
+   "italiano": "Loro lavorano in un negozio",
+   "pista": "tienda = negozio"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos trabajan de lunes a sábado",
+   "italiano": "Loro lavorano dal lunedì al sabato",
+   "pista": "sábado = sabato"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Trabajé toda la mañana",
+   "italiano": "Ho lavorato tutta la mattina",
+   "pista": "toda la mañana = tutta la mattina"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Trabajé diez años ahí",
+   "italiano": "Ho lavorato dieci anni lì",
+   "pista": "diez años = dieci anni"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Trabajé una vez de noche",
+   "italiano": "Ho lavorato una volta di notte",
+   "pista": "una vez = una volta"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Ayer trabajé desde casa",
+   "italiano": "Ieri ho lavorato da casa",
+   "pista": "desde casa = da casa"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Cuánto trabajaste hoy?",
+   "italiano": "Quanto hai lavorato oggi?",
+   "pista": "cuánto = quanto"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Trabajaste muy bien",
+   "italiano": "Hai lavorato molto bene",
+   "pista": "muy bien = molto bene"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Trabajaste en Milán?",
+   "italiano": "Hai lavorato a Milano?",
+   "pista": "en Milán = a Milano"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Trabajaste toda la noche",
+   "italiano": "Hai lavorato tutta la notte",
+   "pista": "toda la noche = tutta la notte"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Ella trabajó en un bar",
+   "italiano": "Lei ha lavorato in un bar",
+   "pista": "en un bar = in un bar"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Mi hermano trabajó afuera",
+   "italiano": "Mio fratello ha lavorato all'estero",
+   "pista": "afuera = all'estero"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Marco trabajó hasta tarde",
+   "italiano": "Marco ha lavorato fino a tardi",
+   "pista": "hasta tarde = fino a tardi"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Ella trabajó treinta años",
+   "italiano": "Lei ha lavorato trent'anni",
+   "pista": "treinta años = trent'anni"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Trabajamos juntos el año pasado",
+   "italiano": "Abbiamo lavorato insieme l'anno scorso",
+   "pista": "año pasado = anno scorso"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Trabajamos mucho este mes",
+   "italiano": "Abbiamo lavorato molto questo mese",
+   "pista": "este mes = questo mese"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Trabajamos hasta las diez",
+   "italiano": "Abbiamo lavorato fino alle dieci",
+   "pista": "las diez = le dieci"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Trabajamos bien en equipo",
+   "italiano": "Abbiamo lavorato bene in squadra",
+   "pista": "equipo = squadra"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes trabajaron hoy?",
+   "italiano": "Avete lavorato oggi?",
+   "pista": "hoy = oggi"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes trabajaron muy bien",
+   "italiano": "Avete lavorato molto bene",
+   "pista": "muy = molto"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Cuánto trabajaron ustedes?",
+   "italiano": "Quanto avete lavorato?",
+   "pista": "cuánto = quanto"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes trabajaron toda la semana",
+   "italiano": "Avete lavorato tutta la settimana",
+   "pista": "toda la semana = tutta la settimana"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos trabajaron todo el verano",
+   "italiano": "Loro hanno lavorato tutta l'estate",
+   "pista": "todo el verano = tutta l'estate"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Mis padres trabajaron mucho",
+   "italiano": "I miei genitori hanno lavorato molto",
+   "pista": "padres = genitori"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos trabajaron gratis",
+   "italiano": "Loro hanno lavorato gratis",
+   "pista": "gratis = gratis"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellas trabajaron el domingo",
+   "italiano": "Loro hanno lavorato domenica",
+   "pista": "domingo = domenica"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Antes trabajaba los sábados",
+   "italiano": "Prima lavoravo il sabato",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Trabajaba cerca del río",
+   "italiano": "Lavoravo vicino al fiume",
+   "pista": "río = fiume"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "De joven trabajaba mucho",
+   "italiano": "Da giovane lavoravo molto",
+   "pista": "de joven = da giovane"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Trabajaba con mi papá",
+   "italiano": "Lavoravo con mio padre",
+   "pista": "papá = padre"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Dónde trabajabas antes?",
+   "italiano": "Dove lavoravi prima?",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Trabajabas demasiado antes",
+   "italiano": "Lavoravi troppo prima",
+   "pista": "demasiado = troppo"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Trabajabas en el hospital?",
+   "italiano": "Lavoravi in ospedale?",
+   "pista": "hospital = ospedale"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Trabajabas siempre de noche",
+   "italiano": "Lavoravi sempre di notte",
+   "pista": "siempre = sempre"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi abuelo trabajaba el campo",
+   "italiano": "Mio nonno lavorava la terra",
+   "pista": "el campo = la terra"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella trabajaba en una escuela",
+   "italiano": "Lei lavorava in una scuola",
+   "pista": "escuela = scuola"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Marco trabajaba con nosotros",
+   "italiano": "Marco lavorava con noi",
+   "pista": "con nosotros = con noi"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Él trabajaba doce horas",
+   "italiano": "Lui lavorava dodici ore",
+   "pista": "doce = dodici"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Trabajábamos en la misma oficina",
+   "italiano": "Lavoravamo nello stesso ufficio",
+   "pista": "la misma = lo stesso"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Antes trabajábamos más",
+   "italiano": "Prima lavoravamo di più",
+   "pista": "más = di più"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Trabajábamos hasta la noche",
+   "italiano": "Lavoravamo fino a sera",
+   "pista": "la noche = sera"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Trabajábamos los fines de semana",
+   "italiano": "Lavoravamo nei fine settimana",
+   "pista": "fines de semana = fine settimana"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes trabajaban juntos?",
+   "italiano": "Lavoravate insieme?",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes trabajaban en Roma",
+   "italiano": "Lavoravate a Roma",
+   "pista": "en Roma = a Roma"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes trabajaban de noche?",
+   "italiano": "Lavoravate di notte?",
+   "pista": "de noche = di notte"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes trabajaban mucho antes",
+   "italiano": "Lavoravate molto prima",
+   "pista": "antes = prima"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos trabajaban en el puerto",
+   "italiano": "Loro lavoravano al porto",
+   "pista": "puerto = porto"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Mis tíos trabajaban afuera",
+   "italiano": "I miei zii lavoravano all'estero",
+   "pista": "tíos = zii"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos trabajaban todo el día",
+   "italiano": "Loro lavoravano tutto il giorno",
+   "pista": "todo el día = tutto il giorno"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellas trabajaban en el hospital",
+   "italiano": "Loro lavoravano in ospedale",
+   "pista": "hospital = ospedale"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Trabajaré hasta las seis",
+   "italiano": "Lavorerò fino alle sei",
+   "pista": "las seis = le sei"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "El año próximo trabajaré menos",
+   "italiano": "L'anno prossimo lavorerò di meno",
+   "pista": "menos = di meno"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Trabajaré con mi hermano",
+   "italiano": "Lavorerò con mio fratello",
+   "pista": "hermano = fratello"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "No trabajaré el sábado",
+   "italiano": "Non lavorerò sabato",
+   "pista": "sábado = sabato"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Trabajarás en Roma?",
+   "italiano": "Lavorerai a Roma?",
+   "pista": "en Roma = a Roma"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Trabajarás con nosotros",
+   "italiano": "Lavorerai con noi",
+   "pista": "con nosotros = con noi"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Trabajarás de noche?",
+   "italiano": "Lavorerai di notte?",
+   "pista": "de noche = di notte"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Trabajarás menos horas",
+   "italiano": "Lavorerai meno ore",
+   "pista": "menos = meno"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Ella trabajará en el hospital",
+   "italiano": "Lei lavorerà in ospedale",
+   "pista": "hospital = ospedale"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Mi hermano trabajará afuera",
+   "italiano": "Mio fratello lavorerà all'estero",
+   "pista": "afuera = all'estero"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Marco trabajará con vos",
+   "italiano": "Marco lavorerà con te",
+   "pista": "con vos = con te"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Él trabajará desde casa",
+   "italiano": "Lui lavorerà da casa",
+   "pista": "desde casa = da casa"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Trabajaremos hasta agosto",
+   "italiano": "Lavoreremo fino ad agosto",
+   "pista": "hasta = fino a"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Trabajaremos de mañana",
+   "italiano": "Lavoreremo di mattina",
+   "pista": "de mañana = di mattina"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Trabajaremos menos el verano próximo",
+   "italiano": "Lavoreremo di meno la prossima estate",
+   "pista": "verano próximo = prossima estate"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Trabajaremos todos juntos",
+   "italiano": "Lavoreremo tutti insieme",
+   "pista": "todos juntos = tutti insieme"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes trabajarán mañana?",
+   "italiano": "Lavorerete domani?",
+   "pista": "mañana = domani"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes trabajarán conmigo",
+   "italiano": "Lavorerete con me",
+   "pista": "conmigo = con me"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes trabajarán el domingo?",
+   "italiano": "Lavorerete domenica?",
+   "pista": "domingo = domenica"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes trabajarán en el centro",
+   "italiano": "Lavorerete in centro",
+   "pista": "en el centro = in centro"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos trabajarán en el campo",
+   "italiano": "Loro lavoreranno in campagna",
+   "pista": "campo = campagna"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Mis hijos trabajarán acá",
+   "italiano": "I miei figli lavoreranno qui",
+   "pista": "hijos = figli"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos trabajarán todo el mes",
+   "italiano": "Loro lavoreranno tutto il mese",
+   "pista": "todo el mes = tutto il mese"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellas trabajarán de noche",
+   "italiano": "Loro lavoreranno di notte",
+   "pista": "de noche = di notte"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Estoy trabajando desde casa",
+   "italiano": "Sto lavorando da casa",
+   "pista": "desde casa = da casa"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Estamos trabajando en eso",
+   "italiano": "Stiamo lavorando su questo",
+   "pista": "en eso = su questo"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Está trabajando mucho",
+   "italiano": "Sta lavorando molto",
+   "pista": "mucho = molto"
+  },
+  {
+   "verbo": "lavorare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Están trabajando afuera",
+   "italiano": "Stanno lavorando fuori",
+   "pista": "afuera = fuori"
+  },
+  {
    "verbo": "guardare",
    "tiempo": "presente",
    "persona": "io",
@@ -13936,6 +19200,806 @@
    "espanol": "Estoy mirando el mar",
    "italiano": "Sto guardando il mare",
    "pista": "mar = mare"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Miro la tele a la noche",
+   "italiano": "Guardo la televisione la sera",
+   "pista": "a la noche = la sera"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Miro por la ventana",
+   "italiano": "Guardo dalla finestra",
+   "pista": "por la ventana = dalla finestra"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "Miro el partido con amigos",
+   "italiano": "Guardo la partita con gli amici",
+   "pista": "partido = partita"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "io",
+   "espanol": "No miro películas de terror",
+   "italiano": "Non guardo film horror",
+   "pista": "películas = film"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Qué mirás tanto?",
+   "italiano": "Cosa guardi tanto?",
+   "pista": "tanto = tanto"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Mirás demasiada televisión",
+   "italiano": "Guardi troppa televisione",
+   "pista": "demasiada = troppa"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "¿Mirás el partido hoy?",
+   "italiano": "Guardi la partita oggi?",
+   "pista": "partido = partita"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "tu",
+   "espanol": "Mirás siempre el celular",
+   "italiano": "Guardi sempre il telefono",
+   "pista": "celular = telefono"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Ella mira una serie",
+   "italiano": "Lei guarda una serie",
+   "pista": "serie = serie"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo mira dibujitos",
+   "italiano": "Mio figlio guarda i cartoni",
+   "pista": "dibujitos = cartoni"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "Él mira siempre el reloj",
+   "italiano": "Lui guarda sempre l'orologio",
+   "pista": "reloj = orologio"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "lui/lei",
+   "espanol": "El nene mira por la ventana",
+   "italiano": "Il bambino guarda dalla finestra",
+   "pista": "nene = bambino"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Miramos una película esta noche",
+   "italiano": "Guardiamo un film stasera",
+   "pista": "esta noche = stasera"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Miramos las fotos juntos",
+   "italiano": "Guardiamo le foto insieme",
+   "pista": "fotos = foto"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "Miramos el mar desde acá",
+   "italiano": "Guardiamo il mare da qui",
+   "pista": "desde acá = da qui"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "noi",
+   "espanol": "No miramos televisión",
+   "italiano": "Non guardiamo la televisione",
+   "pista": "televisión = televisione"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Ustedes miran el partido?",
+   "italiano": "Guardate la partita?",
+   "pista": "partido = partita"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes miran mucha televisión",
+   "italiano": "Guardate molta televisione",
+   "pista": "mucha = molta"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "¿Qué miran ustedes?",
+   "italiano": "Cosa guardate?",
+   "pista": "qué = cosa"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "voi",
+   "espanol": "Ustedes miran las noticias",
+   "italiano": "Guardate il telegiornale",
+   "pista": "las noticias = il telegiornale"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos miran una película",
+   "italiano": "Loro guardano un film",
+   "pista": "película = film"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Los chicos miran dibujitos",
+   "italiano": "I bambini guardano i cartoni",
+   "pista": "dibujitos = cartoni"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellas miran las vidrieras",
+   "italiano": "Loro guardano le vetrine",
+   "pista": "vidrieras = vetrine"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "presente",
+   "persona": "loro",
+   "espanol": "Ellos miran el cielo",
+   "italiano": "Loro guardano il cielo",
+   "pista": "cielo = cielo"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Miré la película anoche",
+   "italiano": "Ho guardato il film ieri sera",
+   "pista": "anoche = ieri sera"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Miré todo el partido",
+   "italiano": "Ho guardato tutta la partita",
+   "pista": "todo el = tutta la"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Lo miré un segundo",
+   "italiano": "L'ho guardato un secondo",
+   "pista": "segundo = secondo"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "io",
+   "espanol": "Miré las fotos viejas",
+   "italiano": "Ho guardato le vecchie foto",
+   "pista": "viejas = vecchie"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Miraste el partido ayer?",
+   "italiano": "Hai guardato la partita ieri?",
+   "pista": "ayer = ieri"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Miraste la película sin mí",
+   "italiano": "Hai guardato il film senza di me",
+   "pista": "sin mí = senza di me"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "¿Lo miraste bien?",
+   "italiano": "L'hai guardato bene?",
+   "pista": "bien = bene"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "tu",
+   "espanol": "Miraste las noticias hoy",
+   "italiano": "Hai guardato il telegiornale oggi",
+   "pista": "las noticias = il telegiornale"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Ella miró el mar mucho rato",
+   "italiano": "Lei ha guardato il mare a lungo",
+   "pista": "mucho rato = a lungo"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo miró dibujitos hoy",
+   "italiano": "Mio figlio ha guardato i cartoni oggi",
+   "pista": "hoy = oggi"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Él me miró y sonrió",
+   "italiano": "Lui mi ha guardato e ha sorriso",
+   "pista": "sonrió = ha sorriso"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "lui/lei",
+   "espanol": "Marco miró la hora",
+   "italiano": "Marco ha guardato l'ora",
+   "pista": "la hora = l'ora"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Miramos la película juntos",
+   "italiano": "Abbiamo guardato il film insieme",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Miramos las estrellas anoche",
+   "italiano": "Abbiamo guardato le stelle ieri sera",
+   "pista": "estrellas = stelle"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Miramos el partido en el bar",
+   "italiano": "Abbiamo guardato la partita al bar",
+   "pista": "en el bar = al bar"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "noi",
+   "espanol": "Miramos todas las fotos",
+   "italiano": "Abbiamo guardato tutte le foto",
+   "pista": "todas = tutte"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Ustedes miraron la película?",
+   "italiano": "Avete guardato il film?",
+   "pista": "película = film"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes miraron el mar",
+   "italiano": "Avete guardato il mare",
+   "pista": "mar = mare"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "¿Qué miraron ustedes anoche?",
+   "italiano": "Cosa avete guardato ieri sera?",
+   "pista": "anoche = ieri sera"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "voi",
+   "espanol": "Ustedes lo miraron mal",
+   "italiano": "L'avete guardato male",
+   "pista": "mal = male"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos miraron el partido",
+   "italiano": "Loro hanno guardato la partita",
+   "pista": "partido = partita"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Los chicos miraron la tele",
+   "italiano": "I bambini hanno guardato la televisione",
+   "pista": "la tele = la televisione"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellas miraron las vidrieras",
+   "italiano": "Loro hanno guardato le vetrine",
+   "pista": "vidrieras = vetrine"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "passato_prossimo",
+   "persona": "loro",
+   "espanol": "Ellos me miraron raro",
+   "italiano": "Loro mi hanno guardato strano",
+   "pista": "raro = strano"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "De chico miraba muchos dibujitos",
+   "italiano": "Da bambino guardavo tanti cartoni",
+   "pista": "muchos = tanti"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Miraba el mar cada mañana",
+   "italiano": "Guardavo il mare ogni mattina",
+   "pista": "cada mañana = ogni mattina"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "Antes miraba más televisión",
+   "italiano": "Prima guardavo più televisione",
+   "pista": "más = più"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "io",
+   "espanol": "La miraba desde la ventana",
+   "italiano": "La guardavo dalla finestra",
+   "pista": "desde = da"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "¿Qué mirabas?",
+   "italiano": "Cosa guardavi?",
+   "pista": "qué = cosa"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Mirabas siempre el reloj",
+   "italiano": "Guardavi sempre l'orologio",
+   "pista": "reloj = orologio"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Me mirabas y no hablabas",
+   "italiano": "Mi guardavi e non parlavi",
+   "pista": "hablabas = parlavi"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "tu",
+   "espanol": "Mirabas la tele de chico",
+   "italiano": "Guardavi la televisione da bambino",
+   "pista": "de chico = da bambino"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Ella miraba por la ventana",
+   "italiano": "Lei guardava dalla finestra",
+   "pista": "ventana = finestra"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Mi abuelo miraba el cielo",
+   "italiano": "Mio nonno guardava il cielo",
+   "pista": "abuelo = nonno"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "Él miraba todo en silencio",
+   "italiano": "Lui guardava tutto in silenzio",
+   "pista": "silencio = silenzio"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "lui/lei",
+   "espanol": "El perro miraba la puerta",
+   "italiano": "Il cane guardava la porta",
+   "pista": "perro = cane"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Mirábamos las estrellas de chicos",
+   "italiano": "Guardavamo le stelle da bambini",
+   "pista": "estrellas = stelle"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Mirábamos el partido los domingos",
+   "italiano": "Guardavamo la partita la domenica",
+   "pista": "los domingos = la domenica"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Mirábamos películas viejas",
+   "italiano": "Guardavamo film vecchi",
+   "pista": "viejas = vecchi"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "noi",
+   "espanol": "Mirábamos el mar en silencio",
+   "italiano": "Guardavamo il mare in silenzio",
+   "pista": "en silencio = in silenzio"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Ustedes miraban la tele?",
+   "italiano": "Guardavate la televisione?",
+   "pista": "la tele = la televisione"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes miraban las fotos",
+   "italiano": "Guardavate le foto",
+   "pista": "fotos = foto"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "¿Qué miraban ustedes?",
+   "italiano": "Cosa guardavate?",
+   "pista": "qué = cosa"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "voi",
+   "espanol": "Ustedes miraban el partido",
+   "italiano": "Guardavate la partita",
+   "pista": "partido = partita"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellos miraban el mar",
+   "italiano": "Loro guardavano il mare",
+   "pista": "mar = mare"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Los chicos miraban dibujitos",
+   "italiano": "I bambini guardavano i cartoni",
+   "pista": "dibujitos = cartoni"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Ellas miraban las vidrieras",
+   "italiano": "Loro guardavano le vetrine",
+   "pista": "vidrieras = vetrine"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "imperfetto",
+   "persona": "loro",
+   "espanol": "Todos me miraban raro",
+   "italiano": "Tutti mi guardavano strano",
+   "pista": "todos = tutti"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Miraré la película mañana",
+   "italiano": "Guarderò il film domani",
+   "pista": "mañana = domani"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Miraré el partido en casa",
+   "italiano": "Guarderò la partita a casa",
+   "pista": "en casa = a casa"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Lo miraré más tarde",
+   "italiano": "Lo guarderò più tardi",
+   "pista": "más tarde = più tardi"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "io",
+   "espanol": "Miraré las fotos esta noche",
+   "italiano": "Guarderò le foto stasera",
+   "pista": "esta noche = stasera"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Mirarás el partido?",
+   "italiano": "Guarderai la partita?",
+   "pista": "partido = partita"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Mirarás la película conmigo",
+   "italiano": "Guarderai il film con me",
+   "pista": "conmigo = con me"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "Lo mirarás después",
+   "italiano": "Lo guarderai dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "tu",
+   "espanol": "¿Mirarás las noticias?",
+   "italiano": "Guarderai il telegiornale?",
+   "pista": "las noticias = il telegiornale"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Ella mirará la serie",
+   "italiano": "Lei guarderà la serie",
+   "pista": "serie = serie"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Mi hijo mirará dibujitos",
+   "italiano": "Mio figlio guarderà i cartoni",
+   "pista": "dibujitos = cartoni"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Él mirará el partido solo",
+   "italiano": "Lui guarderà la partita da solo",
+   "pista": "solo = da solo"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "lui/lei",
+   "espanol": "Nadie mirará esa película",
+   "italiano": "Nessuno guarderà quel film",
+   "pista": "nadie = nessuno"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Miraremos una película el viernes",
+   "italiano": "Guarderemo un film venerdì",
+   "pista": "viernes = venerdì"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Miraremos las fotos después",
+   "italiano": "Guarderemo le foto dopo",
+   "pista": "después = dopo"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Miraremos el mar desde ahí",
+   "italiano": "Guarderemo il mare da lì",
+   "pista": "desde ahí = da lì"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "noi",
+   "espanol": "Miraremos el partido juntos",
+   "italiano": "Guarderemo la partita insieme",
+   "pista": "juntos = insieme"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Ustedes mirarán la película?",
+   "italiano": "Guarderete il film?",
+   "pista": "película = film"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes mirarán el partido",
+   "italiano": "Guarderete la partita",
+   "pista": "partido = partita"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "¿Qué mirarán ustedes hoy?",
+   "italiano": "Cosa guarderete oggi?",
+   "pista": "hoy = oggi"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "voi",
+   "espanol": "Ustedes mirarán las fotos",
+   "italiano": "Guarderete le foto",
+   "pista": "fotos = foto"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos mirarán la serie",
+   "italiano": "Loro guarderanno la serie",
+   "pista": "serie = serie"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Los chicos mirarán la tele",
+   "italiano": "I bambini guarderanno la televisione",
+   "pista": "tele = televisione"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellas mirarán las vidrieras",
+   "italiano": "Loro guarderanno le vetrine",
+   "pista": "vidrieras = vetrine"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "futuro_semplice",
+   "persona": "loro",
+   "espanol": "Ellos mirarán el cielo",
+   "italiano": "Loro guarderanno il cielo",
+   "pista": "cielo = cielo"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Estoy mirando una película",
+   "italiano": "Sto guardando un film",
+   "pista": "película = film"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Estamos mirando el partido",
+   "italiano": "Stiamo guardando la partita",
+   "pista": "partido = partita"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Está mirando por la ventana",
+   "italiano": "Sta guardando dalla finestra",
+   "pista": "ventana = finestra"
+  },
+  {
+   "verbo": "guardare",
+   "tiempo": "gerundio",
+   "persona": "-",
+   "espanol": "Están mirando las fotos",
+   "italiano": "Stanno guardando le foto",
+   "pista": "fotos = foto"
   }
  ]
 }
