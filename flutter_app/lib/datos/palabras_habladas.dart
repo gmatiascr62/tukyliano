@@ -737,7 +737,7 @@ const List<PalabraHablada> frasesParaDecir = [
   PalabraHablada(
     italiano: 'Scusi, ho perso il treno, quando parte il prossimo?',
     espanol: 'Perdón, perdí el tren, ¿cuándo sale el próximo?',
-    pista: 'la h no suena: ó pér-so',
+    pista: 'ho perso se dice ó pér-so: la h no suena',
     sonido: 'moverse',
     grupo: GrupoHabla.frases,
   ),
