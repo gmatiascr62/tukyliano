@@ -46,8 +46,9 @@ Widget _app({RepositorioFrases? frases}) => MaterialApp(
       ),
     );
 
-/// Las palabras de la frase de prueba, las únicas fichas que están bien.
-const _correctas = ['Ho', 'molta', 'fame'];
+/// Las fichas de la frase de prueba, las únicas que están bien. La primera va
+/// en minúscula: la ficha no lleva la mayúscula del principio de la frase.
+const _correctas = ['ho', 'molta', 'fame'];
 
 /// Una ficha del banco (las de abajo) o de la frase armada (las verdes).
 Finder _ficha(String palabra, {bool puesta = false}) => find.byWidgetPredicate(
@@ -186,7 +187,9 @@ void main() {
       await tester.tap(find.widgetWithText(ElevatedButton, 'Verificar'));
       await tester.pumpAndSettle();
 
-      for (final palabra in _correctas) {
+      // La respuesta correcta se muestra como está escrita, con su mayúscula,
+      // aunque la ficha que se tocó fuera "ho".
+      for (final palabra in ['Ho', 'molta', 'fame']) {
         expect(_colorDe(tester, palabra), Tema.correcto, reason: palabra);
       }
       expect(find.byIcon(Icons.check_circle), findsOneWidget);
@@ -215,7 +218,7 @@ void main() {
       await tester.pumpWidget(_app());
       await tester.pumpAndSettle();
 
-      await _armar(tester, ['Ho']);
+      await _armar(tester, ['ho']);
       await tester.tap(find.widgetWithText(ElevatedButton, 'Verificar'));
       await tester.pumpAndSettle();
 
@@ -237,7 +240,7 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.text('Tocá las palabras de abajo'), findsOneWidget);
-      expect(_ficha('Ho', puesta: true), findsNothing);
+      expect(_ficha('ho', puesta: true), findsNothing);
     });
 
     testWidgets('el que quiere escribir todavía puede', (tester) async {

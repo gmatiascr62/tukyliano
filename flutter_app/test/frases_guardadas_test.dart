@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/constantes.dart';
 import 'package:tukyliano/datos/repositorio_frases.dart';
+import 'package:tukyliano/logica/armar_frase.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 
 /// Lee el asset de verdad desde el disco. No usa rootBundle a propósito: así
@@ -86,6 +87,27 @@ void main() {
       }
 
       expect(sinLaForma, isEmpty);
+    });
+
+    test('los nombres propios que usan las frases están declarados', () {
+      // Las fichas de «Armar» bajan a minúscula todo lo que no esté en
+      // [nombresPropios]: si alguna frase nueva trae un nombre que no está en
+      // la lista, la ficha diría "milano" y hay que agregarlo.
+      final sinDeclarar = <String>{};
+      for (final f in _frases) {
+        // Del medio de la frase: al principio, la mayúscula es solo por ser el
+        // principio y no dice nada.
+        for (final palabra in palabrasDeLaFrase(f['italiano'] as String).skip(1)) {
+          final inicial = palabra.substring(0, 1);
+          if (inicial == inicial.toUpperCase() &&
+              inicial != inicial.toLowerCase() &&
+              !nombresPropios.contains(palabra)) {
+            sinDeclarar.add(palabra);
+          }
+        }
+      }
+
+      expect(sinDeclarar, isEmpty);
     });
 
     test('no repite la misma frase en español', () {
