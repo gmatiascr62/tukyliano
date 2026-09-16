@@ -25,7 +25,7 @@ void main() {
     test('trae todas las palabras de la frase', () {
       final fichas = fichasPara('Ho molta fame', azar: Random(1));
 
-      for (final palabra in ['Ho', 'molta', 'fame']) {
+      for (final palabra in ['ho', 'molta', 'fame']) {
         expect(fichas, contains(palabra), reason: palabra);
       }
     });
@@ -53,7 +53,7 @@ void main() {
         azar: Random(7),
       );
 
-      expect(fichas.toSet(), {'Ho', 'fame', 'hai', 'abbiamo', 'avete'});
+      expect(fichas.toSet(), {'ho', 'fame', 'hai', 'abbiamo', 'avete'});
     });
 
     test('si el verbo no da suficientes, completa con el relleno', () {
@@ -66,6 +66,28 @@ void main() {
 
       expect(fichas.length, 5);
       expect(fichas, contains('hai'));
+    });
+
+    test('la primera palabra va en minúscula', () {
+      // Con la mayúscula, la ficha delataba cuál iba primero.
+      final fichas = fichasPara('Guardate il telegiornale', azar: Random(1));
+
+      expect(fichas, contains('guardate'));
+      expect(fichas, isNot(contains('Guardate')));
+    });
+
+    test('un nombre propio conserva la mayúscula', () {
+      final fichas = fichasPara('Marco è venuto ieri', azar: Random(1));
+
+      expect(fichas, contains('Marco'));
+    });
+
+    test('la de más tampoco se delata por la mayúscula', () {
+      // "Ho" es la primera y baja a minúscula; si una ficha de más viniera en
+      // mayúscula, cantaría igual que antes.
+      final fichas = fichasPara('Ho fame', extras: ['Hai'], azar: Random(1));
+
+      expect(fichas.where((f) => f.startsWith(RegExp('[A-Z]'))), isEmpty);
     });
 
     test('sin palabras no hay fichas', () {

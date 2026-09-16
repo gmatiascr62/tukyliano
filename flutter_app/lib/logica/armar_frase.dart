@@ -41,6 +41,23 @@ const List<String> palabrasDeRelleno = [
 /// Cuántas palabras de más lleva el banco.
 const int fichasDeMas = 3;
 
+/// Los nombres propios que aparecen en las frases. Son los únicos que van con
+/// mayúscula estén donde estén; cualquier otra palabra con mayúscula solo la
+/// tiene por estar al principio de la frase.
+const Set<String> nombresPropios = {
+  'Anna', 'Firenze', 'Giulia', 'Italia', 'Luca', 'Maria', 'Marco', 'Milano',
+  'Napoli', 'Paolo', 'Roma', 'Sicilia', 'Torino', 'TV', 'Venezia',
+};
+
+/// La palabra como se muestra en la ficha: en minúscula, salvo los nombres
+/// propios.
+///
+/// La que abre la frase viene con mayúscula, y esa mayúscula cantaba cuál iba
+/// primero: el ejercicio se resolvía mirando en vez de pensando. En los nombres
+/// propios la mayúscula es parte de la palabra, así que ahí se queda.
+String comoFicha(String palabra) =>
+    nombresPropios.contains(palabra) ? palabra : palabra.toLowerCase();
+
 /// El banco de fichas para [frase], mezclado.
 ///
 /// [extras] son las palabras de más que conviene ofrecer primero: las otras
@@ -55,7 +72,7 @@ List<String> fichasPara(
   Random? azar,
 }) {
   final random = azar ?? Random();
-  final propias = palabrasDeLaFrase(frase);
+  final propias = palabrasDeLaFrase(frase).map(comoFicha).toList();
   if (propias.isEmpty) return const [];
 
   final yaEstan = propias.map((p) => p.toLowerCase()).toSet();
@@ -64,7 +81,7 @@ List<String> fichasPara(
     for (final palabra in palabras.map(sinSignos)) {
       if (palabra.isEmpty) continue;
       if (!yaEstan.add(palabra.toLowerCase())) continue;
-      salida.add(palabra);
+      salida.add(comoFicha(palabra));
     }
     salida.shuffle(random);
     return salida;
