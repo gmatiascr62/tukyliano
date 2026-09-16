@@ -18,7 +18,7 @@ void main() {
     });
 
     test('hay frases de sobra para que no se repitan enseguida', () {
-      expect(_datos.frases.length, greaterThanOrEqualTo(50));
+      expect(_datos.frases.length, greaterThanOrEqualTo(100));
     });
 
     test('todas tienen hueco, traducción y explicación', () {
@@ -85,6 +85,10 @@ void main() {
         'mand', // mandare via
         'scapp', // scappare via
         'vol', // volare via
+        'mett', // mettere via = guardar, que no es tirar
+        'dat', // dare via = regalar
+        'cors', // correre via
+        'tirat', // tirare via
       ]) {
         expect(todas, contains(raiz), reason: raiz);
       }

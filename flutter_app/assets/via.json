@@ -1,5 +1,5 @@
 {
- "version": 1,
+ "version": 2,
  "frases": [
   {
    "frase": "___ via, è già tardi.",
@@ -649,6 +649,981 @@
     "Dopo"
    ],
    "explicacion": "via via che = a medida que.",
+   "persona": "-"
+  },
+  {
+   "frase": "Sono ___ via presto ieri.",
+   "correcta": "andato",
+   "es": "Me fui temprano ayer.",
+   "opciones": [
+    "portato",
+    "andato",
+    "buttato",
+    "mandato"
+   ],
+   "explicacion": "andare via en passato prossimo va con essere: sono andato via.",
+   "persona": "io"
+  },
+  {
+   "frase": "___ via domani?",
+   "correcta": "Andrai",
+   "es": "¿Te vas mañana?",
+   "opciones": [
+    "Porterai",
+    "Butterai",
+    "Andrai",
+    "Manderai"
+   ],
+   "explicacion": "andare via = irse. En futuro: andrò, andrai, andrà.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Lei ___ via senza guardarmi.",
+   "correcta": "va",
+   "es": "Ella se va sin mirarme.",
+   "opciones": [
+    "va",
+    "porta",
+    "butta",
+    "manda"
+   ],
+   "explicacion": "andare via = irse. Sin el «via», «lei va» sería solo «ella va».",
+   "persona": "lei"
+  },
+  {
+   "frase": "Siamo ___ via prima della fine.",
+   "correcta": "andati",
+   "es": "Nos fuimos antes del final.",
+   "opciones": [
+    "portati",
+    "buttati",
+    "mandati",
+    "andati"
+   ],
+   "explicacion": "Con essere el participio concuerda: noi siamo andati via.",
+   "persona": "noi"
+  },
+  {
+   "frase": "Perché ___ via così?",
+   "correcta": "andate",
+   "es": "¿Por qué se van así?",
+   "opciones": [
+    "andate",
+    "portate",
+    "buttate",
+    "mandate"
+   ],
+   "explicacion": "andare via = irse. Voi andate via.",
+   "persona": "voi"
+  },
+  {
+   "frase": "___ via ogni estate.",
+   "correcta": "Andavano",
+   "es": "Se iban todos los veranos.",
+   "opciones": [
+    "Portavano",
+    "Andavano",
+    "Buttavano",
+    "Mandavano"
+   ],
+   "explicacion": "En imperfetto, lo que se repetía: andavano via.",
+   "persona": "loro"
+  },
+  {
+   "frase": "Io non ___ via senza di te.",
+   "correcta": "vado",
+   "es": "Yo no me voy sin vos.",
+   "opciones": [
+    "porto",
+    "butto",
+    "mando",
+    "vado"
+   ],
+   "explicacion": "andare via = irse. «senza di te» = sin vos.",
+   "persona": "io"
+  },
+  {
+   "frase": "Non ___ via adesso.",
+   "correcta": "andare",
+   "es": "No te vayas ahora.",
+   "opciones": [
+    "andare",
+    "andato",
+    "vai",
+    "andando"
+   ],
+   "explicacion": "Con «non», el imperativo de tu va en infinitivo: non andare via.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Marco ___ via domani.",
+   "correcta": "andrà",
+   "es": "Marco se va mañana.",
+   "opciones": [
+    "porterà",
+    "andrà",
+    "butterà",
+    "manderà"
+   ],
+   "explicacion": "andare via en futuro: lui andrà via.",
+   "persona": "lui"
+  },
+  {
+   "frase": "Se piove, ___ via.",
+   "correcta": "andiamo",
+   "es": "Si llueve, nos vamos.",
+   "opciones": [
+    "portiamo",
+    "buttiamo",
+    "andiamo",
+    "mandiamo"
+   ],
+   "explicacion": "andare via = irse. Noi andiamo via.",
+   "persona": "noi"
+  },
+  {
+   "frase": "___ via questa roba vecchia.",
+   "correcta": "Buttiamo",
+   "es": "Tiramos estas cosas viejas.",
+   "opciones": [
+    "Buttiamo",
+    "Andiamo",
+    "Portiamo",
+    "Mandiamo"
+   ],
+   "explicacion": "buttare via = tirar a la basura. roba = cosas.",
+   "persona": "noi"
+  },
+  {
+   "frase": "Hai ___ via lo scontrino?",
+   "correcta": "buttato",
+   "es": "¿Tiraste el ticket?",
+   "opciones": [
+    "portato",
+    "buttato",
+    "mandato",
+    "andato"
+   ],
+   "explicacion": "buttare via va con avere: hai buttato via.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Mio padre non ___ via niente.",
+   "correcta": "butta",
+   "es": "Mi papá no tira nada.",
+   "opciones": [
+    "va",
+    "butta",
+    "porta",
+    "manda"
+   ],
+   "explicacion": "buttare via = tirar. Lui butta via.",
+   "persona": "lui"
+  },
+  {
+   "frase": "Domani ___ via le riviste.",
+   "correcta": "butterò",
+   "es": "Mañana tiro las revistas.",
+   "opciones": [
+    "andrò",
+    "porterò",
+    "butterò",
+    "manderò"
+   ],
+   "explicacion": "buttare via en futuro: io butterò via.",
+   "persona": "io"
+  },
+  {
+   "frase": "Avete ___ via la scatola?",
+   "correcta": "buttato",
+   "es": "¿Tiraron la caja?",
+   "opciones": [
+    "buttato",
+    "andato",
+    "portato",
+    "mandato"
+   ],
+   "explicacion": "buttare via = tirar. Voi avete buttato via.",
+   "persona": "voi"
+  },
+  {
+   "frase": "___ via il pane duro.",
+   "correcta": "Buttavano",
+   "es": "Tiraban el pan duro.",
+   "opciones": [
+    "Andavano",
+    "Portavano",
+    "Buttavano",
+    "Mandavano"
+   ],
+   "explicacion": "En imperfetto, lo que se hacía siempre: buttavano via.",
+   "persona": "loro"
+  },
+  {
+   "frase": "___ via quella bottiglia.",
+   "correcta": "Butta",
+   "es": "Tirá esa botella.",
+   "opciones": [
+    "Vai",
+    "Butta",
+    "Porta",
+    "Manda"
+   ],
+   "explicacion": "Imperativo de tu: butta via.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Ho ___ via mezza giornata.",
+   "correcta": "buttato",
+   "es": "Perdí media jornada.",
+   "opciones": [
+    "andato",
+    "portato",
+    "buttato",
+    "mandato"
+   ],
+   "explicacion": "buttare via il tempo = perder el tiempo. No solo se tiran cosas.",
+   "persona": "io"
+  },
+  {
+   "frase": "Ho ___ via una fetta di torta.",
+   "correcta": "portato",
+   "es": "Me llevé una porción de torta.",
+   "opciones": [
+    "portato",
+    "buttato",
+    "mandato",
+    "andato"
+   ],
+   "explicacion": "portare via = llevarse. fetta = porción.",
+   "persona": "io"
+  },
+  {
+   "frase": "___ via il cane, per favore.",
+   "correcta": "Porta",
+   "es": "Llevate el perro, por favor.",
+   "opciones": [
+    "Vai",
+    "Butta",
+    "Porta",
+    "Manda"
+   ],
+   "explicacion": "Imperativo de tu: porta via.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Il ladro ha ___ via tutto.",
+   "correcta": "portato",
+   "es": "El ladrón se llevó todo.",
+   "opciones": [
+    "andato",
+    "portato",
+    "buttato",
+    "mandato"
+   ],
+   "explicacion": "portare via = llevarse. ladro = ladrón.",
+   "persona": "lui"
+  },
+  {
+   "frase": "___ via i bambini prima di cena.",
+   "correcta": "Porteremo",
+   "es": "Nos llevaremos a los chicos antes de la cena.",
+   "opciones": [
+    "Andremo",
+    "Butteremo",
+    "Manderemo",
+    "Porteremo"
+   ],
+   "explicacion": "portare via en futuro: noi porteremo via.",
+   "persona": "noi"
+  },
+  {
+   "frase": "Quando ___ via le valigie?",
+   "correcta": "portate",
+   "es": "¿Cuándo se llevan las valijas?",
+   "opciones": [
+    "andate",
+    "portate",
+    "buttate",
+    "mandate"
+   ],
+   "explicacion": "portare via = llevarse. valigie = valijas.",
+   "persona": "voi"
+  },
+  {
+   "frase": "___ via l'acqua con i secchi.",
+   "correcta": "Portavano",
+   "es": "Se llevaban el agua con baldes.",
+   "opciones": [
+    "Portavano",
+    "Andavano",
+    "Buttavano",
+    "Mandavano"
+   ],
+   "explicacion": "En imperfetto: portavano via. secchi = baldes.",
+   "persona": "loro"
+  },
+  {
+   "frase": "Due caffè da ___ via.",
+   "correcta": "portare",
+   "es": "Dos cafés para llevar.",
+   "opciones": [
+    "buttare",
+    "mandare",
+    "portare",
+    "andare"
+   ],
+   "explicacion": "«da portare via» es lo que se pide en el bar para llevar.",
+   "persona": "-"
+  },
+  {
+   "frase": "Non ___ via nessuno di qui.",
+   "correcta": "mando",
+   "es": "No echo a nadie de acá.",
+   "opciones": [
+    "vado",
+    "porto",
+    "mando",
+    "butto"
+   ],
+   "explicacion": "mandare via = echar a alguien. Io mando via.",
+   "persona": "io"
+  },
+  {
+   "frase": "Hai ___ via il cameriere?",
+   "correcta": "mandato",
+   "es": "¿Echaste al mozo?",
+   "opciones": [
+    "andato",
+    "mandato",
+    "portato",
+    "buttato"
+   ],
+   "explicacion": "mandare via = echar. cameriere = mozo.",
+   "persona": "tu"
+  },
+  {
+   "frase": "La maestra lo ___ via dalla classe.",
+   "correcta": "manda",
+   "es": "La maestra lo echa de la clase.",
+   "opciones": [
+    "va",
+    "porta",
+    "manda",
+    "butta"
+   ],
+   "explicacion": "mandare via = echar. El pronombre va antes: lo manda via.",
+   "persona": "lei"
+  },
+  {
+   "frase": "Abbiamo ___ via il venditore.",
+   "correcta": "mandato",
+   "es": "Echamos al vendedor.",
+   "opciones": [
+    "mandato",
+    "andato",
+    "portato",
+    "buttato"
+   ],
+   "explicacion": "mandare via va con avere: abbiamo mandato via.",
+   "persona": "noi"
+  },
+  {
+   "frase": "___ via anche noi?",
+   "correcta": "Manderete",
+   "es": "¿Nos van a echar también a nosotros?",
+   "opciones": [
+    "Andrete",
+    "Porterete",
+    "Butterete",
+    "Manderete"
+   ],
+   "explicacion": "mandare via en futuro: voi manderete via.",
+   "persona": "voi"
+  },
+  {
+   "frase": "___ via chi arriva tardi.",
+   "correcta": "Mandano",
+   "es": "Echan al que llega tarde.",
+   "opciones": [
+    "Mandano",
+    "Vanno",
+    "Portano",
+    "Buttano"
+   ],
+   "explicacion": "mandare via = echar. Loro mandano via.",
+   "persona": "loro"
+  },
+  {
+   "frase": "___ via quel gatto.",
+   "correcta": "Manda",
+   "es": "Echá a ese gato.",
+   "opciones": [
+    "Vai",
+    "Porta",
+    "Manda",
+    "Butta"
+   ],
+   "explicacion": "Imperativo de tu: manda via.",
+   "persona": "tu"
+  },
+  {
+   "frase": "___ via la bici vecchia?",
+   "correcta": "Dai",
+   "es": "¿Regalás la bici vieja?",
+   "opciones": [
+    "Dai",
+    "Vai",
+    "Porti",
+    "Butti"
+   ],
+   "explicacion": "dare via = regalar, desprenderse de algo. Tu dai via.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Ha ___ via la chitarra.",
+   "correcta": "dato",
+   "es": "Regaló la guitarra.",
+   "opciones": [
+    "andato",
+    "portato",
+    "dato",
+    "buttato"
+   ],
+   "explicacion": "dare via = regalar. El participio de dare es «dato».",
+   "persona": "lui"
+  },
+  {
+   "frase": "___ via i libri che non leggono.",
+   "correcta": "Danno",
+   "es": "Regalan los libros que no leen.",
+   "opciones": [
+    "Vanno",
+    "Danno",
+    "Portano",
+    "Buttano"
+   ],
+   "explicacion": "dare via = regalar. Loro danno via.",
+   "persona": "loro"
+  },
+  {
+   "frase": "Perché ___ via tutto?",
+   "correcta": "date",
+   "es": "¿Por qué regalan todo?",
+   "opciones": [
+    "andate",
+    "portate",
+    "date",
+    "buttate"
+   ],
+   "explicacion": "dare via = regalar. Voi date via.",
+   "persona": "voi"
+  },
+  {
+   "frase": "Sono ___ via appena l'ho visto.",
+   "correcta": "scappato",
+   "es": "Me escapé apenas lo vi.",
+   "opciones": [
+    "andato",
+    "scappato",
+    "portato",
+    "volato"
+   ],
+   "explicacion": "scappare via = escaparse. Va con essere: sono scappato via.",
+   "persona": "io"
+  },
+  {
+   "frase": "La gatta ___ via dalla finestra.",
+   "correcta": "scappa",
+   "es": "La gata se escapa por la ventana.",
+   "opciones": [
+    "porta",
+    "butta",
+    "scappa",
+    "manda"
+   ],
+   "explicacion": "scappare via = escaparse.",
+   "persona": "lei"
+  },
+  {
+   "frase": "Siamo ___ via sotto la pioggia.",
+   "correcta": "scappati",
+   "es": "Nos escapamos bajo la lluvia.",
+   "opciones": [
+    "scappati",
+    "andati",
+    "portati",
+    "buttati"
+   ],
+   "explicacion": "Con essere el participio concuerda: siamo scappati via.",
+   "persona": "noi"
+  },
+  {
+   "frase": "Perché ___ via sempre?",
+   "correcta": "scappate",
+   "es": "¿Por qué se escapan siempre?",
+   "opciones": [
+    "andate",
+    "portate",
+    "scappate",
+    "buttate"
+   ],
+   "explicacion": "scappare via = escaparse. Voi scappate via.",
+   "persona": "voi"
+  },
+  {
+   "frase": "Il cappello è ___ via con il vento.",
+   "correcta": "volato",
+   "es": "El sombrero se voló con el viento.",
+   "opciones": [
+    "andato",
+    "volato",
+    "portato",
+    "buttato"
+   ],
+   "explicacion": "volare via = volarse. Va con essere: è volato via.",
+   "persona": "lui"
+  },
+  {
+   "frase": "I fogli sono ___ via dal tavolo.",
+   "correcta": "volati",
+   "es": "Los papeles se volaron de la mesa.",
+   "opciones": [
+    "andati",
+    "portati",
+    "volati",
+    "buttati"
+   ],
+   "explicacion": "Con essere concuerda en plural: sono volati via.",
+   "persona": "loro"
+  },
+  {
+   "frase": "L'estate ___ via in fretta.",
+   "correcta": "vola",
+   "es": "El verano se va volando.",
+   "opciones": [
+    "vola",
+    "va",
+    "porta",
+    "butta"
+   ],
+   "explicacion": "volare via también se usa para el tiempo: l'estate vola via.",
+   "persona": "lui"
+  },
+  {
+   "frase": "Non ___ via quella lettera.",
+   "correcta": "gettare",
+   "es": "No tires esa carta.",
+   "opciones": [
+    "gettato",
+    "gettare",
+    "getti",
+    "gettando"
+   ],
+   "explicacion": "Con «non», el imperativo de tu va en infinitivo: non gettare via.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Abbiamo ___ via il vecchio tappeto.",
+   "correcta": "gettato",
+   "es": "Tiramos la alfombra vieja.",
+   "opciones": [
+    "andato",
+    "portato",
+    "gettato",
+    "mandato"
+   ],
+   "explicacion": "gettare via = tirar, igual que buttare via pero más formal.",
+   "persona": "noi"
+  },
+  {
+   "frase": "___ via i soldi al gioco.",
+   "correcta": "Getta",
+   "es": "Tira la plata en el juego.",
+   "opciones": [
+    "Va",
+    "Getta",
+    "Porta",
+    "Manda"
+   ],
+   "explicacion": "gettare via i soldi = malgastar la plata.",
+   "persona": "lui"
+  },
+  {
+   "frase": "___ via le mosche dalla cucina.",
+   "correcta": "Caccio",
+   "es": "Espanto las moscas de la cocina.",
+   "opciones": [
+    "Vado",
+    "Porto",
+    "Caccio",
+    "Butto"
+   ],
+   "explicacion": "cacciare via = espantar, echar. mosche = moscas.",
+   "persona": "io"
+  },
+  {
+   "frase": "___ via i piccioni dal balcone.",
+   "correcta": "Cacciamo",
+   "es": "Espantamos las palomas del balcón.",
+   "opciones": [
+    "Cacciamo",
+    "Andiamo",
+    "Portiamo",
+    "Buttiamo"
+   ],
+   "explicacion": "cacciare via = espantar. piccioni = palomas.",
+   "persona": "noi"
+  },
+  {
+   "frase": "L'ha ___ via con la scopa.",
+   "correcta": "cacciato",
+   "es": "Lo espantó con la escoba.",
+   "opciones": [
+    "andato",
+    "portato",
+    "cacciato",
+    "mandato"
+   ],
+   "explicacion": "cacciare via = espantar. scopa = escoba.",
+   "persona": "lei"
+  },
+  {
+   "frase": "Il mare ha ___ via la barca.",
+   "correcta": "spazzato",
+   "es": "El mar se llevó el bote.",
+   "opciones": [
+    "spazzato",
+    "andato",
+    "portato",
+    "buttato"
+   ],
+   "explicacion": "spazzare via = barrer, llevarse todo por delante.",
+   "persona": "lui"
+  },
+  {
+   "frase": "Hanno ___ via ogni dubbio.",
+   "correcta": "spazzato",
+   "es": "Despejaron todas las dudas.",
+   "opciones": [
+    "andato",
+    "spazzato",
+    "portato",
+    "mandato"
+   ],
+   "explicacion": "spazzare via un dubbio = despejar una duda de un saque.",
+   "persona": "loro"
+  },
+  {
+   "frase": "___ via la neve davanti casa.",
+   "correcta": "Spazzerò",
+   "es": "Voy a barrer la nieve delante de casa.",
+   "opciones": [
+    "Andrò",
+    "Porterò",
+    "Manderò",
+    "Spazzerò"
+   ],
+   "explicacion": "spazzare via en futuro: io spazzerò via. neve = nieve.",
+   "persona": "io"
+  },
+  {
+   "frase": "Ho ___ via la macchia.",
+   "correcta": "lavato",
+   "es": "Saqué la mancha lavando.",
+   "opciones": [
+    "andato",
+    "lavato",
+    "portato",
+    "buttato"
+   ],
+   "explicacion": "lavare via = sacar algo lavando. macchia = mancha.",
+   "persona": "io"
+  },
+  {
+   "frase": "___ via tutto con l'acqua calda.",
+   "correcta": "Laveremo",
+   "es": "Vamos a sacar todo con agua caliente.",
+   "opciones": [
+    "Andremo",
+    "Laveremo",
+    "Porteremo",
+    "Manderemo"
+   ],
+   "explicacion": "lavare via en futuro: noi laveremo via.",
+   "persona": "noi"
+  },
+  {
+   "frase": "Il bambino è ___ via ridendo.",
+   "correcta": "corso",
+   "es": "El nene se fue corriendo, riéndose.",
+   "opciones": [
+    "andato",
+    "corso",
+    "portato",
+    "volato"
+   ],
+   "explicacion": "correre via = irse corriendo. El participio de correre es «corso».",
+   "persona": "lui"
+  },
+  {
+   "frase": "___ via appena suona la campanella.",
+   "correcta": "Corrono",
+   "es": "Salen corriendo apenas suena el timbre.",
+   "opciones": [
+    "Vanno",
+    "Corrono",
+    "Portano",
+    "Buttano"
+   ],
+   "explicacion": "correre via = salir corriendo. campanella = timbre de la escuela.",
+   "persona": "loro"
+  },
+  {
+   "frase": "Sei ___ via troppo in fretta.",
+   "correcta": "corso",
+   "es": "Te fuiste corriendo demasiado rápido.",
+   "opciones": [
+    "andato",
+    "portato",
+    "corso",
+    "volato"
+   ],
+   "explicacion": "correre via va con essere: sei corso via.",
+   "persona": "tu"
+  },
+  {
+   "frase": "___ via i piatti puliti.",
+   "correcta": "Metto",
+   "es": "Guardo los platos limpios.",
+   "opciones": [
+    "Metto",
+    "Vado",
+    "Porto",
+    "Butto"
+   ],
+   "explicacion": "mettere via = guardar, poner en su lugar. Ojo: no es tirar.",
+   "persona": "io"
+  },
+  {
+   "frase": "___ via il telefono, per favore.",
+   "correcta": "Metti",
+   "es": "Guardá el teléfono, por favor.",
+   "opciones": [
+    "Vai",
+    "Metti",
+    "Porta",
+    "Butta"
+   ],
+   "explicacion": "Imperativo de tu: metti via = guardá.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Abbiamo ___ via i soldi per le vacanze.",
+   "correcta": "messo",
+   "es": "Guardamos plata para las vacaciones.",
+   "opciones": [
+    "andato",
+    "portato",
+    "messo",
+    "buttato"
+   ],
+   "explicacion": "mettere via i soldi = ahorrar. El participio de mettere es «messo».",
+   "persona": "noi"
+  },
+  {
+   "frase": "La nonna ___ via tutto per l'inverno.",
+   "correcta": "mette",
+   "es": "La abuela guarda todo para el invierno.",
+   "opciones": [
+    "va",
+    "porta",
+    "mette",
+    "butta"
+   ],
+   "explicacion": "mettere via = guardar.",
+   "persona": "lei"
+  },
+  {
+   "frase": "Quando ___ via i giocattoli?",
+   "correcta": "mettete",
+   "es": "¿Cuándo guardan los juguetes?",
+   "opciones": [
+    "mettete",
+    "andate",
+    "portate",
+    "buttate"
+   ],
+   "explicacion": "mettere via = guardar. giocattoli = juguetes.",
+   "persona": "voi"
+  },
+  {
+   "frase": "___ via quel foglio dal muro.",
+   "correcta": "Tira",
+   "es": "Sacá ese papel de la pared.",
+   "opciones": [
+    "Vai",
+    "Porta",
+    "Tira",
+    "Manda"
+   ],
+   "explicacion": "tirare via = sacar algo de un tirón.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Ho ___ via l'etichetta.",
+   "correcta": "tirato",
+   "es": "Saqué la etiqueta.",
+   "opciones": [
+    "tirato",
+    "andato",
+    "portato",
+    "buttato"
+   ],
+   "explicacion": "tirare via = sacar. etichetta = etiqueta.",
+   "persona": "io"
+  },
+  {
+   "frase": "___ via il lavoro in due minuti.",
+   "correcta": "Tiriamo",
+   "es": "Hacemos el trabajo a las apuradas en dos minutos.",
+   "opciones": [
+    "Andiamo",
+    "Portiamo",
+    "Buttiamo",
+    "Tiriamo"
+   ],
+   "explicacion": "tirare via un lavoro = hacerlo de cualquier manera, rápido.",
+   "persona": "noi"
+  },
+  {
+   "frase": "Il vento ha ___ via il manifesto.",
+   "correcta": "strappato",
+   "es": "El viento arrancó el afiche.",
+   "opciones": [
+    "andato",
+    "strappato",
+    "portato",
+    "mandato"
+   ],
+   "explicacion": "strappare via = arrancar. manifesto = afiche.",
+   "persona": "lui"
+  },
+  {
+   "frase": "___ via la pagina sbagliata.",
+   "correcta": "Strappo",
+   "es": "Arranco la página equivocada.",
+   "opciones": [
+    "Vado",
+    "Porto",
+    "Butto",
+    "Strappo"
+   ],
+   "explicacion": "strappare via = arrancar. sbagliata = equivocada.",
+   "persona": "io"
+  },
+  {
+   "frase": "Il vento ha ___ via le foglie.",
+   "correcta": "soffiato",
+   "es": "El viento se llevó las hojas.",
+   "opciones": [
+    "soffiato",
+    "andato",
+    "portato",
+    "buttato"
+   ],
+   "explicacion": "soffiare via = llevarse algo soplando. foglie = hojas.",
+   "persona": "lui"
+  },
+  {
+   "frase": "___ via la polvere dal tavolo.",
+   "correcta": "Soffia",
+   "es": "Soplá el polvo de la mesa.",
+   "opciones": [
+    "Vai",
+    "Soffia",
+    "Porta",
+    "Butta"
+   ],
+   "explicacion": "Imperativo de tu: soffia via. polvere = polvo.",
+   "persona": "tu"
+  },
+  {
+   "frase": "Sono ___ via di notte.",
+   "correcta": "fuggiti",
+   "es": "Huyeron de noche.",
+   "opciones": [
+    "andati",
+    "portati",
+    "fuggiti",
+    "buttati"
+   ],
+   "explicacion": "fuggire via = huir. Va con essere: sono fuggiti via.",
+   "persona": "loro"
+  },
+  {
+   "frase": "___ via senza voltarsi.",
+   "correcta": "Fugge",
+   "es": "Huye sin darse vuelta.",
+   "opciones": [
+    "Porta",
+    "Fugge",
+    "Butta",
+    "Manda"
+   ],
+   "explicacion": "fuggire via = huir. voltarsi = darse vuelta.",
+   "persona": "lei"
+  },
+  {
+   "frase": "Vattene ___!",
+   "correcta": "via",
+   "es": "¡Andate de acá!",
+   "opciones": [
+    "fuori",
+    "via",
+    "dai",
+    "poi"
+   ],
+   "explicacion": "vattene via = andate de acá, con algo de enojo.",
+   "persona": "-"
+  },
+  {
+   "frase": "Sono ___ per lavoro.",
+   "correcta": "via",
+   "es": "Estoy afuera por trabajo.",
+   "opciones": [
+    "fuori",
+    "dopo",
+    "via",
+    "poi"
+   ],
+   "explicacion": "essere via = estar fuera, de viaje. No lleva verbo de movimiento.",
+   "persona": "-"
+  },
+  {
+   "frase": "Abito in ___ Garibaldi.",
+   "correcta": "via",
+   "es": "Vivo en la calle Garibaldi.",
+   "opciones": [
+    "via",
+    "piazza",
+    "strada",
+    "corso"
+   ],
+   "explicacion": "«via» también es «calle» en las direcciones: via Garibaldi.",
+   "persona": "-"
+  },
+  {
+   "frase": "Dai, ___!",
+   "correcta": "via",
+   "es": "¡Dale, arrancá!",
+   "opciones": [
+    "dopo",
+    "poi",
+    "fuori",
+    "via"
+   ],
+   "explicacion": "«via!» solo es el arranque: dale, empezá.",
    "persona": "-"
   }
  ]
