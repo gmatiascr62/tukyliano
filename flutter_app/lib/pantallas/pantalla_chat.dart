@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 
@@ -30,12 +31,21 @@ import 'pantalla_clave_ia.dart';
 /// cero. Es lo pedido, y además evita que la charla crezca sin límite (va toda
 /// en cada pedido a la API).
 class PantallaChat extends StatefulWidget {
-  const PantallaChat({super.key, this.almacenClave, this.gemini, this.voz});
+  const PantallaChat({
+    super.key,
+    this.almacenClave,
+    this.gemini,
+    this.voz,
+    this.azar,
+  });
 
   /// Inyectables para los tests.
   final AlmacenamientoClave? almacenClave;
   final Gemini? gemini;
   final Voz? voz;
+
+  /// Para que los tests sepan con qué saludo va a arrancar la charla.
+  final Random? azar;
 
   @override
   State<PantallaChat> createState() => _PantallaChatState();
@@ -47,7 +57,7 @@ class _PantallaChatState extends State<PantallaChat> {
   late final Gemini _gemini = widget.gemini ?? Gemini();
   late final Voz _voz = widget.voz ?? VozDelSistema();
 
-  final _conversacion = Conversacion();
+  late Conversacion _conversacion = Conversacion(azar: widget.azar);
   final _scroll = ScrollController();
 
   /// El chat escribe con el teclado de Android y no con el propio de la app:
@@ -217,6 +227,23 @@ class _PantallaChatState extends State<PantallaChat> {
     });
   }
 
+  /// Empieza una charla nueva, con otro saludo y por lo tanto con otro tema.
+  ///
+  /// Antes, para cambiar de tema había que salir de la sección y volver: es lo
+  /// único que borraba la conversación. Ahora se hace acá, y el saludo que sale
+  /// nunca es el que estaba.
+  void _otroTema() {
+    _voz.callar();
+    setState(() {
+      _conversacion = Conversacion(
+        saludo: saludoAlAzar(distintoDe: _conversacion.saludo, azar: widget.azar),
+      );
+      _tapados.clear();
+      _campo.clear();
+    });
+    _irAlFinal();
+  }
+
   @override
   Widget build(BuildContext context) {
     if (_buscandoClave) {
@@ -343,6 +370,16 @@ class _PantallaChatState extends State<PantallaChat> {
           scrollDirection: Axis.horizontal,
           child: Row(
             children: [
+              // Va primero y sin depender de la voz: es lo que cambia de qué
+              // se está hablando, y se usa más que las otras.
+              Pastilla(
+                texto: 'Otro tema',
+                icono: Icons.autorenew,
+                // Mientras la IA piensa no: la respuesta llegaría a una charla
+                // que ya no existe.
+                alTocar: _esperando ? null : _otroTema,
+              ),
+              const SizedBox(width: 6),
               if (_puedeHablar) ...[
                 Pastilla(
                   texto: 'Solo escuchar',

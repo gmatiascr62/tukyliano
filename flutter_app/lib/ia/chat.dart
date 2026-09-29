@@ -1,11 +1,53 @@
+import 'dart:math';
+
 import 'gemini.dart';
 
-/// El primer mensaje, el que ya está en pantalla cuando se entra al chat.
+/// Con qué puede arrancar la charla, uno por tema.
 ///
-/// No lo escribe la IA: lo escribimos nosotros para que la charla arranque sin
-/// gastar un pedido a la API. Después se le pasa como si lo hubiera dicho ella,
-/// así la conversación queda coherente.
-const String saludoInicial = 'Ciao! Sono Tuky. Come stai oggi?';
+/// No los escribe la IA: los escribimos nosotros para que la charla empiece sin
+/// gastar un pedido a la API. Después se le pasa el elegido como si lo hubiera
+/// dicho ella, así la conversación queda coherente.
+///
+/// Son varios porque con uno solo la charla arrancaba siempre igual —«come stai
+/// oggi?»— y de ahí salía siempre la misma conversación. Cada uno abre un tema
+/// distinto, que es lo que de verdad cambia de qué se habla.
+const List<String> saludosIniciales = [
+  'Ciao! Sono Tuky. Come stai oggi?',
+  'Ciao! Sono Tuky. Cosa hai mangiato oggi?',
+  'Ciao! Sono Tuky. Cosa fai questo fine settimana?',
+  'Ciao! Sono Tuky. Che tempo fa da te oggi?',
+  'Ciao! Sono Tuky. Che lavoro fai?',
+  'Ciao! Sono Tuky. Che musica ascolti?',
+  'Ciao! Sono Tuky. Sei mai stato in Italia?',
+  'Ciao! Sono Tuky. Hai fratelli o sorelle?',
+  'Ciao! Sono Tuky. Hai un animale in casa?',
+  'Ciao! Sono Tuky. Cosa prendi a colazione?',
+  'Ciao! Sono Tuky. Guardi il calcio? Per che squadra tifi?',
+  'Ciao! Sono Tuky. Che film hai visto ultimamente?',
+  'Ciao! Sono Tuky. Ti piace cucinare?',
+  'Ciao! Sono Tuky. Come si chiama la tua città?',
+  'Ciao! Sono Tuky. Cosa fai stasera?',
+  'Ciao! Sono Tuky. Ti alzi presto la mattina?',
+  'Ciao! Sono Tuky. Preferisci il mare o la montagna?',
+  'Ciao! Sono Tuky. Stai leggendo un libro in questo periodo?',
+  'Ciao! Sono Tuky. Da quanto tempo studi italiano?',
+  'Ciao! Sono Tuky. Bevi il mate tutti i giorni?',
+  'Ciao! Sono Tuky. Qual è il tuo piatto preferito?',
+  'Ciao! Sono Tuky. Ti piace camminare per la città?',
+  'Ciao! Sono Tuky. Cosa hai fatto ieri?',
+  'Ciao! Sono Tuky. Hai programmi per le vacanze?',
+  'Ciao! Sono Tuky. Preferisci il caffè o il tè?',
+  'Ciao! Sono Tuky. Che cosa fai nel tempo libero?',
+];
+
+/// Uno de los saludos, al azar.
+///
+/// [distintoDe] es el de la charla que se está dejando: sortear el mismo dos
+/// veces seguidas es justo lo que se quiere evitar.
+String saludoAlAzar({String? distintoDe, Random? azar}) {
+  final posibles = saludosIniciales.where((s) => s != distintoDe).toList();
+  return posibles[(azar ?? Random()).nextInt(posibles.length)];
+}
 
 /// La almohadilla que marca un pedido de traducción: #manteca#.
 const String marcaTraduccion = '#';
@@ -50,6 +92,11 @@ que está aprendiendo italiano. Tenés que seguir estas reglas siempre:
    lee en voz alta.
 8. Cuando tengas que escribir en español, usá el de Latinoamérica: "ustedes",
    nunca "vosotros".
+9. Seguí el tema con el que arrancó la charla y quedate un rato ahí, con
+   preguntas sobre eso. Cuando el tema se apaga o empieza a dar vueltas,
+   cambialo vos y preguntá por otra cosa: qué comió, qué hizo el fin de semana,
+   el trabajo, la música, un viaje, el clima, la familia, una película. No
+   vuelvas siempre a "come stai" ni repitas una pregunta que ya hiciste.
 ''';
 
 /// Quién dijo cada mensaje.
@@ -240,7 +287,17 @@ String textoParaLaIa(String mensaje) {
 /// pantalla se destruye y esta lista se va con ella, así que al volver la IA
 /// no se acuerda de nada. Es a propósito: la memoria es solo de esta charla.
 class Conversacion {
-  final List<Mensaje> mensajes = [const Mensaje.deLaIa(saludoInicial)];
+  Conversacion({String? saludo, Random? azar})
+      : saludo = saludo ?? saludoAlAzar(azar: azar) {
+    mensajes.add(Mensaje.deLaIa(this.saludo));
+  }
+
+  /// Con cuál de los saludos arrancó esta charla. Se guarda porque es el primer
+  /// turno que se le manda a la IA: si no coincidiera con el que se ve en
+  /// pantalla, la charla que ella recuerda no sería la que se está teniendo.
+  final String saludo;
+
+  final List<Mensaje> mensajes = [];
 
   void agregar(Mensaje mensaje) => mensajes.add(mensaje);
 
@@ -255,7 +312,7 @@ class Conversacion {
 
     final turnos = [
       turnoGemini('user', promptDeChat),
-      turnoGemini('model', saludoInicial),
+      turnoGemini('model', saludo),
     ];
 
     // Desde 1: el saludo ya está puesto arriba.
