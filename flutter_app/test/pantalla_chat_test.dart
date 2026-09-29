@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -13,6 +14,7 @@ import 'package:tukyliano/main.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/tema.dart';
+import 'package:tukyliano/widgets/pastilla.dart';
 
 import 'util_pantalla.dart';
 import 'voz_falsa.dart';
@@ -38,10 +40,17 @@ Directory _carpeta() {
 }
 
 /// Gemini de mentira: contesta lo que se le diga y anota lo que le pidieron.
-Gemini _gemini(_Espia espia, {String respuesta = 'Bene! E tu?', int estado = 200}) {
+Gemini _gemini(
+  _Espia espia, {
+  String respuesta = 'Bene! E tu?',
+  int estado = 200,
+  Duration demora = Duration.zero,
+}) {
   return Gemini(
     cliente: MockClient((pedido) async {
       espia.pedidos.add(jsonDecode(pedido.body) as Map<String, dynamic>);
+      // Para los tests que miran qué pasa mientras la IA todavía no contestó.
+      if (demora > Duration.zero) await Future<void>.delayed(demora);
       if (estado != 200) {
         return http.Response(
           '{"error": {"message": "API key not valid"}}',
@@ -69,6 +78,11 @@ Gemini _gemini(_Espia espia, {String respuesta = 'Bene! E tu?', int estado = 200
   );
 }
 
+/// La semilla que usan los tests: con ella la pantalla arranca siempre con el
+/// mismo saludo, aunque en el celular salga uno al azar.
+const _semilla = 3;
+final _saludoFijo = saludoAlAzar(azar: Random(_semilla));
+
 Future<_Espia> _abrir(
   WidgetTester tester, {
   String? claveGuardada = 'clave-de-prueba',
@@ -76,6 +90,7 @@ Future<_Espia> _abrir(
   int estado = 200,
   VozFalsa? voz,
   Directory? carpeta,
+  Duration demora = Duration.zero,
 }) async {
   final dir = carpeta ?? _carpeta();
   if (claveGuardada != null) {
@@ -91,8 +106,14 @@ Future<_Espia> _abrir(
         padding: const EdgeInsets.all(14),
         child: PantallaChat(
           almacenClave: AlmacenamientoClave(carpeta: () async => dir),
-          gemini: _gemini(espia, respuesta: respuesta, estado: estado),
+          gemini: _gemini(
+            espia,
+            respuesta: respuesta,
+            estado: estado,
+            demora: demora,
+          ),
           voz: voz ?? VozFalsa(),
+          azar: Random(_semilla),
         ),
       ),
     ),
@@ -128,7 +149,7 @@ void main() {
         find.text('Necesitás una clave gratis de la IA (Gemini)'),
         findsOneWidget,
       );
-      expect(find.text(saludoInicial), findsNothing);
+      expect(find.text(_saludoFijo), findsNothing);
     });
 
     testWidgets('la clave pegada queda en el celular, nunca en el código',
@@ -152,7 +173,7 @@ void main() {
 
       expect(File('${dir.path}/$archivoClave').readAsStringSync(),
           'clave-pegada-a-mano');
-      expect(find.text(saludoInicial), findsOneWidget);
+      expect(find.text(_saludoFijo), findsOneWidget);
     });
 
     testWidgets('si la clave no sirve la borra y la pide de nuevo',
@@ -174,7 +195,7 @@ void main() {
         (tester) async {
       final espia = await _abrir(tester);
 
-      expect(find.text(saludoInicial), findsOneWidget);
+      expect(find.text(_saludoFijo), findsOneWidget);
       expect(espia.pedidos, isEmpty);
     });
 
@@ -395,7 +416,7 @@ void main() {
       await tester.tap(find.text('Solo escuchar'));
       await tester.pumpAndSettle();
 
-      expect(find.text(saludoInicial), findsOneWidget);
+      expect(find.text(_saludoFijo), findsOneWidget);
     });
 
     testWidgets('apagar el modo destapa todo lo anterior', (tester) async {
@@ -477,13 +498,67 @@ void main() {
       // Ni lo que escribí ni lo que contestó: la charla arranca de cero.
       expect(find.text('ciao'), findsNothing);
       expect(find.text('Bene! E tu?'), findsNothing);
-      expect(find.text(saludoInicial), findsOneWidget);
+      // Cuál de los saludos salió es al azar; lo que importa es que hay uno.
+      expect(find.textContaining('Sono Tuky'), findsOneWidget);
 
       await _escribir(tester, 'ciao');
       await _enviar(tester);
 
       // Instrucciones, saludo y el mensaje: nada de la charla anterior.
       expect(espia.ultimosTurnos.length, 3);
+    });
+  });
+
+  group('otro tema', () {
+    testWidgets('empieza una charla nueva, con otro saludo', (tester) async {
+      await _abrir(tester);
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+      expect(find.text('Bene! E tu?'), findsOneWidget);
+
+      await tester.tap(find.text('Otro tema'));
+      await tester.pumpAndSettle();
+
+      // Lo que se dijo se fue con la charla vieja...
+      expect(find.text('ciao'), findsNothing);
+      expect(find.text('Bene! E tu?'), findsNothing);
+      // ...y el saludo nuevo no es el que ya estaba.
+      expect(find.text(_saludoFijo), findsNothing);
+      expect(find.textContaining('Sono Tuky'), findsOneWidget);
+    });
+
+    testWidgets('la IA tampoco se acuerda de la charla anterior',
+        (tester) async {
+      final espia = await _abrir(tester);
+      await _escribir(tester, 'mi chiamo Matías');
+      await _enviar(tester);
+
+      await tester.tap(find.text('Otro tema'));
+      await tester.pumpAndSettle();
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+
+      // Instrucciones, saludo nuevo y el mensaje: nada de lo de antes.
+      expect(espia.ultimosTurnos.length, 3);
+      expect(espia.textoDe(1), isNot(_saludoFijo));
+      expect(espia.textoDe(2), 'ciao');
+    });
+
+    testWidgets('mientras la IA piensa, el botón no se puede tocar',
+        (tester) async {
+      // Si no, la respuesta llegaría a una charla que ya no existe.
+      await _abrir(tester, demora: const Duration(seconds: 1));
+      await _escribir(tester, 'ciao');
+      await tester.tap(find.byIcon(Icons.send_rounded));
+      await tester.pump();
+
+      expect(find.text('Tuky está escribiendo...'), findsOneWidget);
+      final pastilla = tester.widget<Pastilla>(
+        find.widgetWithText(Pastilla, 'Otro tema'),
+      );
+      expect(pastilla.alTocar, isNull);
+
+      await tester.pumpAndSettle(const Duration(seconds: 2));
     });
   });
 }

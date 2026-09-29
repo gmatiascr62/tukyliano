@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/ia/chat.dart';
@@ -238,7 +239,25 @@ void main() {
 
       expect(charla.mensajes.length, 1);
       expect(charla.mensajes.single.quien, Quien.ia);
-      expect(charla.mensajes.single.texto, saludoInicial);
+      expect(charla.mensajes.single.texto, charla.saludo);
+      expect(saludosIniciales, contains(charla.saludo));
+    });
+
+    test('cada charla puede arrancar con otro saludo', () {
+      // Con uno solo, todas las charlas empezaban igual y terminaban hablando
+      // siempre de lo mismo.
+      final salidos = {
+        for (var semilla = 0; semilla < 30; semilla++)
+          Conversacion(azar: Random(semilla)).saludo,
+      };
+
+      expect(salidos.length, greaterThan(5));
+    });
+
+    test('el saludo que se le pasa es el que arranca la charla', () {
+      final charla = Conversacion(saludo: 'Ciao! Che musica ascolti?');
+
+      expect(charla.mensajes.single.texto, 'Ciao! Che musica ascolti?');
     });
 
     test('el primer pedido lleva las instrucciones y el saludo', () {
@@ -250,7 +269,7 @@ void main() {
       expect(turnos[0]['role'], 'user');
       expect(_texto(turnos[0]), promptDeChat);
       expect(turnos[1]['role'], 'model');
-      expect(_texto(turnos[1]), saludoInicial);
+      expect(_texto(turnos[1]), charla.saludo);
       expect(turnos[2]['role'], 'user');
       expect(_texto(turnos[2]), 'ciao');
     });
