@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../datos/descarga_modelo.dart';
+import '../datos/intento_de_carga.dart';
 import '../datos/voz.dart';
 import '../ia/chat.dart';
 import '../ia/motor_ia.dart';
@@ -37,6 +38,7 @@ class PantallaChat extends StatefulWidget {
   const PantallaChat({
     super.key,
     this.descarga,
+    this.intento,
     this.motor,
     this.voz,
     this.capacidad,
@@ -45,6 +47,9 @@ class PantallaChat extends StatefulWidget {
 
   /// Inyectables para los tests.
   final DescargaModelo? descarga;
+
+  /// El que se acuerda de si la app se cerró cargando el modelo.
+  final IntentoDeCarga? intento;
 
   /// El motor de IA. Null = el de verdad, con el modelo que se bajó.
   final MotorIA? motor;
@@ -61,6 +66,7 @@ class PantallaChat extends StatefulWidget {
 
 class _PantallaChatState extends State<PantallaChat> {
   late final DescargaModelo _descarga = widget.descarga ?? DescargaModelo();
+  late final IntentoDeCarga _intento = widget.intento ?? IntentoDeCarga();
   late final Voz _voz = widget.voz ?? VozDelSistema();
 
   late Conversacion _conversacion = Conversacion(azar: widget.azar);
@@ -78,6 +84,10 @@ class _PantallaChatState extends State<PantallaChat> {
 
   bool _mirandoElModelo = true;
   bool _cargandoElModelo = false;
+
+  /// True cuando la vez pasada la app se cerró cargando el modelo. No se
+  /// vuelve a intentar sin que lo pidan.
+  bool _seCerroLaVezPasada = false;
   String _problema = '';
   bool _esperando = false;
 
@@ -129,8 +139,23 @@ class _PantallaChatState extends State<PantallaChat> {
     await _cargarElMotor(MotorLlama(rutaDelModelo: ruta));
   }
 
-  Future<void> _cargarElMotor(MotorIA motor) async {
+  Future<void> _cargarElMotor(MotorIA motor, {bool igual = false}) async {
+    // Si la vez pasada el celular se cerró cargando el modelo, no se vuelve a
+    // probar solo: se cuenta lo que pasó y se deja decidir.
+    if (!igual && await _intento.seCerroLaVezPasada()) {
+      if (!mounted) return;
+      setState(() {
+        _motor = null;
+        _seCerroLaVezPasada = true;
+        _mirandoElModelo = false;
+        _cargandoElModelo = false;
+      });
+      return;
+    }
+
+    await _intento.empiezo();
     final anduvo = await motor.preparar();
+    await _intento.salioBien();
     if (!mounted) return;
     setState(() {
       _motor = anduvo ? motor : null;
@@ -347,6 +372,8 @@ class _PantallaChatState extends State<PantallaChat> {
       );
     }
 
+    if (_seCerroLaVezPasada) return _seCerro();
+
     if (_motor == null && _problema.isEmpty) {
       return PantallaModelo(
         descarga: _descarga,
@@ -435,6 +462,82 @@ class _PantallaChatState extends State<PantallaChat> {
         ),
         const SizedBox(height: 8),
       ],
+    );
+  }
+
+  /// Cuando la vez pasada la app se cerró sola cargando el modelo.
+  ///
+  /// Lo que se puede hacer es poco, pero es mejor que volver a cerrarse: se
+  /// cuenta qué pasó, se deja probar igual por si fue casualidad, y se deja
+  /// borrar el modelo para recuperar los megas.
+  Widget _seCerro() {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 10),
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            const Icon(Icons.warning_amber_rounded, size: 48, color: Tema.borde),
+            const SizedBox(height: 14),
+            const Text(
+              'La vez pasada la app se cerró al abrir el chat',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 17,
+                fontWeight: FontWeight.w700,
+                color: Tema.titulo,
+              ),
+            ),
+            const SizedBox(height: 10),
+            const Text(
+              'La IA no pudo arrancar en este celular. El resto de la app '
+              'funciona igual.',
+              textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 14.5, height: 1.35, color: Tema.texto),
+            ),
+            const SizedBox(height: 20),
+            SizedBox(
+              height: 52,
+              child: ElevatedButton(
+                onPressed: () async {
+                  await _intento.salioBien();
+                  if (!mounted) return;
+                  setState(() {
+                    _seCerroLaVezPasada = false;
+                    _cargandoElModelo = true;
+                  });
+                  final ruta = await _descarga.rutaSiEsta();
+                  if (!mounted || ruta == null) return;
+                  await _cargarElMotor(
+                    widget.motor ?? MotorLlama(rutaDelModelo: ruta),
+                    igual: true,
+                  );
+                },
+                style: Tema.botonPrincipal,
+                child: const Text(
+                  'Probar igual',
+                  style: TextStyle(fontSize: 17, fontWeight: FontWeight.w600),
+                ),
+              ),
+            ),
+            const SizedBox(height: 6),
+            TextButton.icon(
+              onPressed: () async {
+                await _descarga.borrar();
+                await _intento.salioBien();
+                if (!mounted) return;
+                setState(() {
+                  _seCerroLaVezPasada = false;
+                  _problema = '';
+                });
+              },
+              icon: const Icon(Icons.delete_outline, size: 18),
+              label: const Text('Borrar la IA y recuperar los MB'),
+              style: TextButton.styleFrom(foregroundColor: Tema.textoTenue),
+            ),
+          ],
+        ),
+      ),
     );
   }
 

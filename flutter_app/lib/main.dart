@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'constantes.dart';
 import 'datos/actualizacion.dart';
 import 'datos/descarga_modelo.dart';
+import 'datos/intento_de_carga.dart';
 import 'datos/escucha.dart';
 import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
@@ -47,6 +48,7 @@ class TukylianoApp extends StatelessWidget {
     this.voz,
     this.escucha,
     this.descargaModelo,
+    this.intentoDeCarga,
     this.motor,
     this.progreso,
     this.actualizacion,
@@ -62,6 +64,7 @@ class TukylianoApp extends StatelessWidget {
   final Voz? voz;
   final Escucha? escucha;
   final DescargaModelo? descargaModelo;
+  final IntentoDeCarga? intentoDeCarga;
   final MotorIA? motor;
   final Progreso? progreso;
   final Actualizacion? actualizacion;
@@ -82,6 +85,7 @@ class TukylianoApp extends StatelessWidget {
         voz: voz,
         escucha: escucha,
         descargaModelo: descargaModelo,
+        intentoDeCarga: intentoDeCarga,
         motor: motor,
         progreso: progreso,
         actualizacion: actualizacion,
@@ -104,6 +108,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.voz,
     this.escucha,
     this.descargaModelo,
+    this.intentoDeCarga,
     this.motor,
     this.progreso,
     this.actualizacion,
@@ -118,6 +123,7 @@ class PantallaPrincipal extends StatefulWidget {
   final Voz? voz;
   final Escucha? escucha;
   final DescargaModelo? descargaModelo;
+  final IntentoDeCarga? intentoDeCarga;
   final MotorIA? motor;
   final Progreso? progreso;
   final Actualizacion? actualizacion;
@@ -426,6 +432,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         // pantalla se destruye y la charla se olvida, que es lo que se pidió.
         return PantallaChat(
           descarga: _descargaModelo,
+          intento: widget.intentoDeCarga,
           motor: widget.motor,
           voz: _voz,
         );

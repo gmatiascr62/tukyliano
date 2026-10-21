@@ -1,19 +1,14 @@
-import 'dart:convert';
-import 'dart:io';
 import 'dart:math';
 
-import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:http/http.dart' as http;
-import 'package:http/testing.dart';
-import 'package:tukyliano/datos/descarga_modelo.dart';
 import 'package:tukyliano/ia/chat.dart';
-import 'package:tukyliano/ia/modelo.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
 import 'package:tukyliano/tema.dart';
 import 'package:tukyliano/widgets/pastilla.dart';
 
+import 'descarga_falsa.dart';
+import 'intento_falso.dart';
 import 'motor_falso.dart';
 import 'util_pantalla.dart';
 import 'voz_falsa.dart';
@@ -23,35 +18,12 @@ import 'voz_falsa.dart';
 const _semilla = 3;
 final _saludoFijo = saludoAlAzar(azar: Random(_semilla));
 
-final List<int> _modeloFalso = utf8.encode('hace de modelo' * 50);
-
-/// Una carpeta con el modelo ya bajado, como la de alguien que ya lo tiene.
-Directory _carpetaConModelo({bool conModelo = true}) {
-  final dir = Directory.systemTemp.createTempSync('chat_modelo');
-  addTearDown(() => dir.deleteSync(recursive: true));
-  if (conModelo) {
-    File('${dir.path}/$archivoDelModelo').writeAsBytesSync(_modeloFalso);
-  }
-  return dir;
-}
-
-DescargaModelo _descarga(Directory dir) => DescargaModelo(
-      cliente: MockClient.streaming(
-        (_, _) async => http.StreamedResponse(
-          Stream.fromIterable([_modeloFalso]),
-          200,
-          contentLength: _modeloFalso.length,
-        ),
-      ),
-      carpeta: () async => dir,
-      huellaEsperada: sha256.convert(_modeloFalso).toString(),
-    );
-
 Future<MotorFalso> _abrir(
   WidgetTester tester, {
   MotorFalso? motor,
   VozFalsa? voz,
-  Directory? carpeta,
+  DescargaFalsa? descarga,
+  IntentoFalso? intento,
 }) async {
   final elMotor = motor ?? MotorFalso();
   usarPantallaDeCelular(tester);
@@ -61,7 +33,8 @@ Future<MotorFalso> _abrir(
       body: Padding(
         padding: const EdgeInsets.all(14),
         child: PantallaChat(
-          descarga: _descarga(carpeta ?? _carpetaConModelo()),
+          descarga: descarga ?? DescargaFalsa(yaBajado: true),
+          intento: intento ?? IntentoFalso(),
           motor: elMotor,
           voz: voz ?? VozFalsa(),
           azar: Random(_semilla),
@@ -356,6 +329,52 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(motor.liberado, isTrue);
+    });
+  });
+
+  group('cuando la app se cerró sola', () {
+    testWidgets('no vuelve a cargar el modelo: lo cuenta', (tester) async {
+      // Cargar el modelo es código nativo: cuando se muere, se lleva la app
+      // puesta y no hay error que atrapar. Si se reintentara solo, el chat
+      // quedaría inusable sin que nadie entienda por qué.
+      final motor = MotorFalso();
+      await _abrir(tester, motor: motor, intento: IntentoFalso(seCerro: true));
+
+      expect(
+        find.textContaining('se cerró al abrir el chat'),
+        findsOneWidget,
+      );
+      expect(motor.preparado, isFalse);
+      expect(find.textContaining('El resto de la app funciona igual'),
+          findsOneWidget);
+    });
+
+    testWidgets('deja probar igual, por si fue casualidad', (tester) async {
+      final motor = MotorFalso();
+      await _abrir(tester, motor: motor, intento: IntentoFalso(seCerro: true));
+
+      await tester.tap(find.widgetWithText(ElevatedButton, 'Probar igual'));
+      await tester.pumpAndSettle();
+
+      expect(motor.preparado, isTrue);
+      expect(find.textContaining('Sono Tuky'), findsOneWidget);
+    });
+
+    testWidgets('o borrar la IA para recuperar los megas', (tester) async {
+      await _abrir(tester, intento: IntentoFalso(seCerro: true));
+
+      await tester.tap(find.textContaining('Borrar la IA'));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('se cerró al abrir el chat'), findsNothing);
+    });
+
+    testWidgets('una carga que sale bien deja todo limpio', (tester) async {
+      final intento = IntentoFalso();
+      await _abrir(tester, intento: intento);
+
+      expect(intento.empezados, 1);
+      expect(intento.terminados, 1);
     });
   });
 

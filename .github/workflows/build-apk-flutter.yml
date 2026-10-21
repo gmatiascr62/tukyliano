@@ -83,25 +83,31 @@ jobs:
       - name: Compilar llama.cpp para Android
         working-directory: .
         env:
-          # Clavada: dos builds tienen que llevar la misma. Para cambiarla,
-          # correr el build con otra y mirar que las bibliotecas sigan saliendo.
-          LLAMA_TAG: 'v0.7.0'
+          # El commit exacto contra el que están generados los bindings del
+          # paquete de Dart: lo dice su propio pubspec.yaml, en el comentario
+          # al lado de la versión.
+          #
+          # No es un detalle: los bindings llaman a las funciones de llama.cpp
+          # pasándoles estructuras de C. Si la biblioteca es de otra versión y
+          # alguna de esas estructuras cambió —aunque sea un campo— lo que se
+          # le pasa no es lo que espera y el proceso se muere de una, sin
+          # error que mostrar. Compilar "la última" fue exactamente eso: el
+          # APK v1.0.78 cerraba la app al abrir el chat.
+          LLAMA_COMMIT: '4ffc47cb2001e7d523f9ff525335bbe34b1a2858'
         run: |
           set -euo pipefail
           NDK="${ANDROID_NDK_HOME:-${ANDROID_NDK_ROOT:-${ANDROID_NDK_LATEST_HOME:-}}}"
           [ -n "$NDK" ] || { echo "ERROR: no hay NDK en el runner."; exit 1; }
           echo "NDK: $NDK"
 
-          TAG="$LLAMA_TAG"
-          if [ -z "$TAG" ]; then
-            TAG=$(curl -sS https://api.github.com/repos/ggml-org/llama.cpp/releases/latest \
-              | python3 -c "import json,sys; print(json.load(sys.stdin)['tag_name'])")
-          fi
-          echo "VERSIÓN DE LLAMA.CPP: $TAG"
-          echo "llama_tag=$TAG" >> "$GITHUB_OUTPUT"
+          echo "COMMIT DE LLAMA.CPP: $LLAMA_COMMIT"
 
-          git clone --depth 1 --branch "$TAG" \
-            https://github.com/ggml-org/llama.cpp /tmp/llama.cpp
+          # Por commit y no por tag, así que se baja a mano en vez de clonar.
+          mkdir -p /tmp/llama.cpp
+          git -C /tmp/llama.cpp init -q
+          git -C /tmp/llama.cpp remote add origin https://github.com/ggml-org/llama.cpp
+          git -C /tmp/llama.cpp fetch -q --depth 1 origin "$LLAMA_COMMIT"
+          git -C /tmp/llama.cpp checkout -q FETCH_HEAD
 
           cmake -S /tmp/llama.cpp -B /tmp/llama-build \
             -DCMAKE_TOOLCHAIN_FILE="$NDK/build/cmake/android.toolchain.cmake" \
