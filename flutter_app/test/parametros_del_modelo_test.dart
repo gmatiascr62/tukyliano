@@ -25,4 +25,30 @@ void main() {
     // Son cientos de megas: clavarlos haría que Android mate la app.
     expect(parametrosDelModelo(mapear: true).useMemoryLock, isFalse);
   });
+
+  group('el contexto', () {
+    ContextParams armar() => parametrosDelContexto(
+          cuantoContexto: 1024,
+          cuantoContesta: 160,
+          hilos: 3,
+        );
+
+    test('la memoria de la charla y el largo de la respuesta son los pedidos',
+        () {
+      expect(armar().nCtx, 1024);
+      expect(armar().nPredict, 160);
+    });
+
+    test('las tandas son chicas, porque hay una por mensaje', () {
+      // El espacio de trabajo crece con este número y se arma de nuevo en
+      // cada mensaje: con tandas grandes, un celular chico no aguanta.
+      expect(armar().nBatch, lessThanOrEqualTo(128));
+      expect(armar().nUbatch, armar().nBatch);
+    });
+
+    test('usa los hilos que se le digan, para pensar y para leer', () {
+      expect(armar().nThreads, 3);
+      expect(armar().nThreadsBatch, 3);
+    });
+  });
 }
