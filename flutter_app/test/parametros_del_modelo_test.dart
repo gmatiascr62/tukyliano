@@ -39,11 +39,19 @@ void main() {
       expect(armar().nPredict, 160);
     });
 
-    test('las tandas son chicas, porque hay una por mensaje', () {
-      // El espacio de trabajo crece con este número y se arma de nuevo en
-      // cada mensaje: con tandas grandes, un celular chico no aguanta.
-      expect(armar().nBatch, lessThanOrEqualTo(128));
-      expect(armar().nUbatch, armar().nBatch);
+    test('en una tanda entra la charla más larga que pueda haber', () {
+      // El paquete no parte el pedido: lo copia entero en una sola tanda. Si
+      // la tanda es más chica que la charla, corta con "Prompt tokens (181) >
+      // batch capacity (128)". Como la charla nunca pasa del contexto, con una
+      // tanda del tamaño del contexto siempre entra.
+      expect(armar().nBatch, greaterThanOrEqualTo(armar().nCtx));
+    });
+
+    test('las cuentas se hacen de a pedazos chicos, por la memoria', () {
+      // Esto es otra cosa que la tanda: el espacio de trabajo crece con este
+      // número y se arma uno por mensaje.
+      expect(armar().nUbatch, lessThanOrEqualTo(128));
+      expect(armar().nUbatch, lessThanOrEqualTo(armar().nBatch));
     });
 
     test('usa los hilos que se le digan, para pensar y para leer', () {

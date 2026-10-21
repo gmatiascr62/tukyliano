@@ -16,6 +16,13 @@ const Map<String, String> _enCriollo = {
   'Could not create context': 'no pudo armar el contexto',
   'Failed to open library': 'no encontró la biblioteca',
   'already exists': 'chocó con un intento anterior',
+  // Estos son de cuando ya está cargado y falla al contestar.
+  'batch capacity': 'la charla no entró de una sola vez',
+  'Context full': 'la charla se hizo demasiado larga',
+  'Context limit': 'la charla se hizo demasiado larga',
+  'Prompt too large': 'el mensaje es demasiado largo',
+  'Model not initialized': 'el modelo no estaba cargado',
+  'Slot allocation failed': 'no quedó memoria para la charla',
 };
 
 /// De un error anidado y con la ruta entera adentro, lo que se entiende.
