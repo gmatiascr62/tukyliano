@@ -141,10 +141,13 @@ jobs:
           # una biblioteca alineada a 4 KB ahí no abre, y el error que se ve
           # desde Dart es que el isolate no contesta nunca.
           echo "Alineación (tiene que decir 2**14 = 16 KB):"
+          LEER="$NDK"/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf
           for lib in "$DESTINO"/*.so; do
-            echo -n "  $(basename "$lib"): "
-            "$NDK"/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf -l "$lib" \
-              | awk '/LOAD/ {print $NF; exit}'
+            # Sin "exit" en el awk: si se corta la lectura, llvm-readelf se
+            # queda escribiendo en una tubería cerrada, termina con código 74
+            # y el build se cae por el aviso en vez de por la compilación.
+            alineacion=$("$LEER" -l "$lib" | awk '/LOAD/ && !visto {print $NF; visto=1}')
+            echo "  $(basename "$lib"): ${alineacion:-sin dato}"
           done
           # Sin esta no hay chat: es la que abre el paquete de Dart.
           test -f "$DESTINO/libmtmd.so" || test -f "$DESTINO/libllama.so" \
