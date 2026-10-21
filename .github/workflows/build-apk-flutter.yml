@@ -99,6 +99,7 @@ jobs:
           NDK="${ANDROID_NDK_HOME:-${ANDROID_NDK_ROOT:-${ANDROID_NDK_LATEST_HOME:-}}}"
           [ -n "$NDK" ] || { echo "ERROR: no hay NDK en el runner."; exit 1; }
           echo "NDK: $NDK"
+          grep -m1 "Pkg.Revision" "$NDK/source.properties" || true
 
           echo "COMMIT DE LLAMA.CPP: $LLAMA_COMMIT"
 
@@ -121,7 +122,8 @@ jobs:
             -DLLAMA_BUILD_TESTS=OFF \
             -DLLAMA_BUILD_EXAMPLES=OFF \
             -DLLAMA_BUILD_SERVER=OFF \
-            -DLLAMA_BUILD_TOOLS=ON
+            -DLLAMA_BUILD_TOOLS=ON \
+            -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384"
           # Solo las dos bibliotecas que se usan. Compilar todo tarda el doble
           # y termina fallando al linkear el ejecutable de consola, que acá no
           # le sirve a nadie.
@@ -135,6 +137,15 @@ jobs:
 
           echo "Bibliotecas que van en el APK:"
           ls -lh "$DESTINO"
+          # Android 15 en adelante, en varios celulares, usa páginas de 16 KB:
+          # una biblioteca alineada a 4 KB ahí no abre, y el error que se ve
+          # desde Dart es que el isolate no contesta nunca.
+          echo "Alineación (tiene que decir 2**14 = 16 KB):"
+          for lib in "$DESTINO"/*.so; do
+            echo -n "  $(basename "$lib"): "
+            "$NDK"/toolchains/llvm/prebuilt/linux-x86_64/bin/llvm-readelf -l "$lib" \
+              | awk '/LOAD/ {print $NF; exit}'
+          done
           # Sin esta no hay chat: es la que abre el paquete de Dart.
           test -f "$DESTINO/libmtmd.so" || test -f "$DESTINO/libllama.so" \
             || { echo "ERROR: no se compiló ni libmtmd.so ni libllama.so"; exit 1; }
