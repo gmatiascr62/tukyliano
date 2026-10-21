@@ -6,6 +6,7 @@ import 'package:llama_cpp_dart/llama_cpp_dart.dart';
 import '../logica/capacidad.dart';
 import 'archivo_gguf.dart';
 import 'espia_de_stderr.dart';
+import 'falla_al_cargar.dart';
 import 'motor_ia.dart';
 
 /// El motor de verdad: llama.cpp corriendo adentro del celular.
@@ -115,7 +116,7 @@ class MotorLlama implements MotorIA {
     final espia = EspiaDeStderr(File('${archivo.parent.path}/$archivoDelDicho'));
     espia.empezar();
 
-    final problemas = <String>[];
+    final intentos = <Intento>[];
     for (final biblioteca in bibliotecas) {
       for (final mapear in conMapa) {
         // Cada intento con su propio LlamaParent: reusar el anterior era el
@@ -130,17 +131,19 @@ class MotorLlama implements MotorIA {
           await espia.terminar();
           return true;
         }
-        problemas.add('${biblioteca ?? 'la del sistema'}'
-            '${mapear ? '' : ' sin mapear'}: $_ultimoProblema');
+        intentos.add((
+          nombre: '${biblioteca ?? 'la del sistema'}'
+              '${mapear ? '' : ' sin mapear'}',
+          motivo: _ultimoProblema,
+        ));
       }
     }
 
-    final dicho = loQueImporta(await espia.terminar());
-
-    final queEs = ficha == null ? '' : ' (${ficha.resumen})';
-    final loQueDijo = dicho.isEmpty ? '' : ' Dice: $dicho';
-    _problema =
-        'No se pudo cargar el modelo$queEs. ${problemas.join(' / ')}.$loQueDijo';
+    _problema = mensajeDeFalla(
+      intentos: intentos,
+      dicho: loQueImporta(await espia.terminar()),
+      archivo: ficha?.resumen ?? '',
+    );
     return false;
   }
 

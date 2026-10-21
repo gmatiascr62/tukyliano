@@ -315,6 +315,26 @@ void main() {
       expect(find.textContaining('El resto de la app funciona igual'),
           findsOneWidget);
     });
+
+    testWidgets('un error largo se puede leer entero y no tapa el botón',
+        (tester) async {
+      // Pasó de verdad: el error ocupaba más que la pantalla, se cortaba a la
+      // mitad y el botón quedaba afuera, sin forma de llegar.
+      await _abrir(
+        tester,
+        motor: MotorFalso(
+          seCargaBien: false,
+          problemaAlCargar: 'No se pudo cargar el modelo. '
+              '${'Esto es un error larguísimo que no entra en la pantalla. ' * 12}',
+        ),
+      );
+
+      await tester.scrollUntilVisible(
+        find.textContaining('Borrar la IA'),
+        200,
+      );
+      expect(find.textContaining('Borrar la IA'), findsOneWidget);
+    });
   });
 
   group('la memoria del celular', () {
