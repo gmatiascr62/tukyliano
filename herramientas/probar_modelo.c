@@ -30,8 +30,15 @@ int main(int argc, char ** argv) {
     llama_backend_init();
     printf("== sistema: %s\n", llama_print_system_info());
 
+    // Los mismos que usa la app, y no los de fábrica: con los de fábrica esta
+    // prueba pasaba mientras el chat del celular no cargaba. La diferencia
+    // estaba justo acá, en estas dos líneas de abajo.
     struct llama_model_params parametrosDelModelo = llama_model_default_params();
     parametrosDelModelo.n_gpu_layers = 0;
+    parametrosDelModelo.split_mode   = LLAMA_SPLIT_MODE_NONE;
+    // -1, no 0: en un celular no hay ninguna placa de video, y pedirle la
+    // número 0 de una lista vacía es lo que hacía fallar la carga.
+    parametrosDelModelo.main_gpu     = -1;
     parametrosDelModelo.use_mmap     = true;
     parametrosDelModelo.use_mlock    = false;
 

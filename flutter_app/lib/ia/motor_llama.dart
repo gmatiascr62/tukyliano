@@ -29,6 +29,34 @@ import 'motor_ia.dart';
 ///   falta más, y así entra en teléfonos chicos y no se recalienta.
 /// - **Se libera al salir.** El modelo ocupa unos 400 MB de RAM. Si quedara
 ///   cargado al irse del chat, Android mataría la app apenas se abra otra cosa.
+/// Con qué parámetros se abre el archivo del modelo.
+///
+/// Está acá afuera, y no adentro del motor, para poder probarlo: el motor de
+/// verdad necesita un celular y una biblioteca nativa; esto es una cuenta de
+/// Dart y se prueba en un segundo. Hizo falta: uno de estos números tuvo el
+/// chat roto varios días.
+ModelParams parametrosDelModelo({required bool mapear}) {
+  return ModelParams()
+    // Cero capas en la placa de video: todo en el procesador. La GPU de un
+    // celular común no ayuda con un modelo así y las bibliotecas de GPU no
+    // están en todos los aparatos.
+    ..nGpuLayers = 0
+    // Y acá va -1, no 0. Para llama.cpp, main_gpu es "cuál de las placas de
+    // video usar", y en un celular la lista de placas está vacía: la número 0
+    // no existe en una lista vacía y el modelo no carga. Con -1 entiende que
+    // no hay ninguna y usa el procesador.
+    //
+    // Hay que ponerlo a mano porque el paquete de Dart pisa el valor que trae
+    // llama.cpp de fábrica. Este era el error que cerraba el chat:
+    // "invalid value for main_gpu: 0 (available devices: 0)".
+    ..mainGpu = -1
+    // Mapeado, el sistema puede soltar pedazos cuando necesita memoria en vez
+    // de matar la app. Sin mapear entra entero en RAM: se usa solo si mapear
+    // no funcionó.
+    ..useMemorymap = mapear
+    ..useMemoryLock = false;
+}
+
 class MotorLlama implements MotorIA {
   MotorLlama({
     required this.rutaDelModelo,
@@ -176,14 +204,7 @@ class MotorLlama implements MotorIA {
       ..nThreads = hilos ?? hilosParaElModelo()
       ..nThreadsBatch = hilos ?? hilosParaElModelo();
 
-    final modelo = ModelParams()
-      // Cero: solo procesador. Ver el comentario de arriba.
-      ..nGpuLayers = 0
-      // Mapeado, el sistema puede soltar pedazos cuando necesita memoria en
-      // vez de matar la app. Sin mapear entra entero en RAM: se usa solo si
-      // mapear no funcionó.
-      ..useMemorymap = mapear
-      ..useMemoryLock = false;
+    final modelo = parametrosDelModelo(mapear: mapear);
 
     final sorteo = SamplerParams()
       // Bajo a propósito: un modelo chico con temperatura alta inventa
