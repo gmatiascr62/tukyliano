@@ -208,8 +208,9 @@ jobs:
           arch: x86_64
           disk-size: 6G
           emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          # Ojo: este script lo corre sh, no bash. Nada de pipefail acá.
           script: |
-            set -euo pipefail
+            set -eu
             adb push /tmp/al-celular/. /data/local/tmp/
             adb push /tmp/modelo.gguf /data/local/tmp/modelo.gguf
             adb shell chmod 755 /data/local/tmp/probar_modelo
