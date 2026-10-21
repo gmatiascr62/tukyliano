@@ -12,6 +12,7 @@ import 'package:tukyliano/pantallas/pantalla_gramatica.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 
 import 'escucha_falsa.dart';
+import 'intento_falso.dart';
 import 'motor_falso.dart';
 import 'util_pantalla.dart';
 import 'voz_falsa.dart';
@@ -164,7 +165,11 @@ void main() {
     final motor = MotorFalso();
     await _abrir(
       tester,
-      app: TukylianoApp(motor: motor, progreso: _progresoDePrueba()),
+      app: TukylianoApp(
+        motor: motor,
+        intentoDeCarga: IntentoFalso(),
+        progreso: _progresoDePrueba(),
+      ),
     );
 
     await _entrarA(tester, Destino.chat);
