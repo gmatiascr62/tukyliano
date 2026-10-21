@@ -1,0 +1,115 @@
+# Baja el modelo de verdad y lo hace contestar, con la misma versión de
+# llama.cpp que lleva el APK.
+#
+# Cuando el chat no arranca en un celular, el que falla es código nativo y sus
+# mensajes no se ven. Acá sí se ven: si el modelo carga y contesta en esta
+# prueba, el archivo y la versión de la biblioteca están bien y el problema es
+# de Android; si no carga, el error completo queda en el log.
+name: Probar el modelo
+
+on:
+  workflow_dispatch:
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/probar-modelo.yml'
+      - 'herramientas/probar_modelo.c'
+      - 'flutter_app/lib/ia/modelo.dart'
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Averiguar qué versión y qué modelo usa el APK
+        id: datos
+        run: |
+          set -euo pipefail
+          # Los mismos valores que usa el build, sacados de donde están
+          # escritos, para que esta prueba no quede probando otra cosa.
+          COMMIT=$(sed -n "s/.*LLAMA_COMMIT: *'\([0-9a-f]*\)'.*/\1/p" \
+            .github/workflows/build-apk-flutter.yml | head -1)
+          [ -n "$COMMIT" ] || { echo "ERROR: no encontré LLAMA_COMMIT."; exit 1; }
+          echo "commit=$COMMIT" >> "$GITHUB_OUTPUT"
+          echo "llama.cpp: $COMMIT"
+
+          python3 - <<'PY' >> "$GITHUB_OUTPUT"
+          import re
+          codigo = open('flutter_app/lib/ia/modelo.dart', encoding='utf-8').read()
+          def constante(nombre):
+              m = (re.search(rf"{nombre}\s*=\s*'([^']*)'", codigo)
+                   or re.search(rf"{nombre}\s*=\s*([0-9_]+)", codigo))
+              return m.group(1).replace('_', '')
+          for salida, nombre in [
+              ('url', 'urlDelModelo'),
+              ('sha', 'sha256DelModelo'),
+              ('bytes', 'bytesDelModelo'),
+          ]:
+              valor = constante(nombre)
+              if salida == 'url':
+                  # La URL está armada con las otras constantes.
+                  valor = (f"https://huggingface.co/{constante('repositorioDelModelo')}"
+                           f"/resolve/{constante('revisionDelModelo')}"
+                           f"/{constante('nombreDelModelo')}")
+              print(f'{salida}={valor}')
+          PY
+          cat "$GITHUB_OUTPUT"
+
+      - name: Compilar llama.cpp
+        env:
+          LLAMA_COMMIT: ${{ steps.datos.outputs.commit }}
+        run: |
+          set -euo pipefail
+          mkdir -p /tmp/llama.cpp
+          git -C /tmp/llama.cpp init -q
+          git -C /tmp/llama.cpp remote add origin https://github.com/ggml-org/llama.cpp
+          git -C /tmp/llama.cpp fetch -q --depth 1 origin "$LLAMA_COMMIT"
+          git -C /tmp/llama.cpp checkout -q FETCH_HEAD
+
+          cmake -S /tmp/llama.cpp -B /tmp/llama-build \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON \
+            -DGGML_OPENMP=OFF \
+            -DGGML_LLAMAFILE=OFF \
+            -DGGML_NATIVE=OFF \
+            -DLLAMA_CURL=OFF \
+            -DLLAMA_BUILD_TESTS=OFF \
+            -DLLAMA_BUILD_EXAMPLES=OFF \
+            -DLLAMA_BUILD_SERVER=OFF \
+            -DLLAMA_BUILD_TOOLS=OFF
+          cmake --build /tmp/llama-build --target llama -j"$(nproc)"
+
+      - name: Compilar la prueba
+        run: |
+          set -euo pipefail
+          cc herramientas/probar_modelo.c \
+            -I /tmp/llama.cpp/include -I /tmp/llama.cpp/ggml/include \
+            -L /tmp/llama-build/bin -lllama \
+            -Wl,-rpath,/tmp/llama-build/bin \
+            -o /tmp/probar_modelo
+
+      - name: Guardar el modelo entre corridas
+        id: guardado
+        uses: actions/cache@v4
+        with:
+          path: /tmp/modelo.gguf
+          key: modelo-${{ steps.datos.outputs.sha }}
+
+      - name: Bajar el modelo
+        if: steps.guardado.outputs.cache-hit != 'true'
+        env:
+          URL: ${{ steps.datos.outputs.url }}
+        run: curl -sSL -o /tmp/modelo.gguf "$URL"
+
+      - name: Ver que sea el archivo que espera la app
+        env:
+          SHA: ${{ steps.datos.outputs.sha }}
+          BYTES: ${{ steps.datos.outputs.bytes }}
+        run: |
+          set -euo pipefail
+          echo "bytes: $(stat -c%s /tmp/modelo.gguf) (se esperaban $BYTES)"
+          echo "$SHA  /tmp/modelo.gguf" | sha256sum -c -
+
+      - name: Cargar el modelo y hacerlo contestar
+        run: /tmp/probar_modelo /tmp/modelo.gguf
