@@ -13,19 +13,55 @@
 #include "llama.h"
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <string.h>
+
+// Lee un archivo entero a memoria. Devuelve NULL si no se puede.
+//
+// El prompt de la app tiene renglones, comillas y barras: pasarlo por la
+// línea de comandos es pedir que algo se escape mal y terminar probando otra
+// cosa. Por archivo llega igual a como lo arma la app.
+static char * leerTodo(const char * ruta) {
+    FILE * archivo = fopen(ruta, "rb");
+    if (archivo == NULL) {
+        return NULL;
+    }
+    fseek(archivo, 0, SEEK_END);
+    const long cuanto = ftell(archivo);
+    fseek(archivo, 0, SEEK_SET);
+    if (cuanto < 0) {
+        fclose(archivo);
+        return NULL;
+    }
+    char * texto = (char *) malloc((size_t) cuanto + 1);
+    if (texto != NULL) {
+        const size_t leidos = fread(texto, 1, (size_t) cuanto, archivo);
+        texto[leidos] = '\0';
+    }
+    fclose(archivo);
+    return texto;
+}
 
 int main(int argc, char ** argv) {
     if (argc < 2) {
-        fprintf(stderr, "uso: probar_modelo <modelo.gguf> [texto]\n");
+        fprintf(stderr, "uso: probar_modelo <modelo.gguf> [archivo-con-el-prompt]\n");
         return 1;
     }
 
     const char * ruta = argv[1];
     // El formato de Qwen3, igual que el que arma la app.
-    const char * texto = argc > 2
-        ? argv[2]
-        : "<|im_start|>user\nCiao! Come stai?<|im_end|>\n<|im_start|>assistant\n";
+    const char * texto =
+        "<|im_start|>user\nCiao! Come stai?<|im_end|>\n<|im_start|>assistant\n";
+    char * delArchivo = NULL;
+    if (argc > 2) {
+        delArchivo = leerTodo(argv[2]);
+        if (delArchivo == NULL) {
+            fprintf(stderr, "no pude leer el prompt de %s\n", argv[2]);
+            return 1;
+        }
+        texto = delArchivo;
+        printf("== prompt:\n%s\n== fin del prompt\n", texto);
+    }
 
     llama_backend_init();
     printf("== sistema: %s\n", llama_print_system_info());
@@ -84,7 +120,7 @@ int main(int argc, char ** argv) {
 
     printf("== respuesta: ");
     fflush(stdout);
-    for (int i = 0; i < 32; i++) {
+    for (int i = 0; i < 80; i++) {
         if (llama_decode(contexto, tanda) != 0) {
             printf("\nFALLO: llama_decode no pudo seguir.\n");
             return 5;
@@ -104,6 +140,7 @@ int main(int argc, char ** argv) {
     }
     printf("\nOK: el modelo contesta.\n");
 
+    free(delArchivo);
     llama_sampler_free(elector);
     llama_free(contexto);
     llama_model_free(modelo);
