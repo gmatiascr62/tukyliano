@@ -1,0 +1,75 @@
+# Mira la ficha del modelo de IA en Hugging Face y la compara con lo que dice
+# el código. Si Qwen publicara otro archivo con el mismo nombre, la app se
+# bajaría algo distinto de lo que esperamos: esto lo detecta acá.
+#
+# Se puede correr a mano (workflow_dispatch) para averiguar los datos cuando se
+# cambia de modelo.
+name: Modelo de IA
+
+on:
+  workflow_dispatch: {}
+  push:
+    branches: [ main ]
+    paths:
+      - '.github/workflows/modelo-ia.yml'
+      - 'flutter_app/lib/ia/modelo.dart'
+
+jobs:
+  ficha:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Pedirle la ficha a Hugging Face
+        run: |
+          REPO=Qwen/Qwen3-0.6B-GGUF
+          curl -sS "https://huggingface.co/api/models/$REPO?blobs=true" > ficha.json
+          python3 - <<'PY'
+          import json
+          d = json.load(open('ficha.json'))
+          print('repo:', d['id'])
+          print('revision (sha del commit):', d['sha'])
+          print('licencia:', (d.get('cardData') or {}).get('license'))
+          print()
+          for f in d['siblings']:
+              n = f['rfilename']
+              if not n.endswith('.gguf'):
+                  continue
+              lfs = f.get('lfs') or {}
+              print(f"{n}")
+              print(f"   bytes  = {f.get('size')}")
+              print(f"   sha256 = {lfs.get('oid')}")
+          PY
+
+      - name: Comparar con lo que dice el código
+        run: |
+          ARCHIVO=flutter_app/lib/ia/modelo.dart
+          [ -f "$ARCHIVO" ] || { echo "Todavía no existe $ARCHIVO: solo informo la ficha."; exit 0; }
+          python3 - <<'PY'
+          import json, re, sys
+          codigo = open('flutter_app/lib/ia/modelo.dart', encoding='utf-8').read()
+          def constante(nombre):
+              m = re.search(rf"{nombre}\s*=\s*'([^']*)'", codigo) or \
+                  re.search(rf"{nombre}\s*=\s*([0-9]+)", codigo)
+              return m.group(1) if m else None
+
+          d = json.load(open('ficha.json'))
+          archivo = constante('nombreDelModelo')
+          ficha = next((f for f in d['siblings'] if f['rfilename'] == archivo), None)
+          if ficha is None:
+              sys.exit(f'ERROR: Hugging Face ya no tiene {archivo}')
+
+          esperados = {
+              'revisionDelModelo': d['sha'],
+              'sha256DelModelo': (ficha.get('lfs') or {}).get('oid'),
+              'bytesDelModelo': str(ficha.get('size')),
+          }
+          males = []
+          for nombre, real in esperados.items():
+              dice = constante(nombre)
+              if dice != real:
+                  males.append(f'  {nombre}: el código dice "{dice}" y es "{real}"')
+          if males:
+              sys.exit('ERROR: la ficha del modelo no coincide:\n' + '\n'.join(males))
+          print('El modelo que se baja es el que dice el código.')
+          PY
