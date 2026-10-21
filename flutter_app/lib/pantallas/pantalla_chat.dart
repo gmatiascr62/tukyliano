@@ -544,9 +544,11 @@ class _PantallaChatState extends State<PantallaChat> {
   /// Cuando el modelo no se pudo cargar. No es una pantalla de error pelada:
   /// deja borrar lo bajado y probar de nuevo, que es lo único que puede ayudar.
   Widget _noSePudo() {
-    return Center(
+    // Con scroll: un error largo tapaba el botón de abajo y dejaba a la
+    // persona con un cartel que no se podía ni terminar de leer.
+    return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 10),
+        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 24),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
