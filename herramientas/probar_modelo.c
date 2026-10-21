@@ -16,6 +16,17 @@
 #include <stdlib.h>
 #include <string.h>
 
+// llama.cpp cuenta cien renglones por carga: qué tensor leyó, qué capa va en
+// qué lado. Cuando lo que se está mirando son las respuestas, eso tapa todo.
+// Esto deja pasar solo los avisos y los errores, que son los que importan.
+// Con TODO_EL_LOG=1 en el ambiente vuelve a contar todo.
+static void soloLosProblemas(enum ggml_log_level nivel, const char * texto, void * nada) {
+    (void) nada;
+    if (nivel >= GGML_LOG_LEVEL_WARN) {
+        fputs(texto, stderr);
+    }
+}
+
 // Lee un archivo entero a memoria. Devuelve NULL si no se puede.
 //
 // El prompt de la app tiene renglones, comillas y barras: pasarlo por la
@@ -64,6 +75,9 @@ int main(int argc, char ** argv) {
     }
 
     llama_backend_init();
+    if (getenv("TODO_EL_LOG") == NULL) {
+        llama_log_set(soloLosProblemas, NULL);
+    }
     printf("== sistema: %s\n", llama_print_system_info());
 
     // Los mismos que usa la app, y no los de fábrica: con los de fábrica esta
@@ -87,6 +101,15 @@ int main(int argc, char ** argv) {
     printf("OK: el modelo carga.\n");
 
     const struct llama_vocab * vocabulario = llama_model_get_vocab(modelo);
+
+    // La plantilla que trae el propio archivo del modelo: es la forma exacta
+    // en que fue entrenado para recibir una charla. Con PLANTILLA=1 se
+    // imprime, y así se arma el prompt copiándola en vez de adivinándola.
+    if (getenv("PLANTILLA") != NULL) {
+        const char * plantilla = llama_model_chat_template(modelo, NULL);
+        printf("== plantilla del modelo:\n%s\n== fin de la plantilla\n",
+               plantilla == NULL ? "(el modelo no trae)" : plantilla);
+    }
 
     // Los mismos números que usa la app.
     struct llama_context_params parametrosDelContexto = llama_context_default_params();
@@ -113,7 +136,20 @@ int main(int argc, char ** argv) {
     }
     printf("OK: %d fichas de entrada.\n", cuantas);
 
-    struct llama_sampler * elector = llama_sampler_init_greedy();
+    // El mismo sorteo que usa la app. Con "greedy" —agarrar siempre la ficha
+    // más probable— la prueba no estaría probando lo que pasa en el celular,
+    // que es el error que ya cometí una vez con main_gpu.
+    struct llama_sampler * elector =
+        llama_sampler_chain_init(llama_sampler_chain_default_params());
+    if (getenv("GREEDY") != NULL) {
+        llama_sampler_chain_add(elector, llama_sampler_init_greedy());
+    } else {
+        llama_sampler_chain_add(elector, llama_sampler_init_penalties(64, 1.15f, 0.0f, 0.0f));
+        llama_sampler_chain_add(elector, llama_sampler_init_top_k(40));
+        llama_sampler_chain_add(elector, llama_sampler_init_top_p(0.9f, 1));
+        llama_sampler_chain_add(elector, llama_sampler_init_temp(0.6f));
+        llama_sampler_chain_add(elector, llama_sampler_init_dist(LLAMA_DEFAULT_SEED));
+    }
 
     struct llama_batch tanda = llama_batch_get_one(fichas, cuantas);
     llama_token ficha = 0;
