@@ -53,6 +53,15 @@ class MotorLlama implements MotorIA {
   /// para no volver a probar la que no en cada carga.
   static String? _bibliotecaQueEstaba;
 
+  /// El único motor que puede haber levantado en toda la app.
+  ///
+  /// Es estático porque el isolate también lo es: el paquete levanta siempre
+  /// el número 1, así que dos motores a la vez no existen. Al salir del chat
+  /// se libera, pero liberar es asincrónico y entrar de nuevo puede pasarle
+  /// por encima; por eso, antes de levantar uno nuevo, se espera de verdad a
+  /// que el anterior se haya ido.
+  static LlamaParent? _elQueEstaLevantado;
+
   @override
   bool get listo => _llama != null && _problema.isEmpty;
 
@@ -69,63 +78,89 @@ class MotorLlama implements MotorIA {
       return false;
     }
 
+    // En Android la biblioteca nativa viaja adentro del APK, en jniLibs, y se
+    // abre por nombre. Se prueban las dos: el paquete de Dart abre libmtmd.so
+    // —la que suma el soporte de imágenes— pero si esa no carga, para charlar
+    // alcanza con libllama.so. En la computadora (los tests de escritorio) se
+    // deja que la busque sola.
+    final bibliotecas = Platform.isAndroid
+        ? [_bibliotecaQueEstaba ?? 'libmtmd.so', 'libllama.so']
+        : <String?>[null];
+
+    final problemas = <String>[];
+    for (final biblioteca in bibliotecas.toSet()) {
+      // Cada intento con su propio LlamaParent: reusar el anterior era el
+      // error "An isolate with ID [1] already exists", que además tapaba el
+      // problema de verdad. Un parent levanta un isolate y no lo suelta hasta
+      // que se lo libera.
+      final llama = await _intentarCon(biblioteca);
+      if (llama != null) {
+        _llama = llama;
+        if (biblioteca != null) _bibliotecaQueEstaba = biblioteca;
+        return true;
+      }
+      problemas.add('${biblioteca ?? 'la del sistema'}: $_ultimoProblema');
+    }
+
+    _problema = 'No se pudo cargar el modelo. ${problemas.join(' / ')}';
+    return false;
+  }
+
+  String _ultimoProblema = '';
+
+  /// Un intento de levantar el modelo con una biblioteca.
+  ///
+  /// Devuelve null si no se pudo, y en [_ultimoProblema] queda por qué. Lo que
+  /// se haya levantado a medias se libera antes de volver: si quedara dando
+  /// vueltas, el intento siguiente chocaría con él.
+  Future<LlamaParent?> _intentarCon(String? biblioteca) async {
+    // Si quedó uno de antes —de la vez pasada que se entró al chat, o de un
+    // intento que falló— hay que esperarlo antes de levantar otro.
+    final anterior = _elQueEstaLevantado;
+    if (anterior != null) {
+      _elQueEstaLevantado = null;
+      await _soltar(anterior);
+    }
+
+    if (biblioteca != null) Llama.libraryPath = biblioteca;
+
+    final contexto = ContextParams()
+      ..nCtx = cuantoContexto
+      ..nPredict = cuantoContesta
+      ..nBatch = 256
+      ..nUbatch = 256
+      ..nThreads = hilos ?? hilosParaElModelo()
+      ..nThreadsBatch = hilos ?? hilosParaElModelo();
+
+    final modelo = ModelParams()
+      // Cero: solo procesador. Ver el comentario de arriba.
+      ..nGpuLayers = 0
+      // El archivo se mapea en vez de copiarse a memoria: así el sistema
+      // puede soltar pedazos cuando necesita memoria, en vez de matar la app.
+      ..useMemorymap = true
+      ..useMemoryLock = false;
+
+    final sorteo = SamplerParams()
+      // Bajo a propósito: un modelo chico con temperatura alta inventa
+      // palabras que no existen, y acá eso se lo enseña mal a alguien.
+      ..temp = 0.6
+      ..topK = 40
+      ..topP = 0.9
+      // Sin esto se queda repitiendo la misma frase hasta llenar el renglón.
+      ..penaltyRepeat = 1.15
+      ..penaltyLastTokens = 64;
+
+    final llama = LlamaParent(
+      LlamaLoad(
+        path: rutaDelModelo,
+        modelParams: modelo,
+        contextParams: contexto,
+        samplingParams: sorteo,
+      ),
+    );
+
     try {
-      // En Android la biblioteca nativa viaja adentro del APK, en jniLibs, y
-      // se abre por nombre. En la computadora (los tests de escritorio) se
-      // deja que la busque sola.
-      //
-      // Se prueban las dos: el paquete de Dart abre libmtmd.so —la que suma el
-      // soporte de imágenes— pero según cómo se haya compilado llama.cpp puede
-      // existir solo libllama.so, y para charlar alcanza con esa.
-      if (Platform.isAndroid) {
-        Llama.libraryPath = _bibliotecaQueEstaba ?? 'libmtmd.so';
-      }
-
-      final contexto = ContextParams()
-        ..nCtx = cuantoContexto
-        ..nPredict = cuantoContesta
-        ..nBatch = 256
-        ..nUbatch = 256
-        ..nThreads = hilos ?? hilosParaElModelo()
-        ..nThreadsBatch = hilos ?? hilosParaElModelo();
-
-      final modelo = ModelParams()
-        // Cero: solo procesador. Ver el comentario de arriba.
-        ..nGpuLayers = 0
-        // El archivo se mapea en vez de copiarse a memoria: así el sistema
-        // puede soltar pedazos cuando necesita memoria, en vez de matar la app.
-        ..useMemorymap = true
-        ..useMemoryLock = false;
-
-      final sorteo = SamplerParams()
-        // Bajo a propósito: un modelo chico con temperatura alta inventa
-        // palabras que no existen, y acá eso se lo enseña mal a alguien.
-        ..temp = 0.6
-        ..topK = 40
-        ..topP = 0.9
-        // Sin esto se queda repitiendo la misma frase hasta llenar el renglón.
-        ..penaltyRepeat = 1.15
-        ..penaltyLastTokens = 64;
-
-      final llama = LlamaParent(
-        LlamaLoad(
-          path: rutaDelModelo,
-          modelParams: modelo,
-          contextParams: contexto,
-          samplingParams: sorteo,
-        ),
-      );
-
-      try {
-        await llama.init();
-        if (Platform.isAndroid) _bibliotecaQueEstaba = Llama.libraryPath;
-      } catch (error) {
-        // La otra biblioteca, por si la primera no estaba.
-        if (!Platform.isAndroid || Llama.libraryPath == 'libllama.so') rethrow;
-        Llama.libraryPath = 'libllama.so';
-        await llama.init();
-        _bibliotecaQueEstaba = 'libllama.so';
-      }
+      await llama.init();
 
       // init() vuelve enseguida: cargar el modelo sigue en el isolate. Se
       // espera a que avise que está listo, con un techo para no quedar
@@ -137,19 +172,29 @@ class MotorLlama implements MotorIA {
         await Future<void>.delayed(const Duration(milliseconds: 200));
       }
 
-      if (llama.status != LlamaStatus.ready) {
-        await llama.dispose();
-        _problema = llama.status == LlamaStatus.error
-            ? 'No se pudo cargar el modelo en este celular.'
-            : 'El modelo tardó demasiado en cargar. Probá cerrando otras apps.';
-        return false;
+      if (llama.status == LlamaStatus.ready) {
+        _elQueEstaLevantado = llama;
+        return llama;
       }
 
-      _llama = llama;
-      return true;
+      _ultimoProblema = llama.status == LlamaStatus.error
+          ? 'el modelo no cargó'
+          : 'tardó demasiado en cargar';
     } catch (error) {
-      _problema = 'Este celular no puede correr el modelo ($error).';
-      return false;
+      _ultimoProblema = '$error';
+    }
+
+    await _soltar(llama);
+    return null;
+  }
+
+  /// Suelta un intento fallido. Sin esto, el isolate que dejó levantado hace
+  /// fallar al siguiente.
+  Future<void> _soltar(LlamaParent llama) async {
+    try {
+      await llama.dispose();
+    } catch (_) {
+      // Si ya se había muerto solo, mejor.
     }
   }
 
@@ -227,6 +272,7 @@ class MotorLlama implements MotorIA {
   Future<void> liberar() async {
     final llama = _llama;
     _llama = null;
+    if (identical(_elQueEstaLevantado, llama)) _elQueEstaLevantado = null;
     try {
       await llama?.dispose();
     } catch (_) {
