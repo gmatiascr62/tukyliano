@@ -123,6 +123,11 @@ jobs:
           echo "$SHA  /tmp/modelo.gguf" | sha256sum -c -
 
       - name: Cargar el modelo y hacerlo contestar
+        # La plantilla la trae el archivo del modelo: es la forma exacta en la
+        # que fue entrenado para recibir una charla. Mejor copiarla que
+        # adivinarla.
+        env:
+          PLANTILLA: '1'
         run: /tmp/probar_modelo /tmp/modelo.gguf
 
       # El chat contestaba copiando: al "Cosa mangi oggi?" del alumno le
