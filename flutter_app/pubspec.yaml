@@ -46,6 +46,9 @@ dependencies:
   # Para sacarle la huella SHA-256 al modelo que se baja, de a pedazos.
   crypto: ^3.0.6
   convert: ^3.1.2
+  # Para desviar a un archivo lo que el código nativo escribe en la salida de
+  # error: en un celular, si no, no se lee en ningún lado.
+  ffi: ^2.1.4
 
 dev_dependencies:
   flutter_test:
