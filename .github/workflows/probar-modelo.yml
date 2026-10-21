@@ -198,6 +198,48 @@ jobs:
             /tmp/probar_modelo /tmp/modelo.gguf "$prompt" || true
           done
 
+      # Si con cualquier forma de pedirlo copia, el prompt no es el problema:
+      # o el archivo quedó dañado al achicarlo a 4 bits —en un modelo de 0.6B
+      # eso duele mucho más que en uno grande— o es justo este archivo. Se
+      # prueban otros con el mismo pedido, que es la única forma de saberlo.
+      - name: Probar otros archivos del mismo modelo
+        run: |
+          set -eu
+          probar_uno() {
+            repo="$1"
+            patron="$2"
+            archivo=$(curl -sS "https://huggingface.co/api/models/$repo/tree/main?recursive=true" \
+              | python3 -c "
+          import json, sys
+          patron = sys.argv[1].lower()
+          for f in json.load(sys.stdin):
+              if f['path'].lower().endswith('.gguf') and patron in f['path'].lower():
+                  print(f['path'])
+                  break
+          " "$patron")
+            echo "=================================================="
+            if [ -z "$archivo" ]; then
+              echo "===== $repo: no hay ningún $patron"
+              return 0
+            fi
+            echo "===== $repo / $archivo"
+            if ! curl -fsSL -o /tmp/otro.gguf "https://huggingface.co/$repo/resolve/main/$archivo"; then
+              echo "no se pudo bajar"
+              return 0
+            fi
+            ls -lh /tmp/otro.gguf
+            /tmp/probar_modelo /tmp/otro.gguf /tmp/prompts/1-como-esta.txt || true
+            rm -f /tmp/otro.gguf
+          }
+
+          # El mismo modelo con más bits: si con este contesta, lo que falla es
+          # haberlo achicado tanto.
+          probar_uno unsloth/Qwen3-0.6B-GGUF q8_0
+          # Y el mismo tamaño de siempre, pero publicado por otro: si con este
+          # contesta, el problema era el archivo que estábamos bajando.
+          probar_uno ggml-org/Qwen3-0.6B-GGUF q8_0
+          probar_uno Qwen/Qwen3-0.6B-GGUF q4_k_m
+
   # Lo mismo, pero adentro de un Android. Es donde falla de verdad, y acá sí
   # se lee todo lo que llama.cpp tiene para decir.
   #
