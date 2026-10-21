@@ -43,6 +43,9 @@ dependencies:
   # La biblioteca nativa (libmtmd.so y compañía) la compila el workflow y
   # viaja en el APK; acá va solo el lado Dart.
   llama_cpp_dart: ^0.2.2
+  # Para sacarle la huella SHA-256 al modelo que se baja, de a pedazos.
+  crypto: ^3.0.6
+  convert: ^3.1.2
 
 dev_dependencies:
   flutter_test:

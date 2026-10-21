@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/constantes.dart';
-import 'package:tukyliano/datos/almacenamiento_clave.dart';
 import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/datos/repositorio_particelle.dart';
 import 'package:tukyliano/main.dart';
@@ -13,6 +12,7 @@ import 'package:tukyliano/pantallas/pantalla_gramatica.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 
 import 'escucha_falsa.dart';
+import 'motor_falso.dart';
 import 'util_pantalla.dart';
 import 'voz_falsa.dart';
 
@@ -157,21 +157,19 @@ void main() {
     expect(find.text('Escribir'), findsOneWidget);
   });
 
-  testWidgets('Chat entra a la charla y pide la clave de la IA',
+  testWidgets('Chat entra a la charla, con la IA que corre en el celular',
       (WidgetTester tester) async {
-    // Sin carpeta no hay clave guardada, que es lo que pasa la primera vez.
+    // Con el modelo ya cargado se entra derecho a charlar: sin clave, sin
+    // internet y sin pedirle nada a nadie.
+    final motor = MotorFalso();
     await _abrir(
       tester,
-      app: TukylianoApp(
-        almacenClave: AlmacenamientoClave(carpeta: () async => null),
-        progreso: _progresoDePrueba(),
-      ),
+      app: TukylianoApp(motor: motor, progreso: _progresoDePrueba()),
     );
 
     await _entrarA(tester, Destino.chat);
-    expect(
-      find.text('Necesitás una clave gratis de la IA (Gemini)'),
-      findsOneWidget,
-    );
+
+    expect(find.textContaining('Sono Tuky'), findsOneWidget);
+    expect(motor.preparado, isTrue);
   });
 }

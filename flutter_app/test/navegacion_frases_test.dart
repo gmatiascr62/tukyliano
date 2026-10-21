@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:tukyliano/datos/almacenamiento_clave.dart';
 import 'package:tukyliano/datos/repositorio_frases.dart';
 import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/datos/repositorio_verbos.dart';
@@ -14,24 +13,7 @@ import 'package:tukyliano/modelos/verbo.dart';
 
 import 'util_pantalla.dart';
 
-/// Clave en memoria: en los tests no hay path_provider. La app ya no la usa,
-/// pero la borra al arrancar, y eso tiene que seguir funcionando.
-class _ClaveFalsa extends AlmacenamientoClave {
-  _ClaveFalsa([this.guardada]);
-
-  String? guardada;
-
-  @override
-  Future<String?> cargar() async => guardada;
-
-  @override
-  Future<void> guardar(String clave) async => guardada = clave;
-
-  @override
-  Future<void> borrar() async => guardada = null;
-}
-
-/// Verbos en memoria, por el mismo motivo.
+/// Verbos en memoria, en memoria: en los tests no hay path_provider.
 class _RepoFalso extends RepositorioVerbos {
   static final _datos = DatosVerbos.desdeJson(jsonDecode('''
     {"version": 5, "verbos": {
@@ -64,8 +46,7 @@ RepositorioFrases _frasesFalsas() => RepositorioFrases(
       carpeta: () async => null,
     );
 
-Widget _app({AlmacenamientoClave? clave}) => TukylianoApp(
-      almacenClave: clave ?? _ClaveFalsa(),
+Widget _app() => TukylianoApp(
       repositorio: _RepoFalso(),
       frasesLocales: _frasesFalsas(),
       progreso: Progreso(carpeta: () async => null),
@@ -185,15 +166,4 @@ void main() {
     expect(find.textContaining('Buscando verbos'), findsNothing);
   });
 
-  testWidgets('no toca la clave de Gemini guardada', (tester) async {
-    // El chat la necesita: si al arrancar se borrara, habría que pegarla de
-    // nuevo cada vez que se abre la app.
-    usarPantallaDeCelular(tester);
-    final clave = _ClaveFalsa('CLAVE-GUARDADA');
-
-    await tester.pumpWidget(_app(clave: clave));
-    await tester.pumpAndSettle();
-
-    expect(clave.guardada, 'CLAVE-GUARDADA');
-  });
 }
