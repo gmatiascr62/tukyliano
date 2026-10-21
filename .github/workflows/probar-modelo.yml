@@ -19,6 +19,11 @@ on:
 jobs:
   probar:
     runs-on: ubuntu-latest
+    outputs:
+      commit: ${{ steps.datos.outputs.commit }}
+      url: ${{ steps.datos.outputs.url }}
+      sha: ${{ steps.datos.outputs.sha }}
+      bytes: ${{ steps.datos.outputs.bytes }}
     steps:
       - uses: actions/checkout@v4
 
@@ -119,3 +124,94 @@ jobs:
 
       - name: Cargar el modelo y hacerlo contestar
         run: /tmp/probar_modelo /tmp/modelo.gguf
+
+  # Lo mismo, pero adentro de un Android. Es donde falla de verdad, y acá sí
+  # se lee todo lo que llama.cpp tiene para decir.
+  #
+  # El emulador es x86_64 y el celular es arm64: no es lo mismo, pero el
+  # cargador de Android, la biblioteca de C del sistema y el formato del
+  # archivo sí son los mismos. Si acá falla, el motivo vale.
+  en-android:
+    runs-on: ubuntu-latest
+    needs: probar
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Compilar llama.cpp para Android
+        env:
+          LLAMA_COMMIT: ${{ needs.probar.outputs.commit }}
+        run: |
+          set -euo pipefail
+          NDK="${ANDROID_NDK_HOME:-${ANDROID_NDK_ROOT:-${ANDROID_NDK_LATEST_HOME:-}}}"
+          [ -n "$NDK" ] || { echo "ERROR: no hay NDK en el runner."; exit 1; }
+          echo "NDK: $NDK"
+
+          mkdir -p /tmp/llama.cpp
+          git -C /tmp/llama.cpp init -q
+          git -C /tmp/llama.cpp remote add origin https://github.com/ggml-org/llama.cpp
+          git -C /tmp/llama.cpp fetch -q --depth 1 origin "$LLAMA_COMMIT"
+          git -C /tmp/llama.cpp checkout -q FETCH_HEAD
+
+          # Las mismas banderas que usa el APK, salvo la arquitectura: el
+          # emulador es x86_64.
+          cmake -S /tmp/llama.cpp -B /tmp/llama-android \
+            -DCMAKE_TOOLCHAIN_FILE="$NDK/build/cmake/android.toolchain.cmake" \
+            -DANDROID_ABI=x86_64 \
+            -DANDROID_PLATFORM=android-24 \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON \
+            -DGGML_OPENMP=OFF \
+            -DGGML_LLAMAFILE=OFF \
+            -DLLAMA_CURL=OFF \
+            -DLLAMA_BUILD_TESTS=OFF \
+            -DLLAMA_BUILD_EXAMPLES=OFF \
+            -DLLAMA_BUILD_SERVER=OFF \
+            -DLLAMA_BUILD_TOOLS=ON \
+            -DCMAKE_SHARED_LINKER_FLAGS="-Wl,-z,max-page-size=16384 -Wl,-z,common-page-size=16384"
+          cmake --build /tmp/llama-android --target llama -j"$(nproc)"
+
+          mkdir -p /tmp/al-celular
+          find /tmp/llama-android -name '*.so' -exec cp -v {} /tmp/al-celular/ \;
+
+          "$NDK"/toolchains/llvm/prebuilt/linux-x86_64/bin/x86_64-linux-android24-clang \
+            herramientas/probar_modelo.c \
+            -I /tmp/llama.cpp/include -I /tmp/llama.cpp/ggml/include \
+            -L /tmp/al-celular -lllama \
+            -o /tmp/al-celular/probar_modelo
+          ls -lh /tmp/al-celular
+
+      - name: Guardar el modelo entre corridas
+        id: guardado
+        uses: actions/cache@v4
+        with:
+          path: /tmp/modelo.gguf
+          key: modelo-${{ needs.probar.outputs.sha }}
+
+      - name: Bajar el modelo
+        if: steps.guardado.outputs.cache-hit != 'true'
+        env:
+          URL: ${{ needs.probar.outputs.url }}
+        run: curl -fsSL -o /tmp/modelo.gguf "$URL"
+
+      - name: Dejar que el emulador use el procesador de verdad
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' \
+            | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+
+      - name: Cargar el modelo adentro de Android
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          disk-size: 6G
+          emulator-options: -no-window -gpu swiftshader_indirect -noaudio -no-boot-anim -camera-back none
+          script: |
+            set -euo pipefail
+            adb push /tmp/al-celular/. /data/local/tmp/
+            adb push /tmp/modelo.gguf /data/local/tmp/modelo.gguf
+            adb shell chmod 755 /data/local/tmp/probar_modelo
+            adb shell "ls -l /data/local/tmp"
+            adb shell "cd /data/local/tmp && LD_LIBRARY_PATH=/data/local/tmp ./probar_modelo modelo.gguf"
