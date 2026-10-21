@@ -57,6 +57,25 @@ ModelParams parametrosDelModelo({required bool mapear}) {
     ..useMemoryLock = false;
 }
 
+/// Con qué parámetros se arma el contexto, que es la memoria de la charla.
+ContextParams parametrosDelContexto({
+  required int cuantoContexto,
+  required int cuantoContesta,
+  required int hilos,
+}) {
+  return ContextParams()
+    ..nCtx = cuantoContexto
+    ..nPredict = cuantoContesta
+    // De a 128 fichas por vez. Cada mensaje arma un contexto nuevo y el
+    // espacio de trabajo crece con este número: con 256 eran unos 150 MB por
+    // mensaje, que en un celular chico es demasiado. Leer la charla en tres
+    // tandas en vez de dos no se nota.
+    ..nBatch = 128
+    ..nUbatch = 128
+    ..nThreads = hilos
+    ..nThreadsBatch = hilos;
+}
+
 class MotorLlama implements MotorIA {
   MotorLlama({
     required this.rutaDelModelo,
@@ -196,13 +215,11 @@ class MotorLlama implements MotorIA {
 
     if (biblioteca != null) Llama.libraryPath = biblioteca;
 
-    final contexto = ContextParams()
-      ..nCtx = cuantoContexto
-      ..nPredict = cuantoContesta
-      ..nBatch = 256
-      ..nUbatch = 256
-      ..nThreads = hilos ?? hilosParaElModelo()
-      ..nThreadsBatch = hilos ?? hilosParaElModelo();
+    final contexto = parametrosDelContexto(
+      cuantoContexto: cuantoContexto,
+      cuantoContesta: cuantoContesta,
+      hilos: hilos ?? hilosParaElModelo(),
+    );
 
     final modelo = parametrosDelModelo(mapear: mapear);
 
@@ -276,6 +293,20 @@ class MotorLlama implements MotorIA {
       );
     }
 
+    // Cada mensaje va en su propia charla, y una charla nueva arranca con el
+    // contexto en cero.
+    //
+    // Sin esto el chat contesta una vez y después se queda mudo para siempre.
+    // El paquete lleva la cuenta de cuánto generó restando: posición actual
+    // menos tamaño del último pedido. La posición acumula toda la charla y el
+    // pedido es solo el último, así que a partir de la segunda respuesta esa
+    // resta ya da más que el límite de tokens y corta antes de escribir nada.
+    // Con el contexto en cero la cuenta vuelve a dar bien.
+    //
+    // Cuesta: cada mensaje vuelve a leer la charla entera, unos segundos. Es
+    // el precio de que conteste siempre en vez de una sola vez.
+    final charla = llama.getScope() as LlamaScope;
+
     final salida = StreamController<String>();
     StreamSubscription<String>? pedazos;
     StreamSubscription<CompletionEvent>? finales;
@@ -288,6 +319,14 @@ class MotorLlama implements MotorIA {
       reloj?.cancel();
       await pedazos?.cancel();
       await finales?.cancel();
+      // Soltar la charla libera su contexto, que son varios cientos de megas.
+      // Sin esto, cada mensaje se come otro tanto hasta que Android mata
+      // la app.
+      try {
+        await charla.dispose();
+      } catch (_) {
+        // Si ya se había ido, mejor.
+      }
       if (error != null && !salida.isClosed) salida.addError(error);
       if (!salida.isClosed) await salida.close();
     }
@@ -302,7 +341,7 @@ class MotorLlama implements MotorIA {
       });
     }
 
-    pedazos = llama.stream.listen(
+    pedazos = charla.stream.listen(
       (pedazo) {
         reiniciarElReloj();
         if (!salida.isClosed) salida.add(pedazo);
@@ -310,16 +349,14 @@ class MotorLlama implements MotorIA {
       onError: (Object error) => cerrar(ProblemaDelMotor('$error')),
     );
 
-    // Solo se genera de a una respuesta por vez, así que el aviso de
-    // terminado que llegue es el nuestro.
-    finales = llama.completions.listen((fin) {
+    finales = charla.completions.listen((fin) {
       cerrar(fin.success
           ? null
           : ProblemaDelMotor(fin.errorDetails ?? 'La IA no pudo contestar.'));
     });
 
     reiniciarElReloj();
-    llama.sendPrompt(prompt).catchError((Object error) {
+    charla.sendPrompt(prompt).catchError((Object error) {
       cerrar(ProblemaDelMotor('$error'));
       return '';
     });
