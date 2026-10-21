@@ -38,9 +38,13 @@ jobs:
           import re
           codigo = open('flutter_app/lib/ia/modelo.dart', encoding='utf-8').read()
           def constante(nombre):
-              m = (re.search(rf"{nombre}\s*=\s*'([^']*)'", codigo)
-                   or re.search(rf"{nombre}\s*=\s*([0-9_]+)", codigo))
-              return m.group(1).replace('_', '')
+              # Los guiones bajos se sacan solo de los números (396_705_472);
+              # en un nombre de archivo son parte del nombre y sacarlos deja
+              # una URL que no existe.
+              texto = re.search(rf"{nombre}\s*=\s*'([^']*)'", codigo)
+              if texto:
+                  return texto.group(1)
+              return re.search(rf"{nombre}\s*=\s*([0-9_]+)", codigo).group(1).replace('_', '')
           for salida, nombre in [
               ('url', 'urlDelModelo'),
               ('sha', 'sha256DelModelo'),
@@ -100,7 +104,9 @@ jobs:
         if: steps.guardado.outputs.cache-hit != 'true'
         env:
           URL: ${{ steps.datos.outputs.url }}
-        run: curl -sSL -o /tmp/modelo.gguf "$URL"
+        # --fail: sin eso, un 404 se guarda como si fuera el modelo y el error
+        # aparece mucho más adelante, disfrazado de archivo corrupto.
+        run: curl -fsSL -o /tmp/modelo.gguf "$URL"
 
       - name: Ver que sea el archivo que espera la app
         env:
