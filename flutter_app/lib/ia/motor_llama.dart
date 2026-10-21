@@ -66,11 +66,16 @@ ContextParams parametrosDelContexto({
   return ContextParams()
     ..nCtx = cuantoContexto
     ..nPredict = cuantoContesta
-    // De a 128 fichas por vez. Cada mensaje arma un contexto nuevo y el
-    // espacio de trabajo crece con este número: con 256 eran unos 150 MB por
-    // mensaje, que en un celular chico es demasiado. Leer la charla en tres
-    // tandas en vez de dos no se nota.
-    ..nBatch = 128
+    // La tanda tiene que entrar la charla entera, por eso es igual al
+    // contexto. El paquete no parte el pedido: lo copia completo en una sola
+    // tanda, y si no entra corta con "Prompt tokens (181) > batch capacity".
+    // Con 256 andaba el primer mensaje y fallaba al cuarto, que es peor que
+    // fallar siempre.
+    ..nBatch = cuantoContexto
+    // Esto es otra cosa: de a cuántas fichas hace las cuentas por adentro.
+    // Acá sí conviene chico, porque el espacio de trabajo crece con este
+    // número —son unos 150 MB con 256— y se arma uno por mensaje. llama.cpp
+    // parte la tanda grande en pedazos de este tamaño él solo.
     ..nUbatch = 128
     ..nThreads = hilos
     ..nThreadsBatch = hilos;
@@ -352,7 +357,11 @@ class MotorLlama implements MotorIA {
     finales = charla.completions.listen((fin) {
       cerrar(fin.success
           ? null
-          : ProblemaDelMotor(fin.errorDetails ?? 'La IA no pudo contestar.'));
+          // En criollo: lo que manda el paquete viene en inglés y anidado, y
+          // termina en la pantalla de alguien que está aprendiendo italiano.
+          : ProblemaDelMotor(fin.errorDetails == null
+              ? 'La IA no pudo contestar.'
+              : 'La IA no pudo contestar: ${motivoCorto(fin.errorDetails!)}.'));
     });
 
     reiniciarElReloj();
