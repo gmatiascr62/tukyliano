@@ -1,13 +1,17 @@
 # Mira la ficha del modelo de IA en Hugging Face y la compara con lo que dice
-# el código. Si Qwen publicara otro archivo con el mismo nombre, la app se
-# bajaría algo distinto de lo que esperamos: esto lo detecta acá.
+# el código. Si quien lo publica subiera otro archivo con el mismo nombre, la
+# app se bajaría algo distinto de lo que esperamos: esto lo detecta acá.
 #
-# Se puede correr a mano (workflow_dispatch) para averiguar los datos cuando se
-# cambia de modelo.
+# Correrlo a mano (workflow_dispatch) sirve para averiguar el tamaño y el
+# SHA-256 cuando se cambia de modelo.
 name: Modelo de IA
 
 on:
-  workflow_dispatch: {}
+  workflow_dispatch:
+    inputs:
+      repos:
+        description: 'Repositorios de Hugging Face a mirar, separados por coma'
+        default: 'Qwen/Qwen3-0.6B-GGUF,ggml-org/Qwen3-0.6B-GGUF,unsloth/Qwen3-0.6B-GGUF'
   push:
     branches: [ main ]
     paths:
@@ -20,56 +24,69 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Pedirle la ficha a Hugging Face
+      - name: Listar los modelos publicados
+        env:
+          REPOS: ${{ github.event.inputs.repos || 'Qwen/Qwen3-0.6B-GGUF' }}
         run: |
-          REPO=Qwen/Qwen3-0.6B-GGUF
-          curl -sS "https://huggingface.co/api/models/$REPO?blobs=true" > ficha.json
-          python3 - <<'PY'
-          import json
-          d = json.load(open('ficha.json'))
-          print('repo:', d['id'])
-          print('revision (sha del commit):', d['sha'])
-          print('licencia:', (d.get('cardData') or {}).get('license'))
-          print()
-          for f in d['siblings']:
-              n = f['rfilename']
-              if not n.endswith('.gguf'):
-                  continue
-              lfs = f.get('lfs') or {}
-              print(f"{n}")
-              print(f"   bytes  = {f.get('size')}")
-              print(f"   sha256 = {lfs.get('oid')}")
-          PY
+          # El tamaño y el SHA-256 salen del puntero LFS, que es un archivo de
+          # texto de tres renglones y no necesita bajarse el modelo entero.
+          for repo in ${REPOS//,/ }; do
+            echo "=============== $repo"
+            revision=$(curl -sS "https://huggingface.co/api/models/$repo" \
+              | python3 -c "import json,sys; print(json.load(sys.stdin)['sha'])")
+            echo "revision: $revision"
+            curl -sS "https://huggingface.co/api/models/$repo" \
+              | python3 -c "import json,sys; d=json.load(sys.stdin); print('licencia:', (d.get('cardData') or {}).get('license'))"
+            curl -sS "https://huggingface.co/api/models/$repo/tree/main?recursive=true" \
+              | python3 -c "
+          import json, sys
+          for f in json.load(sys.stdin):
+              if f['path'].endswith('.gguf'):
+                  print(f['path'])
+          " > archivos.txt
+            while read -r archivo; do
+              puntero=$(curl -sSL "https://huggingface.co/$repo/raw/$revision/$archivo")
+              oid=$(echo "$puntero" | sed -n 's/^oid sha256://p')
+              bytes=$(echo "$puntero" | sed -n 's/^size //p')
+              megas=$(( ${bytes:-0} / 1048576 ))
+              echo "  $archivo"
+              echo "     bytes  = $bytes  ($megas MB)"
+              echo "     sha256 = $oid"
+            done < archivos.txt
+          done
 
       - name: Comparar con lo que dice el código
         run: |
           ARCHIVO=flutter_app/lib/ia/modelo.dart
           [ -f "$ARCHIVO" ] || { echo "Todavía no existe $ARCHIVO: solo informo la ficha."; exit 0; }
           python3 - <<'PY'
-          import json, re, sys
+          import json, re, sys, urllib.request
+
           codigo = open('flutter_app/lib/ia/modelo.dart', encoding='utf-8').read()
+
           def constante(nombre):
               m = re.search(rf"{nombre}\s*=\s*'([^']*)'", codigo) or \
-                  re.search(rf"{nombre}\s*=\s*([0-9]+)", codigo)
-              return m.group(1) if m else None
+                  re.search(rf"{nombre}\s*=\s*([0-9_]+)", codigo)
+              return m.group(1).replace('_', '') if m else None
 
-          d = json.load(open('ficha.json'))
+          repo = constante('repositorioDelModelo')
           archivo = constante('nombreDelModelo')
-          ficha = next((f for f in d['siblings'] if f['rfilename'] == archivo), None)
-          if ficha is None:
-              sys.exit(f'ERROR: Hugging Face ya no tiene {archivo}')
+          revision = constante('revisionDelModelo')
 
-          esperados = {
-              'revisionDelModelo': d['sha'],
-              'sha256DelModelo': (ficha.get('lfs') or {}).get('oid'),
-              'bytesDelModelo': str(ficha.get('size')),
-          }
-          males = []
-          for nombre, real in esperados.items():
-              dice = constante(nombre)
-              if dice != real:
-                  males.append(f'  {nombre}: el código dice "{dice}" y es "{real}"')
+          puntero = urllib.request.urlopen(
+              f'https://huggingface.co/{repo}/raw/{revision}/{archivo}'
+          ).read().decode()
+          real = dict(
+              sha256DelModelo=re.search(r'oid sha256:(\w+)', puntero).group(1),
+              bytesDelModelo=re.search(r'size (\d+)', puntero).group(1),
+          )
+
+          males = [
+              f'  {nombre}: el código dice "{constante(nombre)}" y es "{valor}"'
+              for nombre, valor in real.items()
+              if constante(nombre) != valor
+          ]
           if males:
               sys.exit('ERROR: la ficha del modelo no coincide:\n' + '\n'.join(males))
-          print('El modelo que se baja es el que dice el código.')
+          print(f'El modelo que se baja ({repo}/{archivo}) es el que dice el código.')
           PY

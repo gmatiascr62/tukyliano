@@ -16,7 +16,7 @@ algún commit viejo aparecen `main.py` o `buildozer.spec`, son de esa.
 | Preposizioni | Completar el hueco con la preposición, simple o articulada. Se elige con cuáles practicar (se pueden dejar dos prendidas y el resto apagadas) y un botón explica la tabla. |
 | Via | El «via» que se le pega al verbo (andare via, buttare via). Se elige el verbo o se escribe la frase entera, y un botón explica cómo se usa. |
 | Racconti | Cuentos para leer en italiano; se toca el renglón para ver la traducción y escucharlo. La novela ocupa un solo renglón de la lista y adentro están sus capítulos, cada uno con su tapa. |
-| Chat | Charla con Gemini, que corrige sobre la marcha y traduce lo que se ponga entre almohadillas. |
+| Chat | Charla con una IA que corre adentro del celular, sin internet. Corrige sobre la marcha y traduce lo que se ponga entre almohadillas. |
 
 ## Los datos van aparte
 
@@ -51,11 +51,21 @@ La app mira esa Release al arrancar y avisa cuando hay una versión más nueva.
 > que la tengan instalada tendrían que desinstalarla para poder actualizar.
 > Por eso el build falla si la huella no coincide.
 
-## La clave de la IA
+## La IA del chat
 
-La sección Chat usa Gemini. La clave la pega el usuario en la app y queda solo
-en el almacenamiento privado del celular: **nunca va en el código ni en el
-repo**, que es público. Un test verifica que no se cuele ninguna.
+La sección Chat no habla con ningún servidor: el modelo corre adentro del
+celular. Es **Qwen3-0.6B** cuantizado a Q4_K_M (378 MB, licencia Apache 2.0) y
+lo mueve **llama.cpp**, compilado para arm64 por el workflow del APK y metido
+adentro en `jniLibs`.
+
+El modelo no viaja en el APK —pesa más que toda la app— sino que lo baja la
+app la primera vez que se entra al chat, desde Hugging Face y clavado a una
+revisión. Lo bajado se verifica contra un SHA-256 antes de usarlo, se puede
+retomar si se corta, y después funciona en modo avión. No hay clave que pegar,
+no hay cuota que se agote y nada de lo que se escribe sale del aparato.
+
+El workflow `modelo-ia.yml` vuelve a chequear contra Hugging Face el tamaño y
+la huella cada vez que se toca `lib/ia/modelo.dart`.
 
 ## Correr los tests
 

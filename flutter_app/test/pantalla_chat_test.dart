@@ -2,102 +2,58 @@ import 'dart:convert';
 import 'dart:io';
 import 'dart:math';
 
+import 'package:crypto/crypto.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:tukyliano/datos/almacenamiento_clave.dart';
+import 'package:tukyliano/datos/descarga_modelo.dart';
 import 'package:tukyliano/ia/chat.dart';
-import 'package:tukyliano/ia/gemini.dart';
-import 'package:tukyliano/main.dart';
+import 'package:tukyliano/ia/modelo.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
-import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/tema.dart';
 import 'package:tukyliano/widgets/pastilla.dart';
 
+import 'motor_falso.dart';
 import 'util_pantalla.dart';
 import 'voz_falsa.dart';
 
-/// Los pedidos que salieron a la API, ya decodificados.
-class _Espia {
-  final List<Map<String, dynamic>> pedidos = [];
-
-  /// Los turnos del último pedido: el historial que se le mandó a la IA.
-  List<Map<String, dynamic>> get ultimosTurnos =>
-      (pedidos.last['contents'] as List).cast<Map<String, dynamic>>();
-
-  String textoDe(int turno) =>
-      ((ultimosTurnos[turno]['parts'] as List).first as Map)['text'] as String;
-}
-
-/// Carpeta de verdad para la clave: es lo que en el celular es la carpeta
-/// privada de la app.
-Directory _carpeta() {
-  final dir = Directory.systemTemp.createTempSync('tukyliano_clave');
-  addTearDown(() => dir.deleteSync(recursive: true));
-  return dir;
-}
-
-/// Gemini de mentira: contesta lo que se le diga y anota lo que le pidieron.
-Gemini _gemini(
-  _Espia espia, {
-  String respuesta = 'Bene! E tu?',
-  int estado = 200,
-  Duration demora = Duration.zero,
-}) {
-  return Gemini(
-    cliente: MockClient((pedido) async {
-      espia.pedidos.add(jsonDecode(pedido.body) as Map<String, dynamic>);
-      // Para los tests que miran qué pasa mientras la IA todavía no contestó.
-      if (demora > Duration.zero) await Future<void>.delayed(demora);
-      if (estado != 200) {
-        return http.Response(
-          '{"error": {"message": "API key not valid"}}',
-          estado,
-        );
-      }
-      return http.Response(
-        jsonEncode({
-          'candidates': [
-            {
-              'content': {
-                'parts': [
-                  {'text': respuesta},
-                ],
-              },
-            },
-          ],
-        }),
-        200,
-        // Sin el charset la respuesta se leería en latin1 y los acentos
-        // italianos llegarían roto.
-        headers: {'content-type': 'application/json; charset=utf-8'},
-      );
-    }),
-  );
-}
-
-/// La semilla que usan los tests: con ella la pantalla arranca siempre con el
+/// La semilla que usan los tests: con ella la charla arranca siempre con el
 /// mismo saludo, aunque en el celular salga uno al azar.
 const _semilla = 3;
 final _saludoFijo = saludoAlAzar(azar: Random(_semilla));
 
-Future<_Espia> _abrir(
+final List<int> _modeloFalso = utf8.encode('hace de modelo' * 50);
+
+/// Una carpeta con el modelo ya bajado, como la de alguien que ya lo tiene.
+Directory _carpetaConModelo({bool conModelo = true}) {
+  final dir = Directory.systemTemp.createTempSync('chat_modelo');
+  addTearDown(() => dir.deleteSync(recursive: true));
+  if (conModelo) {
+    File('${dir.path}/$archivoDelModelo').writeAsBytesSync(_modeloFalso);
+  }
+  return dir;
+}
+
+DescargaModelo _descarga(Directory dir) => DescargaModelo(
+      cliente: MockClient.streaming(
+        (_, _) async => http.StreamedResponse(
+          Stream.fromIterable([_modeloFalso]),
+          200,
+          contentLength: _modeloFalso.length,
+        ),
+      ),
+      carpeta: () async => dir,
+      huellaEsperada: sha256.convert(_modeloFalso).toString(),
+    );
+
+Future<MotorFalso> _abrir(
   WidgetTester tester, {
-  String? claveGuardada = 'clave-de-prueba',
-  String respuesta = 'Bene! E tu?',
-  int estado = 200,
+  MotorFalso? motor,
   VozFalsa? voz,
   Directory? carpeta,
-  Duration demora = Duration.zero,
 }) async {
-  final dir = carpeta ?? _carpeta();
-  if (claveGuardada != null) {
-    File('${dir.path}/$archivoClave').writeAsStringSync(claveGuardada);
-  }
-
-  final espia = _Espia();
+  final elMotor = motor ?? MotorFalso();
   usarPantallaDeCelular(tester);
   await tester.pumpWidget(MaterialApp(
     theme: Tema.datos,
@@ -105,13 +61,8 @@ Future<_Espia> _abrir(
       body: Padding(
         padding: const EdgeInsets.all(14),
         child: PantallaChat(
-          almacenClave: AlmacenamientoClave(carpeta: () async => dir),
-          gemini: _gemini(
-            espia,
-            respuesta: respuesta,
-            estado: estado,
-            demora: demora,
-          ),
+          descarga: _descarga(carpeta ?? _carpetaConModelo()),
+          motor: elMotor,
           voz: voz ?? VozFalsa(),
           azar: Random(_semilla),
         ),
@@ -119,393 +70,292 @@ Future<_Espia> _abrir(
     ),
   ));
   await tester.pumpAndSettle();
-  return espia;
+  return elMotor;
 }
 
-/// Escribe con el teclado del celular, que es el que usa el chat.
 Future<void> _escribir(WidgetTester tester, String texto) async {
   await tester.enterText(find.byType(TextField), texto);
   await tester.pump();
 }
-
-ElevatedButton _botonEnviar(WidgetTester tester) => tester.widget<ElevatedButton>(
-      find.ancestor(
-        of: find.byIcon(Icons.send_rounded),
-        matching: find.byType(ElevatedButton),
-      ),
-    );
 
 Future<void> _enviar(WidgetTester tester) async {
   await tester.tap(find.byIcon(Icons.send_rounded));
   await tester.pumpAndSettle();
 }
 
+ElevatedButton _botonDeEnviar(WidgetTester tester) =>
+    tester.widget<ElevatedButton>(
+      find.ancestor(
+        of: find.byIcon(Icons.send_rounded),
+        matching: find.byType(ElevatedButton),
+      ),
+    );
+
 void main() {
-  group('la clave', () {
-    testWidgets('sin clave guardada la pide antes de charlar', (tester) async {
-      await _abrir(tester, claveGuardada: null);
-
-      expect(
-        find.text('Necesitás una clave gratis de la IA (Gemini)'),
-        findsOneWidget,
-      );
-      expect(find.text(_saludoFijo), findsNothing);
-    });
-
-    testWidgets('la clave pegada queda en el celular, nunca en el código',
-        (tester) async {
-      final dir = _carpeta();
-      // El portapapeles del celular, con la clave ya copiada del navegador.
-      tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
-        SystemChannels.platform,
-        (llamada) async => llamada.method == 'Clipboard.getData'
-            ? <String, dynamic>{'text': 'clave-pegada-a-mano'}
-            : null,
-      );
-      addTearDown(() => tester.binding.defaultBinaryMessenger
-          .setMockMethodCallHandler(SystemChannels.platform, null));
-
-      await _abrir(tester, claveGuardada: null, carpeta: dir);
-      await tester.tap(find.text('Pegar clave'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Guardar'));
-      await tester.pumpAndSettle();
-
-      expect(File('${dir.path}/$archivoClave').readAsStringSync(),
-          'clave-pegada-a-mano');
-      expect(find.text(_saludoFijo), findsOneWidget);
-    });
-
-    testWidgets('si la clave no sirve la borra y la pide de nuevo',
-        (tester) async {
-      final dir = _carpeta();
-      await _abrir(tester, estado: 400, carpeta: dir);
-
-      await _escribir(tester, 'ciao');
-      await _enviar(tester);
-
-      expect(find.textContaining('La clave no funcionó'), findsOneWidget);
-      // Una credencial que ya no vale no tiene por qué seguir guardada.
-      expect(File('${dir.path}/$archivoClave').existsSync(), isFalse);
-    });
-  });
-
   group('la charla', () {
-    testWidgets('arranca con el saludo, sin pedirle nada a la IA',
+    testWidgets('arranca con el saludo, sin molestar al modelo',
         (tester) async {
-      final espia = await _abrir(tester);
+      final motor = await _abrir(tester);
 
       expect(find.text(_saludoFijo), findsOneWidget);
-      expect(espia.pedidos, isEmpty);
+      expect(motor.prompts, isEmpty);
     });
 
-    testWidgets('se escribe con el teclado propio y contesta la IA',
+    testWidgets('lo que escribo sale a la derecha y la respuesta a la izquierda',
         (tester) async {
-      final espia = await _abrir(tester, respuesta: 'Bene! E tu?');
+      await _abrir(tester, motor: MotorFalso(respuesta: 'Bene! E tu?'));
 
       await _escribir(tester, 'ciao');
-      expect(find.text('ciao'), findsOneWidget);
       await _enviar(tester);
 
-      expect(espia.textoDe(2), 'ciao');
+      expect(find.text('ciao'), findsOneWidget);
       expect(find.text('Bene! E tu?'), findsOneWidget);
-      // El campo queda limpio para el mensaje siguiente.
-      expect(find.text('Escribí en italiano...'), findsOneWidget);
     });
 
-    testWidgets('usa el teclado del celular, con corrector',
+    testWidgets('al modelo le llega el prompt con las instrucciones',
         (tester) async {
-      // En el resto de la app el teclado es propio: corregir una conjugación
-      // a medio escribir le resolvería el ejercicio al alumno. Acá son frases
-      // enteras y el corrector ayuda.
-      await _abrir(tester);
-
-      final campo = tester.widget<TextField>(find.byType(TextField));
-      expect(campo.autocorrect, isTrue);
-      expect(campo.enableSuggestions, isTrue);
-      // Y no está el teclado propio de la app.
-      expect(find.widgetWithText(ElevatedButton, 'è'), findsNothing);
-    });
-
-    testWidgets('vacío no se puede enviar', (tester) async {
-      await _abrir(tester);
-
-      expect(_botonEnviar(tester).onPressed, isNull);
-
-      await _escribir(tester, 'a');
-      expect(_botonEnviar(tester).onPressed, isNotNull);
-    });
-
-    testWidgets('la segunda vuelta le manda la charla entera', (tester) async {
-      final espia = await _abrir(tester, respuesta: 'Bene! E tu?');
-
-      await _escribir(tester, 'ciao');
-      await _enviar(tester);
-      await _escribir(tester, 'bene');
-      await _enviar(tester);
-
-      // Instrucciones, saludo, ciao, la respuesta de la IA y bene.
-      expect(espia.ultimosTurnos.length, 5);
-      expect(espia.textoDe(0), promptDeChat);
-      expect(espia.textoDe(2), 'ciao');
-      expect(espia.textoDe(3), 'Bene! E tu?');
-      expect(espia.textoDe(4), 'bene');
-    });
-
-    testWidgets('sin internet avisa y la charla sigue viva', (tester) async {
-      final espia = _Espia();
-      final dir = _carpeta();
-      File('${dir.path}/$archivoClave').writeAsStringSync('clave-de-prueba');
-
-      usarPantallaDeCelular(tester);
-      await tester.pumpWidget(MaterialApp(
-        theme: Tema.datos,
-        home: Scaffold(
-          body: PantallaChat(
-            almacenClave: AlmacenamientoClave(carpeta: () async => dir),
-            gemini: Gemini(
-              cliente: MockClient((_) async => throw const SocketException('')),
-            ),
-            voz: VozFalsa(),
-          ),
-        ),
-      ));
-      await tester.pumpAndSettle();
+      final motor = await _abrir(tester);
 
       await _escribir(tester, 'ciao');
       await _enviar(tester);
 
-      expect(find.textContaining('Fijate si tenés internet'), findsOneWidget);
-      // Lo escrito no se pierde de la pantalla y se puede seguir escribiendo.
-      expect(find.text('ciao'), findsOneWidget);
-      expect(espia.pedidos, isEmpty);
+      expect(motor.prompts.single, contains(promptDeChat));
+      expect(motor.prompts.single, contains('<|im_start|>user\nciao'));
+    });
+
+    testWidgets('sin escribir nada el botón está apagado', (tester) async {
+      await _abrir(tester);
+
+      expect(_botonDeEnviar(tester).onPressed, isNull);
+
+      await _escribir(tester, 'ciao');
+      expect(_botonDeEnviar(tester).onPressed, isNotNull);
+    });
+
+    testWidgets('no manda nada a ningún servidor', (tester) async {
+      // Lo que se escribe en el chat no sale del celular: el modelo corre
+      // adentro. Si algún día alguien vuelve a poner una llamada a una API,
+      // este test tiene que avisar.
+      final motor = await _abrir(tester);
+
+      await _escribir(tester, 'mi chiamo Matías');
+      await _enviar(tester);
+
+      expect(motor.prompts, hasLength(1));
+      expect(motor.liberado, isFalse);
     });
   });
 
-  group('las traducciones con almohadillas', () {
-    testWidgets('una palabra entre almohadillas se manda como pedido',
-        (tester) async {
-      final espia = await _abrir(tester, respuesta: '#manteca# = #burro#');
-
-      await _escribir(tester, '#pan#');
-      await _enviar(tester);
-
-      expect(espia.textoDe(2), startsWith('#pan#'));
-      expect(espia.textoDe(2), contains('#pan# = #(traducción)#'));
-    });
-
-    testWidgets('la traducción que contesta se ve en la charla',
-        (tester) async {
-      await _abrir(tester, respuesta: '#manteca# = #burro#\nChe cucini?');
-
-      await _escribir(tester, 'a');
-      await _enviar(tester);
-
-      expect(find.text('#manteca# = #burro#\nChe cucini?'), findsOneWidget);
-    });
-
-    testWidgets('un pedido suelto muestra solo la traducción', (tester) async {
-      // Pedir una palabra es ir al diccionario: la charla de más se recorta,
-      // aunque la IA la haya escrito igual.
+  group('mientras contesta', () {
+    testWidgets('se ve lo que lleva escrito', (tester) async {
+      // El modelo en el celular tarda varios segundos: mostrar la respuesta
+      // recién al final parecería que se colgó.
       await _abrir(
         tester,
-        respuesta: '#manteca# = #burro#\n\nCapisco, cosa prepari?',
+        motor: MotorFalso(
+          pedazos: const ['Ciao', '! Come', ' stai?'],
+          demora: const Duration(milliseconds: 50),
+        ),
+      );
+
+      await _escribir(tester, 'ciao');
+      await tester.tap(find.byIcon(Icons.send_rounded));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 60));
+      await tester.pump(const Duration(milliseconds: 60));
+
+      expect(find.textContaining('Ciao'), findsWidgets);
+
+      await tester.pumpAndSettle();
+      expect(find.text('Ciao! Come stai?'), findsOneWidget);
+    });
+
+    testWidgets('el botón pasa a ser el de cortar', (tester) async {
+      await _abrir(
+        tester,
+        motor: MotorFalso(
+          pedazos: const ['Ciao', '!'],
+          demora: const Duration(milliseconds: 50),
+        ),
+      );
+
+      await _escribir(tester, 'ciao');
+      await tester.tap(find.byIcon(Icons.send_rounded));
+      await tester.pump();
+
+      expect(find.byIcon(Icons.stop_rounded), findsOneWidget);
+      expect(find.byIcon(Icons.send_rounded), findsNothing);
+
+      await tester.pumpAndSettle();
+      expect(find.byIcon(Icons.send_rounded), findsOneWidget);
+    });
+
+    testWidgets('cortar deja lo que llegó hasta ahí', (tester) async {
+      final motor = MotorFalso(
+        pedazos: const ['Ciao', ' Matías', ' come stai'],
+        demora: const Duration(milliseconds: 50),
+      );
+      await _abrir(tester, motor: motor);
+
+      await _escribir(tester, 'ciao');
+      await tester.tap(find.byIcon(Icons.send_rounded));
+      await tester.pump();
+      await tester.pump(const Duration(milliseconds: 60));
+
+      await tester.tap(find.byIcon(Icons.stop_rounded));
+      await tester.pumpAndSettle();
+
+      expect(motor.cortes, 1);
+      expect(find.text('Ciao'), findsOneWidget);
+      expect(find.byIcon(Icons.send_rounded), findsOneWidget);
+    });
+
+    testWidgets('no se puede mandar otro mensaje encima', (tester) async {
+      // Una sola generación por vez: dos a la vez no entran en la memoria de
+      // un celular.
+      await _abrir(
+        tester,
+        motor: MotorFalso(
+          pedazos: const ['Ciao'],
+          demora: const Duration(milliseconds: 50),
+        ),
+      );
+
+      await _escribir(tester, 'ciao');
+      await tester.tap(find.byIcon(Icons.send_rounded));
+      await tester.pump();
+
+      expect(find.byIcon(Icons.send_rounded), findsNothing);
+      await tester.pumpAndSettle();
+    });
+  });
+
+  group('las traducciones', () {
+    testWidgets('un pedido solo va por su propio prompt', (tester) async {
+      final motor = await _abrir(tester, motor: MotorFalso(respuesta: 'burro'));
+
+      await _escribir(tester, '#manteca#');
+      await _enviar(tester);
+
+      expect(motor.prompts.single, contains(promptDeTraduccion));
+      expect(motor.prompts.single, isNot(contains(promptDeChat)));
+      expect(find.text('#manteca# = #burro#'), findsOneWidget);
+    });
+
+    testWidgets('si contesta de más, se queda con la palabra', (tester) async {
+      // Un modelo chico a veces contesta "burro, que es manteca en italiano".
+      await _abrir(
+        tester,
+        motor: MotorFalso(respuesta: 'burro, que significa manteca'),
       );
 
       await _escribir(tester, '#manteca#');
       await _enviar(tester);
 
       expect(find.text('#manteca# = #burro#'), findsOneWidget);
-      expect(find.textContaining('Capisco'), findsNothing);
     });
 
-    testWidgets('un pedido en medio de una frase no corta la charla',
+    testWidgets('en medio de una frase, la charla sigue como siempre',
         (tester) async {
-      await _abrir(
-        tester,
-        respuesta: '#manteca# = #burro#\n\nCapisco, cosa prepari?',
-      );
+      final motor = await _abrir(tester);
 
-      await _escribir(tester, 'mi serve #manteca#');
+      await _escribir(tester, 'mi serve la #manteca#');
       await _enviar(tester);
 
-      expect(find.textContaining('Capisco, cosa prepari?'), findsOneWidget);
+      expect(motor.prompts.single, contains(promptDeChat));
     });
   });
 
-  group('la corrección', () {
-    testWidgets('no se muestra si corrige con la misma frase que escribí',
+  group('las correcciones', () {
+    testWidgets('las reglas corrigen aunque el modelo no se dé cuenta',
         (tester) async {
-      // Lo que pasó practicando: "io vado al lavoro" está bien escrito y la
-      // corrección repetía la frase igual.
-      await _abrir(
-        tester,
-        respuesta: 'Correzione: io vado al lavoro\n'
-            'Lavori sempre così presto la mattina?',
-      );
+      // Un modelo de 0.6B no ve la mitad de los errores. Estos no dependen de
+      // él.
+      await _abrir(tester, motor: MotorFalso(respuesta: 'Tutto bene!'));
 
-      await _escribir(tester, 'io vado al lavoro');
+      await _escribir(tester, 'no capisco perche');
       await _enviar(tester);
 
-      expect(find.textContaining('Correzione'), findsNothing);
       expect(
-        find.text('Lavori sempre così presto la mattina?'),
+        find.textContaining('Correzione: non capisco perché'),
         findsOneWidget,
       );
     });
 
-    testWidgets('la corrección de verdad sí se muestra', (tester) async {
+    testWidgets('si el modelo ya corrigió, no se corrige dos veces',
+        (tester) async {
       await _abrir(
         tester,
-        respuesta: 'Correzione: io vado al lavoro\nChe lavoro fai?',
+        motor: MotorFalso(respuesta: 'Correzione: non capisco\nTutto bene!'),
       );
 
-      await _escribir(tester, 'io ando al lavoro');
+      await _escribir(tester, 'no capisco');
       await _enviar(tester);
 
-      expect(find.textContaining('Correzione: io vado al lavoro'),
+      final burbuja = tester
+          .widgetList<Text>(find.byType(Text))
+          .map((t) => t.textSpan?.toPlainText() ?? t.data ?? '')
+          .firstWhere((t) => t.contains('Correzione'));
+      expect('Correzione:'.allMatches(burbuja).length, 1);
+    });
+
+    testWidgets('una frase bien escrita no se corrige', (tester) async {
+      await _abrir(tester, motor: MotorFalso(respuesta: 'Tutto bene!'));
+
+      await _escribir(tester, 'Ciao! Come stai?');
+      await _enviar(tester);
+
+      expect(find.textContaining('Correzione'), findsNothing);
+    });
+  });
+
+  group('cuando algo sale mal', () {
+    testWidgets('un error del motor se cuenta en castellano', (tester) async {
+      await _abrir(
+        tester,
+        motor: MotorFalso(
+          error: const ProblemaDelMotorFalso('No hay memoria suficiente.'),
+        ),
+      );
+
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+
+      expect(find.textContaining('no pudo contestar'), findsOneWidget);
+    });
+
+    testWidgets('si el modelo no carga, lo dice y deja borrarlo',
+        (tester) async {
+      await _abrir(
+        tester,
+        motor: MotorFalso(
+          seCargaBien: false,
+          problemaAlCargar: 'Este celular no puede correr el modelo.',
+        ),
+      );
+
+      expect(
+        find.text('Este celular no puede correr el modelo.'),
+        findsOneWidget,
+      );
+      expect(find.textContaining('Borrar la IA'), findsOneWidget);
+      expect(find.textContaining('El resto de la app funciona igual'),
           findsOneWidget);
     });
   });
 
-  group('solo escuchar', () {
-    testWidgets('la respuesta se dice y no se muestra', (tester) async {
-      final voz = VozFalsa();
-      await _abrir(tester, respuesta: 'Bene! E tu?', voz: voz);
-
-      await tester.tap(find.text('Solo escuchar'));
-      await tester.pumpAndSettle();
-      await _escribir(tester, 'ciao');
-      await _enviar(tester);
-
-      expect(find.text('Bene! E tu?'), findsNothing);
-      expect(find.text('Tocá para repetir'), findsOneWidget);
-      expect(voz.dicho, contains('Bene! E tu?'));
-    });
-
-    testWidgets('el ojito destapa la respuesta que no se entendió',
+  group('la memoria del celular', () {
+    testWidgets('al salir de la pantalla, el modelo se descarga',
         (tester) async {
-      await _abrir(tester, respuesta: 'Bene! E tu?');
+      // Son cientos de megas: si quedaran ocupados, Android mataría la app
+      // apenas se abra otra cosa.
+      final motor = MotorFalso();
+      await _abrir(tester, motor: motor);
 
-      await tester.tap(find.text('Solo escuchar'));
-      await tester.pumpAndSettle();
-      await _escribir(tester, 'ciao');
-      await _enviar(tester);
-      await tester.tap(find.byIcon(Icons.visibility_outlined));
-      await tester.pumpAndSettle();
-
-      expect(find.text('Bene! E tu?'), findsOneWidget);
-    });
-
-    testWidgets('el audio va sin las almohadillas', (tester) async {
-      final voz = VozFalsa();
-      await _abrir(tester, respuesta: '#manteca# = #burro#', voz: voz);
-
-      await tester.tap(find.text('Solo escuchar'));
-      await tester.pumpAndSettle();
-      await _escribir(tester, 'a');
-      await _enviar(tester);
-
-      expect(voz.dicho, contains('manteca = burro'));
-    });
-
-    testWidgets('lo que ya se leyó no se tapa al prender el modo',
-        (tester) async {
-      await _abrir(tester);
-
-      await tester.tap(find.text('Solo escuchar'));
+      await tester.pumpWidget(const MaterialApp(home: Scaffold()));
       await tester.pumpAndSettle();
 
-      expect(find.text(_saludoFijo), findsOneWidget);
-    });
-
-    testWidgets('apagar el modo destapa todo lo anterior', (tester) async {
-      await _abrir(tester, respuesta: 'Bene! E tu?');
-
-      await tester.tap(find.text('Solo escuchar'));
-      await tester.pumpAndSettle();
-      await _escribir(tester, 'a');
-      await _enviar(tester);
-      await tester.tap(find.text('Solo escuchar'));
-      await tester.pumpAndSettle();
-
-      expect(find.text('Bene! E tu?'), findsOneWidget);
-    });
-
-    testWidgets('con el modo apagado se toca la burbuja para escucharla',
-        (tester) async {
-      final voz = VozFalsa();
-      await _abrir(tester, respuesta: 'Bene! E tu?', voz: voz);
-
-      await _escribir(tester, 'a');
-      await _enviar(tester);
-      expect(voz.dicho, isEmpty);
-
-      await tester.tap(find.text('Bene! E tu?'));
-      await tester.pumpAndSettle();
-
-      expect(voz.dicho, ['Bene! E tu?']);
-    });
-
-    testWidgets('sin la voz italiana instalada no se ofrece el modo',
-        (tester) async {
-      // Hablar italiano con los sonidos de otro idioma enseña mal, así que ahí
-      // no hay nada que escuchar: se avisa cómo instalarla.
-      await _abrir(tester, voz: VozFalsa(hayItaliano: false));
-
-      expect(find.text('Solo escuchar'), findsNothing);
-      expect(find.textContaining('instalá la voz italiana'), findsOneWidget);
-    });
-  });
-
-  group('la memoria', () {
-    testWidgets('salir de la pestaña y volver borra la charla', (tester) async {
-      final dir = _carpeta();
-      File('${dir.path}/$archivoClave').writeAsStringSync('clave-de-prueba');
-      final espia = _Espia();
-
-      usarPantallaDeCelular(tester);
-      await tester.pumpWidget(TukylianoApp(
-        almacenClave: AlmacenamientoClave(carpeta: () async => dir),
-        gemini: _gemini(espia, respuesta: 'Bene! E tu?'),
-        voz: VozFalsa(),
-      ));
-      await tester.pumpAndSettle();
-
-      // Volver al inicio y entrar a otra cosa: es lo que destruye la pantalla
-      // del chat y, con ella, la charla.
-      Future<void> volverAlInicio() async {
-        while (find.byIcon(Icons.arrow_back).evaluate().isNotEmpty) {
-          await tester.tap(find.byIcon(Icons.arrow_back));
-          await tester.pumpAndSettle();
-        }
-      }
-
-      Future<void> irA(Destino destino) async {
-        await volverAlInicio();
-        await tester.tap(find.byIcon(destino.icono));
-        await tester.pumpAndSettle();
-      }
-
-      await irA(Destino.chat);
-      await _escribir(tester, 'ciao');
-      await _enviar(tester);
-      expect(find.text('Bene! E tu?'), findsOneWidget);
-
-      await irA(Destino.gramatica);
-      await irA(Destino.chat);
-
-      // Ni lo que escribí ni lo que contestó: la charla arranca de cero.
-      expect(find.text('ciao'), findsNothing);
-      expect(find.text('Bene! E tu?'), findsNothing);
-      // Cuál de los saludos salió es al azar; lo que importa es que hay uno.
-      expect(find.textContaining('Sono Tuky'), findsOneWidget);
-
-      await _escribir(tester, 'ciao');
-      await _enviar(tester);
-
-      // Instrucciones, saludo y el mensaje: nada de la charla anterior.
-      expect(espia.ultimosTurnos.length, 3);
+      expect(motor.liberado, isTrue);
     });
   });
 
@@ -514,51 +364,71 @@ void main() {
       await _abrir(tester);
       await _escribir(tester, 'ciao');
       await _enviar(tester);
-      expect(find.text('Bene! E tu?'), findsOneWidget);
 
       await tester.tap(find.text('Otro tema'));
       await tester.pumpAndSettle();
 
-      // Lo que se dijo se fue con la charla vieja...
       expect(find.text('ciao'), findsNothing);
-      expect(find.text('Bene! E tu?'), findsNothing);
-      // ...y el saludo nuevo no es el que ya estaba.
       expect(find.text(_saludoFijo), findsNothing);
       expect(find.textContaining('Sono Tuky'), findsOneWidget);
     });
 
-    testWidgets('la IA tampoco se acuerda de la charla anterior',
+    testWidgets('mientras contesta, el botón no se puede tocar',
         (tester) async {
-      final espia = await _abrir(tester);
-      await _escribir(tester, 'mi chiamo Matías');
-      await _enviar(tester);
+      await _abrir(
+        tester,
+        motor: MotorFalso(
+          pedazos: const ['Ciao'],
+          demora: const Duration(milliseconds: 50),
+        ),
+      );
 
-      await tester.tap(find.text('Otro tema'));
-      await tester.pumpAndSettle();
-      await _escribir(tester, 'ciao');
-      await _enviar(tester);
-
-      // Instrucciones, saludo nuevo y el mensaje: nada de lo de antes.
-      expect(espia.ultimosTurnos.length, 3);
-      expect(espia.textoDe(1), isNot(_saludoFijo));
-      expect(espia.textoDe(2), 'ciao');
-    });
-
-    testWidgets('mientras la IA piensa, el botón no se puede tocar',
-        (tester) async {
-      // Si no, la respuesta llegaría a una charla que ya no existe.
-      await _abrir(tester, demora: const Duration(seconds: 1));
       await _escribir(tester, 'ciao');
       await tester.tap(find.byIcon(Icons.send_rounded));
       await tester.pump();
 
-      expect(find.text('Tuky está escribiendo...'), findsOneWidget);
       final pastilla = tester.widget<Pastilla>(
         find.widgetWithText(Pastilla, 'Otro tema'),
       );
       expect(pastilla.alTocar, isNull);
 
-      await tester.pumpAndSettle(const Duration(seconds: 2));
+      await tester.pumpAndSettle();
     });
   });
+
+  group('solo escuchar', () {
+    testWidgets('tapa la respuesta y la dice en voz alta', (tester) async {
+      final voz = VozFalsa();
+      await _abrir(tester, motor: MotorFalso(respuesta: 'Bene!'), voz: voz);
+
+      await tester.tap(find.text('Solo escuchar'));
+      await tester.pumpAndSettle();
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+
+      expect(find.text('Bene!'), findsNothing);
+      expect(find.text('Tocá para repetir'), findsOneWidget);
+      expect(voz.dicho, contains('Bene!'));
+    });
+
+    testWidgets('el ojito destapa lo que no se entendió', (tester) async {
+      await _abrir(tester, motor: MotorFalso(respuesta: 'Bene!'));
+
+      await tester.tap(find.text('Solo escuchar'));
+      await tester.pumpAndSettle();
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+
+      await tester.tap(find.byIcon(Icons.visibility_outlined));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Bene!'), findsOneWidget);
+    });
+  });
+}
+
+/// Un error cualquiera del motor, para probar qué se muestra.
+class ProblemaDelMotorFalso implements Exception {
+  const ProblemaDelMotorFalso(this.mensaje);
+  final String mensaje;
 }

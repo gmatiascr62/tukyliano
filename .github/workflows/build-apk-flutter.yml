@@ -69,6 +69,66 @@ jobs:
       - name: Revisar el código
         run: flutter analyze --no-pub
 
+      # El motor de IA que corre adentro del celular. El paquete de Dart trae
+      # solo los bindings: la biblioteca nativa hay que compilarla, y se hace
+      # acá para que viaje adentro del APK.
+      #
+      # Solo arm64-v8a: es lo que tiene cualquier celular de los últimos ocho
+      # años. Un ARM de 32 bits no tiene memoria para un modelo de 400 MB, así
+      # que compilarlo también para esos sería duplicar el build para nada.
+      #
+      # Sin GPU y sin OpenMP: la GPU de un celular común no ayuda con un modelo
+      # de este tamaño y las bibliotecas no están en todos los aparatos. Todo
+      # por procesador, que es lo que anda en todos lados.
+      - name: Compilar llama.cpp para Android
+        working-directory: .
+        env:
+          # Vacío = la última versión publicada. El build dice cuál usó, para
+          # poder clavarla acá cuando se sepa que anda.
+          LLAMA_TAG: ''
+        run: |
+          set -euo pipefail
+          NDK="${ANDROID_NDK_HOME:-${ANDROID_NDK_ROOT:-${ANDROID_NDK_LATEST_HOME:-}}}"
+          [ -n "$NDK" ] || { echo "ERROR: no hay NDK en el runner."; exit 1; }
+          echo "NDK: $NDK"
+
+          TAG="$LLAMA_TAG"
+          if [ -z "$TAG" ]; then
+            TAG=$(curl -sS https://api.github.com/repos/ggml-org/llama.cpp/releases/latest \
+              | python3 -c "import json,sys; print(json.load(sys.stdin)['tag_name'])")
+          fi
+          echo "VERSIÓN DE LLAMA.CPP: $TAG"
+          echo "llama_tag=$TAG" >> "$GITHUB_OUTPUT"
+
+          git clone --depth 1 --branch "$TAG" \
+            https://github.com/ggml-org/llama.cpp /tmp/llama.cpp
+
+          cmake -S /tmp/llama.cpp -B /tmp/llama-build \
+            -DCMAKE_TOOLCHAIN_FILE="$NDK/build/cmake/android.toolchain.cmake" \
+            -DANDROID_ABI=arm64-v8a \
+            -DANDROID_PLATFORM=android-24 \
+            -DCMAKE_BUILD_TYPE=Release \
+            -DBUILD_SHARED_LIBS=ON \
+            -DGGML_OPENMP=OFF \
+            -DGGML_LLAMAFILE=OFF \
+            -DLLAMA_CURL=OFF \
+            -DLLAMA_BUILD_TESTS=OFF \
+            -DLLAMA_BUILD_EXAMPLES=OFF \
+            -DLLAMA_BUILD_SERVER=OFF \
+            -DLLAMA_BUILD_TOOLS=ON
+          cmake --build /tmp/llama-build --config Release -j"$(nproc)"
+
+          DESTINO=flutter_app/android/app/src/main/jniLibs/arm64-v8a
+          mkdir -p "$DESTINO"
+          find /tmp/llama-build -name '*.so' -exec cp -v {} "$DESTINO/" \;
+
+          echo "Bibliotecas que van en el APK:"
+          ls -lh "$DESTINO"
+          # Sin esta no hay chat: es la que abre el paquete de Dart.
+          test -f "$DESTINO/libmtmd.so" || test -f "$DESTINO/libllama.so" \
+            || { echo "ERROR: no se compiló ni libmtmd.so ni libllama.so"; exit 1; }
+        id: llama
+
       # Release en vez de debug: el APK pasa de ~160 MB a ~25 MB.
       #
       # El número de build es el del workflow, que siempre sube. Es lo que mira
