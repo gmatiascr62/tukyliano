@@ -4,6 +4,8 @@ import 'dart:io';
 import 'package:llama_cpp_dart/llama_cpp_dart.dart';
 
 import '../logica/capacidad.dart';
+import 'archivo_gguf.dart';
+import 'espia_de_stderr.dart';
 import 'motor_ia.dart';
 
 /// El motor de verdad: llama.cpp corriendo adentro del celular.
@@ -53,6 +55,9 @@ class MotorLlama implements MotorIA {
   /// para no volver a probar la que no en cada carga.
   static String? _bibliotecaQueEstaba;
 
+  /// Si la vez que anduvo fue mapeando el archivo o leyéndolo entero.
+  static bool? _mapearAnduvo;
+
   /// El único motor que puede haber levantado en toda la app.
   ///
   /// Es estático porque el isolate también lo es: el paquete levanta siempre
@@ -73,8 +78,19 @@ class MotorLlama implements MotorIA {
     if (_llama != null) return true;
     _problema = '';
 
-    if (!File(rutaDelModelo).existsSync()) {
+    final archivo = File(rutaDelModelo);
+    if (!archivo.existsSync()) {
       _problema = 'No está el archivo del modelo. Bajalo de nuevo.';
+      return false;
+    }
+
+    // Si el archivo estuviera cortado o no fuera un GGUF, el error nativo sería
+    // el mismo "no se pudo cargar" de siempre. Mirarlo antes cuesta nada y saca
+    // esa duda del medio.
+    final ficha = await mirarElArchivo(archivo);
+    if (ficha != null && !ficha.esGguf) {
+      _problema = 'El archivo del modelo no sirve (${ficha.resumen}). '
+          'Borralo y bajalo de nuevo.';
       return false;
     }
 
@@ -84,25 +100,47 @@ class MotorLlama implements MotorIA {
     // alcanza con libllama.so. En la computadora (los tests de escritorio) se
     // deja que la busque sola.
     final bibliotecas = Platform.isAndroid
-        ? [_bibliotecaQueEstaba ?? 'libmtmd.so', 'libllama.so']
-        : <String?>[null];
+        ? {_bibliotecaQueEstaba ?? 'libmtmd.so', 'libllama.so'}
+        : <String?>{null};
+
+    // Mapear el archivo es lo mejor cuando se puede: el sistema va trayendo los
+    // pedazos que hacen falta y puede soltarlos si necesita memoria. Pero en
+    // algunos celulares el mapeo no está permitido y entonces no carga nada.
+    // Leerlo entero gasta más memoria y por eso va segundo, no primero.
+    final conMapa = _mapearAnduvo == null ? [true, false] : [_mapearAnduvo!];
+
+    // llama.cpp cuenta en detalle por qué no pudo cargar, pero lo escribe en la
+    // salida de error, que en un celular no se lee en ningún lado. Mientras
+    // dura el intento se desvía a un archivo; si sale bien no se usa.
+    final espia = EspiaDeStderr(File('${archivo.parent.path}/$archivoDelDicho'));
+    espia.empezar();
 
     final problemas = <String>[];
-    for (final biblioteca in bibliotecas.toSet()) {
-      // Cada intento con su propio LlamaParent: reusar el anterior era el
-      // error "An isolate with ID [1] already exists", que además tapaba el
-      // problema de verdad. Un parent levanta un isolate y no lo suelta hasta
-      // que se lo libera.
-      final llama = await _intentarCon(biblioteca);
-      if (llama != null) {
-        _llama = llama;
-        if (biblioteca != null) _bibliotecaQueEstaba = biblioteca;
-        return true;
+    for (final biblioteca in bibliotecas) {
+      for (final mapear in conMapa) {
+        // Cada intento con su propio LlamaParent: reusar el anterior era el
+        // error "An isolate with ID [1] already exists", que además tapaba el
+        // problema de verdad. Un parent levanta un isolate y no lo suelta hasta
+        // que se lo libera.
+        final llama = await _intentarCon(biblioteca, mapear: mapear);
+        if (llama != null) {
+          _llama = llama;
+          if (biblioteca != null) _bibliotecaQueEstaba = biblioteca;
+          _mapearAnduvo = mapear;
+          await espia.terminar();
+          return true;
+        }
+        problemas.add('${biblioteca ?? 'la del sistema'}'
+            '${mapear ? '' : ' sin mapear'}: $_ultimoProblema');
       }
-      problemas.add('${biblioteca ?? 'la del sistema'}: $_ultimoProblema');
     }
 
-    _problema = 'No se pudo cargar el modelo. ${problemas.join(' / ')}';
+    final dicho = loQueImporta(await espia.terminar());
+
+    final queEs = ficha == null ? '' : ' (${ficha.resumen})';
+    final loQueDijo = dicho.isEmpty ? '' : ' Dice: $dicho';
+    _problema =
+        'No se pudo cargar el modelo$queEs. ${problemas.join(' / ')}.$loQueDijo';
     return false;
   }
 
@@ -113,7 +151,10 @@ class MotorLlama implements MotorIA {
   /// Devuelve null si no se pudo, y en [_ultimoProblema] queda por qué. Lo que
   /// se haya levantado a medias se libera antes de volver: si quedara dando
   /// vueltas, el intento siguiente chocaría con él.
-  Future<LlamaParent?> _intentarCon(String? biblioteca) async {
+  Future<LlamaParent?> _intentarCon(
+    String? biblioteca, {
+    required bool mapear,
+  }) async {
     // Si quedó uno de antes —de la vez pasada que se entró al chat, o de un
     // intento que falló— hay que esperarlo antes de levantar otro.
     final anterior = _elQueEstaLevantado;
@@ -135,9 +176,10 @@ class MotorLlama implements MotorIA {
     final modelo = ModelParams()
       // Cero: solo procesador. Ver el comentario de arriba.
       ..nGpuLayers = 0
-      // El archivo se mapea en vez de copiarse a memoria: así el sistema
-      // puede soltar pedazos cuando necesita memoria, en vez de matar la app.
-      ..useMemorymap = true
+      // Mapeado, el sistema puede soltar pedazos cuando necesita memoria en
+      // vez de matar la app. Sin mapear entra entero en RAM: se usa solo si
+      // mapear no funcionó.
+      ..useMemorymap = mapear
       ..useMemoryLock = false;
 
     final sorteo = SamplerParams()
@@ -156,6 +198,9 @@ class MotorLlama implements MotorIA {
         modelParams: modelo,
         contextParams: contexto,
         samplingParams: sorteo,
+        // Sin esto el paquete le tapa la boca a llama.cpp, y lo que tiene para
+        // decir cuando algo sale mal es justo lo que hace falta.
+        verbose: true,
       ),
     );
 
