@@ -154,9 +154,14 @@ int main(int argc, char ** argv) {
     struct llama_batch tanda = llama_batch_get_one(fichas, cuantas);
     llama_token ficha = 0;
 
+    // Cuántas fichas como mucho. Con FICHAS se cambia desde afuera: pensar
+    // gasta muchas antes de llegar a la respuesta.
+    const char * cuantasPide = getenv("FICHAS");
+    const int tope = cuantasPide == NULL ? 80 : atoi(cuantasPide);
+
     printf("== respuesta: ");
     fflush(stdout);
-    for (int i = 0; i < 80; i++) {
+    for (int i = 0; i < tope; i++) {
         if (llama_decode(contexto, tanda) != 0) {
             printf("\nFALLO: llama_decode no pudo seguir.\n");
             return 5;

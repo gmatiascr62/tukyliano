@@ -192,9 +192,23 @@ jobs:
             printf '<|im_start|>assistant\n<think>\n\n</think>\n\n'
           } > /tmp/prompts/4-pelado.txt
 
+          # 5. Dejándolo pensar: sin /no_think y sin el bloque vacío. Cuando
+          #    piensa, el modelo escribe cosas coherentes; cuando no, copia.
+          #    Si la respuesta después del pensamiento sirve, el camino es
+          #    dejarlo pensar y no mostrar esa parte.
+          {
+            printf '<|im_start|>system\n%s<|im_end|>\n' "$REGLAS"
+            printf '<|im_start|>assistant\n%s<|im_end|>\n' "$SALUDO"
+            printf '<|im_start|>user\n%s<|im_end|>\n' "$ALUMNO"
+            printf '<|im_start|>assistant\n'
+          } > /tmp/prompts/5-pensando.txt
+
           for prompt in /tmp/prompts/*.txt; do
             echo "=================================================="
             echo "===== $(basename "$prompt")"
+            # Pensar gasta fichas antes de llegar a la respuesta.
+            FICHAS=$(case "$prompt" in *pensando*) echo 300;; *) echo 80;; esac)
+            export FICHAS
             /tmp/probar_modelo /tmp/modelo.gguf "$prompt" || true
           done
 
@@ -238,7 +252,13 @@ jobs:
           # Y el mismo tamaño de siempre, pero publicado por otro: si con este
           # contesta, el problema era el archivo que estábamos bajando.
           probar_uno ggml-org/Qwen3-0.6B-GGUF q8_0
-          probar_uno Qwen/Qwen3-0.6B-GGUF q4_k_m
+
+          # Otro modelo, de los que contestan sin pensar primero. Usa el mismo
+          # formato de charla que Qwen3, así que el prompt de la app le sirve
+          # tal cual. Si este contesta bien, el problema nunca fue el archivo
+          # ni la biblioteca: es que a este Qwen3, sin pensar, no le sale.
+          probar_uno Qwen/Qwen2.5-0.5B-Instruct-GGUF q8_0
+          probar_uno Qwen/Qwen2.5-1.5B-Instruct-GGUF q4_k_m
 
   # Lo mismo, pero adentro de un Android. Es donde falla de verdad, y acá sí
   # se lee todo lo que llama.cpp tiene para decir.
