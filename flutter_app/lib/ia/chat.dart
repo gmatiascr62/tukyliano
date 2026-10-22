@@ -79,6 +79,11 @@ const String marcaTraduccion = '#';
 /// el tema una vez de tres, con el ejemplo tres de tres. Es lo mismo que pasa
 /// con las traducciones: a un modelo chico se le muestra, no se le describe.
 ///
+/// El ejemplo habla de una bicicleta y no de un perro —que fue el primero que
+/// se probó— porque uno de los saludos pregunta por mascotas. Cuando la charla
+/// caía justo en el tema del ejemplo, el modelo contestaba con el libreto en
+/// vez de con lo que le estaban diciendo. Ningún saludo habla de bicicletas.
+///
 /// Las instrucciones se prueban en el workflow "Probar el modelo", que las saca
 /// de acá y las corre con tres mensajes de alumno.
 const String promptDeChat = '''
@@ -90,12 +95,12 @@ finisci con una domanda sulla stessa cosa che ha appena detto lo studente.
 
 Così parli:
 
-Studente: Ho un cane.
-Tuky: Che bello! Come si chiama il tuo cane?
-Studente: Si chiama Luna.
-Tuky: Luna è un bel nome. Quanti anni ha Luna?
-Studente: Ha tre anni.
-Tuky: Ancora giovane! Dove la porti a passeggiare?
+Studente: Ho una bicicletta.
+Tuky: Che bello! Di che colore è la tua bicicletta?
+Studente: È rossa.
+Tuky: Il rosso mi piace molto. Da quanto tempo ce l'hai?
+Studente: Da due anni.
+Tuky: Due anni non sono pochi! Dove vai di solito in bicicletta?
 
 Non annunciare mai quello che stai per dire: dillo e basta.
 Non correggere lo studente: non è il tuo compito.
