@@ -54,16 +54,16 @@ const String marcaTraduccion = '#';
 /// Las instrucciones que se le dan al modelo al principio de cada charla.
 ///
 /// Son cortas y numeradas a propósito. El modelo que corre en el celular tiene
-/// 0.6B de parámetros: con nueve reglas largas se le mezclan y no cumple
+/// pocos parámetros: con nueve reglas largas se le mezclan y no cumple
 /// ninguna, con seis cortas cumple la mayoría. Lo que antes se le pedía por
 /// escrito y ahora se resuelve con código está en esa diferencia: las
 /// traducciones van por su propio prompt ([promptDeTraduccion]) y las
 /// correcciones las revisa [sinCorreccionRepetida] y las reglas de
 /// reglas_italiano.dart.
 ///
-/// El /no_think del final apaga el modo de razonamiento de Qwen3: sin eso, el
-/// modelo escribe un bloque `<think>` de cien palabras antes de cada respuesta y
-/// en un celular eso son veinte segundos regalados.
+/// Antes terminaban con un /no_think, que era la forma de apagarle el
+/// razonamiento a Qwen3. El modelo de ahora contesta de una, así que no hace
+/// falta pedirle nada de eso.
 const String promptDeChat = '''
 Sos un profesor de italiano para alumnos que hablan español.
 
@@ -73,8 +73,7 @@ Sos un profesor de italiano para alumnos que hablan español.
    Correzione: la frase bien escrita
 4. Si hace falta aclarar algo, aclaralo en español y en una sola frase.
 5. Si no sabés algo, decí que no sabés. No inventes.
-6. Hablá solo de aprender italiano. Sin markdown, sin emojis, sin listas.
-/no_think''';
+6. Hablá solo de aprender italiano. Sin markdown, sin emojis, sin listas.''';
 
 /// Las instrucciones para traducir, que son otras.
 ///
@@ -88,8 +87,7 @@ const String promptDeTraduccion = '''
 Traducís palabras y frases entre español e italiano.
 Si te dan una palabra en español, contestás la italiana; si te dan una
 italiana, contestás la española. Nunca devolvés la misma palabra.
-Contestás solo con la traducción: sin comillas, sin explicar y sin saludar.
-/no_think''';
+Contestás solo con la traducción: sin comillas, sin explicar y sin saludar.''';
 
 /// Cuántos mensajes de la charla se le recuerdan al modelo.
 ///

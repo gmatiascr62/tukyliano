@@ -71,7 +71,7 @@ class Descarga {
 /// - **Se verifica.** Recién cuando la huella SHA-256 coincide con la que está
 ///   escrita en el código, el archivo pasa a llamarse como el bueno. Así nunca
 ///   se intenta cargar un modelo cortado por la mitad.
-/// - **La huella se saca de a pedazos.** Leer 400 MB de una en memoria tumba un
+/// - **La huella se saca de a pedazos.** Leer mil megas de una en memoria tumba un
 ///   celular de gama baja.
 class DescargaModelo {
   DescargaModelo({
@@ -231,6 +231,7 @@ class DescargaModelo {
       }
 
       await aMedias.rename(bueno.path);
+      await borrarLosViejos();
       yield Descarga(paso: PasoDescarga.listo, bajados: hechos, total: total);
     } on TimeoutException {
       yield Descarga(
@@ -263,6 +264,31 @@ class DescargaModelo {
       } catch (_) {
         // Si no se puede borrar, no hay nada que hacer: tampoco es grave.
       }
+    }
+  }
+
+  /// Borra los modelos de versiones anteriores de la app.
+  ///
+  /// Cada modelo lleva su revisión en el nombre, así que al cambiar de modelo
+  /// el viejo queda ahí ocupando sus cientos de megas sin que nadie lo use ni
+  /// lo vea. Esto corre cuando el nuevo ya está bajado y verificado: antes no,
+  /// porque si la bajada falla el viejo es lo único que hay.
+  Future<void> borrarLosViejos() async {
+    try {
+      final dir = await _carpeta();
+      if (dir == null) return;
+      await for (final cosa in dir.list()) {
+        final nombre = cosa.path.split('/').last;
+        final esDeUnModelo = nombre.startsWith(principioDeLosModelos) &&
+            (nombre.endsWith('.gguf') || nombre.endsWith('.bajando'));
+        final esElDeAhora = nombre == archivoDelModelo ||
+            nombre == archivoDelModeloAMedias;
+        if (cosa is File && esDeUnModelo && !esElDeAhora) {
+          await cosa.delete();
+        }
+      }
+    } catch (_) {
+      // Dejar basura no es grave; romper por querer limpiarla, sí.
     }
   }
 

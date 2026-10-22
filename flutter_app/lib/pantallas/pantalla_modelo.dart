@@ -11,7 +11,7 @@ import '../tema.dart';
 ///
 /// Son unos cuantos megas y hay que ser claro sobre eso antes de empezar, no
 /// después. También es el lugar donde se avisa si el celular no da: mejor
-/// decirlo acá que dejar que alguien se baje 400 MB para que después la app se
+/// decirlo acá que dejar que alguien se baje mil megas para que después la app se
 /// cierre sola al abrir el chat.
 class PantallaModelo extends StatefulWidget {
   const PantallaModelo({

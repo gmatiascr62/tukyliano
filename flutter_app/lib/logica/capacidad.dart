@@ -23,7 +23,7 @@ class Capacidad {
 
   bool get puede => queTanBien != QueTanBien.no;
 
-  /// Lo que hay que decirle a alguien antes de que se baje 400 MB.
+  /// Lo que hay que decirle a alguien antes de que se baje casi un giga.
   String get aviso => switch (queTanBien) {
         QueTanBien.bien => '',
         QueTanBien.justo =>
@@ -32,7 +32,7 @@ class Capacidad {
               'tardar medio minuto.',
         QueTanBien.no =>
           'Tu celular tiene ${(memoriaMb / 1024).toStringAsFixed(1)} GB de '
-              'memoria y el chat necesita al menos 3 GB para andar. El resto '
+              'memoria y el chat necesita al menos 4 GB para andar. El resto '
               'de la app funciona igual.',
       };
 }
@@ -40,11 +40,14 @@ class Capacidad {
 /// Cuánta memoria hace falta, en megas, para cargar el modelo sin que Android
 /// mate la app.
 ///
-/// El archivo pesa unos 400 MB y en memoria ocupa parecido, más el contexto.
-/// El número no sale de una cuenta exacta sino de lo que pasa en la práctica:
-/// abajo de 3 GB de RAM total, lo que le queda libre a una app con el sistema
-/// y WhatsApp corriendo no alcanza.
-const int memoriaMinimaMb = 3 * 1024;
+/// El archivo pesa algo más de un giga y en memoria ocupa parecido, más el
+/// contexto. El número no sale de una cuenta exacta sino de lo que pasa en la
+/// práctica: abajo de 4 GB de RAM total, lo que le queda libre a una app con el
+/// sistema y WhatsApp corriendo no alcanza.
+///
+/// Eran 3 GB cuando el modelo pesaba 378 MB. Subió con el modelo: el de antes
+/// entraba en más celulares pero copiaba en vez de contestar.
+const int memoriaMinimaMb = 4 * 1024;
 
 /// A partir de acá anda cómodo.
 const int memoriaComodaMb = 6 * 1024;
