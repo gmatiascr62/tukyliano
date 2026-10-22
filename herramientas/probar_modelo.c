@@ -71,7 +71,11 @@ int main(int argc, char ** argv) {
             return 1;
         }
         texto = delArchivo;
-        printf("== prompt:\n%s\n== fin del prompt\n", texto);
+        // Con doce pruebas seguidas, imprimir el prompt entero tapa las
+        // respuestas, que es lo que se está mirando. Con VER_PROMPT se ve.
+        if (getenv("VER_PROMPT") != NULL) {
+            printf("== prompt:\n%s\n== fin del prompt\n", texto);
+        }
     }
 
     llama_backend_init();
