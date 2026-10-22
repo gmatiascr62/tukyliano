@@ -142,6 +142,7 @@ jobs:
           # Las instrucciones que de verdad corren en el celular salen del
           # código, no de una copia: una copia se desactualiza y entonces la
           # prueba queda probando otra cosa.
+          mkdir -p herramientas/prompts
           python3 - <<'PY' > herramientas/prompts/0-el-del-codigo.txt
           import re
           codigo = open('flutter_app/lib/ia/chat.dart', encoding='utf-8').read()
