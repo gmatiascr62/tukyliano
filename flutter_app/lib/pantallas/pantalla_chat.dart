@@ -240,6 +240,7 @@ class _PantallaChatState extends State<PantallaChat> {
       respuesta = '$marcaTraduccion$pedido$marcaTraduccion = '
           '$marcaTraduccion${_unaPalabra(respuesta)}$marcaTraduccion';
     } else {
+      respuesta = sinCorreccionDelMolde(respuesta);
       respuesta = sinCorreccionRepetida(respuesta, escrito);
       respuesta = _conLaCorreccionDeLasReglas(respuesta, escrito);
     }

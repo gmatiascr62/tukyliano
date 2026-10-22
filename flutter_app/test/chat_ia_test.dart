@@ -313,6 +313,41 @@ void main() {
       // más que puede mezclar con las otras.
       expect(promptDeChat, isNot(contains('/no_think')));
     });
+
+    test('las instrucciones no dejan un molde para copiar', () {
+      // Decía "empezá con este renglón exacto: Correzione: la frase bien
+      // escrita", y el modelo lo copió tal cual a la pantalla.
+      expect(promptDeChat, isNot(contains('la frase bien escrita')));
+    });
+  });
+
+  group('cuando copia el molde en vez de corregir', () {
+    test('se saca el renglón y queda el resto', () {
+      // Lo que contestó de verdad a "Voglio imparare i verbi".
+      const respuesta = 'Verbo è il verbo italiano che indica azioni.\n'
+          'Correzione: la frase bien escrita "Avendo", "Fare", "Essere".';
+
+      expect(
+        sinCorreccionDelMolde(respuesta),
+        'Verbo è il verbo italiano che indica azioni.',
+      );
+    });
+
+    test('una corrección de verdad no se toca', () {
+      const respuesta = 'Correzione: Ho mangiato la pizza.\nBene! E tu?';
+
+      expect(sinCorreccionDelMolde(respuesta), respuesta);
+    });
+
+    test('si no queda nada, no se inventa nada', () {
+      expect(sinCorreccionDelMolde('Correzione: la frase corregida'), isEmpty);
+    });
+
+    test('una frase en italiano que no es corrección se deja', () {
+      const respuesta = 'La frase corregida se dice "la frase corretta".';
+
+      expect(sinCorreccionDelMolde(respuesta), respuesta);
+    });
   });
 
   group('el prompt para traducir', () {

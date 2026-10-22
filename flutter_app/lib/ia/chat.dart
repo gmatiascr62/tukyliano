@@ -69,8 +69,8 @@ Sos un profesor de italiano para alumnos que hablan español.
 
 1. Contestá en italiano simple, de una a tres frases cortas.
 2. Terminá con una pregunta fácil para seguir la charla.
-3. Si el alumno escribió algo mal, empezá con este renglón exacto:
-   Correzione: la frase bien escrita
+3. Si el alumno escribió algo mal, empezá por un renglón que diga Correzione:
+   y después su frase corregida. Si escribió bien, no pongas ese renglón.
 4. Si hace falta aclarar algo, aclaralo en español y en una sola frase.
 5. Si no sabés algo, decí que no sabés. No inventes.
 6. Hablá solo de aprender italiano. Sin markdown, sin emojis, sin listas.''';
@@ -220,6 +220,40 @@ String sinCorreccionRepetida(String respuesta, String mensaje) {
 
   final limpio = quedan.join('\n').trim();
   return limpio.isEmpty ? respuesta : limpio;
+}
+
+/// Palabras que están en las instrucciones y no en ninguna frase en italiano.
+///
+/// Si aparecen adentro de una corrección es porque el modelo copió el molde en
+/// vez de corregir.
+const List<String> _palabrasDelMolde = [
+  'frase bien escrita',
+  'frase corregida',
+  'la frase del alumno',
+];
+
+/// Saca la corrección cuando el modelo copió el molde de las instrucciones.
+///
+/// Pasó de verdad: a "Voglio imparare i verbi" contestó
+/// `Correzione: la frase bien escrita "Avendo", "Fare", "Essere"`. Eso es el
+/// texto de la instrucción, no una corrección, y mostrárselo a alguien que
+/// está aprendiendo es peor que no mostrar nada: parece italiano y no lo es.
+///
+/// Las instrucciones ya no traen un molde para copiar, pero un modelo chico
+/// hace estas cosas igual y esto no puede depender de que se porte bien.
+String sinCorreccionDelMolde(String respuesta) {
+  final quedan = [
+    for (final renglon in respuesta.split('\n'))
+      if (!_esElMolde(renglon)) renglon,
+  ];
+  return quedan.join('\n').trim();
+}
+
+bool _esElMolde(String renglon) {
+  final texto = renglon.trim();
+  if (_empiezaCorreccion.matchAsPrefix(texto) == null) return false;
+  final enMinuscula = texto.toLowerCase();
+  return _palabrasDelMolde.any(enMinuscula.contains);
 }
 
 bool _esCorreccionDe(String renglon, String escritoComparable) {
