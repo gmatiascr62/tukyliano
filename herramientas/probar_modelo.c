@@ -115,11 +115,14 @@ int main(int argc, char ** argv) {
                plantilla == NULL ? "(el modelo no trae)" : plantilla);
     }
 
-    // Los mismos números que usa la app.
     struct llama_context_params parametrosDelContexto = llama_context_default_params();
+    // Los mismos números que parametrosDelContexto() en motor_llama.dart.
+    // La tanda tiene que entrar la charla entera: con 256 esta prueba se
+    // moría —GGML_ASSERT(n_tokens_all <= cparams.n_batch)— con los prompts
+    // largos, justo los que hacía falta probar.
     parametrosDelContexto.n_ctx           = 1024;
-    parametrosDelContexto.n_batch         = 256;
-    parametrosDelContexto.n_ubatch        = 256;
+    parametrosDelContexto.n_batch         = 1024;
+    parametrosDelContexto.n_ubatch        = 128;
     parametrosDelContexto.n_threads       = 2;
     parametrosDelContexto.n_threads_batch = 2;
 
