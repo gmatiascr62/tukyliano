@@ -116,71 +116,47 @@ void main() {
   });
 
   group('la corrección', () {
-    test('la que repite la frase tal cual se escribió no se muestra', () {
-      // Es el caso que apareció practicando: "io vado al lavoro" está bien y
-      // la corrección decía exactamente lo mismo.
-      const contestado = 'Correzione: io vado al lavoro\n'
-          'Lavori sempre così presto la mattina?';
+    test('la del modelo se saca, venga como venga', () {
+      // Al modelo ya no se le pide que corrija. Si corrige igual, es algo que
+      // inventó: a "Ho mangiato la pizza oggi", que está bien escrita, se le
+      // midieron tres correcciones distintas y las tres estaban mal.
+      const contestado = 'Correzione: Hai mangiato la pizza oggi.\n'
+          'Che tipo di pizza ti piace?';
 
       expect(
-        sinCorreccionRepetida(contestado, 'io vado al lavoro'),
-        'Lavori sempre così presto la mattina?',
+        sinCorreccionesDelModelo(contestado),
+        'Che tipo di pizza ti piace?',
       );
     });
 
-    test('tampoco si lo único que cambió son mayúsculas o signos', () {
-      const contestado = 'Correzione: Io vado al lavoro.\nChe lavoro fai?';
-
-      expect(
-        sinCorreccionRepetida(contestado, 'io vado al lavoro'),
-        'Che lavoro fai?',
-      );
-    });
-
-    test('la corrección de verdad se muestra', () {
-      const contestado = 'Correzione: io vado al lavoro\nChe lavoro fai?';
-
-      // Acá sí corrigió: el alumno había escrito el verbo mal.
-      expect(
-        sinCorreccionRepetida(contestado, 'io ando al lavoro'),
-        contestado,
-      );
-    });
-
-    test('un acento que falta es una corrección de verdad', () {
-      // Si se compararan las frases sin acentos, esta se perdería, y es
-      // justamente una de las que hay que mostrar.
-      const contestado = 'Correzione: perché vai al lavoro?\nE tu?';
-
-      expect(
-        sinCorreccionRepetida(contestado, 'perche vai al lavoro?'),
-        contestado,
-      );
-    });
-
-    test('un apóstrofo que falta también', () {
-      const contestado = "Correzione: bevo l'acqua\nCosa mangi?";
-
-      expect(sinCorreccionRepetida(contestado, 'bevo lacqua'), contestado);
-    });
-
-    test('una respuesta sin corrección queda igual', () {
-      const contestado = 'Bene! Lavori sempre così presto?';
-
-      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), contestado);
-    });
-
-    test('si no queda nada se muestra la respuesta entera', () {
-      // Antes una corrección al pedo que una burbuja vacía.
-      const contestado = 'Correzione: io vado al lavoro';
-
-      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), contestado);
-    });
-
-    test('la marca se reconoce con cualquier mayúscula', () {
+    test('la marca se reconoce con cualquier mayúscula y con espacios', () {
       const contestado = 'correzione : io vado al lavoro\nE tu?';
 
-      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), 'E tu?');
+      expect(sinCorreccionesDelModelo(contestado), 'E tu?');
+    });
+
+    test('si contestó varias correcciones se van todas', () {
+      const contestado = 'Correzione: una\nCorrezione: otra\nCome stai?';
+
+      expect(sinCorreccionesDelModelo(contestado), 'Come stai?');
+    });
+
+    test('una respuesta sin correcciones queda igual', () {
+      const contestado = 'Bene! Lavori sempre così presto?';
+
+      expect(sinCorreccionesDelModelo(contestado), contestado);
+    });
+
+    test('si solo había una corrección no queda nada, y está bien', () {
+      // Que la pantalla diga que no contestó es mejor que mostrar una
+      // corrección inventada.
+      expect(sinCorreccionesDelModelo('Correzione: io vado al lavoro'), isEmpty);
+    });
+
+    test('una frase que apenas menciona la palabra no se toca', () {
+      const contestado = 'La correzione si dice "la correzione" in italiano.';
+
+      expect(sinCorreccionesDelModelo(contestado), contestado);
     });
   });
 
@@ -306,8 +282,7 @@ void main() {
     test('las instrucciones son cortas, que es lo que un modelo chico sigue',
         () {
       expect(promptDeChat.split('\n').length, lessThan(15));
-      expect(promptDeChat, contains('profesor de italiano'));
-      expect(promptDeChat, contains('Correzione:'));
+      expect(promptDeChat, contains('insegnante di italiano'));
       // El /no_think era para apagarle el razonamiento a Qwen3. El modelo de
       // ahora contesta de una, y pedirle algo que no entiende es una regla
       // más que puede mezclar con las otras.
@@ -319,34 +294,18 @@ void main() {
       // escrita", y el modelo lo copió tal cual a la pantalla.
       expect(promptDeChat, isNot(contains('la frase bien escrita')));
     });
-  });
 
-  group('cuando copia el molde en vez de corregir', () {
-    test('se saca el renglón y queda el resto', () {
-      // Lo que contestó de verdad a "Voglio imparare i verbi".
-      const respuesta = 'Verbo è il verbo italiano che indica azioni.\n'
-          'Correzione: la frase bien escrita "Avendo", "Fare", "Essere".';
-
-      expect(
-        sinCorreccionDelMolde(respuesta),
-        'Verbo è il verbo italiano che indica azioni.',
-      );
+    test('no se le pide que corrija: eso lo hace el código', () {
+      // Se midió: a "Ho mangiato la pizza oggi", que está bien escrita,
+      // inventó tres correcciones distintas y las tres estaban mal.
+      expect(promptDeChat.toLowerCase(), isNot(contains('correzione')));
     });
 
-    test('una corrección de verdad no se toca', () {
-      const respuesta = 'Correzione: Ho mangiato la pizza.\nBene! E tu?';
-
-      expect(sinCorreccionDelMolde(respuesta), respuesta);
-    });
-
-    test('si no queda nada, no se inventa nada', () {
-      expect(sinCorreccionDelMolde('Correzione: la frase corregida'), isEmpty);
-    });
-
-    test('una frase en italiano que no es corrección se deja', () {
-      const respuesta = 'La frase corregida se dice "la frase corretta".';
-
-      expect(sinCorreccionDelMolde(respuesta), respuesta);
+    test('no le da órdenes numeradas, que confunde con un pedido', () {
+      // "1. Contestá en italiano simple, de una a tres frases cortas" la leía
+      // como el pedido del alumno: contestaba "Ecco una frase corta in
+      // italiano: ...".
+      expect(promptDeChat, isNot(matches(RegExp(r'^\d\.', multiLine: true))));
     });
   });
 

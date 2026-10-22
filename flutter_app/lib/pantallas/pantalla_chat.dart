@@ -240,8 +240,7 @@ class _PantallaChatState extends State<PantallaChat> {
       respuesta = '$marcaTraduccion$pedido$marcaTraduccion = '
           '$marcaTraduccion${_unaPalabra(respuesta)}$marcaTraduccion';
     } else {
-      respuesta = sinCorreccionDelMolde(respuesta);
-      respuesta = sinCorreccionRepetida(respuesta, escrito);
+      respuesta = sinCorreccionesDelModelo(respuesta);
       respuesta = _conLaCorreccionDeLasReglas(respuesta, escrito);
     }
 
@@ -267,17 +266,11 @@ class _PantallaChatState extends State<PantallaChat> {
     if (_soloEscuchar && _puedeHablar) _voz.decir(sinMarcas(respuesta));
   }
 
-  /// La corrección que sale de las reglas, que no depende de que el modelo la
-  /// vea.
+  /// La corrección, que sale de las reglas y no del modelo.
   ///
-  /// Solo se agrega si el modelo no puso ya su propio renglón de corrección: si
-  /// no, saldrían dos.
+  /// Es la única que se muestra: las del modelo se sacaron un renglón antes,
+  /// porque inventa correcciones de frases que están bien.
   String _conLaCorreccionDeLasReglas(String respuesta, String escrito) {
-    final yaCorrige = respuesta
-        .split('\n')
-        .any((r) => r.trim().toLowerCase().startsWith('correzione'));
-    if (yaCorrige) return respuesta;
-
     final errores = revisarItaliano(escrito);
     if (errores.isEmpty) return respuesta;
 

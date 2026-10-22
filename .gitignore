@@ -4,3 +4,4 @@ __pycache__/
 *.pyc
 .buildozer/
 bin/
+herramientas/prompts/0-el-del-codigo.txt

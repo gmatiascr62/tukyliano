@@ -143,6 +143,16 @@ jobs:
           set -eu
           SALUDO='Ciao! Sono Tuky. Guardi il calcio? Per che squadra tifi?'
 
+          # Las instrucciones que de verdad corren en el celular salen del
+          # código, no de una copia: una copia se desactualiza y entonces la
+          # prueba queda probando otra cosa. Las de al lado son alternativas
+          # para comparar contra esta.
+          python3 - <<'PY' > herramientas/prompts/0-el-del-codigo.txt
+          import re
+          codigo = open('flutter_app/lib/ia/chat.dart', encoding='utf-8').read()
+          print(re.search(r"const String promptDeChat = '''\n(.*?)'''", codigo, re.S).group(1))
+          PY
+
           for reglas in herramientas/prompts/*.txt; do
             for alumno in 'Come vai mi amico' 'Ho mangiato la pizza oggi' 'Voglio imparare i verbi'; do
               {
