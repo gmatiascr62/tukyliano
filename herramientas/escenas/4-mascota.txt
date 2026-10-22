@@ -1,0 +1,4 @@
+assistant: Ciao! Sono Tuky. Hai un animale in casa?
+user: Si, Ho un cane
+assistant: Che bello! Come si chiama il tuo cane?
+user: Si chiama tuk-tuk
