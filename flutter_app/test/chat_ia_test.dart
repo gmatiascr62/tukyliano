@@ -281,7 +281,10 @@ void main() {
 
     test('las instrucciones son cortas, que es lo que un modelo chico sigue',
         () {
-      expect(promptDeChat.split('\n').length, lessThan(15));
+      // Llevan una charla de ejemplo adentro, así que no son dos renglones.
+      // Se midió que vale la pena: con la explicación sola el modelo se iba de
+      // tema dos de cada tres veces; con el ejemplo, ninguna.
+      expect(promptDeChat.split('\n').length, lessThan(30));
       expect(promptDeChat, contains('insegnante di italiano'));
       // El /no_think era para apagarle el razonamiento a Qwen3. El modelo de
       // ahora contesta de una, y pedirle algo que no entiende es una regla
@@ -299,6 +302,11 @@ void main() {
       // Se midió: a "Ho mangiato la pizza oggi", que está bien escrita,
       // inventó tres correcciones distintas y las tres estaban mal.
       expect(promptDeChat.toLowerCase(), isNot(contains('correzione')));
+    });
+
+    test('le muestran una charla de ejemplo, que es lo que copia', () {
+      expect(promptDeChat, contains('Studente:'));
+      expect(promptDeChat, contains('Tuky:'));
     });
 
     test('no le da órdenes numeradas, que confunde con un pedido', () {
@@ -332,6 +340,23 @@ void main() {
 
       expect(prompt, contains('Traducí al otro idioma: finestra'));
       expect(promptDeTraduccion, contains('Nunca devolvés la misma palabra'));
+    });
+  });
+
+  group('cuando se anuncia como en el ejemplo', () {
+    test('saca el nombre del principio', () {
+      // El ejemplo de las instrucciones tiene renglones "Tuky: ...", y un
+      // modelo chico copia lo que ve.
+      expect(limpiarRespuesta('Tuky: Che bello! E tu?'), 'Che bello! E tu?');
+    });
+
+    test('también si se anuncia como el alumno', () {
+      expect(limpiarRespuesta('Studente: Ho un cane.'), 'Ho un cane.');
+    });
+
+    test('un nombre en el medio de la frase no se toca', () {
+      expect(limpiarRespuesta('Mi chiamo Tuky: piacere!'),
+          'Mi chiamo Tuky: piacere!');
     });
   });
 
