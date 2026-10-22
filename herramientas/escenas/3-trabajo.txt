@@ -1,0 +1,2 @@
+assistant: Ciao! Sono Tuky. Che lavoro fai?
+user: Lavoro in un ufficio

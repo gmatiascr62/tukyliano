@@ -130,42 +130,44 @@ jobs:
           PLANTILLA: '1'
         run: /tmp/probar_modelo /tmp/modelo.gguf
 
-      # Las instrucciones que se le dan al modelo salen de acá, no del
-      # código, para poder cambiarlas y ver qué pasa sin compilar un APK.
-      # Cada una se prueba con tres mensajes: uno con un error para ver si
-      # corrige, uno bien escrito y uno que pide algo.
-      #
-      # Así se encontró que la regla "Contestá en italiano simple, de una a
-      # tres frases cortas" la leía como un pedido y contestaba "Ecco una
-      # frase corta in italiano: ...".
+      # Las instrucciones salen del código, y las de al lado son candidatas
+      # para comparar contra ellas. Cada una se corre con las escenas de
+      # herramientas/escenas: charlas de varios turnos, porque los problemas
+      # que aparecen —cambiar de tema, inventar correcciones— no se ven con un
+      # solo mensaje.
       - name: Probar formas de darle las instrucciones
         run: |
           set -eu
-          SALUDO='Ciao! Sono Tuky. Guardi il calcio? Per che squadra tifi?'
 
           # Las instrucciones que de verdad corren en el celular salen del
           # código, no de una copia: una copia se desactualiza y entonces la
-          # prueba queda probando otra cosa. Las de al lado son alternativas
-          # para comparar contra esta.
+          # prueba queda probando otra cosa.
           python3 - <<'PY' > herramientas/prompts/0-el-del-codigo.txt
           import re
           codigo = open('flutter_app/lib/ia/chat.dart', encoding='utf-8').read()
-          print(re.search(r"const String promptDeChat = '''\n(.*?)'''", codigo, re.S).group(1))
+          print(re.search(r"const String promptDeChat = \'\'\'\n(.*?)\'\'\'", codigo, re.S).group(1))
           PY
 
           for reglas in herramientas/prompts/*.txt; do
-            for alumno in 'Come vai mi amico' 'Ho mangiato la pizza oggi' 'Voglio imparare i verbi'; do
-              {
-                printf '<|im_start|>system\n'
-                cat "$reglas"
-                printf '<|im_end|>\n'
-                printf '<|im_start|>assistant\n%s<|im_end|>\n' "$SALUDO"
-                printf '<|im_start|>user\n%s<|im_end|>\n' "$alumno"
-                printf '<|im_start|>assistant\n'
-              } > /tmp/prompt.txt
+            for escena in herramientas/escenas/*.txt; do
+              # Cada renglón de la escena es un turno: "quien: lo que dijo".
+              python3 - "$reglas" "$escena" > /tmp/prompt.txt <<'ARMAR'
+          import sys
+          reglas = open(sys.argv[1], encoding='utf-8').read().rstrip('\n')
+          partes = [f'<|im_start|>system\n{reglas}<|im_end|>\n']
+          for linea in open(sys.argv[2], encoding='utf-8'):
+              linea = linea.rstrip('\n')
+              if not linea.strip():
+                  continue
+              quien, _, dicho = linea.partition(': ')
+              partes.append(f'<|im_start|>{quien}\n{dicho}<|im_end|>\n')
+          partes.append('<|im_start|>assistant\n')
+          sys.stdout.write(''.join(partes))
+          ARMAR
 
               echo "=================================================="
-              echo "===== $(basename "$reglas" .txt)  <-  $alumno"
+              echo "===== $(basename "$reglas" .txt)  en  $(basename "$escena" .txt)"
+              tail -1 "$escena"
               /tmp/probar_modelo /tmp/modelo.gguf /tmp/prompt.txt \
                 | grep -v '^OK: \|^== sistema\|^== cargando' || true
             done
