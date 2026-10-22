@@ -53,27 +53,37 @@ const String marcaTraduccion = '#';
 
 /// Las instrucciones que se le dan al modelo al principio de cada charla.
 ///
-/// Son cortas y numeradas a propósito. El modelo que corre en el celular tiene
-/// pocos parámetros: con nueve reglas largas se le mezclan y no cumple
-/// ninguna, con seis cortas cumple la mayoría. Lo que antes se le pedía por
-/// escrito y ahora se resuelve con código está en esa diferencia: las
-/// traducciones van por su propio prompt ([promptDeTraduccion]) y las
-/// correcciones las revisa [sinCorreccionRepetida] y las reglas de
-/// reglas_italiano.dart.
+/// Están en italiano, que es el idioma en el que tiene que contestar: medido
+/// contra las mismas instrucciones en castellano y en inglés, son las que dan
+/// las respuestas más naturales y más cortas.
 ///
-/// Antes terminaban con un /no_think, que era la forma de apagarle el
-/// razonamiento a Qwen3. El modelo de ahora contesta de una, así que no hace
-/// falta pedirle nada de eso.
+/// Lo que NO dicen es tan importante como lo que dicen:
+///
+/// - **No le piden que corrija.** Se midió: a "Ho mangiato la pizza oggi", que
+///   está bien escrita, inventó tres correcciones distintas con tres formas de
+///   pedírselo, y las tres estaban mal. Una corrección equivocada enseña mal y
+///   con autoridad. Corregir lo hace [revisarItaliano], que es código que se
+///   puede probar.
+/// - **No le dan órdenes numeradas.** La regla "Contestá en italiano simple, de
+///   una a tres frases cortas" la leía como el pedido del alumno y contestaba
+///   "Ecco una frase corta in italiano: ...". Describirle cómo habla, en vez de
+///   darle una lista de tareas, no se confunde con un pedido.
+/// - **No le dejan ningún molde para copiar.** Lo que haya entre comillas en
+///   las instrucciones, un modelo chico lo escribe tal cual.
+///
+/// Las instrucciones se prueban en el workflow "Probar el modelo", que las saca
+/// de acá y las corre con tres mensajes de alumno.
 const String promptDeChat = '''
-Sos un profesor de italiano para alumnos que hablan español.
+Sei Tuky, un insegnante di italiano. Il tuo studente parla spagnolo e sta
+facendo pratica di conversazione con te.
 
-1. Contestá en italiano simple, de una a tres frases cortas.
-2. Terminá con una pregunta fácil para seguir la charla.
-3. Si el alumno escribió algo mal, empezá por un renglón que diga Correzione:
-   y después su frase corregida. Si escribió bien, no pongas ese renglón.
-4. Si hace falta aclarar algo, aclaralo en español y en una sola frase.
-5. Si no sabés algo, decí que no sabés. No inventes.
-6. Hablá solo de aprender italiano. Sin markdown, sin emojis, sin listas.''';
+Rispondi sempre in italiano, mai in spagnolo, con una o due frasi brevi, e
+finisci con una domanda facile per far parlare lo studente.
+
+Non annunciare mai quello che stai per dire: dillo e basta.
+Non correggere lo studente: non è il tuo compito.
+Parla di cose semplici della vita di tutti i giorni.
+Niente markdown, niente emoji, niente elenchi.''';
 
 /// Las instrucciones para traducir, que son otras.
 ///
@@ -185,82 +195,24 @@ final RegExp _empiezaCorreccion = RegExp(
   caseSensitive: false,
 );
 
-/// Signos que no cambian lo que dice una frase.
-final RegExp _signos = RegExp(r'[.,;:!?¡¿"“”]');
-final RegExp _espacios = RegExp(r'\s+');
-
-/// Deja la frase comparable: sin mayúsculas, sin signos y con un solo espacio
-/// entre palabras.
+/// Saca del texto del modelo cualquier renglón de corrección.
 ///
-/// Los acentos y los apóstrofos NO se tocan a propósito: escribir "perche" en
-/// vez de "perché", o "l'acqua" en vez de "lacqua", son justamente los errores
-/// que la corrección tiene que mostrar.
-String _comparable(String texto) => texto
-    .toLowerCase()
-    .replaceAll(_signos, '')
-    .replaceAll(_espacios, ' ')
-    .trim();
-
-/// Saca el renglón de corrección cuando corrige con la misma frase que se
-/// escribió, que no es una corrección.
+/// Al modelo ya no se le pide que corrija: se le pide que converse. Corregir
+/// lo hacen las reglas de reglas_italiano.dart, que son código que se puede
+/// probar. Así que si igual aparece un "Correzione:", es algo que inventó, y
+/// se saca.
 ///
-/// Pasa seguido: las instrucciones le dejan un lugar donde va la corrección y
-/// el modelo lo llena aunque la frase esté bien, o repite la charla anterior
-/// donde sí había corregido algo. Que se muestre solo cuando de verdad cambió
-/// algo no puede depender de que la IA se porte bien.
-///
-/// Si al sacarlo no queda nada se devuelve la respuesta entera: antes mostrar
-/// una corrección al pedo que una burbuja vacía.
-String sinCorreccionRepetida(String respuesta, String mensaje) {
-  final escrito = _comparable(mensaje);
+/// No es exageración. A "Ho mangiato la pizza oggi", que está bien escrita, se
+/// le midieron estas tres correcciones con tres formas distintas de pedírselo:
+/// "C'è stata un'impresa nuova?", "Hai mangiato la pizza oggi" —le cambió la
+/// persona— y "Hai mangiato una pizza?". Una corrección equivocada enseña mal,
+/// y encima con autoridad.
+String sinCorreccionesDelModelo(String respuesta) {
   final quedan = [
     for (final renglon in respuesta.split('\n'))
-      if (!_esCorreccionDe(renglon, escrito)) renglon,
-  ];
-
-  final limpio = quedan.join('\n').trim();
-  return limpio.isEmpty ? respuesta : limpio;
-}
-
-/// Palabras que están en las instrucciones y no en ninguna frase en italiano.
-///
-/// Si aparecen adentro de una corrección es porque el modelo copió el molde en
-/// vez de corregir.
-const List<String> _palabrasDelMolde = [
-  'frase bien escrita',
-  'frase corregida',
-  'la frase del alumno',
-];
-
-/// Saca la corrección cuando el modelo copió el molde de las instrucciones.
-///
-/// Pasó de verdad: a "Voglio imparare i verbi" contestó
-/// `Correzione: la frase bien escrita "Avendo", "Fare", "Essere"`. Eso es el
-/// texto de la instrucción, no una corrección, y mostrárselo a alguien que
-/// está aprendiendo es peor que no mostrar nada: parece italiano y no lo es.
-///
-/// Las instrucciones ya no traen un molde para copiar, pero un modelo chico
-/// hace estas cosas igual y esto no puede depender de que se porte bien.
-String sinCorreccionDelMolde(String respuesta) {
-  final quedan = [
-    for (final renglon in respuesta.split('\n'))
-      if (!_esElMolde(renglon)) renglon,
+      if (_empiezaCorreccion.matchAsPrefix(renglon.trim()) == null) renglon,
   ];
   return quedan.join('\n').trim();
-}
-
-bool _esElMolde(String renglon) {
-  final texto = renglon.trim();
-  if (_empiezaCorreccion.matchAsPrefix(texto) == null) return false;
-  final enMinuscula = texto.toLowerCase();
-  return _palabrasDelMolde.any(enMinuscula.contains);
-}
-
-bool _esCorreccionDe(String renglon, String escritoComparable) {
-  final texto = renglon.trim();
-  final marca = _empiezaCorreccion.matchAsPrefix(texto);
-  if (marca == null) return false;
-  return _comparable(texto.substring(marca.end)) == escritoComparable;
 }
 
 /// Un renglón de traducción: '#manteca# = #burro#'.
