@@ -68,4 +68,9 @@ class DescargaFalsa implements DescargaModelo {
     borrados++;
     yaBajado = false;
   }
+
+  @override
+  Future<void> borrarLosViejos() async => viejosBorrados++;
+
+  int viejosBorrados = 0;
 }

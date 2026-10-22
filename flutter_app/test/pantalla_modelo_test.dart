@@ -76,7 +76,7 @@ void main() {
         capacidad: const Capacidad(memoriaMb: 2048, queTanBien: QueTanBien.no),
       );
 
-      expect(find.textContaining('al menos 3 GB'), findsOneWidget);
+      expect(find.textContaining('al menos 4 GB'), findsOneWidget);
       expect(
         tester
             .widget<ElevatedButton>(

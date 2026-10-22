@@ -41,14 +41,14 @@ void main() {
       expect(capacidad.aviso, contains('lento'));
     });
 
-    test('con 2 GB no se deja ni empezar', () async {
-      // Bajarse 400 MB para que después la app se cierre sola es peor que
-      // decirlo antes.
-      final capacidad = await mirarElCelular(archivo: _meminfoCon(2));
+    test('con 3 GB no se deja ni empezar', () async {
+      // Bajarse mil megas para que después la app se cierre sola es peor que
+      // decirlo antes. Eran 2 GB cuando el modelo pesaba un tercio.
+      final capacidad = await mirarElCelular(archivo: _meminfoCon(3));
 
       expect(capacidad.queTanBien, QueTanBien.no);
       expect(capacidad.puede, isFalse);
-      expect(capacidad.aviso, contains('3 GB'));
+      expect(capacidad.aviso, contains('4 GB'));
     });
 
     test('sin poder averiguarlo, deja probar', () async {

@@ -27,7 +27,7 @@ import 'motor_ia.dart';
 /// - **Contexto corto.** 1024 tokens de memoria y 160 de respuesta. Cada token
 ///   de contexto ocupa memoria y tiempo; para una charla de dos frases no hace
 ///   falta más, y así entra en teléfonos chicos y no se recalienta.
-/// - **Se libera al salir.** El modelo ocupa unos 400 MB de RAM. Si quedara
+/// - **Se libera al salir.** El modelo ocupa más de un giga de RAM. Si quedara
 ///   cargado al irse del chat, Android mataría la app apenas se abra otra cosa.
 /// Con qué parámetros se abre el archivo del modelo.
 ///

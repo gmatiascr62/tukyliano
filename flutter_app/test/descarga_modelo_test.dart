@@ -253,4 +253,43 @@ void main() {
       await expectLater(descarga.borrar(), completes);
     });
   });
+
+  group('los modelos viejos', () {
+    test('al bajar uno nuevo se borra el de antes', () async {
+      // Cada modelo lleva su revisión en el nombre, así que al cambiar de
+      // modelo el viejo queda ocupando sus cientos de megas sin que nadie lo
+      // use ni lo vea.
+      final dir = _carpeta();
+      final viejo = File('${dir.path}/modelo-unarevisionvieja.gguf')
+        ..writeAsStringSync('el modelo de antes');
+      final otraCosa = File('${dir.path}/frases.json')
+        ..writeAsStringSync('esto no se toca');
+
+      await _descarga(dir, cliente: _servidor(_modeloFalso)).bajar().drain<void>();
+
+      expect(viejo.existsSync(), isFalse);
+      expect(otraCosa.existsSync(), isTrue);
+      expect(File('${dir.path}/$archivoDelModelo').existsSync(), isTrue);
+    });
+
+    test('también se lleva las bajadas a medias de modelos viejos', () async {
+      final dir = _carpeta();
+      final aMedias = File('${dir.path}/modelo-otrarevision.gguf.bajando')
+        ..writeAsStringSync('media bajada de otro modelo');
+
+      await _descarga(dir, cliente: _servidor(_modeloFalso)).borrarLosViejos();
+
+      expect(aMedias.existsSync(), isFalse);
+    });
+
+    test('al que está en uso no lo toca', () async {
+      final dir = _carpeta();
+      final elDeAhora = File('${dir.path}/$archivoDelModelo')
+        ..writeAsStringSync('el que se usa');
+
+      await _descarga(dir, cliente: _servidor(_modeloFalso)).borrarLosViejos();
+
+      expect(elDeAhora.existsSync(), isTrue);
+    });
+  });
 }

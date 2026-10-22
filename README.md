@@ -54,9 +54,15 @@ La app mira esa Release al arrancar y avisa cuando hay una versión más nueva.
 ## La IA del chat
 
 La sección Chat no habla con ningún servidor: el modelo corre adentro del
-celular. Es **Qwen3-0.6B** cuantizado a Q4_K_M (378 MB, licencia Apache 2.0) y
-lo mueve **llama.cpp**, compilado para arm64 por el workflow del APK y metido
-adentro en `jniLibs`.
+celular. Es **Qwen2.5-1.5B-Instruct** cuantizado a Q4_K_M (1065 MB, licencia
+Apache 2.0) y lo mueve **llama.cpp**, compilado para arm64 por el workflow del
+APK y metido adentro en `jniLibs`.
+
+Antes era Qwen3-0.6B, que pesaba un tercio. No servía: Qwen3 razona antes de
+contestar —cien palabras para adentro en cada respuesta, veinte segundos en un
+celular— y cuando se le pide que no razone, el de 0.6B copia la última frase en
+vez de contestar. Está probado en `probar-modelo.yml` con cuatro formas de
+pedírselo, con el archivo de 8 bits y con el mismo archivo de otro editor.
 
 El modelo no viaja en el APK —pesa más que toda la app— sino que lo baja la
 app la primera vez que se entra al chat, desde Hugging Face y clavado a una

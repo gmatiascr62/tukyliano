@@ -308,9 +308,10 @@ void main() {
       expect(promptDeChat.split('\n').length, lessThan(15));
       expect(promptDeChat, contains('profesor de italiano'));
       expect(promptDeChat, contains('Correzione:'));
-      // Sin esto, Qwen3 escribe cien palabras de razonamiento antes de cada
-      // respuesta.
-      expect(promptDeChat, contains('/no_think'));
+      // El /no_think era para apagarle el razonamiento a Qwen3. El modelo de
+      // ahora contesta de una, y pedirle algo que no entiende es una regla
+      // más que puede mezclar con las otras.
+      expect(promptDeChat, isNot(contains('/no_think')));
     });
   });
 
