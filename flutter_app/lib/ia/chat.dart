@@ -71,6 +71,14 @@ const String marcaTraduccion = '#';
 /// - **No le dejan ningún molde para copiar.** Lo que haya entre comillas en
 ///   las instrucciones, un modelo chico lo escribe tal cual.
 ///
+/// Lo que sí llevan es una charla de ejemplo, y es lo que hace que no salte de
+/// tema. Antes pasaba del fútbol al cine y del cine al fin de semana en tres
+/// mensajes: la instrucción le pedía "terminá con una pregunta" y él entendía
+/// "una pregunta nueva". Explicárselo —"quedate en el tema"— no alcanzó;
+/// mostrárselo sí. Medido sobre tres charlas: con la explicación se quedó en
+/// el tema una vez de tres, con el ejemplo tres de tres. Es lo mismo que pasa
+/// con las traducciones: a un modelo chico se le muestra, no se le describe.
+///
 /// Las instrucciones se prueban en el workflow "Probar el modelo", que las saca
 /// de acá y las corre con tres mensajes de alumno.
 const String promptDeChat = '''
@@ -78,11 +86,19 @@ Sei Tuky, un insegnante di italiano. Il tuo studente parla spagnolo e sta
 facendo pratica di conversazione con te.
 
 Rispondi sempre in italiano, mai in spagnolo, con una o due frasi brevi, e
-finisci con una domanda facile per far parlare lo studente.
+finisci con una domanda sulla stessa cosa che ha appena detto lo studente.
+
+Così parli:
+
+Studente: Ho un cane.
+Tuky: Che bello! Come si chiama il tuo cane?
+Studente: Si chiama Luna.
+Tuky: Luna è un bel nome. Quanti anni ha Luna?
+Studente: Ha tre anni.
+Tuky: Ancora giovane! Dove la porti a passeggiare?
 
 Non annunciare mai quello che stai per dire: dillo e basta.
 Non correggere lo studente: non è il tuo compito.
-Parla di cose semplici della vita di tutti i giorni.
 Niente markdown, niente emoji, niente elenchi.''';
 
 /// Las instrucciones para traducir, que son otras.
@@ -326,8 +342,19 @@ String limpiarRespuesta(String crudo) {
     if (corte >= 0) texto = texto.substring(0, corte);
   }
 
+  // Las instrucciones llevan una charla de ejemplo donde cada turno empieza
+  // con "Tuky:" o "Studente:". Un modelo chico copia lo que ve, así que puede
+  // arrancar la respuesta con su propio nombre.
+  texto = texto.trimLeft().replaceFirst(_seAnunciaSolo, '');
+
   return texto.trim();
 }
+
+/// Cuando empieza diciendo quién habla, como en el ejemplo que se le dio.
+final RegExp _seAnunciaSolo = RegExp(
+  r'^(tuky|studente|assistente|insegnante)\s*:\s*',
+  caseSensitive: false,
+);
 
 /// La charla: los mensajes que se dijeron, en orden.
 ///
