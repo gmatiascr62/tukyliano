@@ -316,6 +316,38 @@ void main() {
           findsOneWidget);
     });
 
+    testWidgets('si contesta en castellano, le pide otra vez', (tester) async {
+      // Pasa de verdad: al presentarse el alumno con su nombre, el modelo se
+      // va al castellano. Mostrarlo sería enseñar en el idioma equivocado.
+      final motor = MotorFalso(
+        pedazos: const ['¡Hola Matías! Yo también tengo una hermana.'],
+      );
+      await _abrir(tester, motor: motor);
+
+      await _escribir(tester, 'Ho una sorella');
+      await _enviar(tester);
+
+      // Dos pedidos: el primero y el de nuevo.
+      expect(motor.prompts.length, 2);
+      expect(
+        find.textContaining('contestó en castellano'),
+        findsOneWidget,
+      );
+      expect(find.textContaining('¡Hola Matías!'), findsNothing);
+    });
+
+    testWidgets('una respuesta en italiano se muestra y no se repite',
+        (tester) async {
+      final motor = MotorFalso(respuesta: 'Che bello! Come si chiama?');
+      await _abrir(tester, motor: motor);
+
+      await _escribir(tester, 'Ho una sorella');
+      await _enviar(tester);
+
+      expect(motor.prompts.length, 1);
+      expect(find.text('Che bello! Come si chiama?'), findsOneWidget);
+    });
+
     testWidgets('un error largo se puede leer entero y no tapa el botón',
         (tester) async {
       // Pasó de verdad: el error ocupaba más que la pantalla, se cortaba a la

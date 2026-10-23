@@ -7,6 +7,7 @@ import '../datos/descarga_modelo.dart';
 import '../datos/intento_de_carga.dart';
 import '../datos/voz.dart';
 import '../ia/chat.dart';
+import '../ia/italiano_o_no.dart';
 import '../ia/motor_ia.dart';
 import '../ia/motor_llama.dart';
 import '../logica/capacidad.dart';
@@ -178,6 +179,7 @@ class _PantallaChatState extends State<PantallaChat> {
     final texto = _campo.text.trim();
     final motor = _motor;
     if (_esperando || texto.isEmpty || motor == null) return;
+    _vecesQueContestoEnCastellano = 0;
 
     final soloTraducir = esSoloTraduccion(texto);
     final pedidos = pedidosDeTraduccion(texto);
@@ -244,6 +246,25 @@ class _PantallaChatState extends State<PantallaChat> {
       respuesta = _conLaCorreccionDeLasReglas(respuesta, escrito);
     }
 
+    // En castellano no sirve: el chat es para practicar italiano. Se le pide
+    // otra vez, que es lo que haría cualquiera, y recién si insiste se avisa.
+    if (!soloTraducir && contestoEnCastellano(respuesta)) {
+      if (_vecesQueContestoEnCastellano < 1) {
+        _vecesQueContestoEnCastellano++;
+        _pedirDeNuevo(escrito);
+        return;
+      }
+      setState(() {
+        _conversacion.agregar(const Mensaje.aviso(
+          'Tuky contestó en castellano. Probá de escribirle otra cosa.',
+        ));
+        _esperando = false;
+        _parcial = '';
+      });
+      _irAlFinal();
+      return;
+    }
+
     if (respuesta.isEmpty) {
       setState(() {
         _conversacion.agregar(
@@ -264,6 +285,26 @@ class _PantallaChatState extends State<PantallaChat> {
     });
     _irAlFinal();
     if (_soloEscuchar && _puedeHablar) _voz.decir(sinMarcas(respuesta));
+  }
+
+  /// Vuelve a pedirle la respuesta, sin agregar nada a la charla.
+  ///
+  /// Lo que ya se escribió se descarta: la charla queda igual que antes de
+  /// pedir, así que el modelo no ve su propia respuesta en castellano y no se
+  /// agarra de ella para la siguiente.
+  void _pedirDeNuevo(String escrito) {
+    final motor = _motor;
+    if (motor == null) return;
+    setState(() => _parcial = '');
+    _escribiendo = motor.responder(_conversacion.prompt()).listen(
+          (pedazo) {
+            if (!mounted) return;
+            setState(() => _parcial += pedazo);
+            _irAlFinal();
+          },
+          onError: (Object error) => _terminar(crudo: '', error: error),
+          onDone: () => _terminar(crudo: _parcial, escrito: escrito),
+        );
   }
 
   /// La corrección, que sale de las reglas y no del modelo.
@@ -297,6 +338,9 @@ class _PantallaChatState extends State<PantallaChat> {
   }
 
   /// Corta la respuesta a mitad de camino y se queda con lo que llegó.
+  /// Cuántas veces seguidas contestó en castellano en este pedido.
+  int _vecesQueContestoEnCastellano = 0;
+
   Future<void> _cortar() async {
     final motor = _motor;
     if (motor == null || !_esperando) return;
