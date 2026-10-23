@@ -73,6 +73,26 @@ no hay cuota que se agote y nada de lo que se escribe sale del aparato.
 El workflow `modelo-ia.yml` vuelve a chequear contra Hugging Face el tamaño y
 la huella cada vez que se toca `lib/ia/modelo.dart`.
 
+### Dónde anda y dónde no
+
+Conviene decirlo de frente, porque "funciona sin internet" y "funciona en
+cualquier celular" no son lo mismo:
+
+- **La biblioteca del chat se compila solo para arm64**, que es lo que tiene
+  cualquier teléfono de los últimos ocho años. En un Android de 32 bits el chat
+  no aparece; el resto de la app anda igual.
+- **El chat pide 4 GB de RAM.** El número sale de la práctica, no de una
+  cuenta: el modelo ocupa algo más de un giga y Android no le da a una app toda
+  la memoria del aparato. Con menos, se avisa y no se deja ni empezar.
+- **Sin conexión anda el chat, no toda la app.** Hay que bajar el modelo una
+  vez —más de un giga— y también hacen falta datos para traer verbos y frases
+  nuevas y para enterarse de que hay una versión nueva. Después de esa primera
+  bajada, charlar funciona en modo avión.
+- **Lo que se mide en la computadora no prueba lo que pasa en un celular.** Las
+  pruebas de `probar-modelo.yml` sirven para comparar modelos e instrucciones
+  entre sí; la velocidad y la memoria reales solo se saben probando en un
+  teléfono.
+
 ## Correr los tests
 
 ```bash

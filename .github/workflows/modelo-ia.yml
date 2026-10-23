@@ -11,7 +11,7 @@ on:
     inputs:
       repos:
         description: 'Repositorios de Hugging Face a mirar, separados por coma'
-        default: 'Qwen/Qwen3-0.6B-GGUF,ggml-org/Qwen3-0.6B-GGUF,unsloth/Qwen3-0.6B-GGUF'
+        default: 'Qwen/Qwen2.5-1.5B-Instruct-GGUF,Qwen/Qwen2.5-0.5B-Instruct-GGUF'
   push:
     branches: [ main ]
     paths:
@@ -26,7 +26,7 @@ jobs:
 
       - name: Listar los modelos publicados
         env:
-          REPOS: ${{ github.event.inputs.repos || 'Qwen/Qwen3-0.6B-GGUF' }}
+          REPOS: ${{ github.event.inputs.repos || 'Qwen/Qwen2.5-1.5B-Instruct-GGUF' }}
         run: |
           # El tamaño y el SHA-256 salen del puntero LFS, que es un archivo de
           # texto de tres renglones y no necesita bajarse el modelo entero.

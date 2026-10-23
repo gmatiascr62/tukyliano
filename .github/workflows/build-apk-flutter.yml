@@ -69,13 +69,21 @@ jobs:
       - name: Revisar el código
         run: flutter analyze --no-pub
 
+      # Antes de acá, los tests los corría yo a mano antes de cada push. Eso
+      # funciona hasta la vez que me olvido: el APK se publicaba igual y nadie
+      # se enteraba. Si están en rojo, no sale APK.
+      - name: Correr los tests
+        run: flutter test --no-pub
+
       # El motor de IA que corre adentro del celular. El paquete de Dart trae
       # solo los bindings: la biblioteca nativa hay que compilarla, y se hace
       # acá para que viaje adentro del APK.
       #
       # Solo arm64-v8a: es lo que tiene cualquier celular de los últimos ocho
-      # años. Un ARM de 32 bits no tiene memoria para un modelo de 400 MB, así
-      # que compilarlo también para esos sería duplicar el build para nada.
+      # años. Un ARM de 32 bits no tendría memoria para el modelo —hoy pesa más
+      # de un giga— así que compilarlo también para esos sería duplicar el
+      # build para nada. Pero conviene decirlo de frente: en un Android de 32
+      # bits el chat no está, y el resto de la app anda igual.
       #
       # Sin GPU y sin OpenMP: la GPU de un celular común no ayuda con un modelo
       # de este tamaño y las bibliotecas no están en todos los aparatos. Todo
