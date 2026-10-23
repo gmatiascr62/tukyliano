@@ -228,8 +228,8 @@ void main() {
 
   group('el prompt para el modelo', () {
     test('lleva las instrucciones, el saludo y lo dicho, en ChatML', () {
-      // ChatML es el formato con el que entrenaron a Qwen3: escrito de otra
-      // manera, el modelo contesta cualquier cosa.
+      // ChatML es el formato con el que entrenaron al modelo: escrito de otra
+      // manera, contesta cualquier cosa.
       final prompt = promptDeLaCharla(
         saludo: 'Ciao! Che musica ascolti?',
         mensajes: [
@@ -286,9 +286,9 @@ void main() {
       // tema dos de cada tres veces; con el ejemplo, ninguna.
       expect(promptDeChat.split('\n').length, lessThan(30));
       expect(promptDeChat, contains('insegnante di italiano'));
-      // El /no_think era para apagarle el razonamiento a Qwen3. El modelo de
-      // ahora contesta de una, y pedirle algo que no entiende es una regla
-      // más que puede mezclar con las otras.
+      // El /no_think era para apagarle el razonamiento al Qwen3 que estuvo
+      // antes. El de ahora contesta de una, y pedirle algo que no entiende es
+      // una regla más que puede mezclar con las otras.
       expect(promptDeChat, isNot(contains('/no_think')));
     });
 

@@ -260,9 +260,9 @@ String soloLasTraducciones(String respuesta) {
   return renglones.isEmpty ? respuesta : renglones.join('\n');
 }
 
-/// Las marcas con las que Qwen3 separa los turnos. Es el formato ChatML: el
-/// modelo fue entrenado con esto y escribir el prompt de otra manera lo hace
-/// contestar cualquier cosa.
+/// Las marcas con las que se separan los turnos. Es el formato ChatML, que es
+/// con el que fue entrenado el modelo —lo usan Qwen2.5, Qwen3 y varios más— y
+/// escribir el prompt de otra manera lo hace contestar cualquier cosa.
 const String _turnoAbre = '<|im_start|>';
 const String _turnoCierra = '<|im_end|>';
 
@@ -328,10 +328,11 @@ String promptDeLaTraduccion(String pedido) {
 
 /// Lo que el modelo escribió, listo para mostrar.
 ///
-/// Saca tres cosas que no son la respuesta: el bloque de razonamiento de Qwen3
-/// (que aparece igual de vez en cuando, aunque se le pida que no piense), las
-/// marcas de turno de ChatML que a veces se le escapan, y los espacios de los
-/// bordes.
+/// Saca lo que no es la respuesta: las marcas de turno de ChatML que a veces se
+/// le escapan, los espacios de los bordes, el nombre con el que a veces se
+/// anuncia, y un bloque de razonamiento `<think>` por si alguna vez se cambia a
+/// un modelo que razone. El de ahora, Qwen2.5, no escribe ninguno: eso queda
+/// como red, no porque haga falta hoy.
 String limpiarRespuesta(String crudo) {
   var texto = crudo.replaceAll(
     RegExp(r'<think>.*?</think>', dotAll: true),

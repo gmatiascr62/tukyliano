@@ -144,19 +144,13 @@ jobs:
           # prueba queda probando otra cosa.
           mkdir -p herramientas/prompts
           python3 - <<'PY' > herramientas/prompts/0-el-del-codigo.txt
-          import re
+          import re, sys
           codigo = open('flutter_app/lib/ia/chat.dart', encoding='utf-8').read()
-          print(re.search(r"const String promptDeChat = \'\'\'\n(.*?)\'\'\'", codigo, re.S).group(1))
-          PY
-
-          # Las instrucciones que de verdad corren en el celular salen del
-          # código, no de una copia: una copia se desactualiza y entonces la
-          # prueba queda probando otra cosa. Las de al lado son alternativas
-          # para comparar contra esta.
-          python3 - <<'PY' > herramientas/prompts/0-el-del-codigo.txt
-          import re
-          codigo = open('flutter_app/lib/ia/chat.dart', encoding='utf-8').read()
-          print(re.search(r"const String promptDeChat = '''\n(.*?)'''", codigo, re.S).group(1))
+          donde = re.search(r"const String promptDeChat = '''\n(.*?)'''", codigo, re.S)
+          if donde is None:
+              sys.exit('ERROR: no encontré promptDeChat en chat.dart. '
+                       'Si se cambió cómo está escrito, hay que cambiar esto.')
+          print(donde.group(1))
           PY
 
           for reglas in herramientas/prompts/*.txt; do

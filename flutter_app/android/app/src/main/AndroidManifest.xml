@@ -1,7 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android">
     <!-- La plantilla de Flutter declara este permiso solo en los manifests de
          debug y profile, así que el APK de release quedaba sin internet: no
-         bajaba los verbos nuevos ni podía hablar con Gemini. -->
+         bajaba los verbos nuevos, ni el modelo del chat, ni se enteraba de que
+         había una versión nueva.
+
+         El chat en sí no lo usa: una vez bajado el modelo, contesta sin
+         conexión. Internet hace falta para bajarlo esa primera vez. -->
     <uses-permission android:name="android.permission.INTERNET"/>
     <!-- Para poder abrir el instalador con la actualización que la app se baja
          sola. Android igual le pregunta al usuario la primera vez. -->

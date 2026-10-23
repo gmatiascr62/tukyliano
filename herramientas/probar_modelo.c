@@ -60,7 +60,7 @@ int main(int argc, char ** argv) {
     }
 
     const char * ruta = argv[1];
-    // El formato de Qwen3, igual que el que arma la app.
+    // ChatML, el mismo formato que arma la app.
     const char * texto =
         "<|im_start|>user\nCiao! Come stai?<|im_end|>\n<|im_start|>assistant\n";
     char * delArchivo = NULL;
