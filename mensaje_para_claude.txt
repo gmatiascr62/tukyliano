@@ -1,0 +1,102 @@
+REVISIÓN DE TUKYLIANO PARA CLAUDE
+Repositorio: https://github.com/gmatiascr62/tukyliano
+Rama revisada: main
+Objetivo: revisar la app existente, detectar mejoras reales y decidir con pruebas si conviene cambiar el modelo local. NO rehacer la app ni reemplazar el modelo a ciegas.
+
+RESUMEN EJECUTIVO
+
+La app YA tiene el chat local/offline integrado. No hay que implementar desde cero la sustitución de Gemini: el README y el código muestran que el chat usa llama.cpp y descarga un GGUF de Hugging Face. El modelo actual es Qwen2.5-1.5B-Instruct Q4_K_M, no Qwen3-0.6B.
+
+Archivos principales revisados:
+- flutter_app/lib/ia/modelo.dart
+- flutter_app/lib/ia/motor_llama.dart
+- flutter_app/lib/ia/chat.dart
+- flutter_app/lib/ia/motor_ia.dart
+- flutter_app/lib/datos/descarga_modelo.dart
+- flutter_app/lib/pantallas/pantalla_chat.dart
+- flutter_app/lib/pantallas/pantalla_modelo.dart
+- flutter_app/lib/logica/capacidad.dart
+- flutter_app/lib/logica/reglas_italiano.dart
+- flutter_app/android/app/src/main/AndroidManifest.xml
+- .github/workflows/build-apk-flutter.yml
+- .github/workflows/modelo-ia.yml
+- .github/workflows/probar-modelo.yml
+- README.md y tests relacionados.
+
+LO QUE YA ESTÁ BIEN
+
+1. El chat ya usa inferencia local con llama.cpp, sin API de Gemini ni clave para conversar.
+2. El modelo se descarga bajo demanda, se puede reanudar y se verifica con SHA-256 antes de utilizarse.
+3. El modelo no se incluye dentro del APK.
+4. La generación se ejecuta fuera del hilo de interfaz, se muestra progresivamente y se puede cancelar.
+5. Hay una abstracción MotorIA que facilita probar el chat con un motor falso.
+6. Se intenta liberar el modelo al salir del chat para reducir la presión de memoria.
+7. El proyecto tiene pruebas de descarga, prompts, pantalla, capacidad y parámetros del motor.
+8. Las correcciones más comunes se hacen con reglas locales en reglas_italiano.dart, en lugar de confiar ciegamente en las correcciones del modelo.
+9. La revisión fija del modelo y su hash evitan descargar silenciosamente otro archivo con el mismo nombre.
+
+PROBLEMA PRINCIPAL: COMPATIBILIDAD CON «CUALQUIER ANDROID»
+
+La implementación actual NO funciona en cualquier Android:
+- .github/workflows/build-apk-flutter.yml compila la biblioteca nativa solo para arm64-v8a.
+- La compilación nativa usa ANDROID_PLATFORM=android-24, por lo que el soporte mínimo de esa biblioteca es Android 7.0/API 24.
+- flutter_app/lib/logica/capacidad.dart rechaza dispositivos con menos de 4 GB de RAM total.
+- El modelo actual pesa 1.117.320.736 bytes (aprox. 1.065 MiB / 1,1 GB decimales), ocupa memoria adicional al cargarse y puede ser lento o no caber en algunos dispositivos de 4 GB.
+
+Por lo tanto, no prometer compatibilidad universal. La arquitectura actual excluye Android ARM de 32 bits y dispositivos antiguos con menos RAM. Verificar también el minSdk real de Flutter/Gradle y mantenerlo coherente con la biblioteca nativa.
+
+MODELO: NO VOLVER A QWEN3-0.6B SIN PRUEBAS
+
+El archivo flutter_app/lib/ia/modelo.dart documenta pruebas en las que Qwen3-0.6B tardaba por el razonamiento y, al pedirle que no razonara, copiaba la entrada en lugar de responder. README.md y los workflows también registran esa experiencia.
+
+No reemplazar el modelo actual por Qwen3-0.6B solo para bajar el tamaño. El actual Qwen2.5-1.5B-Instruct Q4_K_M pesa mucho, pero se eligió tras probar que contestaba mejor. Para reducir el tamaño, comparar alternativas con pruebas reproducibles antes de cambiarlo. Candidatos a investigar (no asumir que son mejores): una cuantización más pequeña compatible del modelo actual, Qwen2.5-0.5B-Instruct, u otro modelo pequeño con buen italiano. Verificar la disponibilidad real del GGUF, plantilla de chat, licencia, revisión exacta, tamaño, hash y compatibilidad con la versión de llama.cpp.
+
+Preparar una batería de conversaciones italianas reales: saludos, respuestas relacionadas con el tema, preguntas de seguimiento, frases de principiantes, errores comunes de hispanohablantes, traducciones español↔italiano, respuestas cortas y varios turnos. Puntuar corrección del italiano, coherencia, cumplimiento de instrucciones, repeticiones/copia del usuario, latencia, memoria y temperatura en un Android real de gama baja. No basarse solo en una prueba de consola o en un emulador. No dar por verificadas pruebas que no se ejecutaron.
+
+PROMPTS Y FORMATO DE CHAT
+
+En flutter_app/lib/ia/chat.dart:
+- promptDeChat está escrito en italiano y pide respuestas cortas en italiano, sin correcciones del modelo, sin Markdown ni emojis, y con una pregunta sobre el mismo tema. El ejemplo few-shot ayuda a que el modelo no cambie de tema.
+- promptDeTraduccion es distinto y se usa para traducciones entre almohadillas.
+- Las correcciones se hacen aparte con revisarItaliano() en reglas_italiano.dart.
+
+Recomendaciones:
+1. No pedirle al modelo que corrija gramática libremente si las pruebas muestran correcciones falsas; conservar la separación entre conversación y reglas locales salvo que se valide otra solución.
+2. Las reglas locales son deliberadamente parciales. No presentar su resultado como una corrección gramatical completa. Revisar falsos positivos y negativos con tests; algunas sustituciones por palabra aislada pueden cambiar frases válidas o nombres propios.
+3. El prompt actual dice que responda SIEMPRE en italiano y nunca en español. Eso es consistente con inmersión, pero no satisface la idea de explicar en español cuando el alumno no entiende. Decidir el comportamiento pedagógico explícitamente: conversación normal en italiano y explicación breve en español solo cuando se solicite, o mantener inmersión total. Añadir tests de ambas situaciones.
+4. Mantener respuestas cortas, pero no imponer una pregunta en todos los casos si el usuario pide una traducción, una explicación puntual o quiere terminar la charla.
+5. Probar casos en los que el usuario escribe en español, cambia de tema, pregunta una palabra, escribe una frase correcta que no debe corregirse o escribe un error real.
+6. La salida del modelo puede traer tokens de fin, bloques de razonamiento o texto repetido. Revisar limpiarRespuesta() con muestras del modelo actual y con cada candidato, sin depender de comportamiento específico de Qwen3.
+
+INCONSISTENCIAS Y LIMPIEZA CONCRETAS
+
+1. .github/workflows/modelo-ia.yml todavía usa Qwen3-0.6B-GGUF como repositorios predeterminados al ejecutar manualmente el workflow. El modelo real configurado en modelo.dart es Qwen2.5-1.5B-Instruct-GGUF. Actualizar los valores predeterminados para que la comprobación manual investigue el modelo actual y no induzca a error.
+2. En flutter_app/lib/ia/chat.dart hay comentarios que atribuyen ChatML y el bloque de razonamiento a Qwen3. En flutter_app/test/chat_ia_test.dart y herramientas/probar_modelo.c también quedan comentarios de Qwen3. Aclararlos o actualizarlos para describir el modelo actual y distinguir el formato ChatML de funciones específicas de Qwen3. No cambiar el formato del prompt sin probar que el modelo actual lo necesita.
+3. En .github/workflows/probar-modelo.yml hay dos pasos Python consecutivos que escriben el mismo archivo herramientas/prompts/0-el-del-codigo.txt y extraen el mismo prompt con expresiones regulares distintas. El segundo pisa al primero. Eliminar la duplicación y dejar una única extracción robusta que falle con un mensaje claro si no encuentra el prompt.
+4. El comentario de flutter_app/android/app/src/main/AndroidManifest.xml dice que el permiso INTERNET permite «hablar con Gemini», lo cual quedó obsoleto. La app aún necesita Internet para descargar el modelo, actualizar contenidos y comprobar releases; actualizar el comentario sin quitar el permiso.
+5. Buscar y actualizar documentación/comentarios obsoletos sobre la antigua pantalla de clave de Gemini, sin tocar referencias históricas útiles ni borrar pruebas válidas.
+6. Revisar el README: no confundir «el chat funciona offline una vez descargado el modelo» con «toda la aplicación no usa Internet». La descarga inicial, actualizaciones y contenidos remotos sí necesitan conexión.
+7. En la pantalla del modelo, explicar antes de descargar que son aproximadamente 1,1 GB, que se necesita conexión y espacio de almacenamiento, y que el chat queda disponible sin conexión una vez descargado. Evitar mensajes que prometan que funcionará en todos los móviles.
+8. Revisar el manejo de errores de descarga: confirmar que se valida correctamente la respuesta HTTP al reanudar Range, que una descarga incompleta no queda marcada como válida y que los fallos de red se puedan reintentar sin perder datos correctos. El hash final debe seguir siendo obligatorio.
+9. La detección de capacidad usa RAM total de /proc/meminfo, no memoria disponible ni una medición precisa de la memoria que el proceso podrá usar. Tratar los umbrales de 4/6 GB como estimaciones, probar en teléfonos reales y evitar asegurar que un móvil con 4 GB siempre funcionará. Si se mejora la detección, mantener una salida segura y mensajes claros.
+10. El flujo de build parece ejecutar flutter analyze y compilar el APK; comprobar si ejecuta flutter test. Si no, añadir flutter test al CI antes de compilar, sin romper los secretos/firma del APK ni el flujo de publicación.
+11. Revisar si el flujo de pruebas del modelo realmente prueba las mismas bibliotecas, versión de llama.cpp, parámetros y modelo que el APK. Mantener la versión de llama.cpp compatible con llama_cpp_dart; no compilar «la última» automáticamente sin verificar los bindings.
+12. Confirmar que la biblioteca nativa y el APK respeten los requisitos actuales de Android, incluyendo páginas de memoria de 16 KB donde corresponda, sin cambiar flags a ciegas.
+
+PLAN DE TRABAJO PARA CLAUDE
+
+Fase 1: inspeccionar y reportar el estado actual y los archivos que requieren cambios.
+Fase 2: corregir primero inconsistencias seguras de documentación/workflows y reforzar tests.
+Fase 3: comparar modelos candidatos con la misma batería de escenas y en hardware real cuando sea posible. No cambiar el modelo hasta que haya evidencia de que la alternativa funciona mejor para esta app.
+Fase 4: correr flutter test, flutter analyze y el build de Android. Informar exactamente qué comandos se ejecutaron y qué quedó sin probar.
+Fase 5: entregar un resumen de los cambios, limitaciones reales de compatibilidad, tamaño del modelo y rendimiento medido.
+
+RESTRICCIONES IMPORTANTES
+
+- No rehacer la app ni cambiar su diseño o las secciones educativas que no están relacionadas.
+- No reintroducir Gemini, claves API, servidores de inferencia ni llamadas remotas para responder en el chat.
+- No eliminar el permiso INTERNET: se necesita para la descarga inicial del modelo, datos y actualizaciones.
+- No cambiar el modelo únicamente por su número de parámetros. El rendimiento real y la calidad del italiano importan más que el tamaño nominal.
+- No afirmar que funciona en cualquier Android ni que una prueba en Linux demuestra el rendimiento en un celular.
+- Mantener la descarga con revisión fija y SHA-256 verificado.
+- Hacer cambios pequeños, revisar el diff y conservar las funcionalidades existentes.
