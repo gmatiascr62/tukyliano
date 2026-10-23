@@ -1,0 +1,2 @@
+assistant: Ciao! Sono Tuky. Hai fratelli o sorelle?
+user: Ciao tuky, io sono Matías, io ho una sorella
