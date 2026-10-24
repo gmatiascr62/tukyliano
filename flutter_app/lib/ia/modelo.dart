@@ -45,11 +45,21 @@
 /// pero con condiciones. Para una app gratis no es un problema, pero no es lo
 /// mismo y conviene saberlo antes que después.
 ///
-/// El archivo lo publica **unsloth** y no Google: el repositorio oficial pide
-/// aceptar la licencia a mano antes de bajar, y la app no puede hacer eso. Por
-/// eso va clavado a una revisión y se compara contra [sha256DelModelo], igual
-/// que siempre: si quien lo publica subiera otro archivo con el mismo nombre,
-/// no se usa.
+/// El archivo lo publica **ggml-org**, que es el equipo de llama.cpp, y no
+/// Google: el repositorio oficial pide aceptar la licencia a mano antes de
+/// bajar, y la app no puede hacer eso. De los que lo republican, este es el
+/// que hace la biblioteca que después lo corre.
+///
+/// Va clavado a una revisión y se compara contra [sha256DelModelo], igual que
+/// siempre: si quien lo publica subiera otro archivo con el mismo nombre, no
+/// se usa.
+///
+/// Un detalle medido, por si algún día aparece: al cargar, este archivo avisa
+/// "special_eos_id is not in special_eog_ids - the tokenizer config may be
+/// incorrect", y el del otro publicador no. Es sobre cuándo el modelo sabe que
+/// terminó de hablar. No se vio romper nada —pesa 32 bytes menos, así que la
+/// diferencia entre los dos está en la ficha y no en los pesos— pero si
+/// alguna vez las respuestas siguen de largo, mirar acá primero.
 ///
 /// El archivo no viaja en el APK —pesa más que toda la app— sino que se baja la
 /// primera vez que se entra al chat.
@@ -59,14 +69,14 @@ library;
 const String nombreDelModelo = 'gemma-3-1b-it-Q4_K_M.gguf';
 
 /// De dónde sale el archivo.
-const String repositorioDelModelo = 'unsloth/gemma-3-1b-it-GGUF';
+const String repositorioDelModelo = 'ggml-org/gemma-3-1b-it-GGUF';
 
 /// El commit del repositorio. Va clavado y no "main" a propósito: así el
 /// archivo que se baja es siempre el mismo, aunque mañana publiquen otro.
-const String revisionDelModelo = 'f0b45be0aac41bd6a100a4b5734cad5f67255bfb';
+const String revisionDelModelo = 'f9c28bcd85737ffc5aef028638d3341d49869c27';
 
 /// Cuánto pesa, para poder avisarlo antes de empezar a bajar: 768 MB.
-const int bytesDelModelo = 806058272;
+const int bytesDelModelo = 806058240;
 
 /// La huella del archivo. Si lo que se bajó no da esta huella, se tira: puede
 /// haberse cortado la bajada o puede no ser el archivo que esperábamos.
@@ -74,7 +84,7 @@ const int bytesDelModelo = 806058272;
 /// Sale del puntero LFS de Hugging Face, y el workflow "Modelo de IA" la
 /// vuelve a chequear cada vez que se toca este archivo.
 const String sha256DelModelo =
-    '8270790f3ab69fdfe860b7b64008d9a19986d8df7e407bb018184caa08798ebd';
+    '8ccc5cd1f1b3602548715ae25a66ed73fd5dc68a210412eea643eb20eb75a135';
 
 /// De dónde se baja.
 const String urlDelModelo =
