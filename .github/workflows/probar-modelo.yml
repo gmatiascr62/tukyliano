@@ -9,6 +9,10 @@ name: Probar el modelo
 
 on:
   workflow_dispatch:
+    inputs:
+      candidato:
+        description: 'Otro modelo para comparar: repo de Hugging Face y parte del nombre del archivo, separados por coma'
+        default: 'Qwen/Qwen2.5-3B-Instruct-GGUF,q4_k_m'
   push:
     branches: [ main ]
     paths:
@@ -177,6 +181,59 @@ jobs:
                 | grep -v '^OK: \|^== sistema\|^== cargando' || true
             done
           done
+
+      # El mismo prompt y las mismas escenas, con otro modelo. Es la única
+      # forma honesta de decidir si conviene cambiar: comparar contra lo que
+      # hay, no contra lo que uno se acuerda.
+      - name: Comparar con otro modelo
+        env:
+          CANDIDATO: ${{ github.event.inputs.candidato || 'Qwen/Qwen2.5-3B-Instruct-GGUF,q4_k_m' }}
+        run: |
+          set -eu
+          repo="${CANDIDATO%%,*}"
+          patron="${CANDIDATO##*,}"
+
+          archivo=$(curl -sS "https://huggingface.co/api/models/$repo/tree/main?recursive=true" \
+            | python3 -c "
+          import json, sys
+          patron = sys.argv[1].lower()
+          for f in json.load(sys.stdin):
+              if f['path'].lower().endswith('.gguf') and patron in f['path'].lower():
+                  print(f['path'])
+                  break
+          " "$patron")
+
+          if [ -z "$archivo" ]; then
+            echo "No hay ningún $patron en $repo: no hay nada que comparar."
+            exit 0
+          fi
+
+          echo "===== candidato: $repo / $archivo"
+          curl -fsSL -o /tmp/candidato.gguf "https://huggingface.co/$repo/resolve/main/$archivo"
+          ls -lh /tmp/candidato.gguf
+
+          for escena in herramientas/escenas/*.txt; do
+            python3 - herramientas/prompts/0-el-del-codigo.txt "$escena" > /tmp/prompt.txt <<'ARMAR'
+          import sys
+          reglas = open(sys.argv[1], encoding='utf-8').read().rstrip('\n')
+          partes = [f'<|im_start|>system\n{reglas}<|im_end|>\n']
+          for linea in open(sys.argv[2], encoding='utf-8'):
+              linea = linea.rstrip('\n')
+              if not linea.strip():
+                  continue
+              quien, _, dicho = linea.partition(': ')
+              partes.append(f'<|im_start|>{quien}\n{dicho}<|im_end|>\n')
+          partes.append('<|im_start|>assistant\n')
+          sys.stdout.write(''.join(partes))
+          ARMAR
+
+            echo "=================================================="
+            echo "===== candidato  en  $(basename "$escena" .txt)"
+            tail -1 "$escena"
+            /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt \
+              | grep -v '^OK: \|^== sistema\|^== cargando' || true
+          done
+          rm -f /tmp/candidato.gguf
 
   # Lo mismo, pero adentro de un Android. Es donde falla de verdad, y acá sí
   # se lee todo lo que llama.cpp tiene para decir.
