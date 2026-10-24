@@ -11,8 +11,8 @@ on:
   workflow_dispatch:
     inputs:
       candidato:
-        description: 'Otro modelo para comparar: repo de Hugging Face y parte del nombre del archivo, separados por coma'
-        default: 'Qwen/Qwen2.5-3B-Instruct-GGUF,q4_k_m'
+        description: 'Modelos para comparar: "repo,parte del nombre,formato" (formato: chatml o gemma, por defecto chatml). Varios separados por ";"'
+        default: 'unsloth/gemma-3-1b-it-GGUF,q4_k_m,gemma;ggml-org/gemma-3-1b-it-GGUF,q4_k_m,gemma;bartowski/google_gemma-3-1b-it-GGUF,Q4_K_M,gemma'
   push:
     branches: [ main ]
     paths:
@@ -160,19 +160,8 @@ jobs:
           for reglas in herramientas/prompts/*.txt; do
             for escena in herramientas/escenas/*.txt; do
               # Cada renglón de la escena es un turno: "quien: lo que dijo".
-              python3 - "$reglas" "$escena" > /tmp/prompt.txt <<'ARMAR'
-          import sys
-          reglas = open(sys.argv[1], encoding='utf-8').read().rstrip('\n')
-          partes = [f'<|im_start|>system\n{reglas}<|im_end|>\n']
-          for linea in open(sys.argv[2], encoding='utf-8'):
-              linea = linea.rstrip('\n')
-              if not linea.strip():
-                  continue
-              quien, _, dicho = linea.partition(': ')
-              partes.append(f'<|im_start|>{quien}\n{dicho}<|im_end|>\n')
-          partes.append('<|im_start|>assistant\n')
-          sys.stdout.write(''.join(partes))
-          ARMAR
+              python3 herramientas/armar_prompt.py "$reglas" "$escena" \
+                > /tmp/prompt.txt
 
               echo "=================================================="
               echo "===== $(basename "$reglas" .txt)  en  $(basename "$escena" .txt)"
@@ -182,58 +171,84 @@ jobs:
             done
           done
 
-      # El mismo prompt y las mismas escenas, con otro modelo. Es la única
+      # El mismo prompt y las mismas escenas, con otros modelos. Es la única
       # forma honesta de decidir si conviene cambiar: comparar contra lo que
       # hay, no contra lo que uno se acuerda.
-      - name: Comparar con otro modelo
+      #
+      # Se pueden pasar varios, separados por ";". Cada uno es
+      # "repo,parte del nombre del archivo,formato", y el formato se puede
+      # omitir: sin él se asume chatml, que es el de la app.
+      - name: Comparar con otros modelos
         env:
-          CANDIDATO: ${{ github.event.inputs.candidato || 'Qwen/Qwen2.5-3B-Instruct-GGUF,q4_k_m' }}
+          CANDIDATOS: ${{ github.event.inputs.candidato || 'unsloth/gemma-3-1b-it-GGUF,q4_k_m,gemma' }}
         run: |
           set -eu
-          repo="${CANDIDATO%%,*}"
-          patron="${CANDIDATO##*,}"
 
-          archivo=$(curl -sS "https://huggingface.co/api/models/$repo/tree/main?recursive=true" \
-            | python3 -c "
+          # El punto y coma separa candidatos; adentro de cada uno, la coma
+          # separa los campos.
+          echo "$CANDIDATOS" | tr ';' '\n' | while read -r candidato; do
+            [ -n "$(echo "$candidato" | tr -d '[:space:]')" ] || continue
+
+            repo=$(echo "$candidato" | cut -d, -f1 | tr -d '[:space:]')
+            patron=$(echo "$candidato" | cut -d, -f2 | tr -d '[:space:]')
+            formato=$(echo "$candidato" | cut -d, -f3 | tr -d '[:space:]')
+            [ -n "$formato" ] || formato=chatml
+
+            echo "=================================================="
+            echo "===== candidato: $repo ($patron, formato $formato)"
+
+            archivo=$(curl -sS "https://huggingface.co/api/models/$repo/tree/main?recursive=true" \
+              | python3 -c "
           import json, sys
           patron = sys.argv[1].lower()
-          for f in json.load(sys.stdin):
-              if f['path'].lower().endswith('.gguf') and patron in f['path'].lower():
+          try:
+              lista = json.load(sys.stdin)
+          except Exception:
+              sys.exit(0)
+          if not isinstance(lista, list):
+              sys.exit(0)
+          for f in lista:
+              if f.get('path', '').lower().endswith('.gguf') and patron in f['path'].lower():
                   print(f['path'])
                   break
           " "$patron")
 
-          if [ -z "$archivo" ]; then
-            echo "No hay ningún $patron en $repo: no hay nada que comparar."
-            exit 0
-          fi
+            if [ -z "$archivo" ]; then
+              echo "No hay ningún $patron en $repo: no hay nada que comparar."
+              continue
+            fi
 
-          echo "===== candidato: $repo / $archivo"
-          curl -fsSL -o /tmp/candidato.gguf "https://huggingface.co/$repo/resolve/main/$archivo"
-          ls -lh /tmp/candidato.gguf
+            echo "===== archivo: $archivo"
+            curl -fsSL -o /tmp/candidato.gguf \
+              "https://huggingface.co/$repo/resolve/main/$archivo" || {
+              echo "No se pudo bajar: sigo con el que venga."
+              continue
+            }
+            ls -lh /tmp/candidato.gguf
 
-          for escena in herramientas/escenas/*.txt; do
-            python3 - herramientas/prompts/0-el-del-codigo.txt "$escena" > /tmp/prompt.txt <<'ARMAR'
-          import sys
-          reglas = open(sys.argv[1], encoding='utf-8').read().rstrip('\n')
-          partes = [f'<|im_start|>system\n{reglas}<|im_end|>\n']
-          for linea in open(sys.argv[2], encoding='utf-8'):
-              linea = linea.rstrip('\n')
-              if not linea.strip():
-                  continue
-              quien, _, dicho = linea.partition(': ')
-              partes.append(f'<|im_start|>{quien}\n{dicho}<|im_end|>\n')
-          partes.append('<|im_start|>assistant\n')
-          sys.stdout.write(''.join(partes))
-          ARMAR
+            for escena in herramientas/escenas/*.txt; do
+              python3 herramientas/armar_prompt.py \
+                herramientas/prompts/0-el-del-codigo.txt "$escena" \
+                --formato "$formato" > /tmp/prompt.txt
 
-            echo "=================================================="
-            echo "===== candidato  en  $(basename "$escena" .txt)"
-            tail -1 "$escena"
-            /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt \
-              | grep -v '^OK: \|^== sistema\|^== cargando' || true
+              echo "=================================================="
+              echo "===== $repo  en  $(basename "$escena" .txt)"
+              tail -1 "$escena"
+              # La plantilla del propio archivo se imprime una sola vez, en la
+              # primera escena: así se ve si el formato que le estamos armando
+              # es el que el modelo espera, en vez de confiar en que sí.
+              #
+              # Vacía no sirve: la prueba pregunta si la variable existe, y
+              # PLANTILLA="" existe. Por eso o se pasa o no se pasa.
+              case "$escena" in
+                *1-futbol*) verLaPlantilla="PLANTILLA=1" ;;
+                *) verLaPlantilla="" ;;
+              esac
+              env $verLaPlantilla /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt \
+                | grep -v '^OK: \|^== sistema\|^== cargando' || true
+            done
+            rm -f /tmp/candidato.gguf
           done
-          rm -f /tmp/candidato.gguf
 
   # Lo mismo, pero adentro de un Android. Es donde falla de verdad, y acá sí
   # se lee todo lo que llama.cpp tiene para decir.
