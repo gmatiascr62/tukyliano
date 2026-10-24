@@ -2,8 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'constantes.dart';
 import 'datos/actualizacion.dart';
-import 'datos/descarga_modelo.dart';
-import 'datos/intento_de_carga.dart';
+import 'datos/almacenamiento_clave.dart';
 import 'datos/escucha.dart';
 import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
@@ -13,7 +12,7 @@ import 'datos/repositorio_racconti.dart';
 import 'datos/progreso.dart';
 import 'datos/repositorio_verbos.dart';
 import 'datos/voz.dart';
-import 'ia/motor_ia.dart';
+import 'ia/gemini.dart';
 import 'modelos/seccion.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
@@ -39,6 +38,7 @@ void main() {
 class TukylianoApp extends StatelessWidget {
   const TukylianoApp({
     super.key,
+    this.almacenClave,
     this.repositorio,
     this.frasesLocales,
     this.articoli,
@@ -47,14 +47,13 @@ class TukylianoApp extends StatelessWidget {
     this.via,
     this.voz,
     this.escucha,
-    this.descargaModelo,
-    this.intentoDeCarga,
-    this.motor,
     this.progreso,
+    this.gemini,
     this.actualizacion,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
+  final AlmacenamientoClave? almacenClave;
   final RepositorioVerbos? repositorio;
   final RepositorioFrases? frasesLocales;
   final RepositorioArticoli? articoli;
@@ -63,10 +62,8 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioParticelle? via;
   final Voz? voz;
   final Escucha? escucha;
-  final DescargaModelo? descargaModelo;
-  final IntentoDeCarga? intentoDeCarga;
-  final MotorIA? motor;
   final Progreso? progreso;
+  final Gemini? gemini;
   final Actualizacion? actualizacion;
 
   @override
@@ -76,6 +73,7 @@ class TukylianoApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: Tema.datos,
       home: PantallaPrincipal(
+        almacenClave: almacenClave,
         repositorio: repositorio,
         frasesLocales: frasesLocales,
         articoli: articoli,
@@ -84,10 +82,8 @@ class TukylianoApp extends StatelessWidget {
         via: via,
         voz: voz,
         escucha: escucha,
-        descargaModelo: descargaModelo,
-        intentoDeCarga: intentoDeCarga,
-        motor: motor,
         progreso: progreso,
+        gemini: gemini,
         actualizacion: actualizacion,
       ),
     );
@@ -99,6 +95,7 @@ class TukylianoApp extends StatelessWidget {
 class PantallaPrincipal extends StatefulWidget {
   const PantallaPrincipal({
     super.key,
+    this.almacenClave,
     this.repositorio,
     this.frasesLocales,
     this.articoli,
@@ -107,13 +104,12 @@ class PantallaPrincipal extends StatefulWidget {
     this.via,
     this.voz,
     this.escucha,
-    this.descargaModelo,
-    this.intentoDeCarga,
-    this.motor,
     this.progreso,
+    this.gemini,
     this.actualizacion,
   });
 
+  final AlmacenamientoClave? almacenClave;
   final RepositorioVerbos? repositorio;
   final RepositorioFrases? frasesLocales;
   final RepositorioArticoli? articoli;
@@ -122,10 +118,8 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioParticelle? via;
   final Voz? voz;
   final Escucha? escucha;
-  final DescargaModelo? descargaModelo;
-  final IntentoDeCarga? intentoDeCarga;
-  final MotorIA? motor;
   final Progreso? progreso;
+  final Gemini? gemini;
   final Actualizacion? actualizacion;
 
   @override
@@ -149,10 +143,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   /// La voz vive acá y no en la pantalla de cuentos: así la que se elige
   /// sigue elegida al pasar por otra sección y volver.
   late final Voz _voz = widget.voz ?? VozDelSistema();
-  /// El que baja el modelo de IA. Vive acá, y no en la pantalla del chat,
-  /// para que una bajada empezada siga aunque se cambie de sección.
-  late final DescargaModelo _descargaModelo =
-      widget.descargaModelo ?? DescargaModelo();
+  late final AlmacenamientoClave _almacenClave =
+      widget.almacenClave ?? AlmacenamientoClave();
 
   /// Lo que se lleva hecho. Vive acá porque lo alimentan casi todas las
   /// secciones y lo muestra el inicio.
@@ -431,10 +423,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         // Sin key ni nada que guarde el estado: al cambiar de sección esta
         // pantalla se destruye y la charla se olvida, que es lo que se pidió.
         return PantallaChat(
-          descarga: _descargaModelo,
-          intento: widget.intentoDeCarga,
-          motor: widget.motor,
+          almacenClave: _almacenClave,
           voz: _voz,
+          gemini: widget.gemini,
         );
     }
   }

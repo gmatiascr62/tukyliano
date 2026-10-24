@@ -1,4 +1,0 @@
-assistant: Ciao! Sono Tuky. Cosa hai mangiato oggi?
-user: Ho mangiato la pizza
-assistant: Buona! Con che cosa ti piace la pizza?
-user: Con il prosciutto e il formaggio

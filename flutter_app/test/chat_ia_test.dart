@@ -1,7 +1,12 @@
+import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/ia/chat.dart';
+
+/// El texto de un turno del pedido a la API.
+String _texto(Map<String, dynamic> turno) =>
+    ((turno['parts'] as List).first as Map)['text'] as String;
 
 void main() {
   group('las almohadillas', () {
@@ -116,47 +121,115 @@ void main() {
   });
 
   group('la corrección', () {
-    test('la del modelo se saca, venga como venga', () {
-      // Al modelo ya no se le pide que corrija. Si corrige igual, es algo que
-      // inventó: a "Ho mangiato la pizza oggi", que está bien escrita, se le
-      // midieron tres correcciones distintas y las tres estaban mal.
-      const contestado = 'Correzione: Hai mangiato la pizza oggi.\n'
-          'Che tipo di pizza ti piace?';
+    test('la que repite la frase tal cual se escribió no se muestra', () {
+      // Es el caso que apareció practicando: "io vado al lavoro" está bien y
+      // la corrección decía exactamente lo mismo.
+      const contestado = 'Correzione: io vado al lavoro\n'
+          'Lavori sempre così presto la mattina?';
 
       expect(
-        sinCorreccionesDelModelo(contestado),
-        'Che tipo di pizza ti piace?',
+        sinCorreccionRepetida(contestado, 'io vado al lavoro'),
+        'Lavori sempre così presto la mattina?',
       );
     });
 
-    test('la marca se reconoce con cualquier mayúscula y con espacios', () {
-      const contestado = 'correzione : io vado al lavoro\nE tu?';
+    test('tampoco si lo único que cambió son mayúsculas o signos', () {
+      const contestado = 'Correzione: Io vado al lavoro.\nChe lavoro fai?';
 
-      expect(sinCorreccionesDelModelo(contestado), 'E tu?');
+      expect(
+        sinCorreccionRepetida(contestado, 'io vado al lavoro'),
+        'Che lavoro fai?',
+      );
     });
 
-    test('si contestó varias correcciones se van todas', () {
-      const contestado = 'Correzione: una\nCorrezione: otra\nCome stai?';
+    test('la corrección de verdad se muestra', () {
+      const contestado = 'Correzione: io vado al lavoro\nChe lavoro fai?';
 
-      expect(sinCorreccionesDelModelo(contestado), 'Come stai?');
+      // Acá sí corrigió: el alumno había escrito el verbo mal.
+      expect(
+        sinCorreccionRepetida(contestado, 'io ando al lavoro'),
+        contestado,
+      );
     });
 
-    test('una respuesta sin correcciones queda igual', () {
+    test('un acento que falta es una corrección de verdad', () {
+      // Si se compararan las frases sin acentos, esta se perdería, y es
+      // justamente una de las que hay que mostrar.
+      const contestado = 'Correzione: perché vai al lavoro?\nE tu?';
+
+      expect(
+        sinCorreccionRepetida(contestado, 'perche vai al lavoro?'),
+        contestado,
+      );
+    });
+
+    test('un apóstrofo que falta también', () {
+      const contestado = "Correzione: bevo l'acqua\nCosa mangi?";
+
+      expect(sinCorreccionRepetida(contestado, 'bevo lacqua'), contestado);
+    });
+
+    test('una respuesta sin corrección queda igual', () {
       const contestado = 'Bene! Lavori sempre così presto?';
 
-      expect(sinCorreccionesDelModelo(contestado), contestado);
+      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), contestado);
     });
 
-    test('si solo había una corrección no queda nada, y está bien', () {
-      // Que la pantalla diga que no contestó es mejor que mostrar una
-      // corrección inventada.
-      expect(sinCorreccionesDelModelo('Correzione: io vado al lavoro'), isEmpty);
+    test('si no queda nada se muestra la respuesta entera', () {
+      // Antes una corrección al pedo que una burbuja vacía.
+      const contestado = 'Correzione: io vado al lavoro';
+
+      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), contestado);
     });
 
-    test('una frase que apenas menciona la palabra no se toca', () {
-      const contestado = 'La correzione si dice "la correzione" in italiano.';
+    test('la marca se reconoce con cualquier mayúscula', () {
+      const contestado = 'correzione : io vado al lavoro\nE tu?';
 
-      expect(sinCorreccionesDelModelo(contestado), contestado);
+      expect(sinCorreccionRepetida(contestado, 'io vado al lavoro'), 'E tu?');
+    });
+  });
+
+  group('el mensaje que se le manda a la IA', () {
+    test('sin pedidos va tal cual se escribió', () {
+      expect(textoParaLaIa('ciao, sto bene'), 'ciao, sto bene');
+    });
+
+    test('un pedido suelto pide solo la traducción', () {
+      final texto = textoParaLaIa('#manteca#');
+
+      expect(texto, contains('únicamente #manteca# = #(traducción)#'));
+      expect(texto, contains('sin preguntas'));
+      expect(texto, isNot(contains('seguí la charla')));
+    });
+
+    test('un pedido en medio de la charla no la corta', () {
+      final texto = textoParaLaIa('mi serve la #manteca#');
+
+      expect(texto, contains('después seguí la charla'));
+    });
+
+    test('siempre le recuerda para qué lado traducir', () {
+      for (final mensaje in ['#manteca#', 'mi serve la #manteca#']) {
+        expect(
+          textoParaLaIa(mensaje),
+          contains('Si está en español traducilo al italiano'),
+          reason: mensaje,
+        );
+      }
+    });
+
+    test('con un pedido se le recuerda el formato de la respuesta', () {
+      final texto = textoParaLaIa('mi serve la #manteca#');
+
+      expect(texto, startsWith('mi serve la #manteca#'));
+      expect(texto, contains('#manteca# = #(traducción)#'));
+    });
+
+    test('con varios pedidos los nombra a todos', () {
+      final texto = textoParaLaIa('#manteca# y #pan#');
+
+      expect(texto, contains('#manteca# = #(traducción)#'));
+      expect(texto, contains('#pan# = #(traducción)#'));
     });
   });
 
@@ -187,14 +260,18 @@ void main() {
       expect(charla.mensajes.single.texto, 'Ciao! Che musica ascolti?');
     });
 
-    test('el prompt de la charla lleva el saludo y lo dicho', () {
+    test('el primer pedido lleva las instrucciones y el saludo', () {
       final charla = Conversacion()..agregar(const Mensaje.mia('ciao'));
 
-      final prompt = charla.prompt();
+      final turnos = charla.contenidos();
 
-      expect(prompt, contains(promptDeChat));
-      expect(prompt, contains(charla.saludo));
-      expect(prompt, contains('<start_of_turn>user\nciao'));
+      expect(turnos.length, 3);
+      expect(turnos[0]['role'], 'user');
+      expect(_texto(turnos[0]), promptDeChat);
+      expect(turnos[1]['role'], 'model');
+      expect(_texto(turnos[1]), charla.saludo);
+      expect(turnos[2]['role'], 'user');
+      expect(_texto(turnos[2]), 'ciao');
     });
 
     test('la memoria son los turnos anteriores, en orden', () {
@@ -203,16 +280,13 @@ void main() {
         ..agregar(const Mensaje.deLaIa('Piacere! Dove abiti?'))
         ..agregar(const Mensaje.mia('abito a Buenos Aires'));
 
-      final prompt = charla.prompt();
+      final turnos = charla.contenidos();
 
-      expect(
-        prompt.indexOf('mi chiamo Matías'),
-        lessThan(prompt.indexOf('Piacere! Dove abiti?')),
-      );
-      expect(
-        prompt.indexOf('Piacere! Dove abiti?'),
-        lessThan(prompt.indexOf('abito a Buenos Aires')),
-      );
+      expect(turnos.map((t) => t['role']).toList(),
+          ['user', 'model', 'user', 'model', 'user']);
+      expect(_texto(turnos[2]), 'mi chiamo Matías');
+      expect(_texto(turnos[3]), 'Piacere! Dove abiti?');
+      expect(_texto(turnos[4]), 'abito a Buenos Aires');
     });
 
     test('los avisos de la app no se le mandan a la IA', () {
@@ -222,186 +296,71 @@ void main() {
         ..agregar(const Mensaje.mia('ciao'))
         ..agregar(const Mensaje.aviso('No se pudo hablar con la IA.'));
 
-      expect(charla.prompt(), isNot(contains('No se pudo hablar')));
+      final turnos = charla.contenidos();
+
+      expect(turnos.length, 3);
+      expect(_texto(turnos[2]), 'ciao');
+    });
+
+    test('el recordatorio de traducción va solo en el último mensaje', () {
+      final charla = Conversacion()
+        ..agregar(const Mensaje.mia('#manteca#'))
+        ..agregar(const Mensaje.deLaIa('#manteca# = #burro#'))
+        ..agregar(const Mensaje.mia('#pan#'));
+
+      final turnos = charla.contenidos();
+
+      expect(_texto(turnos[2]), '#manteca#');
+      expect(_texto(turnos[4]), contains('pedido de traducción'));
     });
   });
 
-  group('el prompt para el modelo', () {
-    test('lleva las instrucciones, el saludo y lo dicho, en el formato de Gemma',
+  group('las instrucciones', () {
+    test('explican el formato de las traducciones con el ejemplo pedido', () {
+      expect(promptDeChat, contains('#manteca# = #burro#'));
+      expect(promptDeChat, contains('#como estas?#'));
+    });
+
+    test('explican los dos sentidos de la traducción, con un ejemplo de cada',
         () {
-      // Es el formato con el que entrenaron al modelo: escrito de otra manera
-      // contesta peor, y lo peor es que igual contesta.
-      final prompt = promptDeLaCharla(
-        saludo: 'Ciao! Che musica ascolti?',
-        mensajes: [
-          const Mensaje.deLaIa('Ciao! Che musica ascolti?'),
-          const Mensaje.mia('Mi piace il rock'),
-        ],
-      );
-
-      // Gemma no tiene turno de sistema: las instrucciones van pegadas
-      // adelante del primer turno del alumno, que es el del ejemplo.
-      expect(prompt, contains('<start_of_turn>user\n$promptDeChat\n\n'));
-      expect(
-        prompt,
-        contains('<start_of_turn>model\nCiao! Che musica ascolti?'),
-      );
-      expect(prompt, contains('<start_of_turn>user\nMi piace il rock'));
-      // Termina abriendo el turno del profesor: "ahora escribís vos".
-      expect(prompt, endsWith('<start_of_turn>model\n'));
+      expect(promptDeChat, contains('#ventana# = #finestra#'));
+      expect(promptDeChat, contains('#finestra# = #ventana#'));
+      expect(promptDeChat, contains('Nunca devuelvas la misma palabra'));
     });
 
-    test('se acuerda solo de los últimos mensajes', () {
-      // Cada mensaje de más son tokens que el celular tiene que volver a
-      // procesar en cada respuesta, y el contexto es de 1024.
-      final mensajes = [
-        const Mensaje.deLaIa('Ciao!'),
-        for (var i = 0; i < 20; i++) Mensaje.mia('mensaje $i'),
-      ];
-
-      final prompt = promptDeLaCharla(
-        saludo: 'Ciao!',
-        mensajes: mensajes,
-        cuantosRecordar: 4,
-      );
-
-      expect(prompt, contains('mensaje 19'));
-      expect(prompt, contains('mensaje 16'));
-      expect(prompt, isNot(contains('mensaje 15')));
-      // El saludo va siempre: es lo que le recuerda de qué tema hablaban.
-      expect(prompt, contains('Ciao!'));
+    test('piden no charlar cuando el mensaje es solo un pedido', () {
+      expect(promptDeChat, contains('SOLO un pedido de traducción'));
     });
 
-    test('los avisos de la app no se le mandan', () {
-      final prompt = promptDeLaCharla(
-        saludo: 'Ciao!',
-        mensajes: [
-          const Mensaje.deLaIa('Ciao!'),
-          const Mensaje.aviso('Se cortó internet'),
-        ],
-      );
-
-      expect(prompt, isNot(contains('Se cortó internet')));
+    test('piden italiano simple y respuestas cortas', () {
+      expect(promptDeChat, contains('italiano simple'));
+      expect(promptDeChat, contains('Correzione:'));
     });
 
-    test('las instrucciones son cortas, que es lo que un modelo chico sigue',
-        () {
-      expect(promptDeChat.split('\n').length, lessThan(30));
-      expect(promptDeChat, contains('insegnante di italiano'));
-      // El /no_think era para apagarle el razonamiento al Qwen3 que estuvo
-      // antes. El de ahora contesta de una, y pedirle algo que no entiende es
-      // una regla más que puede mezclar con las otras.
-      expect(promptDeChat, isNot(contains('/no_think')));
+    test('ponen la corrección como la excepción, no como la regla', () {
+      expect(promptDeChat, contains('Lo normal es NO corregir'));
+      expect(promptDeChat, contains('Nunca escribas un renglón de corrección'));
+      // Decir "io vado" en vez de "vado" no es un error, y era lo que corregía.
+      expect(promptDeChat, contains('Poner el sujeto'));
     });
 
-    test('las instrucciones no dejan un molde para copiar', () {
-      // Decía "empezá con este renglón exacto: Correzione: la frase bien
-      // escrita", y el modelo lo copió tal cual a la pantalla.
-      expect(promptDeChat, isNot(contains('la frase bien escrita')));
-    });
-
-    test('no se le pide que corrija: eso lo hace el código', () {
-      // Se midió: a "Ho mangiato la pizza oggi", que está bien escrita,
-      // inventó tres correcciones distintas y las tres estaban mal.
-      expect(promptDeChat.toLowerCase(), isNot(contains('correzione')));
-    });
-
-    test('la charla de ejemplo va como turnos, no escrita adentro', () {
-      // Escrita adentro de las instrucciones, el modelo veía un diálogo
-      // adentro de lo que dijo el alumno y se escribía su turno él mismo.
-      expect(promptDeChat, isNot(contains('Studente:')));
-      expect(promptDeChat, isNot(contains('Tuky:')));
-      expect(ejemploDeCharla.first.quien, Quien.yo);
-      expect(ejemploDeCharla.length.isEven, isTrue);
-
-      final prompt = promptDeLaCharla(
-        saludo: 'Ciao!',
-        mensajes: [const Mensaje.deLaIa('Ciao!')],
-      );
-      for (final turno in ejemploDeCharla) {
-        final quien = turno.quien == Quien.yo ? 'user' : 'model';
-        expect(prompt, contains('<start_of_turn>$quien\n'));
-        expect(prompt, contains('${turno.dicho}<end_of_turn>'));
-      }
-    });
-
-    test('no le da órdenes numeradas, que confunde con un pedido', () {
-      // "1. Contestá en italiano simple, de una a tres frases cortas" la leía
-      // como el pedido del alumno: contestaba "Ecco una frase corta in
-      // italiano: ...".
-      expect(promptDeChat, isNot(matches(RegExp(r'^\d\.', multiLine: true))));
+    test('no piden markdown, que se leería en voz alta', () {
+      expect(promptDeChat, contains('No uses markdown'));
     });
   });
 
-  group('el prompt para traducir', () {
-    test('es otro, sin las reglas de la charla', () {
-      final prompt = promptDeLaTraduccion('manteca');
+  test('no hay ninguna clave de la API en el código', () {
+    // El repo es público y Google revoca las claves que encuentra publicadas:
+    // ya pasó una vez. La clave se pega en el celular y vive solo ahí.
+    final conClave = [
+      for (final archivo in Directory('lib').listSync(recursive: true))
+        if (archivo is File &&
+            archivo.path.endsWith('.dart') &&
+            RegExp(r'AIza[0-9A-Za-z_\-]{10,}')
+                .hasMatch(archivo.readAsStringSync()))
+          archivo.path,
+    ];
 
-      expect(prompt, contains(promptDeTraduccion));
-      expect(prompt, isNot(contains(promptDeChat)));
-      expect(prompt, contains('Traducí al otro idioma: manteca'));
-    });
-
-    test('lleva ejemplos, que es lo que un modelo chico copia', () {
-      final prompt = promptDeLaTraduccion('manteca');
-
-      expect(prompt, contains('<start_of_turn>model\nburro'));
-      expect(prompt, contains('<start_of_turn>model\nventana'));
-    });
-
-    test('no le dice para qué lado traducir: se lo enseñan los ejemplos', () {
-      // Adivinar el idioma con reglas fallaba la mitad de las veces:
-      // "ventana" y "finestra" se escriben demasiado parecido.
-      final prompt = promptDeLaTraduccion('finestra');
-
-      expect(prompt, contains('Traducí al otro idioma: finestra'));
-      expect(promptDeTraduccion, contains('Nunca devolvés la misma palabra'));
-    });
-  });
-
-  group('cuando se anuncia como en el ejemplo', () {
-    test('saca el nombre del principio', () {
-      // El ejemplo de las instrucciones tiene renglones "Tuky: ...", y un
-      // modelo chico copia lo que ve.
-      expect(limpiarRespuesta('Tuky: Che bello! E tu?'), 'Che bello! E tu?');
-    });
-
-    test('también si se anuncia como el alumno', () {
-      expect(limpiarRespuesta('Studente: Ho un cane.'), 'Ho un cane.');
-    });
-
-    test('un nombre en el medio de la frase no se toca', () {
-      expect(limpiarRespuesta('Mi chiamo Tuky: piacere!'),
-          'Mi chiamo Tuky: piacere!');
-    });
-  });
-
-  group('limpiar lo que contestó', () {
-    test('saca el bloque de razonamiento', () {
-      expect(
-        limpiarRespuesta('<think>a ver, me pregunta...</think>Ciao! Tutto bene?'),
-        'Ciao! Tutto bene?',
-      );
-    });
-
-    test('un razonamiento sin cerrar se corta ahí', () {
-      // Se quedó pensando y lo cortamos: de ahí para adelante no hay respuesta.
-      expect(
-        limpiarRespuesta('Ciao!<think>ahora pienso y pienso'),
-        'Ciao!',
-      );
-    });
-
-    test('saca las marcas de turno que se le escapan', () {
-      expect(limpiarRespuesta('Tutto bene!<end_of_turn>'), 'Tutto bene!');
-      expect(
-        limpiarRespuesta('Tutto bene!<start_of_turn>user\nhola'),
-        'Tutto bene!',
-      );
-    });
-
-    test('una respuesta limpia no se toca', () {
-      expect(limpiarRespuesta('  Ciao! Come va?  '), 'Ciao! Come va?');
-    });
+    expect(conClave, isEmpty);
   });
 }
