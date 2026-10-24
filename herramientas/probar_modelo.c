@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <time.h>
 #include <string.h>
 
 // llama.cpp cuenta cien renglones por carga: qué tensor leyó, qué capa va en
@@ -166,6 +167,13 @@ int main(int argc, char ** argv) {
     const char * cuantasPide = getenv("FICHAS");
     const int tope = cuantasPide == NULL ? 80 : atoi(cuantasPide);
 
+    // Cuánto tarda importa tanto como qué contesta: un modelo que contesta
+    // mejor pero tarda el doble puede no servir en un celular. Acá se mide en
+    // una computadora, así que el número no es el del teléfono; sirve para
+    // comparar un modelo con otro.
+    const clock_t arranque = clock();
+    int cuantasSalieron = 0;
+
     printf("== respuesta: ");
     fflush(stdout);
     for (int i = 0; i < tope; i++) {
@@ -184,9 +192,15 @@ int main(int argc, char ** argv) {
             fwrite(pedazo, 1, (size_t) largo, stdout);
             fflush(stdout);
         }
+        cuantasSalieron++;
         tanda = llama_batch_get_one(&ficha, 1);
     }
-    printf("\nOK: el modelo contesta.\n");
+
+    const double tardo = (double) (clock() - arranque) / CLOCKS_PER_SEC;
+    printf("\n== %d fichas en %.1f s (%.1f por segundo)\n",
+           cuantasSalieron, tardo,
+           tardo > 0 ? cuantasSalieron / tardo : 0.0);
+    printf("OK: el modelo contesta.\n");
 
     free(delArchivo);
     llama_sampler_free(elector);
