@@ -194,7 +194,7 @@ void main() {
 
       expect(prompt, contains(promptDeChat));
       expect(prompt, contains(charla.saludo));
-      expect(prompt, contains('<|im_start|>user\nciao'));
+      expect(prompt, contains('<start_of_turn>user\nciao'));
     });
 
     test('la memoria son los turnos anteriores, en orden', () {
@@ -227,9 +227,10 @@ void main() {
   });
 
   group('el prompt para el modelo', () {
-    test('lleva las instrucciones, el saludo y lo dicho, en ChatML', () {
-      // ChatML es el formato con el que entrenaron al modelo: escrito de otra
-      // manera, contesta cualquier cosa.
+    test('lleva las instrucciones, el saludo y lo dicho, en el formato de Gemma',
+        () {
+      // Es el formato con el que entrenaron al modelo: escrito de otra manera
+      // contesta peor, y lo peor es que igual contesta.
       final prompt = promptDeLaCharla(
         saludo: 'Ciao! Che musica ascolti?',
         mensajes: [
@@ -238,12 +239,16 @@ void main() {
         ],
       );
 
-      expect(prompt, contains('<|im_start|>system'));
-      expect(prompt, contains(promptDeChat));
-      expect(prompt, contains('<|im_start|>assistant\nCiao! Che musica ascolti?'));
-      expect(prompt, contains('<|im_start|>user\nMi piace il rock'));
+      // Gemma no tiene turno de sistema: las instrucciones van pegadas
+      // adelante del primer turno del alumno, que es el del ejemplo.
+      expect(prompt, contains('<start_of_turn>user\n$promptDeChat\n\n'));
+      expect(
+        prompt,
+        contains('<start_of_turn>model\nCiao! Che musica ascolti?'),
+      );
+      expect(prompt, contains('<start_of_turn>user\nMi piace il rock'));
       // Termina abriendo el turno del profesor: "ahora escribís vos".
-      expect(prompt, endsWith('<|im_start|>assistant\n'));
+      expect(prompt, endsWith('<start_of_turn>model\n'));
     });
 
     test('se acuerda solo de los últimos mensajes', () {
@@ -281,9 +286,6 @@ void main() {
 
     test('las instrucciones son cortas, que es lo que un modelo chico sigue',
         () {
-      // Llevan una charla de ejemplo adentro, así que no son dos renglones.
-      // Se midió que vale la pena: con la explicación sola el modelo se iba de
-      // tema dos de cada tres veces; con el ejemplo, ninguna.
       expect(promptDeChat.split('\n').length, lessThan(30));
       expect(promptDeChat, contains('insegnante di italiano'));
       // El /no_think era para apagarle el razonamiento al Qwen3 que estuvo
@@ -304,9 +306,23 @@ void main() {
       expect(promptDeChat.toLowerCase(), isNot(contains('correzione')));
     });
 
-    test('le muestran una charla de ejemplo, que es lo que copia', () {
-      expect(promptDeChat, contains('Studente:'));
-      expect(promptDeChat, contains('Tuky:'));
+    test('la charla de ejemplo va como turnos, no escrita adentro', () {
+      // Escrita adentro de las instrucciones, el modelo veía un diálogo
+      // adentro de lo que dijo el alumno y se escribía su turno él mismo.
+      expect(promptDeChat, isNot(contains('Studente:')));
+      expect(promptDeChat, isNot(contains('Tuky:')));
+      expect(ejemploDeCharla.first.quien, Quien.yo);
+      expect(ejemploDeCharla.length.isEven, isTrue);
+
+      final prompt = promptDeLaCharla(
+        saludo: 'Ciao!',
+        mensajes: [const Mensaje.deLaIa('Ciao!')],
+      );
+      for (final turno in ejemploDeCharla) {
+        final quien = turno.quien == Quien.yo ? 'user' : 'model';
+        expect(prompt, contains('<start_of_turn>$quien\n'));
+        expect(prompt, contains('${turno.dicho}<end_of_turn>'));
+      }
     });
 
     test('no le da órdenes numeradas, que confunde con un pedido', () {
@@ -329,8 +345,8 @@ void main() {
     test('lleva ejemplos, que es lo que un modelo chico copia', () {
       final prompt = promptDeLaTraduccion('manteca');
 
-      expect(prompt, contains('<|im_start|>assistant\nburro'));
-      expect(prompt, contains('<|im_start|>assistant\nventana'));
+      expect(prompt, contains('<start_of_turn>model\nburro'));
+      expect(prompt, contains('<start_of_turn>model\nventana'));
     });
 
     test('no le dice para qué lado traducir: se lo enseñan los ejemplos', () {
@@ -377,9 +393,9 @@ void main() {
     });
 
     test('saca las marcas de turno que se le escapan', () {
-      expect(limpiarRespuesta('Tutto bene!<|im_end|>'), 'Tutto bene!');
+      expect(limpiarRespuesta('Tutto bene!<end_of_turn>'), 'Tutto bene!');
       expect(
-        limpiarRespuesta('Tutto bene!<|im_start|>user\nhola'),
+        limpiarRespuesta('Tutto bene!<start_of_turn>user\nhola'),
         'Tutto bene!',
       );
     });

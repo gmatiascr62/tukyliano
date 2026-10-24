@@ -71,21 +71,11 @@ const String marcaTraduccion = '#';
 /// - **No le dejan ningún molde para copiar.** Lo que haya entre comillas en
 ///   las instrucciones, un modelo chico lo escribe tal cual.
 ///
-/// Lo que sí llevan es una charla de ejemplo, y es lo que hace que no salte de
-/// tema. Antes pasaba del fútbol al cine y del cine al fin de semana en tres
-/// mensajes: la instrucción le pedía "terminá con una pregunta" y él entendía
-/// "una pregunta nueva". Explicárselo —"quedate en el tema"— no alcanzó;
-/// mostrárselo sí. Medido sobre tres charlas: con la explicación se quedó en
-/// el tema una vez de tres, con el ejemplo tres de tres. Es lo mismo que pasa
-/// con las traducciones: a un modelo chico se le muestra, no se le describe.
-///
-/// El ejemplo habla de una bicicleta y no de un perro —que fue el primero que
-/// se probó— porque uno de los saludos pregunta por mascotas. Cuando la charla
-/// caía justo en el tema del ejemplo, el modelo contestaba con el libreto en
-/// vez de con lo que le estaban diciendo. Ningún saludo habla de bicicletas.
+/// Lo que no llevan adentro es la charla de ejemplo: esa va aparte, en
+/// [ejemploDeCharla], como turnos de verdad. Ver ahí por qué.
 ///
 /// Las instrucciones se prueban en el workflow "Probar el modelo", que las saca
-/// de acá y las corre con tres mensajes de alumno.
+/// de acá y las corre contra charlas de varios turnos.
 const String promptDeChat = '''
 Sei Tuky, un insegnante di italiano. Il tuo studente parla spagnolo e sta
 facendo pratica di conversazione con te.
@@ -93,18 +83,47 @@ facendo pratica di conversazione con te.
 Rispondi sempre in italiano, mai in spagnolo, con una o due frasi brevi, e
 finisci con una domanda sulla stessa cosa che ha appena detto lo studente.
 
-Così parli:
-
-Studente: Ho una bicicletta.
-Tuky: Che bello! Di che colore è la tua bicicletta?
-Studente: È rossa.
-Tuky: Il rosso mi piace molto. Da quanto tempo ce l'hai?
-Studente: Da due anni.
-Tuky: Due anni non sono pochi! Dove vai di solito in bicicletta?
-
 Non annunciare mai quello che stai per dire: dillo e basta.
 Non correggere lo studente: non è il tuo compito.
 Niente markdown, niente emoji, niente elenchi.''';
+
+/// Un turno de la charla de ejemplo: quién habla y qué dice.
+typedef TurnoDeEjemplo = ({Quien quien, String dicho});
+
+/// La charla de ejemplo que se le muestra al modelo antes de la de verdad.
+///
+/// Es lo que hace que no salte de tema. Antes pasaba del fútbol al cine y del
+/// cine al fin de semana en tres mensajes: la instrucción le pedía "terminá
+/// con una pregunta" y él entendía "una pregunta nueva". Explicárselo
+/// —"quedate en el tema"— no alcanzó; mostrárselo sí. A un modelo chico se le
+/// muestra, no se le describe.
+///
+/// **Va como turnos y no escrita adentro de las instrucciones**, que es como
+/// estaba. Gemma no tiene un lugar aparte para las instrucciones: le llegan
+/// pegadas adelante del primer mensaje del alumno. Con el ejemplo escrito ahí
+/// adentro, veía un diálogo adentro de lo que dijo el alumno y lo imitaba: se
+/// escribía él mismo el turno del alumno —"Studente: Ho un gatto"— y recién
+/// después contestaba. Se midió con tres publicadores del mismo modelo y a los
+/// tres les pasó. Como turnos, cero veces de dieciocho.
+///
+/// El ejemplo habla de una bicicleta y no de un perro —que fue el primero que
+/// se probó— porque uno de los saludos pregunta por mascotas. Cuando la charla
+/// caía justo en el tema del ejemplo, el modelo contestaba con el libreto en
+/// vez de con lo que le estaban diciendo. Ningún saludo habla de bicicletas.
+const List<TurnoDeEjemplo> ejemploDeCharla = [
+  (quien: Quien.yo, dicho: 'Ho una bicicletta.'),
+  (quien: Quien.ia, dicho: 'Che bello! Di che colore è la tua bicicletta?'),
+  (quien: Quien.yo, dicho: 'È rossa.'),
+  (
+    quien: Quien.ia,
+    dicho: "Il rosso mi piace molto. Da quanto tempo ce l'hai?"
+  ),
+  (quien: Quien.yo, dicho: 'Da due anni.'),
+  (
+    quien: Quien.ia,
+    dicho: 'Due anni non sono pochi! Dove vai di solito in bicicletta?'
+  ),
+];
 
 /// Las instrucciones para traducir, que son otras.
 ///
@@ -260,14 +279,50 @@ String soloLasTraducciones(String respuesta) {
   return renglones.isEmpty ? respuesta : renglones.join('\n');
 }
 
-/// Las marcas con las que se separan los turnos. Es el formato ChatML, que es
-/// con el que fue entrenado el modelo —lo usan Qwen2.5, Qwen3 y varios más— y
-/// escribir el prompt de otra manera lo hace contestar cualquier cosa.
-const String _turnoAbre = '<|im_start|>';
-const String _turnoCierra = '<|im_end|>';
+/// Las marcas con las que se separan los turnos. Es el formato de Gemma, que
+/// es con el que fue entrenado el modelo: escribir el prompt de otra manera lo
+/// hace contestar peor, y lo peor es que igual contesta, así que el error no
+/// se ve.
+///
+/// Antes acá estaba ChatML (`<|im_start|>`), que es el de Qwen.
+const String _turnoAbre = '<start_of_turn>';
+const String _turnoCierra = '<end_of_turn>';
 
-String _turno(String quien, String texto) =>
-    '$_turnoAbre$quien\n$texto$_turnoCierra\n';
+/// Cómo se llama cada uno adentro del formato. Ojo con el segundo: en Gemma el
+/// que contesta es "model" y no "assistant".
+const String _elQueEscribe = 'user';
+const String _elQueContesta = 'model';
+
+/// Arma una charla entera, lista para darle al modelo.
+///
+/// Las [instrucciones] no van en un turno propio: Gemma no tiene lugar para
+/// eso, así que van pegadas adelante del primer turno del alumno, separadas
+/// por un renglón en blanco. Es lo que hace llama.cpp con la plantilla que
+/// trae el propio archivo del modelo, copiado de ahí y no inventado.
+///
+/// Termina abriendo el turno del profesor, que es la forma de decirle "ahora
+/// escribís vos".
+String _charlaArmada({
+  required String instrucciones,
+  required List<TurnoDeEjemplo> turnos,
+}) {
+  final texto = StringBuffer();
+  // Esperan hasta que hable el alumno. Todas las charlas que se arman acá
+  // empiezan con un turno suyo, así que siempre entran.
+  var esperando = instrucciones;
+
+  for (final turno in turnos) {
+    final quien = turno.quien == Quien.yo ? _elQueEscribe : _elQueContesta;
+    texto.write('$_turnoAbre$quien\n');
+    if (esperando.isNotEmpty && quien == _elQueEscribe) {
+      texto.write('$esperando\n\n');
+      esperando = '';
+    }
+    texto.write('${turno.dicho}$_turnoCierra\n');
+  }
+
+  return '$texto$_turnoAbre$_elQueContesta\n';
+}
 
 /// El prompt completo de una charla, listo para darle al modelo.
 ///
@@ -291,18 +346,17 @@ String promptDeLaCharla({
       ? cuerpo
       : cuerpo.sublist(cuerpo.length - cuantosRecordar);
 
-  final texto = StringBuffer()
-    ..write(_turno('system', promptDeChat))
-    ..write(_turno('assistant', saludo));
-
-  for (final mensaje in recordados) {
-    texto.write(_turno(
-      mensaje.quien == Quien.yo ? 'user' : 'assistant',
-      mensaje.texto,
-    ));
-  }
-
-  return '$texto${_turnoAbre}assistant\n';
+  return _charlaArmada(
+    instrucciones: promptDeChat,
+    turnos: [
+      // Primero la charla de ejemplo, que para el modelo es una charla que ya
+      // pasó, y después la de verdad.
+      ...ejemploDeCharla,
+      (quien: Quien.ia, dicho: saludo),
+      for (final mensaje in recordados)
+        (quien: mensaje.quien, dicho: mensaje.texto),
+    ],
+  );
 }
 
 /// El prompt para traducir una palabra o una frase.
@@ -317,21 +371,24 @@ String promptDeLaCharla({
 /// se escriben parecido y la regla fallaba la mitad de las veces. Los ejemplos
 /// se lo enseñan mejor de lo que una regla lo adivina.
 String promptDeLaTraduccion(String pedido) {
-  return '${_turno('system', promptDeTraduccion)}'
-      '${_turno('user', 'Traducí al otro idioma: manteca')}'
-      '${_turno('assistant', 'burro')}'
-      '${_turno('user', 'Traducí al otro idioma: finestra')}'
-      '${_turno('assistant', 'ventana')}'
-      '${_turno('user', 'Traducí al otro idioma: $pedido')}'
-      '${_turnoAbre}assistant\n';
+  return _charlaArmada(
+    instrucciones: promptDeTraduccion,
+    turnos: [
+      (quien: Quien.yo, dicho: 'Traducí al otro idioma: manteca'),
+      (quien: Quien.ia, dicho: 'burro'),
+      (quien: Quien.yo, dicho: 'Traducí al otro idioma: finestra'),
+      (quien: Quien.ia, dicho: 'ventana'),
+      (quien: Quien.yo, dicho: 'Traducí al otro idioma: $pedido'),
+    ],
+  );
 }
 
 /// Lo que el modelo escribió, listo para mostrar.
 ///
-/// Saca lo que no es la respuesta: las marcas de turno de ChatML que a veces se
-/// le escapan, los espacios de los bordes, el nombre con el que a veces se
+/// Saca lo que no es la respuesta: las marcas de turno que a veces se le
+/// escapan, los espacios de los bordes, el nombre con el que a veces se
 /// anuncia, y un bloque de razonamiento `<think>` por si alguna vez se cambia a
-/// un modelo que razone. El de ahora, Qwen2.5, no escribe ninguno: eso queda
+/// un modelo que razone. El de ahora, Gemma 3, no escribe ninguno: eso queda
 /// como red, no porque haga falta hoy.
 String limpiarRespuesta(String crudo) {
   var texto = crudo.replaceAll(
@@ -343,14 +400,13 @@ String limpiarRespuesta(String crudo) {
   final pensandoTodavia = texto.indexOf('<think>');
   if (pensandoTodavia >= 0) texto = texto.substring(0, pensandoTodavia);
 
-  for (final marca in [_turnoCierra, _turnoAbre, '<|endoftext|>']) {
+  for (final marca in [_turnoCierra, _turnoAbre, '<eos>']) {
     final corte = texto.indexOf(marca);
     if (corte >= 0) texto = texto.substring(0, corte);
   }
 
-  // Las instrucciones llevan una charla de ejemplo donde cada turno empieza
-  // con "Tuky:" o "Studente:". Un modelo chico copia lo que ve, así que puede
-  // arrancar la respuesta con su propio nombre.
+  // A veces arranca la respuesta anunciándose: "Tuky: Ah, Matías!". Está
+  // medido, y pasa aunque el ejemplo ya no lleve esos nombres escritos.
   texto = texto.trimLeft().replaceFirst(_seAnunciaSolo, '');
 
   return texto.trim();
