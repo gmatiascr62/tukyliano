@@ -51,62 +51,21 @@ La app mira esa Release al arrancar y avisa cuando hay una versión más nueva.
 > que la tengan instalada tendrían que desinstalarla para poder actualizar.
 > Por eso el build falla si la huella no coincide.
 
-## La IA del chat
+## La clave de la IA
 
-La sección Chat no habla con ningún servidor: el modelo corre adentro del
-celular. Es **Gemma 3 1B Instruct** cuantizado a Q4_K_M (768 MB, licencia de
-Google) y lo mueve **llama.cpp**, compilado para arm64 por el workflow del APK
-y metido adentro en `jniLibs`.
+La sección Chat usa **Gemini** (`gemini-flash-lite-latest`). La clave la pega el
+usuario en la app y queda solo en el almacenamiento privado del celular:
+**nunca va en el código ni en el repo**, que es público. Un test verifica que no
+se cuele ninguna.
 
-Pasaron dos antes, y los dos se cambiaron midiendo, no opinando:
+El chat necesita internet. Hubo una época en que el modelo corría adentro del
+celular —Qwen primero, Gemma 3 1B después— para que anduviera sin conexión y
+sin clave. Se volvió atrás: un modelo de mil millones de parámetros no conversa
+lo bastante bien para enseñar. Medido con las mismas seis charlas y tres
+respuestas por charla, el mejor de ellos contestó sobre lo que el alumno acababa
+de decir 11 veces de 18. Está todo en el historial, en los PRs #101 a #142, por
+si alguna vez los modelos chicos dan para esto.
 
-- **Qwen3-0.6B** pesaba un tercio pero copiaba: razona antes de contestar —cien
-  palabras para adentro, veinte segundos en un celular— y cuando se le pide que
-  no razone, el de 0.6B devuelve la última frase en vez de contestar.
-- **Qwen2.5-1.5B** contestaba, pero sobre lo que el alumno acababa de decir solo
-  5 veces de 18, y una vez de 18 contestó entera en castellano. Gemma, con las
-  mismas instrucciones y las mismas charlas, 12 de 18 y cero en castellano en
-  54 respuestas.
-
-Las mediciones las hace `probar-modelo.yml`: corre el modelo comprimido con el
-prompt que sale del código y charlas de varios turnos, varias respuestas por
-casillero para que las diferencias no queden adentro del ruido.
-
-Gemma usa otro formato de charla que Qwen: marca los turnos con
-`<start_of_turn>`, le dice `model` al que contesta, y no tiene lugar aparte
-para las instrucciones —van pegadas adelante del primer mensaje del alumno—.
-Por eso la charla de ejemplo que se le muestra va como turnos de verdad y no
-escrita adentro del prompt: escrita adentro, el modelo se inventaba el turno
-del alumno.
-
-El modelo no viaja en el APK —pesa más que toda la app— sino que lo baja la
-app la primera vez que se entra al chat, desde Hugging Face y clavado a una
-revisión. Lo bajado se verifica contra un SHA-256 antes de usarlo, se puede
-retomar si se corta, y después funciona en modo avión. No hay clave que pegar,
-no hay cuota que se agote y nada de lo que se escribe sale del aparato.
-
-El workflow `modelo-ia.yml` vuelve a chequear contra Hugging Face el tamaño y
-la huella cada vez que se toca `lib/ia/modelo.dart`.
-
-### Dónde anda y dónde no
-
-Conviene decirlo de frente, porque "funciona sin internet" y "funciona en
-cualquier celular" no son lo mismo:
-
-- **La biblioteca del chat se compila solo para arm64**, que es lo que tiene
-  cualquier teléfono de los últimos ocho años. En un Android de 32 bits el chat
-  no aparece; el resto de la app anda igual.
-- **El chat pide 4 GB de RAM.** El número sale de la práctica, no de una
-  cuenta: el modelo ocupa algo más de un giga y Android no le da a una app toda
-  la memoria del aparato. Con menos, se avisa y no se deja ni empezar.
-- **Sin conexión anda el chat, no toda la app.** Hay que bajar el modelo una
-  vez —más de un giga— y también hacen falta datos para traer verbos y frases
-  nuevas y para enterarse de que hay una versión nueva. Después de esa primera
-  bajada, charlar funciona en modo avión.
-- **Lo que se mide en la computadora no prueba lo que pasa en un celular.** Las
-  pruebas de `probar-modelo.yml` sirven para comparar modelos e instrucciones
-  entre sí; la velocidad y la memoria reales solo se saben probando en un
-  teléfono.
 
 ## Correr los tests
 

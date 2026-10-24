@@ -50,8 +50,3 @@ app.*.map.json
 *.jks
 *.keystore
 key.properties
-
-# La biblioteca nativa de llama.cpp: la compila el workflow del APK para arm64
-# y la deja acá. No se versiona: son varios megas de binario que se rehacen en
-# cada build.
-android/app/src/main/jniLibs/

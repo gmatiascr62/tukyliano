@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'gemini.dart';
 
 /// Con qué puede arrancar la charla, uno por tema.
 ///
@@ -51,102 +52,52 @@ String saludoAlAzar({String? distintoDe, Random? azar}) {
 /// La almohadilla que marca un pedido de traducción: #manteca#.
 const String marcaTraduccion = '#';
 
-/// Las instrucciones que se le dan al modelo al principio de cada charla.
-///
-/// Están en italiano, que es el idioma en el que tiene que contestar: medido
-/// contra las mismas instrucciones en castellano y en inglés, son las que dan
-/// las respuestas más naturales y más cortas.
-///
-/// Lo que NO dicen es tan importante como lo que dicen:
-///
-/// - **No le piden que corrija.** Se midió: a "Ho mangiato la pizza oggi", que
-///   está bien escrita, inventó tres correcciones distintas con tres formas de
-///   pedírselo, y las tres estaban mal. Una corrección equivocada enseña mal y
-///   con autoridad. Corregir lo hace [revisarItaliano], que es código que se
-///   puede probar.
-/// - **No le dan órdenes numeradas.** La regla "Contestá en italiano simple, de
-///   una a tres frases cortas" la leía como el pedido del alumno y contestaba
-///   "Ecco una frase corta in italiano: ...". Describirle cómo habla, en vez de
-///   darle una lista de tareas, no se confunde con un pedido.
-/// - **No le dejan ningún molde para copiar.** Lo que haya entre comillas en
-///   las instrucciones, un modelo chico lo escribe tal cual.
-///
-/// Lo que no llevan adentro es la charla de ejemplo: esa va aparte, en
-/// [ejemploDeCharla], como turnos de verdad. Ver ahí por qué.
-///
-/// Las instrucciones se prueban en el workflow "Probar el modelo", que las saca
-/// de acá y las corre contra charlas de varios turnos.
+/// Las instrucciones que se le dan a la IA una sola vez, al principio de cada
+/// charla. Están acá y no en la pantalla para poder verificarlas en los tests.
 const String promptDeChat = '''
-Sei Tuky, un insegnante di italiano. Il tuo studente parla spagnolo e sta
-facendo pratica di conversazione con te.
+Sos Tuky, un amigo italiano que charla por mensajes con alguien de Argentina
+que está aprendiendo italiano. Tenés que seguir estas reglas siempre:
 
-Rispondi sempre in italiano, mai in spagnolo, con una o due frasi brevi, e
-finisci con una domanda sulla stessa cosa che ha appena detto lo studente.
-
-Non annunciare mai quello che stai per dire: dillo e basta.
-Non correggere lo studente: non è il tuo compito.
-Niente markdown, niente emoji, niente elenchi.''';
-
-/// Un turno de la charla de ejemplo: quién habla y qué dice.
-typedef TurnoDeEjemplo = ({Quien quien, String dicho});
-
-/// La charla de ejemplo que se le muestra al modelo antes de la de verdad.
-///
-/// Es lo que hace que no salte de tema. Antes pasaba del fútbol al cine y del
-/// cine al fin de semana en tres mensajes: la instrucción le pedía "terminá
-/// con una pregunta" y él entendía "una pregunta nueva". Explicárselo
-/// —"quedate en el tema"— no alcanzó; mostrárselo sí. A un modelo chico se le
-/// muestra, no se le describe.
-///
-/// **Va como turnos y no escrita adentro de las instrucciones**, que es como
-/// estaba. Gemma no tiene un lugar aparte para las instrucciones: le llegan
-/// pegadas adelante del primer mensaje del alumno. Con el ejemplo escrito ahí
-/// adentro, veía un diálogo adentro de lo que dijo el alumno y lo imitaba: se
-/// escribía él mismo el turno del alumno —"Studente: Ho un gatto"— y recién
-/// después contestaba. Se midió con tres publicadores del mismo modelo y a los
-/// tres les pasó. Como turnos, cero veces de dieciocho.
-///
-/// El ejemplo habla de una bicicleta y no de un perro —que fue el primero que
-/// se probó— porque uno de los saludos pregunta por mascotas. Cuando la charla
-/// caía justo en el tema del ejemplo, el modelo contestaba con el libreto en
-/// vez de con lo que le estaban diciendo. Ningún saludo habla de bicicletas.
-const List<TurnoDeEjemplo> ejemploDeCharla = [
-  (quien: Quien.yo, dicho: 'Ho una bicicletta.'),
-  (quien: Quien.ia, dicho: 'Che bello! Di che colore è la tua bicicletta?'),
-  (quien: Quien.yo, dicho: 'È rossa.'),
-  (
-    quien: Quien.ia,
-    dicho: "Il rosso mi piace molto. Da quanto tempo ce l'hai?"
-  ),
-  (quien: Quien.yo, dicho: 'Da due anni.'),
-  (
-    quien: Quien.ia,
-    dicho: 'Due anni non sono pochi! Dove vai di solito in bicicletta?'
-  ),
-];
-
-/// Las instrucciones para traducir, que son otras.
-///
-/// Un pedido de traducción no es una charla: no va saludo, ni pregunta, ni
-/// corrección. Mandarle al modelo las reglas de la charla para traducir una
-/// palabra es lo que antes hacía que contestara "burro! E tu, cosa mangi?".
-///
-/// Los dos ejemplos de adentro valen más que cualquier explicación: a un modelo
-/// chico se le muestra el formato, no se le describe.
-const String promptDeTraduccion = '''
-Traducís palabras y frases entre español e italiano.
-Si te dan una palabra en español, contestás la italiana; si te dan una
-italiana, contestás la española. Nunca devolvés la misma palabra.
-Contestás solo con la traducción: sin comillas, sin explicar y sin saludar.''';
-
-/// Cuántos mensajes de la charla se le recuerdan al modelo.
-///
-/// Ocho son cuatro idas y vueltas. Cada mensaje que se suma son tokens que el
-/// celular tiene que volver a procesar en cada respuesta: con el contexto de
-/// 1024 tokens que se le da al modelo, pasarse significa que se corta solo por
-/// el medio. Para una charla de práctica, acordarse de las últimas cuatro
-/// vueltas alcanza.
-const int cuantosMensajesSeRecuerdan = 8;
+1. Escribí SIEMPRE en italiano simple y de todos los días, con frases cortas.
+   Nada de italiano literario ni palabras raras.
+2. Contestá poco: dos o tres frases como máximo, y terminá siempre con una
+   pregunta para que la charla siga.
+3. Lo normal es NO corregir: contestá la charla y listo. La corrección es la
+   excepción y va solo cuando escribió algo que un italiano no diría, como un
+   verbo mal conjugado, una preposición equivocada o una palabra mal escrita.
+   Ahí, y solo ahí, ponela en el primer renglón, con este formato exacto:
+   Correzione: la frase bien escrita
+   Nunca escribas un renglón de corrección que repita la frase tal como la
+   escribió: si la frase está bien, no hay corrección y no va ese renglón.
+   Poner el sujeto (io, tu, lui) no es un error: en italiano se puede omitir,
+   pero decirlo también está bien. Nunca lo corrijas por eso.
+   No expliques la regla ni agregues comentarios sobre la corrección.
+4. Todo lo que venga entre almohadillas (#) no es parte de la charla: es un
+   pedido de traducción. Puede ser una palabra (#manteca#) o una frase entera
+   (#como estas?#). Contestá cada pedido en su propio renglón, arriba de todo,
+   con este formato exacto:
+   #manteca# = #burro#
+5. La traducción va SIEMPRE al otro idioma, nunca al mismo. Fijate primero en
+   qué idioma está escrito lo que te dieron:
+   - si está en español, traducilo al italiano: #ventana# = #finestra#
+   - si está en italiano, traducilo al español: #finestra# = #ventana#
+   Nunca devuelvas la misma palabra que te dieron.
+6. Si el mensaje es SOLO un pedido de traducción (no hay nada más escrito fuera
+   de las almohadillas), contestá únicamente la traducción y nada más: sin
+   saludos, sin preguntas, sin comentarios y sin seguir la charla.
+   Si además de las almohadillas escribió otra cosa, ahí sí: primero las
+   traducciones, después la corrección, y al final tu respuesta a la charla,
+   como si el pedido no hubiera pasado.
+7. No uses markdown, ni asteriscos, ni emojis, ni listas numeradas: el texto se
+   lee en voz alta.
+8. Cuando tengas que escribir en español, usá el de Latinoamérica: "ustedes",
+   nunca "vosotros".
+9. Seguí el tema con el que arrancó la charla y quedate un rato ahí, con
+   preguntas sobre eso. Cuando el tema se apaga o empieza a dar vueltas,
+   cambialo vos y preguntá por otra cosa: qué comió, qué hizo el fin de semana,
+   el trabajo, la música, un viaje, el clima, la familia, una película. No
+   vuelvas siempre a "come stai" ni repitas una pregunta que ya hiciste.
+''';
 
 /// Quién dijo cada mensaje.
 enum Quien {
@@ -235,24 +186,48 @@ final RegExp _empiezaCorreccion = RegExp(
   caseSensitive: false,
 );
 
-/// Saca del texto del modelo cualquier renglón de corrección.
+/// Signos que no cambian lo que dice una frase.
+final RegExp _signos = RegExp(r'[.,;:!?¡¿"“”]');
+final RegExp _espacios = RegExp(r'\s+');
+
+/// Deja la frase comparable: sin mayúsculas, sin signos y con un solo espacio
+/// entre palabras.
 ///
-/// Al modelo ya no se le pide que corrija: se le pide que converse. Corregir
-/// lo hacen las reglas de reglas_italiano.dart, que son código que se puede
-/// probar. Así que si igual aparece un "Correzione:", es algo que inventó, y
-/// se saca.
+/// Los acentos y los apóstrofos NO se tocan a propósito: escribir "perche" en
+/// vez de "perché", o "l'acqua" en vez de "lacqua", son justamente los errores
+/// que la corrección tiene que mostrar.
+String _comparable(String texto) => texto
+    .toLowerCase()
+    .replaceAll(_signos, '')
+    .replaceAll(_espacios, ' ')
+    .trim();
+
+/// Saca el renglón de corrección cuando corrige con la misma frase que se
+/// escribió, que no es una corrección.
 ///
-/// No es exageración. A "Ho mangiato la pizza oggi", que está bien escrita, se
-/// le midieron estas tres correcciones con tres formas distintas de pedírselo:
-/// "C'è stata un'impresa nuova?", "Hai mangiato la pizza oggi" —le cambió la
-/// persona— y "Hai mangiato una pizza?". Una corrección equivocada enseña mal,
-/// y encima con autoridad.
-String sinCorreccionesDelModelo(String respuesta) {
+/// Pasa seguido: las instrucciones le dejan un lugar donde va la corrección y
+/// el modelo lo llena aunque la frase esté bien, o repite la charla anterior
+/// donde sí había corregido algo. Que se muestre solo cuando de verdad cambió
+/// algo no puede depender de que la IA se porte bien.
+///
+/// Si al sacarlo no queda nada se devuelve la respuesta entera: antes mostrar
+/// una corrección al pedo que una burbuja vacía.
+String sinCorreccionRepetida(String respuesta, String mensaje) {
+  final escrito = _comparable(mensaje);
   final quedan = [
     for (final renglon in respuesta.split('\n'))
-      if (_empiezaCorreccion.matchAsPrefix(renglon.trim()) == null) renglon,
+      if (!_esCorreccionDe(renglon, escrito)) renglon,
   ];
-  return quedan.join('\n').trim();
+
+  final limpio = quedan.join('\n').trim();
+  return limpio.isEmpty ? respuesta : limpio;
+}
+
+bool _esCorreccionDe(String renglon, String escritoComparable) {
+  final texto = renglon.trim();
+  final marca = _empiezaCorreccion.matchAsPrefix(texto);
+  if (marca == null) return false;
+  return _comparable(texto.substring(marca.end)) == escritoComparable;
 }
 
 /// Un renglón de traducción: '#manteca# = #burro#'.
@@ -279,144 +254,32 @@ String soloLasTraducciones(String respuesta) {
   return renglones.isEmpty ? respuesta : renglones.join('\n');
 }
 
-/// Las marcas con las que se separan los turnos. Es el formato de Gemma, que
-/// es con el que fue entrenado el modelo: escribir el prompt de otra manera lo
-/// hace contestar peor, y lo peor es que igual contesta, así que el error no
-/// se ve.
+/// El mensaje tal como se le manda a la IA.
 ///
-/// Antes acá estaba ChatML (`<|im_start|>`), que es el de Qwen.
-const String _turnoAbre = '<start_of_turn>';
-const String _turnoCierra = '<end_of_turn>';
+/// Cuando hay un pedido de traducción se le suma un recordatorio del formato.
+/// Las instrucciones ya lo explican, pero repetirlo en el turno donde importa
+/// es lo que hace que conteste siempre igual, y así la app puede pintar la
+/// traducción y leerla en voz alta.
+String textoParaLaIa(String mensaje) {
+  final pedidos = pedidosDeTraduccion(mensaje);
+  if (pedidos.isEmpty) return mensaje;
 
-/// Cómo se llama cada uno adentro del formato. Ojo con el segundo: en Gemma el
-/// que contesta es "model" y no "assistant".
-const String _elQueEscribe = 'user';
-const String _elQueContesta = 'model';
+  final ejemplos = pedidos.map((p) => '#$p# = #(traducción)#').join(', ');
+  const direccion = 'Si está en español traducilo al italiano; si está en '
+      'italiano traducilo al español. Nunca devuelvas la misma palabra.';
 
-/// Arma una charla entera, lista para darle al modelo.
-///
-/// Las [instrucciones] no van en un turno propio: Gemma no tiene lugar para
-/// eso, así que van pegadas adelante del primer turno del alumno, separadas
-/// por un renglón en blanco. Es lo que hace llama.cpp con la plantilla que
-/// trae el propio archivo del modelo, copiado de ahí y no inventado.
-///
-/// Termina abriendo el turno del profesor, que es la forma de decirle "ahora
-/// escribís vos".
-String _charlaArmada({
-  required String instrucciones,
-  required List<TurnoDeEjemplo> turnos,
-}) {
-  final texto = StringBuffer();
-  // Esperan hasta que hable el alumno. Todas las charlas que se arman acá
-  // empiezan con un turno suyo, así que siempre entran.
-  var esperando = instrucciones;
-
-  for (final turno in turnos) {
-    final quien = turno.quien == Quien.yo ? _elQueEscribe : _elQueContesta;
-    texto.write('$_turnoAbre$quien\n');
-    if (esperando.isNotEmpty && quien == _elQueEscribe) {
-      texto.write('$esperando\n\n');
-      esperando = '';
-    }
-    texto.write('${turno.dicho}$_turnoCierra\n');
+  if (esSoloTraduccion(mensaje)) {
+    return '$mensaje\n\n'
+        '(Esto es solo un pedido de traducción, no es charla. Contestá '
+        'únicamente $ejemplos, un renglón por pedido, y nada más: sin saludos, '
+        'sin preguntas y sin comentarios. $direccion)';
   }
 
-  return '$texto$_turnoAbre$_elQueContesta\n';
+  return '$mensaje\n\n'
+      '(Recordá: lo que está entre # es un pedido de traducción. Empezá tu '
+      'respuesta con $ejemplos, un renglón por pedido, y después seguí la '
+      'charla en italiano. $direccion)';
 }
-
-/// El prompt completo de una charla, listo para darle al modelo.
-///
-/// Lleva las instrucciones, el saludo con el que arrancó la charla y los
-/// últimos [cuantosMensajesSeRecuerdan] mensajes. Termina abriendo el turno del
-/// profesor, que es la forma de decirle "ahora escribís vos".
-String promptDeLaCharla({
-  required String saludo,
-  required List<Mensaje> mensajes,
-  int cuantosRecordar = cuantosMensajesSeRecuerdan,
-}) {
-  // Los avisos de la app (que se cortó la luz, que no hay memoria) no son
-  // parte de la charla: si se le mandaran, el modelo los leería como si los
-  // hubiera escrito el alumno.
-  final dichos = mensajes.where((m) => m.quien != Quien.aviso).toList();
-
-  // El primero es el saludo y va siempre, aunque la charla sea larga: es lo
-  // que le recuerda al modelo de qué tema estaban hablando.
-  final cuerpo = dichos.isEmpty ? <Mensaje>[] : dichos.sublist(1);
-  final recordados = cuerpo.length <= cuantosRecordar
-      ? cuerpo
-      : cuerpo.sublist(cuerpo.length - cuantosRecordar);
-
-  return _charlaArmada(
-    instrucciones: promptDeChat,
-    turnos: [
-      // Primero la charla de ejemplo, que para el modelo es una charla que ya
-      // pasó, y después la de verdad.
-      ...ejemploDeCharla,
-      (quien: Quien.ia, dicho: saludo),
-      for (final mensaje in recordados)
-        (quien: mensaje.quien, dicho: mensaje.texto),
-    ],
-  );
-}
-
-/// El prompt para traducir una palabra o una frase.
-///
-/// Los dos ejemplos de adentro no están de adorno: son lo que hace que un
-/// modelo de 0.6B conteste "burro" y no "La traducción de manteca es burro,
-/// ¿querés saber más?".
-///
-/// Y son dos, uno para cada lado, porque de ahí sale también hacia dónde
-/// traducir. Se probó adivinar el idioma con reglas —tildes, dobles
-/// consonantes, en qué letra termina— y no alcanza: "ventana" y "finestra"
-/// se escriben parecido y la regla fallaba la mitad de las veces. Los ejemplos
-/// se lo enseñan mejor de lo que una regla lo adivina.
-String promptDeLaTraduccion(String pedido) {
-  return _charlaArmada(
-    instrucciones: promptDeTraduccion,
-    turnos: [
-      (quien: Quien.yo, dicho: 'Traducí al otro idioma: manteca'),
-      (quien: Quien.ia, dicho: 'burro'),
-      (quien: Quien.yo, dicho: 'Traducí al otro idioma: finestra'),
-      (quien: Quien.ia, dicho: 'ventana'),
-      (quien: Quien.yo, dicho: 'Traducí al otro idioma: $pedido'),
-    ],
-  );
-}
-
-/// Lo que el modelo escribió, listo para mostrar.
-///
-/// Saca lo que no es la respuesta: las marcas de turno que a veces se le
-/// escapan, los espacios de los bordes, el nombre con el que a veces se
-/// anuncia, y un bloque de razonamiento `<think>` por si alguna vez se cambia a
-/// un modelo que razone. El de ahora, Gemma 3, no escribe ninguno: eso queda
-/// como red, no porque haga falta hoy.
-String limpiarRespuesta(String crudo) {
-  var texto = crudo.replaceAll(
-    RegExp(r'<think>.*?</think>', dotAll: true),
-    '',
-  );
-  // Un <think> sin cerrar quiere decir que se quedó pensando y lo cortamos:
-  // de ahí para adelante no hay respuesta que mostrar.
-  final pensandoTodavia = texto.indexOf('<think>');
-  if (pensandoTodavia >= 0) texto = texto.substring(0, pensandoTodavia);
-
-  for (final marca in [_turnoCierra, _turnoAbre, '<eos>']) {
-    final corte = texto.indexOf(marca);
-    if (corte >= 0) texto = texto.substring(0, corte);
-  }
-
-  // A veces arranca la respuesta anunciándose: "Tuky: Ah, Matías!". Está
-  // medido, y pasa aunque el ejemplo ya no lleve esos nombres escritos.
-  texto = texto.trimLeft().replaceFirst(_seAnunciaSolo, '');
-
-  return texto.trim();
-}
-
-/// Cuando empieza diciendo quién habla, como en el ejemplo que se le dio.
-final RegExp _seAnunciaSolo = RegExp(
-  r'^(tuky|studente|assistente|insegnante)\s*:\s*',
-  caseSensitive: false,
-);
 
 /// La charla: los mensajes que se dijeron, en orden.
 ///
@@ -438,6 +301,33 @@ class Conversacion {
 
   void agregar(Mensaje mensaje) => mensajes.add(mensaje);
 
-  /// El prompt de esta charla, listo para el modelo.
-  String prompt() => promptDeLaCharla(saludo: saludo, mensajes: mensajes);
+  /// El pedido para la API: las instrucciones, el saludo que ya se vio en
+  /// pantalla, y todo lo que se dijeron después.
+  ///
+  /// Las instrucciones van como primer turno del alumno en vez de por
+  /// systemInstruction: es el camino que el modelo lite seguro acepta, y ya
+  /// sabemos que un campo de más ahí devuelve 400.
+  List<Map<String, dynamic>> contenidos() {
+    final dichos = mensajes.where((m) => m.quien != Quien.aviso).toList();
+
+    final turnos = [
+      turnoGemini('user', promptDeChat),
+      turnoGemini('model', saludo),
+    ];
+
+    // Desde 1: el saludo ya está puesto arriba.
+    for (var i = 1; i < dichos.length; i++) {
+      final mensaje = dichos[i];
+      final mio = mensaje.quien == Quien.yo;
+      // El recordatorio de las traducciones se le pone solo al último mensaje:
+      // en los viejos ya no sirve de nada y ensuciaría el historial.
+      final ultimo = i == dichos.length - 1;
+      turnos.add(turnoGemini(
+        mio ? 'user' : 'model',
+        mio && ultimo ? textoParaLaIa(mensaje.texto) : mensaje.texto,
+      ));
+    }
+
+    return turnos;
+  }
 }

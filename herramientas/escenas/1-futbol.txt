@@ -1,4 +1,0 @@
-assistant: Ciao! Sono Tuky. Guardi il calcio? Per che squadra tifi?
-user: Tifo per la Roma
-assistant: Bella squadra! Che partita hai visto ultimamente?
-user: Ora non ci sono nessuna partita

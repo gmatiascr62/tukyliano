@@ -37,18 +37,10 @@ dependencies:
   http: ^1.6.0
   path_provider: ^2.1.6
   flutter_tts: ^4.2.5
+  # Abre el navegador en la página donde se saca la clave de la IA.
+  url_launcher: ^6.3.2
   open_filex: ^4.7.0
   speech_to_text: ^7.4.0
-  # El motor de IA que corre adentro del celular: bindings de llama.cpp.
-  # La biblioteca nativa (libmtmd.so y compañía) la compila el workflow y
-  # viaja en el APK; acá va solo el lado Dart.
-  llama_cpp_dart: ^0.2.2
-  # Para sacarle la huella SHA-256 al modelo que se baja, de a pedazos.
-  crypto: ^3.0.6
-  convert: ^3.1.2
-  # Para desviar a un archivo lo que el código nativo escribe en la salida de
-  # error: en un celular, si no, no se lee en ningún lado.
-  ffi: ^2.1.4
 
 dev_dependencies:
   flutter_test:
