@@ -1,59 +1,72 @@
 /// El modelo de IA que corre adentro del celular.
 ///
-/// **Qwen2.5-1.5B-Instruct**, cuantizado a Q4_K_M y en formato GGUF, que es el
-/// que entiende llama.cpp. Es de Alibaba, licencia Apache 2.0: se puede usar y
-/// distribuir sin pedir permiso ni pagar nada.
+/// **Gemma 3 1B Instruct**, cuantizado a Q4_K_M y en formato GGUF, que es el
+/// que entiende llama.cpp. Es de Google.
 ///
-/// Antes acá estaba Qwen3-0.6B, que pesaba un tercio. Se cambió porque no
-/// servía, y vale la pena contar por qué para no volver a elegirlo:
+/// Antes acá estuvo Qwen2.5-1.5B, y antes Qwen3-0.6B. Vale la pena contar por
+/// qué se cambió, porque se midió y las mediciones están guardadas.
 ///
-/// Qwen3 es un modelo que razona antes de contestar: escribe para adentro un
-/// bloque de cien palabras y recién después responde. En un celular eso son
-/// veinte segundos por respuesta, así que se le pedía que no razonara. Y sin
-/// razonar, el de 0.6B —el más chico de la familia— no contesta: copia. Al
-/// "Cosa mangi oggi?" del alumno le devolvía "Cosa mangi oggi?".
+/// **Qwen3-0.6B** copiaba en vez de contestar: al "Cosa mangi oggi?" del
+/// alumno le devolvía "Cosa mangi oggi?". Se probó con cuatro formas de
+/// pedírselo, con el archivo de 8 bits y con el mismo modelo publicado por
+/// otro. Copiaba siempre. Es un modelo que razona antes de contestar, y sin
+/// razonar —que es como hay que usarlo en un celular, si no son veinte
+/// segundos— el más chico de la familia no sabe hablar.
 ///
-/// Eso se probó en serio antes de cambiar nada: con cuatro formas distintas de
-/// pedírselo, con el archivo de 8 bits (que casi no pierde calidad) y con el
-/// mismo archivo publicado por otro. Copiaba en todos los casos. Con el mismo
-/// prompt, Qwen2.5-1.5B contestó "Ho mangiato una pizza e un gelato".
+/// **Qwen2.5-1.5B** sí contestaba, pero llegó a su techo. Medido sobre
+/// dieciocho respuestas con las instrucciones de la app: contestó sobre lo que
+/// el alumno acababa de decir cinco veces. El resto se iba de tema. Y una vez
+/// de dieciocho contestó entera en castellano, que en una app para practicar
+/// italiano es lo peor que puede pasar.
 ///
-/// Lo que queda de aquella elección es el precio: mil megas en vez de
-/// trescientos ochenta. Se bajan una sola vez, se puede cortar y seguir, y
-/// después el chat anda sin internet para siempre. Un modelo que copia no
-/// sirve para aprender, y uno que enseña mal es peor que uno que no está.
+/// **Gemma 3 1B**, con las mismas instrucciones y las mismas seis charlas:
+/// doce de dieciocho. Cero respuestas en castellano en las cincuenta y cuatro
+/// que se midieron, incluida la charla donde el alumno se presenta con su
+/// nombre, que es justo la que rompía al anterior. Y entiende de qué se habla:
+/// a "si chiama tuk-tuk" (el perro) Qwen preguntaba "dove andrai con il tuo
+/// tuk-tuk?" —creía que era un vehículo— las tres veces; Gemma entendió que
+/// era el nombre del perro las tres veces.
 ///
 /// Por qué este y no otro:
 ///
 /// - Contesta de una, sin razonar primero: es lo que hace que entre en el
 ///   tiempo que alguien espera frente a un chat.
-/// - 1.5B parámetros es lo más chico de la familia que escribe italiano
-///   correcto. El de 0.5B contestó "non so fare cosa", que está mal dicho, y
-///   en una app para aprender eso es peor que no contestar.
+/// - Pesa 768 MB contra los 1065 del anterior: casi 300 MB menos de descarga.
 /// - Q4_K_M es el equilibrio de siempre: cada peso ocupa cuatro bits y medio en
 ///   vez de dieciséis.
-/// - Usa el mismo formato de charla que Qwen3, así que el prompt de la app le
-///   sirve tal cual.
+///
+/// Lo que cambió con él, y hay que recordar: **usa otro formato de charla**.
+/// Gemma marca los turnos con `<start_of_turn>`, le dice "model" al que
+/// contesta, y no tiene un lugar aparte para las instrucciones: van pegadas
+/// adelante del primer mensaje del alumno. Eso está en [promptDeLaCharla].
+///
+/// **La licencia no es libre como la de Qwen.** Qwen2.5 era Apache 2.0; Gemma
+/// tiene los términos de uso de Google, que permiten usarlo y distribuirlo
+/// pero con condiciones. Para una app gratis no es un problema, pero no es lo
+/// mismo y conviene saberlo antes que después.
+///
+/// El archivo lo publica **unsloth** y no Google: el repositorio oficial pide
+/// aceptar la licencia a mano antes de bajar, y la app no puede hacer eso. Por
+/// eso va clavado a una revisión y se compara contra [sha256DelModelo], igual
+/// que siempre: si quien lo publica subiera otro archivo con el mismo nombre,
+/// no se usa.
 ///
 /// El archivo no viaja en el APK —pesa más que toda la app— sino que se baja la
-/// primera vez que se entra al chat, desde el repositorio oficial de Qwen en
-/// Hugging Face y clavado a una revisión: así nadie puede cambiar el archivo
-/// abajo nuestro. Lo que se baja se compara contra [sha256DelModelo] antes de
-/// usarlo.
+/// primera vez que se entra al chat.
 library;
 
 /// El archivo exacto dentro del repositorio.
-const String nombreDelModelo = 'qwen2.5-1.5b-instruct-q4_k_m.gguf';
+const String nombreDelModelo = 'gemma-3-1b-it-Q4_K_M.gguf';
 
-/// De dónde sale el archivo: el repositorio oficial de Qwen.
-const String repositorioDelModelo = 'Qwen/Qwen2.5-1.5B-Instruct-GGUF';
+/// De dónde sale el archivo.
+const String repositorioDelModelo = 'unsloth/gemma-3-1b-it-GGUF';
 
 /// El commit del repositorio. Va clavado y no "main" a propósito: así el
 /// archivo que se baja es siempre el mismo, aunque mañana publiquen otro.
-const String revisionDelModelo = '91cad51170dc346986eccefdc2dd33a9da36ead9';
+const String revisionDelModelo = 'f0b45be0aac41bd6a100a4b5734cad5f67255bfb';
 
-/// Cuánto pesa, para poder avisarlo antes de empezar a bajar: 1065 MB.
-const int bytesDelModelo = 1117320736;
+/// Cuánto pesa, para poder avisarlo antes de empezar a bajar: 768 MB.
+const int bytesDelModelo = 806058272;
 
 /// La huella del archivo. Si lo que se bajó no da esta huella, se tira: puede
 /// haberse cortado la bajada o puede no ser el archivo que esperábamos.
@@ -61,7 +74,7 @@ const int bytesDelModelo = 1117320736;
 /// Sale del puntero LFS de Hugging Face, y el workflow "Modelo de IA" la
 /// vuelve a chequear cada vez que se toca este archivo.
 const String sha256DelModelo =
-    '6a1a2eb6d15622bf3c96857206351ba97e1af16c30d7a74ee38970e434e9407e';
+    '8270790f3ab69fdfe860b7b64008d9a19986d8df7e407bb018184caa08798ebd';
 
 /// De dónde se baja.
 const String urlDelModelo =

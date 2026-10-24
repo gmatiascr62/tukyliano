@@ -14,8 +14,8 @@ on:
         description: 'Cuántas respuestas por casillero: una semilla por cada una, separadas por espacios'
         default: '1 2 3'
       candidato:
-        description: 'Modelos para comparar: "repo,parte del nombre,formato" (formato: chatml o gemma, por defecto chatml). Varios separados por ";"'
-        default: 'unsloth/gemma-3-1b-it-GGUF,q4_k_m,gemma;ggml-org/gemma-3-1b-it-GGUF,q4_k_m,gemma;bartowski/google_gemma-3-1b-it-GGUF,Q4_K_M,gemma'
+        description: 'Modelos para comparar: "repo,parte del nombre,formato" (formato: chatml o gemma; el de la app es gemma). Varios separados por ";"'
+        default: 'Qwen/Qwen2.5-1.5B-Instruct-GGUF,q4_k_m,chatml'
   push:
     branches: [ main ]
     paths:
@@ -146,36 +146,26 @@ jobs:
         run: |
           set -eu
 
-          # Las instrucciones que de verdad corren en el celular salen del
-          # código, no de una copia: una copia se desactualiza y entonces la
-          # prueba queda probando otra cosa.
+          # Las instrucciones y la charla de ejemplo que de verdad corren en el
+          # celular salen del código, no de una copia: una copia se
+          # desactualiza y entonces la prueba queda probando otra cosa.
           mkdir -p herramientas/prompts
-          python3 - <<'PY' > herramientas/prompts/0-el-del-codigo.txt
-          import re, sys
-          codigo = open('flutter_app/lib/ia/chat.dart', encoding='utf-8').read()
-          donde = re.search(r"const String promptDeChat = '''\n(.*?)'''", codigo, re.S)
-          if donde is None:
-              sys.exit('ERROR: no encontré promptDeChat en chat.dart. '
-                       'Si se cambió cómo está escrito, hay que cambiar esto.')
-          print(donde.group(1))
-          PY
-
-          # Las mismas instrucciones, pero con la charla de ejemplo sacada del
-          # texto y puesta como turnos. Es la otra forma de dárselo, y con
-          # Gemma la diferencia importa: ver partir_prompt.py.
-          python3 herramientas/partir_prompt.py \
-            herramientas/prompts/0-el-del-codigo.txt \
-            /tmp/reglas-sin-ejemplo.txt /tmp/ejemplo.txt
-          echo "== las reglas sin el ejemplo:"
-          cat /tmp/reglas-sin-ejemplo.txt
-          echo "== el ejemplo como turnos:"
+          python3 herramientas/sacar_del_codigo.py \
+            flutter_app/lib/ia/chat.dart \
+            herramientas/prompts/0-el-del-codigo.txt /tmp/ejemplo.txt
+          echo "== las instrucciones:"
+          cat herramientas/prompts/0-el-del-codigo.txt
+          echo
+          echo "== la charla de ejemplo, como turnos:"
           cat /tmp/ejemplo.txt
 
           for reglas in herramientas/prompts/*.txt; do
             for escena in herramientas/escenas/*.txt; do
               # Cada renglón de la escena es un turno: "quien: lo que dijo".
+              # El formato es el del modelo de la app, igual que el ejemplo:
+              # armarlo de otra manera mediría la marca y no el modelo.
               python3 herramientas/armar_prompt.py "$reglas" "$escena" \
-                > /tmp/prompt.txt
+                --formato gemma --ejemplo /tmp/ejemplo.txt > /tmp/prompt.txt
 
               echo "=================================================="
               echo "===== $(basename "$reglas" .txt)  en  $(basename "$escena" .txt)"
@@ -194,7 +184,7 @@ jobs:
       # omitir: sin él se asume chatml, que es el de la app.
       - name: Comparar con otros modelos
         env:
-          CANDIDATOS: ${{ github.event.inputs.candidato || 'unsloth/gemma-3-1b-it-GGUF,q4_k_m,gemma' }}
+          CANDIDATOS: ${{ github.event.inputs.candidato || 'Qwen/Qwen2.5-1.5B-Instruct-GGUF,q4_k_m,chatml' }}
           SEMILLAS: ${{ github.event.inputs.semillas || '1 2 3' }}
         run: |
           set -eu
@@ -241,57 +231,35 @@ jobs:
             }
             ls -lh /tmp/candidato.gguf
 
-            # Las tres formas de darle la charla de ejemplo: escrita adentro
-            # de las instrucciones, como turnos de verdad adelante de la
-            # escena, o directamente sin ejemplo.
-            #
-            # No es un detalle. Escrita adentro, Gemma se inventa el turno del
-            # alumno. Como turnos, se le mete la bicicleta del ejemplo en
-            # charlas que no son de bicicletas. Y sin ejemplo nunca se probó:
-            # que Qwen lo necesita está medido, que Gemma lo necesite no.
-            for forma in texto turnos nada; do
-              case "$forma" in
-                texto)
-                  reglas=herramientas/prompts/0-el-del-codigo.txt
-                  conElEjemplo="" ;;
-                turnos)
-                  reglas=/tmp/reglas-sin-ejemplo.txt
-                  conElEjemplo="--ejemplo /tmp/ejemplo.txt" ;;
-                nada)
-                  reglas=/tmp/reglas-sin-ejemplo.txt
-                  conElEjemplo="" ;;
-              esac
+            for escena in herramientas/escenas/*.txt; do
+              python3 herramientas/armar_prompt.py \
+                herramientas/prompts/0-el-del-codigo.txt "$escena" \
+                --formato "$formato" --ejemplo /tmp/ejemplo.txt > /tmp/prompt.txt
 
-              for escena in herramientas/escenas/*.txt; do
-                python3 herramientas/armar_prompt.py \
-                  "$reglas" "$escena" \
-                  --formato "$formato" $conElEjemplo > /tmp/prompt.txt
+              echo "=================================================="
+              echo "===== $repo  en  $(basename "$escena" .txt)"
+              tail -1 "$escena"
 
-                echo "=================================================="
-                echo "===== $repo  (ejemplo: $forma)  en  $(basename "$escena" .txt)"
-                tail -1 "$escena"
-
-                # Varias respuestas por casillero, no una. Con una sola, el
-                # mismo modelo con el mismo prompt da resultados distintos
-                # entre corridas y no se puede decidir nada: las diferencias
-                # quedan adentro del ruido.
-                for semilla in $SEMILLAS; do
-                  # La plantilla del propio archivo se imprime una sola vez:
-                  # así se ve si el formato que le estamos armando es el que
-                  # el modelo espera, en vez de confiar en que sí.
-                  #
-                  # Vacía no sirve: la prueba pregunta si la variable existe,
-                  # y PLANTILLA="" existe. Por eso o se pasa o no se pasa.
-                  verLaPlantilla=""
-                  case "$forma-$semilla-$escena" in
-                    texto-1-*1-futbol*) verLaPlantilla="PLANTILLA=1" ;;
-                  esac
-                  echo "----- semilla $semilla"
-                  env SEMILLA="$semilla" $verLaPlantilla \
-                    /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt 2>&1 \
-                    | grep -v '^OK: \|^== sistema\|^== cargando\|^llama_context: \|^llama_kv_cache_iswa: \|^load: special_eos_id\|^\.\{10,\}$' \
-                    || true
-                done
+              # Varias respuestas por casillero, no una. Con una sola, el
+              # mismo modelo con el mismo prompt da resultados distintos entre
+              # corridas y no se puede decidir nada: las diferencias quedan
+              # adentro del ruido.
+              for semilla in $SEMILLAS; do
+                # La plantilla del propio archivo se imprime una sola vez: así
+                # se ve si el formato que le estamos armando es el que el
+                # modelo espera, en vez de confiar en que sí.
+                #
+                # Vacía no sirve: la prueba pregunta si la variable existe, y
+                # PLANTILLA="" existe. Por eso o se pasa o no se pasa.
+                verLaPlantilla=""
+                case "$semilla-$escena" in
+                  1-*1-futbol*) verLaPlantilla="PLANTILLA=1" ;;
+                esac
+                echo "----- semilla $semilla"
+                env SEMILLA="$semilla" $verLaPlantilla \
+                  /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt 2>&1 \
+                  | grep -v '^OK: \|^== sistema\|^== cargando\|^llama_context: \|^llama_kv_cache_iswa: \|^load: special_eos_id\|^\.\{10,\}$' \
+                  || true
               done
             done
             rm -f /tmp/candidato.gguf

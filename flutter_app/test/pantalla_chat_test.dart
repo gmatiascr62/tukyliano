@@ -93,7 +93,7 @@ void main() {
       await _enviar(tester);
 
       expect(motor.prompts.single, contains(promptDeChat));
-      expect(motor.prompts.single, contains('<|im_start|>user\nciao'));
+      expect(motor.prompts.single, contains('<start_of_turn>user\nciao'));
     });
 
     testWidgets('sin escribir nada el botón está apagado', (tester) async {
