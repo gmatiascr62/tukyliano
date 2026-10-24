@@ -10,6 +10,9 @@ name: Probar el modelo
 on:
   workflow_dispatch:
     inputs:
+      semillas:
+        description: 'Cuántas respuestas por casillero: una semilla por cada una, separadas por espacios'
+        default: '1 2 3'
       candidato:
         description: 'Modelos para comparar: "repo,parte del nombre,formato" (formato: chatml o gemma, por defecto chatml). Varios separados por ";"'
         default: 'unsloth/gemma-3-1b-it-GGUF,q4_k_m,gemma;ggml-org/gemma-3-1b-it-GGUF,q4_k_m,gemma;bartowski/google_gemma-3-1b-it-GGUF,Q4_K_M,gemma'
@@ -192,6 +195,7 @@ jobs:
       - name: Comparar con otros modelos
         env:
           CANDIDATOS: ${{ github.event.inputs.candidato || 'unsloth/gemma-3-1b-it-GGUF,q4_k_m,gemma' }}
+          SEMILLAS: ${{ github.event.inputs.semillas || '1 2 3' }}
         run: |
           set -eu
 
@@ -237,18 +241,26 @@ jobs:
             }
             ls -lh /tmp/candidato.gguf
 
-            # Las dos formas de darle la charla de ejemplo: escrita adentro de
-            # las instrucciones, o como turnos de verdad adelante de la
-            # escena. No es un detalle: con Gemma, escrita adentro hace que se
-            # invente el turno del alumno.
-            for forma in texto turnos; do
-              if [ "$forma" = texto ]; then
-                reglas=herramientas/prompts/0-el-del-codigo.txt
-                conElEjemplo=""
-              else
-                reglas=/tmp/reglas-sin-ejemplo.txt
-                conElEjemplo="--ejemplo /tmp/ejemplo.txt"
-              fi
+            # Las tres formas de darle la charla de ejemplo: escrita adentro
+            # de las instrucciones, como turnos de verdad adelante de la
+            # escena, o directamente sin ejemplo.
+            #
+            # No es un detalle. Escrita adentro, Gemma se inventa el turno del
+            # alumno. Como turnos, se le mete la bicicleta del ejemplo en
+            # charlas que no son de bicicletas. Y sin ejemplo nunca se probó:
+            # que Qwen lo necesita está medido, que Gemma lo necesite no.
+            for forma in texto turnos nada; do
+              case "$forma" in
+                texto)
+                  reglas=herramientas/prompts/0-el-del-codigo.txt
+                  conElEjemplo="" ;;
+                turnos)
+                  reglas=/tmp/reglas-sin-ejemplo.txt
+                  conElEjemplo="--ejemplo /tmp/ejemplo.txt" ;;
+                nada)
+                  reglas=/tmp/reglas-sin-ejemplo.txt
+                  conElEjemplo="" ;;
+              esac
 
               for escena in herramientas/escenas/*.txt; do
                 python3 herramientas/armar_prompt.py \
@@ -256,20 +268,30 @@ jobs:
                   --formato "$formato" $conElEjemplo > /tmp/prompt.txt
 
                 echo "=================================================="
-                echo "===== $repo  (ejemplo como $forma)  en  $(basename "$escena" .txt)"
+                echo "===== $repo  (ejemplo: $forma)  en  $(basename "$escena" .txt)"
                 tail -1 "$escena"
-                # La plantilla del propio archivo se imprime una sola vez: así
-                # se ve si el formato que le estamos armando es el que el
-                # modelo espera, en vez de confiar en que sí.
-                #
-                # Vacía no sirve: la prueba pregunta si la variable existe, y
-                # PLANTILLA="" existe. Por eso o se pasa o no se pasa.
-                verLaPlantilla=""
-                case "$forma-$escena" in
-                  texto-*1-futbol*) verLaPlantilla="PLANTILLA=1" ;;
-                esac
-                env $verLaPlantilla /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt \
-                  | grep -v '^OK: \|^== sistema\|^== cargando' || true
+
+                # Varias respuestas por casillero, no una. Con una sola, el
+                # mismo modelo con el mismo prompt da resultados distintos
+                # entre corridas y no se puede decidir nada: las diferencias
+                # quedan adentro del ruido.
+                for semilla in $SEMILLAS; do
+                  # La plantilla del propio archivo se imprime una sola vez:
+                  # así se ve si el formato que le estamos armando es el que
+                  # el modelo espera, en vez de confiar en que sí.
+                  #
+                  # Vacía no sirve: la prueba pregunta si la variable existe,
+                  # y PLANTILLA="" existe. Por eso o se pasa o no se pasa.
+                  verLaPlantilla=""
+                  case "$forma-$semilla-$escena" in
+                    texto-1-*1-futbol*) verLaPlantilla="PLANTILLA=1" ;;
+                  esac
+                  echo "----- semilla $semilla"
+                  env SEMILLA="$semilla" $verLaPlantilla \
+                    /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt 2>&1 \
+                    | grep -v '^OK: \|^== sistema\|^== cargando\|^llama_context: \|^llama_kv_cache_iswa: \|^load: special_eos_id\|^\.\{10,\}$' \
+                    || true
+                done
               done
             done
             rm -f /tmp/candidato.gguf

@@ -14,6 +14,7 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <stdint.h>
 #include <time.h>
 #include <string.h>
 
@@ -152,11 +153,20 @@ int main(int argc, char ** argv) {
     if (getenv("GREEDY") != NULL) {
         llama_sampler_chain_add(elector, llama_sampler_init_greedy());
     } else {
+        // La semilla decide qué ficha sale de entre las probables. Con una
+        // sola, cada prueba da una sola respuesta, y una respuesta no alcanza
+        // para decidir nada: el mismo modelo con el mismo prompt contesta
+        // distinto. Con SEMILLA se piden varias y recién ahí se puede decir
+        // "se queda en el tema cuatro de cinco veces" en vez de adivinar.
+        const char * cualSemilla = getenv("SEMILLA");
+        const uint32_t semilla = cualSemilla == NULL
+            ? LLAMA_DEFAULT_SEED
+            : (uint32_t) strtoul(cualSemilla, NULL, 10);
         llama_sampler_chain_add(elector, llama_sampler_init_penalties(64, 1.15f, 0.0f, 0.0f));
         llama_sampler_chain_add(elector, llama_sampler_init_top_k(40));
         llama_sampler_chain_add(elector, llama_sampler_init_top_p(0.9f, 1));
         llama_sampler_chain_add(elector, llama_sampler_init_temp(0.6f));
-        llama_sampler_chain_add(elector, llama_sampler_init_dist(LLAMA_DEFAULT_SEED));
+        llama_sampler_chain_add(elector, llama_sampler_init_dist(semilla));
     }
 
     struct llama_batch tanda = llama_batch_get_one(fichas, cuantas);
