@@ -157,6 +157,17 @@ jobs:
           print(donde.group(1))
           PY
 
+          # Las mismas instrucciones, pero con la charla de ejemplo sacada del
+          # texto y puesta como turnos. Es la otra forma de dárselo, y con
+          # Gemma la diferencia importa: ver partir_prompt.py.
+          python3 herramientas/partir_prompt.py \
+            herramientas/prompts/0-el-del-codigo.txt \
+            /tmp/reglas-sin-ejemplo.txt /tmp/ejemplo.txt
+          echo "== las reglas sin el ejemplo:"
+          cat /tmp/reglas-sin-ejemplo.txt
+          echo "== el ejemplo como turnos:"
+          cat /tmp/ejemplo.txt
+
           for reglas in herramientas/prompts/*.txt; do
             for escena in herramientas/escenas/*.txt; do
               # Cada renglón de la escena es un turno: "quien: lo que dijo".
@@ -226,26 +237,40 @@ jobs:
             }
             ls -lh /tmp/candidato.gguf
 
-            for escena in herramientas/escenas/*.txt; do
-              python3 herramientas/armar_prompt.py \
-                herramientas/prompts/0-el-del-codigo.txt "$escena" \
-                --formato "$formato" > /tmp/prompt.txt
+            # Las dos formas de darle la charla de ejemplo: escrita adentro de
+            # las instrucciones, o como turnos de verdad adelante de la
+            # escena. No es un detalle: con Gemma, escrita adentro hace que se
+            # invente el turno del alumno.
+            for forma in texto turnos; do
+              if [ "$forma" = texto ]; then
+                reglas=herramientas/prompts/0-el-del-codigo.txt
+                conElEjemplo=""
+              else
+                reglas=/tmp/reglas-sin-ejemplo.txt
+                conElEjemplo="--ejemplo /tmp/ejemplo.txt"
+              fi
 
-              echo "=================================================="
-              echo "===== $repo  en  $(basename "$escena" .txt)"
-              tail -1 "$escena"
-              # La plantilla del propio archivo se imprime una sola vez, en la
-              # primera escena: así se ve si el formato que le estamos armando
-              # es el que el modelo espera, en vez de confiar en que sí.
-              #
-              # Vacía no sirve: la prueba pregunta si la variable existe, y
-              # PLANTILLA="" existe. Por eso o se pasa o no se pasa.
-              case "$escena" in
-                *1-futbol*) verLaPlantilla="PLANTILLA=1" ;;
-                *) verLaPlantilla="" ;;
-              esac
-              env $verLaPlantilla /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt \
-                | grep -v '^OK: \|^== sistema\|^== cargando' || true
+              for escena in herramientas/escenas/*.txt; do
+                python3 herramientas/armar_prompt.py \
+                  "$reglas" "$escena" \
+                  --formato "$formato" $conElEjemplo > /tmp/prompt.txt
+
+                echo "=================================================="
+                echo "===== $repo  (ejemplo como $forma)  en  $(basename "$escena" .txt)"
+                tail -1 "$escena"
+                # La plantilla del propio archivo se imprime una sola vez: así
+                # se ve si el formato que le estamos armando es el que el
+                # modelo espera, en vez de confiar en que sí.
+                #
+                # Vacía no sirve: la prueba pregunta si la variable existe, y
+                # PLANTILLA="" existe. Por eso o se pasa o no se pasa.
+                verLaPlantilla=""
+                case "$forma-$escena" in
+                  texto-*1-futbol*) verLaPlantilla="PLANTILLA=1" ;;
+                esac
+                env $verLaPlantilla /tmp/probar_modelo /tmp/candidato.gguf /tmp/prompt.txt \
+                  | grep -v '^OK: \|^== sistema\|^== cargando' || true
+              done
             done
             rm -f /tmp/candidato.gguf
           done

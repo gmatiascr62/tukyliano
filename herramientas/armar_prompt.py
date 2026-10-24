@@ -12,9 +12,14 @@ cada uno recibe la charla como corresponde.
 
 Uso:
     armar_prompt.py <reglas.txt> <escena.txt> [--formato chatml|gemma]
+                    [--ejemplo <turnos.txt>]
 
 La escena es un renglón por turno, "quien: lo que dijo", con quien siendo
 "user" o "assistant". Las reglas son las instrucciones del sistema.
+
+Con --ejemplo, la charla de ejemplo va como turnos de verdad adelante de la
+escena, en vez de escrita adentro de las instrucciones. Es el mismo archivo de
+siempre, con el mismo formato que una escena.
 """
 
 import sys
@@ -76,8 +81,15 @@ def main(argv):
         sys.exit(f'ERROR: no sé armar el formato "{formato}". '
                  f'Los que sé: {", ".join(FORMATOS)}.')
 
+    # El ejemplo va adelante de la escena y en el mismo formato: para el modelo
+    # es una charla que ya pasó, no un texto que le están mostrando.
+    charla = []
+    if '--ejemplo' in argv:
+        charla += list(turnos(argv[argv.index('--ejemplo') + 1]))
+    charla += list(turnos(argv[2]))
+
     reglas = open(argv[1], encoding='utf-8').read().rstrip('\n')
-    sys.stdout.write(FORMATOS[formato](reglas, turnos(argv[2])))
+    sys.stdout.write(FORMATOS[formato](reglas, charla))
 
 
 if __name__ == '__main__':
