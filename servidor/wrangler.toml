@@ -1,0 +1,23 @@
+# Cómo se publica el servidor en Cloudflare.
+#
+# Acá no va ningún secreto. La clave de Gemini y la lista de códigos se cargan
+# como secretos desde el panel de Cloudflare o con `wrangler secret put`, y
+# nunca tocan el repositorio, que es público.
+
+name = "tukyliano"
+main = "src/index.js"
+compatibility_date = "2026-10-01"
+
+# Los topes. Estos sí pueden estar a la vista: no son secretos, son decisiones.
+[vars]
+TOPE_POR_PERSONA = "60"
+TOPE_DEL_SERVIDOR = "2000"
+
+# La base de los contadores. El id lo da Cloudflare al crearla:
+#   wrangler d1 create tukyliano
+# y después se corre el esquema:
+#   wrangler d1 execute tukyliano --remote --file=esquema.sql
+[[d1_databases]]
+binding = "BASE"
+database_name = "tukyliano"
+database_id = "PONER-EL-ID-QUE-DA-CLOUDFLARE"

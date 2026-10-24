@@ -1,0 +1,89 @@
+# Prueba y publica el servidor del chat.
+#
+# Los tests corren siempre. El despliegue solo desde main, y solo cuando ya
+# esté la cuenta de Cloudflare configurada: así el repositorio se puede clonar
+# y probar sin tener cuenta, y un pull request no publica nada.
+name: Servidor
+
+on:
+  push:
+    branches: [ main ]
+    paths:
+      - 'servidor/**'
+      - '.github/workflows/servidor.yml'
+  pull_request:
+    paths:
+      - 'servidor/**'
+      - '.github/workflows/servidor.yml'
+  workflow_dispatch: {}
+
+jobs:
+  probar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      # Sin dependencias: el servidor no usa ninguna biblioteca y los tests son
+      # los que trae Node. No hay nada que instalar y nada que se pueda romper
+      # por una versión de más.
+      - name: Correr los tests
+        working-directory: servidor
+        run: node --test 'test/*.test.js'
+
+      # La clave nunca puede estar en el repositorio, que es público. Esto es
+      # la red por si alguna vez alguien la pega "un ratito para probar".
+      - name: Ver que no haya ninguna clave pegada
+        working-directory: servidor
+        run: |
+          if grep -rnE 'AIza[0-9A-Za-z_-]{10,}' .; then
+            echo "ERROR: hay una clave de Google en el código."
+            exit 1
+          fi
+          echo "No hay claves sueltas."
+
+  publicar:
+    needs: probar
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    env:
+      # El token no se puede mirar desde un `if:` de job, así que se pasa por
+      # acá y se chequea adentro del paso.
+      TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+    steps:
+      - uses: actions/checkout@v4
+
+      # Las dos cosas que tienen que estar antes de poder publicar. Si falta
+      # alguna no se falla: se avisa y se sigue. Que el servidor todavía no
+      # esté en el aire no es un error del código.
+      - name: Ver si ya se puede publicar
+        id: listo
+        working-directory: servidor
+        run: |
+          if grep -q 'PONER-EL-ID' wrangler.toml; then
+            echo "Falta crear la base y pegar su id en servidor/wrangler.toml."
+            echo "se_puede=no" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          if [ -z "$TOKEN" ]; then
+            echo "Falta cargar CLOUDFLARE_API_TOKEN en los secretos del repo."
+            echo "se_puede=no" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+          echo "se_puede=si" >> "$GITHUB_OUTPUT"
+
+      - name: Publicar en Cloudflare
+        if: steps.listo.outputs.se_puede == 'si'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: servidor
+
+      - name: Decir qué falta
+        if: steps.listo.outputs.se_puede != 'si'
+        run: |
+          echo "No se publicó nada todavía. Los tests pasaron igual."
+          echo "Los pasos que faltan están en servidor/README.md."
