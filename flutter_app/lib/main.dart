@@ -21,6 +21,7 @@ import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_gramatica.dart';
 import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_preposizioni.dart';
+import 'pantallas/pantalla_podcast.dart';
 import 'pantallas/pantalla_pronunciacion.dart';
 import 'pantallas/pantalla_proximamente.dart';
 import 'pantallas/pantalla_quiz.dart';
@@ -274,6 +275,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         _irA(Seccion.hablar);
       case Destino.chat:
         _irA(Seccion.chat);
+      case Destino.podcast:
+        _irA(Seccion.podcast);
       case Destino.gramatica:
         setState(() {
           _seccion = null;
@@ -388,6 +391,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     }
 
     switch (seccion) {
+      case Seccion.podcast:
+        return const PantallaPodcast();
       case Seccion.articoli:
         return PantallaArticoli(repositorio: _articoli, progreso: _progreso);
       case Seccion.frases:

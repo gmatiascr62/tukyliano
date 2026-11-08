@@ -5,8 +5,9 @@ import '../logica/nivel.dart';
 import '../tema.dart';
 import '../widgets/texto_ajustado.dart';
 
-/// A dónde lleva cada uno de los cuatro botones del inicio.
-enum Destino { racconti, hablar, gramatica, chat }
+/// A dónde se puede ir desde el inicio: los cuatro botones en diagonal,
+/// más el podcast, que va en una barra aparte debajo.
+enum Destino { racconti, hablar, gramatica, chat, podcast }
 
 extension EtiquetaDestino on Destino {
   String get etiqueta => switch (this) {
@@ -14,6 +15,7 @@ extension EtiquetaDestino on Destino {
         Destino.hablar => 'Parlare',
         Destino.gramatica => 'Gramática',
         Destino.chat => 'Chat',
+        Destino.podcast => 'Podcast',
       };
 
   IconData get icono => switch (this) {
@@ -21,6 +23,7 @@ extension EtiquetaDestino on Destino {
         Destino.hablar => Icons.mic,
         Destino.gramatica => Icons.school,
         Destino.chat => Icons.chat_bubble_outline,
+        Destino.podcast => Icons.headphones,
       };
 }
 
@@ -84,6 +87,14 @@ class PantallaInicio extends StatelessWidget {
           ),
         ),
         const Spacer(),
+        // El podcast no entra en las diagonales: son cuatro y la composición
+        // es con cuatro. Va acá abajo, ancho, que además es donde cae el
+        // pulgar sin estirarse.
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 28),
+          child: _BarraDePodcast(alTocar: () => alElegir(Destino.podcast)),
+        ),
+        const SizedBox(height: 18),
         Text(
           _cuantosDias(progreso.diasPracticados),
           textAlign: TextAlign.center,
@@ -226,6 +237,45 @@ class _BotonRedondo extends StatelessWidget {
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+
+/// La entrada al podcast: ancha y debajo del anillo, para no romper la
+/// composición de los cuatro botones en diagonal.
+class _BarraDePodcast extends StatelessWidget {
+  const _BarraDePodcast({required this.alTocar});
+
+  final VoidCallback alTocar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Tema.verdeSuave,
+      borderRadius: BorderRadius.circular(28),
+      child: InkWell(
+        onTap: alTocar,
+        borderRadius: BorderRadius.circular(28),
+        child: const Padding(
+          padding: EdgeInsets.symmetric(vertical: 14),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(Icons.headphones, size: 20, color: Tema.verde),
+              SizedBox(width: 10),
+              Text(
+                'Podcast',
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Tema.verde,
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }

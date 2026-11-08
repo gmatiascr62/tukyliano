@@ -14,6 +14,7 @@ enum Seccion {
   ci,
   ne,
   chat,
+  podcast,
 }
 
 extension EtiquetaSeccion on Seccion {
@@ -30,5 +31,6 @@ extension EtiquetaSeccion on Seccion {
         Seccion.racconti => 'Racconti',
         Seccion.hablar => 'Parlare',
         Seccion.chat => 'Chat',
+        Seccion.podcast => 'Podcast',
       };
 }

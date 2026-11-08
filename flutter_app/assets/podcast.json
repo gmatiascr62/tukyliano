@@ -1,0 +1,37 @@
+{
+  "version": 1,
+  "episodios": [
+    {
+      "titulo": "Il caffè del mattino",
+      "deQueVa": "Giulia y Lorenzo hablan del café y del desayuno. Y de por qué en Italia nadie pide cappuccino después del almuerzo.",
+      "lineas": [
+        { "quien": "giulia", "it": "Buongiorno Lorenzo! Come stai oggi?", "es": "¡Buenos días Lorenzo! ¿Cómo estás hoy?" },
+        { "quien": "lorenzo", "it": "Buongiorno Giulia. Sto bene, ma ho ancora sonno.", "es": "Buenos días Giulia. Estoy bien, pero todavía tengo sueño." },
+        { "quien": "giulia", "it": "Anch'io. Stanotte ho dormito poco.", "es": "Yo también. Anoche dormí poco." },
+        { "quien": "lorenzo", "it": "Hai già preso il caffè?", "es": "¿Ya tomaste el café?" },
+        { "quien": "giulia", "it": "No, non ancora. Lo prendo adesso.", "es": "No, todavía no. Lo tomo ahora." },
+        { "quien": "lorenzo", "it": "Io ne ho già presi due.", "es": "Yo ya tomé dos." },
+        { "quien": "giulia", "it": "Due? È presto per due caffè!", "es": "¿Dos? ¡Es temprano para dos cafés!" },
+        { "quien": "lorenzo", "it": "Per me non è mai troppo presto.", "es": "Para mí nunca es demasiado temprano." },
+        { "quien": "giulia", "it": "E come lo prendi? Con lo zucchero?", "es": "¿Y cómo lo tomás? ¿Con azúcar?" },
+        { "quien": "lorenzo", "it": "No, amaro. Senza zucchero e senza latte.", "es": "No, amargo. Sin azúcar y sin leche." },
+        { "quien": "giulia", "it": "Io invece prendo il cappuccino.", "es": "Yo en cambio tomo cappuccino." },
+        { "quien": "lorenzo", "it": "Il cappuccino va bene, ma solo al mattino.", "es": "El cappuccino está bien, pero solo a la mañana." },
+        { "quien": "giulia", "it": "Perché solo al mattino?", "es": "¿Por qué solo a la mañana?" },
+        { "quien": "lorenzo", "it": "In Italia non si beve il cappuccino dopo pranzo.", "es": "En Italia no se toma cappuccino después del almuerzo." },
+        { "quien": "giulia", "it": "Davvero? E se lo chiedo al bar?", "es": "¿En serio? ¿Y si lo pido en el bar?" },
+        { "quien": "lorenzo", "it": "Te lo danno, ma il barista ti guarda male.", "es": "Te lo dan, pero el barista te mira mal." },
+        { "quien": "giulia", "it": "Va bene, allora dopo pranzo prendo un espresso.", "es": "Está bien, entonces después del almuerzo tomo un espresso." },
+        { "quien": "lorenzo", "it": "Bravissima. E a colazione cosa mangi?", "es": "Muy bien. ¿Y en el desayuno qué comés?" },
+        { "quien": "giulia", "it": "Di solito un cornetto. E tu?", "es": "Normalmente una medialuna. ¿Y vos?" },
+        { "quien": "lorenzo", "it": "Niente. Solo il caffè.", "es": "Nada. Solo el café." },
+        { "quien": "giulia", "it": "Solo il caffè? Non è abbastanza.", "es": "¿Solo el café? No es suficiente." },
+        { "quien": "lorenzo", "it": "Lo so. Anche mia madre dice la stessa cosa.", "es": "Lo sé. Mi madre también dice lo mismo." },
+        { "quien": "giulia", "it": "Tua madre ha ragione.", "es": "Tu madre tiene razón." },
+        { "quien": "lorenzo", "it": "Va bene, domani mangio qualcosa.", "es": "Está bien, mañana como algo." },
+        { "quien": "giulia", "it": "Te lo ricordo io domani mattina.", "es": "Te lo recuerdo yo mañana a la mañana." },
+        { "quien": "lorenzo", "it": "Grazie Giulia. A domani!", "es": "Gracias Giulia. ¡Hasta mañana!" }
+      ]
+    }
+  ]
+}

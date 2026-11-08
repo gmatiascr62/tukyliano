@@ -45,6 +45,19 @@ class VozFalsa implements Voz {
     dicho.add(texto);
   }
 
+  /// La de verdad vuelve recién cuando terminó de hablar. Acá vuelve enseguida
+  /// —no hay nada que esperar— pero anota con qué voz se dijo cada frase, que
+  /// es lo que el podcast necesita poder probar: que Giulia y Lorenzo se
+  /// turnen de verdad.
+  final conQueVoz = <String>[];
+
+  @override
+  Future<void> decirYEsperar(String texto) async {
+    if (!hayItaliano) throw StateError('no debería hablar sin voz italiana');
+    dicho.add(texto);
+    conQueVoz.add(vozElegida?.nombre ?? 'la de fábrica');
+  }
+
   @override
   Future<void> callar() async => callados++;
 
