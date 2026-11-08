@@ -53,6 +53,14 @@ abstract class Voz {
 
   Future<void> decir(String texto);
 
+  /// Dice la frase y vuelve recién cuando terminó de decirla.
+  ///
+  /// Es lo que hace posible encadenar un diálogo: con [decir] a secas, la
+  /// frase siguiente arranca en el acto y las dos se pisan. Lo usa el podcast,
+  /// que además necesita saber cuándo pasar a la línea que sigue para ir
+  /// pintándola.
+  Future<void> decirYEsperar(String texto);
+
   Future<void> callar();
 
   /// Más lento que lo normal, para poder seguir las palabras.
@@ -159,6 +167,28 @@ class VozDelSistema implements Voz {
       await _motor.speak(texto);
     } catch (_) {
       // Que falle una frase no tiene que romper la lectura.
+    }
+  }
+
+  @override
+  Future<void> decirYEsperar(String texto) async {
+    if (!_listo || texto.isEmpty) return;
+    try {
+      await _motor.stop();
+      // Con esto, speak() recién vuelve cuando terminó de hablar. Se pide cada
+      // vez y no una sola al preparar: es barato, y así una pantalla que no lo
+      // use no queda con el motor cambiado abajo suyo.
+      await _motor.awaitSpeakCompletion(true);
+      // El techo es por si el motor nunca avisa que terminó, que pasa en
+      // algunos celulares: sin esto el episodio quedaría colgado para siempre
+      // en una frase. Se estima generoso a partir del largo —unas diez letras
+      // por segundo, y el doble de margen— así que no debería cortar nada que
+      // de verdad esté hablando.
+      final techo = Duration(seconds: 6 + texto.length ~/ 5);
+      await _motor.speak(texto).timeout(techo, onTimeout: () => null);
+    } catch (_) {
+      // Que falle una frase no tiene que cortar el episodio: sigue la que
+      // viene.
     }
   }
 

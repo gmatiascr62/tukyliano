@@ -75,6 +75,7 @@ flutter:
     - assets/preposizioni.json
     - assets/via.json
     - assets/racconti.json
+    - assets/podcast.json
     # Las ilustraciones de los cuentos. Van en el APK y no se bajan: son pocas
     # y chicas, y así el cuento se ve igual sin señal.
     - assets/racconti/
