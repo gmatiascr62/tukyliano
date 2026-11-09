@@ -41,8 +41,13 @@ Future<VozFalsa> _abrir(
   bool hayItaliano = true,
   int cuantasVoces = 2,
   bool entrar = true,
+  bool deACadaUna = false,
 }) async {
-  final voz = VozFalsa(hayItaliano: hayItaliano, cuantasVoces: cuantasVoces);
+  final voz = VozFalsa(
+    hayItaliano: hayItaliano,
+    cuantasVoces: cuantasVoces,
+    deACadaUna: deACadaUna,
+  );
   await tester.pumpWidget(MaterialApp(
     home: Scaffold(
       body: PantallaPodcast(repositorio: _repositorioCon(json), voz: voz),
@@ -380,6 +385,63 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(voz.lenta, isTrue);
+    });
+
+    testWidgets('el renglón que suena queda a la vista en el medio',
+        (tester) async {
+      // Es el error que se vio en el celular: después de un rato, la parte
+      // que iba leyendo se escapaba por arriba. Pasaba porque el
+      // desplazamiento se calculaba suponiendo que todos los renglones miden
+      // igual, y no miden igual.
+      //
+      // Dos cosas hacen que este test sirva y no pase de casualidad:
+      // frases de largos mezclados, y mirar en el MEDIO. Al final no se nota,
+      // porque el desplazamiento se topa con el fondo de la lista y queda
+      // bien sin querer.
+      final lineas = [
+        for (var i = 0; i < 40; i++)
+          {
+            'quien': i.isEven ? 'giulia' : 'lorenzo',
+            'it': i % 3 == 0
+                ? 'Frase $i.'
+                : 'Questa è la frase numero $i e dura parecchio perché '
+                    'occupa più di una riga sullo schermo del telefono.',
+            'es': 'Frase $i.',
+          },
+      ];
+      final json = jsonEncode({
+        'episodios': [
+          {'titulo': 'Il caffè', 'deQueVa': 'Largo.', 'lineas': lineas},
+        ],
+      });
+
+      final voz = await _abrir(tester, json: json, deACadaUna: true);
+      await tester.tap(find.text('Escuchar'));
+      await tester.pump();
+
+      // Se avanza frase por frase hasta la mitad del episodio.
+      const hastaCual = 20;
+      for (var i = 0; i < hastaCual; i++) {
+        voz.seguir();
+        await tester.pump();
+        await tester.pump(const Duration(milliseconds: 400));
+      }
+      await tester.pump(const Duration(milliseconds: 400));
+
+      expect(voz.dicho.length, greaterThan(hastaCual));
+
+      final sonando = lineas[voz.dicho.length - 1]['it']!;
+      final pantalla = tester.getRect(find.byType(ListView));
+      final renglon = find.text(sonando);
+
+      expect(renglon, findsOneWidget,
+          reason: 'la frase que suena ni se dibujó: "$sonando"');
+
+      final donde = tester.getRect(renglon);
+      expect(donde.top, greaterThanOrEqualTo(pantalla.top - 1),
+          reason: 'se escapó por arriba: "$sonando"');
+      expect(donde.bottom, lessThanOrEqualTo(pantalla.bottom + 1),
+          reason: 'se escapó por abajo: "$sonando"');
     });
 
     testWidgets('se puede volver a la lista', (tester) async {

@@ -208,6 +208,17 @@ class _ReproductorState extends State<_Reproductor> {
 
   final ScrollController _scroll = ScrollController();
 
+  /// Una clave por renglón, para poder preguntarle a cada uno dónde quedó
+  /// dibujado.
+  ///
+  /// Antes esto era una cuenta: tantos píxeles por renglón, por el número de
+  /// renglón. Pero los renglones no miden todos igual —una frase ocupa una,
+  /// dos o tres líneas de texto— así que el error se iba sumando y después de
+  /// cien frases la que sonaba quedaba arriba, fuera de la pantalla.
+  late final List<GlobalKey> _claves = [
+    for (var i = 0; i < widget.episodio.lineas.length; i++) GlobalKey(),
+  ];
+
   @override
   void dispose() {
     _corrida++;
@@ -290,20 +301,41 @@ class _ReproductorState extends State<_Reproductor> {
     await widget.voz.usarVoz(voces[cual.clamp(0, voces.length - 1)]);
   }
 
+  /// Deja a la vista el renglón que está sonando.
+  ///
+  /// Se le pregunta al renglón dónde está en vez de calcularlo. Si todavía no
+  /// está dibujado —la lista solo dibuja lo que se ve y un poco más— se hace
+  /// un salto aproximado y se vuelve a intentar en el cuadro siguiente, que
+  /// para entonces ya lo dibujó. Reproduciendo de corrido casi nunca hace
+  /// falta: el que sigue ya está construido.
   void _acercarA(int i) {
     if (!_scroll.hasClients) return;
-    // Cada renglón mide distinto, así que esto es una aproximación: alcanza
-    // para que la línea que suena quede a la vista.
+    if (_mostrar(i)) return;
+
     const altoAproximado = 86.0;
-    final hasta = (i * altoAproximado - 160).clamp(
+    _scroll.jumpTo((i * altoAproximado - 160).clamp(
       0.0,
       _scroll.position.maxScrollExtent,
-    );
-    _scroll.animateTo(
-      hasta,
+    ));
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _mostrar(i);
+    });
+  }
+
+  /// True si el renglón estaba dibujado y se lo pudo acercar.
+  ///
+  /// Queda a poco más de un tercio de la pantalla desde arriba: así se ve lo
+  /// que ya se dijo y lo que viene, y la vista no salta en cada frase.
+  bool _mostrar(int i) {
+    final donde = _claves[i].currentContext;
+    if (donde == null) return false;
+    Scrollable.ensureVisible(
+      donde,
+      alignment: 0.35,
       duration: const Duration(milliseconds: 300),
       curve: Curves.easeOut,
     );
+    return true;
   }
 
   Future<void> _cambiarVelocidad() async {
@@ -363,6 +395,7 @@ class _ReproductorState extends State<_Reproductor> {
             padding: const EdgeInsets.symmetric(vertical: 8),
             itemCount: episodio.lineas.length,
             itemBuilder: (context, i) => _Turno(
+              key: _claves[i],
               linea: episodio.lineas[i],
               episodio: episodio,
               sonando: i == _sonando,
@@ -502,6 +535,7 @@ class _Controles extends StatelessWidget {
 
 class _Turno extends StatelessWidget {
   const _Turno({
+    super.key,
     required this.linea,
     required this.episodio,
     required this.sonando,

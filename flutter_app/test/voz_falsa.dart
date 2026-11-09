@@ -1,9 +1,24 @@
+import 'dart:async';
+
 import 'package:tukyliano/datos/voz.dart';
 
 /// Voz de mentira: anota lo que se le pidió decir. En los tests no hay motor
 /// de voz, así que la de verdad no se puede usar.
 class VozFalsa implements Voz {
-  VozFalsa({this.hayItaliano = true, this.cuantasVoces = 2});
+  VozFalsa({
+    this.hayItaliano = true,
+    this.cuantasVoces = 2,
+    this.deACadaUna = false,
+  });
+
+  /// Con true, decirYEsperar no vuelve hasta que el test llame a [seguir].
+  ///
+  /// Sirve para mirar la pantalla en el medio de un episodio. Sin esto, el
+  /// episodio entero pasa en un suspiro y solo se puede ver cómo quedó al
+  /// final, que es justo donde los errores de desplazamiento no se notan.
+  final bool deACadaUna;
+
+  Completer<void>? _frenada;
 
   /// False imita el celular sin la voz italiana instalada.
   final bool hayItaliano;
@@ -56,10 +71,23 @@ class VozFalsa implements Voz {
     if (!hayItaliano) throw StateError('no debería hablar sin voz italiana');
     dicho.add(texto);
     conQueVoz.add(vozElegida?.nombre ?? 'la de fábrica');
+    if (!deACadaUna) return;
+    _frenada = Completer<void>();
+    await _frenada!.future;
+  }
+
+  /// Deja que termine la frase que está diciendo.
+  void seguir() {
+    final frenada = _frenada;
+    _frenada = null;
+    if (frenada != null && !frenada.isCompleted) frenada.complete();
   }
 
   @override
-  Future<void> callar() async => callados++;
+  Future<void> callar() async {
+    callados++;
+    seguir();
+  }
 
   @override
   Future<void> usarVelocidadLenta(bool valor) async => lenta = valor;
