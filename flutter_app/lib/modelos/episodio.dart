@@ -58,11 +58,34 @@ class LineaDelEpisodio {
   }
 }
 
+/// Una palabra del episodio con lo que quiere decir.
+///
+/// No es un diccionario: son las palabras que de verdad frenan en ese
+/// episodio, elegidas una por una. Tocar una palabra que no está en la lista
+/// no muestra nada, así que la pantalla marca cuáles tienen algo para
+/// mostrar: tocar y que no pase nada es peor que no poder tocar.
+class PalabraDelEpisodio {
+  const PalabraDelEpisodio({required this.italiano, required this.castellano});
+
+  final String italiano;
+  final String castellano;
+
+  static PalabraDelEpisodio? desdeJson(Object? crudo) {
+    if (crudo is! Map) return null;
+    final italiano = crudo['it'];
+    final castellano = crudo['es'];
+    if (italiano is! String || italiano.trim().isEmpty) return null;
+    if (castellano is! String || castellano.trim().isEmpty) return null;
+    return PalabraDelEpisodio(italiano: italiano, castellano: castellano);
+  }
+}
+
 class Episodio {
   const Episodio({
     required this.titulo,
     required this.deQueVa,
     required this.lineas,
+    this.glosario = const [],
   });
 
   /// En italiano, como los nombres de las secciones.
@@ -72,6 +95,41 @@ class Episodio {
   final String deQueVa;
 
   final List<LineaDelEpisodio> lineas;
+
+  final List<PalabraDelEpisodio> glosario;
+
+  /// Quiénes hablan en este episodio, en el orden en que aparecen.
+  ///
+  /// Sale de las líneas y no de un campo aparte: así no puede quedar diciendo
+  /// que hablan dos cuando habla uno solo.
+  List<QuienHabla> get quienesHablan {
+    final vistos = <QuienHabla>[];
+    for (final linea in lineas) {
+      if (!vistos.contains(linea.quien)) vistos.add(linea.quien);
+    }
+    return vistos;
+  }
+
+  /// Lo que se muestra debajo del título: quién habla.
+  String get quienLoCuenta =>
+      switch (quienesHablan.map((q) => q.nombre).toList()) {
+        [final uno] => uno,
+        [final uno, final otro] => '$uno y $otro',
+        final todos => todos.join(', '),
+      };
+
+  /// Lo que quiere decir una palabra, si está en el glosario.
+  ///
+  /// Se compara en minúsculas y sin los signos de alrededor: en el texto la
+  /// palabra viene pegada a una coma o a un signo de pregunta.
+  String? queQuiereDecir(String palabra) {
+    final limpia = soloLasLetras(palabra);
+    if (limpia.isEmpty) return null;
+    for (final entrada in glosario) {
+      if (soloLasLetras(entrada.italiano) == limpia) return entrada.castellano;
+    }
+    return null;
+  }
 
   /// Cuántos turnos tiene.
   ///
@@ -102,7 +160,18 @@ class Episodio {
     }
     if (lineas.isEmpty) return null;
 
-    return Episodio(titulo: titulo, deQueVa: deQueVa, lineas: lineas);
+    final crudasPalabras = crudo['glosario'];
+    final glosario = <PalabraDelEpisodio>[
+      if (crudasPalabras is List)
+        for (final cruda in crudasPalabras) ?PalabraDelEpisodio.desdeJson(cruda),
+    ];
+
+    return Episodio(
+      titulo: titulo,
+      deQueVa: deQueVa,
+      lineas: lineas,
+      glosario: glosario,
+    );
   }
 }
 
@@ -124,4 +193,11 @@ class Podcast {
       for (final cruda in crudos) ?Episodio.desdeJson(cruda),
     ]);
   }
+}
+
+
+/// Una palabra sin los signos de alrededor y en minúsculas, para poder
+/// compararla: en el texto viene como "passeggiata." o "¿stai?".
+String soloLasLetras(String palabra) {
+  return palabra.toLowerCase().replaceAll(RegExp(r"[^a-zà-ÿ']"), '');
 }
