@@ -9,17 +9,22 @@ import 'package:tukyliano/pantallas/pantalla_podcast.dart';
 
 import 'voz_falsa.dart';
 
-/// El episodio de mentira: dos turnos, uno de cada uno.
+/// Un episodio de mentira: dos turnos, uno de cada uno, con una palabra en el
+/// glosario.
 const _unEpisodio = '''
 {
-  "version": 1,
+  "version": 2,
   "episodios": [
     {
       "titulo": "Il caffè",
       "deQueVa": "Hablan del café.",
+      "glosario": [
+        { "it": "sonno", "es": "sueño" }
+      ],
       "lineas": [
         { "quien": "giulia", "it": "Come stai?", "es": "¿Cómo estás?" },
-        { "quien": "lorenzo", "it": "Sto bene.", "es": "Estoy bien." }
+        { "quien": "lorenzo", "it": "Molto bene, grazie.", "es": "Muy bien, gracias." },
+        { "quien": "giulia", "it": "Io ho sonno.", "es": "Yo tengo sueño." }
       ]
     }
   ]
@@ -29,11 +34,13 @@ const _unEpisodio = '''
 RepositorioPodcast _repositorioCon(String json) =>
     RepositorioPodcast(leerAsset: (_) async => json);
 
+/// Abre la pantalla y entra al primer episodio.
 Future<VozFalsa> _abrir(
   WidgetTester tester, {
   String json = _unEpisodio,
   bool hayItaliano = true,
   int cuantasVoces = 2,
+  bool entrar = true,
 }) async {
   final voz = VozFalsa(hayItaliano: hayItaliano, cuantasVoces: cuantasVoces);
   await tester.pumpWidget(MaterialApp(
@@ -42,47 +49,74 @@ Future<VozFalsa> _abrir(
     ),
   ));
   await tester.pumpAndSettle();
+  if (entrar) {
+    await tester.tap(find.text('Il caffè'));
+    await tester.pumpAndSettle();
+  }
   return voz;
 }
 
+Future<Podcast> _elPodcastDeVerdad() async =>
+    Podcast.desdeJson(jsonDecode(await File('assets/podcast.json').readAsString()));
+
 void main() {
-  group('leer los episodios', () {
-    test('el episodio de verdad que viaja en la app se lee entero', () async {
-      // Es el archivo real, no uno de mentira: si alguien le rompe una coma
-      // al JSON, o escribe mal un nombre, esto lo dice acá y no en el celular.
-      final podcast = Podcast.desdeJson(
-        jsonDecode(await _leerElArchivoDeVerdad()),
-      );
+  group('los episodios que viajan en la app', () {
+    // Se lee el archivo del repositorio, no uno de mentira: si alguien le
+    // rompe una coma al JSON o escribe mal un nombre, esto lo dice acá y no
+    // en el celular.
 
-      expect(podcast.episodios, isNotEmpty);
-      final primero = podcast.episodios.first;
-      expect(primero.titulo, isNotEmpty);
-      expect(primero.lineas.length, greaterThan(10));
-    });
+    test('se leen todos', () async {
+      final podcast = await _elPodcastDeVerdad();
 
-    test('todas las líneas tienen las dos cosas', () async {
-      final podcast = Podcast.desdeJson(
-        jsonDecode(await _leerElArchivoDeVerdad()),
-      );
-
-      for (final linea in podcast.episodios.first.lineas) {
-        expect(linea.italiano.trim(), isNotEmpty);
-        expect(linea.castellano.trim(), isNotEmpty,
-            reason: 'sin traducción no sirve: "${linea.italiano}"');
+      expect(podcast.episodios.length, greaterThanOrEqualTo(2));
+      for (final episodio in podcast.episodios) {
+        expect(episodio.titulo.trim(), isNotEmpty);
+        expect(episodio.deQueVa.trim(), isNotEmpty);
+        expect(episodio.lineas.length, greaterThan(10));
       }
     });
 
-    test('los dos hablan: no es un monólogo', () async {
-      // Que se turnen es la idea entera de la sección. Un episodio con una
-      // sola voz sería un cuento leído, que ya existe.
-      final lineas = Podcast.desdeJson(
-        jsonDecode(await _leerElArchivoDeVerdad()),
-      ).episodios.first.lineas;
-
-      expect(lineas.any((l) => l.quien == QuienHabla.giulia), isTrue);
-      expect(lineas.any((l) => l.quien == QuienHabla.lorenzo), isTrue);
+    test('todas las líneas tienen el italiano y la traducción', () async {
+      for (final episodio in (await _elPodcastDeVerdad()).episodios) {
+        for (final linea in episodio.lineas) {
+          expect(linea.italiano.trim(), isNotEmpty);
+          expect(linea.castellano.trim(), isNotEmpty,
+              reason: 'sin traducción no sirve: "${linea.italiano}"');
+        }
+      }
     });
 
+    test('cada palabra del glosario está en el texto del episodio', () async {
+      // Si no está, la palabra nunca se puede tocar y el glosario miente. Una
+      // letra mal escrita acá sería invisible en la pantalla.
+      for (final episodio in (await _elPodcastDeVerdad()).episodios) {
+        expect(episodio.glosario, isNotEmpty,
+            reason: '${episodio.titulo} no tiene palabras para tocar');
+
+        final texto = episodio.lineas.map((l) => l.italiano).join(' ');
+        final enElTexto = texto.split(RegExp(r'\s+')).map(soloLasLetras).toSet();
+
+        for (final palabra in episodio.glosario) {
+          expect(enElTexto, contains(soloLasLetras(palabra.italiano)),
+              reason: '"${palabra.italiano}" no aparece en ${episodio.titulo}');
+        }
+      }
+    });
+
+    test('hay un episodio contado por uno solo y otro entre dos', () async {
+      // Son los dos formatos que se están comparando: el podcast clásico de
+      // alguien hablando solo, y la conversación.
+      final cuantasVoces = [
+        for (final episodio in (await _elPodcastDeVerdad()).episodios)
+          episodio.quienesHablan.length,
+      ];
+
+      expect(cuantasVoces, contains(1));
+      expect(cuantasVoces, contains(2));
+    });
+  });
+
+  group('leer el archivo', () {
     test('un renglón roto no tira abajo el episodio', () {
       final podcast = Podcast.desdeJson(jsonDecode('''
         {"episodios": [{"titulo": "T", "deQueVa": "D", "lineas": [
@@ -103,6 +137,17 @@ void main() {
       expect(podcast.episodios, isEmpty);
     });
 
+    test('sin glosario el episodio se lee igual', () {
+      final podcast = Podcast.desdeJson(jsonDecode('''
+        {"episodios": [{"titulo": "T", "deQueVa": "D", "lineas": [
+          {"quien": "giulia", "it": "Ciao", "es": "Hola"}
+        ]}]}
+      '''));
+
+      expect(podcast.episodios.first.glosario, isEmpty);
+      expect(podcast.episodios.first.queQuiereDecir('Ciao'), isNull);
+    });
+
     test('un archivo que no se puede leer no rompe la app', () async {
       final repositorio = RepositorioPodcast(
         leerAsset: (_) async => throw Exception('no está'),
@@ -112,13 +157,82 @@ void main() {
     });
   });
 
-  group('la pantalla', () {
+  group('buscar una palabra', () {
+    const episodio = Episodio(
+      titulo: 'T',
+      deQueVa: 'D',
+      lineas: [
+        LineaDelEpisodio(
+          quien: QuienHabla.lorenzo,
+          italiano: 'Ho sonno.',
+          castellano: 'Tengo sueño.',
+        ),
+      ],
+      glosario: [
+        PalabraDelEpisodio(italiano: 'sonno', castellano: 'sueño'),
+      ],
+    );
+
+    test('encuentra la palabra aunque venga pegada a un signo', () {
+      // En el texto viene "sonno." con el punto pegado.
+      expect(episodio.queQuiereDecir('sonno.'), 'sueño');
+      expect(episodio.queQuiereDecir('Sonno'), 'sueño');
+      expect(episodio.queQuiereDecir(' sonno '), 'sueño');
+    });
+
+    test('una palabra que no está no inventa nada', () {
+      expect(episodio.queQuiereDecir('caffè'), isNull);
+      expect(episodio.queQuiereDecir('  '), isNull);
+    });
+  });
+
+  group('quién cuenta cada episodio', () {
+    LineaDelEpisodio deQuien(QuienHabla quien) =>
+        LineaDelEpisodio(quien: quien, italiano: 'Ciao', castellano: 'Hola');
+
+    test('contado por uno solo dice un nombre', () {
+      final episodio = Episodio(
+        titulo: 'T',
+        deQueVa: 'D',
+        lineas: [deQuien(QuienHabla.lorenzo), deQuien(QuienHabla.lorenzo)],
+      );
+
+      expect(episodio.quienLoCuenta, 'Lorenzo');
+    });
+
+    test('entre dos dice los dos, en el orden en que hablan', () {
+      final episodio = Episodio(
+        titulo: 'T',
+        deQueVa: 'D',
+        lineas: [deQuien(QuienHabla.giulia), deQuien(QuienHabla.lorenzo)],
+      );
+
+      expect(episodio.quienLoCuenta, 'Giulia y Lorenzo');
+    });
+  });
+
+  group('la lista', () {
+    testWidgets('muestra los episodios con de qué van', (tester) async {
+      await _abrir(tester, entrar: false);
+
+      expect(find.text('Il caffè'), findsOneWidget);
+      expect(find.text('Hablan del café.'), findsOneWidget);
+    });
+
+    testWidgets('sin episodios lo dice en vez de quedarse en blanco',
+        (tester) async {
+      await _abrir(tester, json: '{"episodios": []}', entrar: false);
+
+      expect(find.textContaining('Todavía no hay episodios'), findsOneWidget);
+    });
+  });
+
+  group('el reproductor', () {
     testWidgets('muestra el título y las frases', (tester) async {
       await _abrir(tester);
 
-      expect(find.text('Il caffè'), findsOneWidget);
       expect(find.text('Come stai?'), findsOneWidget);
-      expect(find.text('Sto bene.'), findsOneWidget);
+      expect(find.textContaining('Io ho sonno'), findsOneWidget);
     });
 
     testWidgets('la traducción no está a la vista hasta que se pide',
@@ -135,15 +249,72 @@ void main() {
 
     testWidgets('al escuchar, Giulia y Lorenzo se turnan de verdad',
         (tester) async {
-      // Es lo que distingue esto de un cuento leído: que cada turno suene con
-      // la voz de quien habla.
+      // Es lo que distingue una conversación de un cuento leído: que cada
+      // turno suene con la voz de quien habla.
       final voz = await _abrir(tester);
 
       await tester.tap(find.text('Escuchar'));
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
-      expect(voz.dicho, ['Come stai?', 'Sto bene.']);
-      expect(voz.conQueVoz, ['Giulia', 'Lorenzo']);
+      expect(voz.dicho, ['Come stai?', 'Molto bene, grazie.', 'Io ho sonno.']);
+      expect(voz.conQueVoz, ['Giulia', 'Lorenzo', 'Giulia']);
+    });
+
+    testWidgets('al parar y seguir, retoma donde quedó', (tester) async {
+      // Antes volvía a empezar desde la primera frase, que en un episodio de
+      // tres minutos obliga a escuchar de nuevo todo lo ya escuchado.
+      final voz = await _abrir(tester);
+
+      // Se para en la segunda línea tocándola: queda marcada como la actual.
+      // Se elige una sin palabra subrayada, para que el toque caiga en el
+      // renglón y no en la palabra.
+      await tester.tap(find.text('Molto bene, grazie.'));
+      await tester.pumpAndSettle();
+      voz.dicho.clear();
+
+      expect(find.text('Seguir'), findsOneWidget);
+      await tester.tap(find.text('Seguir'));
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+
+      expect(voz.dicho, ['Molto bene, grazie.', 'Io ho sonno.'],
+          reason: 'no tiene que volver al principio');
+    });
+
+    testWidgets('se puede volver al principio a propósito', (tester) async {
+      final voz = await _abrir(tester);
+
+      await tester.tap(find.text('Molto bene, grazie.'));
+      await tester.pumpAndSettle();
+      voz.dicho.clear();
+
+      await tester.tap(find.byIcon(Icons.replay));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Escuchar'), findsOneWidget);
+      await tester.tap(find.text('Escuchar'));
+      await tester.pumpAndSettle(const Duration(seconds: 2));
+
+      expect(voz.dicho, ['Come stai?', 'Molto bene, grazie.', 'Io ho sonno.']);
+    });
+
+    testWidgets('tocar una palabra del glosario muestra qué quiere decir',
+        (tester) async {
+      await _abrir(tester);
+
+      // El reconocedor del toque está adentro del texto, así que se busca por
+      // el span y se lo toca donde cae.
+      final texto = tester.widget<Text>(find.textContaining('Io ho sonno'));
+      final spans = (texto.textSpan! as TextSpan).children!;
+      final tocable = spans.whereType<TextSpan>().firstWhere(
+            (s) => s.recognizer != null,
+          );
+
+      expect(tocable.text!.trim(), 'sonno.');
+
+      (tocable.recognizer as dynamic).onTap();
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('sueño'), findsWidgets);
     });
 
     testWidgets('con una sola voz instalada igual se escucha', (tester) async {
@@ -154,7 +325,7 @@ void main() {
       await tester.tap(find.text('Escuchar'));
       await tester.pumpAndSettle(const Duration(seconds: 2));
 
-      expect(voz.dicho, ['Come stai?', 'Sto bene.']);
+      expect(voz.dicho, ['Come stai?', 'Molto bene, grazie.', 'Io ho sonno.']);
     });
 
     testWidgets('sin la voz italiana avisa y no habla', (tester) async {
@@ -185,20 +356,13 @@ void main() {
       expect(voz.lenta, isTrue);
     });
 
-    testWidgets('sin episodios lo dice en vez de quedarse en blanco',
-        (tester) async {
-      await _abrir(tester, json: '{"episodios": []}');
+    testWidgets('se puede volver a la lista', (tester) async {
+      await _abrir(tester);
 
-      expect(find.textContaining('Todavía no hay episodios'), findsOneWidget);
+      await tester.tap(find.byIcon(Icons.arrow_back));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Hablan del café.'), findsOneWidget);
     });
   });
-}
-
-/// El podcast.json de verdad, leído del disco.
-///
-/// No se usa rootBundle porque en los tests no está empaquetado: se lee el
-/// archivo tal como está en el repositorio, que es lo que se quiere revisar.
-Future<String> _leerElArchivoDeVerdad() async {
-  // El test corre desde flutter_app/, así que la ruta es relativa a ahí.
-  return await File('assets/podcast.json').readAsString();
 }
