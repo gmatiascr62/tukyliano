@@ -1,102 +1,1042 @@
 {
-  "version": 2,
+  "version": 3,
   "episodios": [
+    {
+      "titulo": "Il Risorgimento",
+      "deQueVa": "Lorenzo cuenta cómo Italia llegó a ser un solo país: cómo era antes, quiénes lo hicieron, y por qué después costó tanto. El más largo, y el que explica por qué hay tantos dialectos.",
+      "glosario": [
+        {
+          "it": "penisola",
+          "es": "península"
+        },
+        {
+          "it": "regno",
+          "es": "reino"
+        },
+        {
+          "it": "ducati",
+          "es": "ducados"
+        },
+        {
+          "it": "leggi",
+          "es": "leyes"
+        },
+        {
+          "it": "moneta",
+          "es": "moneda"
+        },
+        {
+          "it": "frontiere",
+          "es": "fronteras"
+        },
+        {
+          "it": "tasse",
+          "es": "impuestos"
+        },
+        {
+          "it": "dialetto",
+          "es": "dialecto"
+        },
+        {
+          "it": "contadino",
+          "es": "campesino"
+        },
+        {
+          "it": "sognatore",
+          "es": "soñador"
+        },
+        {
+          "it": "esilio",
+          "es": "exilio"
+        },
+        {
+          "it": "alleanze",
+          "es": "alianzas"
+        },
+        {
+          "it": "soldato",
+          "es": "soldado"
+        },
+        {
+          "it": "esercito",
+          "es": "ejército"
+        },
+        {
+          "it": "navi",
+          "es": "barcos"
+        },
+        {
+          "it": "potere",
+          "es": "poder"
+        },
+        {
+          "it": "povertà",
+          "es": "pobreza"
+        },
+        {
+          "it": "nonno",
+          "es": "abuelo"
+        },
+        {
+          "it": "carattere",
+          "es": "carácter"
+        },
+        {
+          "it": "guerra",
+          "es": "guerra"
+        },
+        {
+          "it": "scuola",
+          "es": "escuela"
+        },
+        {
+          "it": "popolo",
+          "es": "pueblo"
+        },
+        {
+          "it": "storici",
+          "es": "historiadores"
+        },
+        {
+          "it": "Ottocento",
+          "es": "el siglo XIX (los años 1800)"
+        }
+      ],
+      "lineas": [
+        {
+          "quien": "lorenzo",
+          "it": "Ciao a tutti e benvenuti.",
+          "es": "Hola a todos y bienvenidos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Io sono Lorenzo e questo è il podcast in italiano facile.",
+          "es": "Yo soy Lorenzo y este es el podcast en italiano fácil."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Oggi parliamo di storia.",
+          "es": "Hoy hablamos de historia."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma di una storia che spiega molte cose dell'Italia di oggi.",
+          "es": "Pero de una historia que explica muchas cosas de la Italia de hoy."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Parliamo del Risorgimento: come l'Italia è diventata un paese solo.",
+          "es": "Hablamos del Risorgimento: cómo Italia se convirtió en un solo país."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ti avviso: oggi uso molto il passato. È un po' più difficile.",
+          "es": "Te aviso: hoy uso mucho el pasado. Es un poco más difícil."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ascolta con calma. Se serve, metti la velocità lenta.",
+          "es": "Escuchá con calma. Si hace falta, poné la velocidad lenta."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Comincio con una cosa che sorprende sempre.",
+          "es": "Empiezo con algo que siempre sorprende."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "L'Italia è un paese molto giovane.",
+          "es": "Italia es un país muy joven."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Più giovane dell'Argentina. Più giovane degli Stati Uniti.",
+          "es": "Más joven que Argentina. Más joven que Estados Unidos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "L'Italia esiste dal 1861. Poco più di centosessant'anni.",
+          "es": "Italia existe desde 1861. Poco más de ciento sesenta años."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Prima del 1861 l'Italia non esisteva.",
+          "es": "Antes de 1861 Italia no existía."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "C'era la penisola, c'erano gli italiani, ma non c'era l'Italia.",
+          "es": "Estaba la península, estaban los italianos, pero no estaba Italia."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "C'erano tanti stati piccoli, uno accanto all'altro.",
+          "es": "Había muchos estados chicos, uno al lado del otro."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Al nord c'era il Regno di Sardegna, con Torino capitale.",
+          "es": "Al norte estaba el Reino de Cerdeña, con Turín como capital."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "A nord-est c'erano la Lombardia e il Veneto, ma erano austriaci.",
+          "es": "Al noreste estaban Lombardía y el Véneto, pero eran austríacos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Al centro c'erano i ducati: Parma, Modena, la Toscana.",
+          "es": "En el centro estaban los ducados: Parma, Módena, la Toscana."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Poi c'era lo Stato della Chiesa, governato dal Papa.",
+          "es": "Después estaba el Estado de la Iglesia, gobernado por el Papa."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Sì: Roma era del Papa, non dell'Italia.",
+          "es": "Sí: Roma era del Papa, no de Italia."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E al sud c'era il Regno delle Due Sicilie, con Napoli capitale.",
+          "es": "Y al sur estaba el Reino de las Dos Sicilias, con Nápoles como capital."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ogni stato aveva il suo re, le sue leggi, la sua moneta.",
+          "es": "Cada estado tenía su rey, sus leyes, su moneda."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Per andare da Milano a Napoli passavi quattro o cinque frontiere.",
+          "es": "Para ir de Milán a Nápoles pasabas cuatro o cinco fronteras."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "A ogni frontiera c'erano i documenti e le tasse.",
+          "es": "En cada frontera había documentos e impuestos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E la lingua? Questa è la parte che ci interessa di più.",
+          "es": "¿Y la lengua? Esta es la parte que más nos interesa."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ogni posto parlava il suo dialetto.",
+          "es": "Cada lugar hablaba su dialecto."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il napoletano, il siciliano, il veneto, il piemontese.",
+          "es": "El napolitano, el siciliano, el véneto, el piamontés."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non erano modi strani di parlare italiano.",
+          "es": "No eran formas raras de hablar italiano."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Erano lingue diverse, con una grammatica diversa.",
+          "es": "Eran lenguas distintas, con una gramática distinta."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Un contadino siciliano e un contadino piemontese non si capivano.",
+          "es": "Un campesino siciliano y un campesino piamontés no se entendían."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "L'italiano esisteva, certo. Era la lingua dei libri, la lingua di Dante.",
+          "es": "El italiano existía, claro. Era la lengua de los libros, la lengua de Dante."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma quasi nessuno lo parlava a casa.",
+          "es": "Pero casi nadie lo hablaba en casa."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Quanti erano? Gli storici non sono d'accordo.",
+          "es": "¿Cuántos eran? Los historiadores no se ponen de acuerdo."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Per alcuni il due e mezzo per cento. Per altri circa il dieci.",
+          "es": "Para algunos el dos y medio por ciento. Para otros alrededor del diez."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In ogni caso, pochissimi.",
+          "es": "En cualquier caso, poquísimos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E tre persone su quattro non sapevano leggere.",
+          "es": "Y tres personas de cada cuatro no sabían leer."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Allora, come nasce l'idea di fare un paese solo?",
+          "es": "Entonces, ¿cómo nace la idea de hacer un solo país?"
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Nell'Ottocento in tutta Europa cresce un'idea nuova: la nazione.",
+          "es": "En el siglo XIX en toda Europa crece una idea nueva: la nación."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In Italia questa idea prende un nome: Risorgimento.",
+          "es": "En Italia esa idea toma un nombre: Risorgimento."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Vuol dire risorgere, nascere un'altra volta.",
+          "es": "Quiere decir resurgir, nacer otra vez."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Perché per loro l'Italia non nasceva: tornava.",
+          "es": "Porque para ellos Italia no nacía: volvía."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Tornava dopo Roma antica, dopo il Rinascimento.",
+          "es": "Volvía después de la Roma antigua, después del Renacimiento."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ci sono quattro nomi da ricordare. Te li dico piano.",
+          "es": "Hay cuatro nombres para recordar. Te los digo despacio."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il primo è Giuseppe Mazzini.",
+          "es": "El primero es Giuseppe Mazzini."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Mazzini è il sognatore. Scrive, organizza, vive in esilio a Londra.",
+          "es": "Mazzini es el soñador. Escribe, organiza, vive exiliado en Londres."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Lui vuole una repubblica, non un re.",
+          "es": "Él quiere una república, no un rey."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il secondo è Camillo Benso, conte di Cavour.",
+          "es": "El segundo es Camillo Benso, conde de Cavour."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Cavour è il politico, primo ministro del Regno di Sardegna.",
+          "es": "Cavour es el político, primer ministro del Reino de Cerdeña."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non fa discorsi: fa accordi, alleanze, strategie.",
+          "es": "No hace discursos: hace acuerdos, alianzas, estrategias."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il terzo è Giuseppe Garibaldi.",
+          "es": "El tercero es Giuseppe Garibaldi."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Garibaldi è il soldato, l'eroe del popolo.",
+          "es": "Garibaldi es el soldado, el héroe del pueblo."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ha combattuto anche in Sud America, in Brasile e in Uruguay.",
+          "es": "Combatió también en Sudamérica, en Brasil y en Uruguay."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Per questo in Argentina il suo nome è conosciuto.",
+          "es": "Por eso en Argentina su nombre es conocido."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il quarto è Vittorio Emanuele II, re di Sardegna.",
+          "es": "El cuarto es Vittorio Emanuele II, rey de Cerdeña."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Sarà il primo re d'Italia.",
+          "es": "Será el primer rey de Italia."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Adesso i fatti. Vado piano, sono molti.",
+          "es": "Ahora los hechos. Voy despacio, son muchos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Nel 1848 c'è una prima rivoluzione, in tutta Europa.",
+          "es": "En 1848 hay una primera revolución, en toda Europa."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In Italia non funziona. Gli austriaci restano.",
+          "es": "En Italia no funciona. Los austríacos se quedan."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Mazzini e Garibaldi devono scappare un'altra volta.",
+          "es": "Mazzini y Garibaldi tienen que escapar otra vez."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma l'idea non muore.",
+          "es": "Pero la idea no muere."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Nel 1859 il Regno di Sardegna fa la guerra all'Austria.",
+          "es": "En 1859 el Reino de Cerdeña le hace la guerra a Austria."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Questa volta ha l'aiuto della Francia, e vince.",
+          "es": "Esta vez tiene la ayuda de Francia, y gana."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "La Lombardia diventa italiana. Il Veneto no, non ancora.",
+          "es": "Lombardía se vuelve italiana. El Véneto no, todavía no."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Nel 1860 succede la cosa più incredibile di questa storia.",
+          "es": "En 1860 pasa la cosa más increíble de esta historia."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Garibaldi parte da Genova con mille uomini. Mille, non di più.",
+          "es": "Garibaldi sale de Génova con mil hombres. Mil, no más."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Vanno in Sicilia su due navi vecchie.",
+          "es": "Van a Sicilia en dos barcos viejos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "È la Spedizione dei Mille.",
+          "es": "Es la Expedición de los Mil."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Dovevano perdere: il Regno delle Due Sicilie aveva un esercito vero.",
+          "es": "Tenían que perder: el Reino de las Dos Sicilias tenía un ejército de verdad."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma la gente del sud si unisce a loro.",
+          "es": "Pero la gente del sur se une a ellos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In pochi mesi Garibaldi conquista la Sicilia e arriva a Napoli.",
+          "es": "En pocos meses Garibaldi conquista Sicilia y llega a Nápoles."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Poi fa una cosa che nessuno si aspetta.",
+          "es": "Después hace algo que nadie se espera."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Incontra Vittorio Emanuele e gli dà tutto.",
+          "es": "Se encuentra con Vittorio Emanuele y le da todo."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Tutto quello che ha conquistato, glielo regala.",
+          "es": "Todo lo que conquistó, se lo regala."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Voleva l'Italia unita, non il potere per sé.",
+          "es": "Quería Italia unida, no el poder para él."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il 17 marzo 1861 nasce il Regno d'Italia.",
+          "es": "El 17 de marzo de 1861 nace el Reino de Italia."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "La capitale è Torino. Non Roma: Roma è ancora del Papa.",
+          "es": "La capital es Turín. No Roma: Roma todavía es del Papa."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Poi per qualche anno la capitale è Firenze.",
+          "es": "Después, por algunos años, la capital es Florencia."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Nel 1866 arriva anche il Veneto.",
+          "es": "En 1866 llega también el Véneto."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E il 20 settembre 1870 i soldati italiani entrano a Roma.",
+          "es": "Y el 20 de septiembre de 1870 los soldados italianos entran en Roma."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Finalmente Roma è la capitale. L'Italia è completa.",
+          "es": "Finalmente Roma es la capital. Italia está completa."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E dopo? Dopo comincia la parte difficile.",
+          "es": "¿Y después? Después empieza la parte difícil."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "C'è una frase famosa di quegli anni.",
+          "es": "Hay una frase famosa de aquellos años."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Fatta l'Italia, bisogna fare gli italiani.",
+          "es": "Hecha Italia, hay que hacer a los italianos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il paese esisteva sulla carta, ma gli italiani non si sentivano italiani.",
+          "es": "El país existía en el papel, pero los italianos no se sentían italianos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Si sentivano siciliani, veneti, napoletani.",
+          "es": "Se sentían sicilianos, vénetos, napolitanos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E continuavano a non capirsi, perché parlavano lingue diverse.",
+          "es": "Y seguían sin entenderse, porque hablaban lenguas distintas."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il nuovo stato aveva tre problemi grandi.",
+          "es": "El nuevo estado tenía tres problemas grandes."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il primo: la lingua. Bisognava insegnare l'italiano a tutti.",
+          "es": "El primero: la lengua. Había que enseñarle italiano a todos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Lo fece la scuola, lentamente.",
+          "es": "Lo hizo la escuela, lentamente."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E molto dopo lo fecero la radio e la televisione.",
+          "es": "Y mucho después lo hicieron la radio y la televisión."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il secondo problema: il sud.",
+          "es": "El segundo problema: el sur."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il nord era più ricco e aveva più industria.",
+          "es": "El norte era más rico y tenía más industria."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Le leggi del nord arrivarono al sud tutte insieme.",
+          "es": "Las leyes del norte llegaron al sur todas juntas."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Molti le sentirono come un'occupazione, non come un'unione.",
+          "es": "Muchos las sintieron como una ocupación, no como una unión."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Quella distanza fra nord e sud esiste ancora oggi.",
+          "es": "Esa distancia entre norte y sur existe todavía hoy."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il terzo problema: la povertà.",
+          "es": "El tercer problema: la pobreza."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Dopo l'unità milioni di italiani partirono.",
+          "es": "Después de la unidad millones de italianos se fueron."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Partirono per l'Argentina, per il Brasile, per gli Stati Uniti.",
+          "es": "Se fueron a Argentina, a Brasil, a Estados Unidos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Forse tuo nonno, o il nonno di tuo nonno, è partito così.",
+          "es": "Capaz tu abuelo, o el abuelo de tu abuelo, se fue así."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "L'Italia unita e la grande emigrazione nascono quasi insieme.",
+          "es": "La Italia unida y la gran emigración nacen casi juntas."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Chiudo con la cosa che mi piace di più di questa storia.",
+          "es": "Cierro con lo que más me gusta de esta historia."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Quando pensi all'Italia, pensi a una cosa antica.",
+          "es": "Cuando pensás en Italia, pensás en algo antiguo."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E invece l'Italia come paese è giovanissima.",
+          "es": "Y en cambio Italia como país es jovencísima."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Le città sono antiche. Il paese è nuovo.",
+          "es": "Las ciudades son antiguas. El país es nuevo."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Per questo ogni regione è così diversa dalle altre.",
+          "es": "Por eso cada región es tan distinta de las otras."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il cibo, il dialetto, il carattere della gente.",
+          "es": "La comida, el dialecto, el carácter de la gente."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non è un difetto: è la storia che si vede ancora.",
+          "es": "No es un defecto: es la historia que todavía se ve."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Per oggi è tutto. Alla prossima!",
+          "es": "Por hoy es todo. ¡Hasta la próxima!"
+        }
+      ]
+    },
     {
       "titulo": "La passeggiata",
       "deQueVa": "Lorenzo cuenta qué es la passeggiata y por qué los italianos salen a caminar sin ir a ninguna parte.",
       "glosario": [
-        { "it": "passeggiata", "es": "paseo, caminata" },
-        { "it": "camminata", "es": "caminata" },
-        { "it": "qualsiasi", "es": "cualquiera" },
-        { "it": "gente", "es": "gente" },
-        { "it": "cena", "es": "cena" },
-        { "it": "fresco", "es": "fresco" },
-        { "it": "pomeriggio", "es": "tarde" },
-        { "it": "piazza", "es": "plaza" },
-        { "it": "lungomare", "es": "costanera" },
-        { "it": "piano", "es": "despacio — acá no es piso ni piano" },
-        { "it": "indietro", "es": "para atrás" },
-        { "it": "gelato", "es": "helado" },
-        { "it": "figura", "es": "impresión, imagen" },
-        { "it": "nonne", "es": "abuelas" },
-        { "it": "finestre", "es": "ventanas" },
-        { "it": "genitori", "es": "padres" }
+        {
+          "it": "passeggiata",
+          "es": "paseo, caminata"
+        },
+        {
+          "it": "camminata",
+          "es": "caminata"
+        },
+        {
+          "it": "qualsiasi",
+          "es": "cualquiera"
+        },
+        {
+          "it": "gente",
+          "es": "gente"
+        },
+        {
+          "it": "cena",
+          "es": "cena"
+        },
+        {
+          "it": "fresco",
+          "es": "fresco"
+        },
+        {
+          "it": "pomeriggio",
+          "es": "tarde"
+        },
+        {
+          "it": "piazza",
+          "es": "plaza"
+        },
+        {
+          "it": "lungomare",
+          "es": "costanera"
+        },
+        {
+          "it": "piano",
+          "es": "despacio — acá no es piso ni piano"
+        },
+        {
+          "it": "indietro",
+          "es": "para atrás"
+        },
+        {
+          "it": "gelato",
+          "es": "helado"
+        },
+        {
+          "it": "figura",
+          "es": "impresión, imagen"
+        },
+        {
+          "it": "nonne",
+          "es": "abuelas"
+        },
+        {
+          "it": "finestre",
+          "es": "ventanas"
+        },
+        {
+          "it": "genitori",
+          "es": "padres"
+        }
       ],
       "lineas": [
-        { "quien": "lorenzo", "it": "Ciao a tutti e benvenuti.", "es": "Hola a todos y bienvenidos." },
-        { "quien": "lorenzo", "it": "Io sono Lorenzo e questo è il nostro podcast in italiano facile.", "es": "Yo soy Lorenzo y este es nuestro podcast en italiano fácil." },
-        { "quien": "lorenzo", "it": "Oggi vi parlo di una cosa molto italiana: la passeggiata.", "es": "Hoy les hablo de algo muy italiano: la passeggiata." },
-        { "quien": "lorenzo", "it": "La passeggiata è una camminata. Ma non è una camminata qualsiasi.", "es": "La passeggiata es una caminata. Pero no es una caminata cualquiera." },
-        { "quien": "lorenzo", "it": "Non si cammina per fare sport.", "es": "No se camina para hacer deporte." },
-        { "quien": "lorenzo", "it": "Non si cammina per andare al lavoro.", "es": "No se camina para ir al trabajo." },
-        { "quien": "lorenzo", "it": "Si cammina per stare insieme e per guardare la gente.", "es": "Se camina para estar juntos y para mirar a la gente." },
-        { "quien": "lorenzo", "it": "Di solito si fa la sera, prima di cena.", "es": "Normalmente se hace a la tarde, antes de la cena." },
-        { "quien": "lorenzo", "it": "In estate anche dopo cena, quando fa più fresco.", "es": "En verano también después de la cena, cuando hace más fresco." },
-        { "quien": "lorenzo", "it": "La domenica pomeriggio, invece, la fanno tutti.", "es": "El domingo a la tarde, en cambio, la hacen todos." },
-        { "quien": "lorenzo", "it": "Dove si va? Sempre nello stesso posto.", "es": "¿Adónde se va? Siempre al mismo lugar." },
-        { "quien": "lorenzo", "it": "In ogni città c'è una strada o una piazza per la passeggiata.", "es": "En cada ciudad hay una calle o una plaza para la passeggiata." },
-        { "quien": "lorenzo", "it": "A volte è il corso principale, a volte è il lungomare.", "es": "A veces es la avenida principal, a veces es la costanera." },
-        { "quien": "lorenzo", "it": "Si cammina piano, molto piano.", "es": "Se camina despacio, muy despacio." },
-        { "quien": "lorenzo", "it": "Non si va da nessuna parte: si va avanti e indietro.", "es": "No se va a ninguna parte: se va para adelante y para atrás." },
-        { "quien": "lorenzo", "it": "Ci si ferma a parlare con un amico.", "es": "Uno se para a hablar con un amigo." },
-        { "quien": "lorenzo", "it": "Poi si cammina ancora un poco.", "es": "Después se camina un poco más." },
-        { "quien": "lorenzo", "it": "Magari si prende un gelato.", "es": "Capaz uno se toma un helado." },
-        { "quien": "lorenzo", "it": "La gente si veste bene per la passeggiata.", "es": "La gente se viste bien para la passeggiata." },
-        { "quien": "lorenzo", "it": "Non elegante, ma bene. Si esce per farsi vedere.", "es": "No elegante, pero bien. Se sale para dejarse ver." },
-        { "quien": "lorenzo", "it": "C'è un'espressione per questo: fare la bella figura.", "es": "Hay una expresión para esto: fare la bella figura." },
-        { "quien": "lorenzo", "it": "Vuol dire dare una buona impressione agli altri.", "es": "Quiere decir dar una buena impresión a los demás." },
-        { "quien": "lorenzo", "it": "È importante in Italia, più di quello che pensate.", "es": "Es importante en Italia, más de lo que piensan." },
-        { "quien": "lorenzo", "it": "Le nonne guardano dalle finestre.", "es": "Las abuelas miran desde las ventanas." },
-        { "quien": "lorenzo", "it": "I bambini corrono avanti.", "es": "Los chicos corren adelante." },
-        { "quien": "lorenzo", "it": "E i genitori camminano piano, dietro.", "es": "Y los padres caminan despacio, atrás." },
-        { "quien": "lorenzo", "it": "Se un giorno venite in Italia, fate la passeggiata.", "es": "Si un día vienen a Italia, hagan la passeggiata." },
-        { "quien": "lorenzo", "it": "Non costa niente ed è la cosa più italiana che c'è.", "es": "No cuesta nada y es la cosa más italiana que hay." },
-        { "quien": "lorenzo", "it": "Per oggi è tutto. Ci sentiamo alla prossima!", "es": "Por hoy es todo. ¡Nos escuchamos en la próxima!" }
+        {
+          "quien": "lorenzo",
+          "it": "Ciao a tutti e benvenuti.",
+          "es": "Hola a todos y bienvenidos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Io sono Lorenzo e questo è il nostro podcast in italiano facile.",
+          "es": "Yo soy Lorenzo y este es nuestro podcast en italiano fácil."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Oggi vi parlo di una cosa molto italiana: la passeggiata.",
+          "es": "Hoy les hablo de algo muy italiano: la passeggiata."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "La passeggiata è una camminata. Ma non è una camminata qualsiasi.",
+          "es": "La passeggiata es una caminata. Pero no es una caminata cualquiera."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non si cammina per fare sport.",
+          "es": "No se camina para hacer deporte."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non si cammina per andare al lavoro.",
+          "es": "No se camina para ir al trabajo."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Si cammina per stare insieme e per guardare la gente.",
+          "es": "Se camina para estar juntos y para mirar a la gente."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Di solito si fa la sera, prima di cena.",
+          "es": "Normalmente se hace a la tarde, antes de la cena."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In estate anche dopo cena, quando fa più fresco.",
+          "es": "En verano también después de la cena, cuando hace más fresco."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "La domenica pomeriggio, invece, la fanno tutti.",
+          "es": "El domingo a la tarde, en cambio, la hacen todos."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Dove si va? Sempre nello stesso posto.",
+          "es": "¿Adónde se va? Siempre al mismo lugar."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In ogni città c'è una strada o una piazza per la passeggiata.",
+          "es": "En cada ciudad hay una calle o una plaza para la passeggiata."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "A volte è il corso principale, a volte è il lungomare.",
+          "es": "A veces es la avenida principal, a veces es la costanera."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Si cammina piano, molto piano.",
+          "es": "Se camina despacio, muy despacio."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non si va da nessuna parte: si va avanti e indietro.",
+          "es": "No se va a ninguna parte: se va para adelante y para atrás."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ci si ferma a parlare con un amico.",
+          "es": "Uno se para a hablar con un amigo."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Poi si cammina ancora un poco.",
+          "es": "Después se camina un poco más."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Magari si prende un gelato.",
+          "es": "Capaz uno se toma un helado."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "La gente si veste bene per la passeggiata.",
+          "es": "La gente se viste bien para la passeggiata."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non elegante, ma bene. Si esce per farsi vedere.",
+          "es": "No elegante, pero bien. Se sale para dejarse ver."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "C'è un'espressione per questo: fare la bella figura.",
+          "es": "Hay una expresión para esto: fare la bella figura."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Vuol dire dare una buona impressione agli altri.",
+          "es": "Quiere decir dar una buena impresión a los demás."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "È importante in Italia, più di quello che pensate.",
+          "es": "Es importante en Italia, más de lo que piensan."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Le nonne guardano dalle finestre.",
+          "es": "Las abuelas miran desde las ventanas."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "I bambini corrono avanti.",
+          "es": "Los chicos corren adelante."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E i genitori camminano piano, dietro.",
+          "es": "Y los padres caminan despacio, atrás."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Se un giorno venite in Italia, fate la passeggiata.",
+          "es": "Si un día vienen a Italia, hagan la passeggiata."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non costa niente ed è la cosa più italiana che c'è.",
+          "es": "No cuesta nada y es la cosa más italiana que hay."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Per oggi è tutto. Ci sentiamo alla prossima!",
+          "es": "Por hoy es todo. ¡Nos escuchamos en la próxima!"
+        }
       ]
     },
     {
       "titulo": "Il caffè del mattino",
       "deQueVa": "Giulia y Lorenzo hablan del café y del desayuno. Y de por qué en Italia nadie pide cappuccino después del almuerzo.",
       "glosario": [
-        { "it": "sonno", "es": "sueño" },
-        { "it": "presto", "es": "temprano" },
-        { "it": "zucchero", "es": "azúcar" },
-        { "it": "amaro", "es": "amargo" },
-        { "it": "invece", "es": "en cambio" },
-        { "it": "pranzo", "es": "almuerzo" },
-        { "it": "barista", "es": "el del bar, barista" },
-        { "it": "colazione", "es": "desayuno" },
-        { "it": "cornetto", "es": "medialuna" },
-        { "it": "abbastanza", "es": "suficiente" },
-        { "it": "ragione", "es": "razón" }
+        {
+          "it": "sonno",
+          "es": "sueño"
+        },
+        {
+          "it": "presto",
+          "es": "temprano"
+        },
+        {
+          "it": "zucchero",
+          "es": "azúcar"
+        },
+        {
+          "it": "amaro",
+          "es": "amargo"
+        },
+        {
+          "it": "invece",
+          "es": "en cambio"
+        },
+        {
+          "it": "pranzo",
+          "es": "almuerzo"
+        },
+        {
+          "it": "barista",
+          "es": "el del bar, barista"
+        },
+        {
+          "it": "colazione",
+          "es": "desayuno"
+        },
+        {
+          "it": "cornetto",
+          "es": "medialuna"
+        },
+        {
+          "it": "abbastanza",
+          "es": "suficiente"
+        },
+        {
+          "it": "ragione",
+          "es": "razón"
+        }
       ],
       "lineas": [
-        { "quien": "giulia", "it": "Buongiorno Lorenzo! Come stai oggi?", "es": "¡Buenos días Lorenzo! ¿Cómo estás hoy?" },
-        { "quien": "lorenzo", "it": "Buongiorno Giulia. Sto bene, ma ho ancora sonno.", "es": "Buenos días Giulia. Estoy bien, pero todavía tengo sueño." },
-        { "quien": "giulia", "it": "Anch'io. Stanotte ho dormito poco.", "es": "Yo también. Anoche dormí poco." },
-        { "quien": "lorenzo", "it": "Hai già preso il caffè?", "es": "¿Ya tomaste el café?" },
-        { "quien": "giulia", "it": "No, non ancora. Lo prendo adesso.", "es": "No, todavía no. Lo tomo ahora." },
-        { "quien": "lorenzo", "it": "Io ne ho già presi due.", "es": "Yo ya tomé dos." },
-        { "quien": "giulia", "it": "Due? È presto per due caffè!", "es": "¿Dos? ¡Es temprano para dos cafés!" },
-        { "quien": "lorenzo", "it": "Per me non è mai troppo presto.", "es": "Para mí nunca es demasiado temprano." },
-        { "quien": "giulia", "it": "E come lo prendi? Con lo zucchero?", "es": "¿Y cómo lo tomás? ¿Con azúcar?" },
-        { "quien": "lorenzo", "it": "No, amaro. Senza zucchero e senza latte.", "es": "No, amargo. Sin azúcar y sin leche." },
-        { "quien": "giulia", "it": "Io invece prendo il cappuccino.", "es": "Yo en cambio tomo cappuccino." },
-        { "quien": "lorenzo", "it": "Il cappuccino va bene, ma solo al mattino.", "es": "El cappuccino está bien, pero solo a la mañana." },
-        { "quien": "giulia", "it": "Perché solo al mattino?", "es": "¿Por qué solo a la mañana?" },
-        { "quien": "lorenzo", "it": "In Italia non si beve il cappuccino dopo pranzo.", "es": "En Italia no se toma cappuccino después del almuerzo." },
-        { "quien": "giulia", "it": "Davvero? E se lo chiedo al bar?", "es": "¿En serio? ¿Y si lo pido en el bar?" },
-        { "quien": "lorenzo", "it": "Te lo danno, ma il barista ti guarda male.", "es": "Te lo dan, pero el barista te mira mal." },
-        { "quien": "giulia", "it": "Va bene, allora dopo pranzo prendo un espresso.", "es": "Está bien, entonces después del almuerzo tomo un espresso." },
-        { "quien": "lorenzo", "it": "Bravissima. E a colazione cosa mangi?", "es": "Muy bien. ¿Y en el desayuno qué comés?" },
-        { "quien": "giulia", "it": "Di solito un cornetto. E tu?", "es": "Normalmente una medialuna. ¿Y vos?" },
-        { "quien": "lorenzo", "it": "Niente. Solo il caffè.", "es": "Nada. Solo el café." },
-        { "quien": "giulia", "it": "Solo il caffè? Non è abbastanza.", "es": "¿Solo el café? No es suficiente." },
-        { "quien": "lorenzo", "it": "Lo so. Anche mia madre dice la stessa cosa.", "es": "Lo sé. Mi madre también dice lo mismo." },
-        { "quien": "giulia", "it": "Tua madre ha ragione.", "es": "Tu madre tiene razón." },
-        { "quien": "lorenzo", "it": "Va bene, domani mangio qualcosa.", "es": "Está bien, mañana como algo." },
-        { "quien": "giulia", "it": "Te lo ricordo io domani mattina.", "es": "Te lo recuerdo yo mañana a la mañana." },
-        { "quien": "lorenzo", "it": "Grazie Giulia. A domani!", "es": "Gracias Giulia. ¡Hasta mañana!" }
+        {
+          "quien": "giulia",
+          "it": "Buongiorno Lorenzo! Come stai oggi?",
+          "es": "¡Buenos días Lorenzo! ¿Cómo estás hoy?"
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Buongiorno Giulia. Sto bene, ma ho ancora sonno.",
+          "es": "Buenos días Giulia. Estoy bien, pero todavía tengo sueño."
+        },
+        {
+          "quien": "giulia",
+          "it": "Anch'io. Stanotte ho dormito poco.",
+          "es": "Yo también. Anoche dormí poco."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Hai già preso il caffè?",
+          "es": "¿Ya tomaste el café?"
+        },
+        {
+          "quien": "giulia",
+          "it": "No, non ancora. Lo prendo adesso.",
+          "es": "No, todavía no. Lo tomo ahora."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Io ne ho già presi due.",
+          "es": "Yo ya tomé dos."
+        },
+        {
+          "quien": "giulia",
+          "it": "Due? È presto per due caffè!",
+          "es": "¿Dos? ¡Es temprano para dos cafés!"
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Per me non è mai troppo presto.",
+          "es": "Para mí nunca es demasiado temprano."
+        },
+        {
+          "quien": "giulia",
+          "it": "E come lo prendi? Con lo zucchero?",
+          "es": "¿Y cómo lo tomás? ¿Con azúcar?"
+        },
+        {
+          "quien": "lorenzo",
+          "it": "No, amaro. Senza zucchero e senza latte.",
+          "es": "No, amargo. Sin azúcar y sin leche."
+        },
+        {
+          "quien": "giulia",
+          "it": "Io invece prendo il cappuccino.",
+          "es": "Yo en cambio tomo cappuccino."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il cappuccino va bene, ma solo al mattino.",
+          "es": "El cappuccino está bien, pero solo a la mañana."
+        },
+        {
+          "quien": "giulia",
+          "it": "Perché solo al mattino?",
+          "es": "¿Por qué solo a la mañana?"
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In Italia non si beve il cappuccino dopo pranzo.",
+          "es": "En Italia no se toma cappuccino después del almuerzo."
+        },
+        {
+          "quien": "giulia",
+          "it": "Davvero? E se lo chiedo al bar?",
+          "es": "¿En serio? ¿Y si lo pido en el bar?"
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Te lo danno, ma il barista ti guarda male.",
+          "es": "Te lo dan, pero el barista te mira mal."
+        },
+        {
+          "quien": "giulia",
+          "it": "Va bene, allora dopo pranzo prendo un espresso.",
+          "es": "Está bien, entonces después del almuerzo tomo un espresso."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Bravissima. E a colazione cosa mangi?",
+          "es": "Muy bien. ¿Y en el desayuno qué comés?"
+        },
+        {
+          "quien": "giulia",
+          "it": "Di solito un cornetto. E tu?",
+          "es": "Normalmente una medialuna. ¿Y vos?"
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Niente. Solo il caffè.",
+          "es": "Nada. Solo el café."
+        },
+        {
+          "quien": "giulia",
+          "it": "Solo il caffè? Non è abbastanza.",
+          "es": "¿Solo el café? No es suficiente."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Lo so. Anche mia madre dice la stessa cosa.",
+          "es": "Lo sé. Mi madre también dice lo mismo."
+        },
+        {
+          "quien": "giulia",
+          "it": "Tua madre ha ragione.",
+          "es": "Tu madre tiene razón."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Va bene, domani mangio qualcosa.",
+          "es": "Está bien, mañana como algo."
+        },
+        {
+          "quien": "giulia",
+          "it": "Te lo ricordo io domani mattina.",
+          "es": "Te lo recuerdo yo mañana a la mañana."
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Grazie Giulia. A domani!",
+          "es": "Gracias Giulia. ¡Hasta mañana!"
+        }
       ]
     }
   ]

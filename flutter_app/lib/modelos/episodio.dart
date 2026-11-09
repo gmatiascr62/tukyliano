@@ -122,11 +122,19 @@ class Episodio {
   ///
   /// Se compara en minúsculas y sin los signos de alrededor: en el texto la
   /// palabra viene pegada a una coma o a un signo de pregunta.
+  ///
+  /// Y se prueba también sin el artículo pegado adelante. El italiano está
+  /// lleno de elisiones —l'Italia, un'idea, nell'Ottocento— y buscando la
+  /// palabra entera ninguna de esas se encontraría nunca. Lo subrayado queda
+  /// siendo la palabra completa con su artículo, que además se lee mejor.
   String? queQuiereDecir(String palabra) {
     final limpia = soloLasLetras(palabra);
     if (limpia.isEmpty) return null;
+    final sinArticulo = limpia.split("'").last;
+
     for (final entrada in glosario) {
-      if (soloLasLetras(entrada.italiano) == limpia) return entrada.castellano;
+      final buscada = soloLasLetras(entrada.italiano);
+      if (buscada == limpia || buscada == sinArticulo) return entrada.castellano;
     }
     return null;
   }
