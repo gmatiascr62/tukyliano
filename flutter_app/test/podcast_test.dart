@@ -93,12 +93,17 @@ void main() {
         expect(episodio.glosario, isNotEmpty,
             reason: '${episodio.titulo} no tiene palabras para tocar');
 
-        final texto = episodio.lineas.map((l) => l.italiano).join(' ');
-        final enElTexto = texto.split(RegExp(r'\s+')).map(soloLasLetras).toSet();
+        // Se pregunta igual que la pantalla, palabra por palabra: así el test
+        // mide lo que de verdad se va a poder tocar, elisiones incluidas.
+        final palabrasDelTexto =
+            episodio.lineas.map((l) => l.italiano).join(' ').split(RegExp(r'\s+'));
 
         for (final palabra in episodio.glosario) {
-          expect(enElTexto, contains(soloLasLetras(palabra.italiano)),
-              reason: '"${palabra.italiano}" no aparece en ${episodio.titulo}');
+          final sePuedeTocar = palabrasDelTexto
+              .any((p) => episodio.queQuiereDecir(p) == palabra.castellano);
+          expect(sePuedeTocar, isTrue,
+              reason: '"${palabra.italiano}" no aparece en ${episodio.titulo}, '
+                  'así que nunca se va a poder tocar');
         }
       }
     });
@@ -178,6 +183,27 @@ void main() {
       expect(episodio.queQuiereDecir('sonno.'), 'sueño');
       expect(episodio.queQuiereDecir('Sonno'), 'sueño');
       expect(episodio.queQuiereDecir(' sonno '), 'sueño');
+    });
+
+    test('la encuentra con el artículo pegado adelante', () {
+      // El italiano está lleno de elisiones: l'Italia, un'idea,
+      // nell'Ottocento. Buscando la palabra entera no se encontraría ninguna.
+      const conElisiones = Episodio(
+        titulo: 'T',
+        deQueVa: 'D',
+        lineas: [
+          LineaDelEpisodio(
+            quien: QuienHabla.lorenzo,
+            italiano: "Nell'Ottocento tutto cambia.",
+            castellano: 'En el siglo XIX todo cambia.',
+          ),
+        ],
+        glosario: [
+          PalabraDelEpisodio(italiano: 'Ottocento', castellano: 'el siglo XIX'),
+        ],
+      );
+
+      expect(conElisiones.queQuiereDecir("Nell'Ottocento"), 'el siglo XIX');
     });
 
     test('una palabra que no está no inventa nada', () {
