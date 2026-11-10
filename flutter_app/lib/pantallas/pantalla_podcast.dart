@@ -1,27 +1,40 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../datos/reproductor.dart';
 import '../datos/repositorio_podcast.dart';
 import '../datos/voz.dart';
 import '../modelos/episodio.dart';
 import '../tema.dart';
 
-/// El podcast: episodios hablados por el celular.
+/// El podcast.
 ///
-/// No hay audio grabado. La pantalla recorre las líneas una por una, cambia de
-/// voz según quién habla, y espera a que termine cada una antes de pasar a la
-/// siguiente. De ahí sale gratis lo de ir pintando la línea que suena: el
-/// recorrido ya existe.
+/// Hay dos formas de que suene un episodio, y la pantalla es casi la misma
+/// para las dos.
 ///
-/// Lo que no se puede hacer así, y hay que decirlo: con la pantalla bloqueada
-/// el motor de voz del celular se calla. Para escuchar con el teléfono en el
-/// bolsillo habría que generar el audio a archivos y reproducirlos con un
-/// reproductor de verdad, que es otra cosa y bastante más trabajo.
+/// Con **audio grabado**, que es lo bueno: un archivo por episodio, y una
+/// tabla que dice en qué segundo arranca cada frase. Manda el reloj del
+/// reproductor —la pantalla pregunta por dónde va y deduce la frase— así que
+/// sigue sonando con la pantalla bloqueada y se puede saltar a cualquier
+/// parte.
+///
+/// Con el **motor de voz del celular**, que es lo que hay cuando el episodio
+/// todavía no tiene audio: la pantalla dice una frase, espera a que termine y
+/// pasa a la siguiente. Anda en cualquier teléfono y no pesa nada, pero se
+/// calla al bloquear la pantalla y no se puede adelantar.
 class PantallaPodcast extends StatefulWidget {
-  const PantallaPodcast({super.key, this.repositorio, this.voz});
+  const PantallaPodcast({
+    super.key,
+    this.repositorio,
+    this.voz,
+    this.reproductor,
+  });
 
   final RepositorioPodcast? repositorio;
   final Voz? voz;
+  final Reproductor? reproductor;
 
   @override
   State<PantallaPodcast> createState() => _PantallaPodcastState();
@@ -31,6 +44,8 @@ class _PantallaPodcastState extends State<PantallaPodcast> {
   late final RepositorioPodcast _repositorio =
       widget.repositorio ?? RepositorioPodcast();
   late final Voz _voz = widget.voz ?? VozDelSistema();
+  late final Reproductor _reproductor =
+      widget.reproductor ?? ReproductorDeVerdad();
 
   Podcast _podcast = const Podcast(episodios: []);
   bool _cargando = true;
@@ -61,6 +76,7 @@ class _PantallaPodcastState extends State<PantallaPodcast> {
   @override
   void dispose() {
     _voz.callar();
+    _reproductor.soltar();
     super.dispose();
   }
 
@@ -76,15 +92,17 @@ class _PantallaPodcastState extends State<PantallaPodcast> {
 
     final escuchando = _escuchando;
     if (escuchando != null) {
-      return _Reproductor(
+      return _Escucha(
         // La clave hace que cambiar de episodio arranque un reproductor
         // nuevo: si no, se quedaría con la línea y la posición del anterior.
         key: ValueKey(escuchando.titulo),
         episodio: escuchando,
         voz: _voz,
+        reproductor: _reproductor,
         puedeHablar: _puedeHablar,
         alVolver: () async {
           await _voz.callar();
+          await _reproductor.pausar();
           if (mounted) setState(() => _escuchando = null);
         },
       );
@@ -165,25 +183,27 @@ class _Lista extends StatelessWidget {
   }
 }
 
-class _Reproductor extends StatefulWidget {
-  const _Reproductor({
+class _Escucha extends StatefulWidget {
+  const _Escucha({
     super.key,
     required this.episodio,
     required this.voz,
+    required this.reproductor,
     required this.puedeHablar,
     required this.alVolver,
   });
 
   final Episodio episodio;
   final Voz voz;
+  final Reproductor reproductor;
   final bool puedeHablar;
   final VoidCallback alVolver;
 
   @override
-  State<_Reproductor> createState() => _ReproductorState();
+  State<_Escucha> createState() => _EscuchaState();
 }
 
-class _ReproductorState extends State<_Reproductor> {
+class _EscuchaState extends State<_Escucha> {
   /// Qué línea está sonando. -1 es "ninguna".
   int _sonando = -1;
 
@@ -219,14 +239,78 @@ class _ReproductorState extends State<_Reproductor> {
     for (var i = 0; i < widget.episodio.lineas.length; i++) GlobalKey(),
   ];
 
+  /// True cuando este episodio se está reproduciendo grabado.
+  ///
+  /// No alcanza con que el episodio diga que tiene audio: el archivo puede no
+  /// estar. Esto se pone en true recién cuando el reproductor lo abrió.
+  bool _conAudio = false;
+
+  StreamSubscription<Duration>? _siguiendo;
+  StreamSubscription<void>? _esperandoElFinal;
+
+  @override
+  void initState() {
+    super.initState();
+    _prepararElAudio();
+  }
+
+  Future<void> _prepararElAudio() async {
+    final episodio = widget.episodio;
+    if (!episodio.grabado) return;
+
+    final abrio = await widget.reproductor.cargar(episodio.audio!);
+    if (!abrio || !mounted) return;
+
+    _siguiendo = widget.reproductor.porDonde.listen(_vaPor);
+    _esperandoElFinal = widget.reproductor.termino.listen((_) => _seAcabo());
+    setState(() => _conAudio = true);
+  }
+
+  /// El reloj del reproductor avanzó: marcar la frase que corresponde.
+  void _vaPor(Duration donde) {
+    if (!mounted) return;
+    final cual = widget.episodio.cualSuena(donde);
+    if (cual == _sonando) return;
+    setState(() {
+      _sonando = cual;
+      if (cual >= 0) _porDonde = cual;
+    });
+    if (cual >= 0 && _andando) _acercarA(cual);
+  }
+
+  void _seAcabo() {
+    if (!mounted) return;
+    setState(() {
+      _andando = false;
+      _sonando = -1;
+      _porDonde = 0;
+    });
+  }
+
   @override
   void dispose() {
     _corrida++;
+    _siguiendo?.cancel();
+    _esperandoElFinal?.cancel();
+    if (_conAudio) widget.reproductor.pausar();
     _scroll.dispose();
     super.dispose();
   }
 
   Future<void> _playOPausa() async {
+    if (_conAudio) {
+      if (_andando) {
+        await widget.reproductor.pausar();
+        if (mounted) setState(() => _andando = false);
+      } else {
+        // Pausar deja la aguja donde estaba, así que seguir es simplemente
+        // volver a darle play: no hay nada que recordar.
+        await widget.reproductor.reproducir();
+        if (mounted) setState(() => _andando = true);
+      }
+      return;
+    }
+
     if (_andando) {
       _corrida++;
       await widget.voz.callar();
@@ -247,6 +331,18 @@ class _ReproductorState extends State<_Reproductor> {
   }
 
   Future<void> _desdeElPrincipio() async {
+    if (_conAudio) {
+      await widget.reproductor.pausar();
+      await widget.reproductor.irA(Duration.zero);
+      if (!mounted) return;
+      setState(() {
+        _porDonde = 0;
+        _sonando = -1;
+        _andando = false;
+      });
+      return;
+    }
+
     _corrida++;
     await widget.voz.callar();
     if (!mounted) return;
@@ -340,7 +436,11 @@ class _ReproductorState extends State<_Reproductor> {
 
   Future<void> _cambiarVelocidad() async {
     final lenta = !_lenta;
-    await widget.voz.usarVelocidadLenta(lenta);
+    if (_conAudio) {
+      await widget.reproductor.usarVelocidadLenta(lenta);
+    } else {
+      await widget.voz.usarVelocidadLenta(lenta);
+    }
     if (!mounted) return;
     setState(() => _lenta = lenta);
   }
@@ -349,6 +449,21 @@ class _ReproductorState extends State<_Reproductor> {
   /// el play siguiente sigue desde esa, que es lo que uno espera después de
   /// volver atrás a escuchar algo que no entendió.
   Future<void> _repetir(int i) async {
+    if (_conAudio) {
+      // Con audio grabado no hace falta repetir nada: se salta a ese segundo
+      // y se sigue escuchando de ahí, que es lo que uno quiere cuando vuelve
+      // atrás a una frase que no entendió.
+      await widget.reproductor.irA(widget.episodio.lineas[i].desde!);
+      if (!_andando) await widget.reproductor.reproducir();
+      if (!mounted) return;
+      setState(() {
+        _andando = true;
+        _sonando = i;
+        _porDonde = i;
+      });
+      return;
+    }
+
     _corrida++;
     await widget.voz.callar();
     if (!mounted) return;
@@ -375,11 +490,15 @@ class _ReproductorState extends State<_Reproductor> {
   Widget build(BuildContext context) {
     final episodio = widget.episodio;
 
+    // Con audio grabado no hace falta la voz italiana del celular: el archivo
+    // ya está hablado. El cartel que la pide solo tiene sentido sin audio.
+    final suena = _conAudio || widget.puedeHablar;
+
     return Column(
       children: [
         _Cabecera(episodio: episodio, alVolver: widget.alVolver),
-        if (!widget.puedeHablar) const _SinVoz(),
-        if (widget.puedeHablar)
+        if (!suena) const _SinVoz(),
+        if (suena)
           _Controles(
             andando: _andando,
             lenta: _lenta,
@@ -400,7 +519,7 @@ class _ReproductorState extends State<_Reproductor> {
               episodio: episodio,
               sonando: i == _sonando,
               traducida: _traducidas.contains(i),
-              alTocar: widget.puedeHablar ? () => _repetir(i) : null,
+              alTocar: suena ? () => _repetir(i) : null,
               alMantener: () => setState(() {
                 if (!_traducidas.remove(i)) _traducidas.add(i);
               }),

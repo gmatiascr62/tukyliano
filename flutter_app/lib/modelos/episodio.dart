@@ -29,11 +29,24 @@ class LineaDelEpisodio {
     required this.quien,
     required this.italiano,
     required this.castellano,
+    this.desde,
   });
 
   final QuienHabla quien;
   final String italiano;
   final String castellano;
+
+  /// En qué momento del audio grabado empieza esta frase.
+  ///
+  /// Null en los episodios que todavía no tienen audio: esos los habla el
+  /// motor de voz del celular y no hay nada que sincronizar.
+  ///
+  /// El número no se estima a partir del largo del texto. Se mide: cada frase
+  /// se genera en un archivo aparte, se mide cuánto dura y recién después se
+  /// pegan todas en un audio solo. Estimar por largo se probó y no alcanza —
+  /// el error real es de hasta 0,28 s por frase, o sea casi tres segundos de
+  /// desvío cada diez frases, y muchas frases duran dos.
+  final Duration? desde;
 
   static LineaDelEpisodio? desdeJson(Object? crudo) {
     if (crudo is! Map) return null;
@@ -50,10 +63,14 @@ class LineaDelEpisodio {
     if (italiano is! String || italiano.trim().isEmpty) return null;
     if (castellano is! String || castellano.trim().isEmpty) return null;
 
+    final cuando = crudo['t'];
     return LineaDelEpisodio(
       quien: quien,
       italiano: italiano,
       castellano: castellano,
+      desde: cuando is num && cuando >= 0
+          ? Duration(milliseconds: (cuando * 1000).round())
+          : null,
     );
   }
 }
@@ -86,7 +103,24 @@ class Episodio {
     required this.deQueVa,
     required this.lineas,
     this.glosario = const [],
+    this.audio,
   });
+
+  /// El archivo de audio grabado, si lo hay, dentro de assets/audio/.
+  ///
+  /// Con audio el episodio se reproduce como un podcast de verdad: sigue
+  /// sonando con la pantalla bloqueada y tiene los controles ahí. Sin él lo
+  /// habla el motor de voz del celular, que se calla al bloquear.
+  final String? audio;
+
+  /// True si este episodio se puede reproducir grabado.
+  ///
+  /// Hacen falta las dos cosas: el archivo y el momento de arranque de TODAS
+  /// las frases. Si falta el de una sola, la frase marcada se desincroniza
+  /// de ahí en adelante, así que es mejor hablarlo entero con el motor de voz
+  /// que mostrarlo mal.
+  bool get grabado =>
+      audio != null && lineas.every((linea) => linea.desde != null);
 
   /// En italiano, como los nombres de las secciones.
   final String titulo;
@@ -139,6 +173,29 @@ class Episodio {
     return null;
   }
 
+  /// Qué frase está sonando en ese momento del audio. -1 si todavía ninguna.
+  ///
+  /// Es la frase más avanzada que ya arrancó. Entre dos frases hay un silencio
+  /// chico, y durante ese silencio sigue marcada la que recién terminó: dejar
+  /// de marcar todo por medio segundo parpadea feo y no informa nada.
+  int cualSuena(Duration donde) {
+    var cual = -1;
+    var desde = 0;
+    var hasta = lineas.length - 1;
+    while (desde <= hasta) {
+      final medio = (desde + hasta) ~/ 2;
+      final arranca = lineas[medio].desde;
+      if (arranca == null) return -1;
+      if (arranca <= donde) {
+        cual = medio;
+        desde = medio + 1;
+      } else {
+        hasta = medio - 1;
+      }
+    }
+    return cual;
+  }
+
   /// Cuántos turnos tiene.
   ///
   /// Se muestra esto y no una duración en minutos a propósito: cuánto tarda
@@ -174,11 +231,14 @@ class Episodio {
         for (final cruda in crudasPalabras) ?PalabraDelEpisodio.desdeJson(cruda),
     ];
 
+    final audio = crudo['audio'];
+
     return Episodio(
       titulo: titulo,
       deQueVa: deQueVa,
       lineas: lineas,
       glosario: glosario,
+      audio: audio is String && audio.trim().isNotEmpty ? audio : null,
     );
   }
 }
