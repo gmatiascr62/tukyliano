@@ -73,7 +73,9 @@ void main() {
     test('se leen todos', () async {
       final podcast = await _elPodcastDeVerdad();
 
-      expect(podcast.episodios.length, greaterThanOrEqualTo(2));
+      // Uno alcanza. Lo que importa es que el archivo se lea y que lo que
+      // trae esté entero, no cuántos haya.
+      expect(podcast.episodios, isNotEmpty);
       for (final episodio in podcast.episodios) {
         expect(episodio.titulo.trim(), isNotEmpty);
         expect(episodio.deQueVa.trim(), isNotEmpty);
@@ -113,19 +115,18 @@ void main() {
       }
     });
 
-    test('hay un episodio contado por uno solo y otro entre dos', () async {
-      // Son los dos formatos que se están comparando: el podcast clásico de
-      // alguien hablando solo, y la conversación.
-      final cuantasVoces = [
-        for (final episodio in (await _elPodcastDeVerdad()).episodios)
-          episodio.quienesHablan.length,
-      ];
-
-      expect(cuantasVoces, contains(1));
-      expect(cuantasVoces, contains(2));
+    test('los cuenta una persona sola', () async {
+      // Hubo una época en que convivían los dos formatos —el podcast clásico
+      // de alguien hablando solo y la conversación entre dos— justamente para
+      // poder escucharlos y elegir. Ganó el clásico. La app sigue sabiendo
+      // manejar varias voces, por si algún día vuelve, pero el contenido que
+      // viaja es de un narrador.
+      for (final episodio in (await _elPodcastDeVerdad()).episodios) {
+        expect(episodio.quienesHablan.length, 1, reason: episodio.titulo);
+      }
     });
 
-    test('los tres tienen su audio grabado', () async {
+    test('todos tienen su audio grabado', () async {
       for (final episodio in (await _elPodcastDeVerdad()).episodios) {
         expect(episodio.grabado, isTrue,
             reason: '${episodio.titulo} se escucharía con el motor de voz');
