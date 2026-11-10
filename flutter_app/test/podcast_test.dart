@@ -124,6 +124,53 @@ void main() {
       expect(cuantasVoces, contains(1));
       expect(cuantasVoces, contains(2));
     });
+
+    test('los tres tienen su audio grabado', () async {
+      for (final episodio in (await _elPodcastDeVerdad()).episodios) {
+        expect(episodio.grabado, isTrue,
+            reason: '${episodio.titulo} se escucharía con el motor de voz');
+      }
+    });
+
+    test('el archivo de audio de cada uno existe y pesa', () async {
+      // Declararlo en el JSON y olvidarse de meterlo en assets/ es un error
+      // que no se ve hasta que alguien toca Escuchar en el celular.
+      for (final episodio in (await _elPodcastDeVerdad()).episodios) {
+        final archivo = File('assets/audio/${episodio.audio}');
+        expect(archivo.existsSync(), isTrue, reason: 'falta ${episodio.audio}');
+        expect(archivo.lengthSync(), greaterThan(100 * 1024),
+            reason: '${episodio.audio} está vacío o cortado');
+      }
+    });
+
+    test('los tiempos arrancan en cero y van siempre para adelante', () async {
+      // Un tiempo fuera de orden desincroniza la frase marcada de ahí en
+      // adelante, y no se nota leyendo el JSON.
+      for (final episodio in (await _elPodcastDeVerdad()).episodios) {
+        final cuando = [for (final l in episodio.lineas) l.desde!];
+        expect(cuando.first, Duration.zero, reason: episodio.titulo);
+        for (var i = 1; i < cuando.length; i++) {
+          expect(cuando[i], greaterThan(cuando[i - 1]),
+              reason: '${episodio.titulo}, frase $i');
+        }
+      }
+    });
+
+    test('cada frase dura algo razonable', () async {
+      // Entre una y otra hay 350 ms de silencio, así que el salto mínimo es
+      // ese más lo que tarda en decirla. Un salto de dos décimas significaría
+      // que una frase quedó sin audio.
+      for (final episodio in (await _elPodcastDeVerdad()).episodios) {
+        final cuando = [for (final l in episodio.lineas) l.desde!];
+        for (var i = 1; i < cuando.length; i++) {
+          final dura = cuando[i] - cuando[i - 1];
+          expect(dura, greaterThan(const Duration(milliseconds: 700)),
+              reason: '${episodio.titulo}, frase ${i - 1} dura casi nada');
+          expect(dura, lessThan(const Duration(seconds: 25)),
+              reason: '${episodio.titulo}, frase ${i - 1} dura demasiado');
+        }
+      }
+    });
   });
 
   group('leer el archivo', () {

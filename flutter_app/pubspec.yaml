@@ -81,6 +81,11 @@ flutter:
     # Las ilustraciones de los cuentos. Van en el APK y no se bajan: son pocas
     # y chicas, y así el cuento se ve igual sin señal.
     - assets/racconti/
+    # Los episodios del podcast grabados con voz de verdad. Son 7 MB los tres,
+    # y van adentro del APK a propósito: se escuchan sin internet y sin gastar
+    # datos, que es justo cómo se escucha un podcast. Si algún día son
+    # cuarenta episodios habrá que bajarlos a demanda.
+    - assets/audio/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images
