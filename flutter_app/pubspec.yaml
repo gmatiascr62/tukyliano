@@ -41,6 +41,8 @@ dependencies:
   url_launcher: ^6.3.2
   open_filex: ^4.7.0
   speech_to_text: ^7.4.0
+  # Reproduce los episodios grabados: archivo de audio en vez del motor de voz.
+  just_audio: ^0.10.5
 
 dev_dependencies:
   flutter_test:
