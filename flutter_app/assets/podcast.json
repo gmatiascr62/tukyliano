@@ -957,6 +957,1019 @@
       "audio": "rinascimento.mp3"
     },
     {
+      "titulo": "Le famiglie",
+      "deQueVa": "Lorenzo cuenta quiénes pagaban el Renacimiento: banqueros y soldados a sueldo que mandaban en ciudades enteras. Los Médici y la conjura de 1478 en plena misa, los Sforza, los Borgia, y Venecia, que armó todo un sistema para que ninguna familia se quedara con ella.",
+      "lineas": [
+        {
+          "quien": "lorenzo",
+          "it": "Ciao a tutti e benvenuti.",
+          "es": "Hola a todos y bienvenidos.",
+          "t": 0.0
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Io sono Lorenzo e questo è il podcast dell'app Tukyliano.",
+          "es": "Yo soy Lorenzo y este es el podcast de la app Tukyliano.",
+          "t": 1.672
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Oggi vi racconto una storia di famiglie.",
+          "es": "Hoy les cuento una historia de familias.",
+          "t": 5.944
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma non le famiglie delle foto di Natale.",
+          "es": "Pero no las familias de las fotos de Navidad.",
+          "t": 8.185
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Famiglie che comandavano città intere.",
+          "es": "Familias que mandaban en ciudades enteras.",
+          "t": 10.599
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Che si sposavano per fare alleanze.",
+          "es": "Que se casaban para hacer alianzas.",
+          "t": 13.583
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E che ogni tanto si ammazzavano tra loro.",
+          "es": "Y que cada tanto se mataban entre ellas.",
+          "t": 16.045
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Sì, ammazzavano. Oggi la storia è un po' così.",
+          "es": "Sí, mataban. Hoy la historia es un poco así.",
+          "t": 19.144
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Siamo nella stessa epoca del Rinascimento.",
+          "es": "Estamos en la misma época del Renacimiento.",
+          "t": 22.79
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma oggi non guardiamo i quadri: guardiamo chi li pagava.",
+          "es": "Pero hoy no miramos los cuadros: miramos quién los pagaba.",
+          "t": 25.53
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Uso il passato, come sempre quando racconto.",
+          "es": "Uso el pasado, como siempre que cuento algo.",
+          "t": 29.024
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Cominciamo da una cosa che sorprende.",
+          "es": "Empecemos por algo que sorprende.",
+          "t": 32.263
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Queste famiglie non erano nobili antiche.",
+          "es": "Estas familias no eran nobles antiguas.",
+          "t": 34.98
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non avevano castelli da cinquecento anni.",
+          "es": "No tenían castillos desde hacía quinientos años.",
+          "t": 37.894
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Erano banchieri. Erano mercanti. Erano soldati a pagamento.",
+          "es": "Eran banqueros. Eran mercaderes. Eran soldados a sueldo.",
+          "t": 40.622
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Gente che aveva fatto i soldi da poco.",
+          "es": "Gente que había hecho la plata hacía poco.",
+          "t": 46.636
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E il potere, in quelle città, veniva dal denaro.",
+          "es": "Y el poder, en esas ciudades, venía del dinero.",
+          "t": 49.249
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non da un esercito: da una banca.",
+          "es": "No de un ejército: de un banco.",
+          "t": 52.313
+        },
+        {
+          "quien": "lorenzo",
+          "it": "I più famosi li conosci già: i Medici, a Firenze.",
+          "es": "A los más famosos ya los conocés: los Médici, en Florencia.",
+          "t": 54.949
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Avevano banchi in mezza Europa.",
+          "es": "Tenían bancos en media Europa.",
+          "t": 58.269
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Prestavano soldi ai re, ai vescovi, al Papa.",
+          "es": "Le prestaban plata a los reyes, a los obispos, al Papa.",
+          "t": 60.487
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E qui viene la parte interessante.",
+          "es": "Y acá viene la parte interesante.",
+          "t": 63.726
+        },
+        {
+          "quien": "lorenzo",
+          "it": "I Medici non erano i signori di Firenze.",
+          "es": "Los Médici no eran los señores de Florencia.",
+          "t": 65.851
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Firenze era una repubblica, con le sue elezioni.",
+          "es": "Florencia era una república, con sus elecciones.",
+          "t": 68.486
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Loro non avevano nessun titolo ufficiale.",
+          "es": "Ellos no tenían ningún título oficial.",
+          "t": 71.597
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma se tutti ti devono dei soldi, non ti serve il titolo.",
+          "es": "Pero si todos te deben plata, no te hace falta el título.",
+          "t": 74.175
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Comandavano senza comandare. Era la loro specialità.",
+          "es": "Mandaban sin mandar. Era su especialidad.",
+          "t": 77.867
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non erano però gli unici banchieri della città.",
+          "es": "No eran, sin embargo, los únicos banqueros de la ciudad.",
+          "t": 81.826
+        },
+        {
+          "quien": "lorenzo",
+          "it": "C'era un'altra famiglia ricca: i Pazzi.",
+          "es": "Había otra familia rica: los Pazzi.",
+          "t": 84.972
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Antichi, orgogliosi, e stanchi di stare al secondo posto.",
+          "es": "Antiguos, orgullosos, y cansados de estar en el segundo puesto.",
+          "t": 88.002
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Nel 1478 decisero di risolvere il problema.",
+          "es": "En 1478 decidieron resolver el problema.",
+          "t": 92.158
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non in tribunale. Con i coltelli.",
+          "es": "No en un tribunal. Con cuchillos.",
+          "t": 96.57
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il piano era semplice e terribile.",
+          "es": "El plan era simple y terrible.",
+          "t": 99.357
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Uccidere i due fratelli Medici nello stesso momento.",
+          "es": "Matar a los dos hermanos Médici en el mismo momento.",
+          "t": 101.493
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Lorenzo, che aveva ventinove anni, e Giuliano, che ne aveva venticinque.",
+          "es": "Lorenzo, que tenía veintinueve años, y Giuliano, que tenía veinticinco.",
+          "t": 104.883
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Prima provarono con un pranzo, con il veleno.",
+          "es": "Primero probaron con un almuerzo, con veneno.",
+          "t": 109.365
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma Giuliano non si sentiva bene e non andò.",
+          "es": "Pero Giuliano no se sentía bien y no fue.",
+          "t": 112.14
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Allora scelsero un altro posto.",
+          "es": "Entonces eligieron otro lugar.",
+          "t": 115.17
+        },
+        {
+          "quien": "lorenzo",
+          "it": "La cattedrale. Durante la messa.",
+          "es": "La catedral. Durante la misa.",
+          "t": 116.981
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Domenica 26 aprile 1478.",
+          "es": "Domingo 26 de abril de 1478.",
+          "t": 119.895
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il Duomo di Firenze era pieno di gente.",
+          "es": "El Duomo de Florencia estaba lleno de gente.",
+          "t": 123.599
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Diecimila persone, dicono le cronache.",
+          "es": "Diez mil personas, dicen las crónicas.",
+          "t": 125.967
+        },
+        {
+          "quien": "lorenzo",
+          "it": "I due fratelli erano lì, in mezzo a tutti.",
+          "es": "Los dos hermanos estaban ahí, en medio de todos.",
+          "t": 128.51
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il segnale era il momento più solenne della messa.",
+          "es": "La señal era el momento más solemne de la misa.",
+          "t": 131.435
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Quando il prete alza l'ostia e tutti abbassano la testa.",
+          "es": "Cuando el cura levanta la hostia y todos bajan la cabeza.",
+          "t": 134.21
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In quel secondo, nessuno guarda nessuno.",
+          "es": "En ese segundo, nadie mira a nadie.",
+          "t": 137.577
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Giuliano fu colpito per primo. Morì lì, sul pavimento.",
+          "es": "Giuliano fue atacado primero. Murió ahí, en el piso.",
+          "t": 140.398
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Lorenzo si difese, ferito al collo.",
+          "es": "Lorenzo se defendió, herido en el cuello.",
+          "t": 144.114
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Saltò la balaustra e corse nella sacrestia.",
+          "es": "Saltó la baranda y corrió a la sacristía.",
+          "t": 145.901
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Chiusero le porte di bronzo. Si salvò per quelle porte.",
+          "es": "Cerraron las puertas de bronce. Se salvó por esas puertas.",
+          "t": 148.676
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E ora la domanda che fa questa storia diversa.",
+          "es": "Y ahora la pregunta que hace distinta a esta historia.",
+          "t": 152.6
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Chi erano i due uomini che avevano i coltelli?",
+          "es": "¿Quiénes eran los dos hombres que tenían los cuchillos?",
+          "t": 155.387
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Due preti.",
+          "es": "Dos curas.",
+          "t": 158.174
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il soldato professionista che avevano ingaggiato si era rifiutato.",
+          "es": "El soldado profesional que habían contratado se había negado.",
+          "t": 159.497
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Disse che non voleva farlo dentro una chiesa.",
+          "es": "Dijo que no quería hacerlo dentro de una iglesia.",
+          "t": 163.503
+        },
+        {
+          "quien": "lorenzo",
+          "it": "I preti invece accettarono.",
+          "es": "Los curas, en cambio, aceptaron.",
+          "t": 165.917
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Dietro alla congiura non c'erano solo i Pazzi.",
+          "es": "Detrás de la conjura no estaban solo los Pazzi.",
+          "t": 168.216
+        },
+        {
+          "quien": "lorenzo",
+          "it": "C'era l'arcivescovo di Pisa. C'era il nipote del Papa.",
+          "es": "Estaba el arzobispo de Pisa. Estaba el sobrino del Papa.",
+          "t": 171.316
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E c'era il Papa stesso, Sisto Quarto.",
+          "es": "Y estaba el Papa mismo, Sixto IV.",
+          "t": 175.426
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Lui diceva di non volere morti. Voleva solo i Medici fuori.",
+          "es": "Él decía no querer muertos. Quería solo a los Médici fuera.",
+          "t": 178.921
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Gli storici discutono ancora quanto sapesse davvero.",
+          "es": "Los historiadores todavía discuten cuánto sabía en realidad.",
+          "t": 183.495
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il piano fallì per una ragione sola: Lorenzo era vivo.",
+          "es": "El plan falló por una sola razón: Lorenzo estaba vivo.",
+          "t": 187.384
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E la città reagì in poche ore.",
+          "es": "Y la ciudad reaccionó en pocas horas.",
+          "t": 191.39
+        },
+        {
+          "quien": "lorenzo",
+          "it": "La folla trovò i congiurati uno per uno.",
+          "es": "La multitud encontró a los conjurados uno por uno.",
+          "t": 193.166
+        },
+        {
+          "quien": "lorenzo",
+          "it": "L'arcivescovo fu impiccato alle finestre del palazzo del governo.",
+          "es": "El arzobispo fue colgado de las ventanas del palacio del gobierno.",
+          "t": 196.103
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Con la veste da vescovo ancora addosso.",
+          "es": "Con la ropa de obispo todavía puesta.",
+          "t": 200.004
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il nome dei Pazzi fu cancellato. Vietato usarlo.",
+          "es": "El apellido Pazzi fue borrado. Prohibido usarlo.",
+          "t": 202.477
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Cancellarono anche il loro stemma dai muri.",
+          "es": "Borraron también su escudo de las paredes.",
+          "t": 206.772
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Un ragazzo di ventisei anni disegnò uno degli impiccati.",
+          "es": "Un chico de veintiséis años dibujó a uno de los colgados.",
+          "t": 209.303
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Si chiamava Leonardo da Vinci. Il disegno esiste ancora.",
+          "es": "Se llamaba Leonardo da Vinci. El dibujo todavía existe.",
+          "t": 212.984
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il risultato fu l'opposto di quello che volevano i Pazzi.",
+          "es": "El resultado fue lo opuesto de lo que querían los Pazzi.",
+          "t": 217.454
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Prima Lorenzo era il primo tra uguali.",
+          "es": "Antes Lorenzo era el primero entre iguales.",
+          "t": 221.518
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Dopo, era il padrone della città.",
+          "es": "Después, era el dueño de la ciudad.",
+          "t": 224.385
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Nessuno osò più toccarlo.",
+          "es": "Nadie se animó a tocarlo de nuevo.",
+          "t": 227.114
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Andiamo a Milano, che era un altro mondo.",
+          "es": "Vamos a Milán, que era otro mundo.",
+          "t": 229.749
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Lì comandavano gli Sforza.",
+          "es": "Ahí mandaban los Sforza.",
+          "t": 232.652
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E il primo Sforza non era nobile per niente.",
+          "es": "Y el primer Sforza no era nada noble.",
+          "t": 235.217
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Francesco Sforza era un soldato a pagamento.",
+          "es": "Francesco Sforza era un soldado a sueldo.",
+          "t": 238.758
+        },
+        {
+          "quien": "lorenzo",
+          "it": "In italiano si dice condottiero: chi affitta il suo esercito.",
+          "es": "En italiano se dice condottiero: el que alquila su ejército.",
+          "t": 241.847
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Oggi combatto per te, l'anno prossimo contro di te.",
+          "es": "Hoy peleo para vos, el año que viene contra vos.",
+          "t": 246.851
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Dipende da chi paga meglio.",
+          "es": "Depende de quién pague mejor.",
+          "t": 250.195
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Francesco lavorava per il duca di Milano.",
+          "es": "Francesco trabajaba para el duque de Milán.",
+          "t": 252.679
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E sposò sua figlia.",
+          "es": "Y se casó con su hija.",
+          "t": 254.723
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Quando il duca morì senza figli maschi, aspettò.",
+          "es": "Cuando el duque murió sin hijos varones, esperó.",
+          "t": 256.696
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Milano provò a essere una repubblica per tre anni.",
+          "es": "Milán intentó ser una república por tres años.",
+          "t": 260.551
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non funzionò. Nel 1450 lo chiamarono loro.",
+          "es": "No funcionó. En 1450 lo llamaron ellos.",
+          "t": 263.395
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il soldato a pagamento entrò come duca.",
+          "es": "El soldado a sueldo entró como duque.",
+          "t": 268.608
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Suo nipote Gian Galeazzo diventò duca da bambino.",
+          "es": "Su nieto Gian Galeazzo llegó a duque siendo chico.",
+          "t": 271.046
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Governava al posto suo lo zio, Ludovico il Moro.",
+          "es": "Gobernaba en su lugar el tío, Ludovico il Moro.",
+          "t": 274.158
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Gian Galeazzo morì a venticinque anni.",
+          "es": "Gian Galeazzo murió a los veinticinco años.",
+          "t": 277.629
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Pochi giorni dopo, lo zio era duca.",
+          "es": "Pocos días después, el tío era duque.",
+          "t": 280.102
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Veleno, dissero tutti. Non fu mai provato.",
+          "es": "Veneno, dijeron todos. Nunca fue probado.",
+          "t": 282.482
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ludovico il Moro, però, fu un grande mecenate.",
+          "es": "Ludovico il Moro, sin embargo, fue un gran mecenas.",
+          "t": 285.57
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Chi lavorava per lui? Leonardo da Vinci.",
+          "es": "¿Quién trabajaba para él? Leonardo da Vinci.",
+          "t": 287.66
+        },
+        {
+          "quien": "lorenzo",
+          "it": "L'Ultima Cena la pagò lui.",
+          "es": "La Última Cena la pagó él.",
+          "t": 291.154
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E arriviamo a Roma, con la famiglia peggiore di tutte.",
+          "es": "Y llegamos a Roma, con la familia peor de todas.",
+          "t": 293.337
+        },
+        {
+          "quien": "lorenzo",
+          "it": "O almeno, con la peggiore fama.",
+          "es": "O al menos, con la peor fama.",
+          "t": 296.913
+        },
+        {
+          "quien": "lorenzo",
+          "it": "I Borgia. Che in realtà erano spagnoli: Borja.",
+          "es": "Los Borgia. Que en realidad eran españoles: Borja.",
+          "t": 299.757
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Rodrigo Borgia comprò il papato nel 1492.",
+          "es": "Rodrigo Borgia compró el papado en 1492.",
+          "t": 304.076
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Comprò è la parola giusta: pagò i voti dei cardinali.",
+          "es": "Compró es la palabra correcta: pagó los votos de los cardenales.",
+          "t": 307.838
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Prese il nome di Alessandro Sesto.",
+          "es": "Tomó el nombre de Alejandro VI.",
+          "t": 312.784
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E aveva figli. Riconosciuti, presentati, sistemati.",
+          "es": "Y tenía hijos. Reconocidos, presentados, acomodados.",
+          "t": 315.21
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il figlio si chiamava Cesare.",
+          "es": "El hijo se llamaba Cesare.",
+          "t": 319.704
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Cardinale a diciotto anni. Poi lasciò la chiesa per fare la guerra.",
+          "es": "Cardenal a los dieciocho. Después dejó la iglesia para hacer la guerra.",
+          "t": 321.224
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Conquistò mezza Italia centrale in tre anni.",
+          "es": "Conquistó media Italia central en tres años.",
+          "t": 325.938
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Machiavelli lo conobbe di persona e lo studiò.",
+          "es": "Maquiavelo lo conoció en persona y lo estudió.",
+          "t": 328.875
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il Principe è in buona parte lui.",
+          "es": "El Príncipe es en buena parte él.",
+          "t": 332.149
+        },
+        {
+          "quien": "lorenzo",
+          "it": "La figlia era Lucrezia. Sposata tre volte.",
+          "es": "La hija era Lucrezia. Casada tres veces.",
+          "t": 334.552
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ogni matrimonio era un'alleanza diversa del padre.",
+          "es": "Cada matrimonio era una alianza distinta del padre.",
+          "t": 337.78
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il primo lo annullarono quando non servì più.",
+          "es": "El primero lo anularon cuando ya no servía.",
+          "t": 340.787
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il secondo marito fu ucciso.",
+          "es": "El segundo marido fue asesinado.",
+          "t": 343.457
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Di Lucrezia si dice di tutto: veleni, anelli con il veleno dentro.",
+          "es": "De Lucrezia se dice de todo: venenos, anillos con veneno adentro.",
+          "t": 345.721
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Quasi tutto fu inventato dopo, dai suoi nemici.",
+          "es": "Casi todo fue inventado después, por sus enemigos.",
+          "t": 349.994
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Negli ultimi anni governò Ferrara, e la governò bene.",
+          "es": "En sus últimos años gobernó Ferrara, y la gobernó bien.",
+          "t": 353.152
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma quella parte non la racconta nessuno.",
+          "es": "Pero esa parte no la cuenta nadie.",
+          "t": 356.437
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Fin qui le famiglie.",
+          "es": "Hasta acá las familias.",
+          "t": 358.585
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Adesso la città che fece il contrario di tutte.",
+          "es": "Ahora la ciudad que hizo lo contrario de todas.",
+          "t": 360.199
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Venezia.",
+          "es": "Venecia.",
+          "t": 363.171
+        },
+        {
+          "quien": "lorenzo",
+          "it": "A Venezia avevano paura di una cosa sola.",
+          "es": "En Venecia tenían miedo de una sola cosa.",
+          "t": 364.437
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Che una famiglia si prendesse la città.",
+          "es": "Que una familia se quedara con la ciudad.",
+          "t": 367.119
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E costruirono tutto per impedirlo.",
+          "es": "Y construyeron todo para impedirlo.",
+          "t": 369.441
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Il capo si chiamava Doge e durava tutta la vita.",
+          "es": "El jefe se llamaba Dogo y duraba toda la vida.",
+          "t": 371.646
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma non poteva decidere quasi niente da solo.",
+          "es": "Pero no podía decidir casi nada solo.",
+          "t": 374.7
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non poteva incontrare ambasciatori senza testimoni.",
+          "es": "No podía recibir embajadores sin testigos.",
+          "t": 377.324
+        },
+        {
+          "quien": "lorenzo",
+          "it": "I suoi figli non potevano avere cariche importanti.",
+          "es": "Sus hijos no podían tener cargos importantes.",
+          "t": 380.343
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E per eleggerlo inventarono un sistema assurdo.",
+          "es": "Y para elegirlo inventaron un sistema absurdo.",
+          "t": 383.408
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Dieci passaggi, metà a sorte e metà a votazione.",
+          "es": "Diez pasos, mitad por sorteo y mitad por votación.",
+          "t": 386.891
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Così nessuno poteva comprare abbastanza voti.",
+          "es": "Así nadie podía comprar suficientes votos.",
+          "t": 390.501
+        },
+        {
+          "quien": "lorenzo",
+          "it": "C'era anche il Consiglio dei Dieci, che controllava tutti.",
+          "es": "Estaba también el Consejo de los Diez, que controlaba a todos.",
+          "t": 392.823
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E nei muri c'erano delle bocche di pietra.",
+          "es": "Y en las paredes había bocas de piedra.",
+          "t": 396.632
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Buchi dove si infilavano denunce contro i vicini.",
+          "es": "Agujeros donde se metían denuncias contra los vecinos.",
+          "t": 398.779
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Alcune si vedono ancora oggi, a Palazzo Ducale.",
+          "es": "Algunas se ven todavía hoy, en el Palacio Ducal.",
+          "t": 401.45
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Non era un paradiso: era sorveglianza.",
+          "es": "No era un paraíso: era vigilancia.",
+          "t": 404.074
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Ma funzionò. Venezia durò mille anni.",
+          "es": "Pero funcionó. Venecia duró mil años.",
+          "t": 406.663
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Nessuna famiglia se la prese mai.",
+          "es": "Ninguna familia se quedó con ella nunca.",
+          "t": 409.53
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Chiudo con quello che mi fa pensare di questa storia.",
+          "es": "Cierro con lo que me hace pensar de esta historia.",
+          "t": 411.306
+        },
+        {
+          "quien": "lorenzo",
+          "it": "I Medici finirono bene, a modo loro.",
+          "es": "Los Médici terminaron bien, a su manera.",
+          "t": 414.023
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Due di loro diventarono Papa.",
+          "es": "Dos de ellos llegaron a Papa.",
+          "t": 417.007
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E due ragazze della famiglia diventarono regine di Francia.",
+          "es": "Y dos chicas de la familia llegaron a reinas de Francia.",
+          "t": 418.644
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Caterina e Maria de' Medici.",
+          "es": "Caterina y Maria de Médici.",
+          "t": 421.836
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Figlie di banchieri, sedute su un trono.",
+          "es": "Hijas de banqueros, sentadas en un trono.",
+          "t": 424.019
+        },
+        {
+          "quien": "lorenzo",
+          "it": "E tutto questo succedeva mentre si dipingeva la Cappella Sistina.",
+          "es": "Y todo esto pasaba mientras se pintaba la Capilla Sixtina.",
+          "t": 426.504
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Le stesse persone, negli stessi anni.",
+          "es": "Las mismas personas, en los mismos años.",
+          "t": 430.335
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Pagavano la bellezza e organizzavano gli omicidi.",
+          "es": "Pagaban la belleza y organizaban los asesinatos.",
+          "t": 432.738
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Le due cose insieme, senza vedere il problema.",
+          "es": "Las dos cosas juntas, sin ver el problema.",
+          "t": 435.304
+        },
+        {
+          "quien": "lorenzo",
+          "it": "Per oggi è tutto. Alla prossima!",
+          "es": "Por hoy es todo. ¡Hasta la próxima!",
+          "t": 438.578
+        }
+      ],
+      "glosario": [
+        {
+          "it": "alleanze",
+          "es": "alianzas"
+        },
+        {
+          "it": "banchieri",
+          "es": "banqueros"
+        },
+        {
+          "it": "mercanti",
+          "es": "mercaderes"
+        },
+        {
+          "it": "denaro",
+          "es": "dinero"
+        },
+        {
+          "it": "esercito",
+          "es": "ejército"
+        },
+        {
+          "it": "prestavano",
+          "es": "prestaban"
+        },
+        {
+          "it": "vescovi",
+          "es": "obispos"
+        },
+        {
+          "it": "orgogliosi",
+          "es": "orgullosos"
+        },
+        {
+          "it": "coltelli",
+          "es": "cuchillos"
+        },
+        {
+          "it": "veleno",
+          "es": "veneno"
+        },
+        {
+          "it": "messa",
+          "es": "misa"
+        },
+        {
+          "it": "cattedrale",
+          "es": "catedral"
+        },
+        {
+          "it": "ostia",
+          "es": "hostia"
+        },
+        {
+          "it": "ferito",
+          "es": "herido"
+        },
+        {
+          "it": "sacrestia",
+          "es": "sacristía"
+        },
+        {
+          "it": "congiura",
+          "es": "conjura, complot"
+        },
+        {
+          "it": "congiurati",
+          "es": "los conjurados"
+        },
+        {
+          "it": "arcivescovo",
+          "es": "arzobispo"
+        },
+        {
+          "it": "impiccato",
+          "es": "colgado, ahorcado"
+        },
+        {
+          "it": "stemma",
+          "es": "escudo de armas"
+        },
+        {
+          "it": "folla",
+          "es": "multitud"
+        },
+        {
+          "it": "padrone",
+          "es": "dueño, amo"
+        },
+        {
+          "it": "condottiero",
+          "es": "soldado que alquila su ejército"
+        },
+        {
+          "it": "duca",
+          "es": "duque"
+        },
+        {
+          "it": "nipote",
+          "es": "nieto, o sobrino"
+        },
+        {
+          "it": "mecenate",
+          "es": "mecenas: el que paga al artista"
+        },
+        {
+          "it": "papato",
+          "es": "papado"
+        },
+        {
+          "it": "cardinali",
+          "es": "cardenales"
+        },
+        {
+          "it": "matrimonio",
+          "es": "matrimonio, casamiento"
+        },
+        {
+          "it": "sorte",
+          "es": "suerte, azar"
+        },
+        {
+          "it": "sorveglianza",
+          "es": "vigilancia"
+        },
+        {
+          "it": "omicidi",
+          "es": "asesinatos"
+        }
+      ],
+      "audio": "famiglie.mp3"
+    },
+    {
       "titulo": "Il Risorgimento",
       "deQueVa": "Lorenzo cuenta cómo Italia llegó a ser un solo país: cómo era antes, quiénes lo hicieron, y por qué después costó tanto. El más largo, y el que explica por qué hay tantos dialectos.",
       "glosario": [
