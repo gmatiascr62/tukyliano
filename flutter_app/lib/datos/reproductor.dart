@@ -48,6 +48,20 @@ class ReproductorDeVerdad implements Reproductor {
   final AudioPlayer _player = AudioPlayer();
   String? _falla;
 
+  /// just_audio no reproduce el asset directamente: lo copia a un archivo de
+  /// cache y toca esa copia. Y la identifica SOLO por el nombre, con un
+  /// `if (!file.existsSync())`, asi que si ya existe nunca la reescribe.
+  ///
+  /// Al actualizar la app con un audio nuevo bajo el mismo nombre, seguia
+  /// sonando el viejo. Paso de verdad: el episodio nuevo sonaba igual que el
+  /// anterior, el reloj marcaba 9:36 en vez de 8:05, y el archivo dentro del
+  /// APK era el correcto. La biblioteca trae el remedio y dice para que es:
+  /// "llamá a esto cuando los recursos de la app cambiaron".
+  ///
+  /// Se hace una vez por arranque. Volver a copiar unos megas del APK es
+  /// barato; escuchar el episodio equivocado no.
+  static bool _cacheVaciada = false;
+
   @override
   String? get porQueFallo => _falla;
 
@@ -57,6 +71,10 @@ class ReproductorDeVerdad implements Reproductor {
   @override
   Future<bool> cargar(String archivo) async {
     try {
+      if (!_cacheVaciada) {
+        _cacheVaciada = true;
+        await AudioPlayer.clearAssetCache();
+      }
       await _player.setAsset('assets/audio/$archivo');
       _falla = null;
       return true;
