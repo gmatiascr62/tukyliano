@@ -8,7 +8,11 @@ import 'package:tukyliano/datos/reproductor.dart';
 /// Mover el reloj es la gracia. Con el audio de verdad habría que esperar seis
 /// minutos para ver qué pasa en la frase cien; acá se salta ahí y se mira.
 class ReproductorFalso implements Reproductor {
-  ReproductorFalso({this.hayArchivo = true});
+  ReproductorFalso({this.hayArchivo = true, this.duraDeMas = false});
+
+  /// Con true imita el caso en que se abrió el audio de otra versión: dura
+  /// mucho más de lo que dice la tabla de tiempos del episodio.
+  final bool duraDeMas;
 
   /// False imita el episodio al que le falta el archivo de audio.
   final bool hayArchivo;
@@ -35,7 +39,7 @@ class ReproductorFalso implements Reproductor {
       return false;
     }
     cargado = archivo;
-    duracion = const Duration(seconds: 30);
+    duracion = Duration(seconds: duraDeMas ? 300 : 30);
     return true;
   }
 

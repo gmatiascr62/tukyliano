@@ -275,6 +275,23 @@ class _EscuchaState extends State<_Escucha> {
       return;
     }
 
+    // Que el archivo que se abrió sea el que corresponde a esta tabla de
+    // tiempos. Si no coincide, marcar frases sería peor que no marcarlas: se
+    // habla con el motor de voz y se dice por qué.
+    //
+    // No es un control teórico. Pasó: just_audio reusaba del caché el audio
+    // de la versión anterior, de 9:36, mientras la tabla era la del nuevo,
+    // que termina a los 8:03. Noventa y dos segundos de diferencia.
+    final dura = widget.reproductor.duracion;
+    final ultima = episodio.lineas.last.desde!;
+    if (dura != null &&
+        (ultima > dura || dura - ultima > const Duration(seconds: 60))) {
+      setState(() => _porQueNoSuenaElArchivo =
+          'el audio dura ${dura.inSeconds}s y la última frase arranca a los '
+          '${ultima.inSeconds}s: no es el archivo de este episodio');
+      return;
+    }
+
     _siguiendo = widget.reproductor.porDonde.listen(_vaPor);
     _esperandoElFinal = widget.reproductor.termino.listen((_) => _seAcabo());
     setState(() => _conAudio = true);

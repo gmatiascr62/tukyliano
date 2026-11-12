@@ -251,4 +251,31 @@ void main() {
       expect(find.textContaining(' / '), findsNothing);
     });
   });
+
+  group('cuando el audio no es el de este episodio', () {
+    testWidgets('no lo usa, y dice por qué', (tester) async {
+      // El caso real: el reproductor abrió un archivo de otra versión, más
+      // largo que la tabla de tiempos. Marcar frases con esa tabla pondría
+      // la marca en cualquier lado.
+      final reproductor = ReproductorFalso(duraDeMas: true);
+      await tester.pumpWidget(MaterialApp(
+        home: Scaffold(
+          body: PantallaPodcast(
+            repositorio: RepositorioPodcast(leerAsset: (_) async => _grabado),
+            voz: VozFalsa(),
+            reproductor: reproductor,
+          ),
+        ),
+      ));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Il caffè'));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('no es el archivo de este episodio'),
+          findsOneWidget);
+      // Y no se queda mudo: lo habla el motor de voz.
+      expect(find.text('Escuchar'), findsOneWidget);
+      expect(find.textContaining(' / '), findsNothing);
+    });
+  });
 }
