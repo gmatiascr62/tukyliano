@@ -29,9 +29,16 @@ jobs:
           distribution: temurin
           java-version: '17'
 
+      # La versión va fija a propósito. Con "la última estable" el build deja
+      # de ser reproducible: el 12 de noviembre de 2026 una versión nueva
+      # marcó como obsoleto package:flutter/material.dart, que usa toda la
+      # app, y un build que venía verde se puso rojo sin que nadie tocara una
+      # línea. Subirla es una decisión que se toma a propósito, mirando qué
+      # se rompe, no algo que pasa solo un martes.
       - name: Instalar Flutter
         uses: subosito/flutter-action@v2
         with:
+          flutter-version: 3.47.9
           channel: stable
           cache: true
 
