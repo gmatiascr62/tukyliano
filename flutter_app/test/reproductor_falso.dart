@@ -23,9 +23,19 @@ class ReproductorFalso implements Reproductor {
   final _termino = StreamController<void>.broadcast();
 
   @override
+  String? porQueFallo;
+
+  @override
+  Duration? duracion;
+
+  @override
   Future<bool> cargar(String archivo) async {
-    if (!hayArchivo) return false;
+    if (!hayArchivo) {
+      porQueFallo = 'de mentira: no está el archivo';
+      return false;
+    }
     cargado = archivo;
+    duracion = const Duration(seconds: 30);
     return true;
   }
 

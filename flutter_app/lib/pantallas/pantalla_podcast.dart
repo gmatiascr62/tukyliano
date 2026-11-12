@@ -248,6 +248,13 @@ class _EscuchaState extends State<_Escucha> {
   StreamSubscription<Duration>? _siguiendo;
   StreamSubscription<void>? _esperandoElFinal;
 
+  /// Por qué este episodio, que trae audio grabado, igual se está hablando
+  /// con el motor de voz. Null cuando no hay nada que contar.
+  String? _porQueNoSuenaElArchivo;
+
+  /// En qué segundo va el archivo, para mostrarlo al lado de los controles.
+  Duration _reloj = Duration.zero;
+
   @override
   void initState() {
     super.initState();
@@ -259,7 +266,14 @@ class _EscuchaState extends State<_Escucha> {
     if (!episodio.grabado) return;
 
     final abrio = await widget.reproductor.cargar(episodio.audio!);
-    if (!abrio || !mounted) return;
+    if (!mounted) return;
+    if (!abrio) {
+      // Que se note. Antes esto caía al motor de voz en silencio y desde
+      // afuera parecía que el audio nuevo no se había instalado.
+      setState(() => _porQueNoSuenaElArchivo =
+          widget.reproductor.porQueFallo ?? 'no se pudo abrir');
+      return;
+    }
 
     _siguiendo = widget.reproductor.porDonde.listen(_vaPor);
     _esperandoElFinal = widget.reproductor.termino.listen((_) => _seAcabo());
@@ -269,6 +283,7 @@ class _EscuchaState extends State<_Escucha> {
   /// El reloj del reproductor avanzó: marcar la frase que corresponde.
   void _vaPor(Duration donde) {
     if (!mounted) return;
+    if (donde != _reloj) setState(() => _reloj = donde);
     final cual = widget.episodio.cualSuena(donde);
     if (cual == _sonando) return;
     setState(() {
@@ -498,11 +513,15 @@ class _EscuchaState extends State<_Escucha> {
       children: [
         _Cabecera(episodio: episodio, alVolver: widget.alVolver),
         if (!suena) const _SinVoz(),
+        if (_porQueNoSuenaElArchivo != null)
+          _ElArchivoNoAbre(porQue: _porQueNoSuenaElArchivo!),
         if (suena)
           _Controles(
             andando: _andando,
             lenta: _lenta,
             retomando: !_andando && _porDonde > 0,
+            reloj: _conAudio ? _reloj : null,
+            dura: _conAudio ? widget.reproductor.duracion : null,
             alPlay: _playOPausa,
             alCambiarVelocidad: _cambiarVelocidad,
             alVolverAlPrincipio: _desdeElPrincipio,
@@ -594,11 +613,43 @@ class _SinVoz extends StatelessWidget {
   }
 }
 
+/// Avisa que este episodio trae audio grabado pero no se pudo abrir, así que
+/// lo está hablando el motor de voz.
+///
+/// Sin esto la caída es invisible: suena parecido y uno cree que el audio
+/// nuevo nunca se instaló. Pasó, y costó horas de buscar en el lugar
+/// equivocado.
+class _ElArchivoNoAbre extends StatelessWidget {
+  const _ElArchivoNoAbre({required this.porQue});
+
+  final String porQue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 10),
+      child: Text(
+        'No se pudo abrir el audio grabado, así que lo está leyendo la voz '
+        'del celular. Motivo: $porQue',
+        style: const TextStyle(fontSize: 12, color: Tema.textoTenue),
+      ),
+    );
+  }
+}
+
+String _minutosYSegundos(Duration d) {
+  final m = d.inMinutes;
+  final s = d.inSeconds % 60;
+  return '$m:${s.toString().padLeft(2, '0')}';
+}
+
 class _Controles extends StatelessWidget {
   const _Controles({
     required this.andando,
     required this.lenta,
     required this.retomando,
+    required this.reloj,
+    required this.dura,
     required this.alPlay,
     required this.alCambiarVelocidad,
     required this.alVolverAlPrincipio,
@@ -606,6 +657,11 @@ class _Controles extends StatelessWidget {
 
   final bool andando;
   final bool lenta;
+
+  /// Por dónde va y cuánto dura el archivo. Null cuando no hay archivo y
+  /// habla el motor de voz, que no tiene ni una cosa ni la otra.
+  final Duration? reloj;
+  final Duration? dura;
 
   /// True cuando está parado en el medio: ahí el botón dice "Seguir" y
   /// aparece el de volver al principio.
@@ -646,6 +702,15 @@ class _Controles extends StatelessWidget {
             onSelected: (_) => alCambiarVelocidad(),
             label: const Text('Lento'),
           ),
+          if (reloj != null) ...[
+            const Spacer(),
+            Text(
+              dura == null
+                  ? _minutosYSegundos(reloj!)
+                  : '${_minutosYSegundos(reloj!)} / ${_minutosYSegundos(dura!)}',
+              style: const TextStyle(fontSize: 12, color: Tema.textoTenue),
+            ),
+          ],
         ],
       ),
     );

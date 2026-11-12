@@ -211,4 +211,44 @@ void main() {
       expect(find.text('Escuchar'), findsOneWidget);
     });
   });
+
+  group('cuando el audio no se puede abrir', () {
+    testWidgets('lo dice, con el motivo, en vez de disimularlo',
+        (tester) async {
+      // El episodio dice tener audio grabado y el reproductor no lo puede
+      // abrir. Antes eso caía al motor de voz en silencio y desde afuera
+      // parecía que el audio nuevo nunca se había instalado.
+      await _abrir(tester, hayArchivo: false);
+
+      expect(find.textContaining('No se pudo abrir el audio grabado'),
+          findsOneWidget);
+      expect(find.textContaining('de mentira: no está el archivo'),
+          findsOneWidget);
+      // Y se puede escuchar igual, con la voz del celular.
+      expect(find.text('Escuchar'), findsOneWidget);
+    });
+
+    testWidgets('con el archivo abierto no aparece ningún aviso',
+        (tester) async {
+      await _abrir(tester);
+      expect(find.textContaining('No se pudo abrir'), findsNothing);
+    });
+  });
+
+  group('el reloj', () {
+    testWidgets('muestra por dónde va y cuánto dura', (tester) async {
+      final reproductor = await _abrir(tester);
+      await tester.tap(find.text('Escuchar'));
+      await tester.pumpAndSettle();
+
+      reproductor.correrA(const Duration(seconds: 65));
+      await tester.pumpAndSettle();
+      expect(find.text('1:05 / 0:30'), findsOneWidget);
+    });
+
+    testWidgets('sin archivo no hay reloj', (tester) async {
+      await _abrir(tester, hayArchivo: false);
+      expect(find.textContaining(' / '), findsNothing);
+    });
+  });
 }

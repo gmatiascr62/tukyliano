@@ -17,6 +17,17 @@ abstract class Reproductor {
   /// Carga un archivo de assets/audio/. False si no está o no se pudo abrir.
   Future<bool> cargar(String archivo);
 
+  /// Por qué falló el último [cargar], si falló. Null si anduvo.
+  ///
+  /// Existe porque la primera vez que esto fallo de verdad —en el celular,
+  /// con el archivo bien puesto adentro del APK— la app se cayó al motor de
+  /// voz sin decir una palabra, y desde afuera parecía que el audio nuevo no
+  /// se había instalado. Un error que no se ve cuesta horas.
+  String? get porQueFallo;
+
+  /// Cuánto dura el archivo cargado, si se pudo saber.
+  Duration? get duracion;
+
   Future<void> reproducir();
   Future<void> pausar();
   Future<void> irA(Duration donde);
@@ -35,15 +46,25 @@ abstract class Reproductor {
 
 class ReproductorDeVerdad implements Reproductor {
   final AudioPlayer _player = AudioPlayer();
+  String? _falla;
+
+  @override
+  String? get porQueFallo => _falla;
+
+  @override
+  Duration? get duracion => _player.duration;
 
   @override
   Future<bool> cargar(String archivo) async {
     try {
       await _player.setAsset('assets/audio/$archivo');
+      _falla = null;
       return true;
-    } catch (_) {
-      // Un episodio al que le falta el archivo no tiene que tirar abajo la
-      // pantalla: se cae al motor de voz, que siempre está.
+    } catch (e) {
+      // Un episodio al que no se le puede abrir el audio no tiene que tirar
+      // abajo la pantalla: se cae al motor de voz, que siempre está. Pero el
+      // motivo se guarda y se muestra, en vez de desaparecer.
+      _falla = '$e';
       return false;
     }
   }
