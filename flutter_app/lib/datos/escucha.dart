@@ -57,11 +57,18 @@ class EscuchaDelCelular implements Escucha {
 
   final SpeechToText _motor;
 
-  /// Cuánto dura una escucha como mucho. No hay corte por silencio de este
-  /// lado: Android igual termina solo en cuanto se hace una pausa, y eso no se
-  /// puede cambiar, así que la pantalla vuelve a llamar hasta que se termine
-  /// la frase o se toque el botón.
+  /// Cuánto dura una escucha como mucho.
   static const _cuantoEscucha = Duration(seconds: 30);
+
+  /// Cuánto silencio tiene que haber para que Android dé por terminado lo que
+  /// se estaba diciendo.
+  ///
+  /// Por omisión corta enseguida, y en una frase con coma la pausa está
+  /// escrita: se corta justo en la mitad. Pedirle que espere dos segundos y
+  /// medio es una sugerencia, no una orden —bastantes celulares la ignoran—,
+  /// así que la pantalla igual vuelve a llamar y pega los pedazos. Esto nada
+  /// más hace que tenga que pegar menos veces.
+  static const _cuantoAguantaUnaPausa = Duration(milliseconds: 2500);
 
   bool _listo = false;
   String _problema = '';
@@ -169,6 +176,7 @@ class EscuchaDelCelular implements Escucha {
           partialResults: true,
           cancelOnError: false,
           listenFor: _cuantoEscucha,
+          pauseFor: _cuantoAguantaUnaPausa,
         ),
       );
     } catch (_) {

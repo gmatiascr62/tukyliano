@@ -181,13 +181,19 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
     });
 
     final arranco = DateTime.now();
-    LoEscuchado? oido;
+    // Todo lo que se fue entendiendo en este intento, pedazo por pedazo. Lo
+    // que llega después de una pausa es la continuación de lo anterior, no un
+    // intento nuevo: si no se pegan, la frase se traba en la primera coma.
+    final pedazos = <LoEscuchado>[];
 
     for (var vez = 0; vez < _cuantasVeces; vez++) {
+      final yaDicho = pegar(pedazos).mejor;
+
       final escuchado = await _escucha.escuchar(
         alOir: (parcial) {
           if (!mounted) return;
-          setState(() => _acertadas = max(_acertadas, _cuantasVan(parcial)));
+          final todo = yaDicho.isEmpty ? parcial : '$yaDicho $parcial';
+          setState(() => _acertadas = max(_acertadas, _cuantasVan(todo)));
           // Apenas está dicha entera no hay nada más que esperar.
           if (_acertadas == _cuantasPalabras) _escucha.cortar();
         },
@@ -195,14 +201,18 @@ class _PantallaPronunciacionState extends State<PantallaPronunciacion> {
       if (!mounted) return;
 
       if (escuchado != null && !escuchado.vacio) {
-        oido = escuchado;
-        setState(() => _acertadas = max(_acertadas, _cuantasVan(oido!.mejor)));
+        pedazos.add(escuchado);
+        setState(
+          () => _acertadas = max(_acertadas, _cuantasVan(pegar(pedazos).mejor)),
+        );
       }
 
       if (_pararon || _acertadas == _cuantasPalabras) break;
       if (DateTime.now().difference(arranco) > _cuantoEnTotal) break;
     }
 
+    final pegado = pegar(pedazos);
+    final oido = pegado.vacio ? null : pegado;
     final como = _acertadas == _cuantasPalabras
         ? ComoSalio.bien
         : comparar(esperada: _palabra.italiano, oido: oido);

@@ -326,6 +326,50 @@ void main() {
       expect(find.text('Te trabaste en «per».'), findsOneWidget);
     });
 
+    // El bug que encontró Matías: en una frase con coma, Android da por
+    // terminada la escucha en la pausa y devuelve solo la primera mitad. La
+    // pantalla volvía a escuchar, pero comparaba cada pedazo contra la frase
+    // desde la primera palabra, y "possiamo..." no empieza con "il": contaba
+    // cero. La frase se trababa en la coma por más que se dijera entera.
+    testWidgets('la frase cortada en la coma se sigue contando',
+        (WidgetTester tester) async {
+      final escucha = EscuchaFalsa(
+        porTurnos: const [
+          LoEscuchado(mejor: 'Il conto per favore,'),
+          LoEscuchado(mejor: 'possiamo pagare con la carta?'),
+        ],
+      );
+      await _abrir(tester, escucha: escucha, palabras: _frase);
+      await _hablar(tester);
+
+      expect(escucha.escuchadas, 2, reason: 'tiene que volver a escuchar');
+      expect(find.text('¡Bien dicho!'), findsOneWidget);
+      expect(
+        _colores(tester, 'il conto per favore possiamo pagare con la carta'),
+        everyElement(Tema.correcto),
+      );
+    });
+
+    testWidgets('pegar los pedazos no regala la frase',
+        (WidgetTester tester) async {
+      // La segunda mitad dicha mal sigue estando mal: se pega lo que llegó,
+      // no se da por buena la frase por haber hablado dos veces.
+      await _abrir(
+        tester,
+        escucha: EscuchaFalsa(
+          porTurnos: const [
+            LoEscuchado(mejor: 'il conto per favore'),
+            LoEscuchado(mejor: 'possiamo pagare con tarjeta'),
+          ],
+        ),
+        palabras: _frase,
+      );
+      await _hablar(tester);
+
+      // "con" sí la dijo; se trabó en "la", que es la primera que falta.
+      expect(find.text('Te trabaste en «la».'), findsOneWidget);
+    });
+
     testWidgets('el botón dice "Otra frase"', (WidgetTester tester) async {
       await _abrir(tester, escucha: EscuchaFalsa(), palabras: _frase);
 
