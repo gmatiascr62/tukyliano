@@ -40,15 +40,21 @@ class Progreso {
 
   /// De los últimos siete días, en cuántos se practicó.
   int get diasPracticados {
-    final hoy = DateTime.now();
     var cuantos = 0;
     for (var i = 0; i < diasDeLaSemana; i++) {
-      if (_dias.contains(_comoTexto(hoy.subtract(Duration(days: i))))) {
-        cuantos++;
-      }
+      if (practicoHace(i)) cuantos++;
     }
     return cuantos;
   }
+
+  /// Si se practicó el día que cae [cuantosDias] para atrás. Cero es hoy.
+  ///
+  /// El contador de arriba dice cuántos días, y con esto la pantalla puede
+  /// mostrar además cuáles: una semana dibujada se lee de un vistazo y el
+  /// hueco del día que falta se ve, que es lo que invita a volver.
+  bool practicoHace(int cuantosDias) => _dias.contains(
+        _comoTexto(DateTime.now().subtract(Duration(days: cuantosDias))),
+      );
 
   static String _comoTexto(DateTime dia) =>
       '${dia.year}-${dia.month.toString().padLeft(2, '0')}-'
