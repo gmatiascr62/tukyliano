@@ -8,10 +8,17 @@ class EscuchaFalsa implements Escucha {
     this.puedeEscuchar = true,
     this.problema = '',
     this.parciales = const [],
+    this.porTurnos = const [],
   });
 
   /// Lo que va a "escuchar". Null imita el silencio.
   LoEscuchado? respuesta;
+
+  /// Una respuesta distinta por llamada, para imitar lo que de verdad pasa con
+  /// una frase larga: Android corta en la pausa de la coma y devuelve la
+  /// primera mitad, y la segunda llega recién en la escucha siguiente. Pasada
+  /// la lista, se queda callada.
+  final List<LoEscuchado?> porTurnos;
 
   /// False imita el celular sin reconocedor, o sin permiso al micrófono.
   final bool puedeEscuchar;
@@ -38,6 +45,13 @@ class EscuchaFalsa implements Escucha {
     if (!puedeEscuchar) return null;
     _cortada = false;
 
+    if (porTurnos.isNotEmpty) {
+      final turno = escuchadas - 1;
+      final oido = turno < porTurnos.length ? porTurnos[turno] : null;
+      if (oido != null) alOir?.call(oido.mejor);
+      return oido;
+    }
+
     LoEscuchado? ultimo;
     for (final parcial in parciales) {
       ultimo = LoEscuchado(mejor: parcial, alternativas: [parcial]);
@@ -46,7 +60,11 @@ class EscuchaFalsa implements Escucha {
       // con lo último que llegó a entender.
       if (_cortada) return ultimo;
     }
-    return respuesta;
+    // Una sola vez, como el de verdad: Android manda un resultado final por
+    // sesión de escucha, y si después se lo vuelve a llamar y no se dice nada
+    // más, contesta silencio. Devolverlo en cada llamada hacía que la pantalla
+    // pareciera escuchar ocho veces lo mismo.
+    return escuchadas == 1 ? respuesta : null;
   }
 
   @override

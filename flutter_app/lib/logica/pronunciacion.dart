@@ -114,6 +114,39 @@ int cuantasSeguidas({required String esperada, required String oido}) {
   return van;
 }
 
+/// Pega en uno solo los pedazos que se escucharon en un mismo intento.
+///
+/// Hace falta porque Android da por terminada la escucha en cuanto hay una
+/// pausa, y en una frase con coma la pausa está escrita: "Il conto per favore,
+/// possiamo pagare con la carta?" se dice en dos tiempos y llega en dos
+/// pedazos. La pantalla vuelve a escuchar —eso ya andaba—, pero cada pedazo se
+/// comparaba contra la frase **desde la primera palabra**, y "possiamo pagare
+/// con la carta" no empieza con "il", así que contaba cero y la frase se
+/// quedaba trabada en la coma para siempre. Pegados, la cuenta sigue.
+///
+/// Las alternativas se arman cambiando un pedazo por vez: si el reconocedor
+/// dudó en la segunda mitad, la frase entera con esa otra mitad sigue siendo
+/// una candidata, y es lo que separa un "casi" de un "mal".
+LoEscuchado pegar(List<LoEscuchado> pedazos) {
+  final utiles = [
+    for (final pedazo in pedazos)
+      if (!pedazo.vacio) pedazo,
+  ];
+  if (utiles.isEmpty) return const LoEscuchado(mejor: '');
+  if (utiles.length == 1) return utiles.first;
+
+  final mejores = [for (final pedazo in utiles) pedazo.mejor.trim()];
+
+  return LoEscuchado(
+    mejor: mejores.join(' '),
+    alternativas: [
+      for (var cual = 0; cual < utiles.length; cual++)
+        for (final otra in utiles[cual].alternativas)
+          ([...mejores]..[cual] = otra.trim()).join(' '),
+    ],
+  );
+}
+
 /// Compara lo que se pidió decir con lo que el celular escuchó.
 ///
 /// Que aparezca en las alternativas y no en la primera cuenta como

@@ -180,4 +180,70 @@ void main() {
       }
     });
   });
+  group('pegar los pedazos de una escucha', () {
+    test('sin nada, no hay nada', () {
+      expect(pegar([]).vacio, isTrue);
+      expect(pegar([const LoEscuchado(mejor: '  ')]).vacio, isTrue);
+    });
+
+    test('uno solo queda igual', () {
+      const uno = LoEscuchado(mejor: 'cinque', alternativas: ['cinquet']);
+      expect(pegar([uno]), same(uno));
+    });
+
+    test('dos pedazos arman la frase entera', () {
+      final junto = pegar(const [
+        LoEscuchado(mejor: 'Il conto per favore,'),
+        LoEscuchado(mejor: 'possiamo pagare con la carta?'),
+      ]);
+
+      expect(junto.mejor, 'Il conto per favore, possiamo pagare con la carta?');
+      expect(
+        cuantasSeguidas(
+          esperada: 'il conto per favore possiamo pagare con la carta',
+          oido: junto.mejor,
+        ),
+        9,
+      );
+    });
+
+    test('los pedazos vacíos no dejan huecos', () {
+      final junto = pegar(const [
+        LoEscuchado(mejor: 'il conto'),
+        LoEscuchado(mejor: ''),
+        LoEscuchado(mejor: 'per favore'),
+      ]);
+
+      expect(junto.mejor, 'il conto per favore');
+    });
+
+    test('las alternativas cambian un pedazo por vez', () {
+      // Si dudó en la segunda mitad, la frase con esa otra mitad sigue siendo
+      // candidata. Eso es lo que separa un "casi" de un "mal".
+      final junto = pegar(const [
+        LoEscuchado(mejor: 'il conto', alternativas: ['il contro']),
+        LoEscuchado(mejor: 'per favore', alternativas: ['per fare']),
+      ]);
+
+      expect(junto.alternativas, [
+        'il contro per favore',
+        'il conto per fare',
+      ]);
+    });
+
+    test('una mitad mal no se da por buena', () {
+      final junto = pegar(const [
+        LoEscuchado(mejor: 'il conto per favore'),
+        LoEscuchado(mejor: 'possiamo pagare con tarjeta'),
+      ]);
+
+      expect(
+        comparar(
+          esperada: 'il conto per favore possiamo pagare con la carta',
+          oido: junto,
+        ),
+        ComoSalio.mal,
+      );
+    });
+  });
 }
