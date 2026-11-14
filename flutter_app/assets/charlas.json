@@ -1,0 +1,228 @@
+{
+  "version": 1,
+  "charlas": [
+    {
+      "id": "bar",
+      "titulo": "Al bar",
+      "donde": "Entrás a un bar en Italia. Atrás de la barra está Tuky.",
+      "primero": "saludo",
+      "pasos": [
+        {
+          "id": "saludo",
+          "dice": "Buongiorno! Cosa prende?",
+          "espanol": "¡Buen día! ¿Qué va a tomar?",
+          "respuestas": [
+            {
+              "texto": "Un caffè, per favore",
+              "espanol": "Un café, por favor",
+              "claves": ["caffe"],
+              "sigue": "cafe"
+            },
+            {
+              "texto": "Un cappuccino, per favore",
+              "espanol": "Un capuchino, por favor",
+              "claves": ["cappuccino"],
+              "sigue": "cappuccino"
+            },
+            {
+              "texto": "Una birra, per favore",
+              "espanol": "Una cerveza, por favor",
+              "claves": ["birra"],
+              "sigue": "birra"
+            }
+          ]
+        },
+        {
+          "id": "cafe",
+          "dice": "Subito. Lo vuole normale o macchiato?",
+          "espanol": "Enseguida. ¿Lo quiere solo o cortado?",
+          "respuestas": [
+            {
+              "texto": "Normale, grazie",
+              "espanol": "Solo, gracias",
+              "claves": ["normale"],
+              "sigue": "comer"
+            },
+            {
+              "texto": "Macchiato, grazie",
+              "espanol": "Cortado, gracias",
+              "claves": ["macchiato"],
+              "sigue": "comer"
+            }
+          ]
+        },
+        {
+          "id": "cappuccino",
+          "dice": "Benissimo. Vuole anche un cornetto?",
+          "espanol": "Muy bien. ¿Quiere también una medialuna?",
+          "respuestas": [
+            {
+              "texto": "Sì, grazie",
+              "espanol": "Sí, gracias",
+              "claves": ["si"],
+              "sigue": "comer"
+            },
+            {
+              "texto": "No, grazie",
+              "espanol": "No, gracias",
+              "claves": ["no"],
+              "sigue": "comer"
+            }
+          ]
+        },
+        {
+          "id": "birra",
+          "dice": "Piccola o media?",
+          "espanol": "¿Chica o mediana?",
+          "respuestas": [
+            {
+              "texto": "Piccola, grazie",
+              "espanol": "Chica, gracias",
+              "claves": ["piccola"],
+              "sigue": "comer"
+            },
+            {
+              "texto": "Media, grazie",
+              "espanol": "Mediana, gracias",
+              "claves": ["media"],
+              "sigue": "comer"
+            }
+          ]
+        },
+        {
+          "id": "comer",
+          "dice": "Vuole mangiare qualcosa? Abbiamo panini e tramezzini.",
+          "espanol": "¿Quiere comer algo? Tenemos sándwiches de pan y de miga.",
+          "respuestas": [
+            {
+              "texto": "Sì, un panino per favore",
+              "espanol": "Sí, un sándwich por favor",
+              "claves": ["panino"],
+              "sigue": "donde"
+            },
+            {
+              "texto": "No, grazie. Solo da bere",
+              "espanol": "No, gracias. Solo para tomar",
+              "claves": ["bere"],
+              "sigue": "donde"
+            }
+          ]
+        },
+        {
+          "id": "donde",
+          "dice": "Lo prende qui al banco o si siede al tavolo?",
+          "espanol": "¿Lo toma acá en la barra o se sienta a la mesa?",
+          "respuestas": [
+            {
+              "texto": "Qui al banco, grazie",
+              "espanol": "Acá en la barra, gracias",
+              "claves": ["banco"],
+              "sigue": "charla"
+            },
+            {
+              "texto": "Mi siedo al tavolo",
+              "espanol": "Me siento a la mesa",
+              "claves": ["tavolo"],
+              "sigue": "charla"
+            }
+          ]
+        },
+        {
+          "id": "charla",
+          "dice": "Ecco qua. È la prima volta che viene in Italia?",
+          "espanol": "Acá tiene. ¿Es la primera vez que viene a Italia?",
+          "respuestas": [
+            {
+              "texto": "Sì, è la prima volta",
+              "espanol": "Sí, es la primera vez",
+              "claves": ["prima", "volta"],
+              "sigue": "dedonde"
+            },
+            {
+              "texto": "No, ci sono già stato",
+              "espanol": "No, ya estuve",
+              "claves": ["stato"],
+              "sigue": "dedonde"
+            }
+          ]
+        },
+        {
+          "id": "dedonde",
+          "dice": "Che bello! E di dove è?",
+          "espanol": "¡Qué bueno! ¿Y de dónde es?",
+          "respuestas": [
+            {
+              "texto": "Sono argentino",
+              "espanol": "Soy argentino",
+              "claves": ["argentino"],
+              "sigue": "nonna"
+            },
+            {
+              "texto": "Vengo dall'Argentina",
+              "espanol": "Vengo de Argentina",
+              "claves": ["argentina"],
+              "sigue": "nonna"
+            }
+          ]
+        },
+        {
+          "id": "nonna",
+          "dice": "Ah, l'Argentina! Mia nonna era di Buenos Aires. Vuole altro?",
+          "espanol": "¡Ah, Argentina! Mi abuela era de Buenos Aires. ¿Quiere algo más?",
+          "respuestas": [
+            {
+              "texto": "No, il conto per favore",
+              "espanol": "No, la cuenta por favor",
+              "claves": ["conto"],
+              "sigue": "pagar"
+            },
+            {
+              "texto": "Sì, un altro caffè",
+              "espanol": "Sí, otro café",
+              "claves": ["altro", "caffe"],
+              "sigue": "otrocafe"
+            }
+          ]
+        },
+        {
+          "id": "otrocafe",
+          "dice": "Arrivo subito. Ecco. Allora, il conto?",
+          "espanol": "Ya se lo traigo. Acá tiene. Entonces, ¿la cuenta?",
+          "respuestas": [
+            {
+              "texto": "Sì, il conto per favore",
+              "espanol": "Sí, la cuenta por favor",
+              "claves": ["conto"],
+              "sigue": "pagar"
+            }
+          ]
+        },
+        {
+          "id": "pagar",
+          "dice": "Sono quattro euro. Come paga?",
+          "espanol": "Son cuatro euros. ¿Cómo paga?",
+          "respuestas": [
+            {
+              "texto": "Possiamo pagare con la carta?",
+              "espanol": "¿Podemos pagar con tarjeta?",
+              "claves": ["carta"],
+              "sigue": "fin"
+            },
+            {
+              "texto": "In contanti",
+              "espanol": "En efectivo",
+              "claves": ["contanti"],
+              "sigue": "fin"
+            }
+          ]
+        },
+        {
+          "id": "fin",
+          "dice": "Perfetto. Grazie e arrivederci!",
+          "espanol": "Perfecto. ¡Gracias y hasta luego!",
+          "respuestas": []
+        }
+      ]
+    }
+  ]
+}

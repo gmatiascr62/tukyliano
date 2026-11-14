@@ -169,6 +169,18 @@ void main() {
     );
 
     await _entrarA(tester, Destino.chat);
+
+    // Abre en la charla guionada: esa anda sin clave y sin internet, así que
+    // la sección ya no es una puerta cerrada para quien no cargó ninguna.
+    expect(find.text('Al bar'), findsOneWidget);
+    expect(
+      find.text('Necesitás una clave gratis de la IA (Gemini)'),
+      findsNothing,
+    );
+
+    // La clave se pide recién al pasar a la charla libre, que es la que la usa.
+    await tester.tap(find.text('Libre'));
+    await tester.pumpAndSettle();
     expect(
       find.text('Necesitás una clave gratis de la IA (Gemini)'),
       findsOneWidget,
