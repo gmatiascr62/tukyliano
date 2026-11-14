@@ -95,29 +95,6 @@ void main() {
       expect(esSoloTraduccion('#mante'), isFalse);
     });
 
-    test('de la respuesta se queda solo el renglón de la traducción', () {
-      // Le pedimos que no charle, pero a veces igual charla: acá se recorta.
-      const contestado = '#manteca# = #burro#\n\n'
-          'Capisco, ti piace cucinare. Cosa prepari?';
-
-      expect(soloLasTraducciones(contestado), '#manteca# = #burro#');
-    });
-
-    test('se quedan todos los renglones si hubo varios pedidos', () {
-      const contestado = '#manteca# = #burro#\n#pan# = #pane#\nChe cucini?';
-
-      expect(
-        soloLasTraducciones(contestado),
-        '#manteca# = #burro#\n#pan# = #pane#',
-      );
-    });
-
-    test('si no vino ningún renglón con el formato se muestra todo', () {
-      // Antes mostrar algo raro que dejar la burbuja vacía.
-      const contestado = 'Non ho capito, puoi ripetere?';
-
-      expect(soloLasTraducciones(contestado), contestado);
-    });
   });
 
   group('la corrección', () {
@@ -190,46 +167,17 @@ void main() {
   });
 
   group('el mensaje que se le manda a la IA', () {
-    test('sin pedidos va tal cual se escribió', () {
+    test('sin almohadillas va tal cual se escribió', () {
       expect(textoParaLaIa('ciao, sto bene'), 'ciao, sto bene');
     });
 
-    test('un pedido suelto pide solo la traducción', () {
-      final texto = textoParaLaIa('#manteca#');
-
-      expect(texto, contains('únicamente #manteca# = #(traducción)#'));
-      expect(texto, contains('sin preguntas'));
-      expect(texto, isNot(contains('seguí la charla')));
-    });
-
-    test('un pedido en medio de la charla no la corta', () {
-      final texto = textoParaLaIa('mi serve la #manteca#');
-
-      expect(texto, contains('después seguí la charla'));
-    });
-
-    test('siempre le recuerda para qué lado traducir', () {
-      for (final mensaje in ['#manteca#', 'mi serve la #manteca#']) {
-        expect(
-          textoParaLaIa(mensaje),
-          contains('Si está en español traducilo al italiano'),
-          reason: mensaje,
-        );
-      }
-    });
-
-    test('con un pedido se le recuerda el formato de la respuesta', () {
-      final texto = textoParaLaIa('mi serve la #manteca#');
-
-      expect(texto, startsWith('mi serve la #manteca#'));
-      expect(texto, contains('#manteca# = #(traducción)#'));
-    });
-
-    test('con varios pedidos los nombra a todos', () {
-      final texto = textoParaLaIa('#manteca# y #pan#');
-
-      expect(texto, contains('#manteca# = #(traducción)#'));
-      expect(texto, contains('#pan# = #(traducción)#'));
+    test('las almohadillas se sacan antes de mandarlo', () {
+      // Las traducciones las contesta el diccionario de la app, así que la IA
+      // no tiene por qué enterarse de que hubo un pedido: ve una frase normal
+      // y sigue la charla. Antes tres de las nueve reglas del prompt eran
+      // sobre esto, y aun así se equivocaba.
+      expect(textoParaLaIa('mi serve la #manteca#'), 'mi serve la manteca');
+      expect(textoParaLaIa('#manteca# y #pan#'), 'manteca y pan');
     });
   });
 
@@ -302,34 +250,36 @@ void main() {
       expect(_texto(turnos[2]), 'ciao');
     });
 
-    test('el recordatorio de traducción va solo en el último mensaje', () {
+    test('ir al diccionario no entra en lo que la IA recuerda', () {
+      // Buscar una palabra no es charlar. Si entrara en el historial, la IA
+      // creería que se habló de eso, o copiaría el formato con el signo igual.
       final charla = Conversacion()
-        ..agregar(const Mensaje.mia('#manteca#'))
-        ..agregar(const Mensaje.deLaIa('#manteca# = #burro#'))
-        ..agregar(const Mensaje.mia('#pan#'));
+        ..agregar(const Mensaje.mia('#manteca#', paraLaIa: false))
+        ..agregar(const Mensaje.delDiccionario('#manteca# = #burro#'))
+        ..agregar(const Mensaje.mia('ciao!'));
 
       final turnos = charla.contenidos();
 
-      expect(_texto(turnos[2]), '#manteca#');
-      expect(_texto(turnos[4]), contains('pedido de traducción'));
+      // Instrucciones, saludo y "ciao!": el ida y vuelta del medio no está.
+      expect(turnos.length, 3);
+      expect(_texto(turnos.last), 'ciao!');
+    });
+
+    test('una palabra marcada en medio de la charla va sin almohadillas', () {
+      final charla = Conversacion()..agregar(const Mensaje.mia('voglio #pan#'));
+
+      expect(_texto(charla.contenidos().last), 'voglio pan');
     });
   });
 
   group('las instrucciones', () {
-    test('explican el formato de las traducciones con el ejemplo pedido', () {
-      expect(promptDeChat, contains('#manteca# = #burro#'));
-      expect(promptDeChat, contains('#como estas?#'));
-    });
-
-    test('explican los dos sentidos de la traducción, con un ejemplo de cada',
-        () {
-      expect(promptDeChat, contains('#ventana# = #finestra#'));
-      expect(promptDeChat, contains('#finestra# = #ventana#'));
-      expect(promptDeChat, contains('Nunca devuelvas la misma palabra'));
-    });
-
-    test('piden no charlar cuando el mensaje es solo un pedido', () {
-      expect(promptDeChat, contains('SOLO un pedido de traducción'));
+    test('ya no dicen nada de las traducciones', () {
+      // Eran tres de las nueve reglas y la IA igual se equivocaba. Ahora las
+      // contesta el diccionario de la app, y el prompt quedó en seis reglas
+      // sobre una sola cosa: charlar y corregir.
+      expect(promptDeChat, isNot(contains('#')));
+      expect(promptDeChat, isNot(contains('traducción')));
+      expect(promptDeChat, isNot(contains('almohadilla')));
     });
 
     test('piden italiano simple y respuestas cortas', () {

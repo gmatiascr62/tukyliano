@@ -1,5 +1,7 @@
 import 'dart:math';
 
+import '../logica/diccionario_buscar.dart';
+
 import 'gemini.dart';
 
 /// Con qué puede arrancar la charla, uno por tema.
@@ -72,27 +74,11 @@ que está aprendiendo italiano. Tenés que seguir estas reglas siempre:
    Poner el sujeto (io, tu, lui) no es un error: en italiano se puede omitir,
    pero decirlo también está bien. Nunca lo corrijas por eso.
    No expliques la regla ni agregues comentarios sobre la corrección.
-4. Todo lo que venga entre almohadillas (#) no es parte de la charla: es un
-   pedido de traducción. Puede ser una palabra (#manteca#) o una frase entera
-   (#como estas?#). Contestá cada pedido en su propio renglón, arriba de todo,
-   con este formato exacto:
-   #manteca# = #burro#
-5. La traducción va SIEMPRE al otro idioma, nunca al mismo. Fijate primero en
-   qué idioma está escrito lo que te dieron:
-   - si está en español, traducilo al italiano: #ventana# = #finestra#
-   - si está en italiano, traducilo al español: #finestra# = #ventana#
-   Nunca devuelvas la misma palabra que te dieron.
-6. Si el mensaje es SOLO un pedido de traducción (no hay nada más escrito fuera
-   de las almohadillas), contestá únicamente la traducción y nada más: sin
-   saludos, sin preguntas, sin comentarios y sin seguir la charla.
-   Si además de las almohadillas escribió otra cosa, ahí sí: primero las
-   traducciones, después la corrección, y al final tu respuesta a la charla,
-   como si el pedido no hubiera pasado.
-7. No uses markdown, ni asteriscos, ni emojis, ni listas numeradas: el texto se
+4. No uses markdown, ni asteriscos, ni emojis, ni listas numeradas: el texto se
    lee en voz alta.
-8. Cuando tengas que escribir en español, usá el de Latinoamérica: "ustedes",
+5. Cuando tengas que escribir en español, usá el de Latinoamérica: "ustedes",
    nunca "vosotros".
-9. Seguí el tema con el que arrancó la charla y quedate un rato ahí, con
+6. Seguí el tema con el que arrancó la charla y quedate un rato ahí, con
    preguntas sobre eso. Cuando el tema se apaga o empieza a dar vueltas,
    cambialo vos y preguntá por otra cosa: qué comió, qué hizo el fin de semana,
    el trabajo, la música, un viaje, el clima, la familia, una película. No
@@ -110,12 +96,29 @@ enum Quien {
 }
 
 class Mensaje {
-  const Mensaje.mia(this.texto) : quien = Quien.yo;
-  const Mensaje.deLaIa(this.texto) : quien = Quien.ia;
-  const Mensaje.aviso(this.texto) : quien = Quien.aviso;
+  const Mensaje.mia(this.texto, {this.paraLaIa = true}) : quien = Quien.yo;
+  const Mensaje.deLaIa(this.texto)
+      : quien = Quien.ia,
+        paraLaIa = true;
+
+  /// Una traducción contestada por el diccionario de la app.
+  ///
+  /// Se ve igual que una respuesta de la IA, pero no se le manda: ir al
+  /// diccionario no es parte de la charla, y meterlo en el historial haría
+  /// que la IA empezara a imitar el formato o a creer que se habló de eso.
+  const Mensaje.delDiccionario(this.texto)
+      : quien = Quien.ia,
+        paraLaIa = false;
+
+  const Mensaje.aviso(this.texto)
+      : quien = Quien.aviso,
+        paraLaIa = false;
 
   final Quien quien;
   final String texto;
+
+  /// Si este mensaje forma parte de lo que la IA tiene que recordar.
+  final bool paraLaIa;
 }
 
 /// Un pedido de traducción cerrado: '#manteca#'. Una almohadilla sola no
@@ -230,56 +233,30 @@ bool _esCorreccionDe(String renglon, String escritoComparable) {
   return _comparable(texto.substring(marca.end)) == escritoComparable;
 }
 
-/// Un renglón de traducción: '#manteca# = #burro#'.
-final RegExp _renglonTraducido = RegExp(
-  '$marcaTraduccion[^$marcaTraduccion]+$marcaTraduccion'
-  r'\s*=\s*'
-  '$marcaTraduccion[^$marcaTraduccion]+$marcaTraduccion',
-);
-
-/// Deja solo los renglones de traducción de la respuesta.
-///
-/// Las instrucciones ya le piden a la IA que cuando el mensaje sea solo un
-/// pedido conteste solo la traducción, pero a veces igual saluda o pregunta
-/// algo. Recortarlo acá lo vuelve seguro y no una cuestión de suerte.
-///
-/// Si no hay ni un renglón con el formato esperado se devuelve la respuesta
-/// entera: es mejor mostrar algo raro que no mostrar nada.
-String soloLasTraducciones(String respuesta) {
-  final renglones = respuesta
-      .split('\n')
-      .map((renglon) => renglon.trim())
-      .where((renglon) => _renglonTraducido.hasMatch(renglon))
-      .toList();
-  return renglones.isEmpty ? respuesta : renglones.join('\n');
-}
-
 /// El mensaje tal como se le manda a la IA.
 ///
-/// Cuando hay un pedido de traducción se le suma un recordatorio del formato.
-/// Las instrucciones ya lo explican, pero repetirlo en el turno donde importa
-/// es lo que hace que conteste siempre igual, y así la app puede pintar la
-/// traducción y leerla en voz alta.
-String textoParaLaIa(String mensaje) {
-  final pedidos = pedidosDeTraduccion(mensaje);
-  if (pedidos.isEmpty) return mensaje;
+/// Sin las almohadillas. Las traducciones las contesta el diccionario que
+/// viaja en la app, así que la IA no tiene que enterarse de que existen: ve
+/// una frase normal y sigue la charla.
+///
+/// Antes esto le mandaba, además del mensaje, un recordatorio del formato en
+/// cada turno, porque tres de las nueve reglas del prompt eran sobre las
+/// almohadillas y aun así se equivocaba. Esas tres reglas ya no están.
+String textoParaLaIa(String mensaje) => sinMarcas(mensaje);
 
-  final ejemplos = pedidos.map((p) => '#$p# = #(traducción)#').join(', ');
-  const direccion = 'Si está en español traducilo al italiano; si está en '
-      'italiano traducilo al español. Nunca devuelvas la misma palabra.';
+/// Los renglones de traducción que se muestran arriba de la respuesta.
+///
+/// Salen del diccionario, no de la IA: son instantáneos, andan sin internet
+/// y contestan siempre lo mismo.
+String renglonesDeTraduccion(List<Traduccion> traducciones) => [
+      for (final t in traducciones)
+        '$marcaTraduccion${t.pedido}$marcaTraduccion = '
+            '$marcaTraduccion${t.comoSeDice}$marcaTraduccion',
+    ].join('\n');
 
-  if (esSoloTraduccion(mensaje)) {
-    return '$mensaje\n\n'
-        '(Esto es solo un pedido de traducción, no es charla. Contestá '
-        'únicamente $ejemplos, un renglón por pedido, y nada más: sin saludos, '
-        'sin preguntas y sin comentarios. $direccion)';
-  }
-
-  return '$mensaje\n\n'
-      '(Recordá: lo que está entre # es un pedido de traducción. Empezá tu '
-      'respuesta con $ejemplos, un renglón por pedido, y después seguí la '
-      'charla en italiano. $direccion)';
-}
+/// Lo que se muestra cuando una palabra no está en el diccionario.
+String noEstaEnElDiccionario(String pedido) =>
+    '$marcaTraduccion$pedido$marcaTraduccion no está en el diccionario.';
 
 /// La charla: los mensajes que se dijeron, en orden.
 ///
@@ -308,7 +285,7 @@ class Conversacion {
   /// systemInstruction: es el camino que el modelo lite seguro acepta, y ya
   /// sabemos que un campo de más ahí devuelve 400.
   List<Map<String, dynamic>> contenidos() {
-    final dichos = mensajes.where((m) => m.quien != Quien.aviso).toList();
+    final dichos = mensajes.where((m) => m.paraLaIa).toList();
 
     final turnos = [
       turnoGemini('user', promptDeChat),
@@ -319,12 +296,9 @@ class Conversacion {
     for (var i = 1; i < dichos.length; i++) {
       final mensaje = dichos[i];
       final mio = mensaje.quien == Quien.yo;
-      // El recordatorio de las traducciones se le pone solo al último mensaje:
-      // en los viejos ya no sirve de nada y ensuciaría el historial.
-      final ultimo = i == dichos.length - 1;
       turnos.add(turnoGemini(
         mio ? 'user' : 'model',
-        mio && ultimo ? textoParaLaIa(mensaje.texto) : mensaje.texto,
+        mio ? textoParaLaIa(mensaje.texto) : mensaje.texto,
       ));
     }
 

@@ -4,9 +4,12 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../datos/almacenamiento_clave.dart';
+import '../datos/repositorio_diccionario.dart';
 import '../datos/voz.dart';
 import '../ia/chat.dart';
 import '../ia/gemini.dart';
+import '../logica/diccionario_buscar.dart';
+import '../modelos/diccionario.dart';
 import '../tema.dart';
 import '../widgets/pastilla.dart';
 import '../widgets/selector_de_voz.dart';
@@ -36,6 +39,7 @@ class PantallaChat extends StatefulWidget {
     this.almacenClave,
     this.gemini,
     this.voz,
+    this.diccionario,
     this.azar,
   });
 
@@ -43,6 +47,7 @@ class PantallaChat extends StatefulWidget {
   final AlmacenamientoClave? almacenClave;
   final Gemini? gemini;
   final Voz? voz;
+  final RepositorioDiccionario? diccionario;
 
   /// Para que los tests sepan con qué saludo va a arrancar la charla.
   final Random? azar;
@@ -71,6 +76,10 @@ class _PantallaChatState extends State<PantallaChat> {
   /// la pantalla lo que ya se leyó.
   final _tapados = <int>{};
 
+  late final RepositorioDiccionario _diccionario =
+      widget.diccionario ?? RepositorioDiccionario();
+  Diccionario _elDiccionario = const Diccionario();
+
   String? _clave;
   bool _buscandoClave = true;
   String _errorClave = '';
@@ -88,6 +97,7 @@ class _PantallaChatState extends State<PantallaChat> {
     // Aparte de la clave: si el motor de voz del celular tarda en contestar, la
     // charla ya se puede usar igual, solo que sin audio hasta que conteste.
     _prepararVoz();
+    _prepararDiccionario();
   }
 
   @override
@@ -105,6 +115,30 @@ class _PantallaChatState extends State<PantallaChat> {
       _clave = clave;
       _buscandoClave = false;
     });
+  }
+
+  /// El diccionario se carga aparte y sin frenar nada, igual que la voz.
+  ///
+  /// Son 770 KB y tardan: si la pantalla esperara a que estén, la charla no
+  /// aparecería hasta entonces, y para charlar no hacen falta.
+  Future<void> _prepararDiccionario() async {
+    final diccionario = await _diccionario.cargar();
+    if (!mounted) return;
+    setState(() => _elDiccionario = diccionario);
+  }
+
+  /// Contesta los pedidos de traducción sin salir del celular.
+  ///
+  /// Devuelve los renglones listos para mostrar, o vacío si no había pedidos.
+  String _traducirLoMarcado(String mensaje) {
+    final renglones = <String>[];
+    for (final pedido in pedidosDeTraduccion(mensaje)) {
+      final traduccion = traducir(_elDiccionario, pedido);
+      renglones.add(traduccion == null
+          ? noEstaEnElDiccionario(pedido)
+          : renglonesDeTraduccion([traduccion]));
+    }
+    return renglones.join('\n');
   }
 
   Future<void> _prepararVoz() async {
@@ -130,22 +164,38 @@ class _PantallaChatState extends State<PantallaChat> {
     final clave = _clave;
     if (_esperando || texto.isEmpty || clave == null) return;
 
+    final traducido = _traducirLoMarcado(texto);
+    // Ir al diccionario no es charla, así que ese ida y vuelta se ve en
+    // pantalla pero no entra en lo que la IA recuerda.
+    final soloDiccionario = esSoloTraduccion(texto);
+
     setState(() {
-      _conversacion.agregar(Mensaje.mia(texto));
+      _conversacion.agregar(Mensaje.mia(texto, paraLaIa: !soloDiccionario));
       _campo.clear();
-      _esperando = true;
+      _esperando = !soloDiccionario;
     });
     _irAlFinal();
+
+    // Lo contesta el diccionario de la app: en el acto, sin internet, sin
+    // clave y sin gastar cuota. La IA ni se entera.
+    if (soloDiccionario) {
+      setState(() {
+        if (_soloEscuchar) _tapados.add(_conversacion.mensajes.length);
+        _conversacion.agregar(Mensaje.delDiccionario(traducido));
+      });
+      _irAlFinal();
+      if (_soloEscuchar && _puedeHablar) _voz.decir(sinMarcas(traducido));
+      return;
+    }
 
     try {
       final contestado = await _gemini.charlar(_conversacion.contenidos(), clave);
       if (!mounted) return;
-      // Dos recortes, por si la IA no siguió las instrucciones: cuando el
-      // mensaje era solo un pedido de traducción se muestra solo la traducción,
-      // y en la charla no se muestra una corrección que repite lo que escribió.
-      final respuesta = esSoloTraduccion(texto)
-          ? soloLasTraducciones(contestado)
-          : sinCorreccionRepetida(contestado, texto);
+      // No se muestra una corrección que repite lo que escribió.
+      final deLaIa = sinCorreccionRepetida(contestado, texto);
+      // Las traducciones van arriba, como antes, pero salen del diccionario.
+      final respuesta =
+          traducido.isEmpty ? deLaIa : '$traducido\n$deLaIa';
       setState(() {
         if (_soloEscuchar) _tapados.add(_conversacion.mensajes.length);
         _conversacion.agregar(Mensaje.deLaIa(respuesta));

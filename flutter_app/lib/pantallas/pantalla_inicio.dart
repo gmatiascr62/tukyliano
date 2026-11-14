@@ -4,6 +4,7 @@ import '../datos/progreso.dart';
 import '../logica/nivel.dart';
 import '../tema.dart';
 import '../widgets/texto_ajustado.dart';
+import 'acerca_de.dart';
 
 /// A dónde se puede ir desde el inicio: los cuatro botones en diagonal,
 /// más el podcast, que va en una barra aparte debajo.
@@ -65,17 +66,34 @@ class PantallaInicio extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(bottom: 14),
-          child: Text(
-            'Tukyliano',
-            textAlign: TextAlign.center,
-            style: TextStyle(
-              fontSize: 27,
-              fontWeight: FontWeight.w800,
-              letterSpacing: -0.4,
-              color: Tema.titulo,
-            ),
+        // El título va centrado y el botón de "acerca de" flotando a la
+        // derecha, encima: así el título queda en el medio de la pantalla de
+        // verdad y no en el medio de lo que sobra al costado del botón.
+        Padding(
+          padding: const EdgeInsets.only(bottom: 14),
+          child: Stack(
+            alignment: Alignment.center,
+            children: [
+              const Text(
+                'Tukyliano',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 27,
+                  fontWeight: FontWeight.w800,
+                  letterSpacing: -0.4,
+                  color: Tema.titulo,
+                ),
+              ),
+              Align(
+                alignment: Alignment.centerRight,
+                child: IconButton(
+                  onPressed: () => mostrarAcercaDe(context),
+                  icon: const Icon(Icons.info_outline),
+                  color: Tema.textoTenue,
+                  tooltip: 'Acerca de',
+                ),
+              ),
+            ],
           ),
         ),
         _TarjetaDeLaSemana(progreso: progreso),
