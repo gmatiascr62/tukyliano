@@ -1,9 +1,19 @@
 import 'package:flutter/material.dart';
 
 import '../datos/repositorio_charlas.dart';
+import '../datos/repositorio_diccionario.dart';
 import '../datos/voz.dart';
+import '../ia/chat.dart'
+    show
+        esSoloTraduccion,
+        noEstaEnElDiccionario,
+        pedidosDeTraduccion,
+        renglonesDeTraduccion,
+        sinMarcas;
 import '../logica/charla_guionada.dart';
+import '../logica/diccionario_buscar.dart';
 import '../modelos/charla.dart';
+import '../modelos/diccionario.dart';
 import '../tema.dart';
 
 /// Una charla guionada, sin IA y sin internet.
@@ -22,11 +32,13 @@ class PantallaCharla extends StatefulWidget {
     super.key,
     this.repositorio,
     this.voz,
+    this.diccionario,
     this.cual = 'bar',
   });
 
   final RepositorioCharlas? repositorio;
   final Voz? voz;
+  final RepositorioDiccionario? diccionario;
 
   /// Qué escena abrir.
   final String cual;
@@ -35,7 +47,7 @@ class PantallaCharla extends StatefulWidget {
   State<PantallaCharla> createState() => _PantallaCharlaState();
 }
 
-enum _Quien { tuky, yo, aviso, correccion }
+enum _Quien { tuky, yo, aviso, correccion, diccionario }
 
 class _Dicho {
   const _Dicho(this.quien, this.texto, {this.espanol = ''});
@@ -49,6 +61,9 @@ class _PantallaCharlaState extends State<PantallaCharla> {
   late final RepositorioCharlas _repositorio =
       widget.repositorio ?? RepositorioCharlas();
   late final Voz _voz = widget.voz ?? VozDelSistema();
+  late final RepositorioDiccionario _diccionario =
+      widget.diccionario ?? RepositorioDiccionario();
+  Diccionario _elDiccionario = const Diccionario();
 
   final TextEditingController _campo = TextEditingController();
   final ScrollController _scroll = ScrollController();
@@ -68,6 +83,7 @@ class _PantallaCharlaState extends State<PantallaCharla> {
   void initState() {
     super.initState();
     _arrancar();
+    _prepararDiccionario();
   }
 
   @override
@@ -76,6 +92,14 @@ class _PantallaCharlaState extends State<PantallaCharla> {
     _campo.dispose();
     _scroll.dispose();
     super.dispose();
+  }
+
+  /// El diccionario se carga aparte y sin frenar la charla: son 770 KB y
+  /// para empezar a hablar no hacen falta.
+  Future<void> _prepararDiccionario() async {
+    final diccionario = await _diccionario.cargar();
+    if (!mounted) return;
+    setState(() => _elDiccionario = diccionario);
   }
 
   Future<void> _arrancar() async {
@@ -111,15 +135,48 @@ class _PantallaCharlaState extends State<PantallaCharla> {
     }
   }
 
+  /// Contesta lo que venga entre almohadillas, con el diccionario de la app.
+  ///
+  /// Anda igual que en la charla libre. No tiene nada que ver con la IA —es
+  /// un archivo adentro del celular—, así que no hay ningún motivo para que
+  /// funcione en una pantalla y en la otra no. Y acá hace más falta todavía:
+  /// mientras se busca cómo contestar es justo cuando falta una palabra.
+  String _traducirLoMarcado(String mensaje) {
+    final renglones = <String>[];
+    for (final pedido in pedidosDeTraduccion(mensaje)) {
+      final traduccion = traducir(_elDiccionario, pedido);
+      renglones.add(traduccion == null
+          ? noEstaEnElDiccionario(pedido)
+          : renglonesDeTraduccion([traduccion]));
+    }
+    return renglones.join('\n');
+  }
+
   void _enviar() {
     final escrito = _campo.text.trim();
     final paso = _paso;
     if (escrito.isEmpty || paso == null || paso.esElFinal) return;
 
-    final contestacion = queContesto(paso, escrito);
+    final traducido = _traducirLoMarcado(escrito);
+    if (traducido.isNotEmpty) {
+      setState(() {
+        _dichos
+          ..add(_Dicho(_Quien.yo, escrito))
+          ..add(_Dicho(_Quien.diccionario, traducido));
+        _campo.clear();
+      });
+      _irAlFinal();
+      // Buscar una palabra no es contestarle a Tuky: la charla se queda donde
+      // estaba, esperando la respuesta de verdad.
+      if (esSoloTraduccion(escrito)) return;
+    }
+
+    // Lo que se compara va sin almohadillas: son una marca para el
+    // diccionario, no parte de lo que se dijo.
+    final contestacion = queContesto(paso, sinMarcas(escrito));
 
     setState(() {
-      _dichos.add(_Dicho(_Quien.yo, escrito));
+      if (traducido.isEmpty) _dichos.add(_Dicho(_Quien.yo, escrito));
       _campo.clear();
 
       switch (contestacion.como) {
@@ -380,42 +437,12 @@ class _Burbuja extends StatelessWidget {
       );
     }
 
+    if (dicho.quien == _Quien.diccionario) {
+      return _Recuadro(titulo: 'Diccionario', texto: dicho.texto);
+    }
+
     if (dicho.quien == _Quien.correccion) {
-      return Padding(
-        padding: const EdgeInsets.fromLTRB(12, 4, 40, 4),
-        child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-          decoration: BoxDecoration(
-            color: Tema.verdeSuave,
-            borderRadius: BorderRadius.circular(Tema.radio),
-            border: const Border(
-              left: BorderSide(color: Tema.verde, width: 4),
-            ),
-          ),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Text(
-                'Se dice así:',
-                style: TextStyle(
-                  fontSize: 12.5,
-                  fontWeight: FontWeight.w700,
-                  color: Tema.verdeOscuro,
-                ),
-              ),
-              const SizedBox(height: 2),
-              Text(
-                dicho.texto,
-                style: const TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w600,
-                  color: Tema.titulo,
-                ),
-              ),
-            ],
-          ),
-        ),
-      );
+      return _Recuadro(titulo: 'Se dice así:', texto: dicho.texto);
     }
 
     final mio = dicho.quien == _Quien.yo;
@@ -459,6 +486,53 @@ class _Burbuja extends StatelessWidget {
               ],
             ),
           ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Un recuadro verde al costado: lo que no es la charla sino una ayuda sobre
+/// la charla. La corrección y el diccionario.
+class _Recuadro extends StatelessWidget {
+  const _Recuadro({required this.titulo, required this.texto});
+
+  final String titulo;
+  final String texto;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(12, 4, 40, 4),
+      child: Container(
+        padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        decoration: BoxDecoration(
+          color: Tema.verdeSuave,
+          borderRadius: BorderRadius.circular(Tema.radio),
+          border: const Border(left: BorderSide(color: Tema.verde, width: 4)),
+        ),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(
+              titulo,
+              style: const TextStyle(
+                fontSize: 12.5,
+                fontWeight: FontWeight.w700,
+                color: Tema.verdeOscuro,
+              ),
+            ),
+            const SizedBox(height: 2),
+            Text(
+              texto,
+              style: const TextStyle(
+                fontSize: 16,
+                fontWeight: FontWeight.w600,
+                height: 1.3,
+                color: Tema.titulo,
+              ),
+            ),
+          ],
         ),
       ),
     );

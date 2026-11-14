@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../datos/almacenamiento_clave.dart';
 import '../datos/repositorio_charlas.dart';
+import '../datos/repositorio_diccionario.dart';
 import '../datos/voz.dart';
 import '../ia/gemini.dart';
 import '../widgets/pastilla.dart';
@@ -27,6 +28,7 @@ class PantallaConversacion extends StatefulWidget {
     this.gemini,
     this.voz,
     this.charlas,
+    this.diccionario,
     this.empezarEnLibre = false,
   });
 
@@ -34,6 +36,7 @@ class PantallaConversacion extends StatefulWidget {
   final Gemini? gemini;
   final Voz? voz;
   final RepositorioCharlas? charlas;
+  final RepositorioDiccionario? diccionario;
 
   /// Para los tests que quieren la charla con IA sin tener que tocar nada.
   final bool empezarEnLibre;
@@ -76,11 +79,13 @@ class _PantallaConversacionState extends State<PantallaConversacion> {
                   almacenClave: widget.almacenClave,
                   gemini: widget.gemini,
                   voz: widget.voz,
+                  diccionario: widget.diccionario,
                 )
               : PantallaCharla(
                   key: const ValueKey('bar'),
                   repositorio: widget.charlas,
                   voz: widget.voz,
+                  diccionario: widget.diccionario,
                 ),
         ),
       ],
