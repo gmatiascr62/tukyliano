@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/repositorio_charlas.dart';
+import 'package:tukyliano/datos/repositorio_diccionario.dart';
 import 'package:tukyliano/pantallas/pantalla_charla.dart';
 import 'package:tukyliano/tema.dart';
 
@@ -42,6 +43,14 @@ const _guion = '''
 }
 ''';
 
+const String _diccionarioDePrueba = '''
+{
+  "version": 1,
+  "it": {"caffe": ["café"], "macchiato": ["cortado"]},
+  "es": {"manteca": ["burro"], "cafe": ["caffè"]}
+}
+''';
+
 Future<VozFalsa> _abrir(WidgetTester tester) async {
   final voz = VozFalsa();
   usarPantallaDeCelular(tester);
@@ -51,6 +60,9 @@ Future<VozFalsa> _abrir(WidgetTester tester) async {
       body: PantallaCharla(
         repositorio: RepositorioCharlas(leerAsset: (_) async => _guion),
         voz: voz,
+        diccionario: RepositorioDiccionario(
+          leerAsset: (_) async => _diccionarioDePrueba,
+        ),
       ),
     ),
   ));
@@ -157,6 +169,52 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(voz.dicho, ['Cosa prende?']);
+  });
+
+  group('el diccionario', () {
+    // Matías buscó una palabra acá y la charla le contestó "Non ho capito".
+    // El diccionario es un archivo adentro del celular, no tiene nada que ver
+    // con la IA: no hay motivo para que ande en una pantalla y en la otra no.
+    // Y acá hace más falta, porque es justo mientras se busca cómo contestar.
+    testWidgets('una palabra marcada se traduce en la charla guionada',
+        (tester) async {
+      await _abrir(tester);
+      await _contestar(tester, '#manteca#');
+
+      expect(find.text('Diccionario'), findsOneWidget);
+      expect(find.text('#manteca# = #burro#'), findsOneWidget);
+    });
+
+    testWidgets('buscar una palabra no es contestarle a Tuky', (tester) async {
+      await _abrir(tester);
+      await _contestar(tester, '#manteca#');
+
+      // Ni avanza ni se queja: la charla sigue esperando la respuesta.
+      expect(find.text('Non ho capito. Puoi ripetere?'), findsNothing);
+      expect(find.text('Grazie e arrivederci!'), findsNothing);
+      expect(find.text('Cosa prende?'), findsOneWidget);
+    });
+
+    testWidgets('marcar una palabra adentro de la respuesta no la arruina',
+        (tester) async {
+      await _abrir(tester);
+      await _contestar(tester, 'Un #caffè#, per favore');
+
+      // Traduce lo marcado y además la toma como respuesta buena.
+      expect(find.text('#caffè# = #café#'), findsOneWidget);
+      expect(find.text('Grazie e arrivederci!'), findsOneWidget);
+      expect(find.text('Se dice así:'), findsNothing);
+    });
+
+    testWidgets('la palabra que no está lo dice', (tester) async {
+      await _abrir(tester);
+      await _contestar(tester, '#sciopero#');
+
+      expect(
+        find.text('#sciopero# no está en el diccionario.'),
+        findsOneWidget,
+      );
+    });
   });
 
   testWidgets('sin guion lo avisa y no se cae', (tester) async {
