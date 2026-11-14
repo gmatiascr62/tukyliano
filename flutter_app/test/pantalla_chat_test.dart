@@ -485,6 +485,12 @@ void main() {
         await volverAlInicio();
         await tester.tap(find.byIcon(destino.icono));
         await tester.pumpAndSettle();
+        // La sección abre en la charla guionada, que anda sin clave. La charla
+        // con la IA es la otra pastilla.
+        if (destino == Destino.chat) {
+          await tester.tap(find.text('Libre'));
+          await tester.pumpAndSettle();
+        }
       }
 
       await irA(Destino.chat);

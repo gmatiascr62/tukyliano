@@ -17,8 +17,11 @@ import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/progreso.dart';
+import 'package:tukyliano/pantallas/pantalla_charla.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/tema.dart';
+
+import 'voz_falsa.dart';
 
 /// Sin esto el texto sale como cajas negras y los íconos no aparecen: el
 /// entorno de tests no trae fuentes. Las saca del propio SDK de Flutter.
@@ -74,8 +77,11 @@ const double _escala = 3;
 Future<void> dibujar(
   WidgetTester tester,
   String nombre,
-  Widget pantalla,
-) async {
+  Widget pantalla, {
+  /// Para sacar la foto con la pantalla ya usada —una charla empezada, por
+  /// ejemplo— en vez de recién abierta.
+  Future<void> Function(WidgetTester)? despuesDeAbrir,
+}) async {
   final clave = GlobalKey();
 
   tester.view
@@ -94,6 +100,11 @@ Future<void> dibujar(
     ),
   );
   await tester.pumpAndSettle();
+
+  if (despuesDeAbrir != null) {
+    await despuesDeAbrir(tester);
+    await tester.pumpAndSettle();
+  }
 
   final limite =
       clave.currentContext!.findRenderObject()! as RenderRepaintBoundary;
@@ -155,15 +166,45 @@ void main() {
   setUpAll(cargarFuentes);
 
   // Una pantalla por corrida: en este contenedor sin pantalla de verdad, una
-  // vez que se sacó la foto el motor no vuelve a dibujar.
+  // vez que se sacó la foto el motor no vuelve a dibujar. Cuál se dibuja lo
+  // dice la variable MIRAR:
+  //
+  //   MIRAR=charla flutter test test/mirar.dart
   testWidgets('dibujar', (tester) async {
-    final progreso = await progresoDeMentira();
+    final cual = Platform.environment['MIRAR'] ?? 'inicio';
 
-    await dibujar(
-      tester,
-      'inicio',
-      comoEnLaApp(PantallaInicio(progreso: progreso, alElegir: (_) {})),
-    );
+    switch (cual) {
+      case 'inicio':
+        final progreso = await progresoDeMentira();
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaInicio(progreso: progreso, alElegir: (_) {})),
+        );
+
+      case 'charla':
+        // Con la charla ya empezada y un error adentro, que es lo que hay que
+        // mirar: una pantalla recién abierta no muestra la corrección.
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaCharla(voz: VozFalsa())),
+          despuesDeAbrir: (t) async {
+            Future<void> contestar(String texto) async {
+              await t.enterText(find.byType(TextField), texto);
+              await t.pumpAndSettle();
+              await t.tap(find.byIcon(Icons.send_rounded));
+              await t.pumpAndSettle();
+            }
+
+            await contestar('Un caffè, per favore');
+            await contestar('io volere normale');
+          },
+        );
+
+      default:
+        throw ArgumentError('no sé dibujar "$cual"');
+    }
 
     // El test dibuja bien pero no termina nunca de cerrarse. Como esto no
     // verifica nada, se sale y listo.

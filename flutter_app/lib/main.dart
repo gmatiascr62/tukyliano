@@ -16,7 +16,7 @@ import 'ia/gemini.dart';
 import 'modelos/seccion.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
-import 'pantallas/pantalla_chat.dart';
+import 'pantallas/pantalla_conversacion.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_gramatica.dart';
 import 'pantallas/pantalla_inicio.dart';
@@ -427,7 +427,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.chat:
         // Sin key ni nada que guarde el estado: al cambiar de sección esta
         // pantalla se destruye y la charla se olvida, que es lo que se pidió.
-        return PantallaChat(
+        return PantallaConversacion(
           almacenClave: _almacenClave,
           voz: _voz,
           gemini: widget.gemini,
