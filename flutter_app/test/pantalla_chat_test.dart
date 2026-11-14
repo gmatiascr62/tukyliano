@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/almacenamiento_clave.dart';
+import 'package:tukyliano/datos/repositorio_diccionario.dart';
 import 'package:tukyliano/ia/chat.dart';
 import 'package:tukyliano/ia/gemini.dart';
 import 'package:tukyliano/main.dart';
@@ -83,6 +84,17 @@ Gemini _gemini(
 const _semilla = 3;
 final _saludoFijo = saludoAlAzar(azar: Random(_semilla));
 
+/// Un diccionario chico y conocido: los tests no tienen por qué depender de
+/// las catorce mil palabras del de verdad.
+const String _diccionarioDePrueba = '''
+{
+  "version": 1,
+  "credito": "de prueba",
+  "it": {"burro": ["manteca"], "pane": ["pan"], "finestra": ["ventana"]},
+  "es": {"manteca": ["burro"], "pan": ["pane"], "ventana": ["finestra"]}
+}
+''';
+
 Future<_Espia> _abrir(
   WidgetTester tester, {
   String? claveGuardada = 'clave-de-prueba',
@@ -113,6 +125,9 @@ Future<_Espia> _abrir(
             demora: demora,
           ),
           voz: voz ?? VozFalsa(),
+          diccionario: RepositorioDiccionario(
+            leerAsset: (_) async => _diccionarioDePrueba,
+          ),
           azar: Random(_semilla),
         ),
       ),
@@ -283,53 +298,67 @@ void main() {
   });
 
   group('las traducciones con almohadillas', () {
-    testWidgets('una palabra entre almohadillas se manda como pedido',
+    testWidgets('la contesta el diccionario, sin molestar a la IA',
         (tester) async {
-      final espia = await _abrir(tester, respuesta: '#manteca# = #burro#');
-
-      await _escribir(tester, '#pan#');
-      await _enviar(tester);
-
-      expect(espia.textoDe(2), startsWith('#pan#'));
-      expect(espia.textoDe(2), contains('#pan# = #(traducción)#'));
-    });
-
-    testWidgets('la traducción que contesta se ve en la charla',
-        (tester) async {
-      await _abrir(tester, respuesta: '#manteca# = #burro#\nChe cucini?');
-
-      await _escribir(tester, 'a');
-      await _enviar(tester);
-
-      expect(find.text('#manteca# = #burro#\nChe cucini?'), findsOneWidget);
-    });
-
-    testWidgets('un pedido suelto muestra solo la traducción', (tester) async {
-      // Pedir una palabra es ir al diccionario: la charla de más se recorta,
-      // aunque la IA la haya escrito igual.
-      await _abrir(
-        tester,
-        respuesta: '#manteca# = #burro#\n\nCapisco, cosa prepari?',
-      );
+      final espia = await _abrir(tester);
 
       await _escribir(tester, '#manteca#');
       await _enviar(tester);
 
       expect(find.text('#manteca# = #burro#'), findsOneWidget);
-      expect(find.textContaining('Capisco'), findsNothing);
+      // Ni un pedido a la API: esto anda sin internet y sin gastar cuota.
+      expect(espia.pedidos, isEmpty);
+    });
+
+    testWidgets('traduce para el lado que corresponde', (tester) async {
+      await _abrir(tester);
+
+      await _escribir(tester, '#finestra#');
+      await _enviar(tester);
+
+      expect(find.text('#finestra# = #ventana#'), findsOneWidget);
+    });
+
+    testWidgets('la palabra que no está lo dice', (tester) async {
+      await _abrir(tester);
+
+      await _escribir(tester, '#sciopero#');
+      await _enviar(tester);
+
+      expect(
+        find.text('#sciopero# no está en el diccionario.'),
+        findsOneWidget,
+      );
     });
 
     testWidgets('un pedido en medio de una frase no corta la charla',
         (tester) async {
-      await _abrir(
-        tester,
-        respuesta: '#manteca# = #burro#\n\nCapisco, cosa prepari?',
-      );
+      final espia = await _abrir(tester, respuesta: 'Capisco, cosa prepari?');
 
       await _escribir(tester, 'mi serve #manteca#');
       await _enviar(tester);
 
-      expect(find.textContaining('Capisco, cosa prepari?'), findsOneWidget);
+      // Arriba la traducción, abajo la charla.
+      expect(
+        find.text('#manteca# = #burro#\nCapisco, cosa prepari?'),
+        findsOneWidget,
+      );
+      // Y a la IA le llegó la frase sin almohadillas.
+      expect(espia.textoDe(2), 'mi serve manteca');
+    });
+
+    testWidgets('buscar una palabra no queda en la memoria de la IA',
+        (tester) async {
+      final espia = await _abrir(tester);
+
+      await _escribir(tester, '#manteca#');
+      await _enviar(tester);
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+
+      // Instrucciones, saludo y "ciao": del diccionario, nada.
+      expect(espia.ultimosTurnos.length, 3);
+      expect(espia.textoDe(2), 'ciao');
     });
   });
 
