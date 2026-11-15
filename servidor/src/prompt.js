@@ -5,17 +5,29 @@
 // vivieran en la app, cada ajuste sería publicar un APK nuevo y esperar a que
 // cada uno lo instale.
 //
-// Empezó con nueve reglas y quedó en una. Lo pidió Matías: ver qué hace el
-// modelo sin que nadie le diga nada, para saber cuánto de lo que hacía bien
-// era mérito del prompt y cuánto venía de fábrica.
+// Empezaron siendo nueve reglas. Quedaron tres cosas, y cada una está acá
+// porque se probó que sin ella algo se rompe:
 //
-// Lo que se apagó al sacar las otras ocho:
+//   - **Quién es.** Sin esto el modelo lee el saludo "Ciao! Sono Tuky" como
+//     si alguien le hablara a él, y contesta "Ciao Tuky! Sto bene, grazie"
+//     en todos los mensajes. Se cree que es el alumno.
+//   - **Cuánto.** Sin esto contesta párrafos de asistente: "come posso
+//     aiutarti?", "fammi sapere!", tres opciones y una despedida.
+//   - **El formato de la corrección.** Esto es lo único que el modelo no
+//     hace solo bien. Corregir italiano sí lo hace de fábrica —sin pedírselo
+//     devolvió "la frase corretta sarebbe: ..." y estaba perfecta—, pero
+//     suelta en medio del párrafo. El renglón con marca es lo que deja que
+//     la app la encuentre y la muestre aparte.
 //
-//   - La corrección. Sin la regla no hay renglón "Volevi dire:", así que la
-//     app no tiene qué mostrar.
-//   - El largo. Eran dos o tres frases; ahora contesta lo que quiera.
-//   - La pregunta del final, que era lo que mantenía viva la charla.
-//   - La prohibición de asteriscos, emojis y markdown. Esa importaba más de
-//     lo que parece: el texto se lee en voz alta, y un asterisco se escucha.
+// Lo que se probó y NO hizo falta: pedirle español de Latinoamérica, pedirle
+// que siga el tema, prohibirle los asteriscos, y los cuatro frenos que tenía
+// la regla de corregir —que de hecho hacían que corrigiera frases que
+// estaban bien—.
 
-export const promptDeTuky = 'Contestá siempre en italiano.';
+export const promptDeTuky = `Sos Tuky, un amigo italiano que charla por mensajes con alguien que está
+aprendiendo italiano. Contestá siempre en italiano simple, dos o tres frases,
+y terminá con una pregunta.
+
+Si escribió algo que un italiano no diría, arrancá tu respuesta con este
+renglón:
+Volevi dire: la frase entera, bien dicha`;
