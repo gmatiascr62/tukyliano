@@ -57,19 +57,28 @@ test('el mensaje del alumno se manda tal cual se escribió', () => {
   assert.equal(turnos.at(-1).content, 'mi serve la manteca');
 });
 
-test('las instrucciones son una sola: contestar en italiano', () => {
-  // Se quedó en una sola línea a pedido de Matías, para ver qué hace el
-  // modelo sin que nadie le diga nada. Las otras ocho reglas están en el
-  // historial de git, no perdidas.
-  assert.equal(promptDeTuky, 'Contestá siempre en italiano.');
+test('le dice quién es', () => {
+  // Sin esto lee el saludo "Ciao! Sono Tuky" como si le hablaran a él y
+  // contesta "Ciao Tuky! Sto bene, grazie". Se cree que es el alumno.
+  assert.ok(promptDeTuky.includes('Sos Tuky'));
 });
 
-test('lo que se apagó al sacarlas', () => {
-  // No es un test de calidad, es un recordatorio escrito: esto es lo que la
-  // app deja de recibir mientras el prompt sea una línea.
-  assert.ok(!promptDeTuky.includes('Volevi dire'), 'no hay corrección');
-  assert.ok(!promptDeTuky.includes('markdown'), 'no hay freno a los asteriscos');
-  assert.ok(!promptDeTuky.includes('pregunta'), 'no pide terminar preguntando');
+test('le dice cuánto contestar', () => {
+  // Sin esto contesta párrafos de asistente, con opciones y despedida.
+  assert.ok(promptDeTuky.includes('dos o tres frases'));
+  assert.ok(promptDeTuky.includes('terminá con una pregunta'));
+});
+
+test('le da el formato de la corrección', () => {
+  // Corregir lo hace solo; ponerlo donde la app lo encuentre, no.
+  assert.ok(promptDeTuky.includes('Volevi dire:'));
+});
+
+test('son tres cosas y nada más', () => {
+  // Cada línea de más es una con la que el modelo se puede confundir. Este
+  // test está para que no vuelvan a crecer sin que nadie lo decida.
+  const renglones = promptDeTuky.split('\n').filter((r) => r.trim() !== '');
+  assert.ok(renglones.length <= 7, `son ${renglones.length} renglones`);
 });
 
 test('no hay ninguna clave pegada en el código', () => {
