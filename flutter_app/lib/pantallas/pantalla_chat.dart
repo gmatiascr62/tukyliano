@@ -3,17 +3,16 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../datos/almacenamiento_clave.dart';
+import '../datos/quien_soy.dart';
 import '../datos/repositorio_diccionario.dart';
 import '../datos/voz.dart';
 import '../ia/chat.dart';
-import '../ia/gemini.dart';
+import '../ia/servidor.dart';
 import '../logica/diccionario_buscar.dart';
 import '../modelos/diccionario.dart';
 import '../tema.dart';
 import '../widgets/pastilla.dart';
 import '../widgets/selector_de_voz.dart';
-import 'pantalla_clave_ia.dart';
 
 /// Charla en italiano con la IA.
 ///
@@ -36,16 +35,16 @@ import 'pantalla_clave_ia.dart';
 class PantallaChat extends StatefulWidget {
   const PantallaChat({
     super.key,
-    this.almacenClave,
-    this.gemini,
+    this.servidor,
+    this.quienSoy,
     this.voz,
     this.diccionario,
     this.azar,
   });
 
   /// Inyectables para los tests.
-  final AlmacenamientoClave? almacenClave;
-  final Gemini? gemini;
+  final Servidor? servidor;
+  final QuienSoy? quienSoy;
   final Voz? voz;
   final RepositorioDiccionario? diccionario;
 
@@ -57,9 +56,8 @@ class PantallaChat extends StatefulWidget {
 }
 
 class _PantallaChatState extends State<PantallaChat> {
-  late final AlmacenamientoClave _almacen =
-      widget.almacenClave ?? AlmacenamientoClave();
-  late final Gemini _gemini = widget.gemini ?? Gemini();
+  late final Servidor _servidor = widget.servidor ?? Servidor();
+  late final QuienSoy _quienSoy = widget.quienSoy ?? QuienSoy();
   late final Voz _voz = widget.voz ?? VozDelSistema();
 
   late Conversacion _conversacion = Conversacion(azar: widget.azar);
@@ -80,9 +78,8 @@ class _PantallaChatState extends State<PantallaChat> {
       widget.diccionario ?? RepositorioDiccionario();
   Diccionario _elDiccionario = const Diccionario();
 
-  String? _clave;
-  bool _buscandoClave = true;
-  String _errorClave = '';
+  /// El número de este celular, para que el servidor reparta los topes.
+  String _quien = '';
 
   bool _esperando = false;
 
@@ -109,12 +106,9 @@ class _PantallaChatState extends State<PantallaChat> {
   }
 
   Future<void> _arrancar() async {
-    final clave = await _almacen.cargar();
+    final quien = await _quienSoy.cual();
     if (!mounted) return;
-    setState(() {
-      _clave = clave;
-      _buscandoClave = false;
-    });
+    setState(() => _quien = quien);
   }
 
   /// El diccionario se carga aparte y sin frenar nada, igual que la voz.
@@ -147,22 +141,11 @@ class _PantallaChatState extends State<PantallaChat> {
     setState(() => _puedeHablar = puedeHablar);
   }
 
-  Future<void> _guardarClave(String clave) async {
-    await _almacen.guardar(clave);
-    if (!mounted) return;
-    setState(() {
-      _clave = clave;
-      _errorClave = '';
-    });
-  }
-
-  bool get _puedeEnviar =>
-      !_esperando && _campo.text.trim().isNotEmpty && _clave != null;
+  bool get _puedeEnviar => !_esperando && _campo.text.trim().isNotEmpty;
 
   Future<void> _enviar() async {
     final texto = _campo.text.trim();
-    final clave = _clave;
-    if (_esperando || texto.isEmpty || clave == null) return;
+    if (_esperando || texto.isEmpty) return;
 
     final traducido = _traducirLoMarcado(texto);
     // Ir al diccionario no es charla, así que ese ida y vuelta se ve en
@@ -189,7 +172,11 @@ class _PantallaChatState extends State<PantallaChat> {
     }
 
     try {
-      final contestado = await _gemini.charlar(_conversacion.contenidos(), clave);
+      final contestado = await _servidor.charlar(
+        quien: _quien,
+        saludo: _conversacion.saludo,
+        mensajes: _conversacion.paraElServidor(),
+      );
       if (!mounted) return;
       // No se muestra una corrección que repite lo que escribió.
       final deLaIa = sinCorreccionRepetida(contestado, texto);
@@ -205,15 +192,6 @@ class _PantallaChatState extends State<PantallaChat> {
       // Tapada hay que decirla sola: es la única forma de saber qué contestó.
       // Destapada se toca la burbuja, igual que un renglón de los cuentos.
       if (_soloEscuchar && _puedeHablar) _voz.decir(sinMarcas(respuesta));
-    } on ClaveInvalidaError {
-      // Una clave que no sirve no se guarda: se borra y se pide de nuevo.
-      await _almacen.borrar();
-      if (!mounted) return;
-      setState(() {
-        _clave = null;
-        _esperando = false;
-        _errorClave = 'La clave no funcionó. Pegá una nueva.';
-      });
     } catch (error) {
       if (!mounted) return;
       setState(() {
@@ -224,17 +202,17 @@ class _PantallaChatState extends State<PantallaChat> {
     }
   }
 
+  /// Qué mostrar cuando algo sale mal.
+  ///
+  /// El servidor ya manda el cartel escrito para el alumno, así que se usa
+  /// ese: si algún día hay que explicar mejor una falla, se cambia allá y lo
+  /// ven todos sin instalar nada.
   String _explicar(Object error) {
-    if (error is CuotaAgotadaError) {
-      return 'Se acabó la cuota gratis de la IA por ahora. Probá más tarde.';
-    }
+    if (error is FallaDelServidor) return error.mensaje;
     if (error is TimeoutException) {
       return 'La IA tardó demasiado en contestar. Probá de nuevo.';
     }
-    if (error is SinRespuestaError) {
-      return 'La IA no contestó nada. Probá escribirlo de otra forma.';
-    }
-    return 'No se pudo hablar con la IA. Fijate si tenés internet.';
+    return 'No se pudo hablar con el servidor. Fijate si tenés internet.';
   }
 
   /// Deja la charla mostrando el último mensaje. Va después del frame porque
@@ -296,19 +274,6 @@ class _PantallaChatState extends State<PantallaChat> {
 
   @override
   Widget build(BuildContext context) {
-    if (_buscandoClave) {
-      return const Center(
-        child: Text(
-          'Un momento...',
-          style: TextStyle(fontSize: 16, color: Tema.textoTenue),
-        ),
-      );
-    }
-
-    if (_clave == null) {
-      return PantallaClaveIA(onGuardar: _guardarClave, error: _errorClave);
-    }
-
     final mensajes = _conversacion.mensajes;
 
     return Column(

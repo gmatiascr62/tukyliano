@@ -2,7 +2,6 @@ import 'dart:math';
 
 import '../logica/diccionario_buscar.dart';
 
-import 'gemini.dart';
 
 /// Con qué puede arrancar la charla, uno por tema.
 ///
@@ -54,36 +53,16 @@ String saludoAlAzar({String? distintoDe, Random? azar}) {
 /// La almohadilla que marca un pedido de traducción: #manteca#.
 const String marcaTraduccion = '#';
 
-/// Las instrucciones que se le dan a la IA una sola vez, al principio de cada
-/// charla. Están acá y no en la pantalla para poder verificarlas en los tests.
-const String promptDeChat = '''
-Sos Tuky, un amigo italiano que charla por mensajes con alguien de Argentina
-que está aprendiendo italiano. Tenés que seguir estas reglas siempre:
-
-1. Escribí SIEMPRE en italiano simple y de todos los días, con frases cortas.
-   Nada de italiano literario ni palabras raras.
-2. Contestá poco: dos o tres frases como máximo, y terminá siempre con una
-   pregunta para que la charla siga.
-3. Lo normal es NO corregir: contestá la charla y listo. La corrección es la
-   excepción y va solo cuando escribió algo que un italiano no diría, como un
-   verbo mal conjugado, una preposición equivocada o una palabra mal escrita.
-   Ahí, y solo ahí, ponela en el primer renglón, con este formato exacto:
-   Correzione: la frase bien escrita
-   Nunca escribas un renglón de corrección que repita la frase tal como la
-   escribió: si la frase está bien, no hay corrección y no va ese renglón.
-   Poner el sujeto (io, tu, lui) no es un error: en italiano se puede omitir,
-   pero decirlo también está bien. Nunca lo corrijas por eso.
-   No expliques la regla ni agregues comentarios sobre la corrección.
-4. No uses markdown, ni asteriscos, ni emojis, ni listas numeradas: el texto se
-   lee en voz alta.
-5. Cuando tengas que escribir en español, usá el de Latinoamérica: "ustedes",
-   nunca "vosotros".
-6. Seguí el tema con el que arrancó la charla y quedate un rato ahí, con
-   preguntas sobre eso. Cuando el tema se apaga o empieza a dar vueltas,
-   cambialo vos y preguntá por otra cosa: qué comió, qué hizo el fin de semana,
-   el trabajo, la música, un viaje, el clima, la familia, una película. No
-   vuelvas siempre a "come stai" ni repitas una pregunta que ya hiciste.
-''';
+// Las instrucciones de Tuky ya no están acá: viven en el servidor, en
+// servidor/src/prompt.js.
+//
+// Se mudaron porque tener dos copias es tener una vieja. La de acá quedó
+// congelada en nueve reglas mientras la otra cambiaba, y cuando el servidor
+// se publicó por primera vez le estaba pidiendo al modelo que tradujera
+// cosas que la app ya resuelve sola con el diccionario.
+//
+// Y ahora, además, ajustarlas no necesita publicar un APK: se cambia el
+// archivo del servidor y lo ven todos al instante.
 
 /// Quién dijo cada mensaje.
 enum Quien {
@@ -184,8 +163,13 @@ bool esSoloTraduccion(String mensaje) {
 
 /// Cómo empieza el renglón de la corrección. Se acepta con cualquier
 /// mayúscula y con espacios antes de los dos puntos.
+///
+/// Son dos marcas y no una porque el servidor pide "Volevi dire:" y la app
+/// todavía puede hablar con un modelo que diga "Correzione:". Aceptar las dos
+/// cuesta una palabra más en la expresión y evita que un celular que no se
+/// actualizó se quede sin la red de seguridad.
 final RegExp _empiezaCorreccion = RegExp(
-  r'^correzione\s*:',
+  r'^(correzione|volevi\s+dire)\s*:',
   caseSensitive: false,
 );
 
@@ -278,30 +262,20 @@ class Conversacion {
 
   void agregar(Mensaje mensaje) => mensajes.add(mensaje);
 
-  /// El pedido para la API: las instrucciones, el saludo que ya se vio en
-  /// pantalla, y todo lo que se dijeron después.
+  /// La charla en el formato que espera el servidor propio.
   ///
-  /// Las instrucciones van como primer turno del alumno en vez de por
-  /// systemInstruction: es el camino que el modelo lite seguro acepta, y ya
-  /// sabemos que un campo de más ahí devuelve 400.
-  List<Map<String, dynamic>> contenidos() {
+  /// El saludo va aparte —el servidor lo recibe por su cuenta—, así que acá
+  /// van los que vinieron después. Lo que no es para la IA no viaja: buscar
+  /// una palabra en el diccionario no es parte de la charla.
+  List<Map<String, String>> paraElServidor() {
     final dichos = mensajes.where((m) => m.paraLaIa).toList();
 
-    final turnos = [
-      turnoGemini('user', promptDeChat),
-      turnoGemini('model', saludo),
+    return [
+      for (var i = 1; i < dichos.length; i++)
+        if (dichos[i].quien == Quien.yo)
+          {'quien': 'yo', 'texto': textoParaLaIa(dichos[i].texto)}
+        else
+          {'quien': 'ia', 'texto': dichos[i].texto},
     ];
-
-    // Desde 1: el saludo ya está puesto arriba.
-    for (var i = 1; i < dichos.length; i++) {
-      final mensaje = dichos[i];
-      final mio = mensaje.quien == Quien.yo;
-      turnos.add(turnoGemini(
-        mio ? 'user' : 'model',
-        mio ? textoParaLaIa(mensaje.texto) : mensaje.texto,
-      ));
-    }
-
-    return turnos;
   }
 }

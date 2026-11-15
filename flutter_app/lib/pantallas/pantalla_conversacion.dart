@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
-import '../datos/almacenamiento_clave.dart';
+import '../datos/quien_soy.dart';
 import '../datos/repositorio_charlas.dart';
 import '../datos/repositorio_diccionario.dart';
 import '../datos/voz.dart';
-import '../ia/gemini.dart';
+import '../ia/servidor.dart';
 import '../widgets/pastilla.dart';
 import 'pantalla_chat.dart';
 import 'pantalla_charla.dart';
@@ -15,25 +15,25 @@ import 'pantalla_charla.dart';
 /// sin equivocarse nunca porque la frase correcta está escrita en el guion. No
 /// improvisa: se habla de lo que la escena trae.
 ///
-/// **Libre** es con la IA: se habla de cualquier cosa, pero necesita internet,
-/// necesita clave y de vez en cuando corrige mal.
+/// **Libre** es con la IA: se habla de cualquier cosa, pero necesita internet
+/// y de vez en cuando corrige mal. Clave ya no necesita: habla con el
+/// servidor propio, que es el que tiene el modelo del otro lado.
 ///
 /// Están juntas y no en dos secciones distintas porque son la misma cosa
-/// —practicar escribiendo— con dos techos distintos. Y porque antes, sin
-/// clave, esta sección no existía: se abría, pedía una clave y ahí terminaba.
+/// —practicar escribiendo— con dos techos distintos.
 class PantallaConversacion extends StatefulWidget {
   const PantallaConversacion({
     super.key,
-    this.almacenClave,
-    this.gemini,
+    this.servidor,
+    this.quienSoy,
     this.voz,
     this.charlas,
     this.diccionario,
     this.empezarEnLibre = false,
   });
 
-  final AlmacenamientoClave? almacenClave;
-  final Gemini? gemini;
+  final Servidor? servidor;
+  final QuienSoy? quienSoy;
   final Voz? voz;
   final RepositorioCharlas? charlas;
   final RepositorioDiccionario? diccionario;
@@ -76,8 +76,8 @@ class _PantallaConversacionState extends State<PantallaConversacion> {
           child: _libre
               ? PantallaChat(
                   key: const ValueKey('libre'),
-                  almacenClave: widget.almacenClave,
-                  gemini: widget.gemini,
+                  servidor: widget.servidor,
+                  quienSoy: widget.quienSoy,
                   voz: widget.voz,
                   diccionario: widget.diccionario,
                 )

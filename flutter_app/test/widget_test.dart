@@ -4,7 +4,6 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/constantes.dart';
-import 'package:tukyliano/datos/almacenamiento_clave.dart';
 import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/datos/repositorio_particelle.dart';
 import 'package:tukyliano/main.dart';
@@ -157,33 +156,24 @@ void main() {
     expect(find.text('Escribir'), findsOneWidget);
   });
 
-  testWidgets('Chat entra a la charla y pide la clave de la IA',
+  testWidgets('Chat abre en la charla guionada y no pide ninguna clave',
       (WidgetTester tester) async {
-    // Sin carpeta no hay clave guardada, que es lo que pasa la primera vez.
     await _abrir(
       tester,
-      app: TukylianoApp(
-        almacenClave: AlmacenamientoClave(carpeta: () async => null),
-        progreso: _progresoDePrueba(),
-      ),
+      app: TukylianoApp(progreso: _progresoDePrueba()),
     );
 
     await _entrarA(tester, Destino.chat);
 
-    // Abre en la charla guionada: esa anda sin clave y sin internet, así que
-    // la sección ya no es una puerta cerrada para quien no cargó ninguna.
+    // La charla del bar anda sin internet y sin clave.
     expect(find.text('Al bar'), findsOneWidget);
-    expect(
-      find.text('Necesitás una clave gratis de la IA (Gemini)'),
-      findsNothing,
-    );
 
-    // La clave se pide recién al pasar a la charla libre, que es la que la usa.
+    // Y la libre tampoco pide clave: habla con el servidor propio, que es el
+    // que tiene el modelo del otro lado. La pantalla que pedía pegar una
+    // clave de Google ya no existe.
     await tester.tap(find.text('Libre'));
     await tester.pumpAndSettle();
-    expect(
-      find.text('Necesitás una clave gratis de la IA (Gemini)'),
-      findsOneWidget,
-    );
+    expect(find.textContaining('clave'), findsNothing);
+    expect(find.byType(TextField), findsOneWidget);
   });
 }
