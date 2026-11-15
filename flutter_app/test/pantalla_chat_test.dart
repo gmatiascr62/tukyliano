@@ -218,6 +218,9 @@ void main() {
       final campo = tester.widget<TextField>(find.byType(TextField));
       expect(campo.autocorrect, isTrue);
       expect(campo.enableSuggestions, isTrue);
+      // Y en peso normal: estaba en semi-negrita y la letra engordaba al
+      // escribir la primera, porque el texto gris de ayuda va en normal.
+      expect(campo.style?.fontWeight, isNull);
       // Y no está el teclado propio de la app.
       expect(find.widgetWithText(ElevatedButton, 'è'), findsNothing);
     });
