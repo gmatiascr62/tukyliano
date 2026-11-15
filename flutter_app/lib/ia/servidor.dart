@@ -45,14 +45,17 @@ class Servidor {
   /// 25 para el modelo, así que acá hay que darle un poco más.
   static const _paciencia = Duration(seconds: 30);
 
-  /// Manda la charla y devuelve lo que contestó Tuky.
+  /// Manda la charla y devuelve lo que contestó.
   ///
-  /// [quien] es el número que la app se inventó la primera vez. [codigo] es
-  /// el de invitación, si alguna vez hay lista; vacío mientras no la haya.
+  /// [quien] es el número que la app se inventó la primera vez. [escena] dice
+  /// de qué charla se trata —la libre con Tuky, o el bar—, y con eso el
+  /// servidor elige las instrucciones del modelo. [codigo] es el de
+  /// invitación, si alguna vez hay lista; vacío mientras no la haya.
   Future<String> charlar({
     required String quien,
     required String saludo,
     required List<Map<String, String>> mensajes,
+    String escena = 'libre',
     String codigo = '',
   }) async {
     final http.Response respuesta;
@@ -64,6 +67,7 @@ class Servidor {
             body: jsonEncode({
               'quien': quien,
               'codigo': codigo,
+              'escena': escena,
               'saludo': saludo,
               'mensajes': mensajes,
             }),

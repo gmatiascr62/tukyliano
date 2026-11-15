@@ -16,8 +16,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:tukyliano/datos/progreso.dart';
-import 'package:tukyliano/pantallas/pantalla_charla.dart';
+import 'package:tukyliano/ia/chat.dart';
+import 'package:tukyliano/ia/servidor.dart';
+import 'package:tukyliano/pantallas/pantalla_chat.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 import 'package:tukyliano/tema.dart';
@@ -164,6 +168,24 @@ Widget comoEnLaApp(Widget pantalla) => Scaffold(
       ),
     );
 
+/// Un barista de mentira que contesta la escena entera, para la foto.
+Servidor _baristaDeMentira() {
+  const dice = [
+    'Volevi dire: Vorrei un caffè\n\nEcco a te.',
+    'Un euro e cinquanta.',
+    'Ecco il resto. Arrivederci!\nFINE',
+  ];
+  var cual = 0;
+  return Servidor(
+    url: 'https://de-mentira',
+    cliente: MockClient((_) async => http.Response(
+          jsonEncode({'texto': dice[cual++ % dice.length]}),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        )),
+  );
+}
+
 void main() {
   setUpAll(cargarFuentes);
 
@@ -184,26 +206,6 @@ void main() {
           comoEnLaApp(PantallaInicio(progreso: progreso, alElegir: (_) {})),
         );
 
-      case 'charla':
-        // Con la charla ya empezada y un error adentro, que es lo que hay que
-        // mirar: una pantalla recién abierta no muestra la corrección.
-        await dibujar(
-          tester,
-          cual,
-          comoEnLaApp(PantallaCharla(voz: VozFalsa())),
-          despuesDeAbrir: (t) async {
-            Future<void> contestar(String texto) async {
-              await t.enterText(find.byType(TextField), texto);
-              await t.pumpAndSettle();
-              await t.tap(find.byIcon(Icons.send_rounded));
-              await t.pumpAndSettle();
-            }
-
-            await contestar('Un caffè, per favore');
-            await contestar('io volere normale');
-          },
-        );
-
       case 'radio':
         await dibujar(
           tester,
@@ -219,6 +221,32 @@ void main() {
           despuesDeAbrir: (t) async {
             await t.tap(find.byIcon(Icons.play_arrow));
             await t.pumpAndSettle();
+          },
+        );
+
+      case 'bar':
+        // Con la escena ya empezada, una corrección adentro y el barista
+        // cerrando: es lo que hay que mirar. Recién abierta solo se ve el
+        // saludo.
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaChat(
+            escena: Escena.bar,
+            voz: VozFalsa(),
+            servidor: _baristaDeMentira(),
+          )),
+          despuesDeAbrir: (t) async {
+            for (final mio in const [
+              'io volere un caffè',
+              'quanto costa?',
+              'ecco cinque euro',
+            ]) {
+              await t.enterText(find.byType(TextField), mio);
+              await t.pumpAndSettle();
+              await t.tap(find.byIcon(Icons.send_rounded));
+              await t.pumpAndSettle();
+            }
           },
         );
 

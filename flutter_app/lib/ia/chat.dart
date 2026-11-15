@@ -3,6 +3,40 @@ import 'dart:math';
 import '../logica/diccionario_buscar.dart';
 
 
+/// De qué charla se trata.
+///
+/// Las dos las contesta el mismo modelo; lo que cambia es el prompt, y el
+/// prompt vive en el servidor. La app solo dice en cuál está: así agregar la
+/// farmacia o la estación es agregar un prompt allá, sin publicar un APK.
+///
+/// Antes, el bar era una charla guionada que vivía en la app: un árbol de
+/// respuestas escritas. Andaba sin internet y nunca corregía mal, porque la
+/// frase correcta estaba escrita al lado. Pero era siempre la misma, y se
+/// terminaba la segunda vez que la hacías.
+enum Escena {
+  libre,
+  bar;
+
+  /// Cómo la nombra el servidor.
+  String get paraElServidor => name;
+
+  /// Quién contesta, para el cartel de "está escribiendo".
+  String get quienContesta => switch (this) {
+        Escena.libre => 'Tuky',
+        Escena.bar => 'El barista',
+      };
+
+  /// Con qué puede arrancar.
+  List<String> get saludos => switch (this) {
+        Escena.libre => saludosIniciales,
+        Escena.bar => saludosDelBar,
+      };
+
+  /// Si esta escena puede darse por terminada. La libre no termina nunca: es
+  /// una charla, no una escena.
+  bool get termina => this == Escena.bar;
+}
+
 /// Con qué puede arrancar la charla, uno por tema.
 ///
 /// No los escribe la IA: los escribimos nosotros para que la charla empiece sin
@@ -41,14 +75,61 @@ const List<String> saludosIniciales = [
   'Ciao! Sono Tuky. Che cosa fai nel tempo libero?',
 ];
 
-/// Uno de los saludos, al azar.
+/// Con qué abre el barista.
+///
+/// Son todas preguntas: el saludo tiene que dejar al alumno con algo para
+/// contestar. Un "Buongiorno!" a secas lo deja mirando la pantalla, y de ahí
+/// sale un "buongiorno" de vuelta que no es practicar nada.
+const List<String> saludosDelBar = [
+  'Buongiorno! Cosa ti porto?',
+  'Buongiorno! Cosa prendi?',
+  'Buongiorno! Cosa ti preparo?',
+  'Buongiorno! Dimmi pure, cosa prendi?',
+  'Ciao! Che cosa prendi oggi?',
+  'Ciao! Cosa ti faccio?',
+  'Buonasera! Cosa ti porto?',
+  'Buongiorno! Prendi un caffè?',
+  'Ciao! Qualcosa da bere?',
+  'Buongiorno! Hai già scelto?',
+];
+
+/// Uno de los saludos de esa escena, al azar.
 ///
 /// [distintoDe] es el de la charla que se está dejando: sortear el mismo dos
 /// veces seguidas es justo lo que se quiere evitar.
-String saludoAlAzar({String? distintoDe, Random? azar}) {
-  final posibles = saludosIniciales.where((s) => s != distintoDe).toList();
+String saludoAlAzar({
+  Escena escena = Escena.libre,
+  String? distintoDe,
+  Random? azar,
+}) {
+  final posibles = escena.saludos.where((s) => s != distintoDe).toList();
   return posibles[(azar ?? Random()).nextInt(posibles.length)];
 }
+
+/// La palabra con la que el barista cierra la escena.
+///
+/// La pide el prompt del servidor. Va en mayúsculas porque "fine" suelta es
+/// una palabra italiana común —el final de algo—, y no se puede confundir una
+/// cosa con la otra.
+const String marcaDelFinal = 'FINE';
+
+/// La marca, al final del mensaje.
+///
+/// Se acepta en un renglón aparte, que es como la pide el prompt, y también
+/// pegada al final de una frase: el modelo devolvió "Arrivederci. FINE" y
+/// pelearle a un modelo por dónde pone una palabra se pierde siempre. Lo que
+/// sigue —un punto, un signo— se come con ella.
+/// Sin `r''`: una cadena cruda en Dart no interpola, y la marca quedaba
+/// buscándose a sí misma escrita con el signo de pesos adelante.
+final RegExp _marcaAlFinal = RegExp('(^|\\s)$marcaDelFinal[\\s.!]*\$');
+
+/// True cuando el barista dio la escena por terminada.
+bool cierraLaEscena(String respuesta) =>
+    _marcaAlFinal.hasMatch(respuesta.trimRight());
+
+/// La respuesta sin la marca: lo que se muestra en pantalla.
+String sinLaMarcaDelFinal(String respuesta) =>
+    respuesta.trimRight().replaceFirst(_marcaAlFinal, '').trimRight();
 
 /// La almohadilla que marca un pedido de traducción: #manteca#.
 const String marcaTraduccion = '#';
@@ -164,12 +245,17 @@ bool esSoloTraduccion(String mensaje) {
 /// Cómo empieza el renglón de la corrección. Se acepta con cualquier
 /// mayúscula y con espacios antes de los dos puntos.
 ///
-/// Son dos marcas y no una porque el servidor pide "Volevi dire:" y la app
-/// todavía puede hablar con un modelo que diga "Correzione:". Aceptar las dos
-/// cuesta una palabra más en la expresión y evita que un celular que no se
-/// actualizó se quede sin la red de seguridad.
+/// Son tres marcas y no una. "Volevi dire:" es la que pide el servidor;
+/// "Correzione:" es la que pedía antes, y aceptarla evita que un celular que
+/// no se actualizó se quede sin la red de seguridad.
+///
+/// La tercera, "volevi decir", es un error del modelo y está acá a
+/// propósito: como las instrucciones del servidor están escritas en
+/// castellano, se le contagian, y más de una vez devolvió media marca en
+/// italiano y media en castellano. Si no se la reconoce, la corrección que
+/// repite la frase tal cual se escribió deja de filtrarse y se muestra.
 final RegExp _empiezaCorreccion = RegExp(
-  r'^(correzione|volevi\s+dire)\s*:',
+  r'^(correzione|volevi\s+(dire|decir))\s*:',
   caseSensitive: false,
 );
 
@@ -248,10 +334,13 @@ String noEstaEnElDiccionario(String pedido) =>
 /// pantalla se destruye y esta lista se va con ella, así que al volver la IA
 /// no se acuerda de nada. Es a propósito: la memoria es solo de esta charla.
 class Conversacion {
-  Conversacion({String? saludo, Random? azar})
-      : saludo = saludo ?? saludoAlAzar(azar: azar) {
+  Conversacion({this.escena = Escena.libre, String? saludo, Random? azar})
+      : saludo = saludo ?? saludoAlAzar(escena: escena, azar: azar) {
     mensajes.add(Mensaje.deLaIa(this.saludo));
   }
+
+  /// De qué charla se trata. Viaja al servidor, que con eso elige el prompt.
+  final Escena escena;
 
   /// Con cuál de los saludos arrancó esta charla. Se guarda porque es el primer
   /// turno que se le manda a la IA: si no coincidiera con el que se ve en

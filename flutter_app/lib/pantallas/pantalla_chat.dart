@@ -16,6 +16,12 @@ import '../widgets/selector_de_voz.dart';
 
 /// Charla en italiano con la IA.
 ///
+/// Sirve para las dos escenas: la charla libre con Tuky y el bar. Lo único
+/// que cambia entre una y otra es con qué saludo arranca, qué se le manda al
+/// servidor —que con eso elige el prompt— y que el bar puede terminar. Todo
+/// lo demás —el diccionario, el solo escuchar, las voces— es igual, y por eso
+/// es una sola pantalla y no dos.
+///
 /// Tres cosas la separan de las otras secciones:
 ///
 /// - Se escribe con el teclado propio, igual que en el resto de la app: así
@@ -35,12 +41,16 @@ import '../widgets/selector_de_voz.dart';
 class PantallaChat extends StatefulWidget {
   const PantallaChat({
     super.key,
+    this.escena = Escena.libre,
     this.servidor,
     this.quienSoy,
     this.voz,
     this.diccionario,
     this.azar,
   });
+
+  /// De qué charla se trata.
+  final Escena escena;
 
   /// Inyectables para los tests.
   final Servidor? servidor;
@@ -60,7 +70,8 @@ class _PantallaChatState extends State<PantallaChat> {
   late final QuienSoy _quienSoy = widget.quienSoy ?? QuienSoy();
   late final Voz _voz = widget.voz ?? VozDelSistema();
 
-  late Conversacion _conversacion = Conversacion(azar: widget.azar);
+  late Conversacion _conversacion =
+      Conversacion(escena: widget.escena, azar: widget.azar);
   final _scroll = ScrollController();
 
   /// El chat escribe con el teclado de Android y no con el propio de la app:
@@ -82,6 +93,12 @@ class _PantallaChatState extends State<PantallaChat> {
   String _quien = '';
 
   bool _esperando = false;
+
+  /// True cuando el barista cerró la escena. Ahí no se escribe más: lo que
+  /// sigue es empezar otra. Dejar el campo abierto sería dejar seguir una
+  /// escena que ya terminó, y el modelo, preguntado después del final,
+  /// contesta cualquier cosa —en una prueba contestó en castellano—.
+  bool _terminada = false;
 
   bool _puedeHablar = false;
   bool _soloEscuchar = false;
@@ -174,12 +191,17 @@ class _PantallaChatState extends State<PantallaChat> {
     try {
       final contestado = await _servidor.charlar(
         quien: _quien,
+        escena: widget.escena.paraElServidor,
         saludo: _conversacion.saludo,
         mensajes: _conversacion.paraElServidor(),
       );
       if (!mounted) return;
+      // El barista cierra con una marca. Se la saca antes de mostrar nada:
+      // no es algo que él diga, es una señal para la app.
+      final cerro = widget.escena.termina && cierraLaEscena(contestado);
+      final dicho = cerro ? sinLaMarcaDelFinal(contestado) : contestado;
       // No se muestra una corrección que repite lo que escribió.
-      final deLaIa = sinCorreccionRepetida(contestado, texto);
+      final deLaIa = sinCorreccionRepetida(dicho, texto);
       // Las traducciones van arriba, como antes, pero salen del diccionario.
       final respuesta =
           traducido.isEmpty ? deLaIa : '$traducido\n$deLaIa';
@@ -187,6 +209,7 @@ class _PantallaChatState extends State<PantallaChat> {
         if (_soloEscuchar) _tapados.add(_conversacion.mensajes.length);
         _conversacion.agregar(Mensaje.deLaIa(respuesta));
         _esperando = false;
+        _terminada = cerro;
       });
       _irAlFinal();
       // Tapada hay que decirla sola: es la única forma de saber qué contestó.
@@ -264,10 +287,16 @@ class _PantallaChatState extends State<PantallaChat> {
     _voz.callar();
     setState(() {
       _conversacion = Conversacion(
-        saludo: saludoAlAzar(distintoDe: _conversacion.saludo, azar: widget.azar),
+        escena: widget.escena,
+        saludo: saludoAlAzar(
+          escena: widget.escena,
+          distintoDe: _conversacion.saludo,
+          azar: widget.azar,
+        ),
       );
       _tapados.clear();
       _campo.clear();
+      _terminada = false;
     });
     _irAlFinal();
   }
@@ -288,7 +317,9 @@ class _PantallaChatState extends State<PantallaChat> {
             padding: const EdgeInsets.symmetric(vertical: 6),
             itemCount: mensajes.length + (_esperando ? 1 : 0),
             itemBuilder: (_, i) {
-              if (i == mensajes.length) return const _Escribiendo();
+              if (i == mensajes.length) {
+                return _Escribiendo(quien: widget.escena.quienContesta);
+              }
               return _Burbuja(
                 mensaje: mensajes[i],
                 tapada: _tapados.contains(i),
@@ -301,26 +332,29 @@ class _PantallaChatState extends State<PantallaChat> {
           ),
         ),
         const SizedBox(height: 6),
-        Row(
-          // Abajo: cuando el campo crece de renglones, el botón se queda
-          // pegado al último, como en cualquier chat.
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Expanded(child: _campoDeTexto()),
-            const SizedBox(width: 8),
-            SizedBox(
-              width: 62,
-              height: 62,
-              child: ElevatedButton(
-                onPressed: _puedeEnviar ? _enviar : null,
-                style: Tema.botonPrincipal.copyWith(
-                  padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+        if (_terminada)
+          _EscenaTerminada(alEmpezarOtra: _otroTema)
+        else
+          Row(
+            // Abajo: cuando el campo crece de renglones, el botón se queda
+            // pegado al último, como en cualquier chat.
+            crossAxisAlignment: CrossAxisAlignment.end,
+            children: [
+              Expanded(child: _campoDeTexto()),
+              const SizedBox(width: 8),
+              SizedBox(
+                width: 62,
+                height: 62,
+                child: ElevatedButton(
+                  onPressed: _puedeEnviar ? _enviar : null,
+                  style: Tema.botonPrincipal.copyWith(
+                    padding: const WidgetStatePropertyAll(EdgeInsets.zero),
+                  ),
+                  child: const Icon(Icons.send_rounded, size: 24),
                 ),
-                child: const Icon(Icons.send_rounded, size: 24),
               ),
-            ),
-          ],
-        ),
+            ],
+          ),
         const SizedBox(height: 8),
       ],
     );
@@ -361,10 +395,12 @@ class _PantallaChatState extends State<PantallaChat> {
           color: Tema.texto,
         ),
         cursorColor: Tema.verde,
-        decoration: const InputDecoration(
+        decoration: InputDecoration(
           border: InputBorder.none,
-          hintText: 'Escribí en italiano...',
-          hintStyle: TextStyle(
+          hintText: widget.escena == Escena.bar
+              ? 'Contestale al barista...'
+              : 'Escribí en italiano...',
+          hintStyle: const TextStyle(
             fontSize: 17,
             fontWeight: FontWeight.w400,
             color: Tema.textoTenue,
@@ -390,7 +426,7 @@ class _PantallaChatState extends State<PantallaChat> {
               // Va primero y sin depender de la voz: es lo que cambia de qué
               // se está hablando, y se usa más que las otras.
               Pastilla(
-                texto: 'Otro tema',
+                texto: widget.escena.termina ? 'Otra escena' : 'Otro tema',
                 icono: Icons.autorenew,
                 // Mientras la IA piensa no: la respuesta llegaría a una charla
                 // que ya no existe.
@@ -437,6 +473,14 @@ class _PantallaChatState extends State<PantallaChat> {
   }
 
   String _ayuda() {
+    if (widget.escena == Escena.bar) {
+      // En el bar lo que hay que explicar es la escena, no los botones: sin
+      // esto uno no sabe que tiene que pedir, ni que en algún momento
+      // termina.
+      return 'Estás en un bar en Italia. Pedí algo, preguntá cuánto es, pagá '
+          'y saludá. Si escribís algo raro, te lo dice bien antes de '
+          'contestarte.';
+    }
     if (!_puedeHablar) {
       return 'Poné una palabra entre almohadillas y te la traduce: #manteca#. '
           'Para escuchar la charla, instalá la voz italiana en Ajustes → '
@@ -451,20 +495,75 @@ class _PantallaChatState extends State<PantallaChat> {
   }
 }
 
-/// El cartel de que la IA está pensando. Ocupa el lugar de la respuesta que
-/// falta, así se ve que el mensaje salió.
-class _Escribiendo extends StatelessWidget {
-  const _Escribiendo();
+/// Lo que reemplaza al campo de texto cuando la escena terminó.
+///
+/// El campo desaparece a propósito. Dejarlo abierto sería dejar seguir una
+/// escena que ya cerró, y preguntado después del final el modelo contesta
+/// cualquier cosa: en una prueba contestó en castellano "no me hables más, ya
+/// terminó la escena".
+class _EscenaTerminada extends StatelessWidget {
+  const _EscenaTerminada({required this.alEmpezarOtra});
+
+  final VoidCallback alEmpezarOtra;
 
   @override
   Widget build(BuildContext context) {
-    return const Align(
+    return Container(
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+      decoration: BoxDecoration(
+        color: Tema.verdeSuave,
+        borderRadius: BorderRadius.circular(Tema.radio),
+      ),
+      child: Row(
+        children: [
+          const Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  'Terminaste la escena',
+                  style: TextStyle(
+                    fontSize: 15,
+                    fontWeight: FontWeight.w700,
+                    color: Tema.titulo,
+                  ),
+                ),
+                SizedBox(height: 2),
+                Text(
+                  'Pagaste y te saludaron. La próxima sale distinta.',
+                  style: TextStyle(fontSize: 12.5, color: Tema.textoTenue),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(width: 10),
+          FilledButton.icon(
+            onPressed: alEmpezarOtra,
+            icon: const Icon(Icons.autorenew, size: 18),
+            label: const Text('Otra'),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// El cartel de que la IA está pensando. Ocupa el lugar de la respuesta que
+/// falta, así se ve que el mensaje salió.
+class _Escribiendo extends StatelessWidget {
+  const _Escribiendo({required this.quien});
+
+  final String quien;
+
+  @override
+  Widget build(BuildContext context) {
+    return Align(
       alignment: Alignment.centerLeft,
       child: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 4, vertical: 5),
+        padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 5),
         child: Text(
-          'Tuky está escribiendo...',
-          style: TextStyle(
+          '$quien está escribiendo...',
+          style: const TextStyle(
             fontSize: 13.5,
             color: Tema.textoTenue,
             fontStyle: FontStyle.italic,

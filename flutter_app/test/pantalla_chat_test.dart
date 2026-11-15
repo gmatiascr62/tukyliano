@@ -100,6 +100,7 @@ Future<_Espia> _abrir(
   VozFalsa? voz,
   Directory? carpeta,
   Duration demora = Duration.zero,
+  Escena escena = Escena.libre,
 }) async {
   final dir = carpeta ?? _carpeta();
   final espia = _Espia();
@@ -110,6 +111,7 @@ Future<_Espia> _abrir(
       body: Padding(
         padding: const EdgeInsets.all(14),
         child: PantallaChat(
+          escena: escena,
           servidor: _servidor(
             espia,
             respuesta: respuesta,
@@ -176,11 +178,11 @@ void main() {
       await _escribir(tester, 'ciao');
       await _enviar(tester);
 
-      // El pedido lleva quién, el código de invitación, el saludo y la
-      // charla. Nada más: el modelo lo corre el servidor.
+      // El pedido lleva quién, el código de invitación, en qué escena está,
+      // el saludo y la charla. Nada más: el modelo lo corre el servidor.
       expect(
         espia.pedidos.last.keys.toSet(),
-        {'quien', 'codigo', 'saludo', 'mensajes'},
+        {'quien', 'codigo', 'escena', 'saludo', 'mensajes'},
       );
     });
   });
@@ -574,6 +576,120 @@ void main() {
       expect(pastilla.alTocar, isNull);
 
       await tester.pumpAndSettle(const Duration(seconds: 2));
+    });
+  });
+
+  group('el bar', () {
+    testWidgets('arranca con el barista preguntando qué tomás',
+        (tester) async {
+      await _abrir(tester, escena: Escena.bar);
+
+      expect(find.text(saludoAlAzar(escena: Escena.bar, azar: Random(_semilla))),
+          findsOne);
+      // El saludo del bar es otro, no uno de los de Tuky.
+      expect(find.text(_saludoFijo), findsNothing);
+    });
+
+    testWidgets('le dice al servidor en qué escena está', (tester) async {
+      final espia = await _abrir(tester, escena: Escena.bar);
+
+      await _escribir(tester, 'un caffè');
+      await _enviar(tester);
+
+      // Es lo único que hace que el servidor le hable al modelo como
+      // barista: el prompt lo elige él, no la app.
+      expect(espia.pedidos.last['escena'], 'bar');
+    });
+
+    testWidgets('la charla libre sigue siendo la libre', (tester) async {
+      final espia = await _abrir(tester);
+
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+
+      expect(espia.pedidos.last['escena'], 'libre');
+    });
+
+    testWidgets('cuando el barista cierra, la escena termina', (tester) async {
+      await _abrir(
+        tester,
+        escena: Escena.bar,
+        respuesta: 'Ecco il resto. Arrivederci!\nFINE',
+      );
+
+      await _escribir(tester, 'ecco cinque euro');
+      await _enviar(tester);
+
+      expect(find.text('Terminaste la escena'), findsOne);
+      // No se escribe más: una escena cerrada no sigue.
+      expect(find.byType(TextField), findsNothing);
+    });
+
+    testWidgets('la marca del final no se muestra', (tester) async {
+      await _abrir(
+        tester,
+        escena: Escena.bar,
+        respuesta: 'Ecco il resto. Arrivederci!\nFINE',
+      );
+
+      await _escribir(tester, 'ecco cinque euro');
+      await _enviar(tester);
+
+      // FINE es una señal para la app, no algo que el barista diga.
+      expect(find.textContaining('FINE'), findsNothing);
+      expect(find.textContaining('Arrivederci!'), findsOne);
+    });
+
+    testWidgets('la marca pegada al final de la frase también cierra',
+        (tester) async {
+      // El modelo devolvió "Arrivederci. FINE" en vez de ponerla en un
+      // renglón aparte, que es como la pide el prompt. Pelearle por dónde
+      // pone una palabra se pierde.
+      await _abrir(
+        tester,
+        escena: Escena.bar,
+        respuesta: 'Ecco il resto. Arrivederci. FINE',
+      );
+
+      await _escribir(tester, 'ecco cinque euro');
+      await _enviar(tester);
+
+      expect(find.text('Terminaste la escena'), findsOne);
+      expect(find.textContaining('Arrivederci.'), findsOne);
+    });
+
+    testWidgets('empezar otra devuelve el campo y cambia el saludo',
+        (tester) async {
+      await _abrir(
+        tester,
+        escena: Escena.bar,
+        respuesta: 'Arrivederci!\nFINE',
+      );
+      final primerSaludo =
+          saludoAlAzar(escena: Escena.bar, azar: Random(_semilla));
+
+      await _escribir(tester, 'ecco');
+      await _enviar(tester);
+      await tester.tap(find.text('Otra'));
+      await tester.pumpAndSettle();
+
+      expect(find.text('Terminaste la escena'), findsNothing);
+      expect(find.byType(TextField), findsOne);
+      // El saludo nunca es el mismo dos veces seguidas.
+      expect(find.text(primerSaludo), findsNothing);
+    });
+
+    testWidgets('en la libre no termina nunca, aunque diga FINE',
+        (tester) async {
+      // "fine" es una palabra italiana común. En la charla libre no es una
+      // señal de nada, y el campo tiene que seguir estando.
+      await _abrir(tester, respuesta: 'Che bello! FINE');
+
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+
+      expect(find.text('Terminaste la escena'), findsNothing);
+      expect(find.byType(TextField), findsOne);
     });
   });
 }
