@@ -7,8 +7,8 @@ import '../widgets/texto_ajustado.dart';
 import 'acerca_de.dart';
 
 /// A dónde se puede ir desde el inicio: los cuatro botones en diagonal,
-/// más el podcast, que va en una barra aparte debajo.
-enum Destino { racconti, hablar, gramatica, chat, podcast }
+/// más el podcast y la radio, que van en barras aparte debajo.
+enum Destino { racconti, hablar, gramatica, chat, podcast, radio }
 
 extension EtiquetaDestino on Destino {
   String get etiqueta => switch (this) {
@@ -17,6 +17,7 @@ extension EtiquetaDestino on Destino {
         Destino.gramatica => 'Gramática',
         Destino.chat => 'Chat',
         Destino.podcast => 'Podcast',
+        Destino.radio => 'Radio',
       };
 
   IconData get icono => switch (this) {
@@ -25,6 +26,7 @@ extension EtiquetaDestino on Destino {
         Destino.gramatica => Icons.school,
         Destino.chat => Icons.chat_bubble_outline,
         Destino.podcast => Icons.headphones,
+        Destino.radio => Icons.radio,
       };
 }
 
@@ -100,6 +102,8 @@ class PantallaInicio extends StatelessWidget {
         Expanded(child: _Diagonales(nivel: nivel, alElegir: alElegir)),
         const SizedBox(height: 14),
         _BarraDePodcast(alTocar: () => alElegir(Destino.podcast)),
+        const SizedBox(height: 9),
+        _BarraDeRadio(alTocar: () => alElegir(Destino.radio)),
       ],
     );
   }
@@ -486,6 +490,67 @@ class _BarraDePodcast extends StatelessWidget {
                   ),
                 ),
                 Icon(Icons.chevron_right, size: 22, color: Colors.white),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// La radio va debajo del podcast, y de blanco a propósito.
+///
+/// Dos barras verdes iguales pelean entre ellas y la pantalla se vuelve una
+/// lista. Esta es la de escuchar cuando ya no querés practicar nada: va más
+/// callada, y el orden dice cuál se usa más seguido.
+class _BarraDeRadio extends StatelessWidget {
+  const _BarraDeRadio({required this.alTocar});
+
+  final VoidCallback alTocar;
+
+  @override
+  Widget build(BuildContext context) {
+    // La sombra va en el Ink y no adentro del InkWell: dibujada adentro se
+    // pinta encima del blanco de la tarjeta y la deja gris sucia. Se vio.
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(_radio),
+      child: Ink(
+        decoration: BoxDecoration(
+          color: Tema.superficie,
+          borderRadius: BorderRadius.circular(_radio),
+          boxShadow: _sombra,
+        ),
+        child: InkWell(
+          onTap: alTocar,
+          borderRadius: BorderRadius.circular(_radio),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 13),
+            child: Row(
+              children: [
+                Icon(Icons.radio, size: 22, color: Tema.verde),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'Radio',
+                        style: TextStyle(
+                          fontSize: 15.5,
+                          fontWeight: FontWeight.w700,
+                          color: Tema.titulo,
+                        ),
+                      ),
+                      Text(
+                        'Italiano en vivo, a velocidad real',
+                        style: TextStyle(fontSize: 12, color: Tema.textoTenue),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.chevron_right, size: 20, color: Tema.textoTenue),
               ],
             ),
           ),

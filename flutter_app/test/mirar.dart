@@ -19,8 +19,10 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/pantallas/pantalla_charla.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
+import 'package:tukyliano/pantallas/pantalla_radio.dart';
 import 'package:tukyliano/tema.dart';
 
+import 'reproductor_falso.dart';
 import 'voz_falsa.dart';
 
 /// Sin esto el texto sale como cajas negras y los íconos no aparecen: el
@@ -199,6 +201,24 @@ void main() {
 
             await contestar('Un caffè, per favore');
             await contestar('io volere normale');
+          },
+        );
+
+      case 'radio':
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaRadio(reproductor: ReproductorFalso())),
+        );
+
+      case 'radio-sonando':
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaRadio(reproductor: ReproductorFalso())),
+          despuesDeAbrir: (t) async {
+            await t.tap(find.byIcon(Icons.play_arrow));
+            await t.pumpAndSettle();
           },
         );
 
