@@ -219,7 +219,13 @@ class _Cartel extends StatelessWidget {
   }
 }
 
-/// De qué van, y el botón de bajarlas todas.
+/// El botón de bajarlas todas, y nada más.
+///
+/// Antes acá había también un párrafo explicando de qué iban las fábulas y
+/// cómo funcionaba la descarga. Se sacó: ocupaba media pantalla, se lee una
+/// vez y después estorba todos los días. Lo que hacía falta explicar ya lo
+/// dice la lista sola —cada una muestra su duración y, si no está bajada, su
+/// peso—.
 class _DeQueVa extends StatelessWidget {
   const _DeQueVa({
     required this.cuantas,
@@ -235,50 +241,26 @@ class _DeQueVa extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    if (faltan.isEmpty) return const SizedBox.shrink();
+
     final pesan = faltan.fold<int>(0, (suma, f) => suma + f.bytes);
     final enMegas = (pesan / 1048576).toStringAsFixed(1);
 
-    return Container(
-      margin: const EdgeInsets.symmetric(horizontal: 16),
-      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
-      decoration: BoxDecoration(
-        color: Tema.verdeSuave,
-        borderRadius: BorderRadius.circular(Tema.radio),
-      ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            '$cuantas fábulas de uno a tres minutos',
-            style: const TextStyle(
-              fontSize: 14.5,
-              fontWeight: FontWeight.w700,
-              color: Tema.titulo,
-            ),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 4, 20, 2),
+      child: Align(
+        alignment: Alignment.centerLeft,
+        child: FilledButton.icon(
+          onPressed: alBajarTodas,
+          icon: Icon(bajando ? Icons.downloading : Icons.download),
+          label: Text(
+            bajando
+                ? 'Bajando…'
+                : faltan.length == cuantas
+                    ? 'Bajar todas ($enMegas MB)'
+                    : 'Bajar las que faltan ($enMegas MB)',
           ),
-          const SizedBox(height: 4),
-          const Text(
-            'Son historias que ya conocés, y eso es lo que las hace servir: '
-            'entendés por contexto lo que todavía no entendés por idioma. '
-            'Cada una se baja la primera vez que la tocás y después queda en '
-            'el celular.',
-            style: TextStyle(fontSize: 13, height: 1.35, color: Tema.texto),
-          ),
-          if (faltan.isNotEmpty) ...[
-            const SizedBox(height: 12),
-            FilledButton.icon(
-              onPressed: alBajarTodas,
-              icon: Icon(bajando ? Icons.downloading : Icons.download),
-              label: Text(
-                bajando
-                    ? 'Bajando…'
-                    : faltan.length == cuantas
-                        ? 'Bajar todas ($enMegas MB)'
-                        : 'Bajar las que faltan ($enMegas MB)',
-              ),
-            ),
-          ],
-        ],
+        ),
       ),
     );
   }
