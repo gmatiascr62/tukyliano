@@ -152,4 +152,76 @@ void main() {
       );
     }
   });
+
+  group('en cualquier celular', () {
+    /// Los tamaños que importan, en puntos: el Poco F7 de Matías, el celular
+    /// donde se vio el problema, uno todavía más bajo y uno grande.
+    const celulares = [
+      ('Poco F7', Size(395, 855)),
+      ('uno de 360 x 720', Size(360, 720)),
+      ('uno bajito de 360 x 640', Size(360, 640)),
+      ('uno grande de 412 x 915', Size(412, 915)),
+    ];
+
+    for (final (nombre, tamano) in celulares) {
+      testWidgets('los botones no se salen de su lugar en $nombre',
+          (tester) async {
+        tester.view.physicalSize = tamano;
+        tester.view.devicePixelRatio = 1.0;
+        addTearDown(tester.view.resetPhysicalSize);
+        addTearDown(tester.view.resetDevicePixelRatio);
+
+        await tester.pumpWidget(MaterialApp(
+          theme: Tema.datos,
+          home: Scaffold(
+            body: SafeArea(
+              child: Padding(
+                padding: const EdgeInsets.all(14),
+                child: PantallaInicio(
+                  progreso: await _conAciertos(18),
+                  alElegir: (_) {},
+                ),
+              ),
+            ),
+          ),
+        ));
+        await tester.pumpAndSettle();
+
+        // Lo que pasaba en el celular de 360 x 720: la composición se dibujaba
+        // siempre al mismo tamaño sin mirar el alto que le quedaba, y como el
+        // Stack va con Clip.none, los de arriba se montaban sobre la tarjeta
+        // de la semana y los de abajo sobre la barra del podcast.
+        final caja = tester.getRect(find.byKey(const ValueKey('los-botones')));
+
+        for (final destino in const [
+          Destino.racconti,
+          Destino.hablar,
+          Destino.gramatica,
+          Destino.chat,
+        ]) {
+          final boton = tester.getRect(find.byKey(ValueKey(destino)));
+          expect(
+            boton.top,
+            greaterThanOrEqualTo(caja.top - 0.5),
+            reason: '$destino se sale por arriba en $nombre',
+          );
+          expect(
+            boton.bottom,
+            lessThanOrEqualTo(caja.bottom + 0.5),
+            reason: '$destino se sale por abajo en $nombre',
+          );
+          expect(
+            boton.left,
+            greaterThanOrEqualTo(caja.left - 0.5),
+            reason: '$destino se sale por la izquierda en $nombre',
+          );
+          expect(
+            boton.right,
+            lessThanOrEqualTo(caja.right + 0.5),
+            reason: '$destino se sale por la derecha en $nombre',
+          );
+        }
+      });
+    }
+  });
 }

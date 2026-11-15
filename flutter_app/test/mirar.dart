@@ -84,14 +84,21 @@ Future<void> dibujar(
   WidgetTester tester,
   String nombre,
   Widget pantalla, {
+  /// Para mirar la misma pantalla en un celular más chico o más bajo. Sale
+  /// de las variables ANCHO y ALTO.
+  double? ancho,
+  double? alto,
   /// Para sacar la foto con la pantalla ya usada —una charla empezada, por
   /// ejemplo— en vez de recién abierta.
   Future<void> Function(WidgetTester)? despuesDeAbrir,
 }) async {
   final clave = GlobalKey();
 
+  final w = ancho ?? double.parse(Platform.environment['ANCHO'] ?? '$_ancho');
+  final h = alto ?? double.parse(Platform.environment['ALTO'] ?? '$_alto');
+
   tester.view
-    ..physicalSize = const Size(_ancho * _escala, _alto * _escala)
+    ..physicalSize = Size(w * _escala, h * _escala)
     ..devicePixelRatio = _escala
     ..padding = const FakeViewPadding(top: 102, bottom: 60);
 
