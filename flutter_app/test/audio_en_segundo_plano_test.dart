@@ -82,6 +82,25 @@ void main() {
       );
     });
 
+    test('alguien le sostiene el Wi-Fi a la radio', () {
+      // El servicio de audio mantiene la CPU despierta pero NO la antena:
+      // con la pantalla apagada el Wi-Fi entra en ahorro y un stream en vivo
+      // se queda sin datos. Un archivo del celular no, y por eso el podcast
+      // seguía sonando con la pantalla bloqueada y la radio no.
+      expect(actividad, contains('WIFI_MODE_FULL_HIGH_PERF'));
+      final reproductor =
+          File('lib/datos/reproductor.dart').readAsStringSync();
+      expect(reproductor, contains('agarrarElWifi'));
+      expect(reproductor, contains('soltarElWifi'));
+    });
+
+    test('se puede saber si el permiso de notificar está dado', () {
+      // Android deja de preguntar después de dos negativas, así que si no se
+      // puede mirar, el permiso queda apagado para siempre sin que nadie sepa
+      // por qué el audio se corta.
+      expect(actividad, contains('puedeNotificar'));
+    });
+
     test('alguien le cuenta a Android qué está sonando', () {
       // Esto es lo que hace aparecer la notificación, y la notificación es lo
       // que deja seguir sonando en segundo plano. Sin esta cuenta no hay nada

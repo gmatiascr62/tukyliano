@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:just_audio/just_audio.dart';
 
+import 'android.dart';
 import 'audio_de_fondo.dart';
 
 /// Reproduce el audio grabado de un episodio.
@@ -95,6 +96,10 @@ class ReproductorDeVerdad implements Reproductor {
 
   String? _falla;
 
+  /// True cuando lo cargado es una radio en vivo y no un archivo del celular.
+  /// Solo la radio necesita que alguien le sostenga el Wi-Fi.
+  bool _esRadio = false;
+
   /// just_audio no reproduce el asset directamente: lo copia a un archivo de
   /// cache y toca esa copia. Y la identifica SOLO por el nombre, con un
   /// `if (!file.existsSync())`, asi que si ya existe nunca la reescribe.
@@ -138,6 +143,7 @@ class ReproductorDeVerdad implements Reproductor {
         _cacheVaciada = true;
         await AudioPlayer.clearAssetCache();
       }
+      _esRadio = false;
       await _player.setAsset('assets/audio/$archivo');
       _avisarQueSuena('episodio:$archivo', titulo, deQuien);
       _falla = null;
@@ -158,6 +164,7 @@ class ReproductorDeVerdad implements Reproductor {
     String? deQuien,
   }) async {
     try {
+      _esRadio = true;
       await _player.setUrl(url);
       _avisarQueSuena('radio:$url', titulo, deQuien);
       _falla = null;
@@ -169,10 +176,18 @@ class ReproductorDeVerdad implements Reproductor {
   }
 
   @override
-  Future<void> reproducir() => _player.play();
+  Future<void> reproducir() async {
+    // El Wi-Fi se sostiene solo mientras suena una radio: con la pantalla
+    // apagada la antena entra en ahorro y el stream se queda sin datos.
+    if (_esRadio) await Android.agarrarElWifi();
+    await _player.play();
+  }
 
   @override
-  Future<void> pausar() => _player.pause();
+  Future<void> pausar() async {
+    await _player.pause();
+    if (_esRadio) await Android.soltarElWifi();
+  }
 
   @override
   Future<void> irA(Duration donde) => _player.seek(donde);
@@ -189,14 +204,19 @@ class ReproductorDeVerdad implements Reproductor {
       .where((estado) => estado == ProcessingState.completed);
 
   @override
-  Future<void> soltar() => _player.dispose();
+  Future<void> soltar() async {
+    await Android.soltarElWifi();
+    await _player.dispose();
+  }
 
   /// Qué está pasando con el audio, en una línea, para poder mirarlo desde la
   /// app cuando algo no suena como debería.
   @override
   String get comoVa {
     final servicio = _manejador == null ? 'sin servicio' : 'con servicio';
-    return '$servicio · ${_player.processingState.name} · '
+    final notificaciones =
+        Android.puedeNotificar ? 'notif. sí' : 'notif. NO';
+    return '$servicio · $notificaciones · ${_player.processingState.name} · '
         '${_player.playing ? "sonando" : "quieto"}';
   }
 }

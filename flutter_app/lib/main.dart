@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'constantes.dart';
 import 'datos/actualizacion.dart';
+import 'datos/android.dart';
 import 'datos/audio_de_fondo.dart';
 import 'datos/escucha.dart';
 import 'datos/repositorio_articoli.dart';
@@ -39,6 +40,7 @@ Future<void> main() async {
   // Lo que hace que el podcast y la radio sigan sonando con la pantalla
   // bloqueada. Si falla, la app arranca igual y lo avisa adentro.
   await AudioDeFondo.prender();
+  await Android.preguntarSiPuedeNotificar();
 
   runApp(const TukylianoApp());
 }
