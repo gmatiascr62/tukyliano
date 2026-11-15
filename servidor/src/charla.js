@@ -8,7 +8,7 @@
 // `role` y `content`. Lo entienden todos los modelos del catálogo de
 // Cloudflare, así que cambiar de modelo no toca este archivo.
 
-import { promptDeTuky } from './prompt.js';
+import { promptDe } from './prompt.js';
 
 /** Un turno. 'system' son las instrucciones, 'user' es el alumno y
  * 'assistant' es Tuky. */
@@ -18,17 +18,18 @@ export function turno(rol, texto) {
 
 /** La charla entera, lista para mandársela al modelo.
  *
- * `saludo` es con el que arrancó, que la app sortea sola para no gastar un
- * pedido. `mensajes` son los que vinieron después, cada uno con `quien`
- * ('yo' o 'ia') y `texto`.
+ * `escena` dice de qué charla se trata: la libre con Tuky, o el bar. De eso
+ * sale el prompt. `saludo` es con el que arrancó, que la app sortea sola para
+ * no gastar un pedido. `mensajes` son los que vinieron después, cada uno con
+ * `quien` ('yo' o 'ia') y `texto`.
  *
  * Las instrucciones van como turno 'system', que es donde van. Con Gemini
  * había que meterlas disfrazadas de primer mensaje del alumno porque el
  * modelo lite devolvía 400 si se usaba el campo de sistema. Acá no.
  */
-export function contenidos({ saludo, mensajes }) {
+export function contenidos({ escena, saludo, mensajes }) {
   return [
-    turno('system', promptDeTuky),
+    turno('system', promptDe(escena)),
     turno('assistant', saludo),
     ...mensajes.map((mensaje) =>
       turno(mensaje.quien === 'yo' ? 'user' : 'assistant', mensaje.texto),
