@@ -102,9 +102,26 @@ class AudioDeFondo {
 ///   acá se los pasa al reproductor.
 class ManejadorDeAudio extends BaseAudioHandler with SeekHandler {
   ManejadorDeAudio(this.reproductor) {
-    // Un solo lugar que escucha y cuenta. Antes de esto no había ninguno: por
-    // eso Android no se enteraba nunca de que había algo sonando.
-    reproductor?.playbackEventStream.listen(
+    // **playerEventStream y no playbackEventStream.** Esta línea fue el bug
+    // que tuvo el audio en segundo plano sin andar durante cuatro versiones,
+    // y la diferencia no se ve mirándola.
+    //
+    // Adentro de just_audio:
+    //
+    //   _playbackEventSubject.addStream(
+    //       playerEventStream.map((event) => event.playbackEvent).distinct());
+    //
+    // El dato de si está sonando NO vive en playbackEvent, vive un nivel más
+    // arriba, en playerEvent. Así que al tocar play el playbackEvent no
+    // cambia, el .distinct() se come el evento, y playbackEventStream no
+    // emite nada.
+    //
+    // Del otro lado, el servicio de Android levanta la notificación y se pone
+    // en primer plano SOLO en la transición de "no sonando" a "sonando". Como
+    // esa transición nunca le llegaba, nunca había notificación, y sin
+    // notificación Android cortaba el audio a los treinta segundos de dejar
+    // la app. Todos los síntomas salían de acá.
+    reproductor?.playerEventStream.listen(
       (_) => _contarComoVa(),
       onError: (Object _) => _contarComoVa(),
     );

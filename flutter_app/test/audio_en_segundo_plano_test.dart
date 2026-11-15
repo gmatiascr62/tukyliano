@@ -103,12 +103,38 @@ void main() {
 
     test('alguien le cuenta a Android qué está sonando', () {
       // Esto es lo que hace aparecer la notificación, y la notificación es lo
-      // que deja seguir sonando en segundo plano. Sin esta cuenta no hay nada
-      // —que fue exactamente lo que pasó con el paquete anterior—.
+      // que deja seguir sonando en segundo plano. Sin esta cuenta no hay
+      // nada.
       final fuente = File('lib/datos/audio_de_fondo.dart').readAsStringSync();
-      expect(fuente, contains('playbackEventStream'));
       expect(fuente, contains('playbackState.add'));
       expect(fuente, contains('mediaItem.add'));
+    });
+
+    test('escucha el stream que sí avisa cuando se toca play', () {
+      // Este test existe por un bug que tuvo el audio en segundo plano sin
+      // andar durante cuatro versiones, y que no se ve mirando la línea.
+      //
+      // Adentro de just_audio:
+      //   _playbackEventSubject.addStream(
+      //       playerEventStream.map((e) => e.playbackEvent).distinct());
+      //
+      // Si está sonando o no NO vive en playbackEvent, vive en playerEvent.
+      // Al tocar play el playbackEvent no cambia, el .distinct() se come el
+      // evento y playbackEventStream no emite. Y el servicio de Android
+      // levanta la notificación SOLO en la transición a "sonando", que así
+      // nunca le llegaba.
+      final fuente = File('lib/datos/audio_de_fondo.dart').readAsStringSync();
+      final escucha = RegExp(r'reproductor\?\.(\w+)\.listen')
+          .allMatches(fuente)
+          .map((m) => m.group(1))
+          .toList();
+
+      expect(escucha, contains('playerEventStream'));
+      expect(
+        escucha,
+        isNot(contains('playbackEventStream')),
+        reason: 'ese no avisa cuando se toca play',
+      );
     });
 
     test('si no se puede prender, queda anotado el motivo', () {
