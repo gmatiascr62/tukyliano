@@ -5,3 +5,7 @@ __pycache__/
 .buildozer/
 bin/
 herramientas/prompts/0-el-del-codigo.txt
+
+# El audio de las fábulas que baja alinear_favole.py para no pedirlo
+# de nuevo en cada corrida. Son 17 MB y están publicados en el release.
+.cache/

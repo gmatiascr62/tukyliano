@@ -1,0 +1,122 @@
+{
+  "id": "favole_01_libro01_lafontaine",
+  "titulo": "La Cicala e la Formica",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 30.06,
+      "hasta": 33.06,
+      "texto": "La Cicala che imprudente"
+    },
+    {
+      "desde": 33.06,
+      "hasta": 35.87,
+      "texto": "tutto estate al sol cantò,"
+    },
+    {
+      "desde": 35.87,
+      "hasta": 37.17,
+      "texto": "provveduta di niente"
+    },
+    {
+      "desde": 37.17,
+      "hasta": 39.17,
+      "texto": "nell’inverno si trovò,"
+    },
+    {
+      "desde": 39.17,
+      "hasta": 40.48,
+      "texto": "senza più un granello e senza"
+    },
+    {
+      "desde": 40.48,
+      "hasta": 42.06,
+      "texto": "una mosca in la credenza."
+    },
+    {
+      "desde": 42.06,
+      "hasta": 43.85,
+      "texto": "Affamata e piagnolosa"
+    },
+    {
+      "desde": 43.85,
+      "hasta": 45.84,
+      "texto": "va a cercar della Formica"
+    },
+    {
+      "desde": 45.84,
+      "hasta": 48.07,
+      "texto": "e le chiede qualche cosa,"
+    },
+    {
+      "desde": 48.07,
+      "hasta": 49.85,
+      "texto": "qualche cosa in cortesia,"
+    },
+    {
+      "desde": 49.85,
+      "hasta": 50.06,
+      "texto": "per poter fino alla prossima"
+    },
+    {
+      "desde": 50.06,
+      "hasta": 50.06,
+      "texto": "primavera tirar via:"
+    },
+    {
+      "desde": 55.01,
+      "hasta": 57.53,
+      "texto": "promettendo per l’agosto,"
+    },
+    {
+      "desde": 57.53,
+      "hasta": 59.55,
+      "texto": "in coscienza d’animale,"
+    },
+    {
+      "desde": 59.55,
+      "hasta": 61.67,
+      "texto": "interessi e capitale."
+    },
+    {
+      "desde": 61.67,
+      "hasta": 63.84,
+      "texto": "La Formica che ha il difetto"
+    },
+    {
+      "desde": 63.84,
+      "hasta": 64.03,
+      "texto": "di prestar malvolentieri,"
+    },
+    {
+      "desde": 66.2,
+      "hasta": 68.37,
+      "texto": "le dimanda chiaro e netto:"
+    },
+    {
+      "desde": 68.37,
+      "hasta": 70.52,
+      "texto": "- Che hai tu fatto fino a ieri?"
+    },
+    {
+      "desde": 70.99,
+      "hasta": 72.2,
+      "texto": "- Cara amica, a dire il giusto"
+    },
+    {
+      "desde": 72.2,
+      "hasta": 74.01,
+      "texto": "non ho fatto che cantare"
+    },
+    {
+      "desde": 74.01,
+      "hasta": 76.29,
+      "texto": "tutto il tempo. - Brava ho gusto;"
+    },
+    {
+      "desde": 77.41,
+      "hasta": 79.31,
+      "texto": "balla adesso, se ti pare."
+    }
+  ]
+}
