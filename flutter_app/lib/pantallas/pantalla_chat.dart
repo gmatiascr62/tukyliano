@@ -352,10 +352,12 @@ class _PantallaChatState extends State<PantallaChat> {
         textCapitalization: TextCapitalization.sentences,
         autocorrect: true,
         enableSuggestions: true,
+        // Peso normal, igual que el resto de la app. Estaba en w600 y lo que
+        // se escribía salía más gordo que el texto gris de ayuda, así que la
+        // letra cambiaba de grosor al escribir la primera letra.
         style: const TextStyle(
           fontSize: 17,
           height: 1.3,
-          fontWeight: FontWeight.w600,
           color: Tema.texto,
         ),
         cursorColor: Tema.verde,
