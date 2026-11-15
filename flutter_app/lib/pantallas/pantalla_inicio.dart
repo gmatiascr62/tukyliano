@@ -12,22 +12,22 @@ enum Destino { racconti, hablar, gramatica, chat, podcast, radio }
 
 extension EtiquetaDestino on Destino {
   String get etiqueta => switch (this) {
-        Destino.racconti => 'Racconti',
-        Destino.hablar => 'Parlare',
-        Destino.gramatica => 'Gramática',
-        Destino.chat => 'Chat',
-        Destino.podcast => 'Podcast',
-        Destino.radio => 'Radio',
-      };
+    Destino.racconti => 'Racconti',
+    Destino.hablar => 'Parlare',
+    Destino.gramatica => 'Gramática',
+    Destino.chat => 'Chat',
+    Destino.podcast => 'Podcast',
+    Destino.radio => 'Radio',
+  };
 
   IconData get icono => switch (this) {
-        Destino.racconti => Icons.menu_book,
-        Destino.hablar => Icons.mic,
-        Destino.gramatica => Icons.school,
-        Destino.chat => Icons.chat_bubble_outline,
-        Destino.podcast => Icons.headphones,
-        Destino.radio => Icons.radio,
-      };
+    Destino.racconti => Icons.menu_book,
+    Destino.hablar => Icons.mic,
+    Destino.gramatica => Icons.school,
+    Destino.chat => Icons.chat_bubble_outline,
+    Destino.podcast => Icons.headphones,
+    Destino.radio => Icons.radio,
+  };
 }
 
 /// Radio de las tarjetas de esta pantalla. Más redondeado que el del resto de
@@ -53,13 +53,6 @@ class PantallaInicio extends StatelessWidget {
 
   final Progreso progreso;
   final ValueChanged<Destino> alElegir;
-
-  /// Cuánto se separan del centro los cuatro botones, y cuánto mide cada uno.
-  /// El ancho es mayor que el círculo porque abajo va la etiqueta, que es más
-  /// larga que él.
-  static const double _separado = 116;
-  static const double _circulo = 96;
-  static const double _anchoDelBoton = 124;
 
   @override
   Widget build(BuildContext context) {
@@ -99,7 +92,9 @@ class PantallaInicio extends StatelessWidget {
           ),
         ),
         _TarjetaDeLaSemana(progreso: progreso),
-        Expanded(child: _Diagonales(nivel: nivel, alElegir: alElegir)),
+        Expanded(
+          child: _Diagonales(nivel: nivel, alElegir: alElegir),
+        ),
         const SizedBox(height: 14),
         _BarraDePodcast(alTocar: () => alElegir(Destino.podcast)),
         const SizedBox(height: 9),
@@ -107,35 +102,48 @@ class PantallaInicio extends StatelessWidget {
       ],
     );
   }
-
-  /// Los cuatro botones alrededor del anillo.
-  ///
-  /// La cuenta sale del ancho que **de verdad** hay, no de un número fijo. Con
-  /// un número fijo pasaba esto: el cuadrado medía 392, la pantalla descontados
-  /// los márgenes daba 367, Flutter lo achicaba a 367 pero las posiciones
-  /// seguían calculándose contra 196 cuando el medio real era 183, y los cuatro
-  /// botones quedaban trece puntos corridos a la derecha. El anillo no, porque
-  /// ese va centrado de otra forma. Se veía, y costaba explicar por qué.
-  static Widget _puestoEnDiagonal({
-    required double lado,
-    required int fila,
-    required int columna,
-    required Destino destino,
-    required VoidCallback alTocar,
-  }) {
-    final medio = lado / 2;
-
-    return Positioned(
-      left: medio + columna * _separado - _anchoDelBoton / 2,
-      top: medio + fila * _separado - _circulo / 2,
-      child: SizedBox(
-        width: _anchoDelBoton,
-        child: _BotonRedondo(destino: destino, alTocar: alTocar),
-      ),
-    );
-  }
 }
 
+/// Cuánto se separan del centro los cuatro botones, y cuánto mide cada uno.
+/// El ancho es mayor que el círculo porque abajo va la etiqueta, que es más
+/// larga que él.
+const double _separado = 116;
+const double _circulo = 96;
+const double _anchoDelBoton = 124;
+const double _anillo = 150;
+
+/// Lo que ocupa la etiqueta de abajo del círculo: el espacio más el renglón.
+/// Es fijo, y la etiqueta se achica para entrar: así los cuatro botones miden
+/// exactamente lo mismo y la caja de la composición no miente.
+const double _altoDeLaEtiqueta = 32;
+
+/// Lo que mide la composición entera sin achicar nada.
+const double _anchoNatural = _separado * 2 + _anchoDelBoton;
+const double _altoNatural = _separado * 2 + _circulo + _altoDeLaEtiqueta;
+
+/// El medio de la cruz de botones dentro de esa caja.
+///
+/// En horizontal es el medio de la caja. En vertical NO: abajo de los dos
+/// círculos de abajo cuelga la etiqueta, así que el medio está más arriba que
+/// el centro geométrico. El anillo va acá y no en el centro de la caja, o
+/// quedaría unos puntos más abajo que los cuatro botones.
+const double _cruzX = _anchoNatural / 2;
+const double _cruzY = _separado + _circulo / 2;
+
+/// Los cuatro botones alrededor del anillo.
+///
+/// Se dibuja siempre al mismo tamaño y después se achica entero para que
+/// entre en lo que haya. Antes se dibujaba a tamaño fijo y listo: en un
+/// celular más bajo que el mío —360 x 720— los de arriba se montaban sobre la
+/// tarjeta de la semana y los de abajo sobre la barra del podcast. El Stack
+/// va con Clip.none, así que nada lo frenaba; simplemente se derramaba.
+///
+/// Achicar la composición entera, y no cada pedazo por separado, es lo que
+/// hace que no se desarme: las distancias, los círculos, las etiquetas y el
+/// anillo bajan todos en la misma proporción y la cruz sigue siendo una cruz.
+///
+/// Con scaleDown solo se achica: en una pantalla grande se queda en su tamaño
+/// en vez de estirarse hasta ocupar todo, que es lo que haría contain.
 class _Diagonales extends StatelessWidget {
   const _Diagonales({required this.nivel, required this.alElegir});
 
@@ -144,36 +152,53 @@ class _Diagonales extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return LayoutBuilder(
-      builder: (context, limites) {
-        final lado = limites.biggest.shortestSide;
-
-        return Center(
+    return Center(
+      // La clave es para los tests: con ella se puede preguntar qué pedazo de
+      // pantalla le tocó, y verificar que los cuatro botones estén adentro.
+      key: const ValueKey('los-botones'),
+      // El aire de arriba y de abajo no es decorativo: sin él la composición
+      // se achica justo hasta tocar la tarjeta de la semana y la barra del
+      // podcast, y aunque no se monte, se ve apretada.
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 8),
+        child: FittedBox(
+          fit: BoxFit.scaleDown,
           child: SizedBox(
-            width: lado,
-            height: lado,
+            width: _anchoNatural,
+            height: _altoNatural,
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                Center(child: _AnilloDeNivel(nivel: nivel)),
+                Positioned(
+                  left: _cruzX - _anillo / 2,
+                  top: _cruzY - _anillo / 2,
+                  child: _AnilloDeNivel(nivel: nivel),
+                ),
                 for (final (fila, columna, destino) in const [
                   (-1, -1, Destino.racconti),
                   (-1, 1, Destino.hablar),
                   (1, -1, Destino.gramatica),
                   (1, 1, Destino.chat),
                 ])
-                  PantallaInicio._puestoEnDiagonal(
-                    lado: lado,
-                    fila: fila,
-                    columna: columna,
-                    destino: destino,
-                    alTocar: () => alElegir(destino),
+                  Positioned(
+                    left: _cruzX + columna * _separado - _anchoDelBoton / 2,
+                    top: _cruzY + fila * _separado - _circulo / 2,
+                    child: SizedBox(
+                      // Para los tests: con la clave se puede preguntar dónde
+                      // quedó dibujado cada botón.
+                      key: ValueKey(destino),
+                      width: _anchoDelBoton,
+                      child: _BotonRedondo(
+                        destino: destino,
+                        alTocar: () => alElegir(destino),
+                      ),
+                    ),
                   ),
               ],
             ),
           ),
-        );
-      },
+        ),
+      ),
     );
   }
 }
@@ -222,10 +247,7 @@ class _TarjetaDeLaSemana extends StatelessWidget {
                 cuantos == 0
                     ? 'Empezá hoy'
                     : '$cuantos de $diasDeLaSemana días',
-                style: const TextStyle(
-                  fontSize: 12.5,
-                  color: Tema.textoTenue,
-                ),
+                style: const TextStyle(fontSize: 12.5, color: Tema.textoTenue),
               ),
             ],
           ),
@@ -235,8 +257,9 @@ class _TarjetaDeLaSemana extends StatelessWidget {
             children: [
               for (var atras = diasDeLaSemana - 1; atras >= 0; atras--)
                 _UnDia(
-                  letra: _iniciales[
-                      hoy.subtract(Duration(days: atras)).weekday - 1],
+                  letra:
+                      _iniciales[hoy.subtract(Duration(days: atras)).weekday -
+                          1],
                   hecho: progreso.practicoHace(atras),
                   esHoy: atras == 0,
                 ),
@@ -249,11 +272,7 @@ class _TarjetaDeLaSemana extends StatelessWidget {
 }
 
 class _UnDia extends StatelessWidget {
-  const _UnDia({
-    required this.letra,
-    required this.hecho,
-    required this.esHoy,
-  });
+  const _UnDia({required this.letra, required this.hecho, required this.esHoy});
 
   final String letra;
   final bool hecho;
@@ -269,8 +288,9 @@ class _UnDia extends StatelessWidget {
           decoration: BoxDecoration(
             color: hecho ? Tema.verde : Tema.verdeSuave,
             shape: BoxShape.circle,
-            border:
-                esHoy && !hecho ? Border.all(color: Tema.verde, width: 2) : null,
+            border: esHoy && !hecho
+                ? Border.all(color: Tema.verde, width: 2)
+                : null,
           ),
           child: hecho
               ? const Icon(Icons.check, size: 17, color: Colors.white)
@@ -299,9 +319,10 @@ class _AnilloDeNivel extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    const tamano = 150.0;
-    final siguiente =
-        nivel.numero < escalones.length ? escalones[nivel.numero].$2 : '';
+    const tamano = _anillo;
+    final siguiente = nivel.numero < escalones.length
+        ? escalones[nivel.numero].$2
+        : '';
 
     return SizedBox(
       width: tamano,
@@ -418,14 +439,21 @@ class _BotonRedondo extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 9),
-        Text(
-          destino.etiqueta,
-          textAlign: TextAlign.center,
-          style: const TextStyle(
-            fontSize: 14.5,
-            fontWeight: FontWeight.w700,
-            letterSpacing: -0.1,
-            color: Tema.titulo,
+        // Un renglón siempre, y con alto fijo. "Gramática" entraba en dos y
+        // ese botón quedaba más alto que los otros tres: la composición medía
+        // menos de lo que ocupaba, y el de abajo a la izquierda se derramaba
+        // por debajo aunque todo lo demás entrara. Acá importa menos que la
+        // palabra se vea grande que que los cuatro botones midan igual.
+        SizedBox(
+          height: _altoDeLaEtiqueta - 9,
+          child: TextoAjustado(
+            destino.etiqueta,
+            estilo: const TextStyle(
+              fontSize: 14.5,
+              fontWeight: FontWeight.w700,
+              letterSpacing: -0.1,
+              color: Tema.titulo,
+            ),
           ),
         ),
       ],
@@ -484,7 +512,10 @@ class _BarraDePodcast extends StatelessWidget {
                       ),
                       Text(
                         'Historia de Italia, contada despacio',
-                        style: TextStyle(fontSize: 12, color: Color(0xE6FFFFFF)),
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xE6FFFFFF),
+                        ),
                       ),
                     ],
                   ),
