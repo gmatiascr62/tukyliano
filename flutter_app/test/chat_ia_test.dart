@@ -1,13 +1,9 @@
 import 'dart:io';
-import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/ia/chat.dart';
 
 /// El texto de un turno del pedido a la API.
-String _texto(Map<String, dynamic> turno) =>
-    ((turno['parts'] as List).first as Map)['text'] as String;
-
 void main() {
   group('las almohadillas', () {
     test('una palabra sola es un pedido de traducción', () {
@@ -182,72 +178,31 @@ void main() {
   });
 
   group('la conversación', () {
-    test('arranca con el saludo puesto, sin gastar un pedido', () {
-      final charla = Conversacion();
-
-      expect(charla.mensajes.length, 1);
-      expect(charla.mensajes.single.quien, Quien.ia);
-      expect(charla.mensajes.single.texto, charla.saludo);
-      expect(saludosIniciales, contains(charla.saludo));
-    });
-
-    test('cada charla puede arrancar con otro saludo', () {
-      // Con uno solo, todas las charlas empezaban igual y terminaban hablando
-      // siempre de lo mismo.
-      final salidos = {
-        for (var semilla = 0; semilla < 30; semilla++)
-          Conversacion(azar: Random(semilla)).saludo,
-      };
-
-      expect(salidos.length, greaterThan(5));
-    });
-
-    test('el saludo que se le pasa es el que arranca la charla', () {
-      final charla = Conversacion(saludo: 'Ciao! Che musica ascolti?');
-
-      expect(charla.mensajes.single.texto, 'Ciao! Che musica ascolti?');
-    });
-
-    test('el primer pedido lleva las instrucciones y el saludo', () {
-      final charla = Conversacion()..agregar(const Mensaje.mia('ciao'));
-
-      final turnos = charla.contenidos();
-
-      expect(turnos.length, 3);
-      expect(turnos[0]['role'], 'user');
-      expect(_texto(turnos[0]), promptDeChat);
-      expect(turnos[1]['role'], 'model');
-      expect(_texto(turnos[1]), charla.saludo);
-      expect(turnos[2]['role'], 'user');
-      expect(_texto(turnos[2]), 'ciao');
-    });
-
-    test('la memoria son los turnos anteriores, en orden', () {
+    test('el saludo va aparte y después la charla, en orden', () {
+      // El servidor recibe el saludo por su cuenta, así que acá van solo los
+      // que vinieron después.
       final charla = Conversacion()
         ..agregar(const Mensaje.mia('mi chiamo Matías'))
         ..agregar(const Mensaje.deLaIa('Piacere! Dove abiti?'))
         ..agregar(const Mensaje.mia('abito a Buenos Aires'));
 
-      final turnos = charla.contenidos();
-
-      expect(turnos.map((t) => t['role']).toList(),
-          ['user', 'model', 'user', 'model', 'user']);
-      expect(_texto(turnos[2]), 'mi chiamo Matías');
-      expect(_texto(turnos[3]), 'Piacere! Dove abiti?');
-      expect(_texto(turnos[4]), 'abito a Buenos Aires');
+      expect(charla.paraElServidor(), [
+        {'quien': 'yo', 'texto': 'mi chiamo Matías'},
+        {'quien': 'ia', 'texto': 'Piacere! Dove abiti?'},
+        {'quien': 'yo', 'texto': 'abito a Buenos Aires'},
+      ]);
     });
 
-    test('los avisos de la app no se le mandan a la IA', () {
-      // Un cartel de "no hay internet" no es parte de la charla: si se
-      // mandara, la IA lo leería como si el alumno lo hubiera escrito.
+    test('los avisos de la app no viajan', () {
+      // Un cartel de "no hay internet" no es parte de la charla: si viajara,
+      // la IA lo leería como si el alumno lo hubiera escrito.
       final charla = Conversacion()
         ..agregar(const Mensaje.mia('ciao'))
         ..agregar(const Mensaje.aviso('No se pudo hablar con la IA.'));
 
-      final turnos = charla.contenidos();
-
-      expect(turnos.length, 3);
-      expect(_texto(turnos[2]), 'ciao');
+      expect(charla.paraElServidor(), [
+        {'quien': 'yo', 'texto': 'ciao'},
+      ]);
     });
 
     test('ir al diccionario no entra en lo que la IA recuerda', () {
@@ -258,44 +213,15 @@ void main() {
         ..agregar(const Mensaje.delDiccionario('#manteca# = #burro#'))
         ..agregar(const Mensaje.mia('ciao!'));
 
-      final turnos = charla.contenidos();
-
-      // Instrucciones, saludo y "ciao!": el ida y vuelta del medio no está.
-      expect(turnos.length, 3);
-      expect(_texto(turnos.last), 'ciao!');
+      expect(charla.paraElServidor(), [
+        {'quien': 'yo', 'texto': 'ciao!'},
+      ]);
     });
 
-    test('una palabra marcada en medio de la charla va sin almohadillas', () {
+    test('una palabra marcada va sin almohadillas', () {
       final charla = Conversacion()..agregar(const Mensaje.mia('voglio #pan#'));
 
-      expect(_texto(charla.contenidos().last), 'voglio pan');
-    });
-  });
-
-  group('las instrucciones', () {
-    test('ya no dicen nada de las traducciones', () {
-      // Eran tres de las nueve reglas y la IA igual se equivocaba. Ahora las
-      // contesta el diccionario de la app, y el prompt quedó en seis reglas
-      // sobre una sola cosa: charlar y corregir.
-      expect(promptDeChat, isNot(contains('#')));
-      expect(promptDeChat, isNot(contains('traducción')));
-      expect(promptDeChat, isNot(contains('almohadilla')));
-    });
-
-    test('piden italiano simple y respuestas cortas', () {
-      expect(promptDeChat, contains('italiano simple'));
-      expect(promptDeChat, contains('Correzione:'));
-    });
-
-    test('ponen la corrección como la excepción, no como la regla', () {
-      expect(promptDeChat, contains('Lo normal es NO corregir'));
-      expect(promptDeChat, contains('Nunca escribas un renglón de corrección'));
-      // Decir "io vado" en vez de "vado" no es un error, y era lo que corregía.
-      expect(promptDeChat, contains('Poner el sujeto'));
-    });
-
-    test('no piden markdown, que se leería en voz alta', () {
-      expect(promptDeChat, contains('No uses markdown'));
+      expect(charla.paraElServidor().last['texto'], 'voglio pan');
     });
   });
 

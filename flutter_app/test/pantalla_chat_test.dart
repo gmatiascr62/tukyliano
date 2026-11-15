@@ -3,14 +3,13 @@ import 'dart:io';
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
-import 'package:tukyliano/datos/almacenamiento_clave.dart';
+import 'package:tukyliano/datos/quien_soy.dart';
 import 'package:tukyliano/datos/repositorio_diccionario.dart';
 import 'package:tukyliano/ia/chat.dart';
-import 'package:tukyliano/ia/gemini.dart';
+import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
@@ -20,16 +19,20 @@ import 'package:tukyliano/widgets/pastilla.dart';
 import 'util_pantalla.dart';
 import 'voz_falsa.dart';
 
-/// Los pedidos que salieron a la API, ya decodificados.
+/// Los pedidos que salieron al servidor, ya decodificados.
 class _Espia {
   final List<Map<String, dynamic>> pedidos = [];
 
-  /// Los turnos del último pedido: el historial que se le mandó a la IA.
-  List<Map<String, dynamic>> get ultimosTurnos =>
-      (pedidos.last['contents'] as List).cast<Map<String, dynamic>>();
+  /// Los mensajes del último pedido: el historial que viajó.
+  ///
+  /// El saludo va aparte en el pedido, así que se suma acá adelante para que
+  /// los índices sigan contando la charla entera, como antes.
+  List<Map<String, dynamic>> get ultimosTurnos => [
+        {'quien': 'ia', 'texto': pedidos.last['saludo']},
+        ...(pedidos.last['mensajes'] as List).cast<Map<String, dynamic>>(),
+      ];
 
-  String textoDe(int turno) =>
-      ((ultimosTurnos[turno]['parts'] as List).first as Map)['text'] as String;
+  String textoDe(int turno) => ultimosTurnos[turno]['texto'] as String;
 }
 
 /// Carpeta de verdad para la clave: es lo que en el celular es la carpeta
@@ -40,49 +43,44 @@ Directory _carpeta() {
   return dir;
 }
 
-/// Gemini de mentira: contesta lo que se le diga y anota lo que le pidieron.
-Gemini _gemini(
+/// La semilla fija hace que el saludo con el que arranca la charla sea
+/// siempre el mismo, así los tests pueden nombrarlo.
+const _semilla = 3;
+final _saludoFijo = saludoAlAzar(azar: Random(_semilla));
+
+/// Servidor de mentira: contesta lo que se le diga y anota lo que le pidieron.
+Servidor _servidor(
   _Espia espia, {
   String respuesta = 'Bene! E tu?',
   int estado = 200,
   Duration demora = Duration.zero,
 }) {
-  return Gemini(
+  return Servidor(
+    url: 'https://servidor-de-mentira',
     cliente: MockClient((pedido) async {
       espia.pedidos.add(jsonDecode(pedido.body) as Map<String, dynamic>);
       // Para los tests que miran qué pasa mientras la IA todavía no contestó.
       if (demora > Duration.zero) await Future<void>.delayed(demora);
       if (estado != 200) {
         return http.Response(
-          '{"error": {"message": "API key not valid"}}',
+          jsonEncode({
+            'error': 'caido',
+            'mensaje': 'La IA no está respondiendo. Probá en un rato.',
+          }),
           estado,
+          headers: {'content-type': 'application/json; charset=utf-8'},
         );
       }
       return http.Response(
-        jsonEncode({
-          'candidates': [
-            {
-              'content': {
-                'parts': [
-                  {'text': respuesta},
-                ],
-              },
-            },
-          ],
-        }),
+        jsonEncode({'texto': respuesta}),
         200,
         // Sin el charset la respuesta se leería en latin1 y los acentos
-        // italianos llegarían roto.
+        // italianos llegarían rotos.
         headers: {'content-type': 'application/json; charset=utf-8'},
       );
     }),
   );
 }
-
-/// La semilla que usan los tests: con ella la pantalla arranca siempre con el
-/// mismo saludo, aunque en el celular salga uno al azar.
-const _semilla = 3;
-final _saludoFijo = saludoAlAzar(azar: Random(_semilla));
 
 /// Un diccionario chico y conocido: los tests no tienen por qué depender de
 /// las catorce mil palabras del de verdad.
@@ -97,7 +95,6 @@ const String _diccionarioDePrueba = '''
 
 Future<_Espia> _abrir(
   WidgetTester tester, {
-  String? claveGuardada = 'clave-de-prueba',
   String respuesta = 'Bene! E tu?',
   int estado = 200,
   VozFalsa? voz,
@@ -105,10 +102,6 @@ Future<_Espia> _abrir(
   Duration demora = Duration.zero,
 }) async {
   final dir = carpeta ?? _carpeta();
-  if (claveGuardada != null) {
-    File('${dir.path}/$archivoClave').writeAsStringSync(claveGuardada);
-  }
-
   final espia = _Espia();
   usarPantallaDeCelular(tester);
   await tester.pumpWidget(MaterialApp(
@@ -117,13 +110,13 @@ Future<_Espia> _abrir(
       body: Padding(
         padding: const EdgeInsets.all(14),
         child: PantallaChat(
-          almacenClave: AlmacenamientoClave(carpeta: () async => dir),
-          gemini: _gemini(
+          servidor: _servidor(
             espia,
             respuesta: respuesta,
             estado: estado,
             demora: demora,
           ),
+          quienSoy: QuienSoy(carpeta: () async => dir),
           voz: voz ?? VozFalsa(),
           diccionario: RepositorioDiccionario(
             leerAsset: (_) async => _diccionarioDePrueba,
@@ -156,52 +149,39 @@ Future<void> _enviar(WidgetTester tester) async {
 }
 
 void main() {
-  group('la clave', () {
-    testWidgets('sin clave guardada la pide antes de charlar', (tester) async {
-      await _abrir(tester, claveGuardada: null);
+  group('quién soy', () {
+    testWidgets('el número del celular se inventa una vez y se guarda',
+        (tester) async {
+      // Es lo único que viaja al servidor para identificar al celular, y
+      // existe para repartir los topes: sin él, el primero que charlara toda
+      // la tarde dejaría a los demás sin mensajes.
+      final dir = _carpeta();
+      final espia = await _abrir(tester, carpeta: dir);
 
-      expect(
-        find.text('Necesitás una clave gratis de la IA (Gemini)'),
-        findsOneWidget,
-      );
-      expect(find.text(_saludoFijo), findsNothing);
+      await _escribir(tester, 'ciao');
+      await _enviar(tester);
+      final primero = espia.pedidos.last['quien'] as String;
+
+      expect(primero, isNotEmpty);
+      expect(File('${dir.path}/$archivoQuien').readAsStringSync(), primero);
+
+      await _escribir(tester, 'bene');
+      await _enviar(tester);
+      expect(espia.pedidos.last['quien'], primero, reason: 'no puede cambiar');
     });
 
-    testWidgets('la clave pegada queda en el celular, nunca en el código',
-        (tester) async {
-      final dir = _carpeta();
-      // El portapapeles del celular, con la clave ya copiada del navegador.
-      tester.binding.defaultBinaryMessenger.setMockMethodCallHandler(
-        SystemChannels.platform,
-        (llamada) async => llamada.method == 'Clipboard.getData'
-            ? <String, dynamic>{'text': 'clave-pegada-a-mano'}
-            : null,
-      );
-      addTearDown(() => tester.binding.defaultBinaryMessenger
-          .setMockMethodCallHandler(SystemChannels.platform, null));
-
-      await _abrir(tester, claveGuardada: null, carpeta: dir);
-      await tester.tap(find.text('Pegar clave'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Guardar'));
-      await tester.pumpAndSettle();
-
-      expect(File('${dir.path}/$archivoClave').readAsStringSync(),
-          'clave-pegada-a-mano');
-      expect(find.text(_saludoFijo), findsOneWidget);
-    });
-
-    testWidgets('si la clave no sirve la borra y la pide de nuevo',
-        (tester) async {
-      final dir = _carpeta();
-      await _abrir(tester, estado: 400, carpeta: dir);
+    testWidgets('no viaja ninguna clave', (tester) async {
+      final espia = await _abrir(tester);
 
       await _escribir(tester, 'ciao');
       await _enviar(tester);
 
-      expect(find.textContaining('La clave no funcionó'), findsOneWidget);
-      // Una credencial que ya no vale no tiene por qué seguir guardada.
-      expect(File('${dir.path}/$archivoClave').existsSync(), isFalse);
+      // El pedido lleva quién, el código de invitación, el saludo y la
+      // charla. Nada más: el modelo lo corre el servidor.
+      expect(
+        espia.pedidos.last.keys.toSet(),
+        {'quien', 'codigo', 'saludo', 'mensajes'},
+      );
     });
   });
 
@@ -222,7 +202,7 @@ void main() {
       expect(find.text('ciao'), findsOneWidget);
       await _enviar(tester);
 
-      expect(espia.textoDe(2), 'ciao');
+      expect(espia.textoDe(1), 'ciao');
       expect(find.text('Bene! E tu?'), findsOneWidget);
       // El campo queda limpio para el mensaje siguiente.
       expect(find.text('Escribí en italiano...'), findsOneWidget);
@@ -259,28 +239,28 @@ void main() {
       await _escribir(tester, 'bene');
       await _enviar(tester);
 
-      // Instrucciones, saludo, ciao, la respuesta de la IA y bene.
-      expect(espia.ultimosTurnos.length, 5);
-      expect(espia.textoDe(0), promptDeChat);
-      expect(espia.textoDe(2), 'ciao');
-      expect(espia.textoDe(3), 'Bene! E tu?');
-      expect(espia.textoDe(4), 'bene');
+      // Saludo, ciao, la respuesta de la IA y bene. Las instrucciones ya no
+      // viajan: las pone el servidor, que es el que habla con el modelo.
+      expect(espia.ultimosTurnos.length, 4);
+      expect(espia.textoDe(0), _saludoFijo);
+      expect(espia.textoDe(1), 'ciao');
+      expect(espia.textoDe(2), 'Bene! E tu?');
+      expect(espia.textoDe(3), 'bene');
     });
 
     testWidgets('sin internet avisa y la charla sigue viva', (tester) async {
       final espia = _Espia();
-      final dir = _carpeta();
-      File('${dir.path}/$archivoClave').writeAsStringSync('clave-de-prueba');
 
       usarPantallaDeCelular(tester);
       await tester.pumpWidget(MaterialApp(
         theme: Tema.datos,
         home: Scaffold(
           body: PantallaChat(
-            almacenClave: AlmacenamientoClave(carpeta: () async => dir),
-            gemini: Gemini(
+            servidor: Servidor(
+              url: 'https://servidor-de-mentira',
               cliente: MockClient((_) async => throw const SocketException('')),
             ),
+            quienSoy: QuienSoy(carpeta: () async => null),
             voz: VozFalsa(),
           ),
         ),
@@ -290,7 +270,7 @@ void main() {
       await _escribir(tester, 'ciao');
       await _enviar(tester);
 
-      expect(find.textContaining('Fijate si tenés internet'), findsOneWidget);
+      expect(find.textContaining('No hay internet'), findsOneWidget);
       // Lo escrito no se pierde de la pantalla y se puede seguir escribiendo.
       expect(find.text('ciao'), findsOneWidget);
       expect(espia.pedidos, isEmpty);
@@ -344,7 +324,7 @@ void main() {
         findsOneWidget,
       );
       // Y a la IA le llegó la frase sin almohadillas.
-      expect(espia.textoDe(2), 'mi serve manteca');
+      expect(espia.textoDe(1), 'mi serve manteca');
     });
 
     testWidgets('buscar una palabra no queda en la memoria de la IA',
@@ -356,9 +336,9 @@ void main() {
       await _escribir(tester, 'ciao');
       await _enviar(tester);
 
-      // Instrucciones, saludo y "ciao": del diccionario, nada.
-      expect(espia.ultimosTurnos.length, 3);
-      expect(espia.textoDe(2), 'ciao');
+      // Saludo y "ciao": del diccionario, nada.
+      expect(espia.ultimosTurnos.length, 2);
+      expect(espia.textoDe(1), 'ciao');
     });
   });
 
@@ -489,14 +469,11 @@ void main() {
 
   group('la memoria', () {
     testWidgets('salir de la pestaña y volver borra la charla', (tester) async {
-      final dir = _carpeta();
-      File('${dir.path}/$archivoClave').writeAsStringSync('clave-de-prueba');
       final espia = _Espia();
 
       usarPantallaDeCelular(tester);
       await tester.pumpWidget(TukylianoApp(
-        almacenClave: AlmacenamientoClave(carpeta: () async => dir),
-        gemini: _gemini(espia, respuesta: 'Bene! E tu?'),
+        servidor: _servidor(espia, respuesta: 'Bene! E tu?'),
         voz: VozFalsa(),
       ));
       await tester.pumpAndSettle();
@@ -539,8 +516,8 @@ void main() {
       await _escribir(tester, 'ciao');
       await _enviar(tester);
 
-      // Instrucciones, saludo y el mensaje: nada de la charla anterior.
-      expect(espia.ultimosTurnos.length, 3);
+      // Saludo y el mensaje: nada de la charla anterior.
+      expect(espia.ultimosTurnos.length, 2);
     });
   });
 
@@ -573,10 +550,10 @@ void main() {
       await _escribir(tester, 'ciao');
       await _enviar(tester);
 
-      // Instrucciones, saludo nuevo y el mensaje: nada de lo de antes.
-      expect(espia.ultimosTurnos.length, 3);
-      expect(espia.textoDe(1), isNot(_saludoFijo));
-      expect(espia.textoDe(2), 'ciao');
+      // Saludo nuevo y el mensaje: nada de lo de antes.
+      expect(espia.ultimosTurnos.length, 2);
+      expect(espia.textoDe(0), isNot(_saludoFijo));
+      expect(espia.textoDe(1), 'ciao');
     });
 
     testWidgets('mientras la IA piensa, el botón no se puede tocar',
