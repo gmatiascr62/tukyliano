@@ -30,6 +30,15 @@ Future<void> mostrarAcercaDe(BuildContext context) => mostrarAyuda(
               'podcast están grabados aparte.',
         ),
         SeccionAyuda(
+          titulo: 'La radio',
+          cuerpo: 'La emisora en vivo la transmite Senti Chi Parla! OdV, una '
+              'asociación italiana de voluntarios. Tukyliano solo la '
+              'reproduce: no la hace, no la graba y no gana nada con ella. '
+              'Desde la pantalla de Radio se puede entrar a su sitio y '
+              'ayudarla.',
+          ejemplos: ['radiosentichiparla.org'],
+        ),
+        SeccionAyuda(
           titulo: 'Tus datos',
           cuerpo: 'Lo que practicás se guarda solo en este celular y no se '
               'manda a ningún lado. Si desinstalás la app, se borra. No hay '

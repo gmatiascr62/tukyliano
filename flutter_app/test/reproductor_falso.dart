@@ -43,6 +43,22 @@ class ReproductorFalso implements Reproductor {
     return true;
   }
 
+  /// La última dirección de internet que se le pidió abrir.
+  String? laUrl;
+
+  @override
+  Future<bool> cargarDesdeInternet(String url) async {
+    laUrl = url;
+    if (!hayArchivo) {
+      porQueFallo = 'de mentira: la radio no abre';
+      return false;
+    }
+    cargado = url;
+    // Una radio en vivo no tiene duración: no se sabe cuándo termina.
+    duracion = null;
+    return true;
+  }
+
   @override
   Future<void> reproducir() async => andando = true;
 

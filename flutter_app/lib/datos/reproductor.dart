@@ -17,6 +17,13 @@ abstract class Reproductor {
   /// Carga un archivo de assets/audio/. False si no está o no se pudo abrir.
   Future<bool> cargar(String archivo);
 
+  /// Carga algo que está en internet: una radio en vivo, por ejemplo.
+  ///
+  /// Es aparte de [cargar] porque no se parecen: un archivo del APK está o no
+  /// está y se sabe al instante, y una radio puede tardar, cortarse a la
+  /// mitad o no existir más desde ayer.
+  Future<bool> cargarDesdeInternet(String url);
+
   /// Por qué falló el último [cargar], si falló. Null si anduvo.
   ///
   /// Existe porque la primera vez que esto fallo de verdad —en el celular,
@@ -82,6 +89,18 @@ class ReproductorDeVerdad implements Reproductor {
       // Un episodio al que no se le puede abrir el audio no tiene que tirar
       // abajo la pantalla: se cae al motor de voz, que siempre está. Pero el
       // motivo se guarda y se muestra, en vez de desaparecer.
+      _falla = '$e';
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> cargarDesdeInternet(String url) async {
+    try {
+      await _player.setUrl(url);
+      _falla = null;
+      return true;
+    } catch (e) {
       _falla = '$e';
       return false;
     }

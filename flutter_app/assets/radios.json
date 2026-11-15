@@ -1,0 +1,15 @@
+{
+  "version": 1,
+  "radios": [
+    {
+      "id": "senti-chi-parla",
+      "nombre": "Radio Senti Chi Parla",
+      "que": "La hace una asociación de voluntarios que graba libros leídos en voz alta para gente que no puede leer impreso. Por eso vocalizan: es su oficio.",
+      "ojo": "No es una radio para aprender. Leen extractos de libros y revistas, así que el vocabulario es de adulto y a veces literario. Entre lectura y lectura pasan música.",
+      "stream": "https://24293.live.streamtheworld.com/SAM01AAC222_SC",
+      "sitio": "https://www.radiosentichiparla.org/",
+      "sostener": "https://www.radiosentichiparla.org/sostieni-radio-senti-chi-parla/",
+      "quien": "Senti Chi Parla! OdV"
+    }
+  ]
+}
