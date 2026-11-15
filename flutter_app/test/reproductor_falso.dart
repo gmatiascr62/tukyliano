@@ -53,6 +53,27 @@ class ReproductorFalso implements Reproductor {
   /// La última dirección de internet que se le pidió abrir.
   String? laUrl;
 
+  /// La última ruta de un archivo guardado que se le pidió abrir.
+  String? laRuta;
+
+  @override
+  Future<bool> cargarGuardado(
+    String ruta, {
+    String? titulo,
+    String? deQuien,
+  }) async {
+    laRuta = ruta;
+    elTitulo = titulo;
+    deQuienEs = deQuien;
+    if (!hayArchivo) {
+      porQueFallo = 'de mentira: el archivo guardado no abre';
+      return false;
+    }
+    cargado = ruta;
+    duracion = const Duration(seconds: 90);
+    return true;
+  }
+
   @override
   Future<bool> cargarDesdeInternet(
     String url, {

@@ -1,0 +1,208 @@
+{
+  "version": 1,
+  "de": "LibriVox",
+  "licencia": "Dominio público",
+  "credito": "Grabadas por voluntarios de LibriVox. Las obras y las grabaciones son de dominio público.",
+  "fuente": "https://librivox.org",
+  "base": "https://github.com/gmatiascr62/tukyliano/releases/download/favole-1",
+  "favole": [
+    {
+      "id": "favole_01_libro01_lafontaine",
+      "titulo": "La Cicala e la Formica",
+      "libro": 1,
+      "archivo": "favole_01_libro01_lafontaine_64kb.mp3",
+      "segundos": 87,
+      "bytes": 697863,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_01_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_02_libro01_lafontaine",
+      "titulo": "Il Corvo e la Volpe",
+      "libro": 1,
+      "archivo": "favole_02_libro01_lafontaine_64kb.mp3",
+      "segundos": 88,
+      "bytes": 708100,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_02_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_03_libro01_lafontaine",
+      "titulo": "La Rana e il Bove",
+      "libro": 1,
+      "archivo": "favole_03_libro01_lafontaine_64kb.mp3",
+      "segundos": 66,
+      "bytes": 529630,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_03_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_04_libro01_lafontaine",
+      "titulo": "I due Muli",
+      "libro": 1,
+      "archivo": "favole_04_libro01_lafontaine_64kb.mp3",
+      "segundos": 82,
+      "bytes": 663788,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_04_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_05_libro01_lafontaine",
+      "titulo": "Il Lupo e il Cane",
+      "libro": 1,
+      "archivo": "favole_05_libro01_lafontaine_64kb.mp3",
+      "segundos": 149,
+      "bytes": 1195439,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_05_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_06_libro01_lafontaine",
+      "titulo": "La Mucca, la Capra e la Pecora in società col Leone",
+      "libro": 1,
+      "archivo": "favole_06_libro01_lafontaine_64kb.mp3",
+      "segundos": 92,
+      "bytes": 738228,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_06_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_07_libro01_lafontaine",
+      "titulo": "La Bisaccia",
+      "libro": 1,
+      "archivo": "favole_07_libro01_lafontaine_64kb.mp3",
+      "segundos": 139,
+      "bytes": 1115603,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_07_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_08_libro01_lafontaine",
+      "titulo": "La Rondine e gli Uccellini",
+      "libro": 1,
+      "archivo": "favole_08_libro01_lafontaine_64kb.mp3",
+      "segundos": 152,
+      "bytes": 1217809,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_08_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_09_libro01_lafontaine",
+      "titulo": "Il Topo di città e il Topo di campagna",
+      "libro": 1,
+      "archivo": "favole_09_libro01_lafontaine_64kb.mp3",
+      "segundos": 91,
+      "bytes": 734245,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_09_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_10_libro01_lafontaine",
+      "titulo": "Il Lupo e l'Agnello",
+      "libro": 1,
+      "archivo": "favole_10_libro01_lafontaine_64kb.mp3",
+      "segundos": 98,
+      "bytes": 787513,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_10_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_11_libro01_lafontaine",
+      "titulo": "L'Uomo e la sua Immagine",
+      "libro": 1,
+      "archivo": "favole_11_libro01_lafontaine_64kb.mp3",
+      "segundos": 113,
+      "bytes": 909771,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_11_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_12_libro01_lafontaine",
+      "titulo": "Il Dragone di molte teste e il Dragone di molte code",
+      "libro": 1,
+      "archivo": "favole_12_libro01_lafontaine_64kb.mp3",
+      "segundos": 111,
+      "bytes": 890991,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_12_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_13_libro01_lafontaine",
+      "titulo": "I Ladri e l'Asino",
+      "libro": 1,
+      "archivo": "favole_13_libro01_lafontaine_64kb.mp3",
+      "segundos": 59,
+      "bytes": 474459,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_13_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_14_libro01_lafontaine",
+      "titulo": "Simonide salvato dagli Dèi",
+      "libro": 1,
+      "archivo": "favole_14_libro01_lafontaine_64kb.mp3",
+      "segundos": 204,
+      "bytes": 1634726,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_14_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_15_libro01_lafontaine",
+      "titulo": "La Morte e il Disgraziato",
+      "libro": 1,
+      "archivo": "favole_15_libro01_lafontaine_64kb.mp3",
+      "segundos": 70,
+      "bytes": 567045,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_15_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_16_libro01_lafontaine",
+      "titulo": "La Morte e il Boscaiolo",
+      "libro": 1,
+      "archivo": "favole_16_libro01_lafontaine_64kb.mp3",
+      "segundos": 90,
+      "bytes": 724196,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_16_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_17_libro01_lafontaine",
+      "titulo": "L'Uomo stagionato e le due Amanti",
+      "libro": 1,
+      "archivo": "favole_17_libro01_lafontaine_64kb.mp3",
+      "segundos": 110,
+      "bytes": 883239,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_17_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_18_libro01_lafontaine",
+      "titulo": "La Volpe e la Cicogna",
+      "libro": 1,
+      "archivo": "favole_18_libro01_lafontaine_64kb.mp3",
+      "segundos": 111,
+      "bytes": 894721,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_18_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_19_libro01_lafontaine",
+      "titulo": "Il Ragazzo e il Maestro di scuola",
+      "libro": 1,
+      "archivo": "favole_19_libro01_lafontaine_64kb.mp3",
+      "segundos": 102,
+      "bytes": 823471,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_19_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_20_libro01_lafontaine",
+      "titulo": "La Gallina e la Perla",
+      "libro": 1,
+      "archivo": "favole_20_libro01_lafontaine_64kb.mp3",
+      "segundos": 59,
+      "bytes": 479061,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_20_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_21_libro01_lafontaine",
+      "titulo": "I Calabroni e le Api",
+      "libro": 1,
+      "archivo": "favole_21_libro01_lafontaine_64kb.mp3",
+      "segundos": 118,
+      "bytes": 952190,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_21_libro01_lafontaine_64kb.mp3"
+    },
+    {
+      "id": "favole_22_libro01_lafontaine",
+      "titulo": "La Canna e la Quercia",
+      "libro": 1,
+      "archivo": "favole_22_libro01_lafontaine_64kb.mp3",
+      "segundos": 109,
+      "bytes": 876958,
+      "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_22_libro01_lafontaine_64kb.mp3"
+    }
+  ]
+}

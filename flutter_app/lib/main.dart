@@ -22,7 +22,7 @@ import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_gramatica.dart';
 import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_preposizioni.dart';
-import 'pantallas/pantalla_podcast.dart';
+import 'pantallas/pantalla_escuchar.dart';
 import 'pantallas/pantalla_radio.dart';
 import 'pantallas/pantalla_pronunciacion.dart';
 import 'pantallas/pantalla_proximamente.dart';
@@ -419,7 +419,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
     switch (seccion) {
       case Seccion.podcast:
-        return PantallaPodcast(reproductor: _reproductor);
+        return PantallaEscuchar(reproductor: _reproductor);
       case Seccion.radio:
         return PantallaRadio(reproductor: _reproductor);
       case Seccion.articoli:

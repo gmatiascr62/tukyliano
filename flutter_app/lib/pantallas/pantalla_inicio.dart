@@ -16,7 +16,7 @@ extension EtiquetaDestino on Destino {
     Destino.hablar => 'Parlare',
     Destino.gramatica => 'Gramática',
     Destino.chat => 'Chat',
-    Destino.podcast => 'Podcast',
+    Destino.podcast => 'Escuchar',
     Destino.radio => 'Radio',
   };
 
@@ -503,7 +503,7 @@ class _BarraDePodcast extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Podcast',
+                        'Escuchar',
                         style: TextStyle(
                           fontSize: 16.5,
                           fontWeight: FontWeight.w700,
@@ -511,7 +511,7 @@ class _BarraDePodcast extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        'Historia de Italia, contada despacio',
+                        'El podcast y las fábulas de La Fontaine',
                         style: TextStyle(
                           fontSize: 12,
                           color: Color(0xE6FFFFFF),
