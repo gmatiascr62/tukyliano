@@ -101,6 +101,34 @@ void main() {
       expect(actividad, contains('puedeNotificar'));
     });
 
+    test('la notificación tiene un ícono propio y monocromo', () {
+      // Android dibuja el ícono de la notificación como silueta: toma solo la
+      // transparencia. El ícono de la app es un PNG a color y sin
+      // transparencia, así que de silueta queda un cuadrado blanco macizo, y
+      // hay sistemas que no lo aceptan.
+      expect(
+        File('android/app/src/main/res/drawable/ic_audio.xml').existsSync(),
+        isTrue,
+      );
+      final fuente = File('lib/datos/audio_de_fondo.dart').readAsStringSync();
+      expect(fuente, contains("androidNotificationIcon: 'drawable/ic_audio'"));
+    });
+
+    test('el canal del audio es el mismo de los dos lados', () {
+      // Si no coinciden, la app mira el estado de un canal que no es el que
+      // usa, y diría que está todo bien mientras el de verdad está apagado.
+      final fuente = File('lib/datos/audio_de_fondo.dart').readAsStringSync();
+      final elDart = RegExp(r"androidNotificationChannelId: '([^']+)'")
+          .firstMatch(fuente)
+          ?.group(1);
+      final elKotlin = RegExp(r'CANAL_DEL_AUDIO = "([^"]+)"')
+          .firstMatch(actividad)
+          ?.group(1);
+
+      expect(elDart, isNotNull);
+      expect(elKotlin, elDart);
+    });
+
     test('alguien le cuenta a Android qué está sonando', () {
       // Esto es lo que hace aparecer la notificación, y la notificación es lo
       // que deja seguir sonando en segundo plano. Sin esta cuenta no hay

@@ -2,6 +2,7 @@ package org.gmatiascr62.tukyliano
 
 import android.Manifest
 import android.app.ActivityManager
+import android.app.NotificationManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
@@ -85,7 +86,26 @@ class MainActivity : AudioServiceActivity() {
         val mio = am.getRunningServices(Integer.MAX_VALUE).firstOrNull {
             it.service.className.contains("audioservice.AudioService")
         } ?: return "servicio: no corre"
-        return if (mio.foreground) "servicio: primer plano" else "servicio: de fondo"
+        val donde = if (mio.foreground) "primer plano" else "de fondo"
+        return "servicio: $donde · ${comoEstaElCanal()}"
+    }
+
+    // Si el canal de notificaciones del audio está prendido.
+    //
+    // Esto es aparte del permiso de notificar. Un canal en Android es para
+    // siempre: una vez creado, la app no puede cambiarle la importancia ni
+    // reactivarlo. Se puede tener el permiso dado y el canal apagado, y en
+    // ese caso la notificación no se muestra nunca. El permiso no lo dice.
+    private fun comoEstaElCanal(): String {
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.O) return "canal: n/a"
+        val nm = getSystemService(Context.NOTIFICATION_SERVICE) as NotificationManager
+        if (!nm.areNotificationsEnabled()) return "canal: app silenciada"
+        val canal = nm.getNotificationChannel(CANAL_DEL_AUDIO) ?: return "canal: sin crear"
+        return if (canal.importance == NotificationManager.IMPORTANCE_NONE) {
+            "canal: APAGADO"
+        } else {
+            "canal: ok (${canal.importance})"
+        }
     }
 
     // El servicio de audio ya sostiene la CPU despierta, pero NO el Wi-Fi.
@@ -113,6 +133,9 @@ class MainActivity : AudioServiceActivity() {
 
     private companion object {
         const val CANAL = "org.gmatiascr62.tukyliano/android"
+
+        // Tiene que coincidir con el de AudioDeFondo.prender().
+        const val CANAL_DEL_AUDIO = "org.gmatiascr62.tukyliano.audio2"
         const val CANDADO = "tukyliano:radio"
         const val PEDIDO = 1001
     }

@@ -216,9 +216,11 @@ class ReproductorDeVerdad implements Reproductor {
     final manejador = _manejador;
     if (manejador == null) return 'sin servicio de audio';
     final notificaciones = Android.puedeNotificar ? 'notif. sí' : 'notif. NO';
+    final roto = AudioDeFondo.seRompio;
     return '$notificaciones · reproductor: '
         '${_player.processingState.name}/'
         '${_player.playing ? "sonando" : "quieto"}\n'
-        '${manejador.loQuePublique}';
+        '${manejador.loQuePublique}'
+        '${roto == null ? "" : "\nse rompió: $roto"}';
   }
 }
