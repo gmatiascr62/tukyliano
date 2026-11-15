@@ -1,7 +1,7 @@
 // Qué hace el servidor con cada pedido.
 //
 // Está separado de index.js a propósito: acá no se nombra Cloudflare ni una
-// vez. Todo lo de afuera —la base, la clave, quién puede entrar, el reloj—
+// vez. Todo lo de afuera —la base, el modelo, quién puede entrar, el reloj—
 // llega por parámetro. Así esto se prueba entero con un `node --test`, sin
 // cuenta, sin internet y sin gastar cuota.
 //
@@ -9,7 +9,7 @@
 // index.js. Esto queda igual.
 
 import { contenidos } from './charla.js';
-import { preguntarle, FallaDeGemini } from './gemini.js';
+import { preguntarle, FallaDelModelo } from './modelo.js';
 import { elDiaDeHoy, loQueFalla, sumarUno } from './limites.js';
 import { queSalioMal, salioBien } from './respuestas.js';
 
@@ -26,7 +26,7 @@ export function puedeEntrar(codigo, permitidos) {
 /** Lo que la app tiene que mandar, chequeado.
  *
  * Devuelve el pedido ya limpio, o null si no se entiende. Un pedido mal armado
- * no puede llegar hasta Gemini: sería gastar cuota en algo que no va a servir. */
+ * no puede llegar al modelo: sería gastar cuota en algo que no va a servir. */
 export function loQueMando(cuerpo) {
   if (cuerpo === null || typeof cuerpo !== 'object') return null;
 
@@ -52,7 +52,7 @@ export function loQueMando(cuerpo) {
 
 /** Atiende un pedido de charla. */
 export async function atenderLaCharla(cuerpo, afuera) {
-  const { base, clave, permitidos, topes, traer, ahora } = afuera;
+  const { base, ia, modelo, permitidos, topes, ahora } = afuera;
 
   const pedido = loQueMando(cuerpo);
   if (pedido === null) return queSalioMal('pedidoRaro');
@@ -67,10 +67,10 @@ export async function atenderLaCharla(cuerpo, afuera) {
   if (pasado !== null) return queSalioMal(pasado);
 
   try {
-    const dicho = await preguntarle(contenidos(pedido), clave, traer);
+    const dicho = await preguntarle(contenidos(pedido), ia, modelo);
     return salioBien(dicho);
   } catch (error) {
-    if (error instanceof FallaDeGemini) return queSalioMal(error.motivo);
+    if (error instanceof FallaDelModelo) return queSalioMal(error.motivo);
     throw error;
   }
 }

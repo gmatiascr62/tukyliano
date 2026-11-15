@@ -1,23 +1,32 @@
 # Cómo se publica el servidor en Cloudflare.
 #
-# Acá no va ningún secreto. La clave de Gemini y la lista de códigos se cargan
-# como secretos desde el panel de Cloudflare o con `wrangler secret put`, y
-# nunca tocan el repositorio, que es público.
+# Acá no va ningún secreto. Desde que los modelos los corre Cloudflare no hay
+# ninguna clave de IA en ningún lado: ni en el repositorio, ni en el celular,
+# ni como secreto. La lista de códigos sí se carga aparte, desde el panel o
+# con `wrangler secret put CODIGOS`.
 
 name = "tukyliano"
 main = "src/index.js"
 compatibility_date = "2026-10-01"
 
-# Los topes. Estos sí pueden estar a la vista: no son secretos, son decisiones.
+# Los topes y el modelo. Estos sí pueden estar a la vista: no son secretos,
+# son decisiones.
+#
+# MODELO es el renglón que importa. Cambiarlo y publicar el servidor cambia
+# quién contesta en el chat, al instante y para todos, sin tocar la app ni
+# publicar un APK. Los nombres salen del catálogo de Workers AI.
 [vars]
 TOPE_POR_PERSONA = "60"
 TOPE_DEL_SERVIDOR = "2000"
+MODELO = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
 
-# La base de los contadores. El id lo da Cloudflare al crearla:
-#   wrangler d1 create tukyliano
-# y después se corre el esquema:
-#   wrangler d1 execute tukyliano --remote --file=esquema.sql
+# Los modelos. No se instala ni se sube nada: se los nombra y los corre
+# Cloudflare en sus GPU.
+[ai]
+binding = "AI"
+
+# La base de los contadores. El id lo dio Cloudflare al crearla.
 [[d1_databases]]
 binding = "BASE"
 database_name = "tukyliano"
-database_id = "PONER-EL-ID-QUE-DA-CLOUDFLARE"
+database_id = "bdf2f9a7-0d1d-4f06-96d4-b84163e4074f"

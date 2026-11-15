@@ -1,10 +1,11 @@
 // El punto de entrada del Worker: lo único que sabe de Cloudflare.
 //
-// Agarra lo que viene del ambiente —la clave, la base, los códigos, los
+// Agarra lo que viene del ambiente —la base, el modelo, los códigos, los
 // topes— y se lo pasa a atender.js, que es donde está la lógica y lo que se
 // prueba.
 
 import { atenderLaCharla } from './atender.js';
+import { MODELO_POR_DEFECTO } from './modelo.js';
 import { queSalioMal } from './respuestas.js';
 
 /// Cuántos mensajes por día si nadie dice otra cosa.
@@ -17,7 +18,7 @@ export default {
   async fetch(pedido, ambiente) {
     const donde = new URL(pedido.url);
 
-    // Para saber si está vivo sin gastar un pedido a Google.
+    // Para saber si está vivo sin gastar ni una neurona.
     if (pedido.method === 'GET' && donde.pathname === '/salud') {
       return Response.json({ ok: true });
     }
@@ -36,13 +37,13 @@ export default {
     try {
       return await atenderLaCharla(cuerpo, {
         base: ambiente.BASE,
-        clave: ambiente.CLAVE_GEMINI,
+        ia: ambiente.AI,
+        modelo: ambiente.MODELO || MODELO_POR_DEFECTO,
         permitidos: codigos(ambiente.CODIGOS),
         topes: {
           deCadaUno: numero(ambiente.TOPE_POR_PERSONA, TOPES_POR_DEFECTO.deCadaUno),
           deTodos: numero(ambiente.TOPE_DEL_SERVIDOR, TOPES_POR_DEFECTO.deTodos),
         },
-        traer: fetch,
         ahora: new Date(),
       });
     } catch (error) {
