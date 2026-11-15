@@ -16,6 +16,7 @@ class Favola {
     required this.archivo,
     required this.segundos,
     required this.bytes,
+    this.renglones = const [],
   });
 
   final String id;
@@ -30,6 +31,18 @@ class Favola {
 
   final int segundos;
   final int bytes;
+
+  /// El texto, renglón por renglón.
+  ///
+  /// Viaja en la app y no se baja: son unos pocos KB y así se puede leer la
+  /// fábula aunque el audio no esté bajado todavía.
+  ///
+  /// Está en verso, porque la traducción que leen es la de Emilio de Marchi
+  /// y es poesía rimada. Para seguir el audio con la vista sirve igual; para
+  /// aprender a hablar, el italiano de Pinocchio es mejor material.
+  final List<String> renglones;
+
+  bool get tieneTexto => renglones.isNotEmpty;
 
   /// "1:27", para mostrar al lado del título.
   String get cuantoDura {
@@ -52,6 +65,10 @@ class Favola {
         archivo: datos['archivo'] as String,
         segundos: datos['segundos'] as int? ?? 0,
         bytes: datos['bytes'] as int? ?? 0,
+        renglones: [
+          for (final r in (datos['renglones'] as List? ?? []))
+            r as String,
+        ],
       );
 }
 
@@ -62,6 +79,7 @@ class Favole {
     this.base = '',
     this.credito = '',
     this.fuente = '',
+    this.textoDe = '',
   });
 
   final List<Favola> favole;
@@ -72,6 +90,9 @@ class Favole {
 
   final String credito;
   final String fuente;
+
+  /// De dónde salió el texto, que no es el mismo lugar que el audio.
+  final String textoDe;
 
   bool get hay => favole.isNotEmpty;
 

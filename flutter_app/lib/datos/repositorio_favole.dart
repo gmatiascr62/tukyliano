@@ -32,6 +32,7 @@ class RepositorioFavole {
         base: datos['base'] as String? ?? '',
         credito: datos['credito'] as String? ?? '',
         fuente: datos['fuente'] as String? ?? '',
+        textoDe: datos['textoDe'] as String? ?? '',
       );
     } catch (_) {
       _catalogo = const Favole();

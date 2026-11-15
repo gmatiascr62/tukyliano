@@ -22,6 +22,8 @@ import os
 import re
 import subprocess
 import sys
+import time
+import unicodedata
 
 DONDE = 'https://archive.org'
 
@@ -40,6 +42,19 @@ LIBROS = [
 # La licencia que tiene que declarar el item. Si dice otra cosa, no se baja:
 # el día que alguien suba algo con derechos, esto lo frena.
 LIBRES = ('publicdomain', 'creativecommons.org/publicdomain')
+
+# De dónde sale el texto. Es la misma traducción que leen en el audio: la de
+# Emilio de Marchi, que murió en 1901, así que hace rato es de dominio
+# público. Lo dice la propia página de LibriVox del libro.
+WIKI = 'https://it.wikisource.org/w/api.php'
+PAGINAS = {1: 'Favole (La Fontaine)/Libro primo/'}
+
+ROMANOS = {
+    'I': 1, 'II': 2, 'III': 3, 'IV': 4, 'V': 5, 'VI': 6, 'VII': 7,
+    'VIII': 8, 'IX': 9, 'X': 10, 'XI': 11, 'XII': 12, 'XIII': 13,
+    'XIV': 14, 'XV': 15, 'XVI': 16, 'XVII': 17, 'XVIII': 18, 'XIX': 19,
+    'XX': 20, 'XXI': 21, 'XXII': 22, 'XXIII': 23, 'XXIV': 24,
+}
 
 
 def limpiar(texto):
@@ -74,6 +89,124 @@ def enSegundos(largo):
             total = total * 60 + p
         return int(total)
     return int(float(largo))
+
+
+# Wikimedia pide que quien le hable se identifique, y al que no lo hace lo
+# estrangula sin decir por qué: contesta vacío cada tantas consultas. Es un
+# nombre genérico a propósito; no lleva datos de nadie.
+QUIEN_SOY = 'Tukyliano/1.0 (app de estudio de italiano)'
+
+
+def preguntarleAWikisource(parametros, intentos=3):
+    orden = ['curl', '-sS', '-m', '120', '-A', QUIEN_SOY, '-G', WIKI]
+    for clave, valor in parametros.items():
+        orden += ['--data-urlencode', f'{clave}={valor}']
+
+    for intento in range(intentos):
+        salida = subprocess.run(orden, capture_output=True)
+        crudo = salida.stdout.decode('utf-8', 'replace')
+        try:
+            return json.loads(crudo)
+        except json.JSONDecodeError:
+            if intento == intentos - 1:
+                raise SystemExit(
+                    'Wikisource no contestó JSON.\n'
+                    f'  curl dijo: {salida.stderr.decode()[:200]}\n'
+                    f'  contestó : {crudo[:200]!r}'
+                )
+            time.sleep(2 * (intento + 1))
+
+
+def laListaDeTextos(prefijo):
+    """Las páginas del libro, en el orden que dice su número romano."""
+    datos = preguntarleAWikisource({
+        'action': 'query', 'format': 'json', 'formatversion': '2',
+        'list': 'allpages', 'apprefix': prefijo, 'aplimit': '100',
+    })
+    paginas = []
+    for pagina in datos['query']['allpages']:
+        nombre = pagina['title'][len(prefijo):]
+        romano = nombre.split(' - ')[0].strip()
+        if romano not in ROMANOS:
+            continue
+        paginas.append((ROMANOS[romano], pagina['title'], nombre))
+    paginas.sort()
+    return paginas
+
+
+def soloElTexto(wiki):
+    """Del wikitexto saca los renglones del poema y nada más.
+
+    Lo que hay alrededor —plantillas, la imagen del grabado, los enlaces a la
+    fábula anterior y la siguiente— no es la fábula.
+    """
+    adentro = re.search(r'<poem>(.*?)</poem>', wiki, re.S)
+    crudo = adentro.group(1) if adentro else wiki
+
+    # Las plantillas pueden estar anidadas, así que se sacan de adentro hacia
+    # afuera hasta que no quede ninguna.
+    antes = None
+    while antes != crudo:
+        antes = crudo
+        crudo = re.sub(r'\{\{[^{}]*\}\}', '', crudo)
+
+    crudo = re.sub(r'\[\[(?:Immagine|File|Image):[^\]]*\]\]', '', crudo)
+    # [[algo|lo que se lee]] y [[lo que se lee]].
+    crudo = re.sub(r'\[\[[^\]|]*\|([^\]]*)\]\]', r'\1', crudo)
+    crudo = re.sub(r'\[\[([^\]]*)\]\]', r'\1', crudo)
+    crudo = re.sub(r'<[^>]+>', '', crudo)
+    crudo = crudo.replace("\'\'\'", '').replace("\'\'", '')
+    crudo = crudo.replace('\u00a0', ' ')
+
+    renglones = [r.strip() for r in crudo.split('\n')]
+    return [r for r in renglones if r]
+
+
+def comparable(titulo):
+    """Deja el título comparable: sin tildes, sin signos y en minúscula."""
+    sinTildes = unicodedata.normalize('NFKD', titulo)
+    sinTildes = ''.join(c for c in sinTildes if not unicodedata.combining(c))
+    return re.sub(r'[^a-z0-9]', '', sinTildes.lower())
+
+
+def losTextos(numeroDeLibro, fabulas):
+    """El texto de cada fábula, emparejado con su audio.
+
+    El emparejado se verifica, no se supone: las dos listas vienen de lugares
+    distintos —el audio de LibriVox, el texto de Wikisource— y si alguna vez
+    dejan de coincidir, mostrar el texto equivocado debajo del audio sería
+    peor que no mostrar ninguno.
+    """
+    paginas = laListaDeTextos(PAGINAS[numeroDeLibro])
+    if len(paginas) != len(fabulas):
+        raise SystemExit(
+            f'hay {len(fabulas)} audios y {len(paginas)} textos: no emparejan'
+        )
+
+    for (_, titulo, nombre), fabula in zip(paginas, fabulas):
+        suTitulo = nombre.split(' - ', 1)[-1]
+        if comparable(suTitulo) != comparable(fabula['titulo']):
+            suyo = fabula['titulo']
+            raise SystemExit(
+                f'el audio dice "{suyo}" y el texto "{suTitulo}": '
+                'no son la misma fábula'
+            )
+
+    datos = preguntarleAWikisource({
+        'action': 'query', 'format': 'json', 'formatversion': '2',
+        'prop': 'revisions', 'rvprop': 'content', 'rvslots': 'main',
+        'titles': '|'.join(p[1] for p in paginas),
+    })
+    porTitulo = {
+        p['title']: p['revisions'][0]['slots']['main']['content']
+        for p in datos['query']['pages'] if 'revisions' in p
+    }
+
+    for (_, titulo, _), fabula in zip(paginas, fabulas):
+        wiki = porTitulo.get(titulo)
+        fabula['renglones'] = soloElTexto(wiki) if wiki else []
+        if not fabula['renglones']:
+            print(f"sin texto: {fabula['titulo']}", file=sys.stderr)
 
 
 def traer(que):
@@ -127,6 +260,7 @@ def main():
     creditos = []
     for identificador, numero in LIBROS:
         meta, fabulas = unLibro(identificador, numero)
+        losTextos(numero, fabulas)
         creditos.append(limpiar(str(meta.get('title', ''))))
         todas.extend(fabulas)
         print(f'libro {numero}: {len(fabulas)} fábulas', file=sys.stderr)
@@ -138,6 +272,7 @@ def main():
         'credito': 'Grabadas por voluntarios de LibriVox. Las obras y las '
                    'grabaciones son de dominio público.',
         'fuente': 'https://librivox.org',
+        'textoDe': 'it.wikisource.org · traducción de Emilio de Marchi',
         'base': BASE,
         'favole': todas,
     }
