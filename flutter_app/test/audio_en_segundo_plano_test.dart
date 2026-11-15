@@ -20,6 +20,34 @@ void main() {
   final pubspec = File('pubspec.yaml').readAsStringSync();
 
   group('el audio en segundo plano', () {
+    test('el namespace es igual al applicationId', () {
+      // Si no coinciden, cualquier biblioteca que busque un recurso en
+      // tiempo de ejecución con getIdentifier(..., getPackageName()) recibe
+      // 0, porque pregunta por un paquete que en la tabla de recursos no
+      // existe. Así busca sus íconos audio_service.
+      //
+      // Eso tuvo al audio en segundo plano sin andar durante seis versiones:
+      // el ícono daba 0, armar el botón de la notificación tiraba "You must
+      // specify an icon resource id to build a CustomAction", y la excepción
+      // reventaba el aviso entero antes de llegar al startForeground.
+      final gradle =
+          File('android/app/build.gradle.kts').readAsStringSync();
+      final elNamespace =
+          RegExp(r'namespace = "([^"]+)"').firstMatch(gradle)?.group(1);
+      final elId =
+          RegExp(r'applicationId = "([^"]+)"').firstMatch(gradle)?.group(1);
+
+      expect(elNamespace, isNotNull);
+      expect(elNamespace, elId);
+    });
+
+    test('la actividad va con el nombre de paquete completo', () {
+      // El código Kotlin quedó en org.gmatiascr62.tukyliano y el namespace
+      // ahora es ...tukyliano.flutter, así que ".MainActivity" no alcanza:
+      // Android lo buscaría en el paquete equivocado y no abriría nada.
+      expect(manifest, contains('org.gmatiascr62.tukyliano.MainActivity'));
+    });
+
     test('está el permiso para poder mostrar la notificación', () {
       // Desde Android 13 sin esto no se muestra NINGUNA notificación, y sin
       // notificación Android corta el audio al rato de que la app deja de

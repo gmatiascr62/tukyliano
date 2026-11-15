@@ -87,7 +87,22 @@ class MainActivity : AudioServiceActivity() {
             it.service.className.contains("audioservice.AudioService")
         } ?: return "servicio: no corre"
         val donde = if (mio.foreground) "primer plano" else "de fondo"
-        return "servicio: $donde · ${comoEstaElCanal()}"
+        return "servicio: $donde · ${comoEstaElCanal()}\n${seEncuentranLosIconos()}"
+    }
+
+    // Si los íconos se encuentran buscándolos como los busca audio_service.
+    //
+    // Esta es la medición que cierra el caso. audio_service busca sus íconos
+    // con getIdentifier(nombre, tipo, getPackageName()), y getPackageName()
+    // devuelve el applicationId. Si la tabla de recursos está registrada bajo
+    // otro paquete —porque el namespace no coincidía con el applicationId—,
+    // todo da 0, y construir el botón de la notificación tira "You must
+    // specify an icon resource id to build a CustomAction". Esa excepción
+    // reventaba el aviso entero y nunca se llegaba al startForeground.
+    private fun seEncuentranLosIconos(): String {
+        val mio = resources.getIdentifier("ic_audio", "drawable", packageName)
+        val suyo = resources.getIdentifier("audio_service_stop", "drawable", packageName)
+        return if (mio != 0 && suyo != 0) "íconos: ok" else "íconos: NO ($mio/$suyo)"
     }
 
     // Si el canal de notificaciones del audio está prendido.
