@@ -370,7 +370,7 @@ void main() {
       await _abrir(tester, reproductor: ReproductorFalso());
       await _bajarDelTodo(tester);
 
-      expect(find.text('de mentira'), findsOne);
+      expect(find.textContaining('de mentira'), findsOne);
     });
   });
 }

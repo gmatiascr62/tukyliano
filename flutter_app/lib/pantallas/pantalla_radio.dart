@@ -60,13 +60,24 @@ class _PantallaRadioState extends State<PantallaRadio> {
 
   StreamSubscription<void>? _esperandoElCorte;
 
+  /// Lo que dice Android sobre su propio servicio. Se pregunta cada vez que
+  /// cambia algo, porque es el dato que desde adentro de la app no se ve.
+  String _queDiceAndroid = 'servicio: preguntando…';
+
   @override
   void initState() {
     super.initState();
     _arrancar();
   }
 
+  Future<void> _preguntarPorElServicio() async {
+    final dice = await Android.comoEstaElServicio();
+    if (!mounted) return;
+    setState(() => _queDiceAndroid = dice);
+  }
+
   Future<void> _arrancar() async {
+    unawaited(_preguntarPorElServicio());
     final radios = await _repositorio.cargar();
     if (!mounted) return;
     setState(() {
@@ -178,7 +189,8 @@ class _PantallaRadioState extends State<PantallaRadio> {
     return _Escucha(
       radio: radio,
       estado: _estado,
-      comoVaElAudio: _reproductor.comoVa,
+      comoVaElAudio: '${_reproductor.comoVa}\n$_queDiceAndroid',
+      alMirarElAudio: _preguntarPorElServicio,
       porQueFallo: _porQueFallo,
       alPlay: _playOPausa,
       // Con una sola emisora no hay a dónde volver.
@@ -247,6 +259,7 @@ class _Escucha extends StatelessWidget {
     required this.radio,
     required this.estado,
     required this.comoVaElAudio,
+    required this.alMirarElAudio,
     required this.porQueFallo,
     required this.alPlay,
     required this.alVolverALaLista,
@@ -255,9 +268,14 @@ class _Escucha extends StatelessWidget {
   final RadioItaliana radio;
   final _Estado estado;
 
-  /// En qué anda el reproductor, en una línea. Va al pie, chiquito: no es
-  /// para el alumno, es para poder mandar una captura cuando algo no suena.
+  /// En qué anda el reproductor. Va al pie, chiquito: no es para el alumno,
+  /// es para poder mandar una captura cuando algo no suena.
   final String comoVaElAudio;
+
+  /// Volver a preguntar. El servicio tarda un momento en ponerse en primer
+  /// plano después del play, así que el dato se pide a mano cuando hace
+  /// falta en vez de con un reloj que estaría corriendo siempre.
+  final VoidCallback alMirarElAudio;
 
   final String? porQueFallo;
   final VoidCallback alPlay;
@@ -299,7 +317,7 @@ class _Escucha extends StatelessWidget {
           ),
         ],
         const SizedBox(height: 16),
-        _ComoVaElAudio(texto: comoVaElAudio),
+        _ComoVaElAudio(texto: comoVaElAudio, alTocar: alMirarElAudio),
         const SizedBox(height: 20),
       ],
     );
@@ -314,18 +332,23 @@ class _Escucha extends StatelessWidget {
 /// la única manera de avanzar fue ir preguntando de a una cosa por vez. Con
 /// esto, una captura de pantalla contesta las tres.
 class _ComoVaElAudio extends StatelessWidget {
-  const _ComoVaElAudio({required this.texto});
+  const _ComoVaElAudio({required this.texto, required this.alTocar});
 
   final String texto;
+  final VoidCallback alTocar;
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20),
-      child: Text(
-        texto,
-        textAlign: TextAlign.center,
-        style: const TextStyle(fontSize: 10.5, color: Tema.textoTenue),
+    return InkWell(
+      onTap: alTocar,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+        child: Text(
+          texto,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 10.5, height: 1.4,
+              color: Tema.textoTenue),
+        ),
       ),
     );
   }
