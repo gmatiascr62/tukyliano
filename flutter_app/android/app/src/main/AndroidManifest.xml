@@ -43,8 +43,12 @@
         android:label="Tukyliano"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- Con el nombre completo del paquete: el namespace ahora es
+             org.gmatiascr62.tukyliano.flutter —tiene que coincidir con el
+             applicationId, ver build.gradle.kts— y el código Kotlin sigue en
+             org.gmatiascr62.tukyliano, así que ".MainActivity" ya no alcanza. -->
         <activity
-            android:name=".MainActivity"
+            android:name="org.gmatiascr62.tukyliano.MainActivity"
             android:exported="true"
             android:launchMode="singleTop"
             android:taskAffinity=""

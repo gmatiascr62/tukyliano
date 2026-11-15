@@ -5,7 +5,29 @@ plugins {
 }
 
 android {
-    namespace = "org.gmatiascr62.tukyliano"
+    // Tiene que ser IGUAL al applicationId de abajo, aunque el sufijo
+    // ".flutter" sea feo. No es cosmético.
+    //
+    // El namespace es el paquete bajo el que queda registrada la tabla de
+    // recursos del APK. El applicationId es el nombre con el que Android
+    // conoce a la app, y es lo que devuelve getPackageName().
+    //
+    // Cuando no coinciden, cualquier biblioteca que busque un recurso en
+    // tiempo de ejecución con getIdentifier(nombre, tipo, getPackageName())
+    // recibe 0, porque pregunta por un paquete que en la tabla no existe. Y
+    // así buscan sus íconos audio_service y muchas otras.
+    //
+    // Eso tuvo al audio en segundo plano sin andar durante seis versiones: el
+    // ícono daba 0, construir el botón de la notificación tiraba "You must
+    // specify an icon resource id to build a CustomAction", la excepción
+    // reventaba el aviso entero y nunca se llegaba al startForeground. El
+    // servicio quedaba corriendo de fondo, sin notificación, y Android
+    // cortaba el audio.
+    //
+    // Cambiar el applicationId no era opción: es la identidad de la app para
+    // Android y cambiarlo obligaría a desinstalar y reinstalar. Mover el
+    // namespace no le cambia nada al usuario.
+    namespace = "org.gmatiascr62.tukyliano.flutter"
     compileSdk = flutter.compileSdkVersion
     ndkVersion = flutter.ndkVersion
 
