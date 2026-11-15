@@ -19,6 +19,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/progreso.dart';
+import 'package:tukyliano/datos/repositorio_diccionario.dart';
+import 'package:tukyliano/datos/repositorio_favole.dart';
 import 'package:tukyliano/ia/chat.dart';
 import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
@@ -177,12 +179,28 @@ Widget comoEnLaApp(Widget pantalla) => Scaffold(
       ),
     );
 
+/// El catálogo de verdad, pero leído del disco y no del paquete de la app.
+///
+/// Bajo el reloj falso de los tests de widget, leer un asset con rootBundle
+/// no termina nunca: la pantalla se queda cargando y la foto sale en blanco.
+/// Se lee el mismo archivo con dart:io, que sí contesta.
+RepositorioFavole _elCatalogoDeVerdad() => RepositorioFavole(
+      leerAsset: (_) async => File('assets/favole.json').readAsStringSync(),
+    );
+
+/// Un diccionario chiquito. El de verdad son 770 KB y para una foto no hace
+/// falta: leerlo entero acá hace que la pantalla no termine de cargar nunca.
+RepositorioDiccionario _diccionarioChico() => RepositorioDiccionario(
+      leerAsset: (_) async => '{"version":1,"it":{},"es":{}}',
+    );
+
 /// Descargas de mentira para la foto: con las tres primeras ya bajadas, que
 /// es como se ve la pantalla después de usarla un rato.
 DescargasFalsas _descargasDeMentira() => DescargasFalsas(yaBajadas: const {
       'favole_01_libro01_lafontaine_64kb.mp3',
       'favole_02_libro01_lafontaine_64kb.mp3',
       'favole_03_libro01_lafontaine_64kb.mp3',
+      'favole_05_libro01_lafontaine_64kb.mp3',
     });
 
 /// Un barista de mentira que contesta la escena entera, para la foto.
@@ -242,15 +260,23 @@ void main() {
         );
 
       case 'una-favola':
+        // La del lobo, que es la que tiene los tiempos marcados, con el
+        // reloj puesto en medio de un verso: así se ve el renglón iluminado,
+        // que es lo que hay que mirar.
+        final reproductor = ReproductorFalso();
         await dibujar(
           tester,
           cual,
           comoEnLaApp(PantallaFavole(
+            repositorio: _elCatalogoDeVerdad(),
             descargas: _descargasDeMentira(),
-            reproductor: ReproductorFalso(),
+            reproductor: reproductor,
+            diccionario: _diccionarioChico(),
           )),
           despuesDeAbrir: (t) async {
-            await t.tap(find.text('La Cicala e la Formica'));
+            await t.tap(find.text('Il Lupo e il Cane'));
+            await t.pumpAndSettle();
+            reproductor.correrA(const Duration(seconds: 28));
             await t.pumpAndSettle();
           },
         );
@@ -260,8 +286,10 @@ void main() {
           tester,
           cual,
           comoEnLaApp(PantallaFavole(
+            repositorio: _elCatalogoDeVerdad(),
             descargas: _descargasDeMentira(),
             reproductor: ReproductorFalso(),
+            diccionario: _diccionarioChico(),
           )),
         );
 

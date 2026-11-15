@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
@@ -14,10 +16,10 @@ import '../tema.dart';
 /// texto es ejercicio de oído; escuchar con texto es lo que de verdad enseña
 /// palabras, porque se ve dónde termina una y empieza la otra.
 ///
-/// **El renglón que suena no se ilumina**, y conviene decirlo en vez de
-/// disimularlo: para eso haría falta saber en qué segundo arranca cada
-/// renglón, y eso hay que marcarlo a mano, fábula por fábula. Acá el texto
-/// está entero y quieto, y uno lo sigue con la vista.
+/// **El renglón que suena se ilumina, si alguien marcó los tiempos.**
+/// Marcarlos es trabajo a mano: hay que escuchar la fábula anotando en qué
+/// segundo arranca cada verso. Las que todavía no están marcadas muestran el
+/// texto quieto, que ya sirve para seguirlo con la vista.
 ///
 /// El texto está en verso, porque la traducción que leen es la de Emilio de
 /// Marchi y es poesía rimada. Por eso las palabras que se tocan importan
@@ -51,6 +53,22 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
   bool _abrio = false;
   String? _porQueNoSuena;
 
+  /// Qué renglón se está diciendo. -1 es ninguno: antes del primer verso va
+  /// la presentación de LibriVox, y al final el cierre.
+  int _enElRenglon = -1;
+
+  StreamSubscription<Duration>? _siguiendo;
+  StreamSubscription<void>? _esperandoElFinal;
+
+  final ScrollController _scroll = ScrollController();
+
+  /// Una clave por renglón, para poder preguntarle a cada uno dónde quedó
+  /// dibujado. Calcularlo no sirve: un verso largo ocupa dos líneas y el
+  /// error se va sumando.
+  late final List<GlobalKey> _claves = [
+    for (var i = 0; i < widget.favola.renglones.length; i++) GlobalKey(),
+  ];
+
   @override
   void initState() {
     super.initState();
@@ -59,6 +77,9 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
 
   @override
   void dispose() {
+    _siguiendo?.cancel();
+    _esperandoElFinal?.cancel();
+    _scroll.dispose();
     // Pausar y no soltar: el reproductor es uno solo para toda la app.
     widget.reproductor.pausar();
     super.dispose();
@@ -80,11 +101,54 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
       });
       return;
     }
+    if (widget.favola.sigueElAudio) {
+      _siguiendo = widget.reproductor.porDonde.listen(_vaPor);
+      _esperandoElFinal =
+          widget.reproductor.termino.listen((_) => _seAcabo());
+    }
+
     setState(() {
       _abrio = true;
       _sonando = true;
     });
+
+    // Se empieza donde empieza la fábula, no donde empieza el archivo: antes
+    // va la presentación de LibriVox, y en una fábula de minuto y medio son
+    // dieciséis segundos de espera antes de lo que se vino a escuchar. Quien
+    // quiera oírla puede volver con el botón de reiniciar.
+    final empieza = widget.favola.dondeEmpiezaDeVerdad;
+    if (empieza != null) await widget.reproductor.irA(empieza);
+
     await widget.reproductor.reproducir();
+  }
+
+  void _vaPor(Duration donde) {
+    if (!mounted) return;
+    final cual = widget.favola.cualSuena(donde);
+    if (cual == _enElRenglon) return;
+    setState(() => _enElRenglon = cual);
+    if (cual >= 0 && _sonando) _acercarA(cual);
+  }
+
+  void _seAcabo() {
+    if (!mounted) return;
+    setState(() {
+      _sonando = false;
+      _enElRenglon = -1;
+    });
+  }
+
+  /// Deja a la vista el renglón que suena, a un tercio de la pantalla desde
+  /// arriba: así se ve lo que ya se dijo y lo que viene.
+  void _acercarA(int i) {
+    final donde = _claves[i].currentContext;
+    if (donde == null) return;
+    Scrollable.ensureVisible(
+      donde,
+      alignment: 0.35,
+      duration: const Duration(milliseconds: 300),
+      curve: Curves.easeOut,
+    );
   }
 
   Future<void> _playOPausa() async {
@@ -99,7 +163,9 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
 
   Future<void> _desdeElPrincipio() async {
     if (!_abrio) return;
-    await widget.reproductor.irA(Duration.zero);
+    await widget.reproductor.irA(
+      widget.favola.dondeEmpiezaDeVerdad ?? Duration.zero,
+    );
     if (!_sonando) {
       await widget.reproductor.reproducir();
       if (mounted) setState(() => _sonando = true);
@@ -161,6 +227,9 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
           child: favola.tieneTexto
               ? _ElTexto(
                   renglones: favola.renglones,
+                  enElRenglon: _enElRenglon,
+                  claves: _claves,
+                  scroll: _scroll,
                   alTocarPalabra: _queQuiereDecir,
                 )
               : const _SinTexto(),
@@ -302,9 +371,18 @@ class _SinTexto extends StatelessWidget {
 
 /// El texto, con cada palabra tocable.
 class _ElTexto extends StatefulWidget {
-  const _ElTexto({required this.renglones, required this.alTocarPalabra});
+  const _ElTexto({
+    required this.renglones,
+    required this.enElRenglon,
+    required this.claves,
+    required this.scroll,
+    required this.alTocarPalabra,
+  });
 
-  final List<String> renglones;
+  final List<RenglonDeFavola> renglones;
+  final int enElRenglon;
+  final List<GlobalKey> claves;
+  final ScrollController scroll;
   final void Function(String) alTocarPalabra;
 
   @override
@@ -331,6 +409,7 @@ class _ElTextoState extends State<_ElTexto> {
     var cual = 0;
 
     return ListView.builder(
+      controller: widget.scroll,
       padding: const EdgeInsets.fromLTRB(22, 14, 22, 28),
       itemCount: widget.renglones.length + 1,
       itemBuilder: (context, i) {
@@ -344,10 +423,12 @@ class _ElTextoState extends State<_ElTexto> {
           );
         }
 
+        final suena = i == widget.enElRenglon;
         final partes = <InlineSpan>[];
         // Se parte dejando los espacios adentro, así el renglón se vuelve a
         // armar exactamente como estaba.
-        for (final pedazo in widget.renglones[i].split(RegExp(r'(?<= )'))) {
+        for (final pedazo
+            in widget.renglones[i].texto.split(RegExp(r'(?<= )'))) {
           if (pedazo.trim().isEmpty) {
             partes.add(TextSpan(text: pedazo));
             continue;
@@ -358,13 +439,20 @@ class _ElTextoState extends State<_ElTexto> {
           partes.add(TextSpan(text: pedazo, recognizer: gesto));
         }
 
-        return Padding(
-          padding: const EdgeInsets.only(bottom: 7),
+        return Container(
+          key: widget.claves[i],
+          // El que suena se pinta entero, de borde a borde: en un texto en
+          // verso los renglones son cortos y desparejos, y subrayar solo las
+          // palabras se pierde de vista.
+          color: suena ? Tema.verdeSuave : null,
+          padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
+          margin: const EdgeInsets.only(bottom: 4),
           child: Text.rich(
             TextSpan(children: partes),
-            style: const TextStyle(
+            style: TextStyle(
               fontSize: 17,
               height: 1.4,
+              fontWeight: suena ? FontWeight.w600 : FontWeight.w400,
               color: Tema.texto,
             ),
           ),

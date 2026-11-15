@@ -16,29 +16,75 @@
       "bytes": 697863,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_01_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "La Cicala che imprudente",
-        "tutto estate al sol cantò,",
-        "provveduta di niente",
-        "nell’inverno si trovò,",
-        "senza più un granello e senza",
-        "una mosca in la credenza.",
-        "Affamata e piagnolosa",
-        "va a cercar della Formica",
-        "e le chiede qualche cosa,",
-        "qualche cosa in cortesia,",
-        "per poter fino alla prossima",
-        "primavera tirar via:",
-        "promettendo per l’agosto,",
-        "in coscienza d’animale,",
-        "interessi e capitale.",
-        "La Formica che ha il difetto",
-        "di prestar malvolentieri,",
-        "le dimanda chiaro e netto:",
-        "- Che hai tu fatto fino a ieri?",
-        "- Cara amica, a dire il giusto",
-        "non ho fatto che cantare",
-        "tutto il tempo. - Brava ho gusto;",
-        "balla adesso, se ti pare."
+        {
+          "t": "La Cicala che imprudente"
+        },
+        {
+          "t": "tutto estate al sol cantò,"
+        },
+        {
+          "t": "provveduta di niente"
+        },
+        {
+          "t": "nell’inverno si trovò,"
+        },
+        {
+          "t": "senza più un granello e senza"
+        },
+        {
+          "t": "una mosca in la credenza."
+        },
+        {
+          "t": "Affamata e piagnolosa"
+        },
+        {
+          "t": "va a cercar della Formica"
+        },
+        {
+          "t": "e le chiede qualche cosa,"
+        },
+        {
+          "t": "qualche cosa in cortesia,"
+        },
+        {
+          "t": "per poter fino alla prossima"
+        },
+        {
+          "t": "primavera tirar via:"
+        },
+        {
+          "t": "promettendo per l’agosto,"
+        },
+        {
+          "t": "in coscienza d’animale,"
+        },
+        {
+          "t": "interessi e capitale."
+        },
+        {
+          "t": "La Formica che ha il difetto"
+        },
+        {
+          "t": "di prestar malvolentieri,"
+        },
+        {
+          "t": "le dimanda chiaro e netto:"
+        },
+        {
+          "t": "- Che hai tu fatto fino a ieri?"
+        },
+        {
+          "t": "- Cara amica, a dire il giusto"
+        },
+        {
+          "t": "non ho fatto che cantare"
+        },
+        {
+          "t": "tutto il tempo. - Brava ho gusto;"
+        },
+        {
+          "t": "balla adesso, se ti pare."
+        }
       ]
     },
     {
@@ -50,26 +96,66 @@
       "bytes": 708100,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_02_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Sen stava messer Corvo sopra un albero",
-        "con un bel pezzo di formaggio in becco,",
-        "quando la Volpe tratta al dolce lecco",
-        "di quel boccon a dirgli cominciò:",
-        "- Salve, messer del Corvo, io non conosco",
-        "uccel di voi più vago in tutto il bosco.",
-        "Se è ver quel che si dice",
-        "che il vostro canto è bel come son belle",
-        "queste penne, voi siete una Fenice -.",
-        "A questo dir non sta più nella pelle",
-        "il Corvo vanitoso:",
-        "e volendo alla Volpe dare un saggio",
-        "del suo canto famoso,",
-        "spalanca il becco e uscir lascia il formaggio.",
-        "La Volpe il piglia e dice: - Ecco, mio caro,",
-        "chi dell’adulator paga le spese.",
-        "Fanne tuo pro’ che forse",
-        "la mia lezione vale il tuo formaggio -.",
-        "Il Corvo sciocco intese",
-        "e (un po’ tardi) giurò d’esser più saggio."
+        {
+          "t": "Sen stava messer Corvo sopra un albero"
+        },
+        {
+          "t": "con un bel pezzo di formaggio in becco,"
+        },
+        {
+          "t": "quando la Volpe tratta al dolce lecco"
+        },
+        {
+          "t": "di quel boccon a dirgli cominciò:"
+        },
+        {
+          "t": "- Salve, messer del Corvo, io non conosco"
+        },
+        {
+          "t": "uccel di voi più vago in tutto il bosco."
+        },
+        {
+          "t": "Se è ver quel che si dice"
+        },
+        {
+          "t": "che il vostro canto è bel come son belle"
+        },
+        {
+          "t": "queste penne, voi siete una Fenice -."
+        },
+        {
+          "t": "A questo dir non sta più nella pelle"
+        },
+        {
+          "t": "il Corvo vanitoso:"
+        },
+        {
+          "t": "e volendo alla Volpe dare un saggio"
+        },
+        {
+          "t": "del suo canto famoso,"
+        },
+        {
+          "t": "spalanca il becco e uscir lascia il formaggio."
+        },
+        {
+          "t": "La Volpe il piglia e dice: - Ecco, mio caro,"
+        },
+        {
+          "t": "chi dell’adulator paga le spese."
+        },
+        {
+          "t": "Fanne tuo pro’ che forse"
+        },
+        {
+          "t": "la mia lezione vale il tuo formaggio -."
+        },
+        {
+          "t": "Il Corvo sciocco intese"
+        },
+        {
+          "t": "e (un po’ tardi) giurò d’esser più saggio."
+        }
       ]
     },
     {
@@ -81,18 +167,42 @@
       "bytes": 529630,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_03_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Grande non più d’un ovo di gallina",
-        "vedendo il Bove e bello e grasso e grosso,",
-        "una Rana si gonfia a più non posso",
-        "per non esser del Bove più piccina.",
-        "- Guardami adesso, - esclama in aria tronfia, -",
-        "son ben grossa? - Non basta, o vecchia amica -.",
-        "E la rana si gonfia e gonfia e gonfia",
-        "infin che scoppia come una vescica.",
-        "Borghesi, ch’è più il fumo che l’arrosto,",
-        "signori ambiziosi e senza testa,",
-        "o gente a cui ripugna stare a posto,",
-        "quante sono le rane come questa!"
+        {
+          "t": "Grande non più d’un ovo di gallina"
+        },
+        {
+          "t": "vedendo il Bove e bello e grasso e grosso,"
+        },
+        {
+          "t": "una Rana si gonfia a più non posso"
+        },
+        {
+          "t": "per non esser del Bove più piccina."
+        },
+        {
+          "t": "- Guardami adesso, - esclama in aria tronfia, -"
+        },
+        {
+          "t": "son ben grossa? - Non basta, o vecchia amica -."
+        },
+        {
+          "t": "E la rana si gonfia e gonfia e gonfia"
+        },
+        {
+          "t": "infin che scoppia come una vescica."
+        },
+        {
+          "t": "Borghesi, ch’è più il fumo che l’arrosto,"
+        },
+        {
+          "t": "signori ambiziosi e senza testa,"
+        },
+        {
+          "t": "o gente a cui ripugna stare a posto,"
+        },
+        {
+          "t": "quante sono le rane come questa!"
+        }
       ]
     },
     {
@@ -104,27 +214,69 @@
       "bytes": 663788,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_04_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Un Mulo che portava sulla schiena",
-        "dei sacchi d’or per conto dello Stato,",
-        "tutto superbo camminava a lato",
-        "d’un altro Mulo carico d’avena.",
-        "Agitando la criniera",
-        "colla bella sonagliera",
-        "del nemico ei fu cagione",
-        "che attirasse sull’oro l’attenzione.",
-        "Tratta dal buon bottin ecco una banda",
-        "piomba sul regio Mulo, e una tempesta",
-        "di colpi piove a lui sopra la testa",
-        "che invan sospira e ragli al cielo manda.",
-        "- Poveretto, - esclama, - a morte",
-        "mi conduce l’alta sorte!",
-        "Te felice che d’avena,",
-        "non di tesor hai carica la schiena!",
-        "- Buon amico, è questo il guaio,",
-        "degl’impieghi illustri ed alti, -",
-        "gli rispose il camerata:",
-        "- meglio il mulo d’un mugnaio",
-        "che il dover far certi salti -."
+        {
+          "t": "Un Mulo che portava sulla schiena"
+        },
+        {
+          "t": "dei sacchi d’or per conto dello Stato,"
+        },
+        {
+          "t": "tutto superbo camminava a lato"
+        },
+        {
+          "t": "d’un altro Mulo carico d’avena."
+        },
+        {
+          "t": "Agitando la criniera"
+        },
+        {
+          "t": "colla bella sonagliera"
+        },
+        {
+          "t": "del nemico ei fu cagione"
+        },
+        {
+          "t": "che attirasse sull’oro l’attenzione."
+        },
+        {
+          "t": "Tratta dal buon bottin ecco una banda"
+        },
+        {
+          "t": "piomba sul regio Mulo, e una tempesta"
+        },
+        {
+          "t": "di colpi piove a lui sopra la testa"
+        },
+        {
+          "t": "che invan sospira e ragli al cielo manda."
+        },
+        {
+          "t": "- Poveretto, - esclama, - a morte"
+        },
+        {
+          "t": "mi conduce l’alta sorte!"
+        },
+        {
+          "t": "Te felice che d’avena,"
+        },
+        {
+          "t": "non di tesor hai carica la schiena!"
+        },
+        {
+          "t": "- Buon amico, è questo il guaio,"
+        },
+        {
+          "t": "degl’impieghi illustri ed alti, -"
+        },
+        {
+          "t": "gli rispose il camerata:"
+        },
+        {
+          "t": "- meglio il mulo d’un mugnaio"
+        },
+        {
+          "t": "che il dover far certi salti -."
+        }
       ]
     },
     {
@@ -136,50 +288,226 @@
       "bytes": 1195439,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_05_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Un Lupo già ridotto al lumicino",
-        "grazie ai cani che stavan sempre all’erta,",
-        "andando un dì per una via deserta",
-        "incontrava un magnifico mastino,",
-        "tanto grasso, tondo e bello,",
-        "che pensò di dargli morte",
-        "provocandolo in duello.",
-        "Ma vedendolo un po’ forte,",
-        "pensò invece con ragione",
-        "di pigliarlo colle buone.",
-        "Comincia in prima a rallegrarsi tanto",
-        "di vedere il buon pro’ che gli fa il pane.",
-        "- E chi vi toglie, - rispondeva il Cane, -",
-        "di fare, se vi accomoda, altrettanto?",
-        "Quella vita che voi fate",
-        "dentro ai boschi è vita infame",
-        "sempre in guerra e sempre in scrupolo",
-        "di dover morir di fame:",
-        "vita stracciata e senza conclusione",
-        "che non può mai contar sopra il boccone.",
-        "Venite dietro a me, mio buon compare,",
-        "che imparerete l’arte di star bene.",
-        "Vi prometto pochissimo da fare;",
-        "star di guardia, guardar chi va, chi viene,",
-        "abbaiare ai pitocchi ed alla luna",
-        "e sbasoffiare poi certi bocconi",
-        "di carne e d’ossa, d’anitre e capponi,",
-        "senza contar la broda",
-        "in pagamento del menar la coda -.",
-        "Udendo questo, della sua fortuna",
-        "il Lupo si rallegra fino al pianto.",
-        "Ma camminando dell’amico accanto",
-        "gli venne visto spelacchiato e frollo",
-        "del buon mastino il collo.",
-        "- Che roba è questa? - È nulla. - È nulla un corno!",
-        "- Suvvia non darti pena,",
-        "forse il segno sarà della catena",
-        "alla quale mi legano di giorno.",
-        "- Ti legano? - esclamò cangiando tono. -",
-        "Né correre tu puoi dove ti piace?",
-        "- Che importa? - Importa a me, colla tua pace;",
-        "fossero d’oro, i piatti tuoi ti dono,",
-        "non è una vita, no, che m’innamora -.",
-        "E presa la rincorsa, corre ancora."
+        {
+          "t": "Un Lupo già ridotto al lumicino",
+          "desde": 16.0,
+          "hasta": 17.44
+        },
+        {
+          "t": "grazie ai cani che stavan sempre all’erta,",
+          "desde": 18.44,
+          "hasta": 22.24
+        },
+        {
+          "t": "andando un dì per una via deserta",
+          "desde": 22.24,
+          "hasta": 24.69
+        },
+        {
+          "t": "incontrava un magnifico mastino,",
+          "desde": 24.69,
+          "hasta": 27.0
+        },
+        {
+          "t": "tanto grasso, tondo e bello,",
+          "desde": 27.02,
+          "hasta": 29.55
+        },
+        {
+          "t": "che pensò di dargli morte",
+          "desde": 29.55,
+          "hasta": 31.63
+        },
+        {
+          "t": "provocandolo in duello.",
+          "desde": 31.63,
+          "hasta": 34.0
+        },
+        {
+          "t": "Ma vedendolo un po’ forte,",
+          "desde": 34.0,
+          "hasta": 36.45
+        },
+        {
+          "t": "pensò invece con ragione",
+          "desde": 36.45,
+          "hasta": 38.52
+        },
+        {
+          "t": "di pigliarlo colle buone.",
+          "desde": 38.52,
+          "hasta": 41.0
+        },
+        {
+          "t": "Comincia in prima a rallegrarsi tanto",
+          "desde": 41.0,
+          "hasta": 43.96
+        },
+        {
+          "t": "di vedere il buon pro’ che gli fa il pane.",
+          "desde": 43.96,
+          "hasta": 47.0
+        },
+        {
+          "t": "- E chi vi toglie, - rispondeva il Cane, -",
+          "desde": 47.12,
+          "hasta": 50.73
+        },
+        {
+          "t": "di fare, se vi accomoda, altrettanto?",
+          "desde": 50.73,
+          "hasta": 53.63
+        },
+        {
+          "t": "Quella vita che voi fate",
+          "desde": 53.63,
+          "hasta": 55.6
+        },
+        {
+          "t": "dentro ai boschi è vita infame",
+          "desde": 55.6,
+          "hasta": 57.45
+        },
+        {
+          "t": "sempre in guerra e sempre in scrupolo",
+          "desde": 58.25,
+          "hasta": 60.66
+        },
+        {
+          "t": "di dover morir di fame:",
+          "desde": 61.13,
+          "hasta": 63.0
+        },
+        {
+          "t": "vita stracciata e senza conclusione",
+          "desde": 63.0,
+          "hasta": 66.03
+        },
+        {
+          "t": "che non può mai contar sopra il boccone.",
+          "desde": 66.03,
+          "hasta": 69.0
+        },
+        {
+          "t": "Venite dietro a me, mio buon compare,",
+          "desde": 69.1,
+          "hasta": 72.61
+        },
+        {
+          "t": "che imparerete l’arte di star bene.",
+          "desde": 72.61,
+          "hasta": 76.01
+        },
+        {
+          "t": "Vi prometto pochissimo da fare;",
+          "desde": 76.01,
+          "hasta": 78.99
+        },
+        {
+          "t": "star di guardia, guardar chi va, chi viene,",
+          "desde": 78.99,
+          "hasta": 81.0
+        },
+        {
+          "t": "abbaiare ai pitocchi ed alla luna",
+          "desde": 81.0,
+          "hasta": 83.31
+        },
+        {
+          "t": "e sbasoffiare poi certi bocconi",
+          "desde": 83.31,
+          "hasta": 85.85
+        },
+        {
+          "t": "di carne e d’ossa, d’anitre e capponi,",
+          "desde": 85.85,
+          "hasta": 89.0
+        },
+        {
+          "t": "senza contar la broda",
+          "desde": 89.0,
+          "hasta": 90.92
+        },
+        {
+          "t": "in pagamento del menar la coda -.",
+          "desde": 90.92,
+          "hasta": 94.0
+        },
+        {
+          "t": "Udendo questo, della sua fortuna",
+          "desde": 94.02,
+          "hasta": 96.49
+        },
+        {
+          "t": "il Lupo si rallegra fino al pianto.",
+          "desde": 96.49,
+          "hasta": 99.0
+        },
+        {
+          "t": "Ma camminando dell’amico accanto",
+          "desde": 99.0,
+          "hasta": 101.24
+        },
+        {
+          "t": "gli venne visto spelacchiato e frollo",
+          "desde": 101.24,
+          "hasta": 103.99
+        },
+        {
+          "t": "del buon mastino il collo.",
+          "desde": 103.99,
+          "hasta": 107.0
+        },
+        {
+          "t": "- Che roba è questa? - È nulla. - È nulla un corno!",
+          "desde": 107.11,
+          "hasta": 112.0
+        },
+        {
+          "t": "- Suvvia non darti pena,",
+          "desde": 112.25,
+          "hasta": 113.0
+        },
+        {
+          "t": "forse il segno sarà della catena",
+          "desde": 113.0,
+          "hasta": 115.05
+        },
+        {
+          "t": "alla quale mi legano di giorno.",
+          "desde": 115.05,
+          "hasta": 117.0
+        },
+        {
+          "t": "- Ti legano? - esclamò cangiando tono. -",
+          "desde": 117.11,
+          "hasta": 120.63
+        },
+        {
+          "t": "Né correre tu puoi dove ti piace?",
+          "desde": 120.87,
+          "hasta": 124.01
+        },
+        {
+          "t": "- Che importa? - Importa a me, colla tua pace;",
+          "desde": 124.07,
+          "hasta": 128.0
+        },
+        {
+          "t": "fossero d’oro, i piatti tuoi ti dono,",
+          "desde": 128.0,
+          "hasta": 130.0
+        },
+        {
+          "t": "non è una vita, no, che m’innamora -.",
+          "desde": 130.11,
+          "hasta": 133.36
+        },
+        {
+          "t": "E presa la rincorsa, corre ancora.",
+          "desde": 133.36,
+          "hasta": 137.0
+        }
       ]
     },
     {
@@ -191,23 +519,57 @@
       "bytes": 738228,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_06_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Si narra che una volta stringesser comunella",
-        "la Pecora, la Mucca, la Capra lor sorella,",
-        "col gran signor del luogo che detto era Leone,",
-        "a questa condizione:",
-        "che ognun insieme i danni e gli utili mettesse.",
-        "Ben stabiliti i patti avvenne che cadesse",
-        "un cervo nella fossa un dì della capretta,",
-        "che onesta manda a chiedere i suoi compagni in fretta.",
-        "Giunto il Leone, esclama: - Faremo quattro parti -.",
-        "E subito coll’unghie straccia la bestia in quarti.",
-        "La prima se la piglia e ciò per la ragione",
-        "ch’egli è Messer Leone.",
-        "- Un’altra parte - aggiunge, - ancor spettami in sorte",
-        "perché sono il più forte.",
-        "La terza me la piglio perché sono il Leone,",
-        "e se la quarta qualcuno osasse contrastarmi",
-        "lo mangio in un boccone -."
+        {
+          "t": "Si narra che una volta stringesser comunella"
+        },
+        {
+          "t": "la Pecora, la Mucca, la Capra lor sorella,"
+        },
+        {
+          "t": "col gran signor del luogo che detto era Leone,"
+        },
+        {
+          "t": "a questa condizione:"
+        },
+        {
+          "t": "che ognun insieme i danni e gli utili mettesse."
+        },
+        {
+          "t": "Ben stabiliti i patti avvenne che cadesse"
+        },
+        {
+          "t": "un cervo nella fossa un dì della capretta,"
+        },
+        {
+          "t": "che onesta manda a chiedere i suoi compagni in fretta."
+        },
+        {
+          "t": "Giunto il Leone, esclama: - Faremo quattro parti -."
+        },
+        {
+          "t": "E subito coll’unghie straccia la bestia in quarti."
+        },
+        {
+          "t": "La prima se la piglia e ciò per la ragione"
+        },
+        {
+          "t": "ch’egli è Messer Leone."
+        },
+        {
+          "t": "- Un’altra parte - aggiunge, - ancor spettami in sorte"
+        },
+        {
+          "t": "perché sono il più forte."
+        },
+        {
+          "t": "La terza me la piglio perché sono il Leone,"
+        },
+        {
+          "t": "e se la quarta qualcuno osasse contrastarmi"
+        },
+        {
+          "t": "lo mangio in un boccone -."
+        }
       ]
     },
     {
@@ -219,58 +581,162 @@
       "bytes": 1115603,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_07_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Barba Giove disse un giorno:",
-        "- Vengan quanti al mondo sono",
-        "animali malcontenti",
-        "e ciascun di lor mi parli",
-        "senza fare complimenti,",
-        "ch’io vedrò dal mio gran trono",
-        "se si possa contentarli -.",
-        "Il babbione per suo conto",
-        "si dichiara arcicontento",
-        "senza tema di confronto.",
-        "Una bestia, figurarsi!",
-        "che cammina a quattro mani,",
-        "così bella e di talento,",
-        "non sarebbe un’ingiustizia",
-        "se volesse lamentarsi?",
-        "Ma una grande compassione",
-        "egli sente in cor per l’orso,",
-        "che gli sembra un così stupido",
-        "materiale bestïone,",
-        "così rozzo e disadatto,",
-        "che i pittori si rifiutano",
-        "fin di pingerne il ritratto.",
-        "L’orso subito protesta",
-        "contro questa insinuazione.",
-        "Quel che a lui sembra mal fatto,",
-        "corto in coda e grosso in testa,",
-        "una macchina pesante",
-        "senza garbo e proporzione,",
-        "è piuttosto l’elefante.",
-        "A sua volta anche costui,",
-        "ch’è un buonissimo pedante,",
-        "dice mal della balena",
-        "tutta schiena, tutta schiena.",
-        "Ogni mal è del vicino,",
-        "e per essere discreti",
-        "fa l’istesso panegirico",
-        "la formica al moscherino.",
-        "Barba Giove soddisfatto",
-        "li rimanda in santa pace.",
-        "Per venire adesso al fatto",
-        "non vi sembra che a un dipresso",
-        "anche noi facciam lo stesso?",
-        "Linci a scorgere del prossimo",
-        "i difetti, siamo poi",
-        "talpe cieche sol per noi.",
-        "Quando viene in questa valle",
-        "porta ognuno sulle spalle",
-        "una duplice bisaccia.",
-        "Dentro a quella che sta innanzi",
-        "volentieri ognun di noi",
-        "i difetti altrui vi caccia,",
-        "e nell’altra mette i suoi."
+        {
+          "t": "Barba Giove disse un giorno:"
+        },
+        {
+          "t": "- Vengan quanti al mondo sono"
+        },
+        {
+          "t": "animali malcontenti"
+        },
+        {
+          "t": "e ciascun di lor mi parli"
+        },
+        {
+          "t": "senza fare complimenti,"
+        },
+        {
+          "t": "ch’io vedrò dal mio gran trono"
+        },
+        {
+          "t": "se si possa contentarli -."
+        },
+        {
+          "t": "Il babbione per suo conto"
+        },
+        {
+          "t": "si dichiara arcicontento"
+        },
+        {
+          "t": "senza tema di confronto."
+        },
+        {
+          "t": "Una bestia, figurarsi!"
+        },
+        {
+          "t": "che cammina a quattro mani,"
+        },
+        {
+          "t": "così bella e di talento,"
+        },
+        {
+          "t": "non sarebbe un’ingiustizia"
+        },
+        {
+          "t": "se volesse lamentarsi?"
+        },
+        {
+          "t": "Ma una grande compassione"
+        },
+        {
+          "t": "egli sente in cor per l’orso,"
+        },
+        {
+          "t": "che gli sembra un così stupido"
+        },
+        {
+          "t": "materiale bestïone,"
+        },
+        {
+          "t": "così rozzo e disadatto,"
+        },
+        {
+          "t": "che i pittori si rifiutano"
+        },
+        {
+          "t": "fin di pingerne il ritratto."
+        },
+        {
+          "t": "L’orso subito protesta"
+        },
+        {
+          "t": "contro questa insinuazione."
+        },
+        {
+          "t": "Quel che a lui sembra mal fatto,"
+        },
+        {
+          "t": "corto in coda e grosso in testa,"
+        },
+        {
+          "t": "una macchina pesante"
+        },
+        {
+          "t": "senza garbo e proporzione,"
+        },
+        {
+          "t": "è piuttosto l’elefante."
+        },
+        {
+          "t": "A sua volta anche costui,"
+        },
+        {
+          "t": "ch’è un buonissimo pedante,"
+        },
+        {
+          "t": "dice mal della balena"
+        },
+        {
+          "t": "tutta schiena, tutta schiena."
+        },
+        {
+          "t": "Ogni mal è del vicino,"
+        },
+        {
+          "t": "e per essere discreti"
+        },
+        {
+          "t": "fa l’istesso panegirico"
+        },
+        {
+          "t": "la formica al moscherino."
+        },
+        {
+          "t": "Barba Giove soddisfatto"
+        },
+        {
+          "t": "li rimanda in santa pace."
+        },
+        {
+          "t": "Per venire adesso al fatto"
+        },
+        {
+          "t": "non vi sembra che a un dipresso"
+        },
+        {
+          "t": "anche noi facciam lo stesso?"
+        },
+        {
+          "t": "Linci a scorgere del prossimo"
+        },
+        {
+          "t": "i difetti, siamo poi"
+        },
+        {
+          "t": "talpe cieche sol per noi."
+        },
+        {
+          "t": "Quando viene in questa valle"
+        },
+        {
+          "t": "porta ognuno sulle spalle"
+        },
+        {
+          "t": "una duplice bisaccia."
+        },
+        {
+          "t": "Dentro a quella che sta innanzi"
+        },
+        {
+          "t": "volentieri ognun di noi"
+        },
+        {
+          "t": "i difetti altrui vi caccia,"
+        },
+        {
+          "t": "e nell’altra mette i suoi."
+        }
       ]
     },
     {
@@ -282,59 +748,165 @@
       "bytes": 1217809,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_08_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Molte cose una Rondine vedute",
-        "ne’ suoi viaggi avea di là del mare.",
-        "Viaggiando c’è sempre da imparare",
-        "e tanto ben la nostra rondinella",
-        "apprese a strologare il cielo e i venti,",
-        "che ai naviganti indizio",
-        "era di tempo bello o di procella.",
-        "Venne il tempo che getta le sementi",
-        "della canape in terra il contadino.",
-        "Vedendo questo disse: - State attenti,",
-        "uccelli, non mi va questa faccenda;",
-        "per voi semina insidie quella mano.",
-        "Per me, se c’è pericolo,",
-        "saprò bene volarmene lontano.",
-        "Da quei solchi vedrete uscir gl’inganni,",
-        "trappole e reti e panie ed altri affanni",
-        "come dire la morte o la prigione.",
-        "Dunque, - aggiunse la Rondine prudente, -",
-        "codesti grani subito mangiate -.",
-        "Ma gli Uccelli risposero a fischiate.",
-        "Essi risero poi della balorda,",
-        "che mentre era sì ricca la stagione",
-        "e pieno il campo d’ogni altra pastura,",
-        "volesse, profetessa di sventura,",
-        "costringerli a mangiar roba indigesta",
-        "e cruda come questa.",
-        "Fossero stati mezzo milione,",
-        "non bastavano ancora a ripulire",
-        "una provincia di quell’erba dura.",
-        "- Uccelli, non mi va questa faccenda, -",
-        "la rondinella ritornava a dire, -",
-        "mal’erba cresce presto e non vi attenda",
-        "di non aver creduto il pentimento.",
-        "Quando la neve coprirà la terra,",
-        "sarà divertimento",
-        "di tanta gente in ozio agli uccellini",
-        "il far con lacci e trappole la guerra.",
-        "Voi non potete come è dato a noi,",
-        "e come fan le gru, fan gli stornelli,",
-        "passar del mar, dei monti oltre i confini.",
-        "Altro dunque per voi",
-        "non rimane che starvene al sicuro",
-        "dentro i crepacci d’un cadente muro -.",
-        "Seccati di sentirla predicare,",
-        "a far rumor cominciano gli Uccelli,",
-        "come i Troiani usavano di fare",
-        "se la bocca Cassandra appena apria.",
-        "Così per questi come accadde a quelli,",
-        "quando rimaser presi",
-        "pur troppo s’avverò la profezia.",
-        "Anche fra noi succede tal e quale,",
-        "che non sentiam che il sentimento nostro.",
-        "Se non è sopra, non si crede al male."
+        {
+          "t": "Molte cose una Rondine vedute"
+        },
+        {
+          "t": "ne’ suoi viaggi avea di là del mare."
+        },
+        {
+          "t": "Viaggiando c’è sempre da imparare"
+        },
+        {
+          "t": "e tanto ben la nostra rondinella"
+        },
+        {
+          "t": "apprese a strologare il cielo e i venti,"
+        },
+        {
+          "t": "che ai naviganti indizio"
+        },
+        {
+          "t": "era di tempo bello o di procella."
+        },
+        {
+          "t": "Venne il tempo che getta le sementi"
+        },
+        {
+          "t": "della canape in terra il contadino."
+        },
+        {
+          "t": "Vedendo questo disse: - State attenti,"
+        },
+        {
+          "t": "uccelli, non mi va questa faccenda;"
+        },
+        {
+          "t": "per voi semina insidie quella mano."
+        },
+        {
+          "t": "Per me, se c’è pericolo,"
+        },
+        {
+          "t": "saprò bene volarmene lontano."
+        },
+        {
+          "t": "Da quei solchi vedrete uscir gl’inganni,"
+        },
+        {
+          "t": "trappole e reti e panie ed altri affanni"
+        },
+        {
+          "t": "come dire la morte o la prigione."
+        },
+        {
+          "t": "Dunque, - aggiunse la Rondine prudente, -"
+        },
+        {
+          "t": "codesti grani subito mangiate -."
+        },
+        {
+          "t": "Ma gli Uccelli risposero a fischiate."
+        },
+        {
+          "t": "Essi risero poi della balorda,"
+        },
+        {
+          "t": "che mentre era sì ricca la stagione"
+        },
+        {
+          "t": "e pieno il campo d’ogni altra pastura,"
+        },
+        {
+          "t": "volesse, profetessa di sventura,"
+        },
+        {
+          "t": "costringerli a mangiar roba indigesta"
+        },
+        {
+          "t": "e cruda come questa."
+        },
+        {
+          "t": "Fossero stati mezzo milione,"
+        },
+        {
+          "t": "non bastavano ancora a ripulire"
+        },
+        {
+          "t": "una provincia di quell’erba dura."
+        },
+        {
+          "t": "- Uccelli, non mi va questa faccenda, -"
+        },
+        {
+          "t": "la rondinella ritornava a dire, -"
+        },
+        {
+          "t": "mal’erba cresce presto e non vi attenda"
+        },
+        {
+          "t": "di non aver creduto il pentimento."
+        },
+        {
+          "t": "Quando la neve coprirà la terra,"
+        },
+        {
+          "t": "sarà divertimento"
+        },
+        {
+          "t": "di tanta gente in ozio agli uccellini"
+        },
+        {
+          "t": "il far con lacci e trappole la guerra."
+        },
+        {
+          "t": "Voi non potete come è dato a noi,"
+        },
+        {
+          "t": "e come fan le gru, fan gli stornelli,"
+        },
+        {
+          "t": "passar del mar, dei monti oltre i confini."
+        },
+        {
+          "t": "Altro dunque per voi"
+        },
+        {
+          "t": "non rimane che starvene al sicuro"
+        },
+        {
+          "t": "dentro i crepacci d’un cadente muro -."
+        },
+        {
+          "t": "Seccati di sentirla predicare,"
+        },
+        {
+          "t": "a far rumor cominciano gli Uccelli,"
+        },
+        {
+          "t": "come i Troiani usavano di fare"
+        },
+        {
+          "t": "se la bocca Cassandra appena apria."
+        },
+        {
+          "t": "Così per questi come accadde a quelli,"
+        },
+        {
+          "t": "quando rimaser presi"
+        },
+        {
+          "t": "pur troppo s’avverò la profezia."
+        },
+        {
+          "t": "Anche fra noi succede tal e quale,"
+        },
+        {
+          "t": "che non sentiam che il sentimento nostro."
+        },
+        {
+          "t": "Se non è sopra, non si crede al male."
+        }
       ]
     },
     {
@@ -346,34 +918,90 @@
       "bytes": 734245,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_09_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Un Topo campagnol venne invitato",
-        "con molta civiltà",
-        "a un pranzo di beccacce allo stufato",
-        "da un Topo di città.",
-        "Seduti su un tappeto di Turchia",
-        "coi piatti avanti a sé,",
-        "mangiavan quella grassa leccornia",
-        "felici come re.",
-        "Se il trattamento e il piatto",
-        "fu cortese e squisito io non dirò.",
-        "Ma solo avvenne un fatto",
-        "che sul più bello il pranzo disturbò.",
-        "Voglio dir che alla porta",
-        "s’intese tutto a un tratto un gran rumor,",
-        "l’un scappa che il diavolo lo porta",
-        "e scappa l’altro ancor.",
-        "Passato quel rumor torna al suo posto",
-        "il Topo cittadin,",
-        "e vuole che del pranzo ad ogni costo",
-        "si vada fino in fin.",
-        "- No, basta, - disse il Topo di campagna, -",
-        "vieni diman da me.",
-        "Non si mangia seduti in pompa magna",
-        "ghiottonerie da re,",
-        "ma si mangia e nessuno t’avvelena",
-        "il pane ed il bicchier.",
-        "Senza la pace anche una pancia piena",
-        "non gusta il suo piacer -."
+        {
+          "t": "Un Topo campagnol venne invitato"
+        },
+        {
+          "t": "con molta civiltà"
+        },
+        {
+          "t": "a un pranzo di beccacce allo stufato"
+        },
+        {
+          "t": "da un Topo di città."
+        },
+        {
+          "t": "Seduti su un tappeto di Turchia"
+        },
+        {
+          "t": "coi piatti avanti a sé,"
+        },
+        {
+          "t": "mangiavan quella grassa leccornia"
+        },
+        {
+          "t": "felici come re."
+        },
+        {
+          "t": "Se il trattamento e il piatto"
+        },
+        {
+          "t": "fu cortese e squisito io non dirò."
+        },
+        {
+          "t": "Ma solo avvenne un fatto"
+        },
+        {
+          "t": "che sul più bello il pranzo disturbò."
+        },
+        {
+          "t": "Voglio dir che alla porta"
+        },
+        {
+          "t": "s’intese tutto a un tratto un gran rumor,"
+        },
+        {
+          "t": "l’un scappa che il diavolo lo porta"
+        },
+        {
+          "t": "e scappa l’altro ancor."
+        },
+        {
+          "t": "Passato quel rumor torna al suo posto"
+        },
+        {
+          "t": "il Topo cittadin,"
+        },
+        {
+          "t": "e vuole che del pranzo ad ogni costo"
+        },
+        {
+          "t": "si vada fino in fin."
+        },
+        {
+          "t": "- No, basta, - disse il Topo di campagna, -"
+        },
+        {
+          "t": "vieni diman da me."
+        },
+        {
+          "t": "Non si mangia seduti in pompa magna"
+        },
+        {
+          "t": "ghiottonerie da re,"
+        },
+        {
+          "t": "ma si mangia e nessuno t’avvelena"
+        },
+        {
+          "t": "il pane ed il bicchier."
+        },
+        {
+          "t": "Senza la pace anche una pancia piena"
+        },
+        {
+          "t": "non gusta il suo piacer -."
+        }
       ]
     },
     {
@@ -385,36 +1013,96 @@
       "bytes": 787513,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_10_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "La favola che segue è una lezione",
-        "che il forte ha sempre la miglior ragione.",
-        "Un dì nell’acqua chiara d’un ruscello",
-        "bevea cheto un Agnello,",
-        "quand’ecco sbuca un lupo maledetto,",
-        "che non mangiava forse da tre dì,",
-        "che pien di rabbia grida: - E chi ti ha detto",
-        "d’intorbidar la fonte mia così?",
-        "Aspetta, temerario! - Maestà, -",
-        "a lui risponde il povero innocente, -",
-        "s’ella guarda, di subito vedrà",
-        "ch’io mi bagno più sotto la sorgente",
-        "d’un tratto, e che non posso l’acque chiare",
-        "della regal sua fonte intorbidare.",
-        "- Io dico che l’intorbidi, - arrabbiato",
-        "risponde il Lupo digrignando i denti, -",
-        "e già l’anno passato",
-        "hai sparlato di me. - Non si può dire,",
-        "perché non era nato,",
-        "ancora io succhio la mammella, o Sire.",
-        "- Ebbene sarà stato un tuo fratello.",
-        "- E come, Maestà?",
-        "Non ho fratelli, il giuro in verità.",
-        "- Queste son ciarle. È sempre uno di voi",
-        "che mi fa sfregio, è un pezzo che lo so.",
-        "Di voi, dei vostri cani e dei pastori",
-        "vendetta piglierò -.",
-        "Così dicendo, in mezzo alla foresta",
-        "portato il meschinello,",
-        "senza processo fecegli la festa."
+        {
+          "t": "La favola che segue è una lezione"
+        },
+        {
+          "t": "che il forte ha sempre la miglior ragione."
+        },
+        {
+          "t": "Un dì nell’acqua chiara d’un ruscello"
+        },
+        {
+          "t": "bevea cheto un Agnello,"
+        },
+        {
+          "t": "quand’ecco sbuca un lupo maledetto,"
+        },
+        {
+          "t": "che non mangiava forse da tre dì,"
+        },
+        {
+          "t": "che pien di rabbia grida: - E chi ti ha detto"
+        },
+        {
+          "t": "d’intorbidar la fonte mia così?"
+        },
+        {
+          "t": "Aspetta, temerario! - Maestà, -"
+        },
+        {
+          "t": "a lui risponde il povero innocente, -"
+        },
+        {
+          "t": "s’ella guarda, di subito vedrà"
+        },
+        {
+          "t": "ch’io mi bagno più sotto la sorgente"
+        },
+        {
+          "t": "d’un tratto, e che non posso l’acque chiare"
+        },
+        {
+          "t": "della regal sua fonte intorbidare."
+        },
+        {
+          "t": "- Io dico che l’intorbidi, - arrabbiato"
+        },
+        {
+          "t": "risponde il Lupo digrignando i denti, -"
+        },
+        {
+          "t": "e già l’anno passato"
+        },
+        {
+          "t": "hai sparlato di me. - Non si può dire,"
+        },
+        {
+          "t": "perché non era nato,"
+        },
+        {
+          "t": "ancora io succhio la mammella, o Sire."
+        },
+        {
+          "t": "- Ebbene sarà stato un tuo fratello."
+        },
+        {
+          "t": "- E come, Maestà?"
+        },
+        {
+          "t": "Non ho fratelli, il giuro in verità."
+        },
+        {
+          "t": "- Queste son ciarle. È sempre uno di voi"
+        },
+        {
+          "t": "che mi fa sfregio, è un pezzo che lo so."
+        },
+        {
+          "t": "Di voi, dei vostri cani e dei pastori"
+        },
+        {
+          "t": "vendetta piglierò -."
+        },
+        {
+          "t": "Così dicendo, in mezzo alla foresta"
+        },
+        {
+          "t": "portato il meschinello,"
+        },
+        {
+          "t": "senza processo fecegli la festa."
+        }
       ]
     },
     {
@@ -426,38 +1114,102 @@
       "bytes": 909771,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_11_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "(Al signor Duca de La Rochefoucauld)",
-        "Un uomo molto di se stesso amante",
-        "e che, senza rivali, d’un bell’uomo",
-        "si dava l’aria, in ciò fisso e beato,",
-        "se la prendea di rabbia con gli specchi",
-        "ch’ei dicea tutti falsi e accusatori.",
-        "Per trarlo d’illusion fece la sorte",
-        "benevola che, ovunque egli girasse",
-        "coll’occhio, non vedesse altro che specchi.",
-        "Specchi dentro le case e in le botteghe",
-        "de’ merciai, specchi in petto ai bellimbusti",
-        "e fin sulle cinture delle belle,",
-        "ovunque insomma a risanarlo il caso",
-        "gli facea balenar davanti questo",
-        "tacito consigliere delle belle.",
-        "Al mio Narciso allor altro non resta",
-        "che andare, per fuggir tanto tormento,",
-        "in paesi selvaggi e sconosciuti,",
-        "ove di specchi non vi fosse il segno.",
-        "Ma specchio ancora, o illusion, discende",
-        "ivi un bel fiume, che da pura fonte",
-        "sgorga e l’attira di sì strano incanto",
-        "ch’ei non può dal cristal torcer lo sguardo.",
-        "Della favola è questa la morale,",
-        "che non d’un solo io traggo a beneficio,",
-        "ma di quanti son folli in questo mondo.",
-        "L’anima umana è l’uomo vanitoso",
-        "troppo amante di sé: gli specchi sono",
-        "gli altrui difetti in cui come in ispeglio",
-        "ogni nostro difetto si dipinge.",
-        "E il libro delle Massime, o mio Duca,",
-        "è quel fiume che l’anima rapisce."
+        {
+          "t": "(Al signor Duca de La Rochefoucauld)"
+        },
+        {
+          "t": "Un uomo molto di se stesso amante"
+        },
+        {
+          "t": "e che, senza rivali, d’un bell’uomo"
+        },
+        {
+          "t": "si dava l’aria, in ciò fisso e beato,"
+        },
+        {
+          "t": "se la prendea di rabbia con gli specchi"
+        },
+        {
+          "t": "ch’ei dicea tutti falsi e accusatori."
+        },
+        {
+          "t": "Per trarlo d’illusion fece la sorte"
+        },
+        {
+          "t": "benevola che, ovunque egli girasse"
+        },
+        {
+          "t": "coll’occhio, non vedesse altro che specchi."
+        },
+        {
+          "t": "Specchi dentro le case e in le botteghe"
+        },
+        {
+          "t": "de’ merciai, specchi in petto ai bellimbusti"
+        },
+        {
+          "t": "e fin sulle cinture delle belle,"
+        },
+        {
+          "t": "ovunque insomma a risanarlo il caso"
+        },
+        {
+          "t": "gli facea balenar davanti questo"
+        },
+        {
+          "t": "tacito consigliere delle belle."
+        },
+        {
+          "t": "Al mio Narciso allor altro non resta"
+        },
+        {
+          "t": "che andare, per fuggir tanto tormento,"
+        },
+        {
+          "t": "in paesi selvaggi e sconosciuti,"
+        },
+        {
+          "t": "ove di specchi non vi fosse il segno."
+        },
+        {
+          "t": "Ma specchio ancora, o illusion, discende"
+        },
+        {
+          "t": "ivi un bel fiume, che da pura fonte"
+        },
+        {
+          "t": "sgorga e l’attira di sì strano incanto"
+        },
+        {
+          "t": "ch’ei non può dal cristal torcer lo sguardo."
+        },
+        {
+          "t": "Della favola è questa la morale,"
+        },
+        {
+          "t": "che non d’un solo io traggo a beneficio,"
+        },
+        {
+          "t": "ma di quanti son folli in questo mondo."
+        },
+        {
+          "t": "L’anima umana è l’uomo vanitoso"
+        },
+        {
+          "t": "troppo amante di sé: gli specchi sono"
+        },
+        {
+          "t": "gli altrui difetti in cui come in ispeglio"
+        },
+        {
+          "t": "ogni nostro difetto si dipinge."
+        },
+        {
+          "t": "E il libro delle Massime, o mio Duca,"
+        },
+        {
+          "t": "è quel fiume che l’anima rapisce."
+        }
       ]
     },
     {
@@ -469,37 +1221,99 @@
       "bytes": 890991,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_12_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Narra la storia che fu già in Lamagna",
-        "del gran Sultano un certo ambasciatore,",
-        "così millantatore",
-        "del suo paese, che al cospetto un zero",
-        "eran per lui le forze dell’Impero.",
-        "- Come? - un Tedesco a lui fece osservare, -",
-        "noi contiam dei vassalli in questa terra",
-        "così potenti, che potrebbe armare",
-        "un esercito ognuno in piè di guerra.",
-        "- Questo, - soggiunse il Turco intelligente, -",
-        "un certo caso mi richiama in mente",
-        "strano, ma ver, ch’è capitato a me.",
-        "Mi trovavo per caso in una selva,",
-        "quando venne a passar dietro una siepe",
-        "un’Idra a cento teste tanto orrenda,",
-        "ch’io non vidi giammai la più tremenda.",
-        "Ma più del mal fu grande la paura,",
-        "ché il grosso corpo della brutta belva",
-        "non poteva passar di quella siepe",
-        "traverso la fessura.",
-        "Stavo pensando a sì strana avventura",
-        "quando un altro Dragone",
-        "con un sol capo sopra un gran corpaccio,",
-        "e non so quante code alla riserva,",
-        "dietro alla siepe a un tratto si affacciò.",
-        "Prima col capo aprissi una finestra,",
-        "per questa il corpo e poi le cento code",
-        "dagli arbusti tirò",
-        "a poco a poco fuori dall’impaccio.",
-        "È questa, io credo, in ultima sentenza",
-        "tra il tuo signore e il mio la differenza -."
+        {
+          "t": "Narra la storia che fu già in Lamagna"
+        },
+        {
+          "t": "del gran Sultano un certo ambasciatore,"
+        },
+        {
+          "t": "così millantatore"
+        },
+        {
+          "t": "del suo paese, che al cospetto un zero"
+        },
+        {
+          "t": "eran per lui le forze dell’Impero."
+        },
+        {
+          "t": "- Come? - un Tedesco a lui fece osservare, -"
+        },
+        {
+          "t": "noi contiam dei vassalli in questa terra"
+        },
+        {
+          "t": "così potenti, che potrebbe armare"
+        },
+        {
+          "t": "un esercito ognuno in piè di guerra."
+        },
+        {
+          "t": "- Questo, - soggiunse il Turco intelligente, -"
+        },
+        {
+          "t": "un certo caso mi richiama in mente"
+        },
+        {
+          "t": "strano, ma ver, ch’è capitato a me."
+        },
+        {
+          "t": "Mi trovavo per caso in una selva,"
+        },
+        {
+          "t": "quando venne a passar dietro una siepe"
+        },
+        {
+          "t": "un’Idra a cento teste tanto orrenda,"
+        },
+        {
+          "t": "ch’io non vidi giammai la più tremenda."
+        },
+        {
+          "t": "Ma più del mal fu grande la paura,"
+        },
+        {
+          "t": "ché il grosso corpo della brutta belva"
+        },
+        {
+          "t": "non poteva passar di quella siepe"
+        },
+        {
+          "t": "traverso la fessura."
+        },
+        {
+          "t": "Stavo pensando a sì strana avventura"
+        },
+        {
+          "t": "quando un altro Dragone"
+        },
+        {
+          "t": "con un sol capo sopra un gran corpaccio,"
+        },
+        {
+          "t": "e non so quante code alla riserva,"
+        },
+        {
+          "t": "dietro alla siepe a un tratto si affacciò."
+        },
+        {
+          "t": "Prima col capo aprissi una finestra,"
+        },
+        {
+          "t": "per questa il corpo e poi le cento code"
+        },
+        {
+          "t": "dagli arbusti tirò"
+        },
+        {
+          "t": "a poco a poco fuori dall’impaccio."
+        },
+        {
+          "t": "È questa, io credo, in ultima sentenza"
+        },
+        {
+          "t": "tra il tuo signore e il mio la differenza -."
+        }
       ]
     },
     {
@@ -511,19 +1325,45 @@
       "bytes": 474459,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_13_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Due Ladri avean rubato un Somarello",
-        "e a pugni il disputavan fra di loro:",
-        "quand’ecco sul più bello",
-        "un terzo sopraviene,",
-        "che piglia Orecchialunga e se lo tiene.",
-        "Dei piccoli paesi ecco la storia,",
-        "che sono alla balìa",
-        "di questo o quel vicino prepotente.",
-        "Mentre il Turco, il Rumeno o il Transilvano",
-        "accorrono alle prese,",
-        "un altro arriva, per esempio Inglese,",
-        "che piglia per sé l’asino",
-        "e lascia agli altri un bel niente in mano."
+        {
+          "t": "Due Ladri avean rubato un Somarello"
+        },
+        {
+          "t": "e a pugni il disputavan fra di loro:"
+        },
+        {
+          "t": "quand’ecco sul più bello"
+        },
+        {
+          "t": "un terzo sopraviene,"
+        },
+        {
+          "t": "che piglia Orecchialunga e se lo tiene."
+        },
+        {
+          "t": "Dei piccoli paesi ecco la storia,"
+        },
+        {
+          "t": "che sono alla balìa"
+        },
+        {
+          "t": "di questo o quel vicino prepotente."
+        },
+        {
+          "t": "Mentre il Turco, il Rumeno o il Transilvano"
+        },
+        {
+          "t": "accorrono alle prese,"
+        },
+        {
+          "t": "un altro arriva, per esempio Inglese,"
+        },
+        {
+          "t": "che piglia per sé l’asino"
+        },
+        {
+          "t": "e lascia agli altri un bel niente in mano."
+        }
       ]
     },
     {
@@ -535,79 +1375,225 @@
       "bytes": 1634726,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_14_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Malerba ha detto, ed io gli do ragione,",
-        "che la lode eccessiva mai non è",
-        "per tre classi speciali di persone:",
-        "gli dèi, le donne e i re.",
-        "La lode il cor solletica alle belle,",
-        "che si mostrano grate o tardi o presto,",
-        "in quanto ai Numi si racconta questo:",
-        "Simonide doveva",
-        "un grande elogio scriver d’un atleta",
-        "e non sapeva proprio cosa dire:",
-        "l’atleta oltre la forza non aveva",
-        "gran meriti ed i suoi, gente alla buona,",
-        "vivean sì sconosciuti alla carlona,",
-        "da fare disperar anche un poeta.",
-        "Or che pensa Simonide? - Accozzate",
-        "quattro parole intorno all’argomento,",
-        "girò la vela al vento,",
-        "e sparse d’eloquenza i più bei fiori",
-        "su Castore e Polluce, che direi",
-        "degli atleti i due santi protettori.",
-        "Lodò le imprese, le battaglie e l’arti,",
-        "onde brillano i due santi gemelli",
-        "con tal copia di storie e fatterelli,",
-        "che il loro panegirico",
-        "occupò del discorso almen tre quarti.",
-        "L’atleta udendo questo,",
-        "assai poco contento,",
-        "pagò del panegirico una parte",
-        "e disse: - Va’ da Castore e Polluce",
-        "che del talento pagheranno il resto:",
-        "ma perché non ti sembri villania,",
-        "vieni oggi a desinare a casa mia",
-        "che un boccon mangeremo allegramente",
-        "in lieta compagnia -.",
-        "Non volendo mostrarsi scompiacente,",
-        "e per non perder forse anche quel poco,",
-        "Simonide accettò.",
-        "La brava gente fece onore al cuoco,",
-        "si bevve e si mangiò,",
-        "lieto ciascun del suo miglior umore.",
-        "A un tratto entra correndo un servitore",
-        "a dirgli che due giovani",
-        "l’aspettano di fuori. Esce Simonide",
-        "e restan gli altri a tavola",
-        "per non perdere un tempo così bello.",
-        "Eran Polluce e Castore in persona,",
-        "che dell’elogio in prima il ringraziarono,",
-        "poi - Vattene, - gli dissero, -",
-        "da questa casa che di fesso suona -.",
-        "Ed ecco a un tratto una trave si schianta,",
-        "cade il solaio, ed anfore e bicchieri",
-        "e piatti rompe e va sopra ai coppieri.",
-        "Inutil dir che quella gente ghiotta",
-        "uscì pesta e storpiata.",
-        "E per far la vendetta più salata,",
-        "per conto del poeta,",
-        "ebbe l’atleta anche una gamba rotta.",
-        "La fama andò a sonar la sua trombetta",
-        "per dritto e per traverso,",
-        "e a un uomo tanto caro a Quei lassù",
-        "si pagaron gli elogi",
-        "il doppio che agli altri ed anche più.",
-        "Ogni Bertoldo non guardava ai soldi",
-        "pur d’avere un elogio da Simonide",
-        "in lode degli antichi suoi Bertoldi.",
-        "Tornando a bomba, io dico che l’incenso",
-        "ai numi e ai pari lor non è mai troppo.",
-        "E l’arte fa benissimo, mi pare,",
-        "se dal lavor ritrae qualche compenso.",
-        "Si stima l’arte che si fa pagare.",
-        "Il favor che il potente all’arte dona",
-        "a gloria sua ritorna.",
-        "Già fu l’Olimpo amico all’Elicona."
+        {
+          "t": "Malerba ha detto, ed io gli do ragione,"
+        },
+        {
+          "t": "che la lode eccessiva mai non è"
+        },
+        {
+          "t": "per tre classi speciali di persone:"
+        },
+        {
+          "t": "gli dèi, le donne e i re."
+        },
+        {
+          "t": "La lode il cor solletica alle belle,"
+        },
+        {
+          "t": "che si mostrano grate o tardi o presto,"
+        },
+        {
+          "t": "in quanto ai Numi si racconta questo:"
+        },
+        {
+          "t": "Simonide doveva"
+        },
+        {
+          "t": "un grande elogio scriver d’un atleta"
+        },
+        {
+          "t": "e non sapeva proprio cosa dire:"
+        },
+        {
+          "t": "l’atleta oltre la forza non aveva"
+        },
+        {
+          "t": "gran meriti ed i suoi, gente alla buona,"
+        },
+        {
+          "t": "vivean sì sconosciuti alla carlona,"
+        },
+        {
+          "t": "da fare disperar anche un poeta."
+        },
+        {
+          "t": "Or che pensa Simonide? - Accozzate"
+        },
+        {
+          "t": "quattro parole intorno all’argomento,"
+        },
+        {
+          "t": "girò la vela al vento,"
+        },
+        {
+          "t": "e sparse d’eloquenza i più bei fiori"
+        },
+        {
+          "t": "su Castore e Polluce, che direi"
+        },
+        {
+          "t": "degli atleti i due santi protettori."
+        },
+        {
+          "t": "Lodò le imprese, le battaglie e l’arti,"
+        },
+        {
+          "t": "onde brillano i due santi gemelli"
+        },
+        {
+          "t": "con tal copia di storie e fatterelli,"
+        },
+        {
+          "t": "che il loro panegirico"
+        },
+        {
+          "t": "occupò del discorso almen tre quarti."
+        },
+        {
+          "t": "L’atleta udendo questo,"
+        },
+        {
+          "t": "assai poco contento,"
+        },
+        {
+          "t": "pagò del panegirico una parte"
+        },
+        {
+          "t": "e disse: - Va’ da Castore e Polluce"
+        },
+        {
+          "t": "che del talento pagheranno il resto:"
+        },
+        {
+          "t": "ma perché non ti sembri villania,"
+        },
+        {
+          "t": "vieni oggi a desinare a casa mia"
+        },
+        {
+          "t": "che un boccon mangeremo allegramente"
+        },
+        {
+          "t": "in lieta compagnia -."
+        },
+        {
+          "t": "Non volendo mostrarsi scompiacente,"
+        },
+        {
+          "t": "e per non perder forse anche quel poco,"
+        },
+        {
+          "t": "Simonide accettò."
+        },
+        {
+          "t": "La brava gente fece onore al cuoco,"
+        },
+        {
+          "t": "si bevve e si mangiò,"
+        },
+        {
+          "t": "lieto ciascun del suo miglior umore."
+        },
+        {
+          "t": "A un tratto entra correndo un servitore"
+        },
+        {
+          "t": "a dirgli che due giovani"
+        },
+        {
+          "t": "l’aspettano di fuori. Esce Simonide"
+        },
+        {
+          "t": "e restan gli altri a tavola"
+        },
+        {
+          "t": "per non perdere un tempo così bello."
+        },
+        {
+          "t": "Eran Polluce e Castore in persona,"
+        },
+        {
+          "t": "che dell’elogio in prima il ringraziarono,"
+        },
+        {
+          "t": "poi - Vattene, - gli dissero, -"
+        },
+        {
+          "t": "da questa casa che di fesso suona -."
+        },
+        {
+          "t": "Ed ecco a un tratto una trave si schianta,"
+        },
+        {
+          "t": "cade il solaio, ed anfore e bicchieri"
+        },
+        {
+          "t": "e piatti rompe e va sopra ai coppieri."
+        },
+        {
+          "t": "Inutil dir che quella gente ghiotta"
+        },
+        {
+          "t": "uscì pesta e storpiata."
+        },
+        {
+          "t": "E per far la vendetta più salata,"
+        },
+        {
+          "t": "per conto del poeta,"
+        },
+        {
+          "t": "ebbe l’atleta anche una gamba rotta."
+        },
+        {
+          "t": "La fama andò a sonar la sua trombetta"
+        },
+        {
+          "t": "per dritto e per traverso,"
+        },
+        {
+          "t": "e a un uomo tanto caro a Quei lassù"
+        },
+        {
+          "t": "si pagaron gli elogi"
+        },
+        {
+          "t": "il doppio che agli altri ed anche più."
+        },
+        {
+          "t": "Ogni Bertoldo non guardava ai soldi"
+        },
+        {
+          "t": "pur d’avere un elogio da Simonide"
+        },
+        {
+          "t": "in lode degli antichi suoi Bertoldi."
+        },
+        {
+          "t": "Tornando a bomba, io dico che l’incenso"
+        },
+        {
+          "t": "ai numi e ai pari lor non è mai troppo."
+        },
+        {
+          "t": "E l’arte fa benissimo, mi pare,"
+        },
+        {
+          "t": "se dal lavor ritrae qualche compenso."
+        },
+        {
+          "t": "Si stima l’arte che si fa pagare."
+        },
+        {
+          "t": "Il favor che il potente all’arte dona"
+        },
+        {
+          "t": "a gloria sua ritorna."
+        },
+        {
+          "t": "Già fu l’Olimpo amico all’Elicona."
+        }
       ]
     },
     {
@@ -619,24 +1605,60 @@
       "bytes": 567045,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_15_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "In suo soccorso un Misero la Morte",
-        "chiamava notte e dì:",
-        "- O cara Morte, o fortunata sorte",
-        "morire e i mali terminar così! -.",
-        "La Morte viene all’uscio e si presenta",
-        "certissima di fargli un gran favor.",
-        "Ma l’altro si spaventa",
-        "e si mette a gridare: - O Dio, che orror!",
-        "O Morte, o brutta, orribile figura,",
-        "va’ che mi fai morire di paura -.",
-        "Mecenate, uom di talento,",
-        "si racconta ch’abbia detto:",
-        "- Voi ficcatemi in un letto,",
-        "pesto, monco, senza fiato",
-        "e dai mali assassinato,",
-        "pur ch’io viva son contento.",
-        "Per qualunque cosa accada,",
-        "brutta Morte, cambia strada -."
+        {
+          "t": "In suo soccorso un Misero la Morte"
+        },
+        {
+          "t": "chiamava notte e dì:"
+        },
+        {
+          "t": "- O cara Morte, o fortunata sorte"
+        },
+        {
+          "t": "morire e i mali terminar così! -."
+        },
+        {
+          "t": "La Morte viene all’uscio e si presenta"
+        },
+        {
+          "t": "certissima di fargli un gran favor."
+        },
+        {
+          "t": "Ma l’altro si spaventa"
+        },
+        {
+          "t": "e si mette a gridare: - O Dio, che orror!"
+        },
+        {
+          "t": "O Morte, o brutta, orribile figura,"
+        },
+        {
+          "t": "va’ che mi fai morire di paura -."
+        },
+        {
+          "t": "Mecenate, uom di talento,"
+        },
+        {
+          "t": "si racconta ch’abbia detto:"
+        },
+        {
+          "t": "- Voi ficcatemi in un letto,"
+        },
+        {
+          "t": "pesto, monco, senza fiato"
+        },
+        {
+          "t": "e dai mali assassinato,"
+        },
+        {
+          "t": "pur ch’io viva son contento."
+        },
+        {
+          "t": "Per qualunque cosa accada,"
+        },
+        {
+          "t": "brutta Morte, cambia strada -."
+        }
       ]
     },
     {
@@ -648,26 +1670,66 @@
       "bytes": 724196,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_16_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Sotto un fastel di legna, non men che sotto il peso",
-        "degli anni, un Boscaiolo, curvo, accasciato e stanco,",
-        "andava trascinando il doloroso fianco",
-        "verso la sua capanna.",
-        "Ma tanto è il male e il peso che il poverino affanna,",
-        "che posto in terra il carico, a dire cominciò:",
-        "- Qual dura sorte in questo mondo sconclusionato",
-        "il cielo mi serbò!",
-        "Sempre col pane in lite e per soprammercato",
-        "la moglie, i figli, i debiti, le tasse e l’angherie",
-        "che fanno a un pover’uomo la vita irta di spine.",
-        "O Morte, a questi mali poni un rimedio e un fine -.",
-        "La Morte, che non usa farsi aspettar giammai,",
-        "vien subito e - In che cosa, - esclama, - o buon fratello,",
-        "posso giovarti? - O grazie, soltanto ti chiamai,",
-        "perché mi aiuti a reggere un po’ questo fardello -.",
-        "È la morte un gran rimedio",
-        "a chi è stanco di soffrir.",
-        "Sarà ver, ma piace agli uomini",
-        "più soffrire che morir."
+        {
+          "t": "Sotto un fastel di legna, non men che sotto il peso"
+        },
+        {
+          "t": "degli anni, un Boscaiolo, curvo, accasciato e stanco,"
+        },
+        {
+          "t": "andava trascinando il doloroso fianco"
+        },
+        {
+          "t": "verso la sua capanna."
+        },
+        {
+          "t": "Ma tanto è il male e il peso che il poverino affanna,"
+        },
+        {
+          "t": "che posto in terra il carico, a dire cominciò:"
+        },
+        {
+          "t": "- Qual dura sorte in questo mondo sconclusionato"
+        },
+        {
+          "t": "il cielo mi serbò!"
+        },
+        {
+          "t": "Sempre col pane in lite e per soprammercato"
+        },
+        {
+          "t": "la moglie, i figli, i debiti, le tasse e l’angherie"
+        },
+        {
+          "t": "che fanno a un pover’uomo la vita irta di spine."
+        },
+        {
+          "t": "O Morte, a questi mali poni un rimedio e un fine -."
+        },
+        {
+          "t": "La Morte, che non usa farsi aspettar giammai,"
+        },
+        {
+          "t": "vien subito e - In che cosa, - esclama, - o buon fratello,"
+        },
+        {
+          "t": "posso giovarti? - O grazie, soltanto ti chiamai,"
+        },
+        {
+          "t": "perché mi aiuti a reggere un po’ questo fardello -."
+        },
+        {
+          "t": "È la morte un gran rimedio"
+        },
+        {
+          "t": "a chi è stanco di soffrir."
+        },
+        {
+          "t": "Sarà ver, ma piace agli uomini"
+        },
+        {
+          "t": "più soffrire che morir."
+        }
       ]
     },
     {
@@ -679,38 +1741,102 @@
       "bytes": 883239,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_17_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Un Uom, già stagionato e brizzolato,",
-        "credette giunto il momento propizio",
-        "di prender moglie e mettere giudizio.",
-        "Erano molte quelle",
-        "giovani ancora e belle",
-        "che gli facean la corte.",
-        "Ma quell’uom ch’era ricco e ancora forte,",
-        "prima volea veder, toccar con mano.",
-        "In queste cose chi va pian va sano.",
-        "Due vedovelle alfin preser possesso",
-        "del suo cuore, di cui",
-        "l’una forse un po’ giovane per lui,",
-        "e l’altra più verso l’età canonica,",
-        "che si teneva in prezzo ed in figura",
-        "correggendo coll’arte la natura.",
-        "Le vedove venivano assai spesso",
-        "in casa, e or quella, or questa,",
-        "per vezzo carezzandogli la testa,",
-        "la vecchia gli strappava ogni momento",
-        "qualche capello nero,",
-        "e l’altra gli strappava quei d’argento,",
-        "per fare che il galante",
-        "fosse a ciascuna d’esse somigliante.",
-        "e strappa e strappa, il nostro innamorato",
-        "si avvide, ahi troppo tardi!",
-        "di restar fra le due tutto pelato.",
-        "- Questo, - egli disse, - è un saggio avvertimento",
-        "di cui proprio vi son molto obbligato.",
-        "Addio, belle. Di moglie or faccio senza.",
-        "Non mi sento d’aver tanta pazienza",
-        "di far a modo suo; che s’ella è trista,",
-        "non c’è testa pelata che resista -."
+        {
+          "t": "Un Uom, già stagionato e brizzolato,"
+        },
+        {
+          "t": "credette giunto il momento propizio"
+        },
+        {
+          "t": "di prender moglie e mettere giudizio."
+        },
+        {
+          "t": "Erano molte quelle"
+        },
+        {
+          "t": "giovani ancora e belle"
+        },
+        {
+          "t": "che gli facean la corte."
+        },
+        {
+          "t": "Ma quell’uom ch’era ricco e ancora forte,"
+        },
+        {
+          "t": "prima volea veder, toccar con mano."
+        },
+        {
+          "t": "In queste cose chi va pian va sano."
+        },
+        {
+          "t": "Due vedovelle alfin preser possesso"
+        },
+        {
+          "t": "del suo cuore, di cui"
+        },
+        {
+          "t": "l’una forse un po’ giovane per lui,"
+        },
+        {
+          "t": "e l’altra più verso l’età canonica,"
+        },
+        {
+          "t": "che si teneva in prezzo ed in figura"
+        },
+        {
+          "t": "correggendo coll’arte la natura."
+        },
+        {
+          "t": "Le vedove venivano assai spesso"
+        },
+        {
+          "t": "in casa, e or quella, or questa,"
+        },
+        {
+          "t": "per vezzo carezzandogli la testa,"
+        },
+        {
+          "t": "la vecchia gli strappava ogni momento"
+        },
+        {
+          "t": "qualche capello nero,"
+        },
+        {
+          "t": "e l’altra gli strappava quei d’argento,"
+        },
+        {
+          "t": "per fare che il galante"
+        },
+        {
+          "t": "fosse a ciascuna d’esse somigliante."
+        },
+        {
+          "t": "e strappa e strappa, il nostro innamorato"
+        },
+        {
+          "t": "si avvide, ahi troppo tardi!"
+        },
+        {
+          "t": "di restar fra le due tutto pelato."
+        },
+        {
+          "t": "- Questo, - egli disse, - è un saggio avvertimento"
+        },
+        {
+          "t": "di cui proprio vi son molto obbligato."
+        },
+        {
+          "t": "Addio, belle. Di moglie or faccio senza."
+        },
+        {
+          "t": "Non mi sento d’aver tanta pazienza"
+        },
+        {
+          "t": "di far a modo suo; che s’ella è trista,"
+        },
+        {
+          "t": "non c’è testa pelata che resista -."
+        }
       ]
     },
     {
@@ -722,38 +1848,102 @@
       "bytes": 894721,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_18_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Monna Volpe un bel dì fece lo spicco",
-        "e invitò la Cicogna a desinare.",
-        "Il pranzo fu modesto e poco ricco,",
-        "anzi quasi non c’era da mangiare.",
-        "Tutto il servizio in ultimo costrutto",
-        "si ridusse a una broda trasparente",
-        "servita in un piattello. Or capirete",
-        "se, in grazia di quel becco che sapete,",
-        "la Cicogna poté mangiar niente.",
-        "Ma la Volpe in un amen spazzò tutto.",
-        "Per trar vendetta dell’inganno, anch’essa",
-        "la Cicogna invitò la furba amica,",
-        "che non stette con lei sui complimenti.",
-        "La Volpe, a cui non manca l’appetito,",
-        "andò pronta all’invito.",
-        "Vide e lodò il pranzetto preparato,",
-        "tagliato a pezzi in una salsa spessa,",
-        "che mandava un odore delicato.",
-        "Ma il pranzo fu servito per dispetto",
-        "in fondo a un vaso a collo lungo e stretto.",
-        "Ben vi attingea col becco la Cicogna",
-        "per entro la fessura,",
-        "ma non così Madonna Gabbamondo,",
-        "per via del muso tondo e non ridotto",
-        "dell’anfora alla piccola misura.",
-        "A pancia vuota e piena di vergogna,",
-        "se ne partì quell’animale ghiotto",
-        "mogio mogio, la coda fra le gambe,",
-        "come una vecchia volpe malandrina",
-        "che si senta rapir da una gallina.",
-        "Vuol dimostrare questa favoletta",
-        "che chi la fa l’aspetta."
+        {
+          "t": "Monna Volpe un bel dì fece lo spicco"
+        },
+        {
+          "t": "e invitò la Cicogna a desinare."
+        },
+        {
+          "t": "Il pranzo fu modesto e poco ricco,"
+        },
+        {
+          "t": "anzi quasi non c’era da mangiare."
+        },
+        {
+          "t": "Tutto il servizio in ultimo costrutto"
+        },
+        {
+          "t": "si ridusse a una broda trasparente"
+        },
+        {
+          "t": "servita in un piattello. Or capirete"
+        },
+        {
+          "t": "se, in grazia di quel becco che sapete,"
+        },
+        {
+          "t": "la Cicogna poté mangiar niente."
+        },
+        {
+          "t": "Ma la Volpe in un amen spazzò tutto."
+        },
+        {
+          "t": "Per trar vendetta dell’inganno, anch’essa"
+        },
+        {
+          "t": "la Cicogna invitò la furba amica,"
+        },
+        {
+          "t": "che non stette con lei sui complimenti."
+        },
+        {
+          "t": "La Volpe, a cui non manca l’appetito,"
+        },
+        {
+          "t": "andò pronta all’invito."
+        },
+        {
+          "t": "Vide e lodò il pranzetto preparato,"
+        },
+        {
+          "t": "tagliato a pezzi in una salsa spessa,"
+        },
+        {
+          "t": "che mandava un odore delicato."
+        },
+        {
+          "t": "Ma il pranzo fu servito per dispetto"
+        },
+        {
+          "t": "in fondo a un vaso a collo lungo e stretto."
+        },
+        {
+          "t": "Ben vi attingea col becco la Cicogna"
+        },
+        {
+          "t": "per entro la fessura,"
+        },
+        {
+          "t": "ma non così Madonna Gabbamondo,"
+        },
+        {
+          "t": "per via del muso tondo e non ridotto"
+        },
+        {
+          "t": "dell’anfora alla piccola misura."
+        },
+        {
+          "t": "A pancia vuota e piena di vergogna,"
+        },
+        {
+          "t": "se ne partì quell’animale ghiotto"
+        },
+        {
+          "t": "mogio mogio, la coda fra le gambe,"
+        },
+        {
+          "t": "come una vecchia volpe malandrina"
+        },
+        {
+          "t": "che si senta rapir da una gallina."
+        },
+        {
+          "t": "Vuol dimostrare questa favoletta"
+        },
+        {
+          "t": "che chi la fa l’aspetta."
+        }
       ]
     },
     {
@@ -765,34 +1955,90 @@
       "bytes": 823471,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_19_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Racconto questa per mostrar d’un tale",
-        "la stupida burbanza magistrale.",
-        "Un Ragazzo, giocando al fiume in riva,",
-        "cadde nell’acqua e forse vi periva,",
-        "se non avesse un salice afferrato",
-        "che, dopo Dio, lo tenne sollevato.",
-        "Mentre nell’acqua ei sta fino alla gola,",
-        "viene a passare un maestro di scuola.",
-        "- Aiuto, aiuto! - grida quel che annega.",
-        "Il maestro si ferma, e a lui che prega,",
-        "con una voce burbera e nasale,",
-        "gli somministra questa paternale:",
-        "- Ah scimunito, ah sciocco, ah babbuasso!",
-        "Guarda dove si caccia il satanasso.",
-        "Andate pure a prender dell’affanno",
-        "per questi tristi, oh sì, che vi faranno",
-        "morir tisici! ah poveri parenti",
-        "a cui tocca di questi malviventi!",
-        "Ah i tempi tristi, oh i figli traditori... -.",
-        "E quando ebbe finito, il tirò fuori.",
-        "Quanti non sono al mondo altri pedanti",
-        "e brontoloni e critici ignoranti,",
-        "razza dotta più in chiacchiere che in scienze,",
-        "che Dio conserva a nostra dannazione!",
-        "In ogni cosa, a torto od a ragione,",
-        "bisogna ch’essi sputino sentenze.",
-        "Prima di pena tirami, se puoi,",
-        "il bel discorso lo udiremo poi."
+        {
+          "t": "Racconto questa per mostrar d’un tale"
+        },
+        {
+          "t": "la stupida burbanza magistrale."
+        },
+        {
+          "t": "Un Ragazzo, giocando al fiume in riva,"
+        },
+        {
+          "t": "cadde nell’acqua e forse vi periva,"
+        },
+        {
+          "t": "se non avesse un salice afferrato"
+        },
+        {
+          "t": "che, dopo Dio, lo tenne sollevato."
+        },
+        {
+          "t": "Mentre nell’acqua ei sta fino alla gola,"
+        },
+        {
+          "t": "viene a passare un maestro di scuola."
+        },
+        {
+          "t": "- Aiuto, aiuto! - grida quel che annega."
+        },
+        {
+          "t": "Il maestro si ferma, e a lui che prega,"
+        },
+        {
+          "t": "con una voce burbera e nasale,"
+        },
+        {
+          "t": "gli somministra questa paternale:"
+        },
+        {
+          "t": "- Ah scimunito, ah sciocco, ah babbuasso!"
+        },
+        {
+          "t": "Guarda dove si caccia il satanasso."
+        },
+        {
+          "t": "Andate pure a prender dell’affanno"
+        },
+        {
+          "t": "per questi tristi, oh sì, che vi faranno"
+        },
+        {
+          "t": "morir tisici! ah poveri parenti"
+        },
+        {
+          "t": "a cui tocca di questi malviventi!"
+        },
+        {
+          "t": "Ah i tempi tristi, oh i figli traditori... -."
+        },
+        {
+          "t": "E quando ebbe finito, il tirò fuori."
+        },
+        {
+          "t": "Quanti non sono al mondo altri pedanti"
+        },
+        {
+          "t": "e brontoloni e critici ignoranti,"
+        },
+        {
+          "t": "razza dotta più in chiacchiere che in scienze,"
+        },
+        {
+          "t": "che Dio conserva a nostra dannazione!"
+        },
+        {
+          "t": "In ogni cosa, a torto od a ragione,"
+        },
+        {
+          "t": "bisogna ch’essi sputino sentenze."
+        },
+        {
+          "t": "Prima di pena tirami, se puoi,"
+        },
+        {
+          "t": "il bel discorso lo udiremo poi."
+        }
       ]
     },
     {
@@ -804,22 +2050,54 @@
       "bytes": 479061,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_20_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Razzolando, una Gallina",
-        "una Perla ritrovò,",
-        "una perla vera e fina",
-        "che all’orefice portò,",
-        "giudicando con ragione",
-        "che una perla alla fin fine",
-        "non è poi quel tal boccone",
-        "che conviene alle galline.",
-        "Tal e qual quell’ignorante,",
-        "che uno scritto ereditò,",
-        "di buon cuor con un sonante",
-        "ducatone barattò,",
-        "giudicando con ragione,",
-        "anche lui, che all’occorrenza",
-        "un sonante ducatone",
-        "vale tutta la sapienza."
+        {
+          "t": "Razzolando, una Gallina"
+        },
+        {
+          "t": "una Perla ritrovò,"
+        },
+        {
+          "t": "una perla vera e fina"
+        },
+        {
+          "t": "che all’orefice portò,"
+        },
+        {
+          "t": "giudicando con ragione"
+        },
+        {
+          "t": "che una perla alla fin fine"
+        },
+        {
+          "t": "non è poi quel tal boccone"
+        },
+        {
+          "t": "che conviene alle galline."
+        },
+        {
+          "t": "Tal e qual quell’ignorante,"
+        },
+        {
+          "t": "che uno scritto ereditò,"
+        },
+        {
+          "t": "di buon cuor con un sonante"
+        },
+        {
+          "t": "ducatone barattò,"
+        },
+        {
+          "t": "giudicando con ragione,"
+        },
+        {
+          "t": "anche lui, che all’occorrenza"
+        },
+        {
+          "t": "un sonante ducatone"
+        },
+        {
+          "t": "vale tutta la sapienza."
+        }
       ]
     },
     {
@@ -831,42 +2109,114 @@
       "bytes": 952190,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_21_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Era sorta fra l’Api e i Calabroni",
-        "per un favo di miel una gran lite,",
-        "di cui volevano essere padroni",
-        "d’ambo le parti e con furore tale,",
-        "che infine il grande affare",
-        "d’una Vespa fu tratto al tribunale.",
-        "La Vespa non sapea che giudicare.",
-        "Intorno al miel alcuni testimoni",
-        "dicean d’aver veduto bestie alate",
-        "giallo-nere, ronzanti e fusolate,",
-        "ma in queste condizioni",
-        "potevan esser api e calabroni.",
-        "Torna la Vespa allora a investigare,",
-        "interroga un intero formicaio,",
-        "ma le cose non restano più chiare.",
-        "Allor disse una Pecchia: - O non vi pare",
-        "che duri già da un pezzo questo guaio?",
-        "Il miele va in malora e a danno nostro;",
-        "ché mentre noi spendiamo in bollo e in tassa,",
-        "in carta, in procedura ed in inchiostro,",
-        "del nostro miel è il giudice che ingrassa.",
-        "Andiam invece ed api e calabroni",
-        "a lavorar nell’orto,",
-        "e le case ed i favi più ben fatti",
-        "indicheranno la ragione e il torto -.",
-        "Naturalmente dissero di no",
-        "i Calabroni, e il miele",
-        "alle Pecchie la Vespa giudicò.",
-        "Magari si facesse ogni processo,",
-        "come dicon che facciano in Turchia,",
-        "senza tutta la lunga litania",
-        "di spese e ciarle inutili d’adesso!",
-        "Il buon senso val più di tutti quanti",
-        "i codici, o, sofferto strazi e croci,",
-        "il giudice di solito ha le noci,",
-        "e non restan che i gusci ai litiganti."
+        {
+          "t": "Era sorta fra l’Api e i Calabroni"
+        },
+        {
+          "t": "per un favo di miel una gran lite,"
+        },
+        {
+          "t": "di cui volevano essere padroni"
+        },
+        {
+          "t": "d’ambo le parti e con furore tale,"
+        },
+        {
+          "t": "che infine il grande affare"
+        },
+        {
+          "t": "d’una Vespa fu tratto al tribunale."
+        },
+        {
+          "t": "La Vespa non sapea che giudicare."
+        },
+        {
+          "t": "Intorno al miel alcuni testimoni"
+        },
+        {
+          "t": "dicean d’aver veduto bestie alate"
+        },
+        {
+          "t": "giallo-nere, ronzanti e fusolate,"
+        },
+        {
+          "t": "ma in queste condizioni"
+        },
+        {
+          "t": "potevan esser api e calabroni."
+        },
+        {
+          "t": "Torna la Vespa allora a investigare,"
+        },
+        {
+          "t": "interroga un intero formicaio,"
+        },
+        {
+          "t": "ma le cose non restano più chiare."
+        },
+        {
+          "t": "Allor disse una Pecchia: - O non vi pare"
+        },
+        {
+          "t": "che duri già da un pezzo questo guaio?"
+        },
+        {
+          "t": "Il miele va in malora e a danno nostro;"
+        },
+        {
+          "t": "ché mentre noi spendiamo in bollo e in tassa,"
+        },
+        {
+          "t": "in carta, in procedura ed in inchiostro,"
+        },
+        {
+          "t": "del nostro miel è il giudice che ingrassa."
+        },
+        {
+          "t": "Andiam invece ed api e calabroni"
+        },
+        {
+          "t": "a lavorar nell’orto,"
+        },
+        {
+          "t": "e le case ed i favi più ben fatti"
+        },
+        {
+          "t": "indicheranno la ragione e il torto -."
+        },
+        {
+          "t": "Naturalmente dissero di no"
+        },
+        {
+          "t": "i Calabroni, e il miele"
+        },
+        {
+          "t": "alle Pecchie la Vespa giudicò."
+        },
+        {
+          "t": "Magari si facesse ogni processo,"
+        },
+        {
+          "t": "come dicon che facciano in Turchia,"
+        },
+        {
+          "t": "senza tutta la lunga litania"
+        },
+        {
+          "t": "di spese e ciarle inutili d’adesso!"
+        },
+        {
+          "t": "Il buon senso val più di tutti quanti"
+        },
+        {
+          "t": "i codici, o, sofferto strazi e croci,"
+        },
+        {
+          "t": "il giudice di solito ha le noci,"
+        },
+        {
+          "t": "e non restan che i gusci ai litiganti."
+        }
       ]
     },
     {
@@ -878,37 +2228,99 @@
       "bytes": 876958,
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_22_libro01_lafontaine_64kb.mp3",
       "renglones": [
-        "Disse la Quercia ad una Canna un giorno:",
-        "- Infelice nel mondo è il tuo destino:",
-        "non ti si posa addosso un uccellino,",
-        "né un soffio d’aria ti svolazza intorno,",
-        "che tu non abbia ad abbassar la testa.",
-        "Guarda me, che gigante a un monte eguale,",
-        "non solo innalzo contro il sol la cresta,",
-        "ma sfido il temporale.",
-        "Per te sembra tempesta ogni sospiro,",
-        "un sospiro a me sembra ogni tempesta.",
-        "Pazienza ancor, se concedesse il Cielo",
-        "che voi nasceste all’ombra mia sicura:",
-        "ma vuole la natura",
-        "farvi nascer di solito alla riva",
-        "delle paludi, in mezzo ai venti e al gelo.",
-        "- La tua pietà capisco che deriva",
-        "da buon cuore, - rispose a lei la Canna. -",
-        "Il vento che mi affanna",
-        "mi può piegar, non farmi troppo male,",
-        "ciò che non sempre anche alle querce arriva.",
-        "Tu sei forte, ma chi fino a dimani",
-        "può garantirti il legno della schiena? -",
-        "E detto questo appena,",
-        "il più forte scoppiò degli uragani,",
-        "come il polo non soffia mai l’uguale.",
-        "La molle Canna piegasi,",
-        "e resiste la Quercia anche ai più forti",
-        "colpi del vento, per un po’, ma infine",
-        "sradica il vento il tronco,",
-        "che mandava le foglie al ciel vicine,",
-        "e le barbe nel Regno imo dei morti."
+        {
+          "t": "Disse la Quercia ad una Canna un giorno:"
+        },
+        {
+          "t": "- Infelice nel mondo è il tuo destino:"
+        },
+        {
+          "t": "non ti si posa addosso un uccellino,"
+        },
+        {
+          "t": "né un soffio d’aria ti svolazza intorno,"
+        },
+        {
+          "t": "che tu non abbia ad abbassar la testa."
+        },
+        {
+          "t": "Guarda me, che gigante a un monte eguale,"
+        },
+        {
+          "t": "non solo innalzo contro il sol la cresta,"
+        },
+        {
+          "t": "ma sfido il temporale."
+        },
+        {
+          "t": "Per te sembra tempesta ogni sospiro,"
+        },
+        {
+          "t": "un sospiro a me sembra ogni tempesta."
+        },
+        {
+          "t": "Pazienza ancor, se concedesse il Cielo"
+        },
+        {
+          "t": "che voi nasceste all’ombra mia sicura:"
+        },
+        {
+          "t": "ma vuole la natura"
+        },
+        {
+          "t": "farvi nascer di solito alla riva"
+        },
+        {
+          "t": "delle paludi, in mezzo ai venti e al gelo."
+        },
+        {
+          "t": "- La tua pietà capisco che deriva"
+        },
+        {
+          "t": "da buon cuore, - rispose a lei la Canna. -"
+        },
+        {
+          "t": "Il vento che mi affanna"
+        },
+        {
+          "t": "mi può piegar, non farmi troppo male,"
+        },
+        {
+          "t": "ciò che non sempre anche alle querce arriva."
+        },
+        {
+          "t": "Tu sei forte, ma chi fino a dimani"
+        },
+        {
+          "t": "può garantirti il legno della schiena? -"
+        },
+        {
+          "t": "E detto questo appena,"
+        },
+        {
+          "t": "il più forte scoppiò degli uragani,"
+        },
+        {
+          "t": "come il polo non soffia mai l’uguale."
+        },
+        {
+          "t": "La molle Canna piegasi,"
+        },
+        {
+          "t": "e resiste la Quercia anche ai più forti"
+        },
+        {
+          "t": "colpi del vento, per un po’, ma infine"
+        },
+        {
+          "t": "sradica il vento il tronco,"
+        },
+        {
+          "t": "che mandava le foglie al ciel vicine,"
+        },
+        {
+          "t": "e le barbe nel Regno imo dei morti."
+        }
       ]
     }
   ]
