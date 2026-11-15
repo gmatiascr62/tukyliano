@@ -46,10 +46,9 @@ ELMODELO = os.path.join(DONDE_ESTA_WHISPER, 'models',
 IDIOMA = 'it'
 HILOS = str(os.cpu_count() or 4)
 
-# Cuánto puede durar un pedazo. 22 segundos salió mejor que 12 y que 8:
-# con pedazos más cortos la pista del texto completo le hace escribir
-# frases de otra parte de la fábula, y ahí sí se va a 20 segundos de
-# error.
+# Cuánto puede durar un pedazo. 22 segundos salió mejor que 12 y que 8,
+# medido contra las marcas a mano: 0,43 s de error promedio contra 0,50
+# con pedazos de 12.
 CUANTO_DURA_UN_PEDAZO = 22.0
 
 # El umbral de silencio va relativo al volumen medio del archivo. Son
@@ -142,7 +141,7 @@ def dondeCortar(duracion, silencios, maximo=CUANTO_DURA_UN_PEDAZO):
     return [(cortes[i], cortes[i + 1]) for i in range(len(cortes) - 1)]
 
 
-def transcribirPedazo(wav, desde, hasta, pista, base):
+def transcribirPedazo(wav, desde, hasta, base):
     subprocess.run(
         [ELPROGRAMA, '-m', ELMODELO, '-f', wav, '-l', IDIOMA, '-t', HILOS,
          # Un segmento por palabra: es lo que da los tiempos finos.
@@ -151,8 +150,17 @@ def transcribirPedazo(wav, desde, hasta, pista, base):
          # pegan sin tener que sumarles nada.
          '-ot', str(int(desde * 1000)),
          '-d', str(int((hasta - desde) * 1000)),
-         # La pista ayuda a que escriba parecido a nuestro texto.
-         '--prompt', pista,
+         # Sin contexto de una ventana a la otra. Esto es lo que frena
+         # las alucinaciones: con contexto, en el medio del poema se
+         # pone a escribir "fine della favola, questa registrazione è di
+         # dominio pubblico" y después lo repite entero. En La Gallina e
+         # la Perla eso dejaba las coincidencias en 59%; con -mc 0 pasa
+         # a 89% y no queda ningún renglón estimado.
+         #
+         # Nota: con -mc 0 pasarle --prompt no cambia nada, porque la
+         # pista también es contexto de texto y la descarta. Medido: dos
+         # fábulas, resultados idénticos con pista y sin pista.
+         '-mc', '0',
          '-oj', '-of', base, '-np'],
         capture_output=True, check=True,
     )
@@ -163,22 +171,30 @@ def transcribirPedazo(wav, desde, hasta, pista, base):
     for segmento in datos.get('transcription', []):
         inicio = segmento['offsets']['from'] / 1000
         fin = segmento['offsets']['to'] / 1000
+        # Whisper devuelve de más: procesa ventanas de 30 segundos
+        # aunque se le pidan 22, así que le pedís hasta el 47,4 y te
+        # contesta hasta el 52,6. Eso lo cubre el pedazo que viene, y
+        # dejarlo duplica palabras en la lista. Las coincidencias dejan
+        # de ir en orden y aparecen renglones que arrancan antes que el
+        # anterior.
+        if inicio >= hasta:
+            continue
         for palabra in enPalabras(segmento.get('text', '')):
             palabras.append((palabra, inicio, fin))
     return palabras
 
 
-def transcribir(audio, pista, carpeta):
+def transcribir(audio, carpeta):
     """Las palabras que whisper oyó, cada una con su segundo.
 
-    Devuelve una lista de (palabra, inicio, fin).
+    Devuelve (lista de (palabra, inicio, fin), cuántos pedazos).
     """
     wav = enWav(audio, carpeta)
     pedazos = dondeCortar(cuantoDura(wav), losSilencios(wav))
     palabras = []
     for numero, (desde, hasta) in enumerate(pedazos):
         palabras += transcribirPedazo(
-            wav, desde, hasta, pista, os.path.join(carpeta, f'p{numero}'))
+            wav, desde, hasta, os.path.join(carpeta, f'p{numero}'))
     return palabras, len(pedazos)
 
 
@@ -281,9 +297,8 @@ def deUnAudio(audio, renglones):
     ver si los tiempos están bien, así que el alineado tiene que avisar
     cuándo le fue mal.
     """
-    pista = ' '.join(renglones)[:400]
     with tempfile.TemporaryDirectory() as carpeta:
-        palabras, pedazos = transcribir(audio, pista, carpeta)
+        palabras, pedazos = transcribir(audio, carpeta)
     resultado, comoSalio = alinear(renglones, palabras)
     comoSalio['pedazos'] = pedazos
     comoSalio['duracion'] = palabras[-1][2] if palabras else 0.0
