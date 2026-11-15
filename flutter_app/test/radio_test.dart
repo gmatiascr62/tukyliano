@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tukyliano/datos/android.dart';
 import 'package:tukyliano/datos/audio_de_fondo.dart';
 import 'package:tukyliano/datos/repositorio_radios.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
@@ -338,6 +339,29 @@ void main() {
       await _bajarDelTodo(tester);
 
       expect(find.text('Se va a cortar al bloquear la pantalla'), findsNothing);
+    });
+
+    testWidgets('avisa cuando falta el permiso de notificar', (tester) async {
+      // Sin ese permiso no hay notificación, y sin notificación Android
+      // corta el audio. Hay que decirlo porque el sistema deja de preguntar
+      // después de dos negativas.
+      Android.comoSi(puedeNotificar: false);
+      addTearDown(() => Android.comoSi(puedeNotificar: true));
+
+      await _abrir(tester, reproductor: ReproductorFalso());
+      await _bajarDelTodo(tester);
+
+      expect(find.text('Falta darle permiso para notificar'), findsOne);
+      expect(find.textContaining('Ajustes'), findsOne);
+    });
+
+    testWidgets('no molesta con eso si el permiso está dado', (tester) async {
+      Android.comoSi(puedeNotificar: true);
+
+      await _abrir(tester, reproductor: ReproductorFalso());
+      await _bajarDelTodo(tester);
+
+      expect(find.text('Falta darle permiso para notificar'), findsNothing);
     });
 
     testWidgets('al pie siempre dice en qué anda el audio', (tester) async {

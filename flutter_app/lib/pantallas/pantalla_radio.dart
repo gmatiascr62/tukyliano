@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../datos/android.dart';
 import '../datos/audio_de_fondo.dart';
 import '../datos/reproductor.dart';
 import '../datos/repositorio_radios.dart';
@@ -278,6 +279,10 @@ class _Escucha extends StatelessWidget {
         ],
         const SizedBox(height: 18),
         const _ComoEscucharla(),
+        if (!Android.puedeNotificar) ...[
+          const SizedBox(height: 18),
+          const _SinNotificaciones(),
+        ],
         if (!AudioDeFondo.anda) ...[
           const SizedBox(height: 18),
           const _SinAudioDeFondo(),
@@ -580,6 +585,54 @@ class _ComoEscucharla extends StatelessWidget {
                 ],
               ),
             ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Avisa que falta el permiso de notificaciones.
+///
+/// Esto no es un detalle de comodidad: la notificación con los controles
+/// **es** el permiso de seguir sonando. Sin ella no aparece el reproductor en
+/// la barra y Android termina cortando el audio.
+///
+/// Y hay que mostrarlo, porque Android deja de preguntar después de dos
+/// negativas: si no se dice acá, el permiso queda apagado para siempre sin
+/// que nadie sepa por qué el audio se corta.
+class _SinNotificaciones extends StatelessWidget {
+  const _SinNotificaciones();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+      decoration: BoxDecoration(
+        color: Tema.verdeSuave,
+        borderRadius: BorderRadius.circular(Tema.radio),
+      ),
+      child: const Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Falta darle permiso para notificar',
+            style: TextStyle(
+              fontSize: 13.5,
+              fontWeight: FontWeight.w700,
+              color: Tema.titulo,
+            ),
+          ),
+          SizedBox(height: 4),
+          Text(
+            'Sin eso no aparece el reproductor en la barra y Android corta el '
+            'audio al bloquear la pantalla: la notificación con los controles '
+            'es lo que le dice al sistema que hay algo sonando.\n\n'
+            'Se prende en Ajustes → Aplicaciones → Tukyliano → '
+            'Notificaciones.',
+            style: TextStyle(fontSize: 12.5, height: 1.35,
+                color: Tema.textoTenue),
+          ),
         ],
       ),
     );
