@@ -30,6 +30,21 @@ class Android {
     }
   }
 
+  /// Qué dice Android sobre el servicio de audio: si corre y si está en
+  /// primer plano.
+  ///
+  /// Lo contesta el sistema operativo, que es el único que lo sabe de
+  /// verdad. Desde adentro de la app no se ve, y por eso buscar por qué se
+  /// cortaba el audio costó cuatro versiones de adivinar.
+  static Future<String> comoEstaElServicio() async {
+    try {
+      return await _canal.invokeMethod<String>('comoEstaElServicio') ??
+          'servicio: ?';
+    } catch (_) {
+      return 'servicio: ?';
+    }
+  }
+
   /// Sostiene el Wi-Fi mientras suena una radio.
   ///
   /// El servicio de audio ya mantiene la CPU despierta, pero no la antena:

@@ -191,6 +191,18 @@ class ManejadorDeAudio extends BaseAudioHandler with SeekHandler {
         ProcessingState.completed => AudioProcessingState.completed,
       };
 
+  /// Lo último que se le publicó a Android, para poder mirarlo desde la app.
+  ///
+  /// Es el eslabón del medio: si acá dice que está sonando pero Android dice
+  /// que el servicio no corre, el problema está del lado de Android; si acá
+  /// dice que no, el problema es de este archivo.
+  String get loQuePublique {
+    final estado = playbackState.valueOrNull;
+    final que = mediaItem.valueOrNull?.title ?? 'nada';
+    if (estado == null) return 'publicado: todavía nada';
+    return 'publicado: ${estado.playing ? "sonando" : "quieto"} · $que';
+  }
+
   @override
   Future<void> play() async => reproductor?.play();
 

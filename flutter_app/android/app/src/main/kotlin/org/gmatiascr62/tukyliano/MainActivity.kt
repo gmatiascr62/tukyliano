@@ -1,6 +1,7 @@
 package org.gmatiascr62.tukyliano
 
 import android.Manifest
+import android.app.ActivityManager
 import android.content.Context
 import android.content.pm.PackageManager
 import android.net.wifi.WifiManager
@@ -34,6 +35,7 @@ class MainActivity : AudioServiceActivity() {
             llamada, contestar ->
             when (llamada.method) {
                 "puedeNotificar" -> contestar.success(puedeNotificar())
+                "comoEstaElServicio" -> contestar.success(comoEstaElServicio())
                 "agarrarElWifi" -> { agarrarElWifi(); contestar.success(null) }
                 "soltarElWifi" -> { soltarElWifi(); contestar.success(null) }
                 else -> contestar.notImplemented()
@@ -64,6 +66,26 @@ class MainActivity : AudioServiceActivity() {
         if (Build.VERSION.SDK_INT < Build.VERSION_CODES.TIRAMISU) return true
         return checkSelfPermission(Manifest.permission.POST_NOTIFICATIONS) ==
             PackageManager.PERMISSION_GRANTED
+    }
+
+    // Le pregunta a Android si el servicio de audio está corriendo y si está
+    // en primer plano.
+    //
+    // Esto existe porque buscando por qué el audio se cortaba se gastaron
+    // cuatro versiones adivinando: si el servicio arrancaba, si publicaba la
+    // notificación, si era el permiso, si era el celular. Nada de eso se veía
+    // desde adentro de la app. Esto lo contesta el sistema operativo, que es
+    // el único que sabe.
+    //
+    // getRunningServices está obsoleto para espiar a otras apps, pero sigue
+    // devolviendo los servicios propios, que es justo lo que se necesita.
+    @Suppress("DEPRECATION")
+    private fun comoEstaElServicio(): String {
+        val am = getSystemService(Context.ACTIVITY_SERVICE) as ActivityManager
+        val mio = am.getRunningServices(Integer.MAX_VALUE).firstOrNull {
+            it.service.className.contains("audioservice.AudioService")
+        } ?: return "servicio: no corre"
+        return if (mio.foreground) "servicio: primer plano" else "servicio: de fondo"
     }
 
     // El servicio de audio ya sostiene la CPU despierta, pero NO el Wi-Fi.

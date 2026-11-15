@@ -213,10 +213,12 @@ class ReproductorDeVerdad implements Reproductor {
   /// app cuando algo no suena como debería.
   @override
   String get comoVa {
-    final servicio = _manejador == null ? 'sin servicio' : 'con servicio';
-    final notificaciones =
-        Android.puedeNotificar ? 'notif. sí' : 'notif. NO';
-    return '$servicio · $notificaciones · ${_player.processingState.name} · '
-        '${_player.playing ? "sonando" : "quieto"}';
+    final manejador = _manejador;
+    if (manejador == null) return 'sin servicio de audio';
+    final notificaciones = Android.puedeNotificar ? 'notif. sí' : 'notif. NO';
+    return '$notificaciones · reproductor: '
+        '${_player.processingState.name}/'
+        '${_player.playing ? "sonando" : "quieto"}\n'
+        '${manejador.loQuePublique}';
   }
 }
