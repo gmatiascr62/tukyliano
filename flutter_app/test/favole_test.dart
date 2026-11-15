@@ -6,6 +6,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/descargas.dart';
+import 'package:tukyliano/datos/repositorio_diccionario.dart';
 import 'package:tukyliano/datos/repositorio_favole.dart';
 import 'package:tukyliano/pantallas/pantalla_favole.dart';
 import 'package:tukyliano/tema.dart';
@@ -61,11 +62,24 @@ Future<void> _abrir(
         ),
         descargas: descargas,
         reproductor: reproductor,
+        diccionario: RepositorioDiccionario(
+          leerAsset: (_) async => _diccionarioDePrueba,
+        ),
       ),
     ),
   ));
   await tester.pumpAndSettle();
 }
+
+/// Un diccionario chico: los tests no tienen por qué depender de las catorce
+/// mil palabras del de verdad.
+const String _diccionarioDePrueba = '''
+{
+  "version": 1,
+  "it": {"cicala": ["cigarra"], "formica": ["hormiga"]},
+  "es": {"cigarra": ["cicala"], "hormiga": ["formica"]}
+}
+''';
 
 void main() {
   group('el catálogo', () {
@@ -246,8 +260,8 @@ void main() {
 
       await tester.tap(find.text('La Cicala e la Formica'));
       await tester.pumpAndSettle();
-      // Un toque más la pausa, y otro la vuelve a poner.
-      await tester.tap(find.text('La Cicala e la Formica'));
+      // Volver a la lista y entrar de nuevo: el audio ya está.
+      await tester.tap(find.byIcon(Icons.arrow_back));
       await tester.pumpAndSettle();
       await tester.tap(find.text('La Cicala e la Formica'));
       await tester.pumpAndSettle();
@@ -257,7 +271,7 @@ void main() {
       expect(reproductor.andando, isTrue);
     });
 
-    testWidgets('tocar la que suena la pausa', (tester) async {
+    testWidgets('tocar una abre su pantalla con el texto', (tester) async {
       final reproductor = ReproductorFalso();
       await _abrir(
         tester,
@@ -267,10 +281,69 @@ void main() {
 
       await tester.tap(find.text('La Cicala e la Formica'));
       await tester.pumpAndSettle();
+
+      // El primer verso de la fábula, que solo está en la pantalla de la
+      // fábula y no en la lista.
+      expect(find.text('La Cicala che imprudente'), findsOne);
+      // Se entra desde el play, así que arranca sonando: hacer tocar play
+      // otra vez sería pedir dos veces lo mismo.
+      expect(reproductor.andando, isTrue);
+      expect(find.text('Pausar'), findsOne);
+    });
+
+    testWidgets('desde la fábula se vuelve a la lista', (tester) async {
+      await _abrir(
+        tester,
+        descargas: DescargasFalsas(),
+        reproductor: ReproductorFalso(),
+      );
+
       await tester.tap(find.text('La Cicala e la Formica'));
       await tester.pumpAndSettle();
+      await tester.tap(find.byIcon(Icons.arrow_back));
+      await tester.pumpAndSettle();
 
+      expect(find.text('La Cicala che imprudente'), findsNothing);
+      expect(find.text('Il Corvo e la Volpe'), findsOne);
+    });
+
+    testWidgets('el botón de la fábula pausa y vuelve a poner',
+        (tester) async {
+      final reproductor = ReproductorFalso();
+      await _abrir(
+        tester,
+        descargas: DescargasFalsas(),
+        reproductor: reproductor,
+      );
+
+      await tester.tap(find.text('La Cicala e la Formica'));
+      await tester.pumpAndSettle();
+      await tester.tap(find.text('Pausar'));
+      await tester.pumpAndSettle();
       expect(reproductor.andando, isFalse);
+
+      await tester.tap(find.text('Escuchar'));
+      await tester.pumpAndSettle();
+      expect(reproductor.andando, isTrue);
+    });
+
+    testWidgets('tocar una palabra dice qué quiere decir', (tester) async {
+      // En un texto en verso del siglo XIX, esto es lo que separa leerlo de
+      // mirarlo.
+      await _abrir(
+        tester,
+        descargas: DescargasFalsas(),
+        reproductor: ReproductorFalso(),
+      );
+
+      await tester.tap(find.text('La Cicala e la Formica'));
+      await tester.pumpAndSettle();
+      // Sobre la palabra y no sobre el renglón: cada palabra es su propio
+      // pedacito tocable.
+      await tester.tapOnText(find.textRange.ofSubstring('Cicala che'));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('cigarra'), findsOne);
     });
 
     testWidgets('si no se pudo bajar lo dice y deja reintentar',

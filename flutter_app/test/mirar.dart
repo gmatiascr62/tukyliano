@@ -241,6 +241,20 @@ void main() {
           },
         );
 
+      case 'una-favola':
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaFavole(
+            descargas: _descargasDeMentira(),
+            reproductor: ReproductorFalso(),
+          )),
+          despuesDeAbrir: (t) async {
+            await t.tap(find.text('La Cicala e la Formica'));
+            await t.pumpAndSettle();
+          },
+        );
+
       case 'favole':
         await dibujar(
           tester,

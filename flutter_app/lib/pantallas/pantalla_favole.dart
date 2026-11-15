@@ -2,9 +2,12 @@ import 'package:flutter/material.dart';
 
 import '../datos/descargas.dart';
 import '../datos/reproductor.dart';
+import '../datos/repositorio_diccionario.dart';
 import '../datos/repositorio_favole.dart';
+import '../modelos/diccionario.dart';
 import '../modelos/favola.dart';
 import '../tema.dart';
+import 'pantalla_una_favola.dart';
 
 /// Las fábulas de La Fontaine, leídas en italiano.
 ///
@@ -24,11 +27,13 @@ class PantallaFavole extends StatefulWidget {
     this.repositorio,
     this.descargas,
     this.reproductor,
+    this.diccionario,
   });
 
   final RepositorioFavole? repositorio;
   final Descargas? descargas;
   final Reproductor? reproductor;
+  final RepositorioDiccionario? diccionario;
 
   @override
   State<PantallaFavole> createState() => _PantallaFavoleState();
@@ -40,6 +45,18 @@ class _PantallaFavoleState extends State<PantallaFavole> {
   late final Descargas _descargas = widget.descargas ?? DescargasEnElCelular();
   late final Reproductor _reproductor =
       widget.reproductor ?? ReproductorDeVerdad();
+  late final RepositorioDiccionario _diccionario =
+      widget.diccionario ?? RepositorioDiccionario();
+
+  /// El diccionario se carga aparte y sin frenar nada: son 770 KB y para ver
+  /// la lista no hace falta.
+  Diccionario _elDiccionario = const Diccionario();
+
+  /// Cuál está abierta, con su texto. Null cuando se ve la lista.
+  Favola? _abierta;
+
+  /// Dónde quedó guardado el audio de la que está abierta.
+  String _rutaAbierta = '';
 
   Favole _catalogo = const Favole();
   bool _cargando = true;
@@ -54,13 +71,17 @@ class _PantallaFavoleState extends State<PantallaFavole> {
   /// reintentar: un error que se queda para siempre es ruido.
   final Set<String> _fallaron = {};
 
-  /// Cuál está sonando, por id. Null cuando no suena ninguna.
-  String? _sonando;
-
   @override
   void initState() {
     super.initState();
     _arrancar();
+    _prepararDiccionario();
+  }
+
+  Future<void> _prepararDiccionario() async {
+    final diccionario = await _diccionario.cargar();
+    if (!mounted) return;
+    setState(() => _elDiccionario = diccionario);
   }
 
   @override
@@ -82,18 +103,12 @@ class _PantallaFavoleState extends State<PantallaFavole> {
     });
   }
 
-  /// Un toque hace lo que corresponda: si no está, la baja y la pone; si
-  /// está, la pone; si está sonando, la para.
+  /// Un toque hace lo que corresponda: si no está la baja, y después abre la
+  /// fábula con su texto y la pone a sonar.
   ///
   /// Un solo gesto en vez de un botón de bajar y otro de escuchar. Nadie baja
   /// una fábula para no escucharla.
   Future<void> _tocar(Favola favola) async {
-    if (_sonando == favola.id) {
-      await _reproductor.pausar();
-      if (mounted) setState(() => _sonando = null);
-      return;
-    }
-
     if (!_guardadas.contains(favola.archivo)) {
       await _bajarla(favola);
       if (!mounted || !_guardadas.contains(favola.archivo)) return;
@@ -102,25 +117,26 @@ class _PantallaFavoleState extends State<PantallaFavole> {
     final donde = await _descargas.donde(favola.archivo);
     if (donde == null || !mounted) return;
 
-    final abrio = await _reproductor.cargarGuardado(
-      donde.path,
-      titulo: favola.titulo,
-      deQuien: 'Favole di La Fontaine',
-    );
-    if (!mounted) return;
-    if (!abrio) {
-      // El archivo está pero no abre: se borra para que el próximo toque lo
-      // baje de nuevo en vez de fallar siempre igual.
+    setState(() {
+      _abierta = favola;
+      _rutaAbierta = donde.path;
+    });
+  }
+
+  /// Vuelve a la lista. Si el audio no se pudo abrir, lo borra: así el
+  /// próximo toque lo baja de nuevo en vez de fallar siempre igual.
+  Future<void> _cerrarLaFavola(Favola favola) async {
+    final anduvo = _reproductor.porQueFallo == null;
+    if (!anduvo) {
       await _descargas.borrar(favola.archivo);
       if (!mounted) return;
       setState(() {
         _guardadas.remove(favola.archivo);
         _fallaron.add(favola.id);
       });
-      return;
     }
-    setState(() => _sonando = favola.id);
-    await _reproductor.reproducir();
+    if (!mounted) return;
+    setState(() => _abierta = null);
   }
 
   Future<void> _bajarla(Favola favola) async {
@@ -162,6 +178,20 @@ class _PantallaFavoleState extends State<PantallaFavole> {
 
   @override
   Widget build(BuildContext context) {
+    final abierta = _abierta;
+    if (abierta != null) {
+      return PantallaUnaFavola(
+        // La clave hace que cambiar de fábula arranque de cero en vez de
+        // quedarse con el estado de la anterior.
+        key: ValueKey(abierta.id),
+        favola: abierta,
+        ruta: _rutaAbierta,
+        reproductor: _reproductor,
+        diccionario: _elDiccionario,
+        alVolver: () => _cerrarLaFavola(abierta),
+      );
+    }
+
     if (_cargando) {
       return const Center(child: CircularProgressIndicator());
     }
@@ -188,7 +218,6 @@ class _PantallaFavoleState extends State<PantallaFavole> {
             guardada: _guardadas.contains(favola.archivo),
             bajando: _bajando.contains(favola.id),
             fallo: _fallaron.contains(favola.id),
-            sonando: _sonando == favola.id,
             alTocar: () => _tocar(favola),
           ),
         const SizedBox(height: 18),
@@ -272,7 +301,6 @@ class _UnaFavola extends StatelessWidget {
     required this.guardada,
     required this.bajando,
     required this.fallo,
-    required this.sonando,
     required this.alTocar,
   });
 
@@ -280,7 +308,6 @@ class _UnaFavola extends StatelessWidget {
   final bool guardada;
   final bool bajando;
   final bool fallo;
-  final bool sonando;
   final VoidCallback alTocar;
 
   @override
@@ -294,9 +321,9 @@ class _UnaFavola extends StatelessWidget {
       ),
       title: Text(
         favola.titulo,
-        style: TextStyle(
+        style: const TextStyle(
           fontSize: 15.5,
-          fontWeight: sonando ? FontWeight.w700 : FontWeight.w500,
+          fontWeight: FontWeight.w500,
           color: Tema.titulo,
         ),
       ),
@@ -331,11 +358,7 @@ class _UnaFavola extends StatelessWidget {
       return const Icon(Icons.arrow_circle_down_outlined,
           color: Tema.textoTenue);
     }
-    return Icon(
-      sonando ? Icons.pause_circle_filled : Icons.play_circle_fill,
-      color: Tema.verde,
-      size: 30,
-    );
+    return const Icon(Icons.play_circle_fill, color: Tema.verde, size: 30);
   }
 }
 
@@ -359,6 +382,15 @@ class _Credito extends StatelessWidget {
             catalogo.credito,
             style: const TextStyle(fontSize: 12, color: Tema.textoTenue),
           ),
+          if (catalogo.textoDe.isNotEmpty) ...[
+            const SizedBox(height: 6),
+            Text(
+              // El texto sale de otro lado que el audio, y es justo decirlo:
+              // son dos grupos de gente distintos que lo pusieron gratis.
+              'El texto: ${catalogo.textoDe}.',
+              style: const TextStyle(fontSize: 12, color: Tema.textoTenue),
+            ),
+          ],
         ],
       ),
     );
