@@ -121,6 +121,12 @@ test('el barista hace un momento de la escena por mensaje', () => {
   assert.ok(promptDelBar.includes('4. Cuando te paga'));
 });
 
+test('el barista no hace el papel del cliente', () => {
+  // Sin esto le contesta "Un caffè e un cornetto" a un "buongiorno" —pide él,
+  // por el otro— y más adelante suelta "Prego. Quanto costa?".
+  assert.ok(promptDelBar.includes('Nunca hables por el cliente'));
+});
+
 test('el barista habla de tu, con el ejemplo al lado', () => {
   // Pedírselo sin más no alcanzaba: contestaba "ecco a lei" igual.
   assert.ok(promptDelBar.includes('ecco a te'));
