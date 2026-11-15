@@ -44,32 +44,48 @@ Volevi dire: la frase entera, bien dicha`;
 //
 //   - **Quién es y de a cuánto habla.** Un barista no explica ni ofrece
 //     ayuda. Sin esto vuelve a ser un asistente con delantal.
-//   - **El orden de la escena.** Sin esto se queda para siempre en "altro?":
-//     pregunta y pregunta y nunca sirve, nunca cobra y nunca termina.
+//   - **Un paso por mensaje.** Esta es la que más trabajo da. La primera
+//     versión decía los cuatro momentos en un renglón y agregaba "no des
+//     vueltas": el barista leyó eso como una lista de cosas para hacer YA.
+//     Al primer "buongiorno" contestó "Ecco a lei. Sono 2,50 euro", cobrando
+//     algo que nadie había pedido, y al segundo mensaje cerró la escena. Lo
+//     que lo frena es numerar los momentos y decirle que espera la respuesta
+//     del cliente entre uno y otro.
 //   - **La corrección**, con la misma marca que la charla libre, porque es
 //     la misma app la que la busca.
 //   - **Cómo termina.** La marca FINE es lo que deja que la app muestre la
 //     escena cerrada y ofrezca otra. Si el modelo no la pone, no se rompe
-//     nada: el botón de empezar otra está siempre.
+//     nada: el botón de empezar otra está siempre. Lleva "recién cuando"
+//     adelante porque sin eso la pone al segundo mensaje.
 //
 // Habla de "tu" y no de "lei". En un bar de verdad escucharías las dos, pero
 // el "lei" arrastra todo el verbo a la tercera persona, y eso es un tema de
 // más adelante: acá sobraría dificultad en la parte que no se está
-// practicando.
+// practicando. Pedírselo sin más no alcanzaba —contestaba "ecco a lei"
+// igual—, así que va con el ejemplo al lado.
+//
+// Y nada entre paréntesis: la primera versión devolvió "(Espero tu respuesta
+// para servirte)", una acotación de guion, y encima en castellano.
 
-export const promptDelBar = `Sos el barista de un bar en Italia. Atiende a un cliente que está aprendiendo
-italiano. Hablale de tu, en italiano simple, una o dos frases, como un barista
-de verdad: no expliques nada y no le ofrezcas ayuda.
+export const promptDelBar = `Sos el barista de un bar en Italia. Atendés a un cliente que está aprendiendo
+italiano.
 
-La escena va en este orden: le tomás el pedido, se lo servís, le cobrás y lo
-saludás. No des vueltas: si ya pidió, servíselo; si ya tomó, cobrale.
+Contestá siempre en italiano, una o dos frases cortas, como habla un barista.
+No expliques nada, no ofrezcas ayuda y no escribas nada entre paréntesis: solo
+lo que el barista dice en voz alta. Tratalo de tu: "ecco a te", no "ecco a lei".
+
+La escena tiene cuatro momentos, y hacés uno por mensaje, esperando siempre lo
+que conteste el cliente:
+1. Le tomás el pedido.
+2. Le servís lo que pidió.
+3. Cuando te lo pregunta, le decís cuánto es.
+4. Cuando te paga, le das el vuelto y lo saludás.
 
 Si escribió algo que un italiano no diría, arrancá tu respuesta con este
 renglón:
 Volevi dire: la frase entera, bien dicha
 
-Cuando ya pagó y se despidió, despedite y terminá el mensaje con este renglón
-solo:
+Recién cuando ya pagó y se despidió, terminá tu mensaje con este renglón solo:
 FINE`;
 
 /** Cómo se llama cada escena. La app manda uno de estos. */
