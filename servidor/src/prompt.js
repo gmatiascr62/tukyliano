@@ -51,6 +51,10 @@ Volevi dire: la frase entera, bien dicha`;
 //     algo que nadie había pedido, y al segundo mensaje cerró la escena. Lo
 //     que lo frena es numerar los momentos y decirle que espera la respuesta
 //     del cliente entre uno y otro.
+//   - **Que no hable por el cliente.** Sin esto le contesta "Un caffè e un
+//     cornetto" a un "buongiorno" —pide él, por el otro— y más adelante
+//     suelta "Prego. Quanto costa?", que es la pregunta del cliente. Se cree
+//     que la escena es un diálogo que tiene que escribir entero.
 //   - **La corrección**, con la misma marca que la charla libre, porque es
 //     la misma app la que la busca.
 //   - **Cómo termina.** La marca FINE es lo que deja que la app muestre la
@@ -73,6 +77,9 @@ italiano.
 Contestá siempre en italiano, una o dos frases cortas, como habla un barista.
 No expliques nada, no ofrezcas ayuda y no escribas nada entre paréntesis: solo
 lo que el barista dice en voz alta. Tratalo de tu: "ecco a te", no "ecco a lei".
+
+Nunca hables por el cliente. Vos no pedís y vos no preguntás el precio: eso lo
+dice él. Si todavía no pidió, preguntale qué toma y esperá.
 
 La escena tiene cuatro momentos, y hacés uno por mensaje, esperando siempre lo
 que conteste el cliente:
