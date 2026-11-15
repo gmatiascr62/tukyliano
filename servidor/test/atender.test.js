@@ -15,31 +15,28 @@ function unPedido(cambios = {}) {
   };
 }
 
-/// Lo de afuera, todo de mentira: ni internet, ni base, ni cuota.
+/// Lo de afuera, todo de mentira: ni modelo, ni base, ni cuota.
 function unMundo(cambios = {}) {
   return {
     base: new BaseDeMentira(),
-    clave: 'la-clave',
+    ia: contesta('Benissimo! E tu?'),
+    modelo: '@cf/un/modelo',
     permitidos: [],
     topes: { deCadaUno: 60, deTodos: 2000 },
-    traer: contesta('Benissimo! E tu?'),
     ahora: new Date('2026-10-24T12:00:00Z'),
     ...cambios,
   };
 }
 
-/// Un fetch de mentira que devuelve lo que Gemini devolvería.
+/// Workers AI de mentira: un objeto con run(), que es todo lo que se usa.
 function contesta(texto) {
-  return async () =>
-    new Response(
-      JSON.stringify({ candidates: [{ content: { parts: [{ text: texto }] } }] }),
-      { status: 200 },
-    );
+  return { async run() { return { response: texto }; } };
 }
 
-/// Un fetch de mentira que falla con un código.
-function falla(estado, cuerpo = '') {
-  return async () => new Response(cuerpo, { status: estado });
+/// Workers AI de mentira que se rompe. Lo que llega del de verdad es una
+/// excepción con un texto, no un código de estado.
+function falla(queDice) {
+  return { async run() { throw new Error(queDice); } };
 }
 
 test('una charla bien armada devuelve lo que contestó Tuky', async () => {
@@ -49,28 +46,40 @@ test('una charla bien armada devuelve lo que contestó Tuky', async () => {
   assert.deepEqual(await salida.json(), { texto: 'Benissimo! E tu?' });
 });
 
-test('la clave no viaja de vuelta nunca', async () => {
-  const salida = await atenderLaCharla(unPedido(), unMundo());
-
-  assert.ok(!(await salida.text()).includes('la-clave'));
-});
-
-test('lo que se le manda a Google lleva la clave y la charla', async () => {
-  let aDonde = null;
+test('le manda al modelo las instrucciones, el saludo y la charla', async () => {
+  let cual = null;
   let conQue = null;
   const mundo = unMundo({
-    traer: async (url, opciones) => {
-      aDonde = url;
-      conQue = JSON.parse(opciones.body);
-      return contesta('ok')();
+    ia: {
+      async run(modelo, opciones) {
+        cual = modelo;
+        conQue = opciones;
+        return { response: 'ok' };
+      },
     },
   });
 
   await atenderLaCharla(unPedido(), mundo);
 
-  assert.ok(aDonde.includes('key=la-clave'));
-  assert.equal(conQue.contents[1].parts[0].text, 'Ciao! Sono Tuky. Come stai?');
-  assert.equal(conQue.contents.at(-1).parts[0].text, 'sto bene');
+  assert.equal(cual, '@cf/un/modelo');
+  assert.equal(conQue.messages[0].role, 'system');
+  assert.equal(conQue.messages[1].content, 'Ciao! Sono Tuky. Come stai?');
+  assert.equal(conQue.messages.at(-1).content, 'sto bene');
+  assert.equal(conQue.messages.at(-1).role, 'user');
+});
+
+test('cuál modelo contesta se decide afuera, no acá', async () => {
+  // Es lo que deja cambiar de modelo tocando un renglón de wrangler.toml, sin
+  // publicar un APK ni que nadie instale nada.
+  let cual = null;
+  const mundo = unMundo({
+    modelo: '@cf/otro/modelo',
+    ia: { async run(modelo) { cual = modelo; return { response: 'ok' }; } },
+  });
+
+  await atenderLaCharla(unPedido(), mundo);
+
+  assert.equal(cual, '@cf/otro/modelo');
 });
 
 test('sin código, cuando hay lista, no entra', async () => {
@@ -105,24 +114,26 @@ test('con la lista vacía entra cualquiera', () => {
   assert.ok(puedeEntrar(undefined, []));
 });
 
-test('al llegar al tope de la persona, corta y no le pide a Google', async () => {
-  let fuiAGoogle = false;
+test('al llegar al tope de la persona, corta y no gasta neuronas', async () => {
+  let fuiAlModelo = false;
   const mundo = unMundo({
     topes: { deCadaUno: 2, deTodos: 2000 },
-    traer: async () => {
-      fuiAGoogle = true;
-      return contesta('ok')();
+    ia: {
+      async run() {
+        fuiAlModelo = true;
+        return { response: 'ok' };
+      },
     },
   });
 
   await atenderLaCharla(unPedido(), mundo);
   await atenderLaCharla(unPedido(), mundo);
-  fuiAGoogle = false;
+  fuiAlModelo = false;
   const tercero = await atenderLaCharla(unPedido(), mundo);
 
   assert.equal(tercero.status, 429);
   assert.equal((await tercero.json()).error, 'topeDeLaPersona');
-  assert.equal(fuiAGoogle, false, 'pasado el tope no se gasta cuota');
+  assert.equal(fuiAlModelo, false, 'pasado el tope no se gasta cuota');
 });
 
 test('el tope de uno no deja sin mensajes a los demás', async () => {
@@ -171,43 +182,52 @@ test('lo que guarda es solo quién, qué día y cuántos', async () => {
   assert.ok(!todo.includes('Benissimo'));
 });
 
-test('la cuota agotada de Google se cuenta como tal', async () => {
-  const salida = await atenderLaCharla(
-    unPedido(),
-    unMundo({ traer: falla(429) }),
-  );
+test('la cuota agotada del día se cuenta como tal', async () => {
+  // Workers AI no devuelve un 429: tira una excepción y hay que leerla.
+  for (const queDice of [
+    'Capacity temporarily exceeded',
+    'rate limit reached',
+    'error 5035: billing required',
+  ]) {
+    const salida = await atenderLaCharla(
+      unPedido(),
+      unMundo({ ia: falla(queDice) }),
+    );
 
-  assert.equal((await salida.json()).error, 'cuota');
+    assert.equal((await salida.json()).error, 'cuota', queDice);
+  }
 });
 
-test('una clave mala es un problema nuestro, no del alumno', async () => {
+test('que el modelo se caiga es un problema nuestro, no del alumno', async () => {
   const salida = await atenderLaCharla(
     unPedido(),
-    unMundo({ traer: falla(403, 'API key not valid') }),
+    unMundo({ ia: falla('Internal error') }),
   );
 
   const dicho = await salida.json();
-  assert.equal(salida.status, 500);
-  // No se le dice "tu clave no sirve": él no tiene ninguna clave.
-  assert.ok(!dicho.mensaje.toLowerCase().includes('tu clave'));
+  assert.equal(salida.status, 502);
+  // No se le habla de claves ni de modelos: no tiene ninguno.
+  assert.ok(!dicho.mensaje.toLowerCase().includes('clave'));
 });
 
-test('si Google no contesta nada, se avisa y no se rompe', async () => {
-  const mundo = unMundo({
-    traer: async () => new Response(JSON.stringify({ candidates: [] }), { status: 200 }),
-  });
+test('si el modelo no contesta nada, se avisa y no se rompe', async () => {
+  for (const vacio of [{}, { response: '' }, { response: '   ' }, null]) {
+    const mundo = unMundo({ ia: { async run() { return vacio; } } });
 
-  const salida = await atenderLaCharla(unPedido(), mundo);
+    const salida = await atenderLaCharla(unPedido(), mundo);
 
-  assert.equal((await salida.json()).error, 'sinRespuesta');
+    assert.equal((await salida.json()).error, 'sinRespuesta');
+  }
 });
 
-test('un pedido que no se entiende no llega a Google', async () => {
-  let fuiAGoogle = false;
+test('un pedido que no se entiende no llega al modelo', async () => {
+  let fuiAlModelo = false;
   const mundo = unMundo({
-    traer: async () => {
-      fuiAGoogle = true;
-      return contesta('ok')();
+    ia: {
+      async run() {
+        fuiAlModelo = true;
+        return { response: 'ok' };
+      },
     },
   });
 
@@ -226,7 +246,7 @@ test('un pedido que no se entiende no llega a Google', async () => {
     assert.equal(salida.status, 400, `tendría que rechazar: ${JSON.stringify(roto)}`);
   }
 
-  assert.equal(fuiAGoogle, false, 'un pedido roto no gasta cuota');
+  assert.equal(fuiAlModelo, false, 'un pedido roto no gasta cuota');
 });
 
 test('acepta una charla larga con los dos lados', () => {
