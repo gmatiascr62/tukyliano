@@ -112,10 +112,23 @@ test('el barista sabe que es un barista', () => {
   assert.ok(promptDelBar.includes('una o dos frases'));
 });
 
-test('el barista tiene el orden de la escena', () => {
-  // Sin esto se queda para siempre en "altro?": nunca sirve y nunca cobra.
-  assert.ok(promptDelBar.includes('le tomás el pedido'));
-  assert.ok(promptDelBar.includes('le cobrás'));
+test('el barista hace un momento de la escena por mensaje', () => {
+  // Sin los momentos numerados y sin el "uno por mensaje", al primer
+  // "buongiorno" contestó "Ecco a lei. Sono 2,50 euro": cobró algo que nadie
+  // había pedido, y cerró la escena en el mensaje siguiente.
+  assert.ok(promptDelBar.includes('uno por mensaje'));
+  assert.ok(promptDelBar.includes('1. Le tomás el pedido.'));
+  assert.ok(promptDelBar.includes('4. Cuando te paga'));
+});
+
+test('el barista habla de tu, con el ejemplo al lado', () => {
+  // Pedírselo sin más no alcanzaba: contestaba "ecco a lei" igual.
+  assert.ok(promptDelBar.includes('ecco a te'));
+});
+
+test('el barista no escribe acotaciones de guion', () => {
+  // Devolvió "(Espero tu respuesta para servirte)", y encima en castellano.
+  assert.ok(promptDelBar.includes('entre paréntesis'));
 });
 
 test('el barista corrige con la misma marca que Tuky', () => {
@@ -123,8 +136,10 @@ test('el barista corrige con la misma marca que Tuky', () => {
   assert.ok(promptDelBar.includes('Volevi dire:'));
 });
 
-test('el barista sabe cómo cerrar la escena', () => {
+test('el barista cierra la escena recién al final', () => {
   // La marca es lo que deja que la app muestre la escena terminada. Si el
   // modelo no la pone no se rompe nada, pero sin pedirla no la pone nunca.
   assert.ok(promptDelBar.includes(MARCA_DEL_FINAL));
+  // Sin el "recién cuando" la ponía al segundo mensaje.
+  assert.ok(promptDelBar.includes('Recién cuando ya pagó'));
 });
