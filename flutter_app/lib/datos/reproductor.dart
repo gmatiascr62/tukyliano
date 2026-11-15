@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:just_audio/just_audio.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 /// Reproduce el audio grabado de un episodio.
 ///
@@ -13,16 +14,34 @@ import 'package:just_audio/just_audio.dart';
 /// sabe en todo momento cuál está sonando. Con un archivo grabado el que manda
 /// es el reloj del reproductor: la pantalla pregunta en qué segundo va y
 /// deduce la frase de la tabla de tiempos. Por eso [porDonde].
+///
+/// **Hay uno solo en toda la app**, y lo crea main.dart. No es una elección
+/// de estilo: para que el audio siga sonando con la pantalla bloqueada hace
+/// falta un servicio de Android, y el que lo hace —just_audio_background—
+/// dice en su primera línea que sirve para "el caso simple de una app con un
+/// solo AudioPlayer". Con dos, la notificación y los botones del auricular no
+/// saben a cuál le hablan.
+///
+/// Por eso las pantallas lo reciben y no lo crean, y al salir lo pausan en vez
+/// de soltarlo: el que lo suelta es el que lo creó.
 abstract class Reproductor {
   /// Carga un archivo de assets/audio/. False si no está o no se pudo abrir.
-  Future<bool> cargar(String archivo);
+  ///
+  /// [titulo] y [deQuien] son lo que se lee en la notificación y en la
+  /// pantalla bloqueada. Sin ellos no hay notificación, y sin notificación
+  /// Android corta el audio apenas se bloquea el celular.
+  Future<bool> cargar(String archivo, {String? titulo, String? deQuien});
 
   /// Carga algo que está en internet: una radio en vivo, por ejemplo.
   ///
   /// Es aparte de [cargar] porque no se parecen: un archivo del APK está o no
   /// está y se sabe al instante, y una radio puede tardar, cortarse a la
   /// mitad o no existir más desde ayer.
-  Future<bool> cargarDesdeInternet(String url);
+  Future<bool> cargarDesdeInternet(
+    String url, {
+    String? titulo,
+    String? deQuien,
+  });
 
   /// Por qué falló el último [cargar], si falló. Null si anduvo.
   ///
@@ -75,14 +94,33 @@ class ReproductorDeVerdad implements Reproductor {
   @override
   Duration? get duracion => _player.duration;
 
+  /// Lo que se ve en la notificación y en la pantalla bloqueada.
+  ///
+  /// Sin esta etiqueta no hay notificación, y sin notificación Android no deja
+  /// seguir sonando en segundo plano: corta el audio apenas se bloquea la
+  /// pantalla. El id tiene que ser distinto por cosa que suena, o el sistema
+  /// cree que es la misma de antes y deja el título viejo.
+  static MediaItem? _etiqueta(String id, String? titulo, String? deQuien) {
+    if (titulo == null) return null;
+    return MediaItem(
+      id: id,
+      title: titulo,
+      artist: deQuien ?? 'Tukyliano',
+      album: 'Tukyliano',
+    );
+  }
+
   @override
-  Future<bool> cargar(String archivo) async {
+  Future<bool> cargar(String archivo, {String? titulo, String? deQuien}) async {
     try {
       if (!_cacheVaciada) {
         _cacheVaciada = true;
         await AudioPlayer.clearAssetCache();
       }
-      await _player.setAsset('assets/audio/$archivo');
+      await _player.setAsset(
+        'assets/audio/$archivo',
+        tag: _etiqueta('episodio:$archivo', titulo, deQuien),
+      );
       _falla = null;
       return true;
     } catch (e) {
@@ -95,9 +133,16 @@ class ReproductorDeVerdad implements Reproductor {
   }
 
   @override
-  Future<bool> cargarDesdeInternet(String url) async {
+  Future<bool> cargarDesdeInternet(
+    String url, {
+    String? titulo,
+    String? deQuien,
+  }) async {
     try {
-      await _player.setUrl(url);
+      await _player.setUrl(
+        url,
+        tag: _etiqueta('radio:$url', titulo, deQuien),
+      );
       _falla = null;
       return true;
     } catch (e) {

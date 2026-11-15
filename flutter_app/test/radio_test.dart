@@ -271,16 +271,35 @@ void main() {
       expect(find.text('Ver las otras emisoras'), findsOne);
     });
 
-    testWidgets('al salir suelta el reproductor', (tester) async {
+    testWidgets('al salir pausa, pero no suelta el reproductor',
+        (tester) async {
       final reproductor = ReproductorFalso();
       await _abrir(tester, reproductor: reproductor);
+      await tester.tap(find.byIcon(Icons.play_arrow));
+      await tester.pumpAndSettle();
 
       await tester.pumpWidget(const MaterialApp(home: SizedBox()));
       await tester.pumpAndSettle();
 
-      // Una radio que sigue sonando con la pantalla cerrada gasta datos sin
-      // que nadie la escuche.
-      expect(reproductor.soltadas, 1);
+      // Pausa: una radio que sigue sonando con la pantalla cerrada gasta
+      // datos sin que nadie la escuche.
+      expect(reproductor.andando, isFalse);
+      // Pero no lo suelta: el reproductor es uno solo para toda la app y lo
+      // suelta main.dart. Soltarlo acá dejaría al podcast sin reproductor.
+      expect(reproductor.soltadas, 0);
+    });
+
+    testWidgets('le manda a la notificación qué está sonando', (tester) async {
+      final reproductor = ReproductorFalso();
+      await _abrir(tester, reproductor: reproductor);
+
+      await tester.tap(find.byIcon(Icons.play_arrow));
+      await tester.pumpAndSettle();
+
+      // Es lo que se lee con el celular bloqueado, y además lo que hace que
+      // Android deje seguir sonando: sin notificación, corta el audio.
+      expect(reproductor.elTitulo, 'Radio Senti Chi Parla');
+      expect(reproductor.deQuienEs, 'Senti Chi Parla! OdV');
     });
   });
 }
@@ -292,8 +311,12 @@ class _ReproductorQueCuenta extends ReproductorFalso {
   final VoidCallback anotar;
 
   @override
-  Future<bool> cargarDesdeInternet(String url) {
+  Future<bool> cargarDesdeInternet(
+    String url, {
+    String? titulo,
+    String? deQuien,
+  }) {
     anotar();
-    return super.cargarDesdeInternet(url);
+    return super.cargarDesdeInternet(url, titulo: titulo, deQuien: deQuien);
   }
 }

@@ -76,7 +76,9 @@ class _PantallaPodcastState extends State<PantallaPodcast> {
   @override
   void dispose() {
     _voz.callar();
-    _reproductor.soltar();
+    // Pausar y no soltar: el reproductor es uno solo para toda la app y lo
+    // suelta el que lo creó. Soltarlo acá dejaría a la radio sin reproductor.
+    _reproductor.pausar();
     super.dispose();
   }
 
@@ -265,7 +267,14 @@ class _EscuchaState extends State<_Escucha> {
     final episodio = widget.episodio;
     if (!episodio.grabado) return;
 
-    final abrio = await widget.reproductor.cargar(episodio.audio!);
+    // El título va a la notificación y a la pantalla bloqueada: es lo que se
+    // lee cuando el celular está trabado y lo único que dice qué está
+    // sonando.
+    final abrio = await widget.reproductor.cargar(
+      episodio.audio!,
+      titulo: episodio.titulo,
+      deQuien: episodio.quienLoCuenta,
+    );
     if (!mounted) return;
     if (!abrio) {
       // Que se note. Antes esto caía al motor de voz en silencio y desde

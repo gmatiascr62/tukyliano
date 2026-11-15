@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:just_audio_background/just_audio_background.dart';
 
 import 'constantes.dart';
 import 'datos/actualizacion.dart';
@@ -9,6 +10,7 @@ import 'datos/repositorio_particelle.dart';
 import 'datos/repositorio_preposizioni.dart';
 import 'datos/repositorio_racconti.dart';
 import 'datos/progreso.dart';
+import 'datos/reproductor.dart';
 import 'datos/repositorio_verbos.dart';
 import 'datos/voz.dart';
 import 'ia/servidor.dart';
@@ -32,7 +34,31 @@ import 'tema.dart';
 import 'widgets/aviso_actualizacion.dart';
 import 'widgets/encabezado.dart';
 
-void main() {
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  // Lo que hace que el podcast y la radio sigan sonando con la pantalla
+  // bloqueada. Android no deja que una app en segundo plano reproduzca audio
+  // porque sí: hace falta un servicio en primer plano, y eso es una
+  // notificación con los controles. Esto la prende.
+  //
+  // Si falla no se cae la app: se arranca igual y el audio suena mientras la
+  // pantalla esté encendida, que es exactamente como andaba antes.
+  try {
+    await JustAudioBackground.init(
+      androidNotificationChannelId: 'org.gmatiascr62.tukyliano.audio',
+      androidNotificationChannelName: 'Audio de Tukyliano',
+      // Para que el sistema no la pueda descartar mientras algo está sonando:
+      // si se va la notificación, se va el permiso de seguir sonando. Al
+      // pausar vuelve a ser descartable sola, que es lo que hace de fábrica
+      // androidStopForegroundOnPause.
+      androidNotificationOngoing: true,
+      notificationColor: Tema.verde,
+    );
+  } catch (e) {
+    debugPrint('no se pudo prender el audio en segundo plano: $e');
+  }
+
   runApp(const TukylianoApp());
 }
 
@@ -50,6 +76,7 @@ class TukylianoApp extends StatelessWidget {
     this.escucha,
     this.progreso,
     this.actualizacion,
+    this.reproductor,
   });
 
   /// Inyectables para los tests; en la app real se usan los de verdad.
@@ -64,6 +91,7 @@ class TukylianoApp extends StatelessWidget {
   final Escucha? escucha;
   final Progreso? progreso;
   final Actualizacion? actualizacion;
+  final Reproductor? reproductor;
 
   @override
   Widget build(BuildContext context) {
@@ -83,6 +111,7 @@ class TukylianoApp extends StatelessWidget {
         escucha: escucha,
         progreso: progreso,
         actualizacion: actualizacion,
+        reproductor: reproductor,
       ),
     );
   }
@@ -93,6 +122,7 @@ class TukylianoApp extends StatelessWidget {
 class PantallaPrincipal extends StatefulWidget {
   const PantallaPrincipal({
     super.key,
+    this.reproductor,
     this.servidor,
     this.repositorio,
     this.frasesLocales,
@@ -117,6 +147,7 @@ class PantallaPrincipal extends StatefulWidget {
   final Escucha? escucha;
   final Progreso? progreso;
   final Actualizacion? actualizacion;
+  final Reproductor? reproductor;
 
   @override
   State<PantallaPrincipal> createState() => _PantallaPrincipalState();
@@ -144,6 +175,17 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   /// Lo que se lleva hecho. Vive acá porque lo alimentan casi todas las
   /// secciones y lo muestra el inicio.
   late final Progreso _progreso = widget.progreso ?? Progreso();
+
+  /// El reproductor, uno solo para toda la app.
+  ///
+  /// Lo usan el podcast y la radio, nunca las dos a la vez. Vive acá y no
+  /// adentro de cada pantalla porque el servicio de Android que hace sonar el
+  /// audio con la pantalla bloqueada sirve para un solo reproductor: con dos,
+  /// la notificación y los botones del auricular no saben a cuál le hablan.
+  ///
+  /// Las pantallas lo pausan al salir; soltarlo es trabajo de acá.
+  late final Reproductor _reproductor =
+      widget.reproductor ?? ReproductorDeVerdad();
 
   /// Dónde se está parado. Null es el inicio, con los cuatro botones.
   Seccion? _seccion;
@@ -186,6 +228,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     _cargarRacconti();
     _cargarVia();
     _cargarProgreso();
+  }
+
+  @override
+  void dispose() {
+    _reproductor.soltar();
+    super.dispose();
   }
 
   Future<void> _cargarProgreso() async {
@@ -388,9 +436,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
     switch (seccion) {
       case Seccion.podcast:
-        return const PantallaPodcast();
+        return PantallaPodcast(reproductor: _reproductor);
       case Seccion.radio:
-        return const PantallaRadio();
+        return PantallaRadio(reproductor: _reproductor);
       case Seccion.articoli:
         return PantallaArticoli(repositorio: _articoli, progreso: _progreso);
       case Seccion.frases:
