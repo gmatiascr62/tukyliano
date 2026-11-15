@@ -97,6 +97,9 @@ class ReproductorFalso implements Reproductor {
   Stream<void> get termino => _termino.stream;
 
   @override
+  String get comoVa => 'de mentira';
+
+  @override
   Future<void> soltar() async {
     soltadas++;
     await _porDonde.close();

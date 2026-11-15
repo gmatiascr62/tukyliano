@@ -15,6 +15,15 @@ final _json = File('assets/radios.json').readAsStringSync();
 RepositorioRadios _repositorio({String? asset}) =>
     RepositorioRadios(leerAsset: (_) async => asset ?? _json);
 
+/// Baja hasta el pie de la pantalla.
+///
+/// La pantalla entró en una lista que dibuja solo lo que se ve, así que el
+/// crédito y el estado del audio no existen hasta que se llega abajo.
+Future<void> _bajarDelTodo(WidgetTester tester) async {
+  await tester.drag(find.byType(ListView), const Offset(0, -900));
+  await tester.pumpAndSettle();
+}
+
 Future<void> _abrir(
   WidgetTester tester, {
   required ReproductorFalso reproductor,
@@ -115,6 +124,7 @@ void main() {
 
     testWidgets('dice de quién es la emisora', (tester) async {
       await _abrir(tester, reproductor: ReproductorFalso());
+      await _bajarDelTodo(tester);
 
       expect(
         find.textContaining('Senti Chi Parla! OdV'),
@@ -269,6 +279,7 @@ void main() {
 
       expect(find.text('En vivo desde Italia'), findsOne);
       expect(find.byIcon(Icons.play_arrow), findsOne);
+      await _bajarDelTodo(tester);
       expect(find.text('Ver las otras emisoras'), findsOne);
     });
 
@@ -312,6 +323,7 @@ void main() {
       AudioDeFondo.comoSi(anda: false, porQue: 'falló, de mentira');
 
       await _abrir(tester, reproductor: ReproductorFalso());
+      await _bajarDelTodo(tester);
 
       expect(find.text('Se va a cortar al bloquear la pantalla'), findsOne);
       // El motivo técnico va a la vista: sin él, desde afuera esto es "se
@@ -323,8 +335,18 @@ void main() {
       AudioDeFondo.comoSi(anda: true);
 
       await _abrir(tester, reproductor: ReproductorFalso());
+      await _bajarDelTodo(tester);
 
       expect(find.text('Se va a cortar al bloquear la pantalla'), findsNothing);
+    });
+
+    testWidgets('al pie siempre dice en qué anda el audio', (tester) async {
+      // Es lo que convierte "se corta a los treinta segundos" en un dato:
+      // con una captura de esta línea se sabe si el servicio está prendido.
+      await _abrir(tester, reproductor: ReproductorFalso());
+      await _bajarDelTodo(tester);
+
+      expect(find.text('de mentira'), findsOne);
     });
   });
 }

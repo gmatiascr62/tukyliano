@@ -177,6 +177,7 @@ class _PantallaRadioState extends State<PantallaRadio> {
     return _Escucha(
       radio: radio,
       estado: _estado,
+      comoVaElAudio: _reproductor.comoVa,
       porQueFallo: _porQueFallo,
       alPlay: _playOPausa,
       // Con una sola emisora no hay a dónde volver.
@@ -244,6 +245,7 @@ class _Escucha extends StatelessWidget {
   const _Escucha({
     required this.radio,
     required this.estado,
+    required this.comoVaElAudio,
     required this.porQueFallo,
     required this.alPlay,
     required this.alVolverALaLista,
@@ -251,6 +253,11 @@ class _Escucha extends StatelessWidget {
 
   final RadioItaliana radio;
   final _Estado estado;
+
+  /// En qué anda el reproductor, en una línea. Va al pie, chiquito: no es
+  /// para el alumno, es para poder mandar una captura cuando algo no suena.
+  final String comoVaElAudio;
+
   final String? porQueFallo;
   final VoidCallback alPlay;
   final VoidCallback? alVolverALaLista;
@@ -286,8 +293,35 @@ class _Escucha extends StatelessWidget {
             ),
           ),
         ],
+        const SizedBox(height: 16),
+        _ComoVaElAudio(texto: comoVaElAudio),
         const SizedBox(height: 20),
       ],
+    );
+  }
+}
+
+/// El estado del audio, al pie y en gris chiquito.
+///
+/// No es para el alumno. Está porque cuando el audio se cortaba a los treinta
+/// segundos no había forma de saber desde afuera si el servicio estaba
+/// prendido, si el reproductor estaba sonando o si Android había matado todo:
+/// la única manera de avanzar fue ir preguntando de a una cosa por vez. Con
+/// esto, una captura de pantalla contesta las tres.
+class _ComoVaElAudio extends StatelessWidget {
+  const _ComoVaElAudio({required this.texto});
+
+  final String texto;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Text(
+        texto,
+        textAlign: TextAlign.center,
+        style: const TextStyle(fontSize: 10.5, color: Tema.textoTenue),
+      ),
     );
   }
 }

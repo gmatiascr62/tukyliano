@@ -68,8 +68,28 @@ void main() {
       expect(actividad, isNot(contains('FlutterActivity()')));
     });
 
-    test('está el paquete que levanta todo esto', () {
-      expect(pubspec, contains('just_audio_background'));
+    test('se usa audio_service directo', () {
+      // just_audio_background hace lo mismo con tres renglones, pero lleva
+      // años en beta y acá no andaba: el servicio arrancaba, el audio sonaba
+      // y la notificación no aparecía nunca. Fallaba en silencio y no había
+      // dónde mirar. Su propio README recomienda este camino.
+      expect(pubspec, matches(RegExp(r'^  audio_service:', multiLine: true)));
+      // El nombre aparece en el comentario que explica por qué no se usa, así
+      // que lo que se mira es que no sea una dependencia.
+      expect(
+        pubspec,
+        isNot(matches(RegExp(r'^  just_audio_background:', multiLine: true))),
+      );
+    });
+
+    test('alguien le cuenta a Android qué está sonando', () {
+      // Esto es lo que hace aparecer la notificación, y la notificación es lo
+      // que deja seguir sonando en segundo plano. Sin esta cuenta no hay nada
+      // —que fue exactamente lo que pasó con el paquete anterior—.
+      final fuente = File('lib/datos/audio_de_fondo.dart').readAsStringSync();
+      expect(fuente, contains('playbackEventStream'));
+      expect(fuente, contains('playbackState.add'));
+      expect(fuente, contains('mediaItem.add'));
     });
 
     test('si no se puede prender, queda anotado el motivo', () {
