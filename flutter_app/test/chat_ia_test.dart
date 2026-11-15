@@ -239,4 +239,66 @@ void main() {
 
     expect(conClave, isEmpty);
   });
+
+  group('el final de la escena', () {
+    test('la marca en un renglón aparte cierra', () {
+      expect(cierraLaEscena('Arrivederci!\nFINE'), isTrue);
+    });
+
+    test('la marca pegada al final de la frase también', () {
+      // El modelo devolvió "Ecco il resto. Arrivederci. FINE".
+      expect(cierraLaEscena('Ecco il resto. Arrivederci. FINE'), isTrue);
+    });
+
+    test('la marca sola cierra', () {
+      expect(cierraLaEscena('FINE'), isTrue);
+    });
+
+    test('"fine" en minúscula no cierra nada', () {
+      // Es una palabra italiana común: el final de algo. Por eso la marca va
+      // en mayúsculas.
+      expect(cierraLaEscena('È la fine della storia'), isFalse);
+      expect(cierraLaEscena('Alla fine'), isFalse);
+    });
+
+    test('la marca en el medio no cierra', () {
+      expect(cierraLaEscena('FINE. Ma dimmi, come stai?'), isFalse);
+    });
+
+    test('sacarla deja el mensaje como se dijo', () {
+      expect(
+        sinLaMarcaDelFinal('Ecco il resto. Arrivederci!\nFINE'),
+        'Ecco il resto. Arrivederci!',
+      );
+      expect(
+        sinLaMarcaDelFinal('Arrivederci. FINE'),
+        'Arrivederci.',
+      );
+    });
+
+    test('sacarla de un mensaje sin marca no cambia nada', () {
+      expect(sinLaMarcaDelFinal('Ecco a te.'), 'Ecco a te.');
+    });
+  });
+
+  group('la marca de la corrección', () {
+    test('se reconoce la que pide el servidor', () {
+      expect(sinCorreccionRepetida('Volevi dire: ciao\nCiao!', 'ciao'),
+          'Ciao!');
+    });
+
+    test('se reconoce la vieja, para los celulares sin actualizar', () {
+      expect(sinCorreccionRepetida('Correzione: ciao\nCiao!', 'ciao'),
+          'Ciao!');
+    });
+
+    test('se reconoce la mitad en castellano que a veces devuelve el modelo',
+        () {
+      // "Volevi decir:" no es italiano ni castellano: es el contagio de que
+      // las instrucciones del servidor están escritas en castellano. Pasó
+      // dos veces en una sola escena del bar.
+      expect(sinCorreccionRepetida('Volevi decir: ciao\nCiao!', 'ciao'),
+          'Ciao!');
+    });
+  });
 }
