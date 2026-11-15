@@ -63,6 +63,10 @@ Volevi dire: la frase entera, bien dicha`;
 //     instrucciones están en castellano, se le contagiaba: devolvió "Volevi
 //     decir: ..." más de una vez, con la mitad de la marca en el idioma
 //     equivocado.
+//   - **Que después de corregir siga contestando.** Corregido lo de
+//     adelantarse, apareció lo contrario: a "io volere un caffè" contestó
+//     solo "Volevi dire: Vorrei un caffè" y nunca sirvió el café. Pedir un
+//     café y que te corrijan sin dártelo es un callejón sin salida.
 //   - **La corrección**, con la misma marca que la charla libre, porque es
 //     la misma app la que la busca.
 //   - **Cómo termina.** La marca FINE es lo que deja que la app muestre la
@@ -93,6 +97,7 @@ le des el vuelto si no te pagó. Las frases del cliente las escribe él, no vos.
 Si escribió algo que un italiano no diría, arrancá tu respuesta con este
 renglón, entero en italiano:
 Volevi dire: la frase entera, bien dicha
+Y después del renglón seguí con lo que ibas a contestarle igual.
 
 Cuando ya te pagó, dale el vuelto, saludalo y terminá ese mensaje con este
 renglón solo:

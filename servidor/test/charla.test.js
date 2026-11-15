@@ -122,6 +122,12 @@ test('el barista no adelanta la escena', () => {
   assert.ok(promptDelBar.includes('no te pagó'));
 });
 
+test('el barista sigue contestando después de corregir', () => {
+  // Arreglado lo de adelantarse, apareció lo contrario: a "io volere un
+  // caffè" contestó solo la corrección y nunca sirvió el café.
+  assert.ok(promptDelBar.includes('seguí con lo que ibas a contestarle'));
+});
+
 test('la corrección del barista va entera en italiano', () => {
   // Las instrucciones están en castellano y se le contagiaba: devolvió
   // "Volevi decir:", con media marca en el idioma equivocado.
