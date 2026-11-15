@@ -19,6 +19,7 @@ class ReproductorFalso implements Reproductor {
 
   String? cargado;
   bool andando = false;
+  int pausadas = 0;
   bool? lenta;
   int soltadas = 0;
   Duration donde = Duration.zero;
@@ -32,8 +33,14 @@ class ReproductorFalso implements Reproductor {
   @override
   Duration? duracion;
 
+  /// Lo que se mandó para la notificación de la pantalla bloqueada.
+  String? elTitulo;
+  String? deQuienEs;
+
   @override
-  Future<bool> cargar(String archivo) async {
+  Future<bool> cargar(String archivo, {String? titulo, String? deQuien}) async {
+    elTitulo = titulo;
+    deQuienEs = deQuien;
     if (!hayArchivo) {
       porQueFallo = 'de mentira: no está el archivo';
       return false;
@@ -47,8 +54,14 @@ class ReproductorFalso implements Reproductor {
   String? laUrl;
 
   @override
-  Future<bool> cargarDesdeInternet(String url) async {
+  Future<bool> cargarDesdeInternet(
+    String url, {
+    String? titulo,
+    String? deQuien,
+  }) async {
     laUrl = url;
+    elTitulo = titulo;
+    deQuienEs = deQuien;
     if (!hayArchivo) {
       porQueFallo = 'de mentira: la radio no abre';
       return false;
@@ -63,7 +76,10 @@ class ReproductorFalso implements Reproductor {
   Future<void> reproducir() async => andando = true;
 
   @override
-  Future<void> pausar() async => andando = false;
+  Future<void> pausar() async {
+    pausadas++;
+    andando = false;
+  }
 
   @override
   Future<void> irA(Duration adonde) async {

@@ -43,6 +43,7 @@ dependencies:
   speech_to_text: ^7.4.0
   # Reproduce los episodios grabados: archivo de audio en vez del motor de voz.
   just_audio: ^0.10.5
+  just_audio_background: ^0.0.1-beta.17
 
 dev_dependencies:
   flutter_test:

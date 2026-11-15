@@ -78,7 +78,11 @@ class _PantallaRadioState extends State<PantallaRadio> {
   @override
   void dispose() {
     _esperandoElCorte?.cancel();
-    _reproductor.soltar();
+    // Pausar y no soltar: el reproductor es uno solo para toda la app y lo
+    // suelta el que lo creó. Y pausar hay que pausar igual: una radio en vivo
+    // que sigue sonando con la pantalla cerrada gasta datos sin que nadie la
+    // escuche.
+    _reproductor.pausar();
     super.dispose();
   }
 
@@ -105,7 +109,11 @@ class _PantallaRadioState extends State<PantallaRadio> {
       _porQueFallo = null;
     });
 
-    final abrio = await _reproductor.cargarDesdeInternet(radio.stream);
+    final abrio = await _reproductor.cargarDesdeInternet(
+      radio.stream,
+      titulo: radio.nombre,
+      deQuien: radio.quien,
+    );
     if (!mounted) return;
 
     if (!abrio) {

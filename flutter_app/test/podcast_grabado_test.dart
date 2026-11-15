@@ -114,6 +114,31 @@ void main() {
       expect(reproductor.cargado, 'caffe.mp3');
     });
 
+    testWidgets('le manda a la notificación qué episodio está sonando',
+        (tester) async {
+      final reproductor = await _abrir(tester);
+
+      // Es lo que se lee con el celular bloqueado, y además lo que hace que
+      // Android deje seguir sonando en segundo plano: sin notificación, corta
+      // el audio apenas se bloquea la pantalla.
+      expect(reproductor.elTitulo, 'Il caffè');
+    });
+
+    testWidgets('al salir pausa, pero no suelta el reproductor',
+        (tester) async {
+      final reproductor = await _abrir(tester);
+      await tester.tap(find.text('Escuchar'));
+      await tester.pumpAndSettle();
+
+      await tester.pumpWidget(const MaterialApp(home: SizedBox()));
+      await tester.pumpAndSettle();
+
+      expect(reproductor.andando, isFalse);
+      // El reproductor es uno solo para toda la app y lo suelta main.dart.
+      // Soltarlo acá dejaría a la radio sin reproductor.
+      expect(reproductor.soltadas, 0);
+    });
+
     testWidgets('el botón reproduce y pausa el archivo', (tester) async {
       final reproductor = await _abrir(tester);
 

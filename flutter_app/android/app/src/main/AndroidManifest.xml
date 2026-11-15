@@ -1,4 +1,5 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
     <!-- La plantilla de Flutter declara este permiso solo en los manifests de
          debug y profile, así que el APK de release quedaba sin internet: no
          bajaba los verbos nuevos, ni el modelo del chat, ni se enteraba de que
@@ -14,6 +15,19 @@
          pasa al reconocedor de voz de Android. Android igual pide permiso al
          usuario la primera vez que se toca el micrófono. -->
     <uses-permission android:name="android.permission.RECORD_AUDIO"/>
+    <!-- Para que el podcast y la radio sigan sonando con la pantalla
+         bloqueada. Android no deja que una app en segundo plano reproduzca
+         audio porque sí: hay que levantar un servicio en primer plano, que es
+         lo mismo que decir una notificación con los controles. Sin estos tres
+         permisos el audio se corta apenas se bloquea el celular, y sin ningún
+         error que lo explique.
+
+         FOREGROUND_SERVICE_MEDIA_PLAYBACK es el que pide Android 14 en
+         adelante: hay que decir PARA QUÉ es el servicio, no alcanza con
+         pedirlo. -->
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
 
     <application
         android:label="Tukyliano"
@@ -41,6 +55,31 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+        <!-- El servicio que hace sonar el audio cuando la app no está a la
+             vista, y el receptor de los botones del auricular y del auto.
+             Los pone audio_service; acá solo se declaran.
+
+             tools:ignore="Instantiatable" es porque el analizador de Android
+             no encuentra estas clases en el proyecto —viven en el paquete— y
+             avisa que no se pueden instanciar. Sí se pueden. -->
+        <service
+            android:name="com.ryanheise.audioservice.AudioService"
+            android:foregroundServiceType="mediaPlayback"
+            android:exported="true"
+            tools:ignore="Instantiatable">
+            <intent-filter>
+                <action android:name="android.media.browse.MediaBrowserService"/>
+            </intent-filter>
+        </service>
+        <receiver
+            android:name="com.ryanheise.audioservice.MediaButtonReceiver"
+            android:exported="true"
+            tools:ignore="Instantiatable">
+            <intent-filter>
+                <action android:name="android.intent.action.MEDIA_BUTTON"/>
+            </intent-filter>
+        </receiver>
+
         <!-- Don't delete the meta-data below.
              This is used by the Flutter tool to generate GeneratedPluginRegistrant.java -->
         <meta-data
