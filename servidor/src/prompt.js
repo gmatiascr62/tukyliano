@@ -44,17 +44,25 @@ Volevi dire: la frase entera, bien dicha`;
 //
 //   - **Quién es y de a cuánto habla.** Un barista no explica ni ofrece
 //     ayuda. Sin esto vuelve a ser un asistente con delantal.
-//   - **Un paso por mensaje.** Esta es la que más trabajo da. La primera
-//     versión decía los cuatro momentos en un renglón y agregaba "no des
-//     vueltas": el barista leyó eso como una lista de cosas para hacer YA.
-//     Al primer "buongiorno" contestó "Ecco a lei. Sono 2,50 euro", cobrando
-//     algo que nadie había pedido, y al segundo mensaje cerró la escena. Lo
-//     que lo frena es numerar los momentos y decirle que espera la respuesta
-//     del cliente entre uno y otro.
+//   - **Un paso por mensaje.** Esta es la que más trabajo dio: tres
+//     versiones. La primera decía los cuatro momentos en un renglón y
+//     agregaba "no des vueltas": el barista leyó eso como una lista de cosas
+//     para hacer YA, y al primer "buongiorno" contestó "Ecco a lei. Sono
+//     2,50 euro". La segunda numeraba los momentos —1, 2, 3, 4— y seguía
+//     adelantándose: a un "quanto costa?" contestó "Sono due euro. Ecco a te
+//     il resto. Arrivederci. FINE", tres movimientos y el final en un
+//     mensaje. Lo que funciona es sacar la lista, que se lee como un plan
+//     para ejecutar, y poner en su lugar tres cosas que NO tiene que hacer:
+//     servir lo que no pidió, decir el precio sin que se lo pregunten, dar
+//     el vuelto sin que le paguen.
 //   - **Que no hable por el cliente.** Sin esto le contesta "Un caffè e un
-//     cornetto" a un "buongiorno" —pide él, por el otro— y más adelante
-//     suelta "Prego. Quanto costa?", que es la pregunta del cliente. Se cree
-//     que la escena es un diálogo que tiene que escribir entero.
+//     cornetto" a un "buongiorno" —pide él, por el otro— y después de servir
+//     suelta "Prego. Quanto è?", que es la pregunta del cliente. Se cree que
+//     la escena es un diálogo que tiene que escribir entero.
+//   - **Que la corrección vaya entera en italiano.** Como estas
+//     instrucciones están en castellano, se le contagiaba: devolvió "Volevi
+//     decir: ..." más de una vez, con la mitad de la marca en el idioma
+//     equivocado.
 //   - **La corrección**, con la misma marca que la charla libre, porque es
 //     la misma app la que la busca.
 //   - **Cómo termina.** La marca FINE es lo que deja que la app muestre la
@@ -71,28 +79,23 @@ Volevi dire: la frase entera, bien dicha`;
 // Y nada entre paréntesis: la primera versión devolvió "(Espero tu respuesta
 // para servirte)", una acotación de guion, y encima en castellano.
 
-export const promptDelBar = `Sos el barista de un bar en Italia. Atendés a un cliente que está aprendiendo
-italiano.
+export const promptDelBar = `Sos el barista de un bar en Italia y estás atendiendo a un cliente que está
+aprendiendo italiano.
 
-Contestá siempre en italiano, una o dos frases cortas, como habla un barista.
-No expliques nada, no ofrezcas ayuda y no escribas nada entre paréntesis: solo
-lo que el barista dice en voz alta. Tratalo de tu: "ecco a te", no "ecco a lei".
+Contestá en italiano, una o dos frases cortas, como habla un barista. No
+expliques nada, no ofrezcas ayuda y no escribas acotaciones entre paréntesis.
+Tratalo de tu: "ecco a te", no "ecco a lei".
 
-Nunca hables por el cliente. Vos no pedís y vos no preguntás el precio: eso lo
-dice él. Si todavía no pidió, preguntale qué toma y esperá.
-
-La escena tiene cuatro momentos, y hacés uno por mensaje, esperando siempre lo
-que conteste el cliente:
-1. Le tomás el pedido.
-2. Le servís lo que pidió.
-3. Cuando te lo pregunta, le decís cuánto es.
-4. Cuando te paga, le das el vuelto y lo saludás.
+Contestá solo a lo último que dijo, y nada más. No adelantes la escena: no le
+sirvas lo que todavía no pidió, no le digas el precio si no te lo preguntó y no
+le des el vuelto si no te pagó. Las frases del cliente las escribe él, no vos.
 
 Si escribió algo que un italiano no diría, arrancá tu respuesta con este
-renglón:
+renglón, entero en italiano:
 Volevi dire: la frase entera, bien dicha
 
-Recién cuando ya pagó y se despidió, terminá tu mensaje con este renglón solo:
+Cuando ya te pagó, dale el vuelto, saludalo y terminá ese mensaje con este
+renglón solo:
 FINE`;
 
 /** Cómo se llama cada escena. La app manda uno de estos. */

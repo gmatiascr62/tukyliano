@@ -112,19 +112,26 @@ test('el barista sabe que es un barista', () => {
   assert.ok(promptDelBar.includes('una o dos frases'));
 });
 
-test('el barista hace un momento de la escena por mensaje', () => {
-  // Sin los momentos numerados y sin el "uno por mensaje", al primer
-  // "buongiorno" contestó "Ecco a lei. Sono 2,50 euro": cobró algo que nadie
-  // había pedido, y cerró la escena en el mensaje siguiente.
-  assert.ok(promptDelBar.includes('uno por mensaje'));
-  assert.ok(promptDelBar.includes('1. Le tomás el pedido.'));
-  assert.ok(promptDelBar.includes('4. Cuando te paga'));
+test('el barista no adelanta la escena', () => {
+  // La lista numerada de momentos no alcanzó: a un "quanto costa?" contestó
+  // "Sono due euro. Ecco a te il resto. Arrivederci. FINE". Lo que lo frena
+  // son las tres cosas que NO tiene que hacer.
+  assert.ok(promptDelBar.includes('Contestá solo a lo último que dijo'));
+  assert.ok(promptDelBar.includes('no pidió'));
+  assert.ok(promptDelBar.includes('no te lo preguntó'));
+  assert.ok(promptDelBar.includes('no te pagó'));
+});
+
+test('la corrección del barista va entera en italiano', () => {
+  // Las instrucciones están en castellano y se le contagiaba: devolvió
+  // "Volevi decir:", con media marca en el idioma equivocado.
+  assert.ok(promptDelBar.includes('entero en italiano'));
 });
 
 test('el barista no hace el papel del cliente', () => {
   // Sin esto le contesta "Un caffè e un cornetto" a un "buongiorno" —pide él,
-  // por el otro— y más adelante suelta "Prego. Quanto costa?".
-  assert.ok(promptDelBar.includes('Nunca hables por el cliente'));
+  // por el otro— y después de servir suelta "Prego. Quanto è?".
+  assert.ok(promptDelBar.includes('las escribe él, no vos'));
 });
 
 test('el barista habla de tu, con el ejemplo al lado', () => {
@@ -146,6 +153,6 @@ test('el barista cierra la escena recién al final', () => {
   // La marca es lo que deja que la app muestre la escena terminada. Si el
   // modelo no la pone no se rompe nada, pero sin pedirla no la pone nunca.
   assert.ok(promptDelBar.includes(MARCA_DEL_FINAL));
-  // Sin el "recién cuando" la ponía al segundo mensaje.
-  assert.ok(promptDelBar.includes('Recién cuando ya pagó'));
+  // Atada a que ya le hayan pagado: suelta, la ponía al segundo mensaje.
+  assert.ok(promptDelBar.includes('Cuando ya te pagó'));
 });
