@@ -47,6 +47,15 @@ class AudioDeFondo {
   static String? get porQueNo => _porQueNo;
   static String? _porQueNo;
 
+  /// Lo último que explotó del lado de Android, si explotó algo.
+  ///
+  /// audio_service publica en un stream las excepciones que pasan al hablar
+  /// con el servicio —entre ellas las de startForeground, que es la que deja
+  /// al servicio corriendo pero en segundo plano—. No escucharlo fue tirar a
+  /// la basura justo el mensaje que decía qué estaba mal.
+  static String? get seRompio => _seRompio;
+  static String? _seRompio;
+
   /// Prende el servicio. Se llama una vez, al arrancar la app.
   ///
   /// Si falla, la app arranca igual: el audio suena mientras la pantalla esté
@@ -59,11 +68,23 @@ class AudioDeFondo {
       _manejador = await AudioService.init(
         builder: () => ManejadorDeAudio(reproductor),
         config: const AudioServiceConfig(
-          androidNotificationChannelId: 'org.gmatiascr62.tukyliano.audio',
+          // El número al final no es decorativo. Un canal de notificaciones
+          // en Android es para siempre: una vez creado, la app no puede
+          // cambiarle la importancia ni reactivarlo. Si el canal quedó
+          // apagado —porque lo creó una versión anterior, o porque el
+          // sistema lo silenció—, la notificación no se muestra nunca y no
+          // hay forma de arreglarlo desde el código salvo estrenar un canal
+          // nuevo. Esto es el canal nuevo.
+          androidNotificationChannelId: 'org.gmatiascr62.tukyliano.audio2',
           androidNotificationChannelName: 'Audio de Tukyliano',
           // Mientras algo suena, la notificación no se puede descartar: si se
           // va la notificación, se va el permiso de seguir sonando. Al pausar
           // vuelve a ser descartable sola.
+          // Un ícono propio, monocromo. El de la app es un PNG a color sin
+          // transparencia, y Android dibuja el ícono de la notificación como
+          // silueta: de ese sale un cuadrado blanco macizo, y hay sistemas
+          // que directamente no lo aceptan.
+          androidNotificationIcon: 'drawable/ic_audio',
           androidNotificationOngoing: true,
           androidStopForegroundOnPause: true,
           // Tocar la notificación vuelve a la app que ya está abierta en vez
@@ -73,6 +94,7 @@ class AudioDeFondo {
       );
       _reproductor = reproductor;
       _porQueNo = null;
+      AudioService.asyncError.listen((e) => _seRompio = '$e');
     } catch (e) {
       _manejador = null;
       _reproductor = null;
