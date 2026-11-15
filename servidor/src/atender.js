@@ -9,6 +9,7 @@
 // index.js. Esto queda igual.
 
 import { contenidos } from './charla.js';
+import { ESCENAS } from './prompt.js';
 import { preguntarle, FallaDelModelo } from './modelo.js';
 import { elDiaDeHoy, loQueFalla, sumarUno } from './limites.js';
 import { queSalioMal, salioBien } from './respuestas.js';
@@ -30,7 +31,7 @@ export function puedeEntrar(codigo, permitidos) {
 export function loQueMando(cuerpo) {
   if (cuerpo === null || typeof cuerpo !== 'object') return null;
 
-  const { quien, codigo, saludo, mensajes } = cuerpo;
+  const { quien, codigo, escena, saludo, mensajes } = cuerpo;
   if (typeof quien !== 'string' || quien.trim() === '') return null;
   if (typeof saludo !== 'string' || saludo.trim() === '') return null;
   if (!Array.isArray(mensajes) || mensajes.length === 0) return null;
@@ -47,7 +48,15 @@ export function loQueMando(cuerpo) {
   // El último tiene que ser del alumno: si no, no hay nada que contestar.
   if (limpios[limpios.length - 1].quien !== 'yo') return null;
 
-  return { quien: quien.trim(), codigo, saludo, mensajes: limpios };
+  // La escena puede no venir: un celular con un APK viejo no la manda. Eso
+  // cae en la libre, que es lo que esa app cree que está haciendo.
+  return {
+    quien: quien.trim(),
+    codigo,
+    escena: typeof escena === 'string' ? escena.trim() : ESCENAS.libre,
+    saludo,
+    mensajes: limpios,
+  };
 }
 
 /** Atiende un pedido de charla. */

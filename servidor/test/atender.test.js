@@ -262,3 +262,35 @@ test('acepta una charla larga con los dos lados', () => {
 
   assert.equal(pedido.mensajes.length, 3);
 });
+
+test('sin escena, el pedido queda en la libre', () => {
+  // Un celular con un APK viejo no manda escena. Tiene que seguir andando, y
+  // andar en la charla que esa app cree que está haciendo.
+  const pedido = unPedido();
+  delete pedido.escena;
+
+  assert.equal(loQueMando(pedido).escena, 'libre');
+});
+
+test('la escena que manda la app llega entera', () => {
+  assert.equal(loQueMando(unPedido({ escena: 'bar' })).escena, 'bar');
+});
+
+test('la escena del bar le cambia las instrucciones al modelo', async () => {
+  // La prueba de que la escena llega hasta el final: se espía lo que recibe
+  // el modelo y se mira el turno del sistema.
+  let turnos = null;
+  const espia = {
+    async run(_modelo, pedido) {
+      turnos = pedido.messages;
+      return { response: 'Un caffè. Ecco a te.' };
+    },
+  };
+
+  await atenderLaCharla(
+    unPedido({ escena: 'bar' }),
+    unMundo({ ia: espia }),
+  );
+
+  assert.ok(turnos[0].content.includes('barista'));
+});

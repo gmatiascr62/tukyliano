@@ -2,7 +2,12 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 
 import { contenidos, turno } from '../src/charla.js';
-import { promptDeTuky } from '../src/prompt.js';
+import {
+  MARCA_DEL_FINAL,
+  promptDe,
+  promptDelBar,
+  promptDeTuky,
+} from '../src/prompt.js';
 
 const UNA_CHARLA = {
   saludo: 'Ciao! Sono Tuky. Come stai?',
@@ -83,4 +88,43 @@ test('son tres cosas y nada más', () => {
 
 test('no hay ninguna clave pegada en el código', () => {
   assert.ok(!/AIza[0-9A-Za-z_-]{10,}/.test(promptDeTuky));
+});
+
+test('la escena del bar trae otras instrucciones', () => {
+  const turnos = contenidos({ ...UNA_CHARLA, escena: 'bar' });
+
+  assert.equal(turnos[0].content, promptDelBar);
+});
+
+test('sin escena va la charla libre', () => {
+  // Un celular con un APK viejo no manda escena, y tiene que seguir andando.
+  assert.equal(promptDe(undefined), promptDeTuky);
+  assert.equal(promptDe('libre'), promptDeTuky);
+});
+
+test('una escena que no existe tampoco rompe nada', () => {
+  assert.equal(promptDe('la farmacia'), promptDeTuky);
+});
+
+test('el barista sabe que es un barista', () => {
+  // Sin esto vuelve a ser un asistente: explica, ofrece ayuda y da opciones.
+  assert.ok(promptDelBar.includes('barista'));
+  assert.ok(promptDelBar.includes('una o dos frases'));
+});
+
+test('el barista tiene el orden de la escena', () => {
+  // Sin esto se queda para siempre en "altro?": nunca sirve y nunca cobra.
+  assert.ok(promptDelBar.includes('le tomás el pedido'));
+  assert.ok(promptDelBar.includes('le cobrás'));
+});
+
+test('el barista corrige con la misma marca que Tuky', () => {
+  // Es la misma app la que la busca: dos marcas serían dos caminos.
+  assert.ok(promptDelBar.includes('Volevi dire:'));
+});
+
+test('el barista sabe cómo cerrar la escena', () => {
+  // La marca es lo que deja que la app muestre la escena terminada. Si el
+  // modelo no la pone no se rompe nada, pero sin pedirla no la pone nunca.
+  assert.ok(promptDelBar.includes(MARCA_DEL_FINAL));
 });
