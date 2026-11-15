@@ -277,6 +277,11 @@ class _Escucha extends StatelessWidget {
   /// falta en vez de con un reloj que estaría corriendo siempre.
   final VoidCallback alMirarElAudio;
 
+  /// True cuando el audio en segundo plano no quedó bien armado. Es lo único
+  /// que hace aparecer el detalle técnico.
+  bool get hayUnProblema =>
+      !AudioDeFondo.anda || AudioDeFondo.seRompio != null;
+
   final String? porQueFallo;
   final VoidCallback alPlay;
   final VoidCallback? alVolverALaLista;
@@ -316,8 +321,13 @@ class _Escucha extends StatelessWidget {
             ),
           ),
         ],
-        const SizedBox(height: 16),
-        _ComoVaElAudio(texto: comoVaElAudio, alTocar: alMirarElAudio),
+        // El detalle técnico solo aparece cuando algo anda mal. Cumplió su
+        // trabajo —con él se encontró por qué el audio se cortaba— pero no
+        // tiene por qué estar a la vista del alumno cuando todo funciona.
+        if (hayUnProblema) ...[
+          const SizedBox(height: 16),
+          _ComoVaElAudio(texto: comoVaElAudio, alTocar: alMirarElAudio),
+        ],
         const SizedBox(height: 20),
       ],
     );

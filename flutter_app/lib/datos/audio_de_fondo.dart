@@ -190,6 +190,13 @@ class ManejadorDeAudio extends BaseAudioHandler with SeekHandler {
     playbackState.add(PlaybackState(
       // Lo que se ve en la notificación. Un solo botón que alterna: es un
       // reproductor de una cosa por vez, no una lista.
+      // Con íconos propios, no los de audio_service.
+      //
+      // Los suyos no llegan al APK: buscados por nombre dan 0, y un botón
+      // sin ícono es lo que tuvo todo esto roto. Los de acá están en
+      // res/drawable de esta app y se encuentran —medido: el id que devuelve
+      // el compilador y el que devuelve la búsqueda por nombre coinciden—.
+      //
       // Sin el botón de parar, a propósito.
       //
       // Desde Android 13, audio_service convierte el de parar en una
@@ -199,9 +206,7 @@ class ManejadorDeAudio extends BaseAudioHandler with SeekHandler {
       // ícono quedan feos, pero no rompen nada.
       //
       // Para una radio y un podcast, play y pausa alcanzan.
-      controls: [
-        if (r.playing) MediaControl.pause else MediaControl.play,
-      ],
+      controls: [if (r.playing) _pausar else _reproducir],
       systemActions: const {MediaAction.seek},
       androidCompactActionIndices: const [0],
       processingState: _comoLoLlamaAndroid(r.processingState),
@@ -211,6 +216,18 @@ class ManejadorDeAudio extends BaseAudioHandler with SeekHandler {
       speed: r.speed,
     ));
   }
+
+  static const _reproducir = MediaControl(
+    androidIcon: 'drawable/ic_play',
+    label: 'Reproducir',
+    action: MediaAction.play,
+  );
+
+  static const _pausar = MediaControl(
+    androidIcon: 'drawable/ic_pause',
+    label: 'Pausar',
+    action: MediaAction.pause,
+  );
 
   static AudioProcessingState _comoLoLlamaAndroid(ProcessingState estado) =>
       switch (estado) {

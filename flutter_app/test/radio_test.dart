@@ -364,13 +364,20 @@ void main() {
       expect(find.text('Falta darle permiso para notificar'), findsNothing);
     });
 
-    testWidgets('al pie siempre dice en qué anda el audio', (tester) async {
-      // Es lo que convierte "se corta a los treinta segundos" en un dato:
-      // con una captura de esta línea se sabe si el servicio está prendido.
+    testWidgets('el detalle técnico aparece solo cuando algo anda mal',
+        (tester) async {
+      // Con esa línea se encontró por qué el audio se cortaba, pero no tiene
+      // por qué estar a la vista del alumno cuando todo funciona.
+      // 'servicio:' solo lo dice el renglón técnico, no el cartel de aviso.
+      AudioDeFondo.comoSi(anda: true);
       await _abrir(tester, reproductor: ReproductorFalso());
       await _bajarDelTodo(tester);
+      expect(find.textContaining('servicio:'), findsNothing);
 
-      expect(find.textContaining('de mentira'), findsOne);
+      AudioDeFondo.comoSi(anda: false, porQue: 'falló, de mentira');
+      await _abrir(tester, reproductor: ReproductorFalso());
+      await _bajarDelTodo(tester);
+      expect(find.textContaining('servicio:'), findsOne);
     });
   });
 }
