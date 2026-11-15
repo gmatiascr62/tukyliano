@@ -8,6 +8,7 @@ import 'package:http/testing.dart';
 import 'package:tukyliano/datos/descargas.dart';
 import 'package:tukyliano/datos/repositorio_diccionario.dart';
 import 'package:tukyliano/datos/repositorio_favole.dart';
+import 'package:tukyliano/modelos/favola.dart';
 import 'package:tukyliano/pantallas/pantalla_favole.dart';
 import 'package:tukyliano/tema.dart';
 
@@ -402,6 +403,86 @@ void main() {
       );
 
       expect(find.textContaining('Todavía no hay fábulas'), findsOne);
+    });
+  });
+
+  group('los tiempos del texto', () {
+    final datos = jsonDecode(_json) as Map<String, dynamic>;
+    final favole = (datos['favole'] as List).cast<Map<String, dynamic>>();
+
+    Favola deLaLista(String parteDelTitulo) => Favola.desdeJson(
+          favole.firstWhere(
+            (f) => (f['titulo'] as String).contains(parteDelTitulo),
+          ),
+        );
+
+    test('la que está marcada sabe seguir el audio', () {
+      expect(deLaLista('Lupo e il Cane').sigueElAudio, isTrue);
+    });
+
+    test('las que no están marcadas no fingen que sí', () {
+      // Mostrar el renglón equivocado iluminado sería peor que no iluminar
+      // ninguno.
+      expect(deLaLista('Cicala').sigueElAudio, isFalse);
+    });
+
+    testWidgets('sabe qué renglón suena en cada momento', (tester) async {
+      final favola = deLaLista('Lupo e il Cane');
+
+      // Antes del primer verso está la presentación de LibriVox.
+      expect(favola.cualSuena(const Duration(seconds: 5)), -1);
+      expect(favola.cualSuena(const Duration(seconds: 16)), 0);
+      expect(favola.cualSuena(const Duration(seconds: 23)), 2);
+      // Y al final, el cierre.
+      expect(favola.cualSuena(const Duration(seconds: 145)), -1);
+    });
+
+    test('los tiempos van en orden y caben en el audio', () {
+      for (final mapa in favole) {
+        final favola = Favola.desdeJson(mapa);
+        if (!favola.sigueElAudio) continue;
+        var antes = Duration.zero;
+        for (final renglon in favola.renglones) {
+          final desde = renglon.desde;
+          if (desde == null) continue;
+          expect(desde, greaterThanOrEqualTo(antes),
+              reason: '${favola.titulo}: "${renglon.texto}" va para atrás');
+          expect(desde.inSeconds, lessThanOrEqualTo(favola.segundos),
+              reason: '${favola.titulo}: "${renglon.texto}" se pasa del fin');
+          antes = desde;
+        }
+      }
+    });
+
+    testWidgets('arranca donde arranca la fábula, no donde arranca el archivo',
+        (tester) async {
+      // Antes del primer verso va la presentación de LibriVox: en una fábula
+      // de minuto y medio son dieciséis segundos de espera.
+      final reproductor = ReproductorFalso();
+      await _abrir(
+        tester,
+        descargas: DescargasFalsas(),
+        reproductor: reproductor,
+      );
+
+      await tester.tap(find.text('Il Lupo e il Cane'));
+      await tester.pumpAndSettle();
+
+      expect(reproductor.donde, const Duration(seconds: 16));
+    });
+
+    testWidgets('en una sin marcar no se saltea nada', (tester) async {
+      final reproductor = ReproductorFalso();
+      await _abrir(
+        tester,
+        descargas: DescargasFalsas(),
+        reproductor: reproductor,
+      );
+
+      await tester.tap(find.text('La Cicala e la Formica'));
+      await tester.pumpAndSettle();
+
+      expect(reproductor.donde, Duration.zero);
     });
   });
 }

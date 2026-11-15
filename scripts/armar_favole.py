@@ -162,11 +162,81 @@ def soloElTexto(wiki):
     return [r for r in renglones if r]
 
 
+def losTiemposMarcadosAMano(fabula):
+    """Los tiempos de cada renglón, si alguien los marcó.
+
+    Viven en scripts/tiempos/ y no en el catálogo porque el catálogo se
+    rearma de cero cada vez que se corre esto: si estuvieran ahí, volver a
+    generar el archivo borraría horas de trabajo a mano.
+
+    Se verifica que los renglones sean los mismos y en el mismo orden. Si el
+    texto de Wikisource cambió, los tiempos ya no corresponden y es mejor
+    quedarse sin ellos que iluminar el renglón equivocado.
+    """
+    donde = os.path.join(
+        os.path.dirname(os.path.abspath(__file__)), 'tiempos',
+        f"{fabula['id']}.json",
+    )
+    if not os.path.exists(donde):
+        return None
+
+    with open(donde, encoding='utf-8') as fh:
+        marcados = json.load(fh)['renglones']
+
+    if len(marcados) != len(fabula['renglones']):
+        print(f"los tiempos de {fabula['titulo']} son de otra versión del "
+              f"texto ({len(marcados)} renglones contra "
+              f"{len(fabula['renglones'])}): se ignoran", file=sys.stderr)
+        return None
+
+    for marcado, renglon in zip(marcados, fabula['renglones']):
+        if comparable(marcado['texto']) != comparable(renglon):
+            print(f"los tiempos de {fabula['titulo']} no coinciden con el "
+                  'texto: se ignoran', file=sys.stderr)
+            return None
+
+    return marcados
+
+
 def comparable(titulo):
     """Deja el título comparable: sin tildes, sin signos y en minúscula."""
     sinTildes = unicodedata.normalize('NFKD', titulo)
     sinTildes = ''.join(c for c in sinTildes if not unicodedata.combining(c))
     return re.sub(r'[^a-z0-9]', '', sinTildes.lower())
+
+
+def losTextosDeLaVezPasada():
+    """Los textos que ya están en el catálogo, por id de fábula.
+
+    Wikisource contesta vacío cada tantas consultas, y el texto de una fábula
+    del siglo XIX no cambia. Volver a pedírselo para agregar unos tiempos
+    marcados a mano sería dejar que un servidor ajeno decida si el script
+    corre o no.
+    """
+    donde = os.path.join(
+        os.path.dirname(os.path.dirname(os.path.abspath(__file__))),
+        'flutter_app', 'assets', 'favole.json',
+    )
+    if not os.path.exists(donde):
+        return {}
+    try:
+        with open(donde, encoding='utf-8') as fh:
+            viejo = json.load(fh)
+    except (json.JSONDecodeError, OSError):
+        return {}
+
+    guardados = {}
+    for fabula in viejo.get('favole', []):
+        renglones = []
+        for renglon in fabula.get('renglones', []):
+            # Sirven las dos formas: las de antes eran texto pelado y las de
+            # ahora son objetos con el texto adentro.
+            renglones.append(
+                renglon['t'] if isinstance(renglon, dict) else renglon
+            )
+        if renglones:
+            guardados[fabula['id']] = renglones
+    return guardados
 
 
 def losTextos(numeroDeLibro, fabulas):
@@ -177,7 +247,19 @@ def losTextos(numeroDeLibro, fabulas):
     dejan de coincidir, mostrar el texto equivocado debajo del audio sería
     peor que no mostrar ninguno.
     """
-    paginas = laListaDeTextos(PAGINAS[numeroDeLibro])
+    guardados = losTextosDeLaVezPasada()
+
+    try:
+        paginas = laListaDeTextos(PAGINAS[numeroDeLibro])
+    except SystemExit:
+        if all(f['id'] in guardados for f in fabulas):
+            print('Wikisource no contesta: se usan los textos que ya están.',
+                  file=sys.stderr)
+            for fabula in fabulas:
+                fabula['renglones'] = guardados[fabula['id']]
+            return
+        raise
+
     if len(paginas) != len(fabulas):
         raise SystemExit(
             f'hay {len(fabulas)} audios y {len(paginas)} textos: no emparejan'
@@ -205,6 +287,8 @@ def losTextos(numeroDeLibro, fabulas):
     for (_, titulo, _), fabula in zip(paginas, fabulas):
         wiki = porTitulo.get(titulo)
         fabula['renglones'] = soloElTexto(wiki) if wiki else []
+        if not fabula['renglones']:
+            fabula['renglones'] = guardados.get(fabula['id'], [])
         if not fabula['renglones']:
             print(f"sin texto: {fabula['titulo']}", file=sys.stderr)
 
@@ -261,6 +345,20 @@ def main():
     for identificador, numero in LIBROS:
         meta, fabulas = unLibro(identificador, numero)
         losTextos(numero, fabulas)
+
+        for fabula in fabulas:
+            marcados = losTiemposMarcadosAMano(fabula)
+            if marcados is None:
+                # Sin tiempos, el renglón es solo texto.
+                fabula['renglones'] = [
+                    {'t': r} for r in fabula['renglones']
+                ]
+                continue
+            fabula['renglones'] = [
+                {'t': m['texto'], 'desde': m['desde'], 'hasta': m['hasta']}
+                for m in marcados
+            ]
+            print(f"{fabula['titulo']}: con tiempos", file=sys.stderr)
         creditos.append(limpiar(str(meta.get('title', ''))))
         todas.extend(fabulas)
         print(f'libro {numero}: {len(fabulas)} fábulas', file=sys.stderr)
