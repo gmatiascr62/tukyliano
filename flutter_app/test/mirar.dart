@@ -22,10 +22,12 @@ import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/ia/chat.dart';
 import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
+import 'package:tukyliano/pantallas/pantalla_favole.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 import 'package:tukyliano/tema.dart';
 
+import 'descargas_falsas.dart';
 import 'reproductor_falso.dart';
 import 'voz_falsa.dart';
 
@@ -175,6 +177,14 @@ Widget comoEnLaApp(Widget pantalla) => Scaffold(
       ),
     );
 
+/// Descargas de mentira para la foto: con las tres primeras ya bajadas, que
+/// es como se ve la pantalla después de usarla un rato.
+DescargasFalsas _descargasDeMentira() => DescargasFalsas(yaBajadas: const {
+      'favole_01_libro01_lafontaine_64kb.mp3',
+      'favole_02_libro01_lafontaine_64kb.mp3',
+      'favole_03_libro01_lafontaine_64kb.mp3',
+    });
+
 /// Un barista de mentira que contesta la escena entera, para la foto.
 Servidor _baristaDeMentira() {
   const dice = [
@@ -229,6 +239,16 @@ void main() {
             await t.tap(find.byIcon(Icons.play_arrow));
             await t.pumpAndSettle();
           },
+        );
+
+      case 'favole':
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaFavole(
+            descargas: _descargasDeMentira(),
+            reproductor: ReproductorFalso(),
+          )),
         );
 
       case 'bar':

@@ -1,0 +1,384 @@
+import 'package:flutter/material.dart';
+
+import '../datos/descargas.dart';
+import '../datos/reproductor.dart';
+import '../datos/repositorio_favole.dart';
+import '../modelos/favola.dart';
+import '../tema.dart';
+
+/// Las fábulas de La Fontaine, leídas en italiano.
+///
+/// Es el primer lugar de la app donde el audio **no viaja en el APK**. Hasta
+/// ahora todo el sonido iba adentro: con tres episodios del podcast ya eran
+/// 95 MB, y así no se puede crecer. Acá el catálogo viaja —es texto, pesa
+/// nada, y deja ver la lista entera sin internet— y cada audio se baja
+/// cuando se toca, una sola vez.
+///
+/// Por qué fábulas y no un libro: duran entre uno y tres minutos, son
+/// historias que uno ya conoce, y cada una se cierra sola. Si no entendiste
+/// una, perdiste dos minutos. Un capítulo de novela mal entendido es una
+/// derrota; una fábula mal entendida es un intento más.
+class PantallaFavole extends StatefulWidget {
+  const PantallaFavole({
+    super.key,
+    this.repositorio,
+    this.descargas,
+    this.reproductor,
+  });
+
+  final RepositorioFavole? repositorio;
+  final Descargas? descargas;
+  final Reproductor? reproductor;
+
+  @override
+  State<PantallaFavole> createState() => _PantallaFavoleState();
+}
+
+class _PantallaFavoleState extends State<PantallaFavole> {
+  late final RepositorioFavole _repositorio =
+      widget.repositorio ?? RepositorioFavole();
+  late final Descargas _descargas = widget.descargas ?? DescargasEnElCelular();
+  late final Reproductor _reproductor =
+      widget.reproductor ?? ReproductorDeVerdad();
+
+  Favole _catalogo = const Favole();
+  bool _cargando = true;
+
+  /// Cuáles ya están en el celular.
+  Set<String> _guardadas = {};
+
+  /// Cuáles se están bajando ahora.
+  final Set<String> _bajando = {};
+
+  /// Cuál falló al bajar. Se muestra en su propio renglón y se borra al
+  /// reintentar: un error que se queda para siempre es ruido.
+  final Set<String> _fallaron = {};
+
+  /// Cuál está sonando, por id. Null cuando no suena ninguna.
+  String? _sonando;
+
+  @override
+  void initState() {
+    super.initState();
+    _arrancar();
+  }
+
+  @override
+  void dispose() {
+    // Pausar y no soltar: el reproductor es uno solo para toda la app.
+    _reproductor.pausar();
+    super.dispose();
+  }
+
+  Future<void> _arrancar() async {
+    final catalogo = await _repositorio.cargar();
+    final guardadas =
+        await _descargas.cualesEstan(catalogo.favole.map((f) => f.archivo));
+    if (!mounted) return;
+    setState(() {
+      _catalogo = catalogo;
+      _guardadas = guardadas;
+      _cargando = false;
+    });
+  }
+
+  /// Un toque hace lo que corresponda: si no está, la baja y la pone; si
+  /// está, la pone; si está sonando, la para.
+  ///
+  /// Un solo gesto en vez de un botón de bajar y otro de escuchar. Nadie baja
+  /// una fábula para no escucharla.
+  Future<void> _tocar(Favola favola) async {
+    if (_sonando == favola.id) {
+      await _reproductor.pausar();
+      if (mounted) setState(() => _sonando = null);
+      return;
+    }
+
+    if (!_guardadas.contains(favola.archivo)) {
+      await _bajarla(favola);
+      if (!mounted || !_guardadas.contains(favola.archivo)) return;
+    }
+
+    final donde = await _descargas.donde(favola.archivo);
+    if (donde == null || !mounted) return;
+
+    final abrio = await _reproductor.cargarGuardado(
+      donde.path,
+      titulo: favola.titulo,
+      deQuien: 'Favole di La Fontaine',
+    );
+    if (!mounted) return;
+    if (!abrio) {
+      // El archivo está pero no abre: se borra para que el próximo toque lo
+      // baje de nuevo en vez de fallar siempre igual.
+      await _descargas.borrar(favola.archivo);
+      if (!mounted) return;
+      setState(() {
+        _guardadas.remove(favola.archivo);
+        _fallaron.add(favola.id);
+      });
+      return;
+    }
+    setState(() => _sonando = favola.id);
+    await _reproductor.reproducir();
+  }
+
+  Future<void> _bajarla(Favola favola) async {
+    setState(() {
+      _bajando.add(favola.id);
+      _fallaron.remove(favola.id);
+    });
+
+    final quedo =
+        await _descargas.bajar(_catalogo.donde(favola), favola.archivo);
+    if (!mounted) return;
+
+    setState(() {
+      _bajando.remove(favola.id);
+      if (quedo == null) {
+        _fallaron.add(favola.id);
+      } else {
+        _guardadas.add(favola.archivo);
+      }
+    });
+  }
+
+  /// Baja las que falten, una por una.
+  ///
+  /// Una por una y no todas juntas a propósito: veintidós pedidos al mismo
+  /// tiempo con señal mala fallan todos, y además así se ve avanzar la lista.
+  Future<void> _bajarLasQueFaltan() async {
+    for (final favola in _catalogo.favole) {
+      if (!mounted) return;
+      if (_guardadas.contains(favola.archivo)) continue;
+      await _bajarla(favola);
+    }
+  }
+
+  List<Favola> get _faltan => [
+        for (final f in _catalogo.favole)
+          if (!_guardadas.contains(f.archivo)) f,
+      ];
+
+  @override
+  Widget build(BuildContext context) {
+    if (_cargando) {
+      return const Center(child: CircularProgressIndicator());
+    }
+    if (!_catalogo.hay) {
+      return const _Cartel('Todavía no hay fábulas cargadas.');
+    }
+
+    final faltan = _faltan;
+    final bajandoTodas = _bajando.isNotEmpty && faltan.length > 1;
+
+    return ListView(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      children: [
+        _DeQueVa(
+          cuantas: _catalogo.favole.length,
+          faltan: faltan,
+          bajando: bajandoTodas,
+          alBajarTodas: bajandoTodas ? null : _bajarLasQueFaltan,
+        ),
+        const SizedBox(height: 10),
+        for (final favola in _catalogo.favole)
+          _UnaFavola(
+            favola: favola,
+            guardada: _guardadas.contains(favola.archivo),
+            bajando: _bajando.contains(favola.id),
+            fallo: _fallaron.contains(favola.id),
+            sonando: _sonando == favola.id,
+            alTocar: () => _tocar(favola),
+          ),
+        const SizedBox(height: 18),
+        _Credito(catalogo: _catalogo),
+        const SizedBox(height: 20),
+      ],
+    );
+  }
+}
+
+class _Cartel extends StatelessWidget {
+  const _Cartel(this.texto);
+
+  final String texto;
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32),
+        child: Text(
+          texto,
+          textAlign: TextAlign.center,
+          style: const TextStyle(fontSize: 15, color: Tema.textoTenue),
+        ),
+      ),
+    );
+  }
+}
+
+/// De qué van, y el botón de bajarlas todas.
+class _DeQueVa extends StatelessWidget {
+  const _DeQueVa({
+    required this.cuantas,
+    required this.faltan,
+    required this.bajando,
+    required this.alBajarTodas,
+  });
+
+  final int cuantas;
+  final List<Favola> faltan;
+  final bool bajando;
+  final VoidCallback? alBajarTodas;
+
+  @override
+  Widget build(BuildContext context) {
+    final pesan = faltan.fold<int>(0, (suma, f) => suma + f.bytes);
+    final enMegas = (pesan / 1048576).toStringAsFixed(1);
+
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 16),
+      padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+      decoration: BoxDecoration(
+        color: Tema.verdeSuave,
+        borderRadius: BorderRadius.circular(Tema.radio),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            '$cuantas fábulas de uno a tres minutos',
+            style: const TextStyle(
+              fontSize: 14.5,
+              fontWeight: FontWeight.w700,
+              color: Tema.titulo,
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'Son historias que ya conocés, y eso es lo que las hace servir: '
+            'entendés por contexto lo que todavía no entendés por idioma. '
+            'Cada una se baja la primera vez que la tocás y después queda en '
+            'el celular.',
+            style: TextStyle(fontSize: 13, height: 1.35, color: Tema.texto),
+          ),
+          if (faltan.isNotEmpty) ...[
+            const SizedBox(height: 12),
+            FilledButton.icon(
+              onPressed: alBajarTodas,
+              icon: Icon(bajando ? Icons.downloading : Icons.download),
+              label: Text(
+                bajando
+                    ? 'Bajando…'
+                    : faltan.length == cuantas
+                        ? 'Bajar todas ($enMegas MB)'
+                        : 'Bajar las que faltan ($enMegas MB)',
+              ),
+            ),
+          ],
+        ],
+      ),
+    );
+  }
+}
+
+class _UnaFavola extends StatelessWidget {
+  const _UnaFavola({
+    required this.favola,
+    required this.guardada,
+    required this.bajando,
+    required this.fallo,
+    required this.sonando,
+    required this.alTocar,
+  });
+
+  final Favola favola;
+  final bool guardada;
+  final bool bajando;
+  final bool fallo;
+  final bool sonando;
+  final VoidCallback alTocar;
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      contentPadding: const EdgeInsets.symmetric(horizontal: 20, vertical: 2),
+      leading: SizedBox(
+        width: 34,
+        height: 34,
+        child: Center(child: _elIcono()),
+      ),
+      title: Text(
+        favola.titulo,
+        style: TextStyle(
+          fontSize: 15.5,
+          fontWeight: sonando ? FontWeight.w700 : FontWeight.w500,
+          color: Tema.titulo,
+        ),
+      ),
+      subtitle: Text(
+        fallo
+            ? 'No se pudo bajar. Tocá para probar de nuevo.'
+            : guardada
+                ? favola.cuantoDura
+                : '${favola.cuantoDura} · ${favola.cuantoPesa}',
+        style: TextStyle(
+          fontSize: 12.5,
+          color: fallo ? Tema.incorrecto : Tema.textoTenue,
+        ),
+      ),
+      onTap: bajando ? null : alTocar,
+    );
+  }
+
+  Widget _elIcono() {
+    if (bajando) {
+      return const SizedBox(
+        width: 20,
+        height: 20,
+        child: CircularProgressIndicator(strokeWidth: 2.5),
+      );
+    }
+    if (fallo) {
+      return const Icon(Icons.refresh, color: Tema.incorrecto);
+    }
+    if (!guardada) {
+      // Una flecha para abajo: lo que va a pasar al tocar es que se baje.
+      return const Icon(Icons.arrow_circle_down_outlined,
+          color: Tema.textoTenue);
+    }
+    return Icon(
+      sonando ? Icons.pause_circle_filled : Icons.play_circle_fill,
+      color: Tema.verde,
+      size: 30,
+    );
+  }
+}
+
+/// Quién las grabó. No es decorativo: son voluntarios que leyeron esto
+/// gratis para que cualquiera lo pueda usar.
+class _Credito extends StatelessWidget {
+  const _Credito({required this.catalogo});
+
+  final Favole catalogo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Divider(height: 1),
+          const SizedBox(height: 12),
+          Text(
+            catalogo.credito,
+            style: const TextStyle(fontSize: 12, color: Tema.textoTenue),
+          ),
+        ],
+      ),
+    );
+  }
+}

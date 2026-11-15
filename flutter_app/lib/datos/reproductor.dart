@@ -34,6 +34,16 @@ abstract class Reproductor {
   /// Android corta el audio apenas se bloquea el celular.
   Future<bool> cargar(String archivo, {String? titulo, String? deQuien});
 
+  /// Carga un archivo que ya está guardado en el celular.
+  ///
+  /// Es lo que suena cuando se bajó una fábula: no viaja en el APK ni sale
+  /// de internet cada vez, está en la carpeta de la app.
+  Future<bool> cargarGuardado(
+    String ruta, {
+    String? titulo,
+    String? deQuien,
+  });
+
   /// Carga algo que está en internet: una radio en vivo, por ejemplo.
   ///
   /// Es aparte de [cargar] porque no se parecen: un archivo del APK está o no
@@ -152,6 +162,24 @@ class ReproductorDeVerdad implements Reproductor {
       // Un episodio al que no se le puede abrir el audio no tiene que tirar
       // abajo la pantalla: se cae al motor de voz, que siempre está. Pero el
       // motivo se guarda y se muestra, en vez de desaparecer.
+      _falla = '$e';
+      return false;
+    }
+  }
+
+  @override
+  Future<bool> cargarGuardado(
+    String ruta, {
+    String? titulo,
+    String? deQuien,
+  }) async {
+    try {
+      _esRadio = false;
+      await _player.setFilePath(ruta);
+      _avisarQueSuena('guardado:$ruta', titulo, deQuien);
+      _falla = null;
+      return true;
+    } catch (e) {
       _falla = '$e';
       return false;
     }
