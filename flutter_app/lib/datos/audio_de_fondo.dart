@@ -190,9 +190,17 @@ class ManejadorDeAudio extends BaseAudioHandler with SeekHandler {
     playbackState.add(PlaybackState(
       // Lo que se ve en la notificación. Un solo botón que alterna: es un
       // reproductor de una cosa por vez, no una lista.
+      // Sin el botón de parar, a propósito.
+      //
+      // Desde Android 13, audio_service convierte el de parar en una
+      // "CustomAction", y una CustomAction sin ícono tira una excepción que
+      // revienta el aviso entero —antes de llegar al startForeground, que es
+      // lo que hace falta—. Los de reproducir y pausar no pasan por ahí: sin
+      // ícono quedan feos, pero no rompen nada.
+      //
+      // Para una radio y un podcast, play y pausa alcanzan.
       controls: [
         if (r.playing) MediaControl.pause else MediaControl.play,
-        MediaControl.stop,
       ],
       systemActions: const {MediaAction.seek},
       androidCompactActionIndices: const [0],

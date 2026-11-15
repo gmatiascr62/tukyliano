@@ -9,6 +9,7 @@ import android.net.wifi.WifiManager
 import android.os.Build
 import android.os.Bundle
 import com.ryanheise.audioservice.AudioServiceActivity
+import org.gmatiascr62.tukyliano.flutter.R
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
 
@@ -90,19 +91,29 @@ class MainActivity : AudioServiceActivity() {
         return "servicio: $donde · ${comoEstaElCanal()}\n${seEncuentranLosIconos()}"
     }
 
-    // Si los íconos se encuentran buscándolos como los busca audio_service.
+    // Por qué no se encuentran los íconos.
     //
-    // Esta es la medición que cierra el caso. audio_service busca sus íconos
-    // con getIdentifier(nombre, tipo, getPackageName()), y getPackageName()
-    // devuelve el applicationId. Si la tabla de recursos está registrada bajo
-    // otro paquete —porque el namespace no coincidía con el applicationId—,
-    // todo da 0, y construir el botón de la notificación tira "You must
-    // specify an icon resource id to build a CustomAction". Esa excepción
-    // reventaba el aviso entero y nunca se llegaba al startForeground.
+    // audio_service los busca con getIdentifier(nombre, tipo,
+    // getPackageName()). Eso devuelve 0 incluso para un dibujo propio de esta
+    // app, así que el nombre de paquete con el que pregunta no es aquel bajo
+    // el que están registrados los recursos. Adivinar cuál es ya falló una
+    // vez, así que acá no se adivina: se parte del id que pone el compilador
+    // —ese no puede estar mal— y se le pregunta a Android bajo qué paquete
+    // quedó ese mismo recurso.
     private fun seEncuentranLosIconos(): String {
-        val mio = resources.getIdentifier("ic_audio", "drawable", packageName)
-        val suyo = resources.getIdentifier("audio_service_stop", "drawable", packageName)
-        return if (mio != 0 && suyo != 0) "íconos: ok" else "íconos: NO ($mio/$suyo)"
+        val delCompilador = R.drawable.ic_audio
+        val paqueteDeVerdad = try {
+            resources.getResourcePackageName(delCompilador)
+        } catch (e: Exception) {
+            "?"
+        }
+        val porNombre = resources.getIdentifier("ic_audio", "drawable", packageName)
+        val conElDeVerdad =
+            resources.getIdentifier("audio_service_stop", "drawable", paqueteDeVerdad)
+
+        if (porNombre != 0 && conElDeVerdad != 0) return "íconos: ok"
+        return "app: $packageName\nrecursos: $paqueteDeVerdad\n" +
+            "R=$delCompilador · por nombre=$porNombre · stop=$conElDeVerdad"
     }
 
     // Si el canal de notificaciones del audio está prendido.
