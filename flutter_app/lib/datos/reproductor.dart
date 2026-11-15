@@ -1,7 +1,8 @@
 import 'dart:async';
 
 import 'package:just_audio/just_audio.dart';
-import 'package:just_audio_background/just_audio_background.dart';
+
+import 'audio_de_fondo.dart';
 
 /// Reproduce el audio grabado de un episodio.
 ///
@@ -68,10 +69,30 @@ abstract class Reproductor {
   Stream<void> get termino;
 
   Future<void> soltar();
+
+  /// Qué está pasando con el audio, en una línea.
+  ///
+  /// Existe para poder mirarlo desde la app. Cuando el audio se cortaba a los
+  /// treinta segundos no había forma de saber desde afuera si el servicio
+  /// estaba prendido o no, y la única manera de avanzar fue ir preguntando.
+  String get comoVa;
 }
 
 class ReproductorDeVerdad implements Reproductor {
-  final AudioPlayer _player = AudioPlayer();
+  /// Usa el reproductor que creó AudioDeFondo, que es el que el servicio de
+  /// Android tiene envuelto. Si el servicio no se pudo prender, se arma uno
+  /// propio: el audio suena igual, nada más que sin notificación y sin
+  /// segundo plano.
+  ReproductorDeVerdad()
+      : _player = AudioDeFondo.elReproductor ?? AudioPlayer(),
+        _manejador = AudioDeFondo.manejador;
+
+  final AudioPlayer _player;
+
+  /// Quien le cuenta a Android qué está sonando. Null cuando el servicio no
+  /// se pudo prender.
+  final ManejadorDeAudio? _manejador;
+
   String? _falla;
 
   /// just_audio no reproduce el asset directamente: lo copia a un archivo de
@@ -94,19 +115,19 @@ class ReproductorDeVerdad implements Reproductor {
   @override
   Duration? get duracion => _player.duration;
 
-  /// Lo que se ve en la notificación y en la pantalla bloqueada.
+  /// Le dice a Android qué está sonando.
   ///
-  /// Sin esta etiqueta no hay notificación, y sin notificación Android no deja
-  /// seguir sonando en segundo plano: corta el audio apenas se bloquea la
-  /// pantalla. El id tiene que ser distinto por cosa que suena, o el sistema
-  /// cree que es la misma de antes y deja el título viejo.
-  static MediaItem? _etiqueta(String id, String? titulo, String? deQuien) {
-    if (titulo == null) return null;
-    return MediaItem(
+  /// Esto es lo que hace aparecer la notificación, y la notificación es lo
+  /// que deja seguir sonando con la pantalla bloqueada. El id tiene que ser
+  /// distinto por cosa que suena, o el sistema cree que es la misma de antes
+  /// y deja el título viejo.
+  void _avisarQueSuena(String id, String? titulo, String? deQuien) {
+    if (titulo == null) return;
+    _manejador?.ahoraSuena(
       id: id,
-      title: titulo,
-      artist: deQuien ?? 'Tukyliano',
-      album: 'Tukyliano',
+      titulo: titulo,
+      deQuien: deQuien ?? 'Tukyliano',
+      cuantoDura: _player.duration,
     );
   }
 
@@ -117,10 +138,8 @@ class ReproductorDeVerdad implements Reproductor {
         _cacheVaciada = true;
         await AudioPlayer.clearAssetCache();
       }
-      await _player.setAsset(
-        'assets/audio/$archivo',
-        tag: _etiqueta('episodio:$archivo', titulo, deQuien),
-      );
+      await _player.setAsset('assets/audio/$archivo');
+      _avisarQueSuena('episodio:$archivo', titulo, deQuien);
       _falla = null;
       return true;
     } catch (e) {
@@ -139,10 +158,8 @@ class ReproductorDeVerdad implements Reproductor {
     String? deQuien,
   }) async {
     try {
-      await _player.setUrl(
-        url,
-        tag: _etiqueta('radio:$url', titulo, deQuien),
-      );
+      await _player.setUrl(url);
+      _avisarQueSuena('radio:$url', titulo, deQuien);
       _falla = null;
       return true;
     } catch (e) {
@@ -173,4 +190,13 @@ class ReproductorDeVerdad implements Reproductor {
 
   @override
   Future<void> soltar() => _player.dispose();
+
+  /// Qué está pasando con el audio, en una línea, para poder mirarlo desde la
+  /// app cuando algo no suena como debería.
+  @override
+  String get comoVa {
+    final servicio = _manejador == null ? 'sin servicio' : 'con servicio';
+    return '$servicio · ${_player.processingState.name} · '
+        '${_player.playing ? "sonando" : "quieto"}';
+  }
 }

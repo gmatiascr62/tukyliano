@@ -43,7 +43,13 @@ dependencies:
   speech_to_text: ^7.4.0
   # Reproduce los episodios grabados: archivo de audio en vez del motor de voz.
   just_audio: ^0.10.5
-  just_audio_background: ^0.0.1-beta.17
+  # El servicio de Android que deja seguir sonando con la pantalla bloqueada.
+  # Se usa directo y no a través de just_audio_background: ese hace lo mismo
+  # con tres renglones, pero lleva años en beta y acá no andaba —el servicio
+  # arrancaba, el audio sonaba y la notificación no aparecía nunca—, fallando
+  # en silencio y sin dónde mirar. Su propio README recomienda este camino
+  # para todo lo que no sea el caso más simple.
+  audio_service: ^0.18.19
 
 dev_dependencies:
   flutter_test:
