@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tukyliano/datos/audio_de_fondo.dart';
 import 'package:tukyliano/datos/repositorio_radios.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 
@@ -300,6 +301,30 @@ void main() {
       // Android deje seguir sonando: sin notificación, corta el audio.
       expect(reproductor.elTitulo, 'Radio Senti Chi Parla');
       expect(reproductor.deQuienEs, 'Senti Chi Parla! OdV');
+    });
+  });
+
+  group('el aviso de que se va a cortar', () {
+    tearDown(() => AudioDeFondo.comoSi(anda: true));
+
+    testWidgets('aparece cuando el audio de fondo no se pudo prender',
+        (tester) async {
+      AudioDeFondo.comoSi(anda: false, porQue: 'falló, de mentira');
+
+      await _abrir(tester, reproductor: ReproductorFalso());
+
+      expect(find.text('Se va a cortar al bloquear la pantalla'), findsOne);
+      // El motivo técnico va a la vista: sin él, desde afuera esto es "se
+      // corta a los treinta segundos" y no se sabe si es el celular o la app.
+      expect(find.text('falló, de mentira'), findsOne);
+    });
+
+    testWidgets('no aparece cuando el audio de fondo anda', (tester) async {
+      AudioDeFondo.comoSi(anda: true);
+
+      await _abrir(tester, reproductor: ReproductorFalso());
+
+      expect(find.text('Se va a cortar al bloquear la pantalla'), findsNothing);
     });
   });
 }

@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:just_audio_background/just_audio_background.dart';
-
 import 'constantes.dart';
 import 'datos/actualizacion.dart';
+import 'datos/audio_de_fondo.dart';
 import 'datos/escucha.dart';
 import 'datos/repositorio_articoli.dart';
 import 'datos/repositorio_frases.dart';
@@ -38,26 +37,8 @@ Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
   // Lo que hace que el podcast y la radio sigan sonando con la pantalla
-  // bloqueada. Android no deja que una app en segundo plano reproduzca audio
-  // porque sí: hace falta un servicio en primer plano, y eso es una
-  // notificación con los controles. Esto la prende.
-  //
-  // Si falla no se cae la app: se arranca igual y el audio suena mientras la
-  // pantalla esté encendida, que es exactamente como andaba antes.
-  try {
-    await JustAudioBackground.init(
-      androidNotificationChannelId: 'org.gmatiascr62.tukyliano.audio',
-      androidNotificationChannelName: 'Audio de Tukyliano',
-      // Para que el sistema no la pueda descartar mientras algo está sonando:
-      // si se va la notificación, se va el permiso de seguir sonando. Al
-      // pausar vuelve a ser descartable sola, que es lo que hace de fábrica
-      // androidStopForegroundOnPause.
-      androidNotificationOngoing: true,
-      notificationColor: Tema.verde,
-    );
-  } catch (e) {
-    debugPrint('no se pudo prender el audio en segundo plano: $e');
-  }
+  // bloqueada. Si falla, la app arranca igual y lo avisa adentro.
+  await AudioDeFondo.prender();
 
   runApp(const TukylianoApp());
 }

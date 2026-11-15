@@ -28,6 +28,16 @@
     <uses-permission android:name="android.permission.WAKE_LOCK"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"/>
+    <!-- Desde Android 13 una app no puede mostrar NINGUNA notificación sin
+         este permiso, y encima hay que pedírselo al usuario en pantalla: no
+         alcanza con declararlo. audio_service no lo declara ni lo pide, así
+         que esto es nuestro.
+
+         Importa más de lo que parece: la notificación no es un adorno, es el
+         permiso de seguir sonando. Sin ella Android corta el audio al rato de
+         que la app deja de estar a la vista. Pasó: treinta segundos y se
+         cortaba, sin notificación y sin ningún error. -->
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
         android:label="Tukyliano"
