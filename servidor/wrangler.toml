@@ -18,7 +18,7 @@ compatibility_date = "2026-10-01"
 [vars]
 TOPE_POR_PERSONA = "60"
 TOPE_DEL_SERVIDOR = "2000"
-MODELO = "@cf/meta/llama-3.3-70b-instruct-fp8-fast"
+MODELO = "@cf/mistralai/mistral-small-3.1-24b-instruct"
 
 # Los modelos. No se instala ni se sube nada: se los nombra y los corre
 # Cloudflare en sus GPU.
