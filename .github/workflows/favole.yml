@@ -1,0 +1,62 @@
+# Publica los audios de las fábulas.
+#
+# Los trae de LibriVox y los deja como adjuntos de un release con etiqueta
+# fija, que es de donde los baja la app. Se corre a mano y casi nunca: solo
+# cuando se agregan libros nuevos al catálogo.
+#
+# Por qué adjuntos de un release y no archivos del repositorio: son 17 MB el
+# primer libro y 220 los doce, y lo que entra al historial de git no sale
+# nunca más. Los adjuntos viven aparte, salen por el CDN de GitHub y se
+# pueden reemplazar.
+#
+# La etiqueta es fija y separada de la del APK, así que publicar una versión
+# nueva de la app no los toca.
+name: Favole
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Armar el catálogo y bajar los audios de LibriVox
+        run: python3 scripts/armar_favole.py --bajar
+
+      - name: Ver qué quedó
+        run: |
+          ls -la /tmp/favole
+          du -sh /tmp/favole
+
+      - name: Publicarlos en el release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # --clobber reemplaza los que ya estén: así volver a correr esto es
+          # inofensivo y sirve para corregir un audio sin tocar la app.
+          if ! gh release view favole-1 >/dev/null 2>&1; then
+            gh release create favole-1 \
+              --title "Favole di La Fontaine" \
+              --notes "Audios de las fábulas, leídos por voluntarios de LibriVox. Obras y grabaciones de dominio público. La app los baja de acá; no van adentro del APK." \
+              --latest=false
+          fi
+          gh release upload favole-1 /tmp/favole/*.mp3 --clobber
+
+      - name: Comprobar que se bajan de donde dice el catálogo
+        run: |
+          UNO=$(python3 -c "
+          import json
+          d = json.load(open('flutter_app/assets/favole.json'))
+          print(d['base'] + '/' + d['favole'][0]['archivo'])
+          ")
+          echo "probando $UNO"
+          # Sin esto, la app saldría publicada apuntando a direcciones que no
+          # existen y el error recién se vería en el celular.
+          curl -sSfL -o /tmp/prueba.mp3 "$UNO"
+          test -s /tmp/prueba.mp3
+          echo "bajó $(stat -c%s /tmp/prueba.mp3) bytes"
