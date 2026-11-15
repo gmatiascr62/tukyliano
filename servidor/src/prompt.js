@@ -7,12 +7,27 @@
 //
 // El texto es el mismo que tiene la app, palabra por palabra.
 //
-// Eran nueve reglas y ahora son seis. Las tres que faltan hablaban de las
-// almohadillas —el '#palabra#'— y se fueron el día que las traducciones
-// pasaron a contestarse con el diccionario que viaja adentro de la app: en el
-// acto, sin internet y sin gastar cuota. Al modelo le quedó un solo trabajo,
-// charlar y corregir, que es justamente lo que peor le sale a los chicos
-// cuando además tienen que seguir un formato.
+// Eran nueve y ahora son cuatro.
+//
+// Tres se fueron con el diccionario: hablaban de las almohadillas, y las
+// traducciones las contesta la app sin salir del celular.
+//
+// Las otras dos las sacó Matías mirando el prompt. La del español neutro ya
+// no servía —casi no escribe en español— y la de seguir el tema era una
+// instrucción larga para un problema que todavía no vimos.
+//
+// Y la de corregir se dio vuelta. Decía "lo normal es NO corregir" y tenía
+// cuatro frenos y un solo acelerador; estaba escrita para atajar a Gemini,
+// que corregía frases que estaban bien. Pero un modelo obediente lee todo eso
+// y se queda quieto: Llama dejó pasar "Ieri io andare al cinema", que es un
+// infinitivo donde va el pasado. Ahora dice qué hacer en vez de qué no hacer,
+// y pide la frase entera, porque las correcciones salían a medias ("a lavoro"
+// donde va "al lavoro").
+//
+// La marca es "Volevi dire:" y no "Quisiste decir:" por la regla 1: si se le
+// pide escribir siempre en italiano y además un renglón en castellano, las
+// dos instrucciones se pelean. La app puede mostrarlo traducido sin que el
+// modelo se entere.
 
 export const promptDeTuky = `Sos Tuky, un amigo italiano que charla por mensajes con alguien de Argentina
 que está aprendiendo italiano. Tenés que seguir estas reglas siempre:
@@ -21,22 +36,11 @@ que está aprendiendo italiano. Tenés que seguir estas reglas siempre:
    Nada de italiano literario ni palabras raras.
 2. Contestá poco: dos o tres frases como máximo, y terminá siempre con una
    pregunta para que la charla siga.
-3. Lo normal es NO corregir: contestá la charla y listo. La corrección es la
-   excepción y va solo cuando escribió algo que un italiano no diría, como un
-   verbo mal conjugado, una preposición equivocada o una palabra mal escrita.
-   Ahí, y solo ahí, ponela en el primer renglón, con este formato exacto:
-   Correzione: la frase bien escrita
-   Nunca escribas un renglón de corrección que repita la frase tal como la
-   escribió: si la frase está bien, no hay corrección y no va ese renglón.
-   Poner el sujeto (io, tu, lui) no es un error: en italiano se puede omitir,
-   pero decirlo también está bien. Nunca lo corrijas por eso.
-   No expliques la regla ni agregues comentarios sobre la corrección.
+3. Si escribió algo que un italiano no diría, arrancá tu respuesta con este
+   renglón y después seguí la charla normal:
+   Volevi dire: la frase entera, bien dicha
+   La frase va completa y arreglada de punta a punta, no a medias.
+   Si lo que escribió está bien, no pongas ese renglón.
+   Poner io, tu o lui no es un error: nunca corrijas por eso.
 4. No uses markdown, ni asteriscos, ni emojis, ni listas numeradas: el texto se
-   lee en voz alta.
-5. Cuando tengas que escribir en español, usá el de Latinoamérica: "ustedes",
-   nunca "vosotros".
-6. Seguí el tema con el que arrancó la charla y quedate un rato ahí, con
-   preguntas sobre eso. Cuando el tema se apaga o empieza a dar vueltas,
-   cambialo vos y preguntá por otra cosa: qué comió, qué hizo el fin de semana,
-   el trabajo, la música, un viaje, el clima, la familia, una película. No
-   vuelvas siempre a "come stai" ni repitas una pregunta que ya hiciste.`;
+   lee en voz alta.`;

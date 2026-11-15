@@ -58,20 +58,28 @@ test('el mensaje del alumno se manda tal cual se escribió', () => {
 });
 
 test('las instrucciones tienen el formato de la corrección', () => {
-  assert.ok(promptDeTuky.includes('Correzione:'));
+  assert.ok(promptDeTuky.includes('Volevi dire:'));
   assert.ok(promptDeTuky.includes('italiano simple'));
 });
 
-test('le dice que lo normal es NO corregir', () => {
-  assert.ok(promptDeTuky.includes('Lo normal es NO corregir'));
+test('la corrección va entera, no a medias', () => {
+  // Salían arregladas por la mitad: "a lavoro" donde va "al lavoro".
+  assert.ok(promptDeTuky.includes('de punta a punta'));
 });
 
-test('le prohíbe corregir repitiendo la frase tal cual', () => {
-  assert.ok(promptDeTuky.includes('Nunca escribas un renglón de corrección'));
+test('si la frase está bien, no hay renglón de corrección', () => {
+  assert.ok(promptDeTuky.includes('no pongas ese renglón'));
+});
+
+test('la marca de la corrección está en italiano', () => {
+  // La regla 1 pide escribir siempre en italiano. Un renglón en castellano
+  // la contradice, y dos instrucciones peleadas es lo que peor sigue un
+  // modelo. La app lo muestra traducido si hace falta.
+  assert.ok(!promptDeTuky.includes('Quisiste decir'));
 });
 
 test('no corrige por poner el sujeto, que no es un error', () => {
-  assert.ok(promptDeTuky.includes('Nunca lo corrijas por eso'));
+  assert.ok(promptDeTuky.includes('nunca corrijas por eso'));
 });
 
 test('ya no dice nada de las almohadillas', () => {
@@ -81,13 +89,13 @@ test('ya no dice nada de las almohadillas', () => {
   assert.ok(!promptDeTuky.includes('traducción'));
 });
 
-test('el prompt del servidor es el mismo que el de la app', () => {
-  // Si se separan, lo que se prueba en la app no es lo que contesta el
-  // servidor. Las seis reglas tienen que estar las seis.
-  for (const regla of ['1.', '2.', '3.', '4.', '5.', '6.']) {
+test('son cuatro reglas y ninguna más', () => {
+  // Eran nueve. Cada una que se va es una menos con la que confundirse, y
+  // este test está para que no vuelvan a crecer sin que nadie lo decida.
+  for (const regla of ['1.', '2.', '3.', '4.']) {
     assert.ok(promptDeTuky.includes(`\n${regla}`), `falta la regla ${regla}`);
   }
-  assert.ok(!promptDeTuky.includes('\n7.'), 'sobra una regla');
+  assert.ok(!promptDeTuky.includes('\n5.'), 'sobra una regla');
 });
 
 test('no hay ninguna clave pegada en el código', () => {
