@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import '../datos/audio_de_fondo.dart';
 import '../datos/reproductor.dart';
 import '../datos/repositorio_radios.dart';
 import '../modelos/radio_italiana.dart';
@@ -270,6 +271,10 @@ class _Escucha extends StatelessWidget {
         ],
         const SizedBox(height: 18),
         const _ComoEscucharla(),
+        if (!AudioDeFondo.anda) ...[
+          const SizedBox(height: 18),
+          const _SinAudioDeFondo(),
+        ],
         const SizedBox(height: 18),
         _Credito(radio: radio),
         if (alVolverALaLista != null) ...[
@@ -541,6 +546,54 @@ class _ComoEscucharla extends StatelessWidget {
                 ],
               ),
             ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Avisa que la radio se va a cortar al salir de la pantalla.
+///
+/// Solo aparece cuando el servicio de audio no se pudo prender. Sin esto, el
+/// síntoma desde afuera es que "se corta a los treinta segundos" y no hay
+/// forma de saber si es el celular, la señal o la app.
+class _SinAudioDeFondo extends StatelessWidget {
+  const _SinAudioDeFondo();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      margin: const EdgeInsets.symmetric(horizontal: 20),
+      padding: const EdgeInsets.fromLTRB(14, 12, 14, 12),
+      decoration: BoxDecoration(
+        color: Tema.verdeSuave,
+        borderRadius: BorderRadius.circular(Tema.radio),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Se va a cortar al bloquear la pantalla',
+            style: TextStyle(
+              fontSize: 13.5,
+              fontWeight: FontWeight.w700,
+              color: Tema.titulo,
+            ),
+          ),
+          const SizedBox(height: 4),
+          const Text(
+            'No se pudo prender el servicio que deja sonar el audio en '
+            'segundo plano. La radio funciona igual mientras la pantalla esté '
+            'encendida.',
+            style: TextStyle(fontSize: 12.5, color: Tema.textoTenue),
+          ),
+          if (AudioDeFondo.porQueNo != null) ...[
+            const SizedBox(height: 6),
+            Text(
+              AudioDeFondo.porQueNo!,
+              style: const TextStyle(fontSize: 11, color: Tema.textoTenue),
+            ),
+          ],
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'dart:io';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tukyliano/datos/audio_de_fondo.dart';
 
 /// Que el audio siga sonando con la pantalla bloqueada no depende de ninguna
 /// línea de Dart: depende de cuatro cosas del lado de Android. Ninguna de las
@@ -19,6 +20,20 @@ void main() {
   final pubspec = File('pubspec.yaml').readAsStringSync();
 
   group('el audio en segundo plano', () {
+    test('está el permiso para poder mostrar la notificación', () {
+      // Desde Android 13 sin esto no se muestra NINGUNA notificación, y sin
+      // notificación Android corta el audio al rato de que la app deja de
+      // estar a la vista. audio_service no lo declara: es nuestro.
+      expect(manifest, contains('android.permission.POST_NOTIFICATIONS'));
+    });
+
+    test('el permiso además se le pide al usuario en pantalla', () {
+      // Declararlo no alcanza: desde Android 13 hay que pedirlo en tiempo de
+      // ejecución o el sistema lo da por denegado.
+      expect(actividad, contains('POST_NOTIFICATIONS'));
+      expect(actividad, contains('requestPermissions'));
+    });
+
     test('están los tres permisos que hacen falta', () {
       // WAKE_LOCK para que el celular no se duerma del todo mientras suena.
       // FOREGROUND_SERVICE para poder levantar el servicio.
@@ -55,6 +70,19 @@ void main() {
 
     test('está el paquete que levanta todo esto', () {
       expect(pubspec, contains('just_audio_background'));
+    });
+
+    test('si no se puede prender, queda anotado el motivo', () {
+      // La primera versión atrapaba el error y lo escribía con debugPrint,
+      // que en un APK instalado no lo lee nadie: el audio se cortaba a los
+      // treinta segundos y desde afuera no había forma de saber por qué.
+      AudioDeFondo.comoSi(anda: false, porQue: 'no se pudo, de mentira');
+
+      expect(AudioDeFondo.anda, isFalse);
+      expect(AudioDeFondo.porQueNo, 'no se pudo, de mentira');
+
+      AudioDeFondo.comoSi(anda: true);
+      expect(AudioDeFondo.porQueNo, isNull);
     });
   });
 }
