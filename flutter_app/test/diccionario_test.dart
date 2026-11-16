@@ -173,4 +173,108 @@ void main() {
       }
     });
   });
+
+  group('la tabla de formas conjugadas', () {
+    late Diccionario diccionario;
+
+    setUpAll(() async {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      diccionario = await RepositorioDiccionario().cargar();
+    });
+
+    test('se carga y dice de dónde salió, que la licencia lo pide', () {
+      expect(diccionario.formas.length, greaterThan(50000));
+      expect(diccionario.creditoDeLasFormas, contains('kaikki.org'));
+    });
+
+    test('resuelve conjugaciones que ninguna regla de plurales adivina', () {
+      // Lo que mide esto no es que estén en la tabla: es que al tocarlas en
+      // un texto salga algo. Son las que antes no salían.
+      for (final (forma, base) in [
+        ('abbia', 'avere'),
+        ('avesse', 'avere'),
+        ('accadde', 'accadere'),
+        ('aggiunse', 'aggiungere'),
+        ('fossero', 'essere'),
+        ('cadde', 'cadere'),
+      ]) {
+        final hallada = traducir(diccionario, forma);
+        expect(hallada, isNotNull, reason: forma);
+        expect(hallada!.vieneDe, base, reason: forma);
+      }
+    });
+
+    test('resuelve los apócopes del verso, que es para lo que se trajo', () {
+      // Il Lupo e il Cane y las otras veintiuna están en italiano del siglo
+      // XIX, y el verso corta las palabras para que entren en el metro.
+      for (final forma in ['ancor', 'aver', 'andiam', 'allor', 'aspettar']) {
+        expect(traducir(diccionario, forma), isNotNull, reason: forma);
+      }
+    });
+
+    test('no se mete cuando la palabra está tal cual en el diccionario', () {
+      // "parlare" es una palabra de diccionario y además la base de medio
+      // centenar de formas. Cuando se toca ella misma se muestra ella, sin
+      // ningún "viene de".
+      for (final palabra in ['come', 'parlare', 'acqua', 'bello']) {
+        expect(diccionario.italiano.containsKey(palabra), isTrue,
+            reason: palabra);
+        final hallada = traducir(diccionario, palabra);
+        expect(hallada, isNotNull, reason: palabra);
+        expect(hallada!.vieneDe, isEmpty, reason: palabra);
+      }
+    });
+
+    test('no trae palabras derivadas disfrazadas de formas', () {
+      // Kaikki mezcla, en el mismo campo, las formas de una palabra con las
+      // palabras derivadas de ella: "cagnolino" (perrito) y "cagnaccio"
+      // (perrazo) figuran como formas de "cane", y "nepalese" como forma de
+      // "Nepal". Traducir "nepalese" por "Nepal" es mentir, y el que lee no
+      // tiene con qué darse cuenta.
+      for (final derivada in [
+        'cagnolino', 'cagnaccio', 'abatino', 'nepalese', 'marittimo',
+      ]) {
+        expect(diccionario.formas[derivada], isNull, reason: derivada);
+      }
+    });
+
+    test('ninguna forma apunta a una palabra que no se puede traducir', () {
+      // Una forma cuya base no está en el diccionario es peso muerto: se
+      // resuelve y después no hay nada que mostrar.
+      for (final entrada in diccionario.formas.entries.take(3000)) {
+        expect(diccionario.italiano.containsKey(entrada.value), isTrue,
+            reason: '${entrada.key} → ${entrada.value}');
+      }
+    });
+
+    test('ninguna forma es una palabra que ya está en el diccionario', () {
+      for (final forma in diccionario.formas.keys.take(3000)) {
+        expect(diccionario.italiano.containsKey(forma), isFalse, reason: forma);
+      }
+    });
+
+    test('las formas son palabras y no pedazos de tabla', () {
+      // Kaikki filtra metadatos como si fueran palabras: con el tag
+      // table-tags la "forma" es literalmente "irregular", y con
+      // inflection-template es "it-conj".
+      for (final forma in diccionario.formas.keys) {
+        expect(forma, matches(RegExp(r"^[a-z][a-z']*$")), reason: forma);
+      }
+      for (final basura in ['irregular', 'itconj', 'infinitive']) {
+        expect(diccionario.formas[basura], isNull, reason: basura);
+      }
+    });
+
+    test('sin el archivo de formas el diccionario sigue andando', () {
+      // Perder las conjugaciones es perder la mitad de las palabras de un
+      // texto; perder el diccionario es perder el traductor. Son dos
+      // archivos y dos try aparte justamente por esto.
+      expect(
+        const Diccionario(italiano: {'avere': ['tener']}).formas,
+        isEmpty,
+      );
+      expect(traducir(const Diccionario(italiano: {'avere': ['tener']}),
+          'avere'), isNotNull);
+    });
+  });
 }

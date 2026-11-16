@@ -198,7 +198,14 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
         content: Text(
           traduccion == null
               ? '$limpia no está en el diccionario'
-              : '$limpia: ${traduccion.comoSeDice}',
+              // Cuando lo que se tocó era una forma conjugada, se dice de
+              // qué palabra viene: "avean → avere: haber, tener". Enseña
+              // algo que la traducción sola no enseña, y si la forma está
+              // mal resuelta se nota en vez de parecer una traducción rara.
+              : traduccion.vieneDe.isEmpty
+                  ? '$limpia: ${traduccion.comoSeDice}'
+                  : '$limpia → ${traduccion.vieneDe}: '
+                      '${traduccion.comoSeDice}',
         ),
         duration: const Duration(seconds: 3),
       ));

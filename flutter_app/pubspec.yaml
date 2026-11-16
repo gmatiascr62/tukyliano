@@ -95,6 +95,12 @@ flutter:
     # FreeDict/WikDict y va con licencia CC BY-SA 3.0, que pide dar el
     # crédito. El archivo lo arma scripts/armar_diccionario.py.
     - assets/diccionario.json
+
+    # De qué palabra viene cada forma conjugada: "abbia" → "avere". Va
+    # aparte del diccionario porque pesa casi lo mismo que él. Es de
+    # Wiktionary vía kaikki.org y también pide crédito. Lo arma
+    # scripts/armar_formas.py.
+    - assets/formas.json
     # Las ilustraciones de los cuentos. Van en el APK y no se bajan: son pocas
     # y chicas, y así el cuento se ve igual sin señal.
     - assets/racconti/

@@ -16,6 +16,7 @@ class RepositorioDiccionario {
   final Future<String> Function(String) _leerAsset;
 
   static const String _elArchivo = 'assets/diccionario.json';
+  static const String _elDeLasFormas = 'assets/formas.json';
 
   Diccionario _diccionario = const Diccionario();
   bool _cargado = false;
@@ -33,7 +34,31 @@ class RepositorioDiccionario {
       // mismo que pasa con una palabra que no está. No se cae nada.
       _diccionario = const Diccionario();
     }
+    _diccionario = await _conLasFormas(_diccionario);
     _cargado = true;
     return _diccionario;
+  }
+
+  /// Le agrega la tabla de formas conjugadas, si se puede leer.
+  ///
+  /// Va en un try aparte y no junto con el diccionario a propósito: si este
+  /// archivo falla, el diccionario tiene que seguir andando como andaba
+  /// antes de que existieran las formas. Perder las conjugaciones es perder
+  /// la mitad de las palabras de un texto; perder el diccionario entero es
+  /// perder el traductor.
+  Future<Diccionario> _conLasFormas(Diccionario diccionario) async {
+    try {
+      final datos =
+          jsonDecode(await _leerAsset(_elDeLasFormas)) as Map<String, dynamic>;
+      return diccionario.conFormas(
+        {
+          for (final entrada in (datos['de'] as Map? ?? {}).entries)
+            '${entrada.key}': '${entrada.value}',
+        },
+        credito: datos['credito'] as String? ?? '',
+      );
+    } catch (_) {
+      return diccionario;
+    }
   }
 }

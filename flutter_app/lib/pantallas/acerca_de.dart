@@ -24,6 +24,15 @@ Future<void> mostrarAcercaDe(BuildContext context) => mostrarAyuda(
           ejemplos: ['freedict.org', 'wikdict.com', 'wiktionary.org'],
         ),
         SeccionAyuda(
+          titulo: 'Las conjugaciones',
+          cuerpo: 'Un diccionario trae "avere" y los textos dicen "abbia" o '
+              '"avean". De qué palabra viene cada forma lo sabe una tabla de '
+              'Wiktionary, extraída por wiktextract de Tatu Ylonen y '
+              'publicada en kaikki.org. Licencia Creative Commons '
+              'Atribución-CompartirIgual 4.0.',
+          ejemplos: ['kaikki.org', 'wiktionary.org'],
+        ),
+        SeccionAyuda(
           titulo: 'Las voces',
           cuerpo: 'El italiano que se escucha en los cuentos y en los '
               'ejercicios lo pronuncia tu propio celular. Los episodios del '
