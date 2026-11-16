@@ -3,8 +3,8 @@
 /// Los tiempos son opcionales porque marcarlos es trabajo a mano: hay que
 /// escuchar la fábula e ir anotando en qué segundo arranca cada verso. Las
 /// que todavía no están marcadas muestran el texto quieto, que ya sirve.
-class RenglonDeFavola {
-  const RenglonDeFavola({required this.texto, this.desde, this.hasta});
+class RenglonDeLectura {
+  const RenglonDeLectura({required this.texto, this.desde, this.hasta});
 
   final String texto;
   final Duration? desde;
@@ -25,10 +25,10 @@ class RenglonDeFavola {
     return Duration(milliseconds: (segundos * 1000).round());
   }
 
-  static RenglonDeFavola desdeJson(Object? datos) {
-    if (datos is String) return RenglonDeFavola(texto: datos);
+  static RenglonDeLectura desdeJson(Object? datos) {
+    if (datos is String) return RenglonDeLectura(texto: datos);
     final mapa = datos! as Map<String, dynamic>;
-    return RenglonDeFavola(
+    return RenglonDeLectura(
       texto: mapa['t'] as String? ?? '',
       desde: _comoDuracion(mapa['desde']),
       hasta: _comoDuracion(mapa['hasta']),
@@ -46,8 +46,8 @@ class RenglonDeFavola {
 /// Las graban voluntarios de LibriVox y son de dominio público: las obras
 /// hace rato y las grabaciones a propósito. Por eso pueden viajar adentro de
 /// la app sin pedirle permiso a nadie, al revés que la radio.
-class Favola {
-  const Favola({
+class Lectura {
+  const Lectura({
     required this.id,
     required this.titulo,
     required this.libro,
@@ -78,7 +78,7 @@ class Favola {
   /// Está en verso, porque la traducción que leen es la de Emilio de Marchi
   /// y es poesía rimada. Para seguir el audio con la vista sirve igual; para
   /// aprender a hablar, el italiano de Pinocchio es mejor material.
-  final List<RenglonDeFavola> renglones;
+  final List<RenglonDeLectura> renglones;
 
   bool get tieneTexto => renglones.isNotEmpty;
 
@@ -120,7 +120,7 @@ class Favola {
     return '${(kb / 1024).toStringAsFixed(1)} MB';
   }
 
-  static Favola desdeJson(Map<String, dynamic> datos) => Favola(
+  static Lectura desdeJson(Map<String, dynamic> datos) => Lectura(
         id: datos['id'] as String,
         titulo: datos['titulo'] as String,
         libro: datos['libro'] as int? ?? 1,
@@ -129,22 +129,23 @@ class Favola {
         bytes: datos['bytes'] as int? ?? 0,
         renglones: [
           for (final r in (datos['renglones'] as List? ?? []))
-            RenglonDeFavola.desdeJson(r),
+            RenglonDeLectura.desdeJson(r),
         ],
       );
 }
 
 /// El catálogo entero, con de dónde salió.
-class Favole {
-  const Favole({
-    this.favole = const [],
+class Lecturas {
+  const Lecturas({
+    this.lecturas = const [],
     this.base = '',
     this.credito = '',
     this.fuente = '',
     this.textoDe = '',
+    this.deQuien = '',
   });
 
-  final List<Favola> favole;
+  final List<Lectura> lecturas;
 
   /// De dónde se bajan. Viene del archivo y no del código para poder mudar
   /// los audios de lugar sin publicar un APK.
@@ -153,10 +154,18 @@ class Favole {
   final String credito;
   final String fuente;
 
+  /// Quién firma lo que suena, para la pantalla bloqueada y los auriculares.
+  ///
+  /// Viene del catálogo y no del código porque cambia con la colección:
+  /// las fábulas son de La Fontaine y Pinocchio es de Collodi. Antes
+  /// estaba clavado, y el día que entró la segunda colección iba a decir
+  /// que Pinocchio lo escribió La Fontaine.
+  final String deQuien;
+
   /// De dónde salió el texto, que no es el mismo lugar que el audio.
   final String textoDe;
 
-  bool get hay => favole.isNotEmpty;
+  bool get hay => lecturas.isNotEmpty;
 
-  String donde(Favola favola) => '$base/${favola.archivo}';
+  String donde(Lectura lectura) => '$base/${lectura.archivo}';
 }

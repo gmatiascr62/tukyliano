@@ -20,11 +20,11 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/datos/repositorio_diccionario.dart';
-import 'package:tukyliano/datos/repositorio_favole.dart';
+import 'package:tukyliano/datos/repositorio_lecturas.dart';
 import 'package:tukyliano/ia/chat.dart';
 import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
-import 'package:tukyliano/pantallas/pantalla_favole.dart';
+import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 import 'package:tukyliano/tema.dart';
@@ -184,7 +184,7 @@ Widget comoEnLaApp(Widget pantalla) => Scaffold(
 /// Bajo el reloj falso de los tests de widget, leer un asset con rootBundle
 /// no termina nunca: la pantalla se queda cargando y la foto sale en blanco.
 /// Se lee el mismo archivo con dart:io, que sí contesta.
-RepositorioFavole _elCatalogoDeVerdad() => RepositorioFavole(
+RepositorioLecturas _elCatalogoDeVerdad() => RepositorioLecturas(
       leerAsset: (_) async => File('assets/favole.json').readAsStringSync(),
     );
 
@@ -259,7 +259,7 @@ void main() {
           },
         );
 
-      case 'una-favola':
+      case 'una-lectura':
         // La del lobo, que es la que tiene los tiempos marcados, con el
         // reloj puesto en medio de un verso: así se ve el renglón iluminado,
         // que es lo que hay que mirar.
@@ -267,7 +267,7 @@ void main() {
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaFavole(
+          comoEnLaApp(PantallaLecturas(
             repositorio: _elCatalogoDeVerdad(),
             descargas: _descargasDeMentira(),
             reproductor: reproductor,
@@ -281,11 +281,11 @@ void main() {
           },
         );
 
-      case 'favole':
+      case 'lecturas':
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaFavole(
+          comoEnLaApp(PantallaLecturas(
             repositorio: _elCatalogoDeVerdad(),
             descargas: _descargasDeMentira(),
             reproductor: ReproductorFalso(),

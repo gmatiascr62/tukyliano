@@ -188,8 +188,8 @@ void main() {
         await rootBundle.loadString('assets/favole.json'),
       ) as Map<String, dynamic>;
       final vistas = <String>{};
-      for (final favola in catalogo['favole'] as List) {
-        for (final renglon in (favola as Map)['renglones'] as List) {
+      for (final lectura in catalogo['favole'] as List) {
+        for (final renglon in (lectura as Map)['renglones'] as List) {
           final texto = (renglon as Map)['t'] as String;
           for (final palabra in texto.split(RegExp(r'[\s/]+'))) {
             final limpia = palabra
