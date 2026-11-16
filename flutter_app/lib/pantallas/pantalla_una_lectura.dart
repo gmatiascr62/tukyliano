@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 import '../datos/buscador_de_palabras.dart';
 import '../datos/reproductor.dart';
 import '../modelos/diccionario.dart';
-import '../modelos/favola.dart';
+import '../modelos/lectura.dart';
 import '../tema.dart';
 
 /// Una fábula: el audio y el texto, juntos.
@@ -24,10 +24,10 @@ import '../tema.dart';
 /// El texto está en verso, porque la traducción que leen es la de Emilio de
 /// Marchi y es poesía rimada. Por eso las palabras que se tocan importan
 /// tanto: sin eso, un verso del siglo XIX es una pared.
-class PantallaUnaFavola extends StatefulWidget {
-  const PantallaUnaFavola({
+class PantallaUnaLectura extends StatefulWidget {
+  const PantallaUnaLectura({
     super.key,
-    required this.favola,
+    required this.lectura,
     required this.ruta,
     required this.reproductor,
     required this.diccionario,
@@ -35,7 +35,7 @@ class PantallaUnaFavola extends StatefulWidget {
     this.buscador,
   });
 
-  final Favola favola;
+  final Lectura lectura;
 
   /// Dónde quedó guardado el audio en el celular.
   final String ruta;
@@ -49,10 +49,10 @@ class PantallaUnaFavola extends StatefulWidget {
   final BuscadorDePalabras? buscador;
 
   @override
-  State<PantallaUnaFavola> createState() => _PantallaUnaFavolaState();
+  State<PantallaUnaLectura> createState() => _PantallaUnaLecturaState();
 }
 
-class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
+class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
   late final BuscadorDePalabras _buscador =
       widget.buscador ?? BuscadorDePalabras();
 
@@ -74,7 +74,7 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
   /// dibujado. Calcularlo no sirve: un verso largo ocupa dos líneas y el
   /// error se va sumando.
   late final List<GlobalKey> _claves = [
-    for (var i = 0; i < widget.favola.renglones.length; i++) GlobalKey(),
+    for (var i = 0; i < widget.lectura.renglones.length; i++) GlobalKey(),
   ];
 
   @override
@@ -98,8 +98,8 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
   Future<void> _prepararYArrancar() async {
     final abrio = await widget.reproductor.cargarGuardado(
       widget.ruta,
-      titulo: widget.favola.titulo,
-      deQuien: 'Favole di La Fontaine',
+      titulo: widget.lectura.titulo,
+      deQuien: 'Lecturas di La Fontaine',
     );
     if (!mounted) return;
     if (!abrio) {
@@ -109,7 +109,7 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
       });
       return;
     }
-    if (widget.favola.sigueElAudio) {
+    if (widget.lectura.sigueElAudio) {
       _siguiendo = widget.reproductor.porDonde.listen(_vaPor);
       _esperandoElFinal =
           widget.reproductor.termino.listen((_) => _seAcabo());
@@ -124,7 +124,7 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
     // va la presentación de LibriVox, y en una fábula de minuto y medio son
     // dieciséis segundos de espera antes de lo que se vino a escuchar. Quien
     // quiera oírla puede volver con el botón de reiniciar.
-    final empieza = widget.favola.dondeEmpiezaDeVerdad;
+    final empieza = widget.lectura.dondeEmpiezaDeVerdad;
     if (empieza != null) await widget.reproductor.irA(empieza);
 
     await widget.reproductor.reproducir();
@@ -132,7 +132,7 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
 
   void _vaPor(Duration donde) {
     if (!mounted) return;
-    final cual = widget.favola.cualSuena(donde);
+    final cual = widget.lectura.cualSuena(donde);
     if (cual == _enElRenglon) return;
     setState(() => _enElRenglon = cual);
     if (cual >= 0 && _sonando) _acercarA(cual);
@@ -172,7 +172,7 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
   Future<void> _desdeElPrincipio() async {
     if (!_abrio) return;
     await widget.reproductor.irA(
-      widget.favola.dondeEmpiezaDeVerdad ?? Duration.zero,
+      widget.lectura.dondeEmpiezaDeVerdad ?? Duration.zero,
     );
     if (!_sonando) {
       await widget.reproductor.reproducir();
@@ -239,12 +239,12 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
 
   @override
   Widget build(BuildContext context) {
-    final favola = widget.favola;
+    final lectura = widget.lectura;
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _Cabecera(favola: favola, alVolver: widget.alVolver),
+        _Cabecera(lectura: lectura, alVolver: widget.alVolver),
         if (_porQueNoSuena != null)
           _NoAbre(porQue: _porQueNoSuena!)
         else
@@ -257,9 +257,9 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
           ),
         const Divider(height: 1),
         Expanded(
-          child: favola.tieneTexto
+          child: lectura.tieneTexto
               ? _ElTexto(
-                  renglones: favola.renglones,
+                  renglones: lectura.renglones,
                   enElRenglon: _enElRenglon,
                   claves: _claves,
                   scroll: _scroll,
@@ -273,9 +273,9 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
 }
 
 class _Cabecera extends StatelessWidget {
-  const _Cabecera({required this.favola, required this.alVolver});
+  const _Cabecera({required this.lectura, required this.alVolver});
 
-  final Favola favola;
+  final Lectura lectura;
   final VoidCallback alVolver;
 
   @override
@@ -296,7 +296,7 @@ class _Cabecera extends StatelessWidget {
               children: [
                 const SizedBox(height: 8),
                 Text(
-                  favola.titulo,
+                  lectura.titulo,
                   style: const TextStyle(
                     fontSize: 19,
                     fontWeight: FontWeight.w700,
@@ -305,7 +305,7 @@ class _Cabecera extends StatelessWidget {
                 ),
                 const SizedBox(height: 2),
                 Text(
-                  favola.cuantoDura,
+                  lectura.cuantoDura,
                   style: const TextStyle(
                     fontSize: 12,
                     color: Tema.textoTenue,
@@ -412,7 +412,7 @@ class _ElTexto extends StatefulWidget {
     required this.alTocarPalabra,
   });
 
-  final List<RenglonDeFavola> renglones;
+  final List<RenglonDeLectura> renglones;
   final int enElRenglon;
   final List<GlobalKey> claves;
   final ScrollController scroll;

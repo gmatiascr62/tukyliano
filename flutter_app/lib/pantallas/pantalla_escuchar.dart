@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../datos/reproductor.dart';
 import '../widgets/pastilla.dart';
-import 'pantalla_favole.dart';
+import 'pantalla_lecturas.dart';
 import 'pantalla_podcast.dart';
 
 /// Las dos cosas que se escuchan, una al lado de la otra.
@@ -10,7 +10,7 @@ import 'pantalla_podcast.dart';
 /// **Podcast**: episodios escritos y grabados para la app, en italiano fácil
 /// y pensados para quien recién empieza.
 ///
-/// **Favole**: las fábulas de La Fontaine leídas por voluntarios de
+/// **Lecturas**: las fábulas de La Fontaine leídas por voluntarios de
 /// LibriVox. Italiano de verdad, no simplificado, pero en pedazos de uno a
 /// tres minutos y con historias que uno ya conoce.
 ///
@@ -48,7 +48,7 @@ class _PantallaEscucharState extends State<PantallaEscuchar> {
             ),
             const SizedBox(width: 8),
             Pastilla(
-              texto: 'Favole',
+              texto: 'Lecturas',
               activa: _enFavole,
               alTocar: () => setState(() => _enFavole = true),
             ),
@@ -59,8 +59,8 @@ class _PantallaEscucharState extends State<PantallaEscuchar> {
           // Con key para que al cambiar de pastilla cada pantalla se arme de
           // nuevo en vez de quedarse con el estado de la otra.
           child: _enFavole
-              ? PantallaFavole(
-                  key: const ValueKey('favole'),
+              ? PantallaLecturas(
+                  key: const ValueKey('lecturas'),
                   reproductor: widget.reproductor,
                 )
               : PantallaPodcast(

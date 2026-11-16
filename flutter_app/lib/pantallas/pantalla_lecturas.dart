@@ -4,11 +4,11 @@ import '../datos/buscador_de_palabras.dart';
 import '../datos/descargas.dart';
 import '../datos/reproductor.dart';
 import '../datos/repositorio_diccionario.dart';
-import '../datos/repositorio_favole.dart';
+import '../datos/repositorio_lecturas.dart';
 import '../modelos/diccionario.dart';
-import '../modelos/favola.dart';
+import '../modelos/lectura.dart';
 import '../tema.dart';
-import 'pantalla_una_favola.dart';
+import 'pantalla_una_lectura.dart';
 
 /// Las fábulas de La Fontaine, leídas en italiano.
 ///
@@ -22,8 +22,8 @@ import 'pantalla_una_favola.dart';
 /// historias que uno ya conoce, y cada una se cierra sola. Si no entendiste
 /// una, perdiste dos minutos. Un capítulo de novela mal entendido es una
 /// derrota; una fábula mal entendida es un intento más.
-class PantallaFavole extends StatefulWidget {
-  const PantallaFavole({
+class PantallaLecturas extends StatefulWidget {
+  const PantallaLecturas({
     super.key,
     this.repositorio,
     this.descargas,
@@ -32,7 +32,7 @@ class PantallaFavole extends StatefulWidget {
     this.buscador,
   });
 
-  final RepositorioFavole? repositorio;
+  final RepositorioLecturas? repositorio;
   final Descargas? descargas;
   final Reproductor? reproductor;
   final RepositorioDiccionario? diccionario;
@@ -42,12 +42,12 @@ class PantallaFavole extends StatefulWidget {
   final BuscadorDePalabras? buscador;
 
   @override
-  State<PantallaFavole> createState() => _PantallaFavoleState();
+  State<PantallaLecturas> createState() => _PantallaLecturasState();
 }
 
-class _PantallaFavoleState extends State<PantallaFavole> {
-  late final RepositorioFavole _repositorio =
-      widget.repositorio ?? RepositorioFavole();
+class _PantallaLecturasState extends State<PantallaLecturas> {
+  late final RepositorioLecturas _repositorio =
+      widget.repositorio ?? RepositorioLecturas();
   late final Descargas _descargas = widget.descargas ?? DescargasEnElCelular();
   late final Reproductor _reproductor =
       widget.reproductor ?? ReproductorDeVerdad();
@@ -59,12 +59,12 @@ class _PantallaFavoleState extends State<PantallaFavole> {
   Diccionario _elDiccionario = const Diccionario();
 
   /// Cuál está abierta, con su texto. Null cuando se ve la lista.
-  Favola? _abierta;
+  Lectura? _abierta;
 
   /// Dónde quedó guardado el audio de la que está abierta.
   String _rutaAbierta = '';
 
-  Favole _catalogo = const Favole();
+  Lecturas _catalogo = const Lecturas();
   bool _cargando = true;
 
   /// Cuáles ya están en el celular.
@@ -100,7 +100,7 @@ class _PantallaFavoleState extends State<PantallaFavole> {
   Future<void> _arrancar() async {
     final catalogo = await _repositorio.cargar();
     final guardadas =
-        await _descargas.cualesEstan(catalogo.favole.map((f) => f.archivo));
+        await _descargas.cualesEstan(catalogo.lecturas.map((f) => f.archivo));
     if (!mounted) return;
     setState(() {
       _catalogo = catalogo;
@@ -114,53 +114,53 @@ class _PantallaFavoleState extends State<PantallaFavole> {
   ///
   /// Un solo gesto en vez de un botón de bajar y otro de escuchar. Nadie baja
   /// una fábula para no escucharla.
-  Future<void> _tocar(Favola favola) async {
-    if (!_guardadas.contains(favola.archivo)) {
-      await _bajarla(favola);
-      if (!mounted || !_guardadas.contains(favola.archivo)) return;
+  Future<void> _tocar(Lectura lectura) async {
+    if (!_guardadas.contains(lectura.archivo)) {
+      await _bajarla(lectura);
+      if (!mounted || !_guardadas.contains(lectura.archivo)) return;
     }
 
-    final donde = await _descargas.donde(favola.archivo);
+    final donde = await _descargas.donde(lectura.archivo);
     if (donde == null || !mounted) return;
 
     setState(() {
-      _abierta = favola;
+      _abierta = lectura;
       _rutaAbierta = donde.path;
     });
   }
 
   /// Vuelve a la lista. Si el audio no se pudo abrir, lo borra: así el
   /// próximo toque lo baja de nuevo en vez de fallar siempre igual.
-  Future<void> _cerrarLaFavola(Favola favola) async {
+  Future<void> _cerrarLaFavola(Lectura lectura) async {
     final anduvo = _reproductor.porQueFallo == null;
     if (!anduvo) {
-      await _descargas.borrar(favola.archivo);
+      await _descargas.borrar(lectura.archivo);
       if (!mounted) return;
       setState(() {
-        _guardadas.remove(favola.archivo);
-        _fallaron.add(favola.id);
+        _guardadas.remove(lectura.archivo);
+        _fallaron.add(lectura.id);
       });
     }
     if (!mounted) return;
     setState(() => _abierta = null);
   }
 
-  Future<void> _bajarla(Favola favola) async {
+  Future<void> _bajarla(Lectura lectura) async {
     setState(() {
-      _bajando.add(favola.id);
-      _fallaron.remove(favola.id);
+      _bajando.add(lectura.id);
+      _fallaron.remove(lectura.id);
     });
 
     final quedo =
-        await _descargas.bajar(_catalogo.donde(favola), favola.archivo);
+        await _descargas.bajar(_catalogo.donde(lectura), lectura.archivo);
     if (!mounted) return;
 
     setState(() {
-      _bajando.remove(favola.id);
+      _bajando.remove(lectura.id);
       if (quedo == null) {
-        _fallaron.add(favola.id);
+        _fallaron.add(lectura.id);
       } else {
-        _guardadas.add(favola.archivo);
+        _guardadas.add(lectura.archivo);
       }
     });
   }
@@ -170,15 +170,15 @@ class _PantallaFavoleState extends State<PantallaFavole> {
   /// Una por una y no todas juntas a propósito: veintidós pedidos al mismo
   /// tiempo con señal mala fallan todos, y además así se ve avanzar la lista.
   Future<void> _bajarLasQueFaltan() async {
-    for (final favola in _catalogo.favole) {
+    for (final lectura in _catalogo.lecturas) {
       if (!mounted) return;
-      if (_guardadas.contains(favola.archivo)) continue;
-      await _bajarla(favola);
+      if (_guardadas.contains(lectura.archivo)) continue;
+      await _bajarla(lectura);
     }
   }
 
-  List<Favola> get _faltan => [
-        for (final f in _catalogo.favole)
+  List<Lectura> get _faltan => [
+        for (final f in _catalogo.lecturas)
           if (!_guardadas.contains(f.archivo)) f,
       ];
 
@@ -186,11 +186,11 @@ class _PantallaFavoleState extends State<PantallaFavole> {
   Widget build(BuildContext context) {
     final abierta = _abierta;
     if (abierta != null) {
-      return PantallaUnaFavola(
+      return PantallaUnaLectura(
         // La clave hace que cambiar de fábula arranque de cero en vez de
         // quedarse con el estado de la anterior.
         key: ValueKey(abierta.id),
-        favola: abierta,
+        lectura: abierta,
         ruta: _rutaAbierta,
         reproductor: _reproductor,
         diccionario: _elDiccionario,
@@ -213,19 +213,19 @@ class _PantallaFavoleState extends State<PantallaFavole> {
       padding: const EdgeInsets.symmetric(vertical: 4),
       children: [
         _DeQueVa(
-          cuantas: _catalogo.favole.length,
+          cuantas: _catalogo.lecturas.length,
           faltan: faltan,
           bajando: bajandoTodas,
           alBajarTodas: bajandoTodas ? null : _bajarLasQueFaltan,
         ),
         const SizedBox(height: 10),
-        for (final favola in _catalogo.favole)
+        for (final lectura in _catalogo.lecturas)
           _UnaFavola(
-            favola: favola,
-            guardada: _guardadas.contains(favola.archivo),
-            bajando: _bajando.contains(favola.id),
-            fallo: _fallaron.contains(favola.id),
-            alTocar: () => _tocar(favola),
+            lectura: lectura,
+            guardada: _guardadas.contains(lectura.archivo),
+            bajando: _bajando.contains(lectura.id),
+            fallo: _fallaron.contains(lectura.id),
+            alTocar: () => _tocar(lectura),
           ),
         const SizedBox(height: 18),
         _Credito(catalogo: _catalogo),
@@ -271,7 +271,7 @@ class _DeQueVa extends StatelessWidget {
   });
 
   final int cuantas;
-  final List<Favola> faltan;
+  final List<Lectura> faltan;
   final bool bajando;
   final VoidCallback? alBajarTodas;
 
@@ -304,14 +304,14 @@ class _DeQueVa extends StatelessWidget {
 
 class _UnaFavola extends StatelessWidget {
   const _UnaFavola({
-    required this.favola,
+    required this.lectura,
     required this.guardada,
     required this.bajando,
     required this.fallo,
     required this.alTocar,
   });
 
-  final Favola favola;
+  final Lectura lectura;
   final bool guardada;
   final bool bajando;
   final bool fallo;
@@ -327,7 +327,7 @@ class _UnaFavola extends StatelessWidget {
         child: Center(child: _elIcono()),
       ),
       title: Text(
-        favola.titulo,
+        lectura.titulo,
         style: const TextStyle(
           fontSize: 15.5,
           fontWeight: FontWeight.w500,
@@ -338,8 +338,8 @@ class _UnaFavola extends StatelessWidget {
         fallo
             ? 'No se pudo bajar. Tocá para probar de nuevo.'
             : guardada
-                ? favola.cuantoDura
-                : '${favola.cuantoDura} · ${favola.cuantoPesa}',
+                ? lectura.cuantoDura
+                : '${lectura.cuantoDura} · ${lectura.cuantoPesa}',
         style: TextStyle(
           fontSize: 12.5,
           color: fallo ? Tema.incorrecto : Tema.textoTenue,
@@ -374,7 +374,7 @@ class _UnaFavola extends StatelessWidget {
 class _Credito extends StatelessWidget {
   const _Credito({required this.catalogo});
 
-  final Favole catalogo;
+  final Lecturas catalogo;
 
   @override
   Widget build(BuildContext context) {

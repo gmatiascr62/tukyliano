@@ -413,4 +413,7 @@ def main():
     print(f'audios en {carpeta}')
 
 
-main()
+# Con la guarda y no pelado: sin esto, importar este archivo para
+# reusarle una función lo ejecuta entero y rearma el catálogo de paso.
+if __name__ == '__main__':
+    main()

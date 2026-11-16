@@ -9,10 +9,10 @@ import 'package:tukyliano/datos/buscador_de_palabras.dart';
 import 'package:tukyliano/datos/descargas.dart';
 import 'package:tukyliano/datos/repositorio_diccionario.dart';
 import 'package:tukyliano/datos/quien_soy.dart';
-import 'package:tukyliano/datos/repositorio_favole.dart';
+import 'package:tukyliano/datos/repositorio_lecturas.dart';
 import 'package:tukyliano/ia/servidor.dart';
-import 'package:tukyliano/modelos/favola.dart';
-import 'package:tukyliano/pantallas/pantalla_favole.dart';
+import 'package:tukyliano/modelos/lectura.dart';
+import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
 import 'package:tukyliano/tema.dart';
 
 import 'descargas_falsas.dart';
@@ -61,8 +61,8 @@ Future<void> _abrir(
   await tester.pumpWidget(MaterialApp(
     theme: Tema.datos,
     home: Scaffold(
-      body: PantallaFavole(
-        repositorio: RepositorioFavole(
+      body: PantallaLecturas(
+        repositorio: RepositorioLecturas(
           leerAsset: (_) async => catalogo ?? _json,
         ),
         descargas: descargas,
@@ -90,14 +90,14 @@ const String _diccionarioDePrueba = '''
 void main() {
   group('el catálogo', () {
     final datos = jsonDecode(_json) as Map<String, dynamic>;
-    final favole = (datos['favole'] as List).cast<Map<String, dynamic>>();
+    final lecturas = (datos['favole'] as List).cast<Map<String, dynamic>>();
 
     test('tiene fábulas', () {
-      expect(favole, isNotEmpty);
+      expect(lecturas, isNotEmpty);
     });
 
     test('todas tienen título, archivo, duración y peso', () {
-      for (final f in favole) {
+      for (final f in lecturas) {
         expect(f['titulo'], isNotEmpty, reason: '$f');
         expect(f['archivo'], isNotEmpty, reason: '${f['titulo']}');
         expect(f['segundos'], greaterThan(0), reason: '${f['titulo']}');
@@ -108,7 +108,7 @@ void main() {
     test('ninguna pasa de cuatro minutos', () {
       // Es la razón de ser de esta sección: si no entendiste una, perdiste
       // dos minutos y no un capítulo. Una fábula larga rompe el trato.
-      for (final f in favole) {
+      for (final f in lecturas) {
         expect(f['segundos'], lessThan(4 * 60), reason: '${f['titulo']}');
       }
     });
@@ -116,13 +116,13 @@ void main() {
     test('los títulos no tienen la codificación rota', () {
       // archive.org devuelve "Il Topo di cittÃÂÃÂ..." en vez de "città".
       // El script lo arregla; esto verifica que lo siga arreglando.
-      for (final f in favole) {
+      for (final f in lecturas) {
         expect(f['titulo'], isNot(contains('Ã')), reason: '${f['titulo']}');
       }
     });
 
     test('no hay dos con el mismo archivo', () {
-      final nombres = favole.map((f) => f['archivo']).toList();
+      final nombres = lecturas.map((f) => f['archivo']).toList();
       expect(nombres.toSet().length, nombres.length);
     });
 
@@ -465,7 +465,7 @@ void main() {
         tester,
         descargas: DescargasFalsas(),
         reproductor: ReproductorFalso(),
-        catalogo: '{"version": 1, "favole": []}',
+        catalogo: '{"version": 1, "lecturas": []}',
       );
 
       expect(find.textContaining('Todavía no hay fábulas'), findsOne);
@@ -474,10 +474,10 @@ void main() {
 
   group('los tiempos del texto', () {
     final datos = jsonDecode(_json) as Map<String, dynamic>;
-    final favole = (datos['favole'] as List).cast<Map<String, dynamic>>();
+    final lecturas = (datos['favole'] as List).cast<Map<String, dynamic>>();
 
-    Favola deLaLista(String parteDelTitulo) => Favola.desdeJson(
-          favole.firstWhere(
+    Lectura deLaLista(String parteDelTitulo) => Lectura.desdeJson(
+          lecturas.firstWhere(
             (f) => (f['titulo'] as String).contains(parteDelTitulo),
           ),
         );
@@ -489,8 +489,8 @@ void main() {
     test('ahora las veintidós siguen el audio', () {
       // Antes había una sola marcada a mano. Las otras veintiuna las alineó
       // scripts/alinear_favole.py y ya no queda ninguna con el texto quieto.
-      for (final mapa in favole) {
-        expect(Favola.desdeJson(mapa).sigueElAudio, isTrue,
+      for (final mapa in lecturas) {
+        expect(Lectura.desdeJson(mapa).sigueElAudio, isTrue,
             reason: mapa['titulo'] as String);
       }
     });
@@ -498,7 +498,7 @@ void main() {
     test('una sin marcar no finge que sigue el audio', () {
       // Mostrar el renglón equivocado iluminado sería peor que no iluminar
       // ninguno, así que la que no tiene tiempos lo dice.
-      final sinMarcar = Favola.desdeJson({
+      final sinMarcar = Lectura.desdeJson({
         'id': 'x',
         'titulo': 'Sin marcar',
         'archivo': 'x.mp3',
@@ -515,28 +515,28 @@ void main() {
     });
 
     testWidgets('sabe qué renglón suena en cada momento', (tester) async {
-      final favola = deLaLista('Lupo e il Cane');
+      final lectura = deLaLista('Lupo e il Cane');
 
       // Antes del primer verso está la presentación de LibriVox.
-      expect(favola.cualSuena(const Duration(seconds: 5)), -1);
-      expect(favola.cualSuena(const Duration(seconds: 16)), 0);
-      expect(favola.cualSuena(const Duration(seconds: 23)), 2);
+      expect(lectura.cualSuena(const Duration(seconds: 5)), -1);
+      expect(lectura.cualSuena(const Duration(seconds: 16)), 0);
+      expect(lectura.cualSuena(const Duration(seconds: 23)), 2);
       // Y al final, el cierre.
-      expect(favola.cualSuena(const Duration(seconds: 145)), -1);
+      expect(lectura.cualSuena(const Duration(seconds: 145)), -1);
     });
 
     test('los tiempos van en orden y caben en el audio', () {
-      for (final mapa in favole) {
-        final favola = Favola.desdeJson(mapa);
-        if (!favola.sigueElAudio) continue;
+      for (final mapa in lecturas) {
+        final lectura = Lectura.desdeJson(mapa);
+        if (!lectura.sigueElAudio) continue;
         var antes = Duration.zero;
-        for (final renglon in favola.renglones) {
+        for (final renglon in lectura.renglones) {
           final desde = renglon.desde;
           if (desde == null) continue;
           expect(desde, greaterThanOrEqualTo(antes),
-              reason: '${favola.titulo}: "${renglon.texto}" va para atrás');
-          expect(desde.inSeconds, lessThanOrEqualTo(favola.segundos),
-              reason: '${favola.titulo}: "${renglon.texto}" se pasa del fin');
+              reason: '${lectura.titulo}: "${renglon.texto}" va para atrás');
+          expect(desde.inSeconds, lessThanOrEqualTo(lectura.segundos),
+              reason: '${lectura.titulo}: "${renglon.texto}" se pasa del fin');
           antes = desde;
         }
       }
