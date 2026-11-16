@@ -1,0 +1,517 @@
+{
+  "id": "pinocchio_12",
+  "titulo": "12. Il burattinaio Mangiafoco regala cinque monete d’oro a Pinocchio, perché le porti al suo babbo Geppetto: e Pinocchio, invece, si lascia abbindolare dalla Volpe e dal Gatto e se ne va con loro.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 39.21,
+      "hasta": 43.91,
+      "texto": "Il giorno dipoi Mangiafoco chiamò in disparte Pinocchio e gli domandò:"
+    },
+    {
+      "desde": 43.91,
+      "hasta": 45.38,
+      "texto": "— Come si chiama tuo padre? — Geppetto."
+    },
+    {
+      "desde": 46.4,
+      "hasta": 47.8,
+      "texto": "— E che mestiere fa?"
+    },
+    {
+      "desde": 47.8,
+      "hasta": 48.8,
+      "texto": "— Il povero."
+    },
+    {
+      "desde": 48.8,
+      "hasta": 49.8,
+      "texto": "— Guadagna molto?"
+    },
+    {
+      "desde": 49.8,
+      "hasta": 55.08,
+      "texto": "— Guadagna tanto quanto ci vuole per non aver mai un centesimo in tasca."
+    },
+    {
+      "desde": 55.08,
+      "hasta": 65.6,
+      "texto": "Si figuri che per comprarmi l’Abbecedario della scuola dovè vendere l’unica casacca che aveva addosso: una casacca che, fra toppe e rimendi, era tutta una piaga."
+    },
+    {
+      "desde": 65.6,
+      "hasta": 66.66,
+      "texto": "— Povero diavolo!"
+    },
+    {
+      "desde": 66.66,
+      "hasta": 68.36,
+      "texto": "Mi fa quasi compassione."
+    },
+    {
+      "desde": 68.36,
+      "hasta": 70.37,
+      "texto": "Ecco qui cinque monete d’oro."
+    },
+    {
+      "desde": 70.62,
+      "hasta": 74.29,
+      "texto": "Va’ subito a portargliele, e salutalo tanto da parte mia. —"
+    },
+    {
+      "desde": 74.29,
+      "hasta": 84.29,
+      "texto": "Pinocchio, come è facile immaginarselo, ringraziò ringraziò mille volte il burattinaio: abbraccio’, a uno a uno, tutti i burattini della compagnia, anche i giandarmi;"
+    },
+    {
+      "desde": 84.29,
+      "hasta": 89.29,
+      "texto": "e fuori di se’ dalla contentezza, si mise in viaggio per ritornarsene a casa sua."
+    },
+    {
+      "desde": 89.29,
+      "hasta": 95.89,
+      "texto": "Ma non aveva fatto ancora mezzo chilometro, che incontrò per la strada una Volpe zoppa da"
+    },
+    {
+      "desde": 95.89,
+      "hasta": 95.89,
+      "texto": "- Com'è che sai il mio nome?"
+    },
+    {
+      "desde": 95.89,
+      "hasta": 105.03,
+      "texto": "un piede e un Gatto cieco da tutt’e due gli occhi, che se ne andavano là là, aiutandosi fra di loro, da buoni compagni di sventura."
+    },
+    {
+      "desde": 105.03,
+      "hasta": 113.03,
+      "texto": "La Volpe che era zoppa, camminava appoggiandosi al Gatto: e il Gatto, che era cieco, si lasciava guidare dalla Volpe."
+    },
+    {
+      "desde": 113.81,
+      "hasta": 117.31,
+      "texto": "— Buon giorno, Pinocchio, — gli disse la Volpe, salutandolo garbatamente."
+    },
+    {
+      "desde": 117.61,
+      "hasta": 118.94,
+      "texto": "— Com’è che sai il mio nome?"
+    },
+    {
+      "desde": 119.0,
+      "hasta": 120.37,
+      "texto": "— domandò il burattino."
+    },
+    {
+      "desde": 120.61,
+      "hasta": 122.25,
+      "texto": "— Conosco bene il tuo babbo."
+    },
+    {
+      "desde": 122.62,
+      "hasta": 123.49,
+      "texto": "— Dove l’hai veduto?"
+    },
+    {
+      "desde": 123.53,
+      "hasta": 126.37,
+      "texto": "— L’ho veduto ieri sulla porta di casa sua."
+    },
+    {
+      "desde": 126.45,
+      "hasta": 127.97,
+      "texto": "— E che cosa faceva?"
+    },
+    {
+      "desde": 128.04,
+      "hasta": 130.97,
+      "texto": "— Era in maniche di camicia e tremava dal freddo."
+    },
+    {
+      "desde": 131.05,
+      "hasta": 132.31,
+      "texto": "— Povero babbo!"
+    },
+    {
+      "desde": 132.37,
+      "hasta": 136.6,
+      "texto": "Ma, se Dio vuole, da oggi in poi non tremerà più!… — Perchè?"
+    },
+    {
+      "desde": 136.63,
+      "hasta": 139.07,
+      "texto": "— Perchè io sono diventato un gran signore."
+    },
+    {
+      "desde": 139.31,
+      "hasta": 140.64,
+      "texto": "— Un gran signore tu?"
+    },
+    {
+      "desde": 140.81,
+      "hasta": 151.31,
+      "texto": "— disse la Volpe, e cominciò a ridere di un riso sguaiato e canzonatore: e il Gatto rideva anche lui, ma per non darlo a vedere, si pettinava i baffi colle zampe davanti."
+    },
+    {
+      "desde": 151.31,
+      "hasta": 153.41,
+      "texto": "— C’è poco da ridere, — gridò Pinocchio impermalito."
+    },
+    {
+      "desde": 154.39,
+      "hasta": 162.89,
+      "texto": "— Mi dispiace davvero di farvi venire l’acquolina in bocca, ma queste qui, se ve ne intendete, sono cinque bellissime monete d’oro."
+    },
+    {
+      "desde": 162.92,
+      "hasta": 165.38,
+      "texto": "E tirò fuori le monete avute in regalo da Mangiafoco."
+    },
+    {
+      "desde": 166.28,
+      "hasta": 178.68,
+      "texto": "Al simpatico suono di quelle monete la Volpe, per un moto involontario, allungò la gamba che pareva rattrappita, e il Gatto spalancò tutt’e due gli occhi, che parvero due lanterne verdi;"
+    },
+    {
+      "desde": 178.68,
+      "hasta": 183.56,
+      "texto": "ma poi li richiuse subito, tant’è vero che Pinocchio non si accòrse di nulla."
+    },
+    {
+      "desde": 183.56,
+      "hasta": 188.35,
+      "texto": "— E ora, — gli domandò la Volpe, — che cosa vuoi farne di codeste monete?"
+    },
+    {
+      "desde": 188.54,
+      "hasta": 201.35,
+      "texto": "— Prima di tutto, — rispose il burattino, — voglio comprare per il mio babbo una bella casacca nuova, tutta d’oro e d’argento e coi bottoni di brillanti: e poi voglio comprare un Abbecedario per me. — Per te?"
+    },
+    {
+      "desde": 201.59,
+      "hasta": 205.99,
+      "texto": "— Davvero: perchè voglio andare a scuola e mettermi a studiare a buono."
+    },
+    {
+      "desde": 206.23,
+      "hasta": 206.77,
+      "texto": "— Guarda me!"
+    },
+    {
+      "desde": 206.77,
+      "hasta": 207.87,
+      "texto": "— disse la Volpe."
+    },
+    {
+      "desde": 208.23,
+      "hasta": 211.99,
+      "texto": "— Per la passione sciocca di studiare ho perduto una gamba."
+    },
+    {
+      "desde": 211.99,
+      "hasta": 213.03,
+      "texto": "— Guarda me!"
+    },
+    {
+      "desde": 213.03,
+      "hasta": 213.99,
+      "texto": "— disse il Gatto."
+    },
+    {
+      "desde": 213.99,
+      "hasta": 218.99,
+      "texto": "— Per la passione sciocca di studiare ho perduto la vista di tutti e due gli occhi."
+    },
+    {
+      "desde": 218.99,
+      "hasta": 225.99,
+      "texto": "In quel mentre un Merlo bianco, che se ne stava appollaiato sulla siepe della strada, fece il solito verso e disse:"
+    },
+    {
+      "desde": 225.99,
+      "hasta": 231.93,
+      "texto": "— Pinocchio, non dar retta ai consigli dei cattivi compagni: se no, te ne pentirai!"
+    },
+    {
+      "desde": 231.93,
+      "hasta": 234.73,
+      "texto": "Povero Merlo, non l’avesse mai detto!"
+    },
+    {
+      "desde": 234.73,
+      "hasta": 244.37,
+      "texto": "Il Gatto, spiccando un gran salto, gli si avventò addosso, e senza dargli nemmeno il tempo di dire ohi, se lo mangiò in un boccone con le penne e tutto."
+    },
+    {
+      "desde": 244.37,
+      "hasta": 251.25,
+      "texto": "Mangiato che l’ebbe e ripulitosi la bocca, chiuse gli occhi daccapo e ricominciò a fare il cieco come prima."
+    },
+    {
+      "desde": 251.25,
+      "hasta": 251.98,
+      "texto": "— Povero Merlo!"
+    },
+    {
+      "desde": 251.98,
+      "hasta": 255.81,
+      "texto": "— disse Pinocchio al Gatto — perchè l’hai trattato così male?"
+    },
+    {
+      "desde": 255.81,
+      "hasta": 255.82,
+      "texto": "Spiccando un gran salto, gli si avventò addosso."
+    },
+    {
+      "desde": 255.82,
+      "hasta": 257.84,
+      "texto": "— Ho fatto per dargli una lezione."
+    },
+    {
+      "desde": 257.84,
+      "hasta": 262.71,
+      "texto": "Così un’altra volta imparerà a non metter bocca nei discorsi degli altri.—"
+    },
+    {
+      "desde": 262.71,
+      "hasta": 269.31,
+      "texto": "Erano giunti più che a mezza strada, quando la Volpe, fermandosi di punto in bianco, disse al burattino:"
+    },
+    {
+      "desde": 269.36,
+      "hasta": 272.55,
+      "texto": "— Vuoi tu raddoppiare le tue monete d’oro? — Cioè?"
+    },
+    {
+      "desde": 272.55,
+      "hasta": 276.63,
+      "texto": "— Vuoi tu, di cinque miserabili zecchini, farne cento, mille, duemila?"
+    },
+    {
+      "desde": 277.55,
+      "hasta": 279.49,
+      "texto": "— Magari! e la maniera?"
+    },
+    {
+      "desde": 279.55,
+      "hasta": 281.82,
+      "texto": "— La maniera è facilissima."
+    },
+    {
+      "desde": 282.03,
+      "hasta": 285.54,
+      "texto": "Invece di tornartene a casa tua, dovresti venir con noi."
+    },
+    {
+      "desde": 285.61,
+      "hasta": 287.5,
+      "texto": "— E dove mi volete condurre?"
+    },
+    {
+      "desde": 287.59,
+      "hasta": 288.61,
+      "texto": "— Nel paese dei Barbagianni. ―"
+    },
+    {
+      "desde": 289.82,
+      "hasta": 293.1,
+      "texto": "Pinocchio ci pensò un poco, e poi disse risolutamente:"
+    },
+    {
+      "desde": 293.34,
+      "hasta": 295.1,
+      "texto": "— No, non ci voglio venire."
+    },
+    {
+      "desde": 295.73,
+      "hasta": 300.38,
+      "texto": "Oramai sono vicino a casa, e voglio andarmene a casa, dove c’è il mio babbo che m’aspetta."
+    },
+    {
+      "desde": 300.62,
+      "hasta": 304.87,
+      "texto": "Chi lo sa, povero vecchio, quanto ha sospirato ieri, a non vedermi tornare."
+    },
+    {
+      "desde": 304.87,
+      "hasta": 311.05,
+      "texto": "Purtroppo io sono stato un figliuolo cattivo, e il Grillo-parlante aveva ragione quando diceva:"
+    },
+    {
+      "desde": 311.05,
+      "hasta": 324.45,
+      "texto": "«I ragazzi disobbedienti non possono aver bene in questo mondo.» Ed io l’ho provato a mie spese, perchè mi sono capitate molte disgrazie, e anche ieri sera in casa di Mangiafoco, ho corso pericolo…"
+    },
+    {
+      "desde": 325.08,
+      "hasta": 327.97,
+      "texto": "Brrr! mi viene i bordoni soltanto a pensarci!"
+    },
+    {
+      "desde": 328.38,
+      "hasta": 331.71,
+      "texto": "— Dunque, — disse la Volpe — vuoi proprio andare a casa tua?"
+    },
+    {
+      "desde": 331.71,
+      "hasta": 334.17,
+      "texto": "Allora va’ pure, e tanto peggio per te."
+    },
+    {
+      "desde": 334.17,
+      "hasta": 335.63,
+      "texto": "— Tanto peggio per te!"
+    },
+    {
+      "desde": 335.63,
+      "hasta": 336.83,
+      "texto": "— ripetè il Gatto."
+    },
+    {
+      "desde": 336.83,
+      "hasta": 340.93,
+      "texto": "— Pensaci bene, Pinocchio, perchè tu dài un calcio alla fortuna."
+    },
+    {
+      "desde": 340.93,
+      "hasta": 342.05,
+      "texto": "— Alla fortuna!"
+    },
+    {
+      "desde": 342.05,
+      "hasta": 343.35,
+      "texto": "— ripetè il Gatto."
+    },
+    {
+      "desde": 343.35,
+      "hasta": 347.85,
+      "texto": "— I tuoi cinque zecchini, dall’oggi al domani sarebbero diventati duemila. — Duemila!"
+    },
+    {
+      "desde": 349.67,
+      "hasta": 350.81,
+      "texto": "— ripetè il Gatto."
+    },
+    {
+      "desde": 350.81,
+      "hasta": 353.62,
+      "texto": "— Ma com’è mai possibile che diventino tanti?"
+    },
+    {
+      "desde": 353.62,
+      "hasta": 357.36,
+      "texto": "— domandò Pinocchio, restando a bocca aperta dallo stupore."
+    },
+    {
+      "desde": 357.36,
+      "hasta": 366.92,
+      "texto": "— Te lo spiego subito; — disse la Volpe — bisogna sapere che nel paese dei Barbagianni c’è un campo benedetto chiamato da tutti il Campo dei miracoli."
+    },
+    {
+      "desde": 366.92,
+      "hasta": 372.36,
+      "texto": "Tu fai in questo campo una piccola buca e ci metti dentro, per esempio, uno zecchino d’oro."
+    },
+    {
+      "desde": 372.36,
+      "hasta": 382.61,
+      "texto": "Poi ricopri la buca con un po’ di terra: l’annaffi con due secchie d’acqua di fontana, ci getti sopra una presa di sale, e la sera te ne vai tranquillamente a letto."
+    },
+    {
+      "desde": 382.61,
+      "hasta": 391.16,
+      "texto": "Intanto, durante la notte, lo zecchino germoglia e fiorisce, e la mattina dopo di levata, ritornando nel campo, che cosa trovi?"
+    },
+    {
+      "desde": 391.16,
+      "hasta": 399.01,
+      "texto": "Trovi un bell’albero carico di tanti zecchini d’oro quanti chicchi di grano può avere una bella spiga nel mese di giugno."
+    },
+    {
+      "desde": 399.01,
+      "hasta": 409.26,
+      "texto": "— Sicchè dunque — disse Pinocchio sempre più sbalordito — se io sotterrassi in quel campo i miei cinque zecchini, la mattina dopo quanti zecchini vi troverei?"
+    },
+    {
+      "desde": 409.26,
+      "hasta": 415.42,
+      "texto": "— È un conto facilissimo; — rispose la Volpe — un conto che puoi farlo sulla punta delle dita."
+    },
+    {
+      "desde": 415.42,
+      "hasta": 427.82,
+      "texto": "Poni che ogni zecchino ti faccia un grappolo di cinquecento zecchini: moltiplica il cinquecento per cinque, e la mattina dopo trovi in tasca duemilacinquecento zecchini lampanti e sonanti."
+    },
+    {
+      "desde": 427.92,
+      "hasta": 428.98,
+      "texto": "— Oh che bella cosa!"
+    },
+    {
+      "desde": 428.98,
+      "hasta": 431.73,
+      "texto": "— gridò Pinocchio, ballando dall’allegrezza."
+    },
+    {
+      "desde": 431.73,
+      "hasta": 440.43,
+      "texto": "— Appena che questi zecchini li avrò raccolti, ne prenderò per me duemila e gli altri cinquecento di più li darò in regalo a voialtri due."
+    },
+    {
+      "desde": 440.67,
+      "hasta": 441.63,
+      "texto": "— Un regalo a noi?"
+    },
+    {
+      "desde": 441.63,
+      "hasta": 445.23,
+      "texto": "— gridò la Volpe sdegnandosi e chiamandosi offesa."
+    },
+    {
+      "desde": 445.31,
+      "hasta": 446.73,
+      "texto": "— Dio te ne liberi!"
+    },
+    {
+      "desde": 446.73,
+      "hasta": 446.83,
+      "texto": "— Te ne liberi!"
+    },
+    {
+      "desde": 446.83,
+      "hasta": 446.94,
+      "texto": "— ripetè il Gatto."
+    },
+    {
+      "desde": 446.94,
+      "hasta": 454.35,
+      "texto": "— Noi — riprese la Volpe — non lavoriamo per il vile interesse: noi lavoriamo per arricchire gli altri."
+    },
+    {
+      "desde": 454.35,
+      "hasta": 454.96,
+      "texto": "— Gli altri!"
+    },
+    {
+      "desde": 454.96,
+      "hasta": 456.29,
+      "texto": "— ripetè il Gatto."
+    },
+    {
+      "desde": 456.29,
+      "hasta": 456.89,
+      "texto": "— Che brave persone!"
+    },
+    {
+      "desde": 457.57,
+      "hasta": 469.17,
+      "texto": "— pensò dentro di sè Pinocchio: e dimenticandosi lì sul tamburo, del suo babbo, della casacca nuova, dell’Abbecedario e di tutti i buoni proponimenti fatti, disse alla Volpe e al Gatto:"
+    },
+    {
+      "desde": 469.17,
+      "hasta": 472.09,
+      "texto": "— Andiamo subito, io vengo con voi. ―"
+    }
+  ]
+}
