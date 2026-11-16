@@ -88,6 +88,10 @@ flutter:
     # El catálogo de las fábulas: títulos y duraciones, nada más. Los audios
     # NO van acá —son 17 MB el primer libro— y se bajan cuando se tocan.
     - assets/favole.json
+
+    # Los treinta y seis capítulos de Pinocchio, con su texto. El audio no
+    # viaja acá: se baja al tocarlo, como el de las fábulas. Son 132 MB.
+    - assets/pinocchio.json
     # Las emisoras italianas en vivo. Es un archivo y no código porque las
     # direcciones de los streams las cambian las emisoras sin avisar.
     - assets/radios.json
