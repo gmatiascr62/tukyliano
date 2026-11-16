@@ -24,12 +24,23 @@ class FallaDelServidor implements Exception {
 
 /// Lo que el servidor sabe de una palabra. Vacío cuando no la sabe nadie.
 class PalabraDelServidor {
-  const PalabraDelServidor({this.es = const [], this.vieneDe = ''});
+  const PalabraDelServidor({
+    this.es = const [],
+    this.vieneDe = '',
+    this.laEstanBuscando = false,
+  });
 
   final List<String> es;
 
   /// La palabra de diccionario, cuando lo que se buscó era una forma.
   final String vieneDe;
+
+  /// El servidor no la tenía y la IA se está tomando su tiempo.
+  ///
+  /// No quiere decir que no exista: quiere decir "todavía no". El servidor
+  /// sigue esperando la respuesta por su cuenta y la guarda cuando llega,
+  /// así que volver a preguntar en unos segundos la encuentra en la base.
+  final bool laEstanBuscando;
 
   bool get hay => es.isNotEmpty;
 }
@@ -153,6 +164,7 @@ class Servidor {
           for (final t in datos['es'] as List? ?? const []) '$t',
         ],
         vieneDe: datos['base'] as String? ?? '',
+        laEstanBuscando: datos['porQue'] == 'tardo',
       );
     } catch (_) {
       return const PalabraDelServidor();
