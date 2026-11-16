@@ -17,7 +17,7 @@
 // palabras. Pero existe igual: sin tope, alguien con el APK y un script le
 // vacía la cuota de Gemini en una tarde.
 
-import { queQuiereDecir } from './gemini.js';
+import { loQueDijo } from './gemini.js';
 import { elDiaDeHoy, TODOS } from './limites.js';
 import { queSalioMal } from './respuestas.js';
 
@@ -142,11 +142,11 @@ export async function atenderLaPalabra(cuerpo, afuera) {
   if (cuantas.totales > topes.deTodos) return queSalioMal('topeDelServidor');
   if (cuantas.suyos > topes.deCadaUno) return queSalioMal('topeDeLaPersona');
 
-  const dicho = await queQuiereDecir(pedido.palabra, pedido.donde, clave);
-  if (!dicho) return noLaSabe(pedido.palabra);
+  const { que, porQue } = await loQueDijo(pedido.palabra, pedido.donde, clave);
+  if (!que) return noLaSabe(pedido.palabra, porQue);
 
-  await guardar(base, pedido.palabra, dicho, dia);
-  return laRespuesta(pedido.palabra, dicho, 'ia');
+  await guardar(base, pedido.palabra, que, dia);
+  return laRespuesta(pedido.palabra, que, 'ia');
 }
 
 /** Si puede preguntar. Mismo criterio que el chat. */
@@ -157,8 +157,8 @@ export function puedeEntrar(codigo, permitidos) {
 
 /// Que no esté no es un error: es una respuesta. La app muestra lo mismo
 /// que mostraba antes de que este servidor existiera.
-function noLaSabe(palabra) {
-  return Response.json({ palabra, es: [], base: '', de: 'nadie' });
+function noLaSabe(palabra, porQue = '') {
+  return Response.json({ palabra, es: [], base: '', de: 'nadie', porQue });
 }
 
 function laRespuesta(palabra, que, de) {
