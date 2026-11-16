@@ -24,10 +24,23 @@ import sys
 import alinear
 
 ACA = os.path.dirname(os.path.abspath(__file__))
-ELCATALOGO = os.path.join(ACA, '..', 'flutter_app', 'assets', 'favole.json')
+# Cuál colección se alinea. Las dos tienen la misma forma —título, audio,
+# duración, peso y renglones— y lo único que cambia es de qué archivo
+# salen y bajo qué clave está la lista.
+COLECCIONES = {
+    'favole': ('favole.json', 'favole'),
+    'pinocchio': ('pinocchio.json', 'capitulos'),
+}
+CUAL = os.environ.get('COLECCION', 'favole')
+if CUAL not in COLECCIONES:
+    raise SystemExit(f'no conozco la colección {CUAL!r}: '
+                     f'{", ".join(COLECCIONES)}')
+ELARCHIVO, LACLAVE = COLECCIONES[CUAL]
+
+ELCATALOGO = os.path.join(ACA, '..', 'flutter_app', 'assets', ELARCHIVO)
 LOSTIEMPOS = os.path.join(ACA, 'tiempos')
 ELCACHE = os.environ.get(
-    'FAVOLE_AUDIO', os.path.join(ACA, '..', '.cache', 'favole'))
+    'FAVOLE_AUDIO', os.path.join(ACA, '..', '.cache', CUAL))
 
 
 def elCatalogo():
@@ -85,7 +98,7 @@ def main():
         sys.exit(problema)
 
     catalogo = elCatalogo()
-    favole = [f for f in catalogo['favole'] if not cuales or f['id'] in cuales]
+    favole = [f for f in catalogo[LACLAVE] if not cuales or f['id'] in cuales]
     if cuales and len(favole) != len(cuales):
         sys.exit(f'no encuentro en el catálogo: '
                  f'{set(cuales) - {f["id"] for f in favole}}')
