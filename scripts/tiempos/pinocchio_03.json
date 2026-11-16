@@ -1,0 +1,382 @@
+{
+  "id": "pinocchio_03",
+  "titulo": "3. Geppetto, tornato a casa, comincia subito a fabbricarsi il burattino e gli mette il nome di Pinocchio. Prime monellerie del burattino.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 34.57,
+      "hasta": 45.55,
+      "texto": "La casa di Geppetto era una stanzina terrena, che pigliava luce da un sottoscala."
+    },
+    {
+      "desde": 45.55,
+      "hasta": 54.25,
+      "texto": "La mobilia non poteva esser più semplice: una seggiola cattiva, un letto poco buono e un tavolino tutto rovinato."
+    },
+    {
+      "desde": 54.25,
+      "hasta": 69.2,
+      "texto": "Nella parete di fondo si vedeva un caminetto col fuoco acceso; ma il fuoco era dipinto, e accanto al fuoco c’era dipinta una pentola che bolliva allegramente e mandava fuori una nuvola di fumo, che pareva fumo davvero."
+    },
+    {
+      "desde": 69.2,
+      "hasta": 76.77,
+      "texto": "Appena entrato in casa, Geppetto prese subito gli arnesi e si pose a intagliare e a fabbricare il suo burattino."
+    },
+    {
+      "desde": 76.77,
+      "hasta": 78.21,
+      "texto": "— Che nome gli metterò?"
+    },
+    {
+      "desde": 78.21,
+      "hasta": 79.37,
+      "texto": "— disse fra sè e sè."
+    },
+    {
+      "desde": 79.99,
+      "hasta": 81.99,
+      "texto": "— Lo voglio chiamar Pinocchio."
+    },
+    {
+      "desde": 81.99,
+      "hasta": 84.46,
+      "texto": "Questo nome gli porterà fortuna."
+    },
+    {
+      "desde": 84.46,
+      "hasta": 93.8,
+      "texto": "Ho conosciuto una famiglia intera di Pinocchi: Pinocchio il padre, Pinocchia la madre e Pinocchi i ragazzi, e tutti se la passavano bene."
+    },
+    {
+      "desde": 93.87,
+      "hasta": 96.3,
+      "texto": "Il più ricco di loro chiedeva l’elemosina."
+    },
+    {
+      "desde": 96.3,
+      "hasta": 105.56,
+      "texto": "Quando ebbe trovato il nome al suo burattino, allora cominciò a lavorare a buono, e gli fece subito i capelli, poi la fronte, poi gli occhi."
+    },
+    {
+      "desde": 114.35,
+      "hasta": 121.57,
+      "texto": "Geppetto, vedendosi guardare da quei due occhi di legno, se n’ebbe quasi per male, e disse con accento risentito:"
+    },
+    {
+      "desde": 122.22,
+      "hasta": 124.51,
+      "texto": "— Occhiacci di legno, perchè mi guardate? —"
+    },
+    {
+      "desde": 124.51,
+      "hasta": 125.89,
+      "texto": "Nessuno rispose."
+    },
+    {
+      "desde": 125.89,
+      "hasta": 138.33,
+      "texto": "Allora, dopo gli occhi, gli fece il naso; ma il naso, appena fatto, cominciò a crescere: e cresci, cresci, cresci diventò in pochi minuti un nasone che non finiva mai."
+    },
+    {
+      "desde": 138.33,
+      "hasta": 146.29,
+      "texto": "Il povero Geppetto si affaticava a ritagliarlo; ma più lo ritagliava e lo scorciva, e più quel naso impertinente diventava lungo."
+    },
+    {
+      "desde": 146.29,
+      "hasta": 148.59,
+      "texto": "Dopo il naso, gli fece la bocca."
+    },
+    {
+      "desde": 148.59,
+      "hasta": 154.41,
+      "texto": "La bocca non era ancora finita di fare, che cominciò subito a ridere e a canzonarlo."
+    },
+    {
+      "desde": 154.41,
+      "hasta": 155.77,
+      "texto": "— Smetti di ridere!"
+    },
+    {
+      "desde": 155.77,
+      "hasta": 159.55,
+      "texto": "— disse Geppetto impermalito; ma fu come dire al muro."
+    },
+    {
+      "desde": 159.55,
+      "hasta": 161.67,
+      "texto": "— Smetti di ridere, ti ripeto!"
+    },
+    {
+      "desde": 161.67,
+      "hasta": 163.65,
+      "texto": "— urlò con voce minacciosa."
+    },
+    {
+      "desde": 163.76,
+      "hasta": 168.97,
+      "texto": "Allora la bocca smesse di ridere, ma cacciò fuori tutta la lingua."
+    },
+    {
+      "desde": 169.64,
+      "hasta": 175.09,
+      "texto": "Geppetto, per non guastare i fatti suoi, finse di non avvedersene, e continuò a lavorare."
+    },
+    {
+      "desde": 175.09,
+      "hasta": 181.53,
+      "texto": "Dopo la bocca, gli fece il mento, poi il collo, le spalle, lo stomaco, le braccia e le mani."
+    },
+    {
+      "desde": 181.53,
+      "hasta": 186.09,
+      "texto": "Appena finite le mani, Geppetto sentì portarsi via la parrucca dal capo."
+    },
+    {
+      "desde": 186.16,
+      "hasta": 188.96,
+      "texto": "Si voltò in su, e che cosa vide?"
+    },
+    {
+      "desde": 188.96,
+      "hasta": 192.97,
+      "texto": "Vide la sua parrucca gialla in mano del burattino."
+    },
+    {
+      "desde": 192.97,
+      "hasta": 196.72,
+      "texto": "— Pinocchio!... rendimi subito la mia parrucca! —"
+    },
+    {
+      "desde": 196.72,
+      "hasta": 203.49,
+      "texto": "E Pinocchio, invece di rendergli la parrucca, se la messe in capo per sè, rimanendovi sotto mezzo affogato."
+    },
+    {
+      "desde": 203.49,
+      "hasta": 213.95,
+      "texto": "A quel garbo insolente e derisorio, Geppetto si fece tristo e melanconico, come non era stato mai in vita sua: e voltandosi verso Pinocchio, gli disse:"
+    },
+    {
+      "desde": 214.37,
+      "hasta": 214.86,
+      "texto": "— Birba d’un figliuolo!"
+    },
+    {
+      "desde": 215.45,
+      "hasta": 219.91,
+      "texto": "Non sei ancora finito E Pinocchio, invece di rendergli la parrucca, se la messe in capo per sè.... di fare, e già cominci a mancar di rispetto a tuo padre!"
+    },
+    {
+      "desde": 219.91,
+      "hasta": 222.28,
+      "texto": "Male, ragazzo mio, male! —"
+    },
+    {
+      "desde": 222.28,
+      "hasta": 223.99,
+      "texto": "E si rasciugò una lacrima."
+    },
+    {
+      "desde": 223.99,
+      "hasta": 226.91,
+      "texto": "Restavano sempre da fare le gambe e i piedi."
+    },
+    {
+      "desde": 226.91,
+      "hasta": 232.57,
+      "texto": "Quando Geppetto ebbe finito di fargli i piedi, sentì arrivarsi un calcio sulla punta del naso."
+    },
+    {
+      "desde": 232.63,
+      "hasta": 233.71,
+      "texto": "— Me lo merito!"
+    },
+    {
+      "desde": 233.71,
+      "hasta": 235.32,
+      "texto": "— disse allora fra sè."
+    },
+    {
+      "desde": 235.32,
+      "hasta": 237.43,
+      "texto": "— Dovevo pensarci prima!"
+    },
+    {
+      "desde": 238.04,
+      "hasta": 239.13,
+      "texto": "Ormai è tardi! —"
+    },
+    {
+      "desde": 239.13,
+      "hasta": 245.51,
+      "texto": "Poi prese il burattino sotto le braccia e lo posò in terra, sul pavimento della stanza, per farlo camminare."
+    },
+    {
+      "desde": 245.51,
+      "hasta": 251.41,
+      "texto": "Pinocchio aveva le gambe aggranchite e non sapeva muoversi, e Geppetto lo conduceva per — Piglialo! piglialo!"
+    },
+    {
+      "desde": 251.41,
+      "hasta": 254.77,
+      "texto": "— urlava Geppetto. la mano per insegnargli a mettere un passo dietro l’altro."
+    },
+    {
+      "desde": 254.89,
+      "hasta": 266.7,
+      "texto": "Quando le gambe gli si furono sgranchite, Pinocchio cominciò a camminare da sè e a correre per la stanza; finchè, infilata la porta di casa, saltò nella strada e si dètte a scappare."
+    },
+    {
+      "desde": 266.7,
+      "hasta": 278.89,
+      "texto": "E il povero Geppetto a corrergli dietro senza poterlo raggiungere, perchè quel birichino di Pinocchio andava a salti come una lepre, e battendo i suoi piedi di legno sul lastrico della strada, faceva un fracasso,"
+    },
+    {
+      "desde": 279.3,
+      "hasta": 282.21,
+      "texto": "come venti paia di zoccoli da contadini."
+    },
+    {
+      "desde": 282.21,
+      "hasta": 283.41,
+      "texto": "— Piglialo! piglialo!"
+    },
+    {
+      "desde": 283.41,
+      "hasta": 295.71,
+      "texto": "— urlava Geppetto; ma la gente che era per la via, vedendo questo burattino di legno, che correva come un barbero, si fermava incantata a guardarlo, e rideva, rideva e rideva, da non poterselo figurare."
+    },
+    {
+      "desde": 295.71,
+      "hasta": 306.54,
+      "texto": "Alla fine, e per buona fortuna, capitò un carabiniere il quale, sentendo tutto quello schiamazzo, e credendo si trattasse di un puledro che avesse levata la mano al padrone,"
+    },
+    {
+      "desde": 306.54,
+      "hasta": 315.8,
+      "texto": "si piantò coraggiosamente a gambe larghe in mezzo alla strada, con l’animo risoluto di fermarlo e di impedire il caso di maggiori disgrazie."
+    },
+    {
+      "desde": 316.71,
+      "hasta": 326.78,
+      "texto": "Ma Pinocchio, quando si avvide da lontano del carabiniere, che barricava tutta la strada, s’ingegnò di passargli, per sorpresa, frammezzo alle gambe, e invece fece fiasco."
+    },
+    {
+      "desde": 326.85,
+      "hasta": 340.67,
+      "texto": "Il carabiniere, senza punto smuoversi, lo acciuffò pulitamente per il naso (era un nasone spropositato, che pareva fatto apposta per essere acchiappato dai carabinieri) e lo riconsegnò nelle proprie mani di Geppetto;"
+    },
+    {
+      "desde": 340.67,
+      "hasta": 345.9,
+      "texto": "il quale, a titolo di correzione, voleva dargli subito una buona tiratina d’orecchi."
+    },
+    {
+      "desde": 345.9,
+      "hasta": 356.33,
+      "texto": "Ma figuratevi come rimase, quando nel cercargli gli orecchi, non gli riuscì di poterli trovare: e sapete perchè? perchè, nella furia di scolpirlo, si era dimenticato di farglieli."
+    },
+    {
+      "desde": 356.33,
+      "hasta": 357.06,
+      "texto": "Lo acciuffò pulitamente per il naso...."
+    },
+    {
+      "desde": 357.06,
+      "hasta": 364.38,
+      "texto": "Allora lo prese per la collottola, e, mentre lo riconduceva indietro, gli disse tentennando minacciosamente il capo:"
+    },
+    {
+      "desde": 364.38,
+      "hasta": 365.54,
+      "texto": "— Andiamo subito a casa."
+    },
+    {
+      "desde": 365.54,
+      "hasta": 369.94,
+      "texto": "Quando saremo a casa, non dubitare che faremo i nostri conti! —"
+    },
+    {
+      "desde": 369.94,
+      "hasta": 374.5,
+      "texto": "Pinocchio, a questa antifona, si buttò per terra, e non volle più camminare."
+    },
+    {
+      "desde": 374.68,
+      "hasta": 379.09,
+      "texto": "Intanto i curiosi e i bighelloni principiavano a fermarsi lì dintorno e a far capannello."
+    },
+    {
+      "desde": 380.49,
+      "hasta": 382.71,
+      "texto": "Chi ne diceva una, chi un’altra."
+    },
+    {
+      "desde": 382.71,
+      "hasta": 383.8,
+      "texto": "— Povero burattino!"
+    },
+    {
+      "desde": 383.8,
+      "hasta": 387.28,
+      "texto": "— dicevano alcuni — ha ragione a non voler tornare a casa!"
+    },
+    {
+      "desde": 387.71,
+      "hasta": 390.91,
+      "texto": "Chi lo sa come lo picchierebbe quell’omaccio di Geppetto!... —"
+    },
+    {
+      "desde": 390.91,
+      "hasta": 393.79,
+      "texto": "E gli altri soggiungevano malignamente:"
+    },
+    {
+      "desde": 393.79,
+      "hasta": 398.09,
+      "texto": "— Quel Geppetto pare un galantuomo! ma è un vero tiranno coi ragazzi!"
+    },
+    {
+      "desde": 398.16,
+      "hasta": 403.13,
+      "texto": "Se gli lasciano quel povero burattino fra le mani, è capacissimo di farlo a pezzi! —"
+    },
+    {
+      "desde": 403.13,
+      "hasta": 411.7,
+      "texto": "Insomma, tanto dissero e tanto fecero, che il carabiniere rimise in libertà Pinocchio, e condusse in prigione quel pover’uomo di Geppetto."
+    },
+    {
+      "desde": 412.58,
+      "hasta": 422.58,
+      "texto": "Il quale non avendo parole lì per lì per difendersi, piangeva come un vitellino, e nell’avviarsi verso il carcere, balbettava singhiozzando:"
+    },
+    {
+      "desde": 422.58,
+      "hasta": 423.48,
+      "texto": "— Sciagurato figliuolo!"
+    },
+    {
+      "desde": 424.49,
+      "hasta": 428.46,
+      "texto": "E pensare che ho penato tanto a farlo un burattino per bene!"
+    },
+    {
+      "desde": 428.46,
+      "hasta": 429.74,
+      "texto": "Ma mi sta il dovere!"
+    },
+    {
+      "desde": 429.74,
+      "hasta": 431.42,
+      "texto": "Dovevo pensarci prima!... —"
+    },
+    {
+      "desde": 431.42,
+      "hasta": 438.36,
+      "texto": "Quello che accadde dopo, è una storia così strana, da non potersi credere, e ve la racconterò in quest’altri capitoli."
+    }
+  ]
+}

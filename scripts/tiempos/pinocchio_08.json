@@ -1,0 +1,232 @@
+{
+  "id": "pinocchio_08",
+  "titulo": "8. Geppetto rifà i piedi a Pinocchio e vende la propria casacca per comprargli l’Abbecedario.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 38.25,
+      "hasta": 48.06,
+      "texto": "Il burattino, appena che si fu levata la fame, cominciò subito a bofonchiare e a piangere, perchè voleva un paio di piedi nuovi."
+    },
+    {
+      "desde": 48.06,
+      "hasta": 48.06,
+      "texto": "Lo lasciò piangere e disperarsi per una mezza giornata."
+    },
+    {
+      "desde": 48.06,
+      "hasta": 59.08,
+      "texto": "Ma Geppetto, per punirlo della monelleria fatta lo lasciò piangere e disperarsi per una mezza giornata; poi gli disse: — E perchè dovrei rifarti i piedi?"
+    },
+    {
+      "desde": 59.08,
+      "hasta": 62.6,
+      "texto": "Forse per vederti scappar di nuovo da casa tua?"
+    },
+    {
+      "desde": 62.62,
+      "hasta": 68.6,
+      "texto": "— Vi prometto, — disse il burattino singhiozzando, — che da oggi in poi sarò buono…"
+    },
+    {
+      "desde": 68.6,
+      "hasta": 75.6,
+      "texto": "— Tutti i ragazzi — replicò Geppetto, — quando vogliono ottenere qualcosa, dicono così."
+    },
+    {
+      "desde": 75.6,
+      "hasta": 78.64,
+      "texto": "— Vi prometto che anderò a scuola, studierò e mi farò onore…"
+    },
+    {
+      "desde": 79.5,
+      "hasta": 84.88,
+      "texto": "— Tutti i ragazzi, quando vogliono ottenere qualcosa, ripetono la medesima storia."
+    },
+    {
+      "desde": 84.88,
+      "hasta": 87.05,
+      "texto": "— Ma io non sono come gli altri ragazzi!"
+    },
+    {
+      "desde": 87.05,
+      "hasta": 90.99,
+      "texto": "Io sono più buono di tutti e dico sempre la verità."
+    },
+    {
+      "desde": 90.99,
+      "hasta": 97.97,
+      "texto": "Vi prometto, babbo, che imparerò un’arte, e che sarò la consolazione e il bastone della vostra vecchiaia. —"
+    },
+    {
+      "desde": 98.83,
+      "hasta": 112.97,
+      "texto": "Geppetto che, sebbene facesse il viso di tiranno, aveva gli occhi pieni di pianto e il cuore grosso dalla passione di vedere il suo povero Pinocchio in quello stato compassionevole, non rispose altre parole:"
+    },
+    {
+      "desde": 112.99,
+      "hasta": 121.22,
+      "texto": "ma, presi in mano gli arnesi del mestiere e due pezzetti di legno stagionato, si pose a lavorare di grandissimo impegno."
+    },
+    {
+      "desde": 121.22,
+      "hasta": 131.49,
+      "texto": "E in meno d’un’ora, i piedi erano bell’e fatti; due piedini svelti, asciutti e nervosi, come se fossero modellati da un artista di genio."
+    },
+    {
+      "desde": 131.49,
+      "hasta": 133.87,
+      "texto": "Allora Geppetto disse al burattino:"
+    },
+    {
+      "desde": 133.87,
+      "hasta": 135.63,
+      "texto": "— Chiudi gli occhi e dormi!"
+    },
+    {
+      "desde": 135.63,
+      "hasta": 139.37,
+      "texto": "— E Pinocchio chiuse gli occhi e fece finta di dormire."
+    },
+    {
+      "desde": 139.37,
+      "hasta": 147.83,
+      "texto": "E nel tempo che si fingeva addormentato, Geppetto con un po’ di colla sciolta in un guscio d’uovo gli appiccicò i due piedi al loro"
+    },
+    {
+      "desde": 147.83,
+      "hasta": 147.83,
+      "texto": "Principiò a fare mille sgambetti."
+    },
+    {
+      "desde": 147.83,
+      "hasta": 154.46,
+      "texto": "posto, e glieli appiccicò così bene, che non si vedeva nemmeno il segno dell’attaccatura."
+    },
+    {
+      "desde": 154.46,
+      "hasta": 168.05,
+      "texto": "Appena il burattino si accorse di avere i piedi, saltò giù dalla tavola dove stava disteso, e principiò a fare mille sgambetti e mille capriòle, come se fosse ammattito dalla gran contentezza."
+    },
+    {
+      "desde": 168.12,
+      "hasta": 175.15,
+      "texto": "— Per ricompensarvi di quanto avete fatto per me — disse Pinocchio al suo babbo — voglio subito andare a scuola."
+    },
+    {
+      "desde": 175.54,
+      "hasta": 176.67,
+      "texto": "— Bravo ragazzo."
+    },
+    {
+      "desde": 176.67,
+      "hasta": 180.27,
+      "texto": "— Ma per andare a scuola ho bisogno d’un po’ di vestito. —"
+    },
+    {
+      "desde": 180.27,
+      "hasta": 180.91,
+      "texto": "Gli fece.... un berrettino di midolla di pane."
+    },
+    {
+      "desde": 180.91,
+      "hasta": 192.97,
+      "texto": "Geppetto, che era povero e non aveva in tasca nemmeno un centesimo, gli fece allora un vestituccio di carta fiorita, un paio di scarpe di scorza d’albero e un berrettino di midolla di pane."
+    },
+    {
+      "desde": 192.97,
+      "hasta": 202.09,
+      "texto": "Pinocchio corse subito a specchiarsi in una catinella piena d’acqua e rimase così contento di sè, che disse pavoneggiandosi:"
+    },
+    {
+      "desde": 202.09,
+      "hasta": 204.04,
+      "texto": "— Paio proprio un signore!"
+    },
+    {
+      "desde": 204.04,
+      "hasta": 212.95,
+      "texto": "— Davvero; — replicò Geppetto, — perchè, tienlo a mente, non è il vestito bello che fa il signore, ma è piuttosto il vestito pulito."
+    },
+    {
+      "desde": 212.95,
+      "hasta": 222.96,
+      "texto": "— A proposito, — soggiunse il burattino, — per andare alla scuola mi manca sempre qualcosa: anzi mi manca il più e il meglio. — Cioè?"
+    },
+    {
+      "desde": 222.96,
+      "hasta": 224.95,
+      "texto": "— Mi manca l’Abbecedario."
+    },
+    {
+      "desde": 224.95,
+      "hasta": 228.71,
+      "texto": "— Hai ragione: ma come si fa per averlo?"
+    },
+    {
+      "desde": 228.71,
+      "hasta": 232.15,
+      "texto": "— È facilissimo: si va da un libraio e si compra."
+    },
+    {
+      "desde": 232.15,
+      "hasta": 233.15,
+      "texto": "— E i quattrini?"
+    },
+    {
+      "desde": 233.39,
+      "hasta": 234.45,
+      "texto": "— Io non ce l’ho."
+    },
+    {
+      "desde": 234.45,
+      "hasta": 237.77,
+      "texto": "— Nemmeno io, — soggiunse il buon vecchio, facendosi tristo."
+    },
+    {
+      "desde": 238.65,
+      "hasta": 251.1,
+      "texto": "E Pinocchio, sebbene fosse un ragazzo allegrissimo, si fece tristo anche lui: perchè la miseria, quando è miseria davvero, la intendono tutti: anche i ragazzi. — Pazienza!"
+    },
+    {
+      "desde": 252.63,
+      "hasta": 261.56,
+      "texto": "— gridò Geppetto tutt’a un tratto rizzandosi in piedi; e infilatasi la vecchia casacca di fustagno, tutta toppe e rimendi, uscì correndo di casa."
+    },
+    {
+      "desde": 262.06,
+      "hasta": 269.31,
+      "texto": "Dopo poco tornò: e quando tornò aveva in mano l’Abbecedario per il figliuolo, ma la casacca non l’aveva più."
+    },
+    {
+      "desde": 269.31,
+      "hasta": 273.83,
+      "texto": "Il pover’uomo era in maniche di camicia, e fuori nevicava."
+    },
+    {
+      "desde": 273.83,
+      "hasta": 275.83,
+      "texto": "— E la casacca, babbo?"
+    },
+    {
+      "desde": 275.83,
+      "hasta": 277.34,
+      "texto": "— L’ho venduta."
+    },
+    {
+      "desde": 277.34,
+      "hasta": 279.3,
+      "texto": "— Perchè l’avete venduta?"
+    },
+    {
+      "desde": 279.3,
+      "hasta": 281.31,
+      "texto": "— Perchè mi faceva caldo.―"
+    },
+    {
+      "desde": 281.33,
+      "hasta": 292.46,
+      "texto": "Pinocchio capì questa risposta a volo, e non potendo frenare l’impeto del suo buon cuore, saltò al collo di Geppetto e cominciò a baciarlo per tutto il viso."
+    }
+  ]
+}
