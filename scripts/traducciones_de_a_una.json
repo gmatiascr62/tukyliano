@@ -1,0 +1,52 @@
+{
+ "comoSeHizo": "Retraducidas de a UNA palabra con gemini-3.1-flash-lite, el mismo modelo y el mismo pedido que usa el servidor. La tanda anterior preguntaba de a treinta y perdía los modismos.",
+ "palabras": {
+  "accomoda": {
+   "es": [
+    "le queda bien",
+    "le parece bien"
+   ],
+   "base": "accomodarsi",
+   "donde": "di fare, se vi accomoda, altrettanto?"
+  },
+  "accorrono": {
+   "es": [
+    "acuden",
+    "corren"
+   ],
+   "base": "accorrere",
+   "donde": "accorrono alle prese,"
+  },
+  "accozzate": {
+   "es": [
+    "juntadas",
+    "amontonadas"
+   ],
+   "base": "accozzare",
+   "donde": "Or che pensa Simonide? - Accozzate"
+  },
+  "addosso": {
+   "es": [
+    "encima",
+    "sobre"
+   ],
+   "base": "addosso",
+   "donde": "non ti si posa addosso un uccellino,"
+  },
+  "affaccio": {
+   "es": [
+    "asomarse",
+    "aparecer"
+   ],
+   "base": "affacciarsi",
+   "donde": "dietro alla siepe a un tratto si affacciò."
+  },
+  "aiutarci": {
+   "es": [
+    "ayudarnos"
+   ],
+   "base": "aiutare",
+   "donde": "Nessuno potrà aiutarci"
+  }
+ }
+}
