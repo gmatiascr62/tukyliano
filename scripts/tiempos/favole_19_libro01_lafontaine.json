@@ -1,0 +1,147 @@
+{
+  "id": "favole_19_libro01_lafontaine",
+  "titulo": "Il Ragazzo e il Maestro di scuola",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 16.02,
+      "hasta": 18.86,
+      "texto": "Racconto questa per mostrar d’un tale"
+    },
+    {
+      "desde": 18.86,
+      "hasta": 21.28,
+      "texto": "la stupida burbanza magistrale."
+    },
+    {
+      "desde": 21.28,
+      "hasta": 24.45,
+      "texto": "Un Ragazzo, giocando al fiume in riva,"
+    },
+    {
+      "desde": 24.78,
+      "hasta": 28.04,
+      "texto": "cadde nell’acqua e forse vi periva,"
+    },
+    {
+      "desde": 28.04,
+      "hasta": 29.72,
+      "texto": "se non avesse un salice afferrato"
+    },
+    {
+      "desde": 29.72,
+      "hasta": 33.0,
+      "texto": "che, dopo Dio, lo tenne sollevato."
+    },
+    {
+      "desde": 33.0,
+      "hasta": 35.47,
+      "texto": "Mentre nell’acqua ei sta fino alla gola,"
+    },
+    {
+      "desde": 35.47,
+      "hasta": 37.76,
+      "texto": "viene a passare un maestro di scuola."
+    },
+    {
+      "desde": 37.76,
+      "hasta": 40.64,
+      "texto": "- Aiuto, aiuto! - grida quel che annega."
+    },
+    {
+      "desde": 40.64,
+      "hasta": 42.96,
+      "texto": "Il maestro si ferma, e a lui che prega,"
+    },
+    {
+      "desde": 42.96,
+      "hasta": 45.01,
+      "texto": "con una voce burbera e nasale,"
+    },
+    {
+      "desde": 45.01,
+      "hasta": 47.23,
+      "texto": "gli somministra questa paternale:"
+    },
+    {
+      "desde": 47.23,
+      "hasta": 49.98,
+      "texto": "- Ah scimunito, ah sciocco, ah babbuasso!"
+    },
+    {
+      "desde": 51.35,
+      "hasta": 53.68,
+      "texto": "Guarda dove si caccia il satanasso."
+    },
+    {
+      "desde": 54.43,
+      "hasta": 54.47,
+      "texto": "Andate pure a prender dell’affanno"
+    },
+    {
+      "desde": 55.83,
+      "hasta": 58.82,
+      "texto": "per questi tristi, oh sì, che vi faranno"
+    },
+    {
+      "desde": 58.82,
+      "hasta": 61.43,
+      "texto": "morir tisici! ah poveri parenti"
+    },
+    {
+      "desde": 61.43,
+      "hasta": 63.93,
+      "texto": "a cui tocca di questi malviventi!"
+    },
+    {
+      "desde": 63.93,
+      "hasta": 67.43,
+      "texto": "Ah i tempi tristi, oh i figli traditori... -."
+    },
+    {
+      "desde": 67.43,
+      "hasta": 69.51,
+      "texto": "E quando ebbe finito, il tirò fuori."
+    },
+    {
+      "desde": 69.92,
+      "hasta": 72.53,
+      "texto": "Quanti non sono al mondo altri pedanti"
+    },
+    {
+      "desde": 72.53,
+      "hasta": 75.15,
+      "texto": "e brontoloni e critici ignoranti,"
+    },
+    {
+      "desde": 75.15,
+      "hasta": 77.24,
+      "texto": "razza dotta più in chiacchiere che in scienze,"
+    },
+    {
+      "desde": 77.24,
+      "hasta": 79.9,
+      "texto": "che Dio conserva a nostra dannazione!"
+    },
+    {
+      "desde": 79.9,
+      "hasta": 81.91,
+      "texto": "In ogni cosa, a torto od a ragione,"
+    },
+    {
+      "desde": 81.98,
+      "hasta": 84.18,
+      "texto": "bisogna ch’essi sputino sentenze."
+    },
+    {
+      "desde": 84.18,
+      "hasta": 86.36,
+      "texto": "Prima di pena tirami, se puoi,"
+    },
+    {
+      "desde": 86.65,
+      "hasta": 89.26,
+      "texto": "il bel discorso lo udiremo poi."
+    }
+  ]
+}

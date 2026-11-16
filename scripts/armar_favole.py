@@ -249,16 +249,24 @@ def losTextos(numeroDeLibro, fabulas):
     """
     guardados = losTextosDeLaVezPasada()
 
+    # Toda la conversación con Wikisource va adentro del try, no solo el
+    # primer pedido: son dos consultas y la que falla seguido es la
+    # segunda, la que trae el contenido. Con el try corto, el script se
+    # moría teniendo los textos a mano.
     try:
-        paginas = laListaDeTextos(PAGINAS[numeroDeLibro])
+        aWikisource(numeroDeLibro, fabulas, guardados)
     except SystemExit:
-        if all(f['id'] in guardados for f in fabulas):
-            print('Wikisource no contesta: se usan los textos que ya están.',
-                  file=sys.stderr)
-            for fabula in fabulas:
-                fabula['renglones'] = guardados[fabula['id']]
-            return
-        raise
+        if not all(f['id'] in guardados for f in fabulas):
+            raise
+        print('Wikisource no contesta: se usan los textos que ya están.',
+              file=sys.stderr)
+        for fabula in fabulas:
+            fabula['renglones'] = guardados[fabula['id']]
+
+
+def aWikisource(numeroDeLibro, fabulas, guardados):
+    """Le pide los textos a Wikisource y los deja en cada fábula."""
+    paginas = laListaDeTextos(PAGINAS[numeroDeLibro])
 
     if len(paginas) != len(fabulas):
         raise SystemExit(

@@ -1,0 +1,107 @@
+{
+  "id": "favole_16_libro01_lafontaine",
+  "titulo": "La Morte e il Boscaiolo",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 16.0,
+      "hasta": 19.87,
+      "texto": "Sotto un fastel di legna, non men che sotto il peso"
+    },
+    {
+      "desde": 19.87,
+      "hasta": 24.13,
+      "texto": "degli anni, un Boscaiolo, curvo, accasciato e stanco,"
+    },
+    {
+      "desde": 24.13,
+      "hasta": 26.65,
+      "texto": "andava trascinando il doloroso fianco"
+    },
+    {
+      "desde": 26.65,
+      "hasta": 28.0,
+      "texto": "verso la sua capanna."
+    },
+    {
+      "desde": 28.02,
+      "hasta": 32.47,
+      "texto": "Ma tanto è il male e il peso che il poverino affanna,"
+    },
+    {
+      "desde": 32.47,
+      "hasta": 35.77,
+      "texto": "che posto in terra il carico, a dire cominciò:"
+    },
+    {
+      "desde": 35.77,
+      "hasta": 38.17,
+      "texto": "- Qual dura sorte in questo mondo sconclusionato"
+    },
+    {
+      "desde": 39.45,
+      "hasta": 40.09,
+      "texto": "il cielo mi serbò!"
+    },
+    {
+      "desde": 40.81,
+      "hasta": 43.9,
+      "texto": "Sempre col pane in lite e per soprammercato"
+    },
+    {
+      "desde": 43.9,
+      "hasta": 47.52,
+      "texto": "la moglie, i figli, i debiti, le tasse e l’angherie"
+    },
+    {
+      "desde": 47.52,
+      "hasta": 49.89,
+      "texto": "che fanno a un pover’uomo la vita irta di spine."
+    },
+    {
+      "desde": 51.06,
+      "hasta": 53.96,
+      "texto": "O Morte, a questi mali poni un rimedio e un fine -."
+    },
+    {
+      "desde": 53.97,
+      "hasta": 55.97,
+      "texto": "La Morte, che non usa farsi aspettar giammai,"
+    },
+    {
+      "desde": 57.81,
+      "hasta": 62.13,
+      "texto": "vien subito e - In che cosa, - esclama, - o buon fratello,"
+    },
+    {
+      "desde": 62.13,
+      "hasta": 65.56,
+      "texto": "posso giovarti? - O grazie, soltanto ti chiamai,"
+    },
+    {
+      "desde": 65.56,
+      "hasta": 68.7,
+      "texto": "perché mi aiuti a reggere un po’ questo fardello -."
+    },
+    {
+      "desde": 68.7,
+      "hasta": 70.59,
+      "texto": "È la morte un gran rimedio"
+    },
+    {
+      "desde": 70.59,
+      "hasta": 72.57,
+      "texto": "a chi è stanco di soffrir."
+    },
+    {
+      "desde": 72.57,
+      "hasta": 74.6,
+      "texto": "Sarà ver, ma piace agli uomini"
+    },
+    {
+      "desde": 74.6,
+      "hasta": 76.11,
+      "texto": "più soffrire che morir."
+    }
+  ]
+}

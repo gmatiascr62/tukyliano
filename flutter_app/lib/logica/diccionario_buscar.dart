@@ -8,6 +8,7 @@ class Traduccion {
     required this.comoSeDice,
     required this.desdeItaliano,
     required this.completa,
+    this.vieneDe = '',
   });
 
   /// Lo que se pidió traducir, tal como se escribió.
@@ -23,6 +24,14 @@ class Traduccion {
   /// False cuando era una frase y alguna palabra no estaba: lo que se
   /// devuelve es palabra por palabra, con los huecos tal como vinieron.
   final bool completa;
+
+  /// La palabra de diccionario que se usó, cuando lo que se pidió era una
+  /// forma conjugada. Vacío cuando se encontró la palabra tal cual.
+  ///
+  /// Se muestra, no se esconde: ver "abbia → avere: haber, tener" enseña
+  /// algo que "abbia: haber, tener" no enseña. Y si la forma está mal
+  /// resuelta, se nota, en vez de quedar como una traducción rara.
+  final String vieneDe;
 }
 
 /// Busca lo que está entre almohadillas.
@@ -46,6 +55,7 @@ Traduccion? traducir(Diccionario diccionario, String pedido) {
       comoSeDice: entera.$1,
       desdeItaliano: entera.$2,
       completa: true,
+      vieneDe: entera.$3,
     );
   }
 
@@ -67,6 +77,8 @@ Traduccion? traducir(Diccionario diccionario, String pedido) {
       encontradas++;
       if (hallada.$2) italianas++;
     }
+    // En una frase no se dice de qué palabra viene cada pedazo: sería un
+    // renglón por palabra para algo que se lee de un vistazo.
   }
   if (encontradas == 0) return null;
 
@@ -78,8 +90,10 @@ Traduccion? traducir(Diccionario diccionario, String pedido) {
   );
 }
 
-/// (cómo se dice, era italiano) para una palabra sola, o null.
-(String, bool)? _buscarUna(Diccionario diccionario, String palabra) {
+/// (cómo se dice, era italiano, de qué palabra vino) para una palabra sola.
+///
+/// Null cuando no está de ninguna manera.
+(String, bool, String)? _buscarUna(Diccionario diccionario, String palabra) {
   final clave = normalizar(palabra);
   if (clave.isEmpty) return null;
 
@@ -90,8 +104,21 @@ Traduccion? traducir(Diccionario diccionario, String pedido) {
     for (final forma in formas(clave)) {
       final encontrada = mapa[forma];
       if (encontrada != null && encontrada.isNotEmpty) {
-        return (encontrada.join(', '), esItaliano);
+        return (encontrada.join(', '), esItaliano, '');
       }
+    }
+  }
+
+  // Último recurso: la tabla de formas conjugadas, que sabe de verdad de
+  // qué palabra viene cada una. Va al final y no al principio porque
+  // cuando la palabra está tal cual en el diccionario, esa es la buena:
+  // "vale" es una palabra italiana y además una forma de "valere", y lo
+  // que corresponde mostrar es lo primero.
+  final base = diccionario.formas[clave];
+  if (base != null) {
+    final encontrada = diccionario.italiano[base];
+    if (encontrada != null && encontrada.isNotEmpty) {
+      return (encontrada.join(', '), true, base);
     }
   }
   return null;

@@ -1,0 +1,162 @@
+{
+  "id": "favole_22_libro01_lafontaine",
+  "titulo": "La Canna e la Quercia",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 15.0,
+      "hasta": 19.12,
+      "texto": "Disse la Quercia ad una Canna un giorno:"
+    },
+    {
+      "desde": 19.12,
+      "hasta": 21.04,
+      "texto": "- Infelice nel mondo è il tuo destino:"
+    },
+    {
+      "desde": 21.04,
+      "hasta": 24.0,
+      "texto": "non ti si posa addosso un uccellino,"
+    },
+    {
+      "desde": 24.0,
+      "hasta": 26.26,
+      "texto": "né un soffio d’aria ti svolazza intorno,"
+    },
+    {
+      "desde": 26.26,
+      "hasta": 28.81,
+      "texto": "che tu non abbia ad abbassar la testa."
+    },
+    {
+      "desde": 28.81,
+      "hasta": 31.6,
+      "texto": "Guarda me, che gigante a un monte eguale,"
+    },
+    {
+      "desde": 32.27,
+      "hasta": 35.27,
+      "texto": "non solo innalzo contro il sol la cresta,"
+    },
+    {
+      "desde": 35.27,
+      "hasta": 36.89,
+      "texto": "ma sfido il temporale."
+    },
+    {
+      "desde": 36.89,
+      "hasta": 39.4,
+      "texto": "Per te sembra tempesta ogni sospiro,"
+    },
+    {
+      "desde": 39.4,
+      "hasta": 42.09,
+      "texto": "un sospiro a me sembra ogni tempesta."
+    },
+    {
+      "desde": 42.09,
+      "hasta": 45.31,
+      "texto": "Pazienza ancor, se concedesse il Cielo"
+    },
+    {
+      "desde": 45.31,
+      "hasta": 47.72,
+      "texto": "che voi nasceste all’ombra mia sicura:"
+    },
+    {
+      "desde": 47.72,
+      "hasta": 49.03,
+      "texto": "ma vuole la natura"
+    },
+    {
+      "desde": 49.03,
+      "hasta": 50.09,
+      "texto": "farvi nascer di solito alla riva"
+    },
+    {
+      "desde": 50.72,
+      "hasta": 53.33,
+      "texto": "delle paludi, in mezzo ai venti e al gelo."
+    },
+    {
+      "desde": 53.43,
+      "hasta": 55.83,
+      "texto": "- La tua pietà capisco che deriva"
+    },
+    {
+      "desde": 55.83,
+      "hasta": 58.47,
+      "texto": "da buon cuore, - rispose a lei la Canna. -"
+    },
+    {
+      "desde": 58.47,
+      "hasta": 60.25,
+      "texto": "Il vento che mi affanna"
+    },
+    {
+      "desde": 60.25,
+      "hasta": 63.3,
+      "texto": "mi può piegar, non farmi troppo male,"
+    },
+    {
+      "desde": 63.8,
+      "hasta": 65.63,
+      "texto": "ciò che non sempre anche alle querce arriva."
+    },
+    {
+      "desde": 65.63,
+      "hasta": 67.89,
+      "texto": "Tu sei forte, ma chi fino a dimani"
+    },
+    {
+      "desde": 67.89,
+      "hasta": 70.87,
+      "texto": "può garantirti il legno della schiena? -"
+    },
+    {
+      "desde": 70.87,
+      "hasta": 72.41,
+      "texto": "E detto questo appena,"
+    },
+    {
+      "desde": 72.41,
+      "hasta": 74.91,
+      "texto": "il più forte scoppiò degli uragani,"
+    },
+    {
+      "desde": 74.91,
+      "hasta": 77.7,
+      "texto": "come il polo non soffia mai l’uguale."
+    },
+    {
+      "desde": 77.7,
+      "hasta": 79.84,
+      "texto": "La molle Canna piegasi,"
+    },
+    {
+      "desde": 79.84,
+      "hasta": 82.07,
+      "texto": "e resiste la Quercia anche ai più forti"
+    },
+    {
+      "desde": 82.07,
+      "hasta": 85.48,
+      "texto": "colpi del vento, per un po’, ma infine"
+    },
+    {
+      "desde": 85.48,
+      "hasta": 87.9,
+      "texto": "sradica il vento il tronco,"
+    },
+    {
+      "desde": 87.9,
+      "hasta": 90.2,
+      "texto": "che mandava le foglie al ciel vicine,"
+    },
+    {
+      "desde": 90.2,
+      "hasta": 93.68,
+      "texto": "e le barbe nel Regno imo dei morti."
+    }
+  ]
+}

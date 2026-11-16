@@ -14,9 +14,11 @@ class Diccionario {
   const Diccionario({
     this.italiano = const {},
     this.espanol = const {},
+    this.formas = const {},
     this.credito = '',
     this.licencia = '',
     this.fuente = '',
+    this.creditoDeLasFormas = '',
   });
 
   /// Palabra italiana (en minúsculas y sin tildes) → qué quiere decir.
@@ -25,15 +27,44 @@ class Diccionario {
   /// Palabra española (en minúsculas y sin tildes) → cómo se dice.
   final Map<String, List<String>> espanol;
 
+  /// Forma conjugada → de qué palabra viene. "abbia" → "avere".
+  ///
+  /// Es lo que convierte un diccionario de 14.000 lemas en algo que sirve
+  /// para leer: un diccionario lista "avere", y el texto dice "abbia",
+  /// "avesse", "avrebbe", "avean". Medido sobre las veintidós fábulas, esta
+  /// tabla sube lo que se encuentra del 52% al 69%, y lo que suma son justo
+  /// las conjugaciones y los apócopes del verso ("ancor", "aver",
+  /// "andiam") que ninguna regla de plurales puede adivinar.
+  final Map<String, String> formas;
+
   /// A quién hay que darle el crédito. La licencia obliga y además
   /// corresponde.
   final String credito;
   final String licencia;
   final String fuente;
 
+  /// Las formas salen de otra fuente que las traducciones, y la licencia
+  /// obliga a decirlo aparte.
+  final String creditoDeLasFormas;
+
   bool get vacio => italiano.isEmpty && espanol.isEmpty;
 
   int get cuantasPalabras => italiano.length + espanol.length;
+
+  /// El mismo diccionario con la tabla de formas puesta.
+  ///
+  /// Las formas viajan en otro archivo porque pesan como el diccionario
+  /// entero y hay pantallas que no las necesitan.
+  Diccionario conFormas(Map<String, String> cuales, {String credito = ''}) =>
+      Diccionario(
+        italiano: italiano,
+        espanol: espanol,
+        formas: cuales,
+        credito: this.credito,
+        licencia: licencia,
+        fuente: fuente,
+        creditoDeLasFormas: credito,
+      );
 
   static Diccionario desdeJson(Map<String, dynamic> datos) {
     Map<String, List<String>> lado(String cual) => {

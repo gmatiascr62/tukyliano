@@ -1,0 +1,107 @@
+{
+  "id": "favole_02_libro01_lafontaine",
+  "titulo": "Il Corvo e la Volpe",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 19.07,
+      "hasta": 21.37,
+      "texto": "Sen stava messer Corvo sopra un albero"
+    },
+    {
+      "desde": 21.37,
+      "hasta": 23.39,
+      "texto": "con un bel pezzo di formaggio in becco,"
+    },
+    {
+      "desde": 24.0,
+      "hasta": 26.55,
+      "texto": "quando la Volpe tratta al dolce lecco"
+    },
+    {
+      "desde": 26.55,
+      "hasta": 29.0,
+      "texto": "di quel boccon a dirgli cominciò:"
+    },
+    {
+      "desde": 29.02,
+      "hasta": 32.12,
+      "texto": "- Salve, messer del Corvo, io non conosco"
+    },
+    {
+      "desde": 32.79,
+      "hasta": 36.16,
+      "texto": "uccel di voi più vago in tutto il bosco."
+    },
+    {
+      "desde": 36.16,
+      "hasta": 37.58,
+      "texto": "Se è ver quel che si dice"
+    },
+    {
+      "desde": 37.58,
+      "hasta": 40.32,
+      "texto": "che il vostro canto è bel come son belle"
+    },
+    {
+      "desde": 40.32,
+      "hasta": 43.0,
+      "texto": "queste penne, voi siete una Fenice -."
+    },
+    {
+      "desde": 43.0,
+      "hasta": 45.71,
+      "texto": "A questo dir non sta più nella pelle"
+    },
+    {
+      "desde": 45.71,
+      "hasta": 47.3,
+      "texto": "il Corvo vanitoso:"
+    },
+    {
+      "desde": 47.3,
+      "hasta": 50.21,
+      "texto": "e volendo alla Volpe dare un saggio"
+    },
+    {
+      "desde": 50.21,
+      "hasta": 51.73,
+      "texto": "del suo canto famoso,"
+    },
+    {
+      "desde": 52.67,
+      "hasta": 56.0,
+      "texto": "spalanca il becco e uscir lascia il formaggio."
+    },
+    {
+      "desde": 56.02,
+      "hasta": 59.89,
+      "texto": "La Volpe il piglia e dice: - Ecco, mio caro,"
+    },
+    {
+      "desde": 59.89,
+      "hasta": 62.38,
+      "texto": "chi dell’adulator paga le spese."
+    },
+    {
+      "desde": 63.23,
+      "hasta": 65.0,
+      "texto": "Fanne tuo pro’ che forse"
+    },
+    {
+      "desde": 65.0,
+      "hasta": 68.0,
+      "texto": "la mia lezione vale il tuo formaggio -."
+    },
+    {
+      "desde": 68.0,
+      "hasta": 70.45,
+      "texto": "Il Corvo sciocco intese"
+    },
+    {
+      "desde": 70.45,
+      "hasta": 75.0,
+      "texto": "e (un po’ tardi) giurò d’esser più saggio."
+    }
+  ]
+}

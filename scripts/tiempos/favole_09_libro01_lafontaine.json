@@ -1,0 +1,147 @@
+{
+  "id": "favole_09_libro01_lafontaine",
+  "titulo": "Il Topo di città e il Topo di campagna",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 17.0,
+      "hasta": 19.87,
+      "texto": "Un Topo campagnol venne invitato"
+    },
+    {
+      "desde": 19.87,
+      "hasta": 21.47,
+      "texto": "con molta civiltà"
+    },
+    {
+      "desde": 21.47,
+      "hasta": 24.17,
+      "texto": "a un pranzo di beccacce allo stufato"
+    },
+    {
+      "desde": 24.17,
+      "hasta": 26.13,
+      "texto": "da un Topo di città."
+    },
+    {
+      "desde": 26.13,
+      "hasta": 28.37,
+      "texto": "Seduti su un tappeto di Turchia"
+    },
+    {
+      "desde": 28.37,
+      "hasta": 30.12,
+      "texto": "coi piatti avanti a sé,"
+    },
+    {
+      "desde": 31.22,
+      "hasta": 32.84,
+      "texto": "mangiavan quella grassa leccornia"
+    },
+    {
+      "desde": 32.84,
+      "hasta": 34.35,
+      "texto": "felici come re."
+    },
+    {
+      "desde": 34.35,
+      "hasta": 36.38,
+      "texto": "Se il trattamento e il piatto"
+    },
+    {
+      "desde": 36.38,
+      "hasta": 38.87,
+      "texto": "fu cortese e squisito io non dirò."
+    },
+    {
+      "desde": 38.87,
+      "hasta": 40.92,
+      "texto": "Ma solo avvenne un fatto"
+    },
+    {
+      "desde": 40.92,
+      "hasta": 43.51,
+      "texto": "che sul più bello il pranzo disturbò."
+    },
+    {
+      "desde": 43.51,
+      "hasta": 45.67,
+      "texto": "Voglio dir che alla porta"
+    },
+    {
+      "desde": 46.75,
+      "hasta": 48.7,
+      "texto": "s’intese tutto a un tratto un gran rumor,"
+    },
+    {
+      "desde": 48.7,
+      "hasta": 50.57,
+      "texto": "l’un scappa che il diavolo lo porta"
+    },
+    {
+      "desde": 51.1,
+      "hasta": 52.24,
+      "texto": "e scappa l’altro ancor."
+    },
+    {
+      "desde": 52.84,
+      "hasta": 55.82,
+      "texto": "Passato quel rumor torna al suo posto"
+    },
+    {
+      "desde": 55.82,
+      "hasta": 56.25,
+      "texto": "il Topo cittadin,"
+    },
+    {
+      "desde": 57.12,
+      "hasta": 59.04,
+      "texto": "e vuole che del pranzo ad ogni costo"
+    },
+    {
+      "desde": 59.04,
+      "hasta": 60.94,
+      "texto": "si vada fino in fin."
+    },
+    {
+      "desde": 60.94,
+      "hasta": 64.36,
+      "texto": "- No, basta, - disse il Topo di campagna, -"
+    },
+    {
+      "desde": 64.36,
+      "hasta": 65.92,
+      "texto": "vieni diman da me."
+    },
+    {
+      "desde": 65.92,
+      "hasta": 68.22,
+      "texto": "Non si mangia seduti in pompa magna"
+    },
+    {
+      "desde": 68.22,
+      "hasta": 69.66,
+      "texto": "ghiottonerie da re,"
+    },
+    {
+      "desde": 69.66,
+      "hasta": 71.72,
+      "texto": "ma si mangia e nessuno t’avvelena"
+    },
+    {
+      "desde": 71.72,
+      "hasta": 73.13,
+      "texto": "il pane ed il bicchier."
+    },
+    {
+      "desde": 73.13,
+      "hasta": 76.19,
+      "texto": "Senza la pace anche una pancia piena"
+    },
+    {
+      "desde": 76.19,
+      "hasta": 77.33,
+      "texto": "non gusta il suo piacer -."
+    }
+  ]
+}
