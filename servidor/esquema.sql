@@ -18,3 +18,30 @@ CREATE TABLE IF NOT EXISTS mensajes (
 -- Para poder borrar lo viejo de un saque: pasada una semana, los contadores de
 -- días anteriores no le sirven a nadie.
 CREATE INDEX IF NOT EXISTS mensajes_por_dia ON mensajes (dia);
+
+-- Las palabras que alguien buscó y el diccionario de la app no tenía.
+--
+-- Esta es la parte que hace que preguntarle a la IA valga la pena: se le
+-- pregunta UNA vez por palabra en toda la historia del servidor, y a partir de
+-- ahí cualquiera que busque esa misma palabra la recibe de acá, sin IA, sin
+-- cuota y sin espera. El segundo que busque "lumicino" ya la tiene.
+--
+-- 'palabra' viene normalizada igual que las claves del diccionario de la app:
+-- minúsculas y sin tildes. Si no, "Lumicino" y "lumicino" serían dos filas y
+-- dos preguntas a la IA por la misma palabra.
+--
+-- 'es' son las traducciones separadas por coma, como las muestra la app.
+--
+-- 'cuantas' sirve para decidir qué merece entrar al diccionario que viaja en
+-- el APK: lo que se busca seguido conviene que esté adentro y no cueste ni
+-- una ida al servidor.
+CREATE TABLE IF NOT EXISTS palabras (
+  palabra TEXT PRIMARY KEY,
+  es      TEXT NOT NULL,
+  base    TEXT,                 -- de qué palabra viene, si es una forma
+  cuando  TEXT NOT NULL,        -- 2026-11-16, en UTC
+  cuantas INTEGER NOT NULL DEFAULT 1
+);
+
+-- Para bajar de un saque las más buscadas y meterlas en el próximo APK.
+CREATE INDEX IF NOT EXISTS palabras_por_uso ON palabras (cuantas DESC);

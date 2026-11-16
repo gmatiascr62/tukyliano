@@ -3,8 +3,8 @@ import 'dart:async';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 
+import '../datos/buscador_de_palabras.dart';
 import '../datos/reproductor.dart';
-import '../logica/diccionario_buscar.dart';
 import '../modelos/diccionario.dart';
 import '../modelos/favola.dart';
 import '../tema.dart';
@@ -32,6 +32,7 @@ class PantallaUnaFavola extends StatefulWidget {
     required this.reproductor,
     required this.diccionario,
     required this.alVolver,
+    this.buscador,
   });
 
   final Favola favola;
@@ -43,11 +44,18 @@ class PantallaUnaFavola extends StatefulWidget {
   final Diccionario diccionario;
   final VoidCallback alVolver;
 
+  /// Quién busca las palabras que el diccionario no tiene. Se puede pasar
+  /// uno de mentira para probar sin salir a internet.
+  final BuscadorDePalabras? buscador;
+
   @override
   State<PantallaUnaFavola> createState() => _PantallaUnaFavolaState();
 }
 
 class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
+  late final BuscadorDePalabras _buscador =
+      widget.buscador ?? BuscadorDePalabras();
+
   bool _sonando = false;
   bool _lenta = false;
   bool _abrio = false;
@@ -179,11 +187,15 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
     setState(() => _lenta = lenta);
   }
 
-  /// Qué quiere decir una palabra, del diccionario que viaja en la app.
+  /// Qué quiere decir una palabra.
   ///
-  /// Sin internet y sin gastar nada. En un texto en verso es lo que separa
-  /// leerlo de mirarlo.
-  void _queQuiereDecir(String palabra) {
+  /// Casi siempre la sabe el diccionario que viaja en la app: sin internet y
+  /// sin gastar nada. Cuando no, se la pregunta al servidor, que la guarda
+  /// para que el próximo que la toque no tenga que preguntarla de nuevo.
+  ///
+  /// En un texto en verso del siglo XIX esto es lo que separa leerlo de
+  /// mirarlo.
+  Future<void> _queQuiereDecir(String palabra, String renglon) async {
     // Sin signos y en minúscula: el diccionario guarda las palabras así, y
     // en un verso la primera de cada renglón va en mayúscula.
     // El apóstrofo curvo se conserva: es el que usan los textos de
@@ -194,22 +206,33 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
         .replaceAll(RegExp(r"[^\p{L}'’]", unicode: true), '');
     if (limpia.isEmpty) return;
 
-    final traduccion = traducir(widget.diccionario, limpia);
+    // Si hay que salir a internet se avisa. Si no, no se muestra nada: ese
+    // parpadeo de "buscando…" cuando la respuesta ya estaba acá se nota.
+    final alInstante = _buscador.laSabeSinInternet(widget.diccionario, limpia);
+    if (!alInstante) _mostrar('$limpia…');
+
+    final traduccion =
+        await _buscador.buscar(widget.diccionario, limpia, donde: renglon);
+    if (!mounted) return;
+
+    _mostrar(
+      traduccion == null
+          ? '$limpia no está en el diccionario'
+          // Cuando lo que se tocó era una forma conjugada, se dice de qué
+          // palabra viene: "avean → avere: haber, tener". Enseña algo que la
+          // traducción sola no enseña, y si la forma está mal resuelta se
+          // nota en vez de parecer una traducción rara.
+          : traduccion.vieneDe.isEmpty
+              ? '$limpia: ${traduccion.comoSeDice}'
+              : '$limpia → ${traduccion.vieneDe}: ${traduccion.comoSeDice}',
+    );
+  }
+
+  void _mostrar(String texto) {
     ScaffoldMessenger.of(context)
       ..clearSnackBars()
       ..showSnackBar(SnackBar(
-        content: Text(
-          traduccion == null
-              ? '$limpia no está en el diccionario'
-              // Cuando lo que se tocó era una forma conjugada, se dice de
-              // qué palabra viene: "avean → avere: haber, tener". Enseña
-              // algo que la traducción sola no enseña, y si la forma está
-              // mal resuelta se nota en vez de parecer una traducción rara.
-              : traduccion.vieneDe.isEmpty
-                  ? '$limpia: ${traduccion.comoSeDice}'
-                  : '$limpia → ${traduccion.vieneDe}: '
-                      '${traduccion.comoSeDice}',
-        ),
+        content: Text(texto),
         duration: const Duration(seconds: 3),
       ));
   }
@@ -393,7 +416,10 @@ class _ElTexto extends StatefulWidget {
   final int enElRenglon;
   final List<GlobalKey> claves;
   final ScrollController scroll;
-  final void Function(String) alTocarPalabra;
+  /// Se le pasa la palabra y el renglón entero. El renglón es lo que
+  /// desambigua cuando hay que preguntarle al servidor: "lumicino" solo es
+  /// "lucecita", y en "ridotto al lumicino" es "en las últimas".
+  final void Function(String, String) alTocarPalabra;
 
   @override
   State<_ElTexto> createState() => _ElTextoState();
@@ -445,7 +471,8 @@ class _ElTextoState extends State<_ElTexto> {
           }
           if (cual >= _gestos.length) _gestos.add(TapGestureRecognizer());
           final gesto = _gestos[cual++];
-          gesto.onTap = () => widget.alTocarPalabra(pedazo);
+          gesto.onTap =
+              () => widget.alTocarPalabra(pedazo, widget.renglones[i].texto);
           partes.add(TextSpan(text: pedazo, recognizer: gesto));
         }
 

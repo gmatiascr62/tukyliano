@@ -3,12 +3,12 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
+import '../datos/buscador_de_palabras.dart';
 import '../datos/quien_soy.dart';
 import '../datos/repositorio_diccionario.dart';
 import '../datos/voz.dart';
 import '../ia/chat.dart';
 import '../ia/servidor.dart';
-import '../logica/diccionario_buscar.dart';
 import '../modelos/diccionario.dart';
 import '../tema.dart';
 import '../widgets/pastilla.dart';
@@ -44,6 +44,7 @@ class PantallaChat extends StatefulWidget {
     this.escena = Escena.libre,
     this.servidor,
     this.quienSoy,
+    this.buscador,
     this.voz,
     this.diccionario,
     this.azar,
@@ -55,6 +56,10 @@ class PantallaChat extends StatefulWidget {
   /// Inyectables para los tests.
   final Servidor? servidor;
   final QuienSoy? quienSoy;
+
+  /// Quién busca las palabras que el diccionario no tiene. Uno de mentira
+  /// deja probar la pantalla sin salir a internet.
+  final BuscadorDePalabras? buscador;
   final Voz? voz;
   final RepositorioDiccionario? diccionario;
 
@@ -68,6 +73,12 @@ class PantallaChat extends StatefulWidget {
 class _PantallaChatState extends State<PantallaChat> {
   late final Servidor _servidor = widget.servidor ?? Servidor();
   late final QuienSoy _quienSoy = widget.quienSoy ?? QuienSoy();
+
+  /// El que busca las palabras: primero el diccionario de la app, después el
+  /// servidor. Comparte el mismo cliente que la charla, así una sola falla de
+  /// red se ve igual en los dos lados.
+  late final BuscadorDePalabras _buscador = widget.buscador ??
+      BuscadorDePalabras(servidor: _servidor, quienSoy: _quienSoy);
   late final Voz _voz = widget.voz ?? VozDelSistema();
 
   late Conversacion _conversacion =
@@ -138,13 +149,18 @@ class _PantallaChatState extends State<PantallaChat> {
     setState(() => _elDiccionario = diccionario);
   }
 
-  /// Contesta los pedidos de traducción sin salir del celular.
+  /// Contesta los pedidos de traducción.
+  ///
+  /// Casi siempre sin salir del celular: el diccionario viaja adentro. Las
+  /// que no están se le preguntan al servidor, que se las pregunta a la IA
+  /// una sola vez y las guarda, así el próximo que busque la misma palabra
+  /// la recibe de la base sin gastar nada.
   ///
   /// Devuelve los renglones listos para mostrar, o vacío si no había pedidos.
-  String _traducirLoMarcado(String mensaje) {
+  Future<String> _traducirLoMarcado(String mensaje) async {
     final renglones = <String>[];
     for (final pedido in pedidosDeTraduccion(mensaje)) {
-      final traduccion = traducir(_elDiccionario, pedido);
+      final traduccion = await _buscador.buscar(_elDiccionario, pedido);
       renglones.add(traduccion == null
           ? noEstaEnElDiccionario(pedido)
           : renglonesDeTraduccion([traduccion]));
@@ -164,7 +180,7 @@ class _PantallaChatState extends State<PantallaChat> {
     final texto = _campo.text.trim();
     if (_esperando || texto.isEmpty) return;
 
-    final traducido = _traducirLoMarcado(texto);
+    final traducido = await _traducirLoMarcado(texto);
     // Ir al diccionario no es charla, así que ese ida y vuelta se ve en
     // pantalla pero no entra en lo que la IA recuerda.
     final soloDiccionario = esSoloTraduccion(texto);

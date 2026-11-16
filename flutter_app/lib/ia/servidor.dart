@@ -22,6 +22,18 @@ class FallaDelServidor implements Exception {
   String toString() => mensaje;
 }
 
+/// Lo que el servidor sabe de una palabra. Vacío cuando no la sabe nadie.
+class PalabraDelServidor {
+  const PalabraDelServidor({this.es = const [], this.vieneDe = ''});
+
+  final List<String> es;
+
+  /// La palabra de diccionario, cuando lo que se buscó era una forma.
+  final String vieneDe;
+
+  bool get hay => es.isNotEmpty;
+}
+
 /// Habla con el servidor de Tukyliano.
 ///
 /// Reemplaza al cliente de Gemini que vivía en la app. Las diferencias que
@@ -99,6 +111,52 @@ class Servidor {
       );
     }
     return texto;
+  }
+
+  /// Qué quiere decir una palabra que el diccionario de la app no tiene.
+  ///
+  /// Devuelve las traducciones, o la lista vacía si tampoco el servidor la
+  /// sabe. **Nunca tira**: que una palabra no aparezca no puede ser un error
+  /// con cartel. El que la tocó tiene que leer "no está en el diccionario",
+  /// igual que antes de que esto existiera, y seguir leyendo.
+  ///
+  /// Del otro lado: el servidor primero mira su base, y solo si nunca nadie
+  /// buscó esa palabra le pregunta a la IA y la guarda. Así se le pregunta
+  /// una sola vez en la historia, y el segundo que la busque no gasta nada.
+  ///
+  /// [donde] es el renglón donde apareció, y es lo que desambigua:
+  /// "lumicino" solo es "lucecita", y en "ridotto al lumicino" es "en las
+  /// últimas".
+  Future<PalabraDelServidor> queQuiereDecir({
+    required String quien,
+    required String palabra,
+    String donde = '',
+    String codigo = '',
+  }) async {
+    try {
+      final respuesta = await _cliente
+          .post(
+            Uri.parse('$_url/palabra'),
+            headers: {'Content-Type': 'application/json; charset=utf-8'},
+            body: jsonEncode({
+              'quien': quien,
+              'codigo': codigo,
+              'palabra': palabra,
+              'donde': donde,
+            }),
+          )
+          .timeout(_paciencia);
+      if (respuesta.statusCode != 200) return const PalabraDelServidor();
+      final datos = _leer(respuesta.bodyBytes);
+      return PalabraDelServidor(
+        es: [
+          for (final t in datos['es'] as List? ?? const []) '$t',
+        ],
+        vieneDe: datos['base'] as String? ?? '',
+      );
+    } catch (_) {
+      return const PalabraDelServidor();
+    }
   }
 
   /// El cuerpo como mapa. Una respuesta que no es JSON no tiene que tirar

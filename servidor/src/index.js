@@ -6,6 +6,10 @@
 
 import { atenderLaCharla } from './atender.js';
 import { MODELO_POR_DEFECTO } from './modelo.js';
+import {
+  atenderLaPalabra,
+  TOPES_POR_DEFECTO as TOPES_DE_PALABRAS,
+} from './palabras.js';
 import { queSalioMal } from './respuestas.js';
 
 /// Cuántos mensajes por día si nadie dice otra cosa.
@@ -23,7 +27,9 @@ export default {
       return Response.json({ ok: true });
     }
 
-    if (pedido.method !== 'POST' || donde.pathname !== '/charla') {
+    const esCharla = pedido.method === 'POST' && donde.pathname === '/charla';
+    const esPalabra = pedido.method === 'POST' && donde.pathname === '/palabra';
+    if (!esCharla && !esPalabra) {
       return queSalioMal('pedidoRaro');
     }
 
@@ -32,6 +38,30 @@ export default {
       cuerpo = await pedido.json();
     } catch {
       return queSalioMal('pedidoRaro');
+    }
+
+    if (esPalabra) {
+      try {
+        return await atenderLaPalabra(cuerpo, {
+          base: ambiente.BASE,
+          // La clave de Gemini. Es lo único del servidor que habla con
+          // Google, y es solo para el diccionario: el chat sigue andando
+          // con el modelo de Cloudflare, sin ninguna clave. Si no está
+          // cargada, el diccionario contesta "no está" y nada se rompe.
+          clave: ambiente.GEMINI_API_KEY,
+          permitidos: codigos(ambiente.CODIGOS),
+          topes: {
+            deCadaUno: numero(ambiente.TOPE_DE_PALABRAS_POR_PERSONA,
+                              TOPES_DE_PALABRAS.deCadaUno),
+            deTodos: numero(ambiente.TOPE_DE_PALABRAS,
+                            TOPES_DE_PALABRAS.deTodos),
+          },
+          ahora: new Date(),
+        });
+      } catch (error) {
+        console.error('se rompió buscando una palabra', error);
+        return queSalioMal('roto');
+      }
     }
 
     try {
