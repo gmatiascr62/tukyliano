@@ -167,6 +167,62 @@ test('el renglón se le manda a la IA, que es lo que desambigua', async () => {
   assert.ok(texto.includes('ridotto al lumicino'), texto);
 });
 
+test('si la IA tarda, al que preguntó no se lo hace esperar', async () => {
+  // La demora de Gemini es traicionera: la mediana es de 2,7 segundos pero
+  // una de cada siete llamadas tarda más de un minuto. Nadie espera un
+  // minuto mirando la pantalla por una palabra.
+  const base = new BaseDeMentira();
+  globalThis.fetch = async () => {
+    await new Promise((listo) => setTimeout(listo, 5000));
+    return {
+      ok: true,
+      json: async () => ({
+        candidates: [{ content: { parts: [{ text: '{"es":["morfar"]}' }] } }],
+      }),
+    };
+  };
+
+  const empezo = Date.now();
+  const contesto = await atenderLaPalabra(
+    { palabra: 'sbasoffiare', quien: 'uno' },
+    { ...afuera(base), cuantoEspera: 50 },
+  );
+  const tardo = Date.now() - empezo;
+
+  const dijo = await contesto.json();
+  assert.equal(dijo.de, 'nadie');
+  assert.equal(dijo.porQue, 'tardo');
+  assert.ok(tardo < 1000, `tardó ${tardo} ms en contestar`);
+});
+
+test('y la palabra se guarda igual, para el que venga después', async () => {
+  // Esta es la parte que importa: el primero se queda sin ella, pero la
+  // palabra entra. El segundo la recibe de la base al instante.
+  const base = new BaseDeMentira();
+  let seguir;
+  globalThis.fetch = async () => {
+    await new Promise((listo) => setTimeout(listo, 30));
+    return {
+      ok: true,
+      json: async () => ({
+        candidates: [{ content: { parts: [{ text: '{"es":["morfar"]}' }] } }],
+      }),
+    };
+  };
+
+  await atenderLaPalabra(
+    { palabra: 'sbasoffiare', quien: 'uno' },
+    { ...afuera(base), cuantoEspera: 1, seguirDespues: (p) => { seguir = p; } },
+  );
+  assert.equal(await laQueYaEsta(base, 'sbasoffiare'), null, 'todavía no');
+
+  // Lo que Cloudflare mantiene vivo con waitUntil.
+  await seguir;
+
+  const guardada = await laQueYaEsta(base, 'sbasoffiare');
+  assert.deepEqual(guardada.es, ['morfar']);
+});
+
 test('el control no deja pasar lo que no sirve para mostrar', () => {
   // Todo esto lo devolvió Gemini de verdad alguna vez.
   assert.equal(loQuePasaElControl('lumicino', null), null);
