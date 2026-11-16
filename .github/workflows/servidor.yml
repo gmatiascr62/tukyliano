@@ -75,6 +75,24 @@ jobs:
           fi
           echo "se_puede=si" >> "$GITHUB_OUTPUT"
 
+      # El esquema va ANTES de publicar, y se aplica en cada publicación.
+      #
+      # Antes no se aplicaba nunca: la tabla de contadores se había creado a
+      # mano el primer día y nadie se acordaba. El día que el código empezó a
+      # usar una tabla nueva, el servidor se habría publicado sin ella y la
+      # función habría salido rota en producción.
+      #
+      # Correrlo siempre es seguro porque el esquema es todo CREATE TABLE IF
+      # NOT EXISTS: si las tablas están, no hace nada. Y va antes de publicar
+      # para que el código nuevo nunca llegue a una base vieja.
+      - name: Poner al día la base
+        if: steps.listo.outputs.se_puede == 'si'
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          workingDirectory: servidor
+          command: d1 execute tukyliano --remote --file=esquema.sql
+
       - name: Publicar en Cloudflare
         if: steps.listo.outputs.se_puede == 'si'
         uses: cloudflare/wrangler-action@v3
