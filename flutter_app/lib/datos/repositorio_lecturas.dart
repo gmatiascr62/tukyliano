@@ -43,6 +43,7 @@ class RepositorioLecturas {
         credito: datos['credito'] as String? ?? '',
         fuente: datos['fuente'] as String? ?? '',
         textoDe: datos['textoDe'] as String? ?? '',
+        deQuien: datos['deQuien'] as String? ?? '',
       );
     } catch (_) {
       _catalogo = const Lecturas();

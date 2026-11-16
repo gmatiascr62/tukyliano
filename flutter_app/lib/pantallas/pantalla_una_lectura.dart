@@ -32,6 +32,7 @@ class PantallaUnaLectura extends StatefulWidget {
     required this.reproductor,
     required this.diccionario,
     required this.alVolver,
+    this.deQuien = '',
     this.buscador,
   });
 
@@ -43,6 +44,9 @@ class PantallaUnaLectura extends StatefulWidget {
   final Reproductor reproductor;
   final Diccionario diccionario;
   final VoidCallback alVolver;
+
+  /// Quién firma lo que suena. Lo pone la pantalla bloqueada.
+  final String deQuien;
 
   /// Quién busca las palabras que el diccionario no tiene. Se puede pasar
   /// uno de mentira para probar sin salir a internet.
@@ -99,7 +103,7 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
     final abrio = await widget.reproductor.cargarGuardado(
       widget.ruta,
       titulo: widget.lectura.titulo,
-      deQuien: 'Lecturas di La Fontaine',
+      deQuien: widget.deQuien,
     );
     if (!mounted) return;
     if (!abrio) {

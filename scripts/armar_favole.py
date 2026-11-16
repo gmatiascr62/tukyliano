@@ -379,6 +379,10 @@ def main():
                    'grabaciones son de dominio público.',
         'fuente': 'https://librivox.org',
         'textoDe': 'it.wikisource.org · traducción de Emilio de Marchi',
+        # Quién firma lo que suena, para la pantalla bloqueada. Va en el
+        # catálogo y no en el código de la app porque cambia con la
+        # colección: Pinocchio no lo escribió La Fontaine.
+        'deQuien': 'Favole di La Fontaine',
         'base': BASE,
         'favole': todas,
     }

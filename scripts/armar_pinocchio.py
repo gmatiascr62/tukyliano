@@ -92,12 +92,89 @@ def pedirleAWikisource(parametros):
 NO_ES_TEXTO = ('<dc:', '.mw-parser-output', 'mw-parser-output')
 
 
+def losTitulos():
+    """El resumen de cada capítulo, sacado del índice del libro.
+
+    El índice lista los treinta y seis con su resumen —"La storia di
+    Pinocchio col Grillo-parlante, dove si vede come i ragazzi cattivi
+    hanno a noja di sentirsi correggere"— y eso es lo que distingue un
+    capítulo de otro en una lista de treinta y seis.
+
+    Se saca de acá y no de la página del capítulo por dos razones. Una:
+    es un pedido en lugar de treinta y seis. La otra, la que importa: en
+    la página del capítulo el resumen a veces no está. El capítulo 4 pasa
+    del número romano al texto, y de ahí salían títulos que eran el
+    principio del cuento en vez de de qué se trata.
+    """
+    datos, _ = guardadoEnDisco(0, lambda: pedirleAWikisource({
+        'action': 'parse', 'format': 'json', 'formatversion': '2',
+        'prop': 'text', 'page': 'Le avventure di Pinocchio',
+    }))
+    crudo = datos['parse']['text']
+
+    # En el índice, el resumen de cada capítulo viene en un <dd><i> justo
+    # después de su enlace. Se recorren los dos en orden de aparición y se
+    # emparejan: al capítulo N le toca el primer resumen que lo sigue.
+    titulos, ultimo = {}, None
+    busca = re.compile(
+        r'href="/wiki/Le_avventure_di_Pinocchio/Capitolo_(\d+)"'
+        r'|<dd><i>(.*?)</i></dd>', re.S)
+    for hallado in busca.finditer(crudo):
+        if hallado.group(1):
+            ultimo = int(hallado.group(1))
+        elif ultimo is not None and ultimo not in titulos:
+            texto = re.sub(r'<[^>]+>', '', html.unescape(hallado.group(2)))
+            titulos[ultimo] = re.sub(r'\s+', ' ', texto).strip()
+
+    if len(titulos) != CUANTOS_CAPITULOS:
+        raise SystemExit(
+            f'el índice trae {len(titulos)} resúmenes y los capítulos son '
+            f'{CUANTOS_CAPITULOS}'
+        )
+    return titulos
+
+
+# El número romano que encabeza cada capítulo. No es el título: el título
+# es el resumen que viene después ("Maestro Ciliegia regala il pezzo di
+# legno al suo amico Geppetto..."), que es lo que distingue un capítulo de
+# otro en una lista de treinta y seis.
+#
+# En el capítulo 1 esto no hacía falta, porque "I." mide dos letras y se
+# caía solo por el filtro de largo. Del 2 en adelante sí, y por eso los
+# títulos salían "II.", "III.", "IV.".
+SOLO_UN_NUMERO = re.compile(r'^[IVXLC]+\.?$')
+
+
+def guardadoEnDisco(numero, traerlo):
+    """Lo que Wikisource contestó, cacheado.
+
+    Wikimedia corta a quien le pide seguido y bajar los treinta y seis
+    capítulos lleva un cuarto de hora. Sin esto, cada vez que hay que
+    corregir algo del armado —que es lo que pasó con los títulos— se
+    vuelve a esperar ese cuarto de hora y se le vuelve a pedir a un
+    servidor ajeno lo mismo que ya contestó.
+    """
+    carpeta = os.path.join(ACA, '..', '.cache', 'wikisource')
+    os.makedirs(carpeta, exist_ok=True)
+    donde = os.path.join(carpeta, f'pinocchio_{numero:02d}.json')
+    if os.path.exists(donde):
+        with open(donde, encoding='utf-8') as fh:
+            return json.load(fh), True
+    datos = traerlo()
+    with open(donde, 'w', encoding='utf-8') as fh:
+        json.dump(datos, fh)
+    return datos, False
+
+
 def elTextoDe(numero):
-    """Los párrafos del capítulo, ya sin marcas ni basura."""
-    datos = pedirleAWikisource({
+    """Los párrafos del capítulo, ya sin marcas ni basura.
+
+    Devuelve (párrafos, si estaba cacheado).
+    """
+    datos, estaba = guardadoEnDisco(numero, lambda: pedirleAWikisource({
         'action': 'parse', 'format': 'json', 'formatversion': '2',
         'prop': 'text', 'page': PAGINA.format(numero),
-    })
+    }))
     if 'error' in datos:
         raise SystemExit(f"capítulo {numero}: {datos['error'].get('info')}")
 
@@ -109,8 +186,10 @@ def elTextoDe(numero):
         texto = re.sub(r'\s+', ' ', texto)
         if len(texto) < 3 or any(x in texto for x in NO_ES_TEXTO):
             continue
+        if SOLO_UN_NUMERO.match(texto):
+            continue
         parrafos.append(texto)
-    return parrafos
+    return parrafos, estaba
 
 
 # Dónde termina una oración: punto, signo o puntos suspensivos, seguidos
@@ -143,6 +222,19 @@ def enOraciones(parrafos):
     return renglones
 
 
+def esElResumen(parrafo, titulo):
+    """Si ese párrafo es el resumen del capítulo y no el cuento.
+
+    Se compara con el título que vino del índice en vez de confiar en que
+    sea el primero: en el capítulo 4 el primer párrafo YA es el cuento, y
+    sacarlo le habría comido el arranque.
+    """
+    def comparable(texto):
+        return re.sub(r'[^a-z0-9]', '', texto.lower())[:60]
+
+    return comparable(parrafo) == comparable(titulo)
+
+
 def losAudios():
     """Los 36 capítulos del item, en orden, con su duración y su peso."""
     datos = favole.traer(ITEM)
@@ -173,24 +265,27 @@ def main():
     dicho = discusion.parse_args()
 
     archivos = losAudios()
-    print(f'{len(archivos)} capítulos en LibriVox', file=sys.stderr)
+    titulos = losTitulos()
+    print(f'{len(archivos)} capítulos en LibriVox, {len(titulos)} títulos '
+          'en el índice', file=sys.stderr)
 
     capitulos = []
     for numero, archivo in enumerate(archivos, 1):
-        parrafos = elTextoDe(numero)
+        parrafos, estaba = elTextoDe(numero)
         if not parrafos:
             raise SystemExit(f'el capítulo {numero} vino sin texto')
 
-        # El primer párrafo es el resumen que encabeza cada capítulo
-        # ("Come andò che Maestro Ciliegia..."). Sirve de título: es lo que
-        # distingue un capítulo de otro en una lista de treinta y seis.
-        titulo = parrafos[0]
-        renglones = enOraciones(parrafos[1:] or parrafos)
+        # El resumen que trae la página del capítulo, cuando está, no es
+        # parte del cuento: no se lee en el audio. Se saca, o el renglón
+        # iluminado arrancaría corrido desde el primero.
+        if parrafos and esElResumen(parrafos[0], titulos[numero]):
+            parrafos = parrafos[1:]
+        renglones = enOraciones(parrafos)
 
         capitulos.append({
             'id': f'pinocchio_{numero:02d}',
             'numero': numero,
-            'titulo': f'{numero}. {favole.limpiar(titulo)}',
+            'titulo': f'{numero}. {favole.limpiar(titulos[numero])}',
             'archivo': archivo['name'],
             'segundos': favole.enSegundos(archivo['length']),
             'bytes': int(archivo['size']),
@@ -198,7 +293,8 @@ def main():
         })
         print(f'  {numero:2d}/{len(archivos)}  {len(renglones):3d} renglones  '
               f"{capitulos[-1]['titulo'][:52]}", file=sys.stderr)
-        time.sleep(ESPERAR_ENTRE_PEDIDOS)
+        if not estaba:
+            time.sleep(ESPERAR_ENTRE_PEDIDOS)
 
     conTiempos = 0
     for capitulo in capitulos:

@@ -142,6 +142,7 @@ class Lecturas {
     this.credito = '',
     this.fuente = '',
     this.textoDe = '',
+    this.deQuien = '',
   });
 
   final List<Lectura> lecturas;
@@ -152,6 +153,14 @@ class Lecturas {
 
   final String credito;
   final String fuente;
+
+  /// Quién firma lo que suena, para la pantalla bloqueada y los auriculares.
+  ///
+  /// Viene del catálogo y no del código porque cambia con la colección:
+  /// las fábulas son de La Fontaine y Pinocchio es de Collodi. Antes
+  /// estaba clavado, y el día que entró la segunda colección iba a decir
+  /// que Pinocchio lo escribió La Fontaine.
+  final String deQuien;
 
   /// De dónde salió el texto, que no es el mismo lugar que el audio.
   final String textoDe;

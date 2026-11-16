@@ -194,6 +194,7 @@ class _PantallaLecturasState extends State<PantallaLecturas> {
         ruta: _rutaAbierta,
         reproductor: _reproductor,
         diccionario: _elDiccionario,
+        deQuien: _catalogo.deQuien,
         buscador: widget.buscador,
         alVolver: () => _cerrarLaFavola(abierta),
       );
