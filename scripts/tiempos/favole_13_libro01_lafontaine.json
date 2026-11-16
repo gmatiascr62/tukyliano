@@ -1,0 +1,72 @@
+{
+  "id": "favole_13_libro01_lafontaine",
+  "titulo": "I Ladri e l'Asino",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 17.0,
+      "hasta": 19.4,
+      "texto": "Due Ladri avean rubato un Somarello"
+    },
+    {
+      "desde": 19.4,
+      "hasta": 22.0,
+      "texto": "e a pugni il disputavan fra di loro:"
+    },
+    {
+      "desde": 22.57,
+      "hasta": 24.0,
+      "texto": "quand’ecco sul più bello"
+    },
+    {
+      "desde": 24.0,
+      "hasta": 24.6,
+      "texto": "un terzo sopraviene,"
+    },
+    {
+      "desde": 25.43,
+      "hasta": 28.47,
+      "texto": "che piglia Orecchialunga e se lo tiene."
+    },
+    {
+      "desde": 28.64,
+      "hasta": 30.83,
+      "texto": "Dei piccoli paesi ecco la storia,"
+    },
+    {
+      "desde": 30.83,
+      "hasta": 31.86,
+      "texto": "che sono alla balìa"
+    },
+    {
+      "desde": 31.86,
+      "hasta": 34.35,
+      "texto": "di questo o quel vicino prepotente."
+    },
+    {
+      "desde": 34.35,
+      "hasta": 37.41,
+      "texto": "Mentre il Turco, il Rumeno o il Transilvano"
+    },
+    {
+      "desde": 37.41,
+      "hasta": 38.91,
+      "texto": "accorrono alle prese,"
+    },
+    {
+      "desde": 38.91,
+      "hasta": 41.74,
+      "texto": "un altro arriva, per esempio Inglese,"
+    },
+    {
+      "desde": 41.74,
+      "hasta": 43.59,
+      "texto": "che piglia per sé l’asino"
+    },
+    {
+      "desde": 43.59,
+      "hasta": 46.39,
+      "texto": "e lascia agli altri un bel niente in mano."
+    }
+  ]
+}

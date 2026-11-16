@@ -1,0 +1,372 @@
+{
+  "id": "favole_14_libro01_lafontaine",
+  "titulo": "Simonide salvato dagli Dèi",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 16.0,
+      "hasta": 19.06,
+      "texto": "Malerba ha detto, ed io gli do ragione,"
+    },
+    {
+      "desde": 19.06,
+      "hasta": 21.13,
+      "texto": "che la lode eccessiva mai non è"
+    },
+    {
+      "desde": 21.13,
+      "hasta": 24.0,
+      "texto": "per tre classi speciali di persone:"
+    },
+    {
+      "desde": 24.0,
+      "hasta": 27.37,
+      "texto": "gli dèi, le donne e i re."
+    },
+    {
+      "desde": 27.37,
+      "hasta": 29.73,
+      "texto": "La lode il cor solletica alle belle,"
+    },
+    {
+      "desde": 29.73,
+      "hasta": 32.17,
+      "texto": "che si mostrano grate o tardi o presto,"
+    },
+    {
+      "desde": 32.17,
+      "hasta": 35.21,
+      "texto": "in quanto ai Numi si racconta questo:"
+    },
+    {
+      "desde": 35.21,
+      "hasta": 36.21,
+      "texto": "Simonide doveva"
+    },
+    {
+      "desde": 36.21,
+      "hasta": 38.6,
+      "texto": "un grande elogio scriver d’un atleta"
+    },
+    {
+      "desde": 38.6,
+      "hasta": 41.21,
+      "texto": "e non sapeva proprio cosa dire:"
+    },
+    {
+      "desde": 41.21,
+      "hasta": 43.17,
+      "texto": "l’atleta oltre la forza non aveva"
+    },
+    {
+      "desde": 43.17,
+      "hasta": 46.05,
+      "texto": "gran meriti ed i suoi, gente alla buona,"
+    },
+    {
+      "desde": 46.87,
+      "hasta": 48.78,
+      "texto": "vivean sì sconosciuti alla carlona,"
+    },
+    {
+      "desde": 48.78,
+      "hasta": 50.84,
+      "texto": "da fare disperar anche un poeta."
+    },
+    {
+      "desde": 51.37,
+      "hasta": 53.24,
+      "texto": "Or che pensa Simonide? - Accozzate"
+    },
+    {
+      "desde": 53.79,
+      "hasta": 56.06,
+      "texto": "quattro parole intorno all’argomento,"
+    },
+    {
+      "desde": 56.06,
+      "hasta": 57.29,
+      "texto": "girò la vela al vento,"
+    },
+    {
+      "desde": 57.29,
+      "hasta": 59.1,
+      "texto": "e sparse d’eloquenza i più bei fiori"
+    },
+    {
+      "desde": 59.66,
+      "hasta": 61.82,
+      "texto": "su Castore e Polluce, che direi"
+    },
+    {
+      "desde": 61.82,
+      "hasta": 64.1,
+      "texto": "degli atleti i due santi protettori."
+    },
+    {
+      "desde": 64.69,
+      "hasta": 66.92,
+      "texto": "Lodò le imprese, le battaglie e l’arti,"
+    },
+    {
+      "desde": 66.92,
+      "hasta": 69.25,
+      "texto": "onde brillano i due santi gemelli"
+    },
+    {
+      "desde": 69.42,
+      "hasta": 71.46,
+      "texto": "con tal copia di storie e fatterelli,"
+    },
+    {
+      "desde": 71.46,
+      "hasta": 72.11,
+      "texto": "che il loro panegirico"
+    },
+    {
+      "desde": 72.83,
+      "hasta": 75.38,
+      "texto": "occupò del discorso almen tre quarti."
+    },
+    {
+      "desde": 75.58,
+      "hasta": 77.58,
+      "texto": "L’atleta udendo questo,"
+    },
+    {
+      "desde": 77.85,
+      "hasta": 79.14,
+      "texto": "assai poco contento,"
+    },
+    {
+      "desde": 79.14,
+      "hasta": 81.5,
+      "texto": "pagò del panegirico una parte"
+    },
+    {
+      "desde": 81.5,
+      "hasta": 84.56,
+      "texto": "e disse: - Va’ da Castore e Polluce"
+    },
+    {
+      "desde": 84.56,
+      "hasta": 86.93,
+      "texto": "che del talento pagheranno il resto:"
+    },
+    {
+      "desde": 86.93,
+      "hasta": 89.14,
+      "texto": "ma perché non ti sembri villania,"
+    },
+    {
+      "desde": 89.14,
+      "hasta": 91.2,
+      "texto": "vieni oggi a desinare a casa mia"
+    },
+    {
+      "desde": 91.2,
+      "hasta": 93.59,
+      "texto": "che un boccon mangeremo allegramente"
+    },
+    {
+      "desde": 93.59,
+      "hasta": 95.56,
+      "texto": "in lieta compagnia -."
+    },
+    {
+      "desde": 95.58,
+      "hasta": 98.06,
+      "texto": "Non volendo mostrarsi scompiacente,"
+    },
+    {
+      "desde": 98.06,
+      "hasta": 100.44,
+      "texto": "e per non perder forse anche quel poco,"
+    },
+    {
+      "desde": 100.44,
+      "hasta": 101.68,
+      "texto": "Simonide accettò."
+    },
+    {
+      "desde": 101.68,
+      "hasta": 104.57,
+      "texto": "La brava gente fece onore al cuoco,"
+    },
+    {
+      "desde": 104.57,
+      "hasta": 106.32,
+      "texto": "si bevve e si mangiò,"
+    },
+    {
+      "desde": 107.87,
+      "hasta": 109.19,
+      "texto": "lieto ciascun del suo miglior umore."
+    },
+    {
+      "desde": 109.19,
+      "hasta": 112.1,
+      "texto": "A un tratto entra correndo un servitore"
+    },
+    {
+      "desde": 112.1,
+      "hasta": 113.34,
+      "texto": "a dirgli che due giovani"
+    },
+    {
+      "desde": 113.34,
+      "hasta": 115.69,
+      "texto": "l’aspettano di fuori. Esce Simonide"
+    },
+    {
+      "desde": 115.69,
+      "hasta": 117.41,
+      "texto": "e restan gli altri a tavola"
+    },
+    {
+      "desde": 117.41,
+      "hasta": 120.24,
+      "texto": "per non perdere un tempo così bello."
+    },
+    {
+      "desde": 121.24,
+      "hasta": 122.6,
+      "texto": "Eran Polluce e Castore in persona,"
+    },
+    {
+      "desde": 122.6,
+      "hasta": 125.84,
+      "texto": "che dell’elogio in prima il ringraziarono,"
+    },
+    {
+      "desde": 125.84,
+      "hasta": 128.12,
+      "texto": "poi - Vattene, - gli dissero, -"
+    },
+    {
+      "desde": 128.12,
+      "hasta": 130.24,
+      "texto": "da questa casa che di fesso suona -."
+    },
+    {
+      "desde": 130.24,
+      "hasta": 133.63,
+      "texto": "Ed ecco a un tratto una trave si schianta,"
+    },
+    {
+      "desde": 133.63,
+      "hasta": 135.84,
+      "texto": "cade il solaio, ed anfore e bicchieri"
+    },
+    {
+      "desde": 135.84,
+      "hasta": 138.76,
+      "texto": "e piatti rompe e va sopra ai coppieri."
+    },
+    {
+      "desde": 139.67,
+      "hasta": 141.45,
+      "texto": "Inutil dir che quella gente ghiotta"
+    },
+    {
+      "desde": 142.43,
+      "hasta": 143.5,
+      "texto": "uscì pesta e storpiata."
+    },
+    {
+      "desde": 143.5,
+      "hasta": 145.72,
+      "texto": "E per far la vendetta più salata,"
+    },
+    {
+      "desde": 145.72,
+      "hasta": 146.98,
+      "texto": "per conto del poeta,"
+    },
+    {
+      "desde": 147.3,
+      "hasta": 149.48,
+      "texto": "ebbe l’atleta anche una gamba rotta."
+    },
+    {
+      "desde": 149.48,
+      "hasta": 152.22,
+      "texto": "La fama andò a sonar la sua trombetta"
+    },
+    {
+      "desde": 152.22,
+      "hasta": 154.76,
+      "texto": "per dritto e per traverso,"
+    },
+    {
+      "desde": 154.76,
+      "hasta": 156.35,
+      "texto": "e a un uomo tanto caro a Quei lassù"
+    },
+    {
+      "desde": 156.87,
+      "hasta": 157.98,
+      "texto": "si pagaron gli elogi"
+    },
+    {
+      "desde": 158.66,
+      "hasta": 161.35,
+      "texto": "il doppio che agli altri ed anche più."
+    },
+    {
+      "desde": 161.35,
+      "hasta": 163.83,
+      "texto": "Ogni Bertoldo non guardava ai soldi"
+    },
+    {
+      "desde": 164.7,
+      "hasta": 165.9,
+      "texto": "pur d’avere un elogio da Simonide"
+    },
+    {
+      "desde": 165.9,
+      "hasta": 168.53,
+      "texto": "in lode degli antichi suoi Bertoldi."
+    },
+    {
+      "desde": 168.53,
+      "hasta": 171.65,
+      "texto": "Tornando a bomba, io dico che l’incenso"
+    },
+    {
+      "desde": 171.92,
+      "hasta": 174.91,
+      "texto": "ai numi e ai pari lor non è mai troppo."
+    },
+    {
+      "desde": 174.91,
+      "hasta": 177.6,
+      "texto": "E l’arte fa benissimo, mi pare,"
+    },
+    {
+      "desde": 177.6,
+      "hasta": 180.55,
+      "texto": "se dal lavor ritrae qualche compenso."
+    },
+    {
+      "desde": 180.55,
+      "hasta": 183.28,
+      "texto": "Si stima l’arte che si fa pagare."
+    },
+    {
+      "desde": 183.28,
+      "hasta": 185.63,
+      "texto": "Il favor che il potente all’arte dona"
+    },
+    {
+      "desde": 185.63,
+      "hasta": 187.41,
+      "texto": "a gloria sua ritorna."
+    },
+    {
+      "desde": 187.42,
+      "hasta": 190.79,
+      "texto": "Già fu l’Olimpo amico all’Elicona."
+    }
+  ]
+}

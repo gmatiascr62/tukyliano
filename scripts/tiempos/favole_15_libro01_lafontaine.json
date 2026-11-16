@@ -1,0 +1,97 @@
+{
+  "id": "favole_15_libro01_lafontaine",
+  "titulo": "La Morte e il Disgraziato",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 16.02,
+      "hasta": 19.45,
+      "texto": "In suo soccorso un Misero la Morte"
+    },
+    {
+      "desde": 19.45,
+      "hasta": 20.8,
+      "texto": "chiamava notte e dì:"
+    },
+    {
+      "desde": 21.09,
+      "hasta": 23.64,
+      "texto": "- O cara Morte, o fortunata sorte"
+    },
+    {
+      "desde": 23.64,
+      "hasta": 25.6,
+      "texto": "morire e i mali terminar così! -."
+    },
+    {
+      "desde": 25.6,
+      "hasta": 28.12,
+      "texto": "La Morte viene all’uscio e si presenta"
+    },
+    {
+      "desde": 28.12,
+      "hasta": 30.83,
+      "texto": "certissima di fargli un gran favor."
+    },
+    {
+      "desde": 30.83,
+      "hasta": 31.86,
+      "texto": "Ma l’altro si spaventa"
+    },
+    {
+      "desde": 32.5,
+      "hasta": 34.59,
+      "texto": "e si mette a gridare: - O Dio, che orror!"
+    },
+    {
+      "desde": 35.54,
+      "hasta": 38.54,
+      "texto": "O Morte, o brutta, orribile figura,"
+    },
+    {
+      "desde": 38.54,
+      "hasta": 40.9,
+      "texto": "va’ che mi fai morire di paura -."
+    },
+    {
+      "desde": 40.9,
+      "hasta": 42.83,
+      "texto": "Mecenate, uom di talento,"
+    },
+    {
+      "desde": 42.83,
+      "hasta": 44.94,
+      "texto": "si racconta ch’abbia detto:"
+    },
+    {
+      "desde": 44.94,
+      "hasta": 47.12,
+      "texto": "- Voi ficcatemi in un letto,"
+    },
+    {
+      "desde": 47.12,
+      "hasta": 49.13,
+      "texto": "pesto, monco, senza fiato"
+    },
+    {
+      "desde": 49.13,
+      "hasta": 50.83,
+      "texto": "e dai mali assassinato,"
+    },
+    {
+      "desde": 50.83,
+      "hasta": 53.32,
+      "texto": "pur ch’io viva son contento."
+    },
+    {
+      "desde": 53.32,
+      "hasta": 55.26,
+      "texto": "Per qualunque cosa accada,"
+    },
+    {
+      "desde": 55.26,
+      "hasta": 58.17,
+      "texto": "brutta Morte, cambia strada -."
+    }
+  ]
+}

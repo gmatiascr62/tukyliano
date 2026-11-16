@@ -1,0 +1,167 @@
+{
+  "id": "favole_18_libro01_lafontaine",
+  "titulo": "La Volpe e la Cicogna",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 16.02,
+      "hasta": 19.02,
+      "texto": "Monna Volpe un bel dì fece lo spicco"
+    },
+    {
+      "desde": 19.02,
+      "hasta": 21.26,
+      "texto": "e invitò la Cicogna a desinare."
+    },
+    {
+      "desde": 21.26,
+      "hasta": 23.66,
+      "texto": "Il pranzo fu modesto e poco ricco,"
+    },
+    {
+      "desde": 23.66,
+      "hasta": 27.15,
+      "texto": "anzi quasi non c’era da mangiare."
+    },
+    {
+      "desde": 27.15,
+      "hasta": 29.15,
+      "texto": "Tutto il servizio in ultimo costrutto"
+    },
+    {
+      "desde": 29.15,
+      "hasta": 31.23,
+      "texto": "si ridusse a una broda trasparente"
+    },
+    {
+      "desde": 31.83,
+      "hasta": 34.27,
+      "texto": "servita in un piattello. Or capirete"
+    },
+    {
+      "desde": 34.27,
+      "hasta": 37.27,
+      "texto": "se, in grazia di quel becco che sapete,"
+    },
+    {
+      "desde": 37.27,
+      "hasta": 39.57,
+      "texto": "la Cicogna poté mangiar niente."
+    },
+    {
+      "desde": 39.57,
+      "hasta": 42.83,
+      "texto": "Ma la Volpe in un amen spazzò tutto."
+    },
+    {
+      "desde": 42.83,
+      "hasta": 45.98,
+      "texto": "Per trar vendetta dell’inganno, anch’essa"
+    },
+    {
+      "desde": 45.98,
+      "hasta": 47.6,
+      "texto": "la Cicogna invitò la furba amica,"
+    },
+    {
+      "desde": 48.2,
+      "hasta": 51.18,
+      "texto": "che non stette con lei sui complimenti."
+    },
+    {
+      "desde": 51.18,
+      "hasta": 53.68,
+      "texto": "La Volpe, a cui non manca l’appetito,"
+    },
+    {
+      "desde": 53.68,
+      "hasta": 55.18,
+      "texto": "andò pronta all’invito."
+    },
+    {
+      "desde": 55.18,
+      "hasta": 58.2,
+      "texto": "Vide e lodò il pranzetto preparato,"
+    },
+    {
+      "desde": 58.2,
+      "hasta": 60.18,
+      "texto": "tagliato a pezzi in una salsa spessa,"
+    },
+    {
+      "desde": 60.18,
+      "hasta": 63.18,
+      "texto": "che mandava un odore delicato."
+    },
+    {
+      "desde": 63.18,
+      "hasta": 65.18,
+      "texto": "Ma il pranzo fu servito per dispetto"
+    },
+    {
+      "desde": 65.18,
+      "hasta": 69.18,
+      "texto": "in fondo a un vaso a collo lungo e stretto."
+    },
+    {
+      "desde": 69.18,
+      "hasta": 72.25,
+      "texto": "Ben vi attingea col becco la Cicogna"
+    },
+    {
+      "desde": 72.25,
+      "hasta": 74.1,
+      "texto": "per entro la fessura,"
+    },
+    {
+      "desde": 74.1,
+      "hasta": 77.09,
+      "texto": "ma non così Madonna Gabbamondo,"
+    },
+    {
+      "desde": 77.09,
+      "hasta": 79.2,
+      "texto": "per via del muso tondo e non ridotto"
+    },
+    {
+      "desde": 79.2,
+      "hasta": 81.08,
+      "texto": "dell’anfora alla piccola misura."
+    },
+    {
+      "desde": 81.81,
+      "hasta": 83.58,
+      "texto": "A pancia vuota e piena di vergogna,"
+    },
+    {
+      "desde": 83.58,
+      "hasta": 86.08,
+      "texto": "se ne partì quell’animale ghiotto"
+    },
+    {
+      "desde": 87.38,
+      "hasta": 89.14,
+      "texto": "mogio mogio, la coda fra le gambe,"
+    },
+    {
+      "desde": 89.14,
+      "hasta": 89.75,
+      "texto": "come una vecchia volpe malandrina"
+    },
+    {
+      "desde": 90.08,
+      "hasta": 93.08,
+      "texto": "che si senta rapir da una gallina."
+    },
+    {
+      "desde": 93.38,
+      "hasta": 96.1,
+      "texto": "Vuol dimostrare questa favoletta"
+    },
+    {
+      "desde": 96.1,
+      "hasta": 97.56,
+      "texto": "che chi la fa l’aspetta."
+    }
+  ]
+}

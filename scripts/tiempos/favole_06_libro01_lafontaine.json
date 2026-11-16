@@ -1,0 +1,92 @@
+{
+  "id": "favole_06_libro01_lafontaine",
+  "titulo": "La Mucca, la Capra e la Pecora in società col Leone",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 19.02,
+      "hasta": 23.15,
+      "texto": "Si narra che una volta stringesser comunella"
+    },
+    {
+      "desde": 23.15,
+      "hasta": 25.6,
+      "texto": "la Pecora, la Mucca, la Capra lor sorella,"
+    },
+    {
+      "desde": 27.78,
+      "hasta": 30.62,
+      "texto": "col gran signor del luogo che detto era Leone,"
+    },
+    {
+      "desde": 30.62,
+      "hasta": 33.14,
+      "texto": "a questa condizione:"
+    },
+    {
+      "desde": 33.14,
+      "hasta": 37.09,
+      "texto": "che ognun insieme i danni e gli utili mettesse."
+    },
+    {
+      "desde": 37.09,
+      "hasta": 39.82,
+      "texto": "Ben stabiliti i patti avvenne che cadesse"
+    },
+    {
+      "desde": 39.82,
+      "hasta": 42.66,
+      "texto": "un cervo nella fossa un dì della capretta,"
+    },
+    {
+      "desde": 42.66,
+      "hasta": 46.82,
+      "texto": "che onesta manda a chiedere i suoi compagni in fretta."
+    },
+    {
+      "desde": 46.84,
+      "hasta": 51.38,
+      "texto": "Giunto il Leone, esclama: - Faremo quattro parti -."
+    },
+    {
+      "desde": 51.38,
+      "hasta": 55.1,
+      "texto": "E subito coll’unghie straccia la bestia in quarti."
+    },
+    {
+      "desde": 55.1,
+      "hasta": 58.33,
+      "texto": "La prima se la piglia e ciò per la ragione"
+    },
+    {
+      "desde": 58.84,
+      "hasta": 61.1,
+      "texto": "ch’egli è Messer Leone."
+    },
+    {
+      "desde": 61.1,
+      "hasta": 63.27,
+      "texto": "- Un’altra parte - aggiunge, - ancor spettami in sorte"
+    },
+    {
+      "desde": 65.16,
+      "hasta": 67.1,
+      "texto": "perché sono il più forte."
+    },
+    {
+      "desde": 67.1,
+      "hasta": 70.56,
+      "texto": "La terza me la piglio perché sono il Leone,"
+    },
+    {
+      "desde": 70.56,
+      "hasta": 74.09,
+      "texto": "e se la quarta qualcuno osasse contrastarmi"
+    },
+    {
+      "desde": 74.09,
+      "hasta": 75.54,
+      "texto": "lo mangio in un boccone -."
+    }
+  ]
+}

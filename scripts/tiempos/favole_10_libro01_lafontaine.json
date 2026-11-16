@@ -1,0 +1,157 @@
+{
+  "id": "favole_10_libro01_lafontaine",
+  "titulo": "Il Lupo e l'Agnello",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 15.0,
+      "hasta": 17.16,
+      "texto": "La favola che segue è una lezione"
+    },
+    {
+      "desde": 17.16,
+      "hasta": 20.0,
+      "texto": "che il forte ha sempre la miglior ragione."
+    },
+    {
+      "desde": 20.02,
+      "hasta": 22.55,
+      "texto": "Un dì nell’acqua chiara d’un ruscello"
+    },
+    {
+      "desde": 22.55,
+      "hasta": 24.18,
+      "texto": "bevea cheto un Agnello,"
+    },
+    {
+      "desde": 24.78,
+      "hasta": 26.72,
+      "texto": "quand’ecco sbuca un lupo maledetto,"
+    },
+    {
+      "desde": 26.72,
+      "hasta": 28.57,
+      "texto": "che non mangiava forse da tre dì,"
+    },
+    {
+      "desde": 29.05,
+      "hasta": 32.37,
+      "texto": "che pien di rabbia grida: - E chi ti ha detto"
+    },
+    {
+      "desde": 33.72,
+      "hasta": 35.17,
+      "texto": "d’intorbidar la fonte mia così?"
+    },
+    {
+      "desde": 35.17,
+      "hasta": 37.2,
+      "texto": "Aspetta, temerario! - Maestà, -"
+    },
+    {
+      "desde": 38.17,
+      "hasta": 41.17,
+      "texto": "a lui risponde il povero innocente, -"
+    },
+    {
+      "desde": 41.79,
+      "hasta": 43.2,
+      "texto": "s’ella guarda, di subito vedrà"
+    },
+    {
+      "desde": 43.31,
+      "hasta": 45.35,
+      "texto": "ch’io mi bagno più sotto la sorgente"
+    },
+    {
+      "desde": 45.46,
+      "hasta": 48.12,
+      "texto": "d’un tratto, e che non posso l’acque chiare"
+    },
+    {
+      "desde": 48.12,
+      "hasta": 50.52,
+      "texto": "della regal sua fonte intorbidare."
+    },
+    {
+      "desde": 50.52,
+      "hasta": 53.07,
+      "texto": "- Io dico che l’intorbidi, - arrabbiato"
+    },
+    {
+      "desde": 53.07,
+      "hasta": 55.54,
+      "texto": "risponde il Lupo digrignando i denti, -"
+    },
+    {
+      "desde": 55.54,
+      "hasta": 56.47,
+      "texto": "e già l’anno passato"
+    },
+    {
+      "desde": 57.16,
+      "hasta": 59.32,
+      "texto": "hai sparlato di me. - Non si può dire,"
+    },
+    {
+      "desde": 59.32,
+      "hasta": 60.92,
+      "texto": "perché non era nato,"
+    },
+    {
+      "desde": 61.32,
+      "hasta": 62.84,
+      "texto": "ancora io succhio la mammella, o Sire."
+    },
+    {
+      "desde": 63.4,
+      "hasta": 66.02,
+      "texto": "- Ebbene sarà stato un tuo fratello."
+    },
+    {
+      "desde": 66.02,
+      "hasta": 66.64,
+      "texto": "- E come, Maestà?"
+    },
+    {
+      "desde": 67.4,
+      "hasta": 69.81,
+      "texto": "Non ho fratelli, il giuro in verità."
+    },
+    {
+      "desde": 69.81,
+      "hasta": 72.59,
+      "texto": "- Queste son ciarle. È sempre uno di voi"
+    },
+    {
+      "desde": 72.59,
+      "hasta": 75.69,
+      "texto": "che mi fa sfregio, è un pezzo che lo so."
+    },
+    {
+      "desde": 75.69,
+      "hasta": 77.85,
+      "texto": "Di voi, dei vostri cani e dei pastori"
+    },
+    {
+      "desde": 77.85,
+      "hasta": 79.06,
+      "texto": "vendetta piglierò -."
+    },
+    {
+      "desde": 79.06,
+      "hasta": 81.6,
+      "texto": "Così dicendo, in mezzo alla foresta"
+    },
+    {
+      "desde": 81.6,
+      "hasta": 82.79,
+      "texto": "portato il meschinello,"
+    },
+    {
+      "desde": 82.79,
+      "hasta": 85.79,
+      "texto": "senza processo fecegli la festa."
+    }
+  ]
+}

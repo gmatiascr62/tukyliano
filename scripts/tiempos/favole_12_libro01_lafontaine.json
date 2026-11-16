@@ -1,0 +1,162 @@
+{
+  "id": "favole_12_libro01_lafontaine",
+  "titulo": "Il Dragone di molte teste e il Dragone di molte code",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 17.2,
+      "hasta": 20.2,
+      "texto": "Narra la storia che fu già in Lamagna"
+    },
+    {
+      "desde": 20.2,
+      "hasta": 23.66,
+      "texto": "del gran Sultano un certo ambasciatore,"
+    },
+    {
+      "desde": 23.66,
+      "hasta": 25.08,
+      "texto": "così millantatore"
+    },
+    {
+      "desde": 25.08,
+      "hasta": 27.72,
+      "texto": "del suo paese, che al cospetto un zero"
+    },
+    {
+      "desde": 28.05,
+      "hasta": 29.8,
+      "texto": "eran per lui le forze dell’Impero."
+    },
+    {
+      "desde": 29.8,
+      "hasta": 33.56,
+      "texto": "- Come? - un Tedesco a lui fece osservare, -"
+    },
+    {
+      "desde": 33.56,
+      "hasta": 35.6,
+      "texto": "noi contiam dei vassalli in questa terra"
+    },
+    {
+      "desde": 35.6,
+      "hasta": 37.56,
+      "texto": "così potenti, che potrebbe armare"
+    },
+    {
+      "desde": 37.56,
+      "hasta": 40.0,
+      "texto": "un esercito ognuno in piè di guerra."
+    },
+    {
+      "desde": 40.0,
+      "hasta": 43.3,
+      "texto": "- Questo, - soggiunse il Turco intelligente, -"
+    },
+    {
+      "desde": 43.3,
+      "hasta": 46.04,
+      "texto": "un certo caso mi richiama in mente"
+    },
+    {
+      "desde": 46.04,
+      "hasta": 48.53,
+      "texto": "strano, ma ver, ch’è capitato a me."
+    },
+    {
+      "desde": 48.53,
+      "hasta": 50.63,
+      "texto": "Mi trovavo per caso in una selva,"
+    },
+    {
+      "desde": 50.63,
+      "hasta": 52.68,
+      "texto": "quando venne a passar dietro una siepe"
+    },
+    {
+      "desde": 53.33,
+      "hasta": 55.76,
+      "texto": "un’Idra a cento teste tanto orrenda,"
+    },
+    {
+      "desde": 56.1,
+      "hasta": 58.7,
+      "texto": "ch’io non vidi giammai la più tremenda."
+    },
+    {
+      "desde": 58.7,
+      "hasta": 61.56,
+      "texto": "Ma più del mal fu grande la paura,"
+    },
+    {
+      "desde": 61.56,
+      "hasta": 64.91,
+      "texto": "ché il grosso corpo della brutta belva"
+    },
+    {
+      "desde": 64.91,
+      "hasta": 67.04,
+      "texto": "non poteva passar di quella siepe"
+    },
+    {
+      "desde": 67.43,
+      "hasta": 69.13,
+      "texto": "traverso la fessura."
+    },
+    {
+      "desde": 69.13,
+      "hasta": 71.33,
+      "texto": "Stavo pensando a sì strana avventura"
+    },
+    {
+      "desde": 71.33,
+      "hasta": 73.55,
+      "texto": "quando un altro Dragone"
+    },
+    {
+      "desde": 73.55,
+      "hasta": 76.73,
+      "texto": "con un sol capo sopra un gran corpaccio,"
+    },
+    {
+      "desde": 76.73,
+      "hasta": 79.33,
+      "texto": "e non so quante code alla riserva,"
+    },
+    {
+      "desde": 79.33,
+      "hasta": 82.11,
+      "texto": "dietro alla siepe a un tratto si affacciò."
+    },
+    {
+      "desde": 82.11,
+      "hasta": 84.02,
+      "texto": "Prima col capo aprissi una finestra,"
+    },
+    {
+      "desde": 84.02,
+      "hasta": 86.44,
+      "texto": "per questa il corpo e poi le cento code"
+    },
+    {
+      "desde": 86.44,
+      "hasta": 87.63,
+      "texto": "dagli arbusti tirò"
+    },
+    {
+      "desde": 87.63,
+      "hasta": 90.61,
+      "texto": "a poco a poco fuori dall’impaccio."
+    },
+    {
+      "desde": 90.63,
+      "hasta": 93.27,
+      "texto": "È questa, io credo, in ultima sentenza"
+    },
+    {
+      "desde": 93.27,
+      "hasta": 96.41,
+      "texto": "tra il tuo signore e il mio la differenza -."
+    }
+  ]
+}

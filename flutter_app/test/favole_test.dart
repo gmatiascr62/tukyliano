@@ -420,10 +420,32 @@ void main() {
       expect(deLaLista('Lupo e il Cane').sigueElAudio, isTrue);
     });
 
-    test('las que no están marcadas no fingen que sí', () {
+    test('ahora las veintidós siguen el audio', () {
+      // Antes había una sola marcada a mano. Las otras veintiuna las alineó
+      // scripts/alinear_favole.py y ya no queda ninguna con el texto quieto.
+      for (final mapa in favole) {
+        expect(Favola.desdeJson(mapa).sigueElAudio, isTrue,
+            reason: mapa['titulo'] as String);
+      }
+    });
+
+    test('una sin marcar no finge que sigue el audio', () {
       // Mostrar el renglón equivocado iluminado sería peor que no iluminar
-      // ninguno.
-      expect(deLaLista('Cicala').sigueElAudio, isFalse);
+      // ninguno, así que la que no tiene tiempos lo dice.
+      final sinMarcar = Favola.desdeJson({
+        'id': 'x',
+        'titulo': 'Sin marcar',
+        'archivo': 'x.mp3',
+        'segundos': 60,
+        'bytes': 1000,
+        'renglones': [
+          {'t': 'Un renglón'},
+          {'t': 'y otro'},
+        ],
+      });
+      expect(sinMarcar.sigueElAudio, isFalse);
+      expect(sinMarcar.cualSuena(const Duration(seconds: 10)), -1);
+      expect(sinMarcar.dondeEmpiezaDeVerdad, isNull);
     });
 
     testWidgets('sabe qué renglón suena en cada momento', (tester) async {
@@ -471,7 +493,10 @@ void main() {
       expect(reproductor.donde, const Duration(seconds: 16));
     });
 
-    testWidgets('en una sin marcar no se saltea nada', (tester) async {
+    testWidgets('cada una se saltea su propia presentación', (tester) async {
+      // No es un número fijo: la de Il Lupo e il Cane dura 16 segundos y la
+      // de La Cicala e la Formica, treinta. Medio minuto de "registrato per
+      // LibriVox.org da..." antes de un poema de dos minutos.
       final reproductor = ReproductorFalso();
       await _abrir(
         tester,
@@ -482,7 +507,7 @@ void main() {
       await tester.tap(find.text('La Cicala e la Formica'));
       await tester.pumpAndSettle();
 
-      expect(reproductor.donde, Duration.zero);
+      expect(reproductor.donde, const Duration(milliseconds: 30060));
     });
   });
 }

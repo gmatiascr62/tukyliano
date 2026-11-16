@@ -1,0 +1,112 @@
+{
+  "id": "favole_04_libro01_lafontaine",
+  "titulo": "I due Muli",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 15.0,
+      "hasta": 18.0,
+      "texto": "Un Mulo che portava sulla schiena"
+    },
+    {
+      "desde": 18.0,
+      "hasta": 21.24,
+      "texto": "dei sacchi d’or per conto dello Stato,"
+    },
+    {
+      "desde": 21.24,
+      "hasta": 24.0,
+      "texto": "tutto superbo camminava a lato"
+    },
+    {
+      "desde": 24.0,
+      "hasta": 25.99,
+      "texto": "d’un altro Mulo carico d’avena."
+    },
+    {
+      "desde": 26.59,
+      "hasta": 28.58,
+      "texto": "Agitando la criniera"
+    },
+    {
+      "desde": 29.22,
+      "hasta": 31.53,
+      "texto": "colla bella sonagliera"
+    },
+    {
+      "desde": 31.53,
+      "hasta": 33.61,
+      "texto": "del nemico ei fu cagione"
+    },
+    {
+      "desde": 33.61,
+      "hasta": 37.57,
+      "texto": "che attirasse sull’oro l’attenzione."
+    },
+    {
+      "desde": 37.57,
+      "hasta": 41.45,
+      "texto": "Tratta dal buon bottin ecco una banda"
+    },
+    {
+      "desde": 41.45,
+      "hasta": 45.02,
+      "texto": "piomba sul regio Mulo, e una tempesta"
+    },
+    {
+      "desde": 45.02,
+      "hasta": 46.57,
+      "texto": "di colpi piove a lui sopra la testa"
+    },
+    {
+      "desde": 46.57,
+      "hasta": 50.57,
+      "texto": "che invan sospira e ragli al cielo manda."
+    },
+    {
+      "desde": 50.59,
+      "hasta": 54.12,
+      "texto": "- Poveretto, - esclama, - a morte"
+    },
+    {
+      "desde": 54.12,
+      "hasta": 55.91,
+      "texto": "mi conduce l’alta sorte!"
+    },
+    {
+      "desde": 55.91,
+      "hasta": 57.22,
+      "texto": "Te felice che d’avena,"
+    },
+    {
+      "desde": 57.95,
+      "hasta": 61.59,
+      "texto": "non di tesor hai carica la schiena!"
+    },
+    {
+      "desde": 61.59,
+      "hasta": 63.68,
+      "texto": "- Buon amico, è questo il guaio,"
+    },
+    {
+      "desde": 64.94,
+      "hasta": 67.68,
+      "texto": "degl’impieghi illustri ed alti, -"
+    },
+    {
+      "desde": 67.68,
+      "hasta": 68.63,
+      "texto": "gli rispose il camerata:"
+    },
+    {
+      "desde": 69.35,
+      "hasta": 71.58,
+      "texto": "- meglio il mulo d’un mugnaio"
+    },
+    {
+      "desde": 71.58,
+      "hasta": 74.07,
+      "texto": "che il dover far certi salti -."
+    }
+  ]
+}

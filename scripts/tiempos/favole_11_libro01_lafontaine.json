@@ -1,0 +1,167 @@
+{
+  "id": "favole_11_libro01_lafontaine",
+  "titulo": "L'Uomo e la sua Immagine",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 16.02,
+      "hasta": 17.43,
+      "texto": "(Al signor Duca de La Rochefoucauld)"
+    },
+    {
+      "desde": 19.2,
+      "hasta": 21.83,
+      "texto": "Un uomo molto di se stesso amante"
+    },
+    {
+      "desde": 21.83,
+      "hasta": 24.21,
+      "texto": "e che, senza rivali, d’un bell’uomo"
+    },
+    {
+      "desde": 24.21,
+      "hasta": 26.78,
+      "texto": "si dava l’aria, in ciò fisso e beato,"
+    },
+    {
+      "desde": 26.78,
+      "hasta": 29.18,
+      "texto": "se la prendea di rabbia con gli specchi"
+    },
+    {
+      "desde": 29.71,
+      "hasta": 31.33,
+      "texto": "ch’ei dicea tutti falsi e accusatori."
+    },
+    {
+      "desde": 31.33,
+      "hasta": 34.0,
+      "texto": "Per trarlo d’illusion fece la sorte"
+    },
+    {
+      "desde": 34.0,
+      "hasta": 36.31,
+      "texto": "benevola che, ovunque egli girasse"
+    },
+    {
+      "desde": 36.58,
+      "hasta": 39.85,
+      "texto": "coll’occhio, non vedesse altro che specchi."
+    },
+    {
+      "desde": 39.85,
+      "hasta": 41.9,
+      "texto": "Specchi dentro le case e in le botteghe"
+    },
+    {
+      "desde": 42.14,
+      "hasta": 44.15,
+      "texto": "de’ merciai, specchi in petto ai bellimbusti"
+    },
+    {
+      "desde": 45.37,
+      "hasta": 47.51,
+      "texto": "e fin sulle cinture delle belle,"
+    },
+    {
+      "desde": 47.51,
+      "hasta": 50.31,
+      "texto": "ovunque insomma a risanarlo il caso"
+    },
+    {
+      "desde": 50.31,
+      "hasta": 52.36,
+      "texto": "gli facea balenar davanti questo"
+    },
+    {
+      "desde": 52.36,
+      "hasta": 54.15,
+      "texto": "tacito consigliere delle belle."
+    },
+    {
+      "desde": 54.15,
+      "hasta": 57.33,
+      "texto": "Al mio Narciso allor altro non resta"
+    },
+    {
+      "desde": 57.33,
+      "hasta": 60.47,
+      "texto": "che andare, per fuggir tanto tormento,"
+    },
+    {
+      "desde": 60.47,
+      "hasta": 61.85,
+      "texto": "in paesi selvaggi e sconosciuti,"
+    },
+    {
+      "desde": 63.14,
+      "hasta": 65.13,
+      "texto": "ove di specchi non vi fosse il segno."
+    },
+    {
+      "desde": 65.13,
+      "hasta": 68.33,
+      "texto": "Ma specchio ancora, o illusion, discende"
+    },
+    {
+      "desde": 69.05,
+      "hasta": 71.44,
+      "texto": "ivi un bel fiume, che da pura fonte"
+    },
+    {
+      "desde": 71.44,
+      "hasta": 74.13,
+      "texto": "sgorga e l’attira di sì strano incanto"
+    },
+    {
+      "desde": 74.44,
+      "hasta": 78.13,
+      "texto": "ch’ei non può dal cristal torcer lo sguardo."
+    },
+    {
+      "desde": 78.14,
+      "hasta": 80.52,
+      "texto": "Della favola è questa la morale,"
+    },
+    {
+      "desde": 80.52,
+      "hasta": 83.18,
+      "texto": "che non d’un solo io traggo a beneficio,"
+    },
+    {
+      "desde": 83.18,
+      "hasta": 85.32,
+      "texto": "ma di quanti son folli in questo mondo."
+    },
+    {
+      "desde": 85.32,
+      "hasta": 87.93,
+      "texto": "L’anima umana è l’uomo vanitoso"
+    },
+    {
+      "desde": 87.93,
+      "hasta": 90.69,
+      "texto": "troppo amante di sé: gli specchi sono"
+    },
+    {
+      "desde": 90.69,
+      "hasta": 92.45,
+      "texto": "gli altrui difetti in cui come in ispeglio"
+    },
+    {
+      "desde": 92.95,
+      "hasta": 94.72,
+      "texto": "ogni nostro difetto si dipinge."
+    },
+    {
+      "desde": 94.72,
+      "hasta": 96.87,
+      "texto": "E il libro delle Massime, o mio Duca,"
+    },
+    {
+      "desde": 97.44,
+      "hasta": 99.96,
+      "texto": "è quel fiume che l’anima rapisce."
+    }
+  ]
+}

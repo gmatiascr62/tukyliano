@@ -1,0 +1,167 @@
+{
+  "id": "favole_17_libro01_lafontaine",
+  "titulo": "L'Uomo stagionato e le due Amanti",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 16.0,
+      "hasta": 18.68,
+      "texto": "Un Uom, già stagionato e brizzolato,"
+    },
+    {
+      "desde": 18.68,
+      "hasta": 21.32,
+      "texto": "credette giunto il momento propizio"
+    },
+    {
+      "desde": 21.32,
+      "hasta": 23.98,
+      "texto": "di prender moglie e mettere giudizio."
+    },
+    {
+      "desde": 23.98,
+      "hasta": 25.35,
+      "texto": "Erano molte quelle"
+    },
+    {
+      "desde": 25.35,
+      "hasta": 26.99,
+      "texto": "giovani ancora e belle"
+    },
+    {
+      "desde": 26.99,
+      "hasta": 29.18,
+      "texto": "che gli facean la corte."
+    },
+    {
+      "desde": 29.18,
+      "hasta": 31.96,
+      "texto": "Ma quell’uom ch’era ricco e ancora forte,"
+    },
+    {
+      "desde": 31.96,
+      "hasta": 35.26,
+      "texto": "prima volea veder, toccar con mano."
+    },
+    {
+      "desde": 35.26,
+      "hasta": 38.0,
+      "texto": "In queste cose chi va pian va sano."
+    },
+    {
+      "desde": 38.0,
+      "hasta": 41.53,
+      "texto": "Due vedovelle alfin preser possesso"
+    },
+    {
+      "desde": 41.53,
+      "hasta": 42.98,
+      "texto": "del suo cuore, di cui"
+    },
+    {
+      "desde": 42.98,
+      "hasta": 45.76,
+      "texto": "l’una forse un po’ giovane per lui,"
+    },
+    {
+      "desde": 45.76,
+      "hasta": 47.5,
+      "texto": "e l’altra più verso l’età canonica,"
+    },
+    {
+      "desde": 48.43,
+      "hasta": 50.57,
+      "texto": "che si teneva in prezzo ed in figura"
+    },
+    {
+      "desde": 51.48,
+      "hasta": 53.17,
+      "texto": "correggendo coll’arte la natura."
+    },
+    {
+      "desde": 53.17,
+      "hasta": 55.25,
+      "texto": "Le vedove venivano assai spesso"
+    },
+    {
+      "desde": 55.25,
+      "hasta": 55.86,
+      "texto": "in casa, e or quella, or questa,"
+    },
+    {
+      "desde": 58.17,
+      "hasta": 60.39,
+      "texto": "per vezzo carezzandogli la testa,"
+    },
+    {
+      "desde": 60.39,
+      "hasta": 62.52,
+      "texto": "la vecchia gli strappava ogni momento"
+    },
+    {
+      "desde": 62.52,
+      "hasta": 63.93,
+      "texto": "qualche capello nero,"
+    },
+    {
+      "desde": 63.93,
+      "hasta": 66.35,
+      "texto": "e l’altra gli strappava quei d’argento,"
+    },
+    {
+      "desde": 66.35,
+      "hasta": 67.98,
+      "texto": "per fare che il galante"
+    },
+    {
+      "desde": 67.98,
+      "hasta": 70.39,
+      "texto": "fosse a ciascuna d’esse somigliante."
+    },
+    {
+      "desde": 70.39,
+      "hasta": 72.87,
+      "texto": "e strappa e strappa, il nostro innamorato"
+    },
+    {
+      "desde": 73.59,
+      "hasta": 74.53,
+      "texto": "si avvide, ahi troppo tardi!"
+    },
+    {
+      "desde": 74.53,
+      "hasta": 77.49,
+      "texto": "di restar fra le due tutto pelato."
+    },
+    {
+      "desde": 77.49,
+      "hasta": 81.03,
+      "texto": "- Questo, - egli disse, - è un saggio avvertimento"
+    },
+    {
+      "desde": 81.03,
+      "hasta": 83.89,
+      "texto": "di cui proprio vi son molto obbligato."
+    },
+    {
+      "desde": 83.89,
+      "hasta": 88.05,
+      "texto": "Addio, belle. Di moglie or faccio senza."
+    },
+    {
+      "desde": 88.05,
+      "hasta": 90.29,
+      "texto": "Non mi sento d’aver tanta pazienza"
+    },
+    {
+      "desde": 90.29,
+      "hasta": 91.87,
+      "texto": "di far a modo suo; che s’ella è trista,"
+    },
+    {
+      "desde": 93.08,
+      "hasta": 96.21,
+      "texto": "non c’è testa pelata che resista -."
+    }
+  ]
+}

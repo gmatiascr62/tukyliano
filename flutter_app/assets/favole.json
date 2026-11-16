@@ -17,73 +17,119 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_01_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "La Cicala che imprudente"
+          "t": "La Cicala che imprudente",
+          "desde": 30.06,
+          "hasta": 33.12
         },
         {
-          "t": "tutto estate al sol cantò,"
+          "t": "tutto estate al sol cantò,",
+          "desde": 33.12,
+          "hasta": 35.87
         },
         {
-          "t": "provveduta di niente"
+          "t": "provveduta di niente",
+          "desde": 35.87,
+          "hasta": 37.13
         },
         {
-          "t": "nell’inverno si trovò,"
+          "t": "nell’inverno si trovò,",
+          "desde": 37.13,
+          "hasta": 39.19
         },
         {
-          "t": "senza più un granello e senza"
+          "t": "senza più un granello e senza",
+          "desde": 39.19,
+          "hasta": 40.73
         },
         {
-          "t": "una mosca in la credenza."
+          "t": "una mosca in la credenza.",
+          "desde": 40.73,
+          "hasta": 42.06
         },
         {
-          "t": "Affamata e piagnolosa"
+          "t": "Affamata e piagnolosa",
+          "desde": 42.06,
+          "hasta": 42.94
         },
         {
-          "t": "va a cercar della Formica"
+          "t": "va a cercar della Formica",
+          "desde": 44.03,
+          "hasta": 46.1
         },
         {
-          "t": "e le chiede qualche cosa,"
+          "t": "e le chiede qualche cosa,",
+          "desde": 46.37,
+          "hasta": 48.51
         },
         {
-          "t": "qualche cosa in cortesia,"
+          "t": "qualche cosa in cortesia,",
+          "desde": 48.51,
+          "hasta": 50.97
         },
         {
-          "t": "per poter fino alla prossima"
+          "t": "per poter fino alla prossima",
+          "desde": 50.97,
+          "hasta": 52.53
         },
         {
-          "t": "primavera tirar via:"
+          "t": "primavera tirar via:",
+          "desde": 52.53,
+          "hasta": 54.87
         },
         {
-          "t": "promettendo per l’agosto,"
+          "t": "promettendo per l’agosto,",
+          "desde": 54.87,
+          "hasta": 57.43
         },
         {
-          "t": "in coscienza d’animale,"
+          "t": "in coscienza d’animale,",
+          "desde": 57.43,
+          "hasta": 59.25
         },
         {
-          "t": "interessi e capitale."
+          "t": "interessi e capitale.",
+          "desde": 59.25,
+          "hasta": 60.91
         },
         {
-          "t": "La Formica che ha il difetto"
+          "t": "La Formica che ha il difetto",
+          "desde": 60.91,
+          "hasta": 63.11
         },
         {
-          "t": "di prestar malvolentieri,"
+          "t": "di prestar malvolentieri,",
+          "desde": 63.11,
+          "hasta": 63.31
         },
         {
-          "t": "le dimanda chiaro e netto:"
+          "t": "le dimanda chiaro e netto:",
+          "desde": 65.59,
+          "hasta": 68.18
         },
         {
-          "t": "- Che hai tu fatto fino a ieri?"
+          "t": "- Che hai tu fatto fino a ieri?",
+          "desde": 68.18,
+          "hasta": 69.91
         },
         {
-          "t": "- Cara amica, a dire il giusto"
+          "t": "- Cara amica, a dire il giusto",
+          "desde": 71.04,
+          "hasta": 72.26
         },
         {
-          "t": "non ho fatto che cantare"
+          "t": "non ho fatto che cantare",
+          "desde": 72.26,
+          "hasta": 73.79
         },
         {
-          "t": "tutto il tempo. - Brava ho gusto;"
+          "t": "tutto il tempo. - Brava ho gusto;",
+          "desde": 73.79,
+          "hasta": 75.78
         },
         {
-          "t": "balla adesso, se ti pare."
+          "t": "balla adesso, se ti pare.",
+          "desde": 76.85,
+          "hasta": 79.57
         }
       ]
     },
@@ -97,64 +143,104 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_02_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Sen stava messer Corvo sopra un albero"
+          "t": "Sen stava messer Corvo sopra un albero",
+          "desde": 19.07,
+          "hasta": 21.37
         },
         {
-          "t": "con un bel pezzo di formaggio in becco,"
+          "t": "con un bel pezzo di formaggio in becco,",
+          "desde": 21.37,
+          "hasta": 23.39
         },
         {
-          "t": "quando la Volpe tratta al dolce lecco"
+          "t": "quando la Volpe tratta al dolce lecco",
+          "desde": 24.0,
+          "hasta": 26.55
         },
         {
-          "t": "di quel boccon a dirgli cominciò:"
+          "t": "di quel boccon a dirgli cominciò:",
+          "desde": 26.55,
+          "hasta": 29.0
         },
         {
-          "t": "- Salve, messer del Corvo, io non conosco"
+          "t": "- Salve, messer del Corvo, io non conosco",
+          "desde": 29.02,
+          "hasta": 32.12
         },
         {
-          "t": "uccel di voi più vago in tutto il bosco."
+          "t": "uccel di voi più vago in tutto il bosco.",
+          "desde": 32.79,
+          "hasta": 36.16
         },
         {
-          "t": "Se è ver quel che si dice"
+          "t": "Se è ver quel che si dice",
+          "desde": 36.16,
+          "hasta": 37.58
         },
         {
-          "t": "che il vostro canto è bel come son belle"
+          "t": "che il vostro canto è bel come son belle",
+          "desde": 37.58,
+          "hasta": 40.32
         },
         {
-          "t": "queste penne, voi siete una Fenice -."
+          "t": "queste penne, voi siete una Fenice -.",
+          "desde": 40.32,
+          "hasta": 43.0
         },
         {
-          "t": "A questo dir non sta più nella pelle"
+          "t": "A questo dir non sta più nella pelle",
+          "desde": 43.0,
+          "hasta": 45.71
         },
         {
-          "t": "il Corvo vanitoso:"
+          "t": "il Corvo vanitoso:",
+          "desde": 45.71,
+          "hasta": 47.3
         },
         {
-          "t": "e volendo alla Volpe dare un saggio"
+          "t": "e volendo alla Volpe dare un saggio",
+          "desde": 47.3,
+          "hasta": 50.21
         },
         {
-          "t": "del suo canto famoso,"
+          "t": "del suo canto famoso,",
+          "desde": 50.21,
+          "hasta": 51.73
         },
         {
-          "t": "spalanca il becco e uscir lascia il formaggio."
+          "t": "spalanca il becco e uscir lascia il formaggio.",
+          "desde": 52.67,
+          "hasta": 56.0
         },
         {
-          "t": "La Volpe il piglia e dice: - Ecco, mio caro,"
+          "t": "La Volpe il piglia e dice: - Ecco, mio caro,",
+          "desde": 56.02,
+          "hasta": 59.89
         },
         {
-          "t": "chi dell’adulator paga le spese."
+          "t": "chi dell’adulator paga le spese.",
+          "desde": 59.89,
+          "hasta": 62.38
         },
         {
-          "t": "Fanne tuo pro’ che forse"
+          "t": "Fanne tuo pro’ che forse",
+          "desde": 63.23,
+          "hasta": 65.0
         },
         {
-          "t": "la mia lezione vale il tuo formaggio -."
+          "t": "la mia lezione vale il tuo formaggio -.",
+          "desde": 65.0,
+          "hasta": 68.0
         },
         {
-          "t": "Il Corvo sciocco intese"
+          "t": "Il Corvo sciocco intese",
+          "desde": 68.0,
+          "hasta": 70.45
         },
         {
-          "t": "e (un po’ tardi) giurò d’esser più saggio."
+          "t": "e (un po’ tardi) giurò d’esser più saggio.",
+          "desde": 70.45,
+          "hasta": 75.0
         }
       ]
     },
@@ -168,40 +254,64 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_03_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Grande non più d’un ovo di gallina"
+          "t": "Grande non più d’un ovo di gallina",
+          "desde": 15.0,
+          "hasta": 18.0
         },
         {
-          "t": "vedendo il Bove e bello e grasso e grosso,"
+          "t": "vedendo il Bove e bello e grasso e grosso,",
+          "desde": 18.0,
+          "hasta": 22.0
         },
         {
-          "t": "una Rana si gonfia a più non posso"
+          "t": "una Rana si gonfia a più non posso",
+          "desde": 22.0,
+          "hasta": 24.95
         },
         {
-          "t": "per non esser del Bove più piccina."
+          "t": "per non esser del Bove più piccina.",
+          "desde": 24.95,
+          "hasta": 27.42
         },
         {
-          "t": "- Guardami adesso, - esclama in aria tronfia, -"
+          "t": "- Guardami adesso, - esclama in aria tronfia, -",
+          "desde": 27.42,
+          "hasta": 31.08
         },
         {
-          "t": "son ben grossa? - Non basta, o vecchia amica -."
+          "t": "son ben grossa? - Non basta, o vecchia amica -.",
+          "desde": 31.08,
+          "hasta": 35.12
         },
         {
-          "t": "E la rana si gonfia e gonfia e gonfia"
+          "t": "E la rana si gonfia e gonfia e gonfia",
+          "desde": 35.12,
+          "hasta": 38.3
         },
         {
-          "t": "infin che scoppia come una vescica."
+          "t": "infin che scoppia come una vescica.",
+          "desde": 38.99,
+          "hasta": 41.62
         },
         {
-          "t": "Borghesi, ch’è più il fumo che l’arrosto,"
+          "t": "Borghesi, ch’è più il fumo che l’arrosto,",
+          "desde": 42.51,
+          "hasta": 44.46
         },
         {
-          "t": "signori ambiziosi e senza testa,"
+          "t": "signori ambiziosi e senza testa,",
+          "desde": 44.46,
+          "hasta": 47.3
         },
         {
-          "t": "o gente a cui ripugna stare a posto,"
+          "t": "o gente a cui ripugna stare a posto,",
+          "desde": 47.3,
+          "hasta": 49.98
         },
         {
-          "t": "quante sono le rane come questa!"
+          "t": "quante sono le rane come questa!",
+          "desde": 49.98,
+          "hasta": 53.18
         }
       ]
     },
@@ -215,67 +325,109 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_04_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Un Mulo che portava sulla schiena"
+          "t": "Un Mulo che portava sulla schiena",
+          "desde": 15.0,
+          "hasta": 18.0
         },
         {
-          "t": "dei sacchi d’or per conto dello Stato,"
+          "t": "dei sacchi d’or per conto dello Stato,",
+          "desde": 18.0,
+          "hasta": 21.24
         },
         {
-          "t": "tutto superbo camminava a lato"
+          "t": "tutto superbo camminava a lato",
+          "desde": 21.24,
+          "hasta": 24.0
         },
         {
-          "t": "d’un altro Mulo carico d’avena."
+          "t": "d’un altro Mulo carico d’avena.",
+          "desde": 24.0,
+          "hasta": 25.99
         },
         {
-          "t": "Agitando la criniera"
+          "t": "Agitando la criniera",
+          "desde": 26.59,
+          "hasta": 28.58
         },
         {
-          "t": "colla bella sonagliera"
+          "t": "colla bella sonagliera",
+          "desde": 29.22,
+          "hasta": 31.53
         },
         {
-          "t": "del nemico ei fu cagione"
+          "t": "del nemico ei fu cagione",
+          "desde": 31.53,
+          "hasta": 33.61
         },
         {
-          "t": "che attirasse sull’oro l’attenzione."
+          "t": "che attirasse sull’oro l’attenzione.",
+          "desde": 33.61,
+          "hasta": 37.57
         },
         {
-          "t": "Tratta dal buon bottin ecco una banda"
+          "t": "Tratta dal buon bottin ecco una banda",
+          "desde": 37.57,
+          "hasta": 41.45
         },
         {
-          "t": "piomba sul regio Mulo, e una tempesta"
+          "t": "piomba sul regio Mulo, e una tempesta",
+          "desde": 41.45,
+          "hasta": 45.02
         },
         {
-          "t": "di colpi piove a lui sopra la testa"
+          "t": "di colpi piove a lui sopra la testa",
+          "desde": 45.02,
+          "hasta": 46.57
         },
         {
-          "t": "che invan sospira e ragli al cielo manda."
+          "t": "che invan sospira e ragli al cielo manda.",
+          "desde": 46.57,
+          "hasta": 50.57
         },
         {
-          "t": "- Poveretto, - esclama, - a morte"
+          "t": "- Poveretto, - esclama, - a morte",
+          "desde": 50.59,
+          "hasta": 54.12
         },
         {
-          "t": "mi conduce l’alta sorte!"
+          "t": "mi conduce l’alta sorte!",
+          "desde": 54.12,
+          "hasta": 55.91
         },
         {
-          "t": "Te felice che d’avena,"
+          "t": "Te felice che d’avena,",
+          "desde": 55.91,
+          "hasta": 57.22
         },
         {
-          "t": "non di tesor hai carica la schiena!"
+          "t": "non di tesor hai carica la schiena!",
+          "desde": 57.95,
+          "hasta": 61.59
         },
         {
-          "t": "- Buon amico, è questo il guaio,"
+          "t": "- Buon amico, è questo il guaio,",
+          "desde": 61.59,
+          "hasta": 63.68
         },
         {
-          "t": "degl’impieghi illustri ed alti, -"
+          "t": "degl’impieghi illustri ed alti, -",
+          "desde": 64.94,
+          "hasta": 67.68
         },
         {
-          "t": "gli rispose il camerata:"
+          "t": "gli rispose il camerata:",
+          "desde": 67.68,
+          "hasta": 68.63
         },
         {
-          "t": "- meglio il mulo d’un mugnaio"
+          "t": "- meglio il mulo d’un mugnaio",
+          "desde": 69.35,
+          "hasta": 71.58
         },
         {
-          "t": "che il dover far certi salti -."
+          "t": "che il dover far certi salti -.",
+          "desde": 71.58,
+          "hasta": 74.07
         }
       ]
     },
@@ -520,55 +672,89 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_06_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Si narra che una volta stringesser comunella"
+          "t": "Si narra che una volta stringesser comunella",
+          "desde": 19.02,
+          "hasta": 23.15
         },
         {
-          "t": "la Pecora, la Mucca, la Capra lor sorella,"
+          "t": "la Pecora, la Mucca, la Capra lor sorella,",
+          "desde": 23.15,
+          "hasta": 25.6
         },
         {
-          "t": "col gran signor del luogo che detto era Leone,"
+          "t": "col gran signor del luogo che detto era Leone,",
+          "desde": 27.78,
+          "hasta": 30.62
         },
         {
-          "t": "a questa condizione:"
+          "t": "a questa condizione:",
+          "desde": 30.62,
+          "hasta": 33.14
         },
         {
-          "t": "che ognun insieme i danni e gli utili mettesse."
+          "t": "che ognun insieme i danni e gli utili mettesse.",
+          "desde": 33.14,
+          "hasta": 37.09
         },
         {
-          "t": "Ben stabiliti i patti avvenne che cadesse"
+          "t": "Ben stabiliti i patti avvenne che cadesse",
+          "desde": 37.09,
+          "hasta": 39.82
         },
         {
-          "t": "un cervo nella fossa un dì della capretta,"
+          "t": "un cervo nella fossa un dì della capretta,",
+          "desde": 39.82,
+          "hasta": 42.66
         },
         {
-          "t": "che onesta manda a chiedere i suoi compagni in fretta."
+          "t": "che onesta manda a chiedere i suoi compagni in fretta.",
+          "desde": 42.66,
+          "hasta": 46.82
         },
         {
-          "t": "Giunto il Leone, esclama: - Faremo quattro parti -."
+          "t": "Giunto il Leone, esclama: - Faremo quattro parti -.",
+          "desde": 46.84,
+          "hasta": 51.38
         },
         {
-          "t": "E subito coll’unghie straccia la bestia in quarti."
+          "t": "E subito coll’unghie straccia la bestia in quarti.",
+          "desde": 51.38,
+          "hasta": 55.1
         },
         {
-          "t": "La prima se la piglia e ciò per la ragione"
+          "t": "La prima se la piglia e ciò per la ragione",
+          "desde": 55.1,
+          "hasta": 58.33
         },
         {
-          "t": "ch’egli è Messer Leone."
+          "t": "ch’egli è Messer Leone.",
+          "desde": 58.84,
+          "hasta": 61.1
         },
         {
-          "t": "- Un’altra parte - aggiunge, - ancor spettami in sorte"
+          "t": "- Un’altra parte - aggiunge, - ancor spettami in sorte",
+          "desde": 61.1,
+          "hasta": 63.27
         },
         {
-          "t": "perché sono il più forte."
+          "t": "perché sono il più forte.",
+          "desde": 65.16,
+          "hasta": 67.1
         },
         {
-          "t": "La terza me la piglio perché sono il Leone,"
+          "t": "La terza me la piglio perché sono il Leone,",
+          "desde": 67.1,
+          "hasta": 70.56
         },
         {
-          "t": "e se la quarta qualcuno osasse contrastarmi"
+          "t": "e se la quarta qualcuno osasse contrastarmi",
+          "desde": 70.56,
+          "hasta": 74.09
         },
         {
-          "t": "lo mangio in un boccone -."
+          "t": "lo mangio in un boccone -.",
+          "desde": 74.09,
+          "hasta": 75.54
         }
       ]
     },
@@ -582,160 +768,264 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_07_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Barba Giove disse un giorno:"
+          "t": "Barba Giove disse un giorno:",
+          "desde": 16.02,
+          "hasta": 20.53
         },
         {
-          "t": "- Vengan quanti al mondo sono"
+          "t": "- Vengan quanti al mondo sono",
+          "desde": 20.53,
+          "hasta": 23.21
         },
         {
-          "t": "animali malcontenti"
+          "t": "animali malcontenti",
+          "desde": 23.21,
+          "hasta": 24.66
         },
         {
-          "t": "e ciascun di lor mi parli"
+          "t": "e ciascun di lor mi parli",
+          "desde": 24.66,
+          "hasta": 27.44
         },
         {
-          "t": "senza fare complimenti,"
+          "t": "senza fare complimenti,",
+          "desde": 27.44,
+          "hasta": 29.16
         },
         {
-          "t": "ch’io vedrò dal mio gran trono"
+          "t": "ch’io vedrò dal mio gran trono",
+          "desde": 29.8,
+          "hasta": 30.24
         },
         {
-          "t": "se si possa contentarli -."
+          "t": "se si possa contentarli -.",
+          "desde": 30.92,
+          "hasta": 33.84
         },
         {
-          "t": "Il babbione per suo conto"
+          "t": "Il babbione per suo conto",
+          "desde": 33.84,
+          "hasta": 35.71
         },
         {
-          "t": "si dichiara arcicontento"
+          "t": "si dichiara arcicontento",
+          "desde": 35.71,
+          "hasta": 35.83
         },
         {
-          "t": "senza tema di confronto."
+          "t": "senza tema di confronto.",
+          "desde": 37.24,
+          "hasta": 39.8
         },
         {
-          "t": "Una bestia, figurarsi!"
+          "t": "Una bestia, figurarsi!",
+          "desde": 39.8,
+          "hasta": 41.88
         },
         {
-          "t": "che cammina a quattro mani,"
+          "t": "che cammina a quattro mani,",
+          "desde": 41.88,
+          "hasta": 43.52
         },
         {
-          "t": "così bella e di talento,"
+          "t": "così bella e di talento,",
+          "desde": 43.52,
+          "hasta": 45.2
         },
         {
-          "t": "non sarebbe un’ingiustizia"
+          "t": "non sarebbe un’ingiustizia",
+          "desde": 45.2,
+          "hasta": 47.62
         },
         {
-          "t": "se volesse lamentarsi?"
+          "t": "se volesse lamentarsi?",
+          "desde": 47.62,
+          "hasta": 49.6
         },
         {
-          "t": "Ma una grande compassione"
+          "t": "Ma una grande compassione",
+          "desde": 49.6,
+          "hasta": 51.18
         },
         {
-          "t": "egli sente in cor per l’orso,"
+          "t": "egli sente in cor per l’orso,",
+          "desde": 51.4,
+          "hasta": 53.69
         },
         {
-          "t": "che gli sembra un così stupido"
+          "t": "che gli sembra un così stupido",
+          "desde": 53.69,
+          "hasta": 55.65
         },
         {
-          "t": "materiale bestïone,"
+          "t": "materiale bestïone,",
+          "desde": 55.65,
+          "hasta": 56.98
         },
         {
-          "t": "così rozzo e disadatto,"
+          "t": "così rozzo e disadatto,",
+          "desde": 56.98,
+          "hasta": 58.66
         },
         {
-          "t": "che i pittori si rifiutano"
+          "t": "che i pittori si rifiutano",
+          "desde": 58.66,
+          "hasta": 60.34
         },
         {
-          "t": "fin di pingerne il ritratto."
+          "t": "fin di pingerne il ritratto.",
+          "desde": 60.34,
+          "hasta": 62.58
         },
         {
-          "t": "L’orso subito protesta"
+          "t": "L’orso subito protesta",
+          "desde": 62.58,
+          "hasta": 64.53
         },
         {
-          "t": "contro questa insinuazione."
+          "t": "contro questa insinuazione.",
+          "desde": 64.53,
+          "hasta": 67.15
         },
         {
-          "t": "Quel che a lui sembra mal fatto,"
+          "t": "Quel che a lui sembra mal fatto,",
+          "desde": 67.15,
+          "hasta": 69.79
         },
         {
-          "t": "corto in coda e grosso in testa,"
+          "t": "corto in coda e grosso in testa,",
+          "desde": 69.79,
+          "hasta": 72.58
         },
         {
-          "t": "una macchina pesante"
+          "t": "una macchina pesante",
+          "desde": 72.58,
+          "hasta": 74.2
         },
         {
-          "t": "senza garbo e proporzione,"
+          "t": "senza garbo e proporzione,",
+          "desde": 74.2,
+          "hasta": 76.39
         },
         {
-          "t": "è piuttosto l’elefante."
+          "t": "è piuttosto l’elefante.",
+          "desde": 76.39,
+          "hasta": 78.58
         },
         {
-          "t": "A sua volta anche costui,"
+          "t": "A sua volta anche costui,",
+          "desde": 78.6,
+          "hasta": 80.46
         },
         {
-          "t": "ch’è un buonissimo pedante,"
+          "t": "ch’è un buonissimo pedante,",
+          "desde": 80.65,
+          "hasta": 82.42
         },
         {
-          "t": "dice mal della balena"
+          "t": "dice mal della balena",
+          "desde": 82.53,
+          "hasta": 84.13
         },
         {
-          "t": "tutta schiena, tutta schiena."
+          "t": "tutta schiena, tutta schiena.",
+          "desde": 84.13,
+          "hasta": 86.64
         },
         {
-          "t": "Ogni mal è del vicino,"
+          "t": "Ogni mal è del vicino,",
+          "desde": 86.64,
+          "hasta": 88.63
         },
         {
-          "t": "e per essere discreti"
+          "t": "e per essere discreti",
+          "desde": 88.63,
+          "hasta": 90.75
         },
         {
-          "t": "fa l’istesso panegirico"
+          "t": "fa l’istesso panegirico",
+          "desde": 90.75,
+          "hasta": 91.09
         },
         {
-          "t": "la formica al moscherino."
+          "t": "la formica al moscherino.",
+          "desde": 92.94,
+          "hasta": 95.2
         },
         {
-          "t": "Barba Giove soddisfatto"
+          "t": "Barba Giove soddisfatto",
+          "desde": 96.02,
+          "hasta": 97.16
         },
         {
-          "t": "li rimanda in santa pace."
+          "t": "li rimanda in santa pace.",
+          "desde": 97.16,
+          "hasta": 98.63
         },
         {
-          "t": "Per venire adesso al fatto"
+          "t": "Per venire adesso al fatto",
+          "desde": 98.63,
+          "hasta": 100.47
         },
         {
-          "t": "non vi sembra che a un dipresso"
+          "t": "non vi sembra che a un dipresso",
+          "desde": 100.47,
+          "hasta": 101.91
         },
         {
-          "t": "anche noi facciam lo stesso?"
+          "t": "anche noi facciam lo stesso?",
+          "desde": 102.75,
+          "hasta": 104.72
         },
         {
-          "t": "Linci a scorgere del prossimo"
+          "t": "Linci a scorgere del prossimo",
+          "desde": 105.26,
+          "hasta": 107.47
         },
         {
-          "t": "i difetti, siamo poi"
+          "t": "i difetti, siamo poi",
+          "desde": 107.47,
+          "hasta": 109.03
         },
         {
-          "t": "talpe cieche sol per noi."
+          "t": "talpe cieche sol per noi.",
+          "desde": 109.03,
+          "hasta": 111.33
         },
         {
-          "t": "Quando viene in questa valle"
+          "t": "Quando viene in questa valle",
+          "desde": 111.33,
+          "hasta": 113.56
         },
         {
-          "t": "porta ognuno sulle spalle"
+          "t": "porta ognuno sulle spalle",
+          "desde": 113.97,
+          "hasta": 115.36
         },
         {
-          "t": "una duplice bisaccia."
+          "t": "una duplice bisaccia.",
+          "desde": 115.36,
+          "hasta": 116.94
         },
         {
-          "t": "Dentro a quella che sta innanzi"
+          "t": "Dentro a quella che sta innanzi",
+          "desde": 116.94,
+          "hasta": 119.1
         },
         {
-          "t": "volentieri ognun di noi"
+          "t": "volentieri ognun di noi",
+          "desde": 119.74,
+          "hasta": 121.25
         },
         {
-          "t": "i difetti altrui vi caccia,"
+          "t": "i difetti altrui vi caccia,",
+          "desde": 121.25,
+          "hasta": 122.84
         },
         {
-          "t": "e nell’altra mette i suoi."
+          "t": "e nell’altra mette i suoi.",
+          "desde": 122.84,
+          "hasta": 126.92
         }
       ]
     },
@@ -749,163 +1039,269 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_08_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Molte cose una Rondine vedute"
+          "t": "Molte cose una Rondine vedute",
+          "desde": 14.72,
+          "hasta": 16.93
         },
         {
-          "t": "ne’ suoi viaggi avea di là del mare."
+          "t": "ne’ suoi viaggi avea di là del mare.",
+          "desde": 17.3,
+          "hasta": 19.6
         },
         {
-          "t": "Viaggiando c’è sempre da imparare"
+          "t": "Viaggiando c’è sempre da imparare",
+          "desde": 19.6,
+          "hasta": 22.08
         },
         {
-          "t": "e tanto ben la nostra rondinella"
+          "t": "e tanto ben la nostra rondinella",
+          "desde": 22.08,
+          "hasta": 24.12
         },
         {
-          "t": "apprese a strologare il cielo e i venti,"
+          "t": "apprese a strologare il cielo e i venti,",
+          "desde": 24.68,
+          "hasta": 27.12
         },
         {
-          "t": "che ai naviganti indizio"
+          "t": "che ai naviganti indizio",
+          "desde": 27.12,
+          "hasta": 28.28
         },
         {
-          "t": "era di tempo bello o di procella."
+          "t": "era di tempo bello o di procella.",
+          "desde": 28.28,
+          "hasta": 30.4
         },
         {
-          "t": "Venne il tempo che getta le sementi"
+          "t": "Venne il tempo che getta le sementi",
+          "desde": 30.5,
+          "hasta": 33.56
         },
         {
-          "t": "della canape in terra il contadino."
+          "t": "della canape in terra il contadino.",
+          "desde": 33.56,
+          "hasta": 35.84
         },
         {
-          "t": "Vedendo questo disse: - State attenti,"
+          "t": "Vedendo questo disse: - State attenti,",
+          "desde": 35.84,
+          "hasta": 38.22
         },
         {
-          "t": "uccelli, non mi va questa faccenda;"
+          "t": "uccelli, non mi va questa faccenda;",
+          "desde": 38.22,
+          "hasta": 40.98
         },
         {
-          "t": "per voi semina insidie quella mano."
+          "t": "per voi semina insidie quella mano.",
+          "desde": 40.98,
+          "hasta": 43.51
         },
         {
-          "t": "Per me, se c’è pericolo,"
+          "t": "Per me, se c’è pericolo,",
+          "desde": 43.51,
+          "hasta": 45.04
         },
         {
-          "t": "saprò bene volarmene lontano."
+          "t": "saprò bene volarmene lontano.",
+          "desde": 45.04,
+          "hasta": 47.6
         },
         {
-          "t": "Da quei solchi vedrete uscir gl’inganni,"
+          "t": "Da quei solchi vedrete uscir gl’inganni,",
+          "desde": 47.6,
+          "hasta": 50.39
         },
         {
-          "t": "trappole e reti e panie ed altri affanni"
+          "t": "trappole e reti e panie ed altri affanni",
+          "desde": 50.39,
+          "hasta": 53.27
         },
         {
-          "t": "come dire la morte o la prigione."
+          "t": "come dire la morte o la prigione.",
+          "desde": 53.27,
+          "hasta": 55.35
         },
         {
-          "t": "Dunque, - aggiunse la Rondine prudente, -"
+          "t": "Dunque, - aggiunse la Rondine prudente, -",
+          "desde": 55.35,
+          "hasta": 58.39
         },
         {
-          "t": "codesti grani subito mangiate -."
+          "t": "codesti grani subito mangiate -.",
+          "desde": 58.39,
+          "hasta": 60.55
         },
         {
-          "t": "Ma gli Uccelli risposero a fischiate."
+          "t": "Ma gli Uccelli risposero a fischiate.",
+          "desde": 60.55,
+          "hasta": 62.03
         },
         {
-          "t": "Essi risero poi della balorda,"
+          "t": "Essi risero poi della balorda,",
+          "desde": 63.6,
+          "hasta": 65.13
         },
         {
-          "t": "che mentre era sì ricca la stagione"
+          "t": "che mentre era sì ricca la stagione",
+          "desde": 65.13,
+          "hasta": 67.36
         },
         {
-          "t": "e pieno il campo d’ogni altra pastura,"
+          "t": "e pieno il campo d’ogni altra pastura,",
+          "desde": 67.36,
+          "hasta": 70.39
         },
         {
-          "t": "volesse, profetessa di sventura,"
+          "t": "volesse, profetessa di sventura,",
+          "desde": 70.39,
+          "hasta": 70.98
         },
         {
-          "t": "costringerli a mangiar roba indigesta"
+          "t": "costringerli a mangiar roba indigesta",
+          "desde": 72.75,
+          "hasta": 75.61
         },
         {
-          "t": "e cruda come questa."
+          "t": "e cruda come questa.",
+          "desde": 75.61,
+          "hasta": 77.39
         },
         {
-          "t": "Fossero stati mezzo milione,"
+          "t": "Fossero stati mezzo milione,",
+          "desde": 77.39,
+          "hasta": 79.21
         },
         {
-          "t": "non bastavano ancora a ripulire"
+          "t": "non bastavano ancora a ripulire",
+          "desde": 79.21,
+          "hasta": 81.07
         },
         {
-          "t": "una provincia di quell’erba dura."
+          "t": "una provincia di quell’erba dura.",
+          "desde": 81.07,
+          "hasta": 83.39
         },
         {
-          "t": "- Uccelli, non mi va questa faccenda, -"
+          "t": "- Uccelli, non mi va questa faccenda, -",
+          "desde": 83.52,
+          "hasta": 86.14
         },
         {
-          "t": "la rondinella ritornava a dire, -"
+          "t": "la rondinella ritornava a dire, -",
+          "desde": 86.14,
+          "hasta": 88.3
         },
         {
-          "t": "mal’erba cresce presto e non vi attenda"
+          "t": "mal’erba cresce presto e non vi attenda",
+          "desde": 88.5,
+          "hasta": 90.94
         },
         {
-          "t": "di non aver creduto il pentimento."
+          "t": "di non aver creduto il pentimento.",
+          "desde": 90.94,
+          "hasta": 92.78
         },
         {
-          "t": "Quando la neve coprirà la terra,"
+          "t": "Quando la neve coprirà la terra,",
+          "desde": 92.78,
+          "hasta": 94.79
         },
         {
-          "t": "sarà divertimento"
+          "t": "sarà divertimento",
+          "desde": 94.79,
+          "hasta": 96.01
         },
         {
-          "t": "di tanta gente in ozio agli uccellini"
+          "t": "di tanta gente in ozio agli uccellini",
+          "desde": 96.01,
+          "hasta": 98.32
         },
         {
-          "t": "il far con lacci e trappole la guerra."
+          "t": "il far con lacci e trappole la guerra.",
+          "desde": 98.32,
+          "hasta": 100.46
         },
         {
-          "t": "Voi non potete come è dato a noi,"
+          "t": "Voi non potete come è dato a noi,",
+          "desde": 100.48,
+          "hasta": 104.03
         },
         {
-          "t": "e come fan le gru, fan gli stornelli,"
+          "t": "e come fan le gru, fan gli stornelli,",
+          "desde": 104.03,
+          "hasta": 106.44
         },
         {
-          "t": "passar del mar, dei monti oltre i confini."
+          "t": "passar del mar, dei monti oltre i confini.",
+          "desde": 107.03,
+          "hasta": 109.55
         },
         {
-          "t": "Altro dunque per voi"
+          "t": "Altro dunque per voi",
+          "desde": 109.55,
+          "hasta": 111.07
         },
         {
-          "t": "non rimane che starvene al sicuro"
+          "t": "non rimane che starvene al sicuro",
+          "desde": 111.07,
+          "hasta": 113.12
         },
         {
-          "t": "dentro i crepacci d’un cadente muro -."
+          "t": "dentro i crepacci d’un cadente muro -.",
+          "desde": 113.12,
+          "hasta": 115.49
         },
         {
-          "t": "Seccati di sentirla predicare,"
+          "t": "Seccati di sentirla predicare,",
+          "desde": 115.49,
+          "hasta": 117.57
         },
         {
-          "t": "a far rumor cominciano gli Uccelli,"
+          "t": "a far rumor cominciano gli Uccelli,",
+          "desde": 117.57,
+          "hasta": 119.91
         },
         {
-          "t": "come i Troiani usavano di fare"
+          "t": "come i Troiani usavano di fare",
+          "desde": 119.91,
+          "hasta": 121.6
         },
         {
-          "t": "se la bocca Cassandra appena apria."
+          "t": "se la bocca Cassandra appena apria.",
+          "desde": 121.6,
+          "hasta": 124.43
         },
         {
-          "t": "Così per questi come accadde a quelli,"
+          "t": "Così per questi come accadde a quelli,",
+          "desde": 124.43,
+          "hasta": 127.31
         },
         {
-          "t": "quando rimaser presi"
+          "t": "quando rimaser presi",
+          "desde": 127.31,
+          "hasta": 127.35
         },
         {
-          "t": "pur troppo s’avverò la profezia."
+          "t": "pur troppo s’avverò la profezia.",
+          "desde": 128.8,
+          "hasta": 129.5
         },
         {
-          "t": "Anche fra noi succede tal e quale,"
+          "t": "Anche fra noi succede tal e quale,",
+          "desde": 130.44,
+          "hasta": 133.5
         },
         {
-          "t": "che non sentiam che il sentimento nostro."
+          "t": "che non sentiam che il sentimento nostro.",
+          "desde": 133.5,
+          "hasta": 136.33
         },
         {
-          "t": "Se non è sopra, non si crede al male."
+          "t": "Se non è sopra, non si crede al male.",
+          "desde": 136.33,
+          "hasta": 138.86
         }
       ]
     },
@@ -919,88 +1315,144 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_09_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Un Topo campagnol venne invitato"
+          "t": "Un Topo campagnol venne invitato",
+          "desde": 17.0,
+          "hasta": 19.87
         },
         {
-          "t": "con molta civiltà"
+          "t": "con molta civiltà",
+          "desde": 19.87,
+          "hasta": 21.47
         },
         {
-          "t": "a un pranzo di beccacce allo stufato"
+          "t": "a un pranzo di beccacce allo stufato",
+          "desde": 21.47,
+          "hasta": 24.17
         },
         {
-          "t": "da un Topo di città."
+          "t": "da un Topo di città.",
+          "desde": 24.17,
+          "hasta": 26.13
         },
         {
-          "t": "Seduti su un tappeto di Turchia"
+          "t": "Seduti su un tappeto di Turchia",
+          "desde": 26.13,
+          "hasta": 28.37
         },
         {
-          "t": "coi piatti avanti a sé,"
+          "t": "coi piatti avanti a sé,",
+          "desde": 28.37,
+          "hasta": 30.12
         },
         {
-          "t": "mangiavan quella grassa leccornia"
+          "t": "mangiavan quella grassa leccornia",
+          "desde": 31.22,
+          "hasta": 32.84
         },
         {
-          "t": "felici come re."
+          "t": "felici come re.",
+          "desde": 32.84,
+          "hasta": 34.35
         },
         {
-          "t": "Se il trattamento e il piatto"
+          "t": "Se il trattamento e il piatto",
+          "desde": 34.35,
+          "hasta": 36.38
         },
         {
-          "t": "fu cortese e squisito io non dirò."
+          "t": "fu cortese e squisito io non dirò.",
+          "desde": 36.38,
+          "hasta": 38.87
         },
         {
-          "t": "Ma solo avvenne un fatto"
+          "t": "Ma solo avvenne un fatto",
+          "desde": 38.87,
+          "hasta": 40.92
         },
         {
-          "t": "che sul più bello il pranzo disturbò."
+          "t": "che sul più bello il pranzo disturbò.",
+          "desde": 40.92,
+          "hasta": 43.51
         },
         {
-          "t": "Voglio dir che alla porta"
+          "t": "Voglio dir che alla porta",
+          "desde": 43.51,
+          "hasta": 45.67
         },
         {
-          "t": "s’intese tutto a un tratto un gran rumor,"
+          "t": "s’intese tutto a un tratto un gran rumor,",
+          "desde": 46.75,
+          "hasta": 48.7
         },
         {
-          "t": "l’un scappa che il diavolo lo porta"
+          "t": "l’un scappa che il diavolo lo porta",
+          "desde": 48.7,
+          "hasta": 50.57
         },
         {
-          "t": "e scappa l’altro ancor."
+          "t": "e scappa l’altro ancor.",
+          "desde": 51.1,
+          "hasta": 52.24
         },
         {
-          "t": "Passato quel rumor torna al suo posto"
+          "t": "Passato quel rumor torna al suo posto",
+          "desde": 52.84,
+          "hasta": 55.82
         },
         {
-          "t": "il Topo cittadin,"
+          "t": "il Topo cittadin,",
+          "desde": 55.82,
+          "hasta": 56.25
         },
         {
-          "t": "e vuole che del pranzo ad ogni costo"
+          "t": "e vuole che del pranzo ad ogni costo",
+          "desde": 57.12,
+          "hasta": 59.04
         },
         {
-          "t": "si vada fino in fin."
+          "t": "si vada fino in fin.",
+          "desde": 59.04,
+          "hasta": 60.94
         },
         {
-          "t": "- No, basta, - disse il Topo di campagna, -"
+          "t": "- No, basta, - disse il Topo di campagna, -",
+          "desde": 60.94,
+          "hasta": 64.36
         },
         {
-          "t": "vieni diman da me."
+          "t": "vieni diman da me.",
+          "desde": 64.36,
+          "hasta": 65.92
         },
         {
-          "t": "Non si mangia seduti in pompa magna"
+          "t": "Non si mangia seduti in pompa magna",
+          "desde": 65.92,
+          "hasta": 68.22
         },
         {
-          "t": "ghiottonerie da re,"
+          "t": "ghiottonerie da re,",
+          "desde": 68.22,
+          "hasta": 69.66
         },
         {
-          "t": "ma si mangia e nessuno t’avvelena"
+          "t": "ma si mangia e nessuno t’avvelena",
+          "desde": 69.66,
+          "hasta": 71.72
         },
         {
-          "t": "il pane ed il bicchier."
+          "t": "il pane ed il bicchier.",
+          "desde": 71.72,
+          "hasta": 73.13
         },
         {
-          "t": "Senza la pace anche una pancia piena"
+          "t": "Senza la pace anche una pancia piena",
+          "desde": 73.13,
+          "hasta": 76.19
         },
         {
-          "t": "non gusta il suo piacer -."
+          "t": "non gusta il suo piacer -.",
+          "desde": 76.19,
+          "hasta": 77.33
         }
       ]
     },
@@ -1014,94 +1466,154 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_10_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "La favola che segue è una lezione"
+          "t": "La favola che segue è una lezione",
+          "desde": 15.0,
+          "hasta": 17.16
         },
         {
-          "t": "che il forte ha sempre la miglior ragione."
+          "t": "che il forte ha sempre la miglior ragione.",
+          "desde": 17.16,
+          "hasta": 20.0
         },
         {
-          "t": "Un dì nell’acqua chiara d’un ruscello"
+          "t": "Un dì nell’acqua chiara d’un ruscello",
+          "desde": 20.02,
+          "hasta": 22.55
         },
         {
-          "t": "bevea cheto un Agnello,"
+          "t": "bevea cheto un Agnello,",
+          "desde": 22.55,
+          "hasta": 24.18
         },
         {
-          "t": "quand’ecco sbuca un lupo maledetto,"
+          "t": "quand’ecco sbuca un lupo maledetto,",
+          "desde": 24.78,
+          "hasta": 26.72
         },
         {
-          "t": "che non mangiava forse da tre dì,"
+          "t": "che non mangiava forse da tre dì,",
+          "desde": 26.72,
+          "hasta": 28.57
         },
         {
-          "t": "che pien di rabbia grida: - E chi ti ha detto"
+          "t": "che pien di rabbia grida: - E chi ti ha detto",
+          "desde": 29.05,
+          "hasta": 32.37
         },
         {
-          "t": "d’intorbidar la fonte mia così?"
+          "t": "d’intorbidar la fonte mia così?",
+          "desde": 33.72,
+          "hasta": 35.17
         },
         {
-          "t": "Aspetta, temerario! - Maestà, -"
+          "t": "Aspetta, temerario! - Maestà, -",
+          "desde": 35.17,
+          "hasta": 37.2
         },
         {
-          "t": "a lui risponde il povero innocente, -"
+          "t": "a lui risponde il povero innocente, -",
+          "desde": 38.17,
+          "hasta": 41.17
         },
         {
-          "t": "s’ella guarda, di subito vedrà"
+          "t": "s’ella guarda, di subito vedrà",
+          "desde": 41.79,
+          "hasta": 43.2
         },
         {
-          "t": "ch’io mi bagno più sotto la sorgente"
+          "t": "ch’io mi bagno più sotto la sorgente",
+          "desde": 43.31,
+          "hasta": 45.35
         },
         {
-          "t": "d’un tratto, e che non posso l’acque chiare"
+          "t": "d’un tratto, e che non posso l’acque chiare",
+          "desde": 45.46,
+          "hasta": 48.12
         },
         {
-          "t": "della regal sua fonte intorbidare."
+          "t": "della regal sua fonte intorbidare.",
+          "desde": 48.12,
+          "hasta": 50.52
         },
         {
-          "t": "- Io dico che l’intorbidi, - arrabbiato"
+          "t": "- Io dico che l’intorbidi, - arrabbiato",
+          "desde": 50.52,
+          "hasta": 53.07
         },
         {
-          "t": "risponde il Lupo digrignando i denti, -"
+          "t": "risponde il Lupo digrignando i denti, -",
+          "desde": 53.07,
+          "hasta": 55.54
         },
         {
-          "t": "e già l’anno passato"
+          "t": "e già l’anno passato",
+          "desde": 55.54,
+          "hasta": 56.47
         },
         {
-          "t": "hai sparlato di me. - Non si può dire,"
+          "t": "hai sparlato di me. - Non si può dire,",
+          "desde": 57.16,
+          "hasta": 59.32
         },
         {
-          "t": "perché non era nato,"
+          "t": "perché non era nato,",
+          "desde": 59.32,
+          "hasta": 60.92
         },
         {
-          "t": "ancora io succhio la mammella, o Sire."
+          "t": "ancora io succhio la mammella, o Sire.",
+          "desde": 61.32,
+          "hasta": 62.84
         },
         {
-          "t": "- Ebbene sarà stato un tuo fratello."
+          "t": "- Ebbene sarà stato un tuo fratello.",
+          "desde": 63.4,
+          "hasta": 66.02
         },
         {
-          "t": "- E come, Maestà?"
+          "t": "- E come, Maestà?",
+          "desde": 66.02,
+          "hasta": 66.64
         },
         {
-          "t": "Non ho fratelli, il giuro in verità."
+          "t": "Non ho fratelli, il giuro in verità.",
+          "desde": 67.4,
+          "hasta": 69.81
         },
         {
-          "t": "- Queste son ciarle. È sempre uno di voi"
+          "t": "- Queste son ciarle. È sempre uno di voi",
+          "desde": 69.81,
+          "hasta": 72.59
         },
         {
-          "t": "che mi fa sfregio, è un pezzo che lo so."
+          "t": "che mi fa sfregio, è un pezzo che lo so.",
+          "desde": 72.59,
+          "hasta": 75.69
         },
         {
-          "t": "Di voi, dei vostri cani e dei pastori"
+          "t": "Di voi, dei vostri cani e dei pastori",
+          "desde": 75.69,
+          "hasta": 77.85
         },
         {
-          "t": "vendetta piglierò -."
+          "t": "vendetta piglierò -.",
+          "desde": 77.85,
+          "hasta": 79.06
         },
         {
-          "t": "Così dicendo, in mezzo alla foresta"
+          "t": "Così dicendo, in mezzo alla foresta",
+          "desde": 79.06,
+          "hasta": 81.6
         },
         {
-          "t": "portato il meschinello,"
+          "t": "portato il meschinello,",
+          "desde": 81.6,
+          "hasta": 82.79
         },
         {
-          "t": "senza processo fecegli la festa."
+          "t": "senza processo fecegli la festa.",
+          "desde": 82.79,
+          "hasta": 85.79
         }
       ]
     },
@@ -1115,100 +1627,164 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_11_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "(Al signor Duca de La Rochefoucauld)"
+          "t": "(Al signor Duca de La Rochefoucauld)",
+          "desde": 16.02,
+          "hasta": 17.43
         },
         {
-          "t": "Un uomo molto di se stesso amante"
+          "t": "Un uomo molto di se stesso amante",
+          "desde": 19.2,
+          "hasta": 21.83
         },
         {
-          "t": "e che, senza rivali, d’un bell’uomo"
+          "t": "e che, senza rivali, d’un bell’uomo",
+          "desde": 21.83,
+          "hasta": 24.21
         },
         {
-          "t": "si dava l’aria, in ciò fisso e beato,"
+          "t": "si dava l’aria, in ciò fisso e beato,",
+          "desde": 24.21,
+          "hasta": 26.78
         },
         {
-          "t": "se la prendea di rabbia con gli specchi"
+          "t": "se la prendea di rabbia con gli specchi",
+          "desde": 26.78,
+          "hasta": 29.18
         },
         {
-          "t": "ch’ei dicea tutti falsi e accusatori."
+          "t": "ch’ei dicea tutti falsi e accusatori.",
+          "desde": 29.71,
+          "hasta": 31.33
         },
         {
-          "t": "Per trarlo d’illusion fece la sorte"
+          "t": "Per trarlo d’illusion fece la sorte",
+          "desde": 31.33,
+          "hasta": 34.0
         },
         {
-          "t": "benevola che, ovunque egli girasse"
+          "t": "benevola che, ovunque egli girasse",
+          "desde": 34.0,
+          "hasta": 36.31
         },
         {
-          "t": "coll’occhio, non vedesse altro che specchi."
+          "t": "coll’occhio, non vedesse altro che specchi.",
+          "desde": 36.58,
+          "hasta": 39.85
         },
         {
-          "t": "Specchi dentro le case e in le botteghe"
+          "t": "Specchi dentro le case e in le botteghe",
+          "desde": 39.85,
+          "hasta": 41.9
         },
         {
-          "t": "de’ merciai, specchi in petto ai bellimbusti"
+          "t": "de’ merciai, specchi in petto ai bellimbusti",
+          "desde": 42.14,
+          "hasta": 44.15
         },
         {
-          "t": "e fin sulle cinture delle belle,"
+          "t": "e fin sulle cinture delle belle,",
+          "desde": 45.37,
+          "hasta": 47.51
         },
         {
-          "t": "ovunque insomma a risanarlo il caso"
+          "t": "ovunque insomma a risanarlo il caso",
+          "desde": 47.51,
+          "hasta": 50.31
         },
         {
-          "t": "gli facea balenar davanti questo"
+          "t": "gli facea balenar davanti questo",
+          "desde": 50.31,
+          "hasta": 52.36
         },
         {
-          "t": "tacito consigliere delle belle."
+          "t": "tacito consigliere delle belle.",
+          "desde": 52.36,
+          "hasta": 54.15
         },
         {
-          "t": "Al mio Narciso allor altro non resta"
+          "t": "Al mio Narciso allor altro non resta",
+          "desde": 54.15,
+          "hasta": 57.33
         },
         {
-          "t": "che andare, per fuggir tanto tormento,"
+          "t": "che andare, per fuggir tanto tormento,",
+          "desde": 57.33,
+          "hasta": 60.47
         },
         {
-          "t": "in paesi selvaggi e sconosciuti,"
+          "t": "in paesi selvaggi e sconosciuti,",
+          "desde": 60.47,
+          "hasta": 61.85
         },
         {
-          "t": "ove di specchi non vi fosse il segno."
+          "t": "ove di specchi non vi fosse il segno.",
+          "desde": 63.14,
+          "hasta": 65.13
         },
         {
-          "t": "Ma specchio ancora, o illusion, discende"
+          "t": "Ma specchio ancora, o illusion, discende",
+          "desde": 65.13,
+          "hasta": 68.33
         },
         {
-          "t": "ivi un bel fiume, che da pura fonte"
+          "t": "ivi un bel fiume, che da pura fonte",
+          "desde": 69.05,
+          "hasta": 71.44
         },
         {
-          "t": "sgorga e l’attira di sì strano incanto"
+          "t": "sgorga e l’attira di sì strano incanto",
+          "desde": 71.44,
+          "hasta": 74.13
         },
         {
-          "t": "ch’ei non può dal cristal torcer lo sguardo."
+          "t": "ch’ei non può dal cristal torcer lo sguardo.",
+          "desde": 74.44,
+          "hasta": 78.13
         },
         {
-          "t": "Della favola è questa la morale,"
+          "t": "Della favola è questa la morale,",
+          "desde": 78.14,
+          "hasta": 80.52
         },
         {
-          "t": "che non d’un solo io traggo a beneficio,"
+          "t": "che non d’un solo io traggo a beneficio,",
+          "desde": 80.52,
+          "hasta": 83.18
         },
         {
-          "t": "ma di quanti son folli in questo mondo."
+          "t": "ma di quanti son folli in questo mondo.",
+          "desde": 83.18,
+          "hasta": 85.32
         },
         {
-          "t": "L’anima umana è l’uomo vanitoso"
+          "t": "L’anima umana è l’uomo vanitoso",
+          "desde": 85.32,
+          "hasta": 87.93
         },
         {
-          "t": "troppo amante di sé: gli specchi sono"
+          "t": "troppo amante di sé: gli specchi sono",
+          "desde": 87.93,
+          "hasta": 90.69
         },
         {
-          "t": "gli altrui difetti in cui come in ispeglio"
+          "t": "gli altrui difetti in cui come in ispeglio",
+          "desde": 90.69,
+          "hasta": 92.45
         },
         {
-          "t": "ogni nostro difetto si dipinge."
+          "t": "ogni nostro difetto si dipinge.",
+          "desde": 92.95,
+          "hasta": 94.72
         },
         {
-          "t": "E il libro delle Massime, o mio Duca,"
+          "t": "E il libro delle Massime, o mio Duca,",
+          "desde": 94.72,
+          "hasta": 96.87
         },
         {
-          "t": "è quel fiume che l’anima rapisce."
+          "t": "è quel fiume che l’anima rapisce.",
+          "desde": 97.44,
+          "hasta": 99.96
         }
       ]
     },
@@ -1222,97 +1798,159 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_12_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Narra la storia che fu già in Lamagna"
+          "t": "Narra la storia che fu già in Lamagna",
+          "desde": 17.2,
+          "hasta": 20.2
         },
         {
-          "t": "del gran Sultano un certo ambasciatore,"
+          "t": "del gran Sultano un certo ambasciatore,",
+          "desde": 20.2,
+          "hasta": 23.66
         },
         {
-          "t": "così millantatore"
+          "t": "così millantatore",
+          "desde": 23.66,
+          "hasta": 25.08
         },
         {
-          "t": "del suo paese, che al cospetto un zero"
+          "t": "del suo paese, che al cospetto un zero",
+          "desde": 25.08,
+          "hasta": 27.72
         },
         {
-          "t": "eran per lui le forze dell’Impero."
+          "t": "eran per lui le forze dell’Impero.",
+          "desde": 28.05,
+          "hasta": 29.8
         },
         {
-          "t": "- Come? - un Tedesco a lui fece osservare, -"
+          "t": "- Come? - un Tedesco a lui fece osservare, -",
+          "desde": 29.8,
+          "hasta": 33.56
         },
         {
-          "t": "noi contiam dei vassalli in questa terra"
+          "t": "noi contiam dei vassalli in questa terra",
+          "desde": 33.56,
+          "hasta": 35.6
         },
         {
-          "t": "così potenti, che potrebbe armare"
+          "t": "così potenti, che potrebbe armare",
+          "desde": 35.6,
+          "hasta": 37.56
         },
         {
-          "t": "un esercito ognuno in piè di guerra."
+          "t": "un esercito ognuno in piè di guerra.",
+          "desde": 37.56,
+          "hasta": 40.0
         },
         {
-          "t": "- Questo, - soggiunse il Turco intelligente, -"
+          "t": "- Questo, - soggiunse il Turco intelligente, -",
+          "desde": 40.0,
+          "hasta": 43.3
         },
         {
-          "t": "un certo caso mi richiama in mente"
+          "t": "un certo caso mi richiama in mente",
+          "desde": 43.3,
+          "hasta": 46.04
         },
         {
-          "t": "strano, ma ver, ch’è capitato a me."
+          "t": "strano, ma ver, ch’è capitato a me.",
+          "desde": 46.04,
+          "hasta": 48.53
         },
         {
-          "t": "Mi trovavo per caso in una selva,"
+          "t": "Mi trovavo per caso in una selva,",
+          "desde": 48.53,
+          "hasta": 50.63
         },
         {
-          "t": "quando venne a passar dietro una siepe"
+          "t": "quando venne a passar dietro una siepe",
+          "desde": 50.63,
+          "hasta": 52.68
         },
         {
-          "t": "un’Idra a cento teste tanto orrenda,"
+          "t": "un’Idra a cento teste tanto orrenda,",
+          "desde": 53.33,
+          "hasta": 55.76
         },
         {
-          "t": "ch’io non vidi giammai la più tremenda."
+          "t": "ch’io non vidi giammai la più tremenda.",
+          "desde": 56.1,
+          "hasta": 58.7
         },
         {
-          "t": "Ma più del mal fu grande la paura,"
+          "t": "Ma più del mal fu grande la paura,",
+          "desde": 58.7,
+          "hasta": 61.56
         },
         {
-          "t": "ché il grosso corpo della brutta belva"
+          "t": "ché il grosso corpo della brutta belva",
+          "desde": 61.56,
+          "hasta": 64.91
         },
         {
-          "t": "non poteva passar di quella siepe"
+          "t": "non poteva passar di quella siepe",
+          "desde": 64.91,
+          "hasta": 67.04
         },
         {
-          "t": "traverso la fessura."
+          "t": "traverso la fessura.",
+          "desde": 67.43,
+          "hasta": 69.13
         },
         {
-          "t": "Stavo pensando a sì strana avventura"
+          "t": "Stavo pensando a sì strana avventura",
+          "desde": 69.13,
+          "hasta": 71.33
         },
         {
-          "t": "quando un altro Dragone"
+          "t": "quando un altro Dragone",
+          "desde": 71.33,
+          "hasta": 73.55
         },
         {
-          "t": "con un sol capo sopra un gran corpaccio,"
+          "t": "con un sol capo sopra un gran corpaccio,",
+          "desde": 73.55,
+          "hasta": 76.73
         },
         {
-          "t": "e non so quante code alla riserva,"
+          "t": "e non so quante code alla riserva,",
+          "desde": 76.73,
+          "hasta": 79.33
         },
         {
-          "t": "dietro alla siepe a un tratto si affacciò."
+          "t": "dietro alla siepe a un tratto si affacciò.",
+          "desde": 79.33,
+          "hasta": 82.11
         },
         {
-          "t": "Prima col capo aprissi una finestra,"
+          "t": "Prima col capo aprissi una finestra,",
+          "desde": 82.11,
+          "hasta": 84.02
         },
         {
-          "t": "per questa il corpo e poi le cento code"
+          "t": "per questa il corpo e poi le cento code",
+          "desde": 84.02,
+          "hasta": 86.44
         },
         {
-          "t": "dagli arbusti tirò"
+          "t": "dagli arbusti tirò",
+          "desde": 86.44,
+          "hasta": 87.63
         },
         {
-          "t": "a poco a poco fuori dall’impaccio."
+          "t": "a poco a poco fuori dall’impaccio.",
+          "desde": 87.63,
+          "hasta": 90.61
         },
         {
-          "t": "È questa, io credo, in ultima sentenza"
+          "t": "È questa, io credo, in ultima sentenza",
+          "desde": 90.63,
+          "hasta": 93.27
         },
         {
-          "t": "tra il tuo signore e il mio la differenza -."
+          "t": "tra il tuo signore e il mio la differenza -.",
+          "desde": 93.27,
+          "hasta": 96.41
         }
       ]
     },
@@ -1326,43 +1964,69 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_13_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Due Ladri avean rubato un Somarello"
+          "t": "Due Ladri avean rubato un Somarello",
+          "desde": 17.0,
+          "hasta": 19.4
         },
         {
-          "t": "e a pugni il disputavan fra di loro:"
+          "t": "e a pugni il disputavan fra di loro:",
+          "desde": 19.4,
+          "hasta": 22.0
         },
         {
-          "t": "quand’ecco sul più bello"
+          "t": "quand’ecco sul più bello",
+          "desde": 22.57,
+          "hasta": 24.0
         },
         {
-          "t": "un terzo sopraviene,"
+          "t": "un terzo sopraviene,",
+          "desde": 24.0,
+          "hasta": 24.6
         },
         {
-          "t": "che piglia Orecchialunga e se lo tiene."
+          "t": "che piglia Orecchialunga e se lo tiene.",
+          "desde": 25.43,
+          "hasta": 28.47
         },
         {
-          "t": "Dei piccoli paesi ecco la storia,"
+          "t": "Dei piccoli paesi ecco la storia,",
+          "desde": 28.64,
+          "hasta": 30.83
         },
         {
-          "t": "che sono alla balìa"
+          "t": "che sono alla balìa",
+          "desde": 30.83,
+          "hasta": 31.86
         },
         {
-          "t": "di questo o quel vicino prepotente."
+          "t": "di questo o quel vicino prepotente.",
+          "desde": 31.86,
+          "hasta": 34.35
         },
         {
-          "t": "Mentre il Turco, il Rumeno o il Transilvano"
+          "t": "Mentre il Turco, il Rumeno o il Transilvano",
+          "desde": 34.35,
+          "hasta": 37.41
         },
         {
-          "t": "accorrono alle prese,"
+          "t": "accorrono alle prese,",
+          "desde": 37.41,
+          "hasta": 38.91
         },
         {
-          "t": "un altro arriva, per esempio Inglese,"
+          "t": "un altro arriva, per esempio Inglese,",
+          "desde": 38.91,
+          "hasta": 41.74
         },
         {
-          "t": "che piglia per sé l’asino"
+          "t": "che piglia per sé l’asino",
+          "desde": 41.74,
+          "hasta": 43.59
         },
         {
-          "t": "e lascia agli altri un bel niente in mano."
+          "t": "e lascia agli altri un bel niente in mano.",
+          "desde": 43.59,
+          "hasta": 46.39
         }
       ]
     },
@@ -1376,223 +2040,369 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_14_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Malerba ha detto, ed io gli do ragione,"
+          "t": "Malerba ha detto, ed io gli do ragione,",
+          "desde": 16.0,
+          "hasta": 19.06
         },
         {
-          "t": "che la lode eccessiva mai non è"
+          "t": "che la lode eccessiva mai non è",
+          "desde": 19.06,
+          "hasta": 21.13
         },
         {
-          "t": "per tre classi speciali di persone:"
+          "t": "per tre classi speciali di persone:",
+          "desde": 21.13,
+          "hasta": 24.0
         },
         {
-          "t": "gli dèi, le donne e i re."
+          "t": "gli dèi, le donne e i re.",
+          "desde": 24.0,
+          "hasta": 27.37
         },
         {
-          "t": "La lode il cor solletica alle belle,"
+          "t": "La lode il cor solletica alle belle,",
+          "desde": 27.37,
+          "hasta": 29.73
         },
         {
-          "t": "che si mostrano grate o tardi o presto,"
+          "t": "che si mostrano grate o tardi o presto,",
+          "desde": 29.73,
+          "hasta": 32.17
         },
         {
-          "t": "in quanto ai Numi si racconta questo:"
+          "t": "in quanto ai Numi si racconta questo:",
+          "desde": 32.17,
+          "hasta": 35.21
         },
         {
-          "t": "Simonide doveva"
+          "t": "Simonide doveva",
+          "desde": 35.21,
+          "hasta": 36.21
         },
         {
-          "t": "un grande elogio scriver d’un atleta"
+          "t": "un grande elogio scriver d’un atleta",
+          "desde": 36.21,
+          "hasta": 38.6
         },
         {
-          "t": "e non sapeva proprio cosa dire:"
+          "t": "e non sapeva proprio cosa dire:",
+          "desde": 38.6,
+          "hasta": 41.21
         },
         {
-          "t": "l’atleta oltre la forza non aveva"
+          "t": "l’atleta oltre la forza non aveva",
+          "desde": 41.21,
+          "hasta": 43.17
         },
         {
-          "t": "gran meriti ed i suoi, gente alla buona,"
+          "t": "gran meriti ed i suoi, gente alla buona,",
+          "desde": 43.17,
+          "hasta": 46.05
         },
         {
-          "t": "vivean sì sconosciuti alla carlona,"
+          "t": "vivean sì sconosciuti alla carlona,",
+          "desde": 46.87,
+          "hasta": 48.78
         },
         {
-          "t": "da fare disperar anche un poeta."
+          "t": "da fare disperar anche un poeta.",
+          "desde": 48.78,
+          "hasta": 50.84
         },
         {
-          "t": "Or che pensa Simonide? - Accozzate"
+          "t": "Or che pensa Simonide? - Accozzate",
+          "desde": 51.37,
+          "hasta": 53.24
         },
         {
-          "t": "quattro parole intorno all’argomento,"
+          "t": "quattro parole intorno all’argomento,",
+          "desde": 53.79,
+          "hasta": 56.06
         },
         {
-          "t": "girò la vela al vento,"
+          "t": "girò la vela al vento,",
+          "desde": 56.06,
+          "hasta": 57.29
         },
         {
-          "t": "e sparse d’eloquenza i più bei fiori"
+          "t": "e sparse d’eloquenza i più bei fiori",
+          "desde": 57.29,
+          "hasta": 59.1
         },
         {
-          "t": "su Castore e Polluce, che direi"
+          "t": "su Castore e Polluce, che direi",
+          "desde": 59.66,
+          "hasta": 61.82
         },
         {
-          "t": "degli atleti i due santi protettori."
+          "t": "degli atleti i due santi protettori.",
+          "desde": 61.82,
+          "hasta": 64.1
         },
         {
-          "t": "Lodò le imprese, le battaglie e l’arti,"
+          "t": "Lodò le imprese, le battaglie e l’arti,",
+          "desde": 64.69,
+          "hasta": 66.92
         },
         {
-          "t": "onde brillano i due santi gemelli"
+          "t": "onde brillano i due santi gemelli",
+          "desde": 66.92,
+          "hasta": 69.25
         },
         {
-          "t": "con tal copia di storie e fatterelli,"
+          "t": "con tal copia di storie e fatterelli,",
+          "desde": 69.42,
+          "hasta": 71.46
         },
         {
-          "t": "che il loro panegirico"
+          "t": "che il loro panegirico",
+          "desde": 71.46,
+          "hasta": 72.11
         },
         {
-          "t": "occupò del discorso almen tre quarti."
+          "t": "occupò del discorso almen tre quarti.",
+          "desde": 72.83,
+          "hasta": 75.38
         },
         {
-          "t": "L’atleta udendo questo,"
+          "t": "L’atleta udendo questo,",
+          "desde": 75.58,
+          "hasta": 77.58
         },
         {
-          "t": "assai poco contento,"
+          "t": "assai poco contento,",
+          "desde": 77.85,
+          "hasta": 79.14
         },
         {
-          "t": "pagò del panegirico una parte"
+          "t": "pagò del panegirico una parte",
+          "desde": 79.14,
+          "hasta": 81.5
         },
         {
-          "t": "e disse: - Va’ da Castore e Polluce"
+          "t": "e disse: - Va’ da Castore e Polluce",
+          "desde": 81.5,
+          "hasta": 84.56
         },
         {
-          "t": "che del talento pagheranno il resto:"
+          "t": "che del talento pagheranno il resto:",
+          "desde": 84.56,
+          "hasta": 86.93
         },
         {
-          "t": "ma perché non ti sembri villania,"
+          "t": "ma perché non ti sembri villania,",
+          "desde": 86.93,
+          "hasta": 89.14
         },
         {
-          "t": "vieni oggi a desinare a casa mia"
+          "t": "vieni oggi a desinare a casa mia",
+          "desde": 89.14,
+          "hasta": 91.2
         },
         {
-          "t": "che un boccon mangeremo allegramente"
+          "t": "che un boccon mangeremo allegramente",
+          "desde": 91.2,
+          "hasta": 93.59
         },
         {
-          "t": "in lieta compagnia -."
+          "t": "in lieta compagnia -.",
+          "desde": 93.59,
+          "hasta": 95.56
         },
         {
-          "t": "Non volendo mostrarsi scompiacente,"
+          "t": "Non volendo mostrarsi scompiacente,",
+          "desde": 95.58,
+          "hasta": 98.06
         },
         {
-          "t": "e per non perder forse anche quel poco,"
+          "t": "e per non perder forse anche quel poco,",
+          "desde": 98.06,
+          "hasta": 100.44
         },
         {
-          "t": "Simonide accettò."
+          "t": "Simonide accettò.",
+          "desde": 100.44,
+          "hasta": 101.68
         },
         {
-          "t": "La brava gente fece onore al cuoco,"
+          "t": "La brava gente fece onore al cuoco,",
+          "desde": 101.68,
+          "hasta": 104.57
         },
         {
-          "t": "si bevve e si mangiò,"
+          "t": "si bevve e si mangiò,",
+          "desde": 104.57,
+          "hasta": 106.32
         },
         {
-          "t": "lieto ciascun del suo miglior umore."
+          "t": "lieto ciascun del suo miglior umore.",
+          "desde": 107.87,
+          "hasta": 109.19
         },
         {
-          "t": "A un tratto entra correndo un servitore"
+          "t": "A un tratto entra correndo un servitore",
+          "desde": 109.19,
+          "hasta": 112.1
         },
         {
-          "t": "a dirgli che due giovani"
+          "t": "a dirgli che due giovani",
+          "desde": 112.1,
+          "hasta": 113.34
         },
         {
-          "t": "l’aspettano di fuori. Esce Simonide"
+          "t": "l’aspettano di fuori. Esce Simonide",
+          "desde": 113.34,
+          "hasta": 115.69
         },
         {
-          "t": "e restan gli altri a tavola"
+          "t": "e restan gli altri a tavola",
+          "desde": 115.69,
+          "hasta": 117.41
         },
         {
-          "t": "per non perdere un tempo così bello."
+          "t": "per non perdere un tempo così bello.",
+          "desde": 117.41,
+          "hasta": 120.24
         },
         {
-          "t": "Eran Polluce e Castore in persona,"
+          "t": "Eran Polluce e Castore in persona,",
+          "desde": 121.24,
+          "hasta": 122.6
         },
         {
-          "t": "che dell’elogio in prima il ringraziarono,"
+          "t": "che dell’elogio in prima il ringraziarono,",
+          "desde": 122.6,
+          "hasta": 125.84
         },
         {
-          "t": "poi - Vattene, - gli dissero, -"
+          "t": "poi - Vattene, - gli dissero, -",
+          "desde": 125.84,
+          "hasta": 128.12
         },
         {
-          "t": "da questa casa che di fesso suona -."
+          "t": "da questa casa che di fesso suona -.",
+          "desde": 128.12,
+          "hasta": 130.24
         },
         {
-          "t": "Ed ecco a un tratto una trave si schianta,"
+          "t": "Ed ecco a un tratto una trave si schianta,",
+          "desde": 130.24,
+          "hasta": 133.63
         },
         {
-          "t": "cade il solaio, ed anfore e bicchieri"
+          "t": "cade il solaio, ed anfore e bicchieri",
+          "desde": 133.63,
+          "hasta": 135.84
         },
         {
-          "t": "e piatti rompe e va sopra ai coppieri."
+          "t": "e piatti rompe e va sopra ai coppieri.",
+          "desde": 135.84,
+          "hasta": 138.76
         },
         {
-          "t": "Inutil dir che quella gente ghiotta"
+          "t": "Inutil dir che quella gente ghiotta",
+          "desde": 139.67,
+          "hasta": 141.45
         },
         {
-          "t": "uscì pesta e storpiata."
+          "t": "uscì pesta e storpiata.",
+          "desde": 142.43,
+          "hasta": 143.5
         },
         {
-          "t": "E per far la vendetta più salata,"
+          "t": "E per far la vendetta più salata,",
+          "desde": 143.5,
+          "hasta": 145.72
         },
         {
-          "t": "per conto del poeta,"
+          "t": "per conto del poeta,",
+          "desde": 145.72,
+          "hasta": 146.98
         },
         {
-          "t": "ebbe l’atleta anche una gamba rotta."
+          "t": "ebbe l’atleta anche una gamba rotta.",
+          "desde": 147.3,
+          "hasta": 149.48
         },
         {
-          "t": "La fama andò a sonar la sua trombetta"
+          "t": "La fama andò a sonar la sua trombetta",
+          "desde": 149.48,
+          "hasta": 152.22
         },
         {
-          "t": "per dritto e per traverso,"
+          "t": "per dritto e per traverso,",
+          "desde": 152.22,
+          "hasta": 154.76
         },
         {
-          "t": "e a un uomo tanto caro a Quei lassù"
+          "t": "e a un uomo tanto caro a Quei lassù",
+          "desde": 154.76,
+          "hasta": 156.35
         },
         {
-          "t": "si pagaron gli elogi"
+          "t": "si pagaron gli elogi",
+          "desde": 156.87,
+          "hasta": 157.98
         },
         {
-          "t": "il doppio che agli altri ed anche più."
+          "t": "il doppio che agli altri ed anche più.",
+          "desde": 158.66,
+          "hasta": 161.35
         },
         {
-          "t": "Ogni Bertoldo non guardava ai soldi"
+          "t": "Ogni Bertoldo non guardava ai soldi",
+          "desde": 161.35,
+          "hasta": 163.83
         },
         {
-          "t": "pur d’avere un elogio da Simonide"
+          "t": "pur d’avere un elogio da Simonide",
+          "desde": 164.7,
+          "hasta": 165.9
         },
         {
-          "t": "in lode degli antichi suoi Bertoldi."
+          "t": "in lode degli antichi suoi Bertoldi.",
+          "desde": 165.9,
+          "hasta": 168.53
         },
         {
-          "t": "Tornando a bomba, io dico che l’incenso"
+          "t": "Tornando a bomba, io dico che l’incenso",
+          "desde": 168.53,
+          "hasta": 171.65
         },
         {
-          "t": "ai numi e ai pari lor non è mai troppo."
+          "t": "ai numi e ai pari lor non è mai troppo.",
+          "desde": 171.92,
+          "hasta": 174.91
         },
         {
-          "t": "E l’arte fa benissimo, mi pare,"
+          "t": "E l’arte fa benissimo, mi pare,",
+          "desde": 174.91,
+          "hasta": 177.6
         },
         {
-          "t": "se dal lavor ritrae qualche compenso."
+          "t": "se dal lavor ritrae qualche compenso.",
+          "desde": 177.6,
+          "hasta": 180.55
         },
         {
-          "t": "Si stima l’arte che si fa pagare."
+          "t": "Si stima l’arte che si fa pagare.",
+          "desde": 180.55,
+          "hasta": 183.28
         },
         {
-          "t": "Il favor che il potente all’arte dona"
+          "t": "Il favor che il potente all’arte dona",
+          "desde": 183.28,
+          "hasta": 185.63
         },
         {
-          "t": "a gloria sua ritorna."
+          "t": "a gloria sua ritorna.",
+          "desde": 185.63,
+          "hasta": 187.41
         },
         {
-          "t": "Già fu l’Olimpo amico all’Elicona."
+          "t": "Già fu l’Olimpo amico all’Elicona.",
+          "desde": 187.42,
+          "hasta": 190.79
         }
       ]
     },
@@ -1606,58 +2416,94 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_15_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "In suo soccorso un Misero la Morte"
+          "t": "In suo soccorso un Misero la Morte",
+          "desde": 16.02,
+          "hasta": 19.45
         },
         {
-          "t": "chiamava notte e dì:"
+          "t": "chiamava notte e dì:",
+          "desde": 19.45,
+          "hasta": 20.8
         },
         {
-          "t": "- O cara Morte, o fortunata sorte"
+          "t": "- O cara Morte, o fortunata sorte",
+          "desde": 21.09,
+          "hasta": 23.64
         },
         {
-          "t": "morire e i mali terminar così! -."
+          "t": "morire e i mali terminar così! -.",
+          "desde": 23.64,
+          "hasta": 25.6
         },
         {
-          "t": "La Morte viene all’uscio e si presenta"
+          "t": "La Morte viene all’uscio e si presenta",
+          "desde": 25.6,
+          "hasta": 28.12
         },
         {
-          "t": "certissima di fargli un gran favor."
+          "t": "certissima di fargli un gran favor.",
+          "desde": 28.12,
+          "hasta": 30.83
         },
         {
-          "t": "Ma l’altro si spaventa"
+          "t": "Ma l’altro si spaventa",
+          "desde": 30.83,
+          "hasta": 31.86
         },
         {
-          "t": "e si mette a gridare: - O Dio, che orror!"
+          "t": "e si mette a gridare: - O Dio, che orror!",
+          "desde": 32.5,
+          "hasta": 34.59
         },
         {
-          "t": "O Morte, o brutta, orribile figura,"
+          "t": "O Morte, o brutta, orribile figura,",
+          "desde": 35.54,
+          "hasta": 38.54
         },
         {
-          "t": "va’ che mi fai morire di paura -."
+          "t": "va’ che mi fai morire di paura -.",
+          "desde": 38.54,
+          "hasta": 40.9
         },
         {
-          "t": "Mecenate, uom di talento,"
+          "t": "Mecenate, uom di talento,",
+          "desde": 40.9,
+          "hasta": 42.83
         },
         {
-          "t": "si racconta ch’abbia detto:"
+          "t": "si racconta ch’abbia detto:",
+          "desde": 42.83,
+          "hasta": 44.94
         },
         {
-          "t": "- Voi ficcatemi in un letto,"
+          "t": "- Voi ficcatemi in un letto,",
+          "desde": 44.94,
+          "hasta": 47.12
         },
         {
-          "t": "pesto, monco, senza fiato"
+          "t": "pesto, monco, senza fiato",
+          "desde": 47.12,
+          "hasta": 49.13
         },
         {
-          "t": "e dai mali assassinato,"
+          "t": "e dai mali assassinato,",
+          "desde": 49.13,
+          "hasta": 50.83
         },
         {
-          "t": "pur ch’io viva son contento."
+          "t": "pur ch’io viva son contento.",
+          "desde": 50.83,
+          "hasta": 53.32
         },
         {
-          "t": "Per qualunque cosa accada,"
+          "t": "Per qualunque cosa accada,",
+          "desde": 53.32,
+          "hasta": 55.26
         },
         {
-          "t": "brutta Morte, cambia strada -."
+          "t": "brutta Morte, cambia strada -.",
+          "desde": 55.26,
+          "hasta": 58.17
         }
       ]
     },
@@ -1671,64 +2517,104 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_16_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Sotto un fastel di legna, non men che sotto il peso"
+          "t": "Sotto un fastel di legna, non men che sotto il peso",
+          "desde": 16.0,
+          "hasta": 19.87
         },
         {
-          "t": "degli anni, un Boscaiolo, curvo, accasciato e stanco,"
+          "t": "degli anni, un Boscaiolo, curvo, accasciato e stanco,",
+          "desde": 19.87,
+          "hasta": 24.13
         },
         {
-          "t": "andava trascinando il doloroso fianco"
+          "t": "andava trascinando il doloroso fianco",
+          "desde": 24.13,
+          "hasta": 26.65
         },
         {
-          "t": "verso la sua capanna."
+          "t": "verso la sua capanna.",
+          "desde": 26.65,
+          "hasta": 28.0
         },
         {
-          "t": "Ma tanto è il male e il peso che il poverino affanna,"
+          "t": "Ma tanto è il male e il peso che il poverino affanna,",
+          "desde": 28.02,
+          "hasta": 32.47
         },
         {
-          "t": "che posto in terra il carico, a dire cominciò:"
+          "t": "che posto in terra il carico, a dire cominciò:",
+          "desde": 32.47,
+          "hasta": 35.77
         },
         {
-          "t": "- Qual dura sorte in questo mondo sconclusionato"
+          "t": "- Qual dura sorte in questo mondo sconclusionato",
+          "desde": 35.77,
+          "hasta": 38.17
         },
         {
-          "t": "il cielo mi serbò!"
+          "t": "il cielo mi serbò!",
+          "desde": 39.45,
+          "hasta": 40.09
         },
         {
-          "t": "Sempre col pane in lite e per soprammercato"
+          "t": "Sempre col pane in lite e per soprammercato",
+          "desde": 40.81,
+          "hasta": 43.9
         },
         {
-          "t": "la moglie, i figli, i debiti, le tasse e l’angherie"
+          "t": "la moglie, i figli, i debiti, le tasse e l’angherie",
+          "desde": 43.9,
+          "hasta": 47.52
         },
         {
-          "t": "che fanno a un pover’uomo la vita irta di spine."
+          "t": "che fanno a un pover’uomo la vita irta di spine.",
+          "desde": 47.52,
+          "hasta": 49.89
         },
         {
-          "t": "O Morte, a questi mali poni un rimedio e un fine -."
+          "t": "O Morte, a questi mali poni un rimedio e un fine -.",
+          "desde": 51.06,
+          "hasta": 53.96
         },
         {
-          "t": "La Morte, che non usa farsi aspettar giammai,"
+          "t": "La Morte, che non usa farsi aspettar giammai,",
+          "desde": 53.97,
+          "hasta": 55.97
         },
         {
-          "t": "vien subito e - In che cosa, - esclama, - o buon fratello,"
+          "t": "vien subito e - In che cosa, - esclama, - o buon fratello,",
+          "desde": 57.81,
+          "hasta": 62.13
         },
         {
-          "t": "posso giovarti? - O grazie, soltanto ti chiamai,"
+          "t": "posso giovarti? - O grazie, soltanto ti chiamai,",
+          "desde": 62.13,
+          "hasta": 65.56
         },
         {
-          "t": "perché mi aiuti a reggere un po’ questo fardello -."
+          "t": "perché mi aiuti a reggere un po’ questo fardello -.",
+          "desde": 65.56,
+          "hasta": 68.7
         },
         {
-          "t": "È la morte un gran rimedio"
+          "t": "È la morte un gran rimedio",
+          "desde": 68.7,
+          "hasta": 70.59
         },
         {
-          "t": "a chi è stanco di soffrir."
+          "t": "a chi è stanco di soffrir.",
+          "desde": 70.59,
+          "hasta": 72.57
         },
         {
-          "t": "Sarà ver, ma piace agli uomini"
+          "t": "Sarà ver, ma piace agli uomini",
+          "desde": 72.57,
+          "hasta": 74.6
         },
         {
-          "t": "più soffrire che morir."
+          "t": "più soffrire che morir.",
+          "desde": 74.6,
+          "hasta": 76.11
         }
       ]
     },
@@ -1742,100 +2628,164 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_17_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Un Uom, già stagionato e brizzolato,"
+          "t": "Un Uom, già stagionato e brizzolato,",
+          "desde": 16.0,
+          "hasta": 18.68
         },
         {
-          "t": "credette giunto il momento propizio"
+          "t": "credette giunto il momento propizio",
+          "desde": 18.68,
+          "hasta": 21.32
         },
         {
-          "t": "di prender moglie e mettere giudizio."
+          "t": "di prender moglie e mettere giudizio.",
+          "desde": 21.32,
+          "hasta": 23.98
         },
         {
-          "t": "Erano molte quelle"
+          "t": "Erano molte quelle",
+          "desde": 23.98,
+          "hasta": 25.35
         },
         {
-          "t": "giovani ancora e belle"
+          "t": "giovani ancora e belle",
+          "desde": 25.35,
+          "hasta": 26.99
         },
         {
-          "t": "che gli facean la corte."
+          "t": "che gli facean la corte.",
+          "desde": 26.99,
+          "hasta": 29.18
         },
         {
-          "t": "Ma quell’uom ch’era ricco e ancora forte,"
+          "t": "Ma quell’uom ch’era ricco e ancora forte,",
+          "desde": 29.18,
+          "hasta": 31.96
         },
         {
-          "t": "prima volea veder, toccar con mano."
+          "t": "prima volea veder, toccar con mano.",
+          "desde": 31.96,
+          "hasta": 35.26
         },
         {
-          "t": "In queste cose chi va pian va sano."
+          "t": "In queste cose chi va pian va sano.",
+          "desde": 35.26,
+          "hasta": 38.0
         },
         {
-          "t": "Due vedovelle alfin preser possesso"
+          "t": "Due vedovelle alfin preser possesso",
+          "desde": 38.0,
+          "hasta": 41.53
         },
         {
-          "t": "del suo cuore, di cui"
+          "t": "del suo cuore, di cui",
+          "desde": 41.53,
+          "hasta": 42.98
         },
         {
-          "t": "l’una forse un po’ giovane per lui,"
+          "t": "l’una forse un po’ giovane per lui,",
+          "desde": 42.98,
+          "hasta": 45.76
         },
         {
-          "t": "e l’altra più verso l’età canonica,"
+          "t": "e l’altra più verso l’età canonica,",
+          "desde": 45.76,
+          "hasta": 47.5
         },
         {
-          "t": "che si teneva in prezzo ed in figura"
+          "t": "che si teneva in prezzo ed in figura",
+          "desde": 48.43,
+          "hasta": 50.57
         },
         {
-          "t": "correggendo coll’arte la natura."
+          "t": "correggendo coll’arte la natura.",
+          "desde": 51.48,
+          "hasta": 53.17
         },
         {
-          "t": "Le vedove venivano assai spesso"
+          "t": "Le vedove venivano assai spesso",
+          "desde": 53.17,
+          "hasta": 55.25
         },
         {
-          "t": "in casa, e or quella, or questa,"
+          "t": "in casa, e or quella, or questa,",
+          "desde": 55.25,
+          "hasta": 55.86
         },
         {
-          "t": "per vezzo carezzandogli la testa,"
+          "t": "per vezzo carezzandogli la testa,",
+          "desde": 58.17,
+          "hasta": 60.39
         },
         {
-          "t": "la vecchia gli strappava ogni momento"
+          "t": "la vecchia gli strappava ogni momento",
+          "desde": 60.39,
+          "hasta": 62.52
         },
         {
-          "t": "qualche capello nero,"
+          "t": "qualche capello nero,",
+          "desde": 62.52,
+          "hasta": 63.93
         },
         {
-          "t": "e l’altra gli strappava quei d’argento,"
+          "t": "e l’altra gli strappava quei d’argento,",
+          "desde": 63.93,
+          "hasta": 66.35
         },
         {
-          "t": "per fare che il galante"
+          "t": "per fare che il galante",
+          "desde": 66.35,
+          "hasta": 67.98
         },
         {
-          "t": "fosse a ciascuna d’esse somigliante."
+          "t": "fosse a ciascuna d’esse somigliante.",
+          "desde": 67.98,
+          "hasta": 70.39
         },
         {
-          "t": "e strappa e strappa, il nostro innamorato"
+          "t": "e strappa e strappa, il nostro innamorato",
+          "desde": 70.39,
+          "hasta": 72.87
         },
         {
-          "t": "si avvide, ahi troppo tardi!"
+          "t": "si avvide, ahi troppo tardi!",
+          "desde": 73.59,
+          "hasta": 74.53
         },
         {
-          "t": "di restar fra le due tutto pelato."
+          "t": "di restar fra le due tutto pelato.",
+          "desde": 74.53,
+          "hasta": 77.49
         },
         {
-          "t": "- Questo, - egli disse, - è un saggio avvertimento"
+          "t": "- Questo, - egli disse, - è un saggio avvertimento",
+          "desde": 77.49,
+          "hasta": 81.03
         },
         {
-          "t": "di cui proprio vi son molto obbligato."
+          "t": "di cui proprio vi son molto obbligato.",
+          "desde": 81.03,
+          "hasta": 83.89
         },
         {
-          "t": "Addio, belle. Di moglie or faccio senza."
+          "t": "Addio, belle. Di moglie or faccio senza.",
+          "desde": 83.89,
+          "hasta": 88.05
         },
         {
-          "t": "Non mi sento d’aver tanta pazienza"
+          "t": "Non mi sento d’aver tanta pazienza",
+          "desde": 88.05,
+          "hasta": 90.29
         },
         {
-          "t": "di far a modo suo; che s’ella è trista,"
+          "t": "di far a modo suo; che s’ella è trista,",
+          "desde": 90.29,
+          "hasta": 91.87
         },
         {
-          "t": "non c’è testa pelata che resista -."
+          "t": "non c’è testa pelata che resista -.",
+          "desde": 93.08,
+          "hasta": 96.21
         }
       ]
     },
@@ -1849,100 +2799,164 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_18_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Monna Volpe un bel dì fece lo spicco"
+          "t": "Monna Volpe un bel dì fece lo spicco",
+          "desde": 16.02,
+          "hasta": 19.02
         },
         {
-          "t": "e invitò la Cicogna a desinare."
+          "t": "e invitò la Cicogna a desinare.",
+          "desde": 19.02,
+          "hasta": 21.26
         },
         {
-          "t": "Il pranzo fu modesto e poco ricco,"
+          "t": "Il pranzo fu modesto e poco ricco,",
+          "desde": 21.26,
+          "hasta": 23.66
         },
         {
-          "t": "anzi quasi non c’era da mangiare."
+          "t": "anzi quasi non c’era da mangiare.",
+          "desde": 23.66,
+          "hasta": 27.15
         },
         {
-          "t": "Tutto il servizio in ultimo costrutto"
+          "t": "Tutto il servizio in ultimo costrutto",
+          "desde": 27.15,
+          "hasta": 29.15
         },
         {
-          "t": "si ridusse a una broda trasparente"
+          "t": "si ridusse a una broda trasparente",
+          "desde": 29.15,
+          "hasta": 31.23
         },
         {
-          "t": "servita in un piattello. Or capirete"
+          "t": "servita in un piattello. Or capirete",
+          "desde": 31.83,
+          "hasta": 34.27
         },
         {
-          "t": "se, in grazia di quel becco che sapete,"
+          "t": "se, in grazia di quel becco che sapete,",
+          "desde": 34.27,
+          "hasta": 37.27
         },
         {
-          "t": "la Cicogna poté mangiar niente."
+          "t": "la Cicogna poté mangiar niente.",
+          "desde": 37.27,
+          "hasta": 39.57
         },
         {
-          "t": "Ma la Volpe in un amen spazzò tutto."
+          "t": "Ma la Volpe in un amen spazzò tutto.",
+          "desde": 39.57,
+          "hasta": 42.83
         },
         {
-          "t": "Per trar vendetta dell’inganno, anch’essa"
+          "t": "Per trar vendetta dell’inganno, anch’essa",
+          "desde": 42.83,
+          "hasta": 45.98
         },
         {
-          "t": "la Cicogna invitò la furba amica,"
+          "t": "la Cicogna invitò la furba amica,",
+          "desde": 45.98,
+          "hasta": 47.6
         },
         {
-          "t": "che non stette con lei sui complimenti."
+          "t": "che non stette con lei sui complimenti.",
+          "desde": 48.2,
+          "hasta": 51.18
         },
         {
-          "t": "La Volpe, a cui non manca l’appetito,"
+          "t": "La Volpe, a cui non manca l’appetito,",
+          "desde": 51.18,
+          "hasta": 53.68
         },
         {
-          "t": "andò pronta all’invito."
+          "t": "andò pronta all’invito.",
+          "desde": 53.68,
+          "hasta": 55.18
         },
         {
-          "t": "Vide e lodò il pranzetto preparato,"
+          "t": "Vide e lodò il pranzetto preparato,",
+          "desde": 55.18,
+          "hasta": 58.2
         },
         {
-          "t": "tagliato a pezzi in una salsa spessa,"
+          "t": "tagliato a pezzi in una salsa spessa,",
+          "desde": 58.2,
+          "hasta": 60.18
         },
         {
-          "t": "che mandava un odore delicato."
+          "t": "che mandava un odore delicato.",
+          "desde": 60.18,
+          "hasta": 63.18
         },
         {
-          "t": "Ma il pranzo fu servito per dispetto"
+          "t": "Ma il pranzo fu servito per dispetto",
+          "desde": 63.18,
+          "hasta": 65.18
         },
         {
-          "t": "in fondo a un vaso a collo lungo e stretto."
+          "t": "in fondo a un vaso a collo lungo e stretto.",
+          "desde": 65.18,
+          "hasta": 69.18
         },
         {
-          "t": "Ben vi attingea col becco la Cicogna"
+          "t": "Ben vi attingea col becco la Cicogna",
+          "desde": 69.18,
+          "hasta": 72.25
         },
         {
-          "t": "per entro la fessura,"
+          "t": "per entro la fessura,",
+          "desde": 72.25,
+          "hasta": 74.1
         },
         {
-          "t": "ma non così Madonna Gabbamondo,"
+          "t": "ma non così Madonna Gabbamondo,",
+          "desde": 74.1,
+          "hasta": 77.09
         },
         {
-          "t": "per via del muso tondo e non ridotto"
+          "t": "per via del muso tondo e non ridotto",
+          "desde": 77.09,
+          "hasta": 79.2
         },
         {
-          "t": "dell’anfora alla piccola misura."
+          "t": "dell’anfora alla piccola misura.",
+          "desde": 79.2,
+          "hasta": 81.08
         },
         {
-          "t": "A pancia vuota e piena di vergogna,"
+          "t": "A pancia vuota e piena di vergogna,",
+          "desde": 81.81,
+          "hasta": 83.58
         },
         {
-          "t": "se ne partì quell’animale ghiotto"
+          "t": "se ne partì quell’animale ghiotto",
+          "desde": 83.58,
+          "hasta": 86.08
         },
         {
-          "t": "mogio mogio, la coda fra le gambe,"
+          "t": "mogio mogio, la coda fra le gambe,",
+          "desde": 87.38,
+          "hasta": 89.14
         },
         {
-          "t": "come una vecchia volpe malandrina"
+          "t": "come una vecchia volpe malandrina",
+          "desde": 89.14,
+          "hasta": 89.75
         },
         {
-          "t": "che si senta rapir da una gallina."
+          "t": "che si senta rapir da una gallina.",
+          "desde": 90.08,
+          "hasta": 93.08
         },
         {
-          "t": "Vuol dimostrare questa favoletta"
+          "t": "Vuol dimostrare questa favoletta",
+          "desde": 93.38,
+          "hasta": 96.1
         },
         {
-          "t": "che chi la fa l’aspetta."
+          "t": "che chi la fa l’aspetta.",
+          "desde": 96.1,
+          "hasta": 97.56
         }
       ]
     },
@@ -1956,88 +2970,144 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_19_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Racconto questa per mostrar d’un tale"
+          "t": "Racconto questa per mostrar d’un tale",
+          "desde": 16.02,
+          "hasta": 18.86
         },
         {
-          "t": "la stupida burbanza magistrale."
+          "t": "la stupida burbanza magistrale.",
+          "desde": 18.86,
+          "hasta": 21.28
         },
         {
-          "t": "Un Ragazzo, giocando al fiume in riva,"
+          "t": "Un Ragazzo, giocando al fiume in riva,",
+          "desde": 21.28,
+          "hasta": 24.45
         },
         {
-          "t": "cadde nell’acqua e forse vi periva,"
+          "t": "cadde nell’acqua e forse vi periva,",
+          "desde": 24.78,
+          "hasta": 28.04
         },
         {
-          "t": "se non avesse un salice afferrato"
+          "t": "se non avesse un salice afferrato",
+          "desde": 28.04,
+          "hasta": 29.72
         },
         {
-          "t": "che, dopo Dio, lo tenne sollevato."
+          "t": "che, dopo Dio, lo tenne sollevato.",
+          "desde": 29.72,
+          "hasta": 33.0
         },
         {
-          "t": "Mentre nell’acqua ei sta fino alla gola,"
+          "t": "Mentre nell’acqua ei sta fino alla gola,",
+          "desde": 33.0,
+          "hasta": 35.47
         },
         {
-          "t": "viene a passare un maestro di scuola."
+          "t": "viene a passare un maestro di scuola.",
+          "desde": 35.47,
+          "hasta": 37.76
         },
         {
-          "t": "- Aiuto, aiuto! - grida quel che annega."
+          "t": "- Aiuto, aiuto! - grida quel che annega.",
+          "desde": 37.76,
+          "hasta": 40.64
         },
         {
-          "t": "Il maestro si ferma, e a lui che prega,"
+          "t": "Il maestro si ferma, e a lui che prega,",
+          "desde": 40.64,
+          "hasta": 42.96
         },
         {
-          "t": "con una voce burbera e nasale,"
+          "t": "con una voce burbera e nasale,",
+          "desde": 42.96,
+          "hasta": 45.01
         },
         {
-          "t": "gli somministra questa paternale:"
+          "t": "gli somministra questa paternale:",
+          "desde": 45.01,
+          "hasta": 47.23
         },
         {
-          "t": "- Ah scimunito, ah sciocco, ah babbuasso!"
+          "t": "- Ah scimunito, ah sciocco, ah babbuasso!",
+          "desde": 47.23,
+          "hasta": 49.98
         },
         {
-          "t": "Guarda dove si caccia il satanasso."
+          "t": "Guarda dove si caccia il satanasso.",
+          "desde": 51.35,
+          "hasta": 53.68
         },
         {
-          "t": "Andate pure a prender dell’affanno"
+          "t": "Andate pure a prender dell’affanno",
+          "desde": 54.43,
+          "hasta": 54.47
         },
         {
-          "t": "per questi tristi, oh sì, che vi faranno"
+          "t": "per questi tristi, oh sì, che vi faranno",
+          "desde": 55.83,
+          "hasta": 58.82
         },
         {
-          "t": "morir tisici! ah poveri parenti"
+          "t": "morir tisici! ah poveri parenti",
+          "desde": 58.82,
+          "hasta": 61.43
         },
         {
-          "t": "a cui tocca di questi malviventi!"
+          "t": "a cui tocca di questi malviventi!",
+          "desde": 61.43,
+          "hasta": 63.93
         },
         {
-          "t": "Ah i tempi tristi, oh i figli traditori... -."
+          "t": "Ah i tempi tristi, oh i figli traditori... -.",
+          "desde": 63.93,
+          "hasta": 67.43
         },
         {
-          "t": "E quando ebbe finito, il tirò fuori."
+          "t": "E quando ebbe finito, il tirò fuori.",
+          "desde": 67.43,
+          "hasta": 69.51
         },
         {
-          "t": "Quanti non sono al mondo altri pedanti"
+          "t": "Quanti non sono al mondo altri pedanti",
+          "desde": 69.92,
+          "hasta": 72.53
         },
         {
-          "t": "e brontoloni e critici ignoranti,"
+          "t": "e brontoloni e critici ignoranti,",
+          "desde": 72.53,
+          "hasta": 75.15
         },
         {
-          "t": "razza dotta più in chiacchiere che in scienze,"
+          "t": "razza dotta più in chiacchiere che in scienze,",
+          "desde": 75.15,
+          "hasta": 77.24
         },
         {
-          "t": "che Dio conserva a nostra dannazione!"
+          "t": "che Dio conserva a nostra dannazione!",
+          "desde": 77.24,
+          "hasta": 79.9
         },
         {
-          "t": "In ogni cosa, a torto od a ragione,"
+          "t": "In ogni cosa, a torto od a ragione,",
+          "desde": 79.9,
+          "hasta": 81.91
         },
         {
-          "t": "bisogna ch’essi sputino sentenze."
+          "t": "bisogna ch’essi sputino sentenze.",
+          "desde": 81.98,
+          "hasta": 84.18
         },
         {
-          "t": "Prima di pena tirami, se puoi,"
+          "t": "Prima di pena tirami, se puoi,",
+          "desde": 84.18,
+          "hasta": 86.36
         },
         {
-          "t": "il bel discorso lo udiremo poi."
+          "t": "il bel discorso lo udiremo poi.",
+          "desde": 86.65,
+          "hasta": 89.26
         }
       ]
     },
@@ -2051,52 +3121,84 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_20_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Razzolando, una Gallina"
+          "t": "Razzolando, una Gallina",
+          "desde": 17.38,
+          "hasta": 19.03
         },
         {
-          "t": "una Perla ritrovò,"
+          "t": "una Perla ritrovò,",
+          "desde": 19.03,
+          "hasta": 20.96
         },
         {
-          "t": "una perla vera e fina"
+          "t": "una perla vera e fina",
+          "desde": 20.96,
+          "hasta": 22.03
         },
         {
-          "t": "che all’orefice portò,"
+          "t": "che all’orefice portò,",
+          "desde": 22.36,
+          "hasta": 24.08
         },
         {
-          "t": "giudicando con ragione"
+          "t": "giudicando con ragione",
+          "desde": 24.14,
+          "hasta": 25.76
         },
         {
-          "t": "che una perla alla fin fine"
+          "t": "che una perla alla fin fine",
+          "desde": 25.76,
+          "hasta": 27.76
         },
         {
-          "t": "non è poi quel tal boccone"
+          "t": "non è poi quel tal boccone",
+          "desde": 27.76,
+          "hasta": 29.7
         },
         {
-          "t": "che conviene alle galline."
+          "t": "che conviene alle galline.",
+          "desde": 29.7,
+          "hasta": 31.85
         },
         {
-          "t": "Tal e qual quell’ignorante,"
+          "t": "Tal e qual quell’ignorante,",
+          "desde": 32.32,
+          "hasta": 33.96
         },
         {
-          "t": "che uno scritto ereditò,"
+          "t": "che uno scritto ereditò,",
+          "desde": 33.96,
+          "hasta": 35.63
         },
         {
-          "t": "di buon cuor con un sonante"
+          "t": "di buon cuor con un sonante",
+          "desde": 35.63,
+          "hasta": 37.87
         },
         {
-          "t": "ducatone barattò,"
+          "t": "ducatone barattò,",
+          "desde": 37.87,
+          "hasta": 39.82
         },
         {
-          "t": "giudicando con ragione,"
+          "t": "giudicando con ragione,",
+          "desde": 39.82,
+          "hasta": 41.6
         },
         {
-          "t": "anche lui, che all’occorrenza"
+          "t": "anche lui, che all’occorrenza",
+          "desde": 41.6,
+          "hasta": 44.12
         },
         {
-          "t": "un sonante ducatone"
+          "t": "un sonante ducatone",
+          "desde": 44.12,
+          "hasta": 45.5
         },
         {
-          "t": "vale tutta la sapienza."
+          "t": "vale tutta la sapienza.",
+          "desde": 45.5,
+          "hasta": 47.12
         }
       ]
     },
@@ -2110,112 +3212,184 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_21_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Era sorta fra l’Api e i Calabroni"
+          "t": "Era sorta fra l’Api e i Calabroni",
+          "desde": 14.92,
+          "hasta": 18.06
         },
         {
-          "t": "per un favo di miel una gran lite,"
+          "t": "per un favo di miel una gran lite,",
+          "desde": 18.06,
+          "hasta": 21.01
         },
         {
-          "t": "di cui volevano essere padroni"
+          "t": "di cui volevano essere padroni",
+          "desde": 21.01,
+          "hasta": 22.75
         },
         {
-          "t": "d’ambo le parti e con furore tale,"
+          "t": "d’ambo le parti e con furore tale,",
+          "desde": 23.21,
+          "hasta": 24.66
         },
         {
-          "t": "che infine il grande affare"
+          "t": "che infine il grande affare",
+          "desde": 24.66,
+          "hasta": 26.42
         },
         {
-          "t": "d’una Vespa fu tratto al tribunale."
+          "t": "d’una Vespa fu tratto al tribunale.",
+          "desde": 26.42,
+          "hasta": 28.88
         },
         {
-          "t": "La Vespa non sapea che giudicare."
+          "t": "La Vespa non sapea che giudicare.",
+          "desde": 29.34,
+          "hasta": 31.74
         },
         {
-          "t": "Intorno al miel alcuni testimoni"
+          "t": "Intorno al miel alcuni testimoni",
+          "desde": 31.74,
+          "hasta": 34.92
         },
         {
-          "t": "dicean d’aver veduto bestie alate"
+          "t": "dicean d’aver veduto bestie alate",
+          "desde": 35.54,
+          "hasta": 36.32
         },
         {
-          "t": "giallo-nere, ronzanti e fusolate,"
+          "t": "giallo-nere, ronzanti e fusolate,",
+          "desde": 38.9,
+          "hasta": 40.94
         },
         {
-          "t": "ma in queste condizioni"
+          "t": "ma in queste condizioni",
+          "desde": 40.94,
+          "hasta": 42.77
         },
         {
-          "t": "potevan esser api e calabroni."
+          "t": "potevan esser api e calabroni.",
+          "desde": 44.04,
+          "hasta": 45.32
         },
         {
-          "t": "Torna la Vespa allora a investigare,"
+          "t": "Torna la Vespa allora a investigare,",
+          "desde": 45.34,
+          "hasta": 47.66
         },
         {
-          "t": "interroga un intero formicaio,"
+          "t": "interroga un intero formicaio,",
+          "desde": 47.66,
+          "hasta": 49.96
         },
         {
-          "t": "ma le cose non restano più chiare."
+          "t": "ma le cose non restano più chiare.",
+          "desde": 49.96,
+          "hasta": 52.74
         },
         {
-          "t": "Allor disse una Pecchia: - O non vi pare"
+          "t": "Allor disse una Pecchia: - O non vi pare",
+          "desde": 53.19,
+          "hasta": 55.53
         },
         {
-          "t": "che duri già da un pezzo questo guaio?"
+          "t": "che duri già da un pezzo questo guaio?",
+          "desde": 55.53,
+          "hasta": 58.03
         },
         {
-          "t": "Il miele va in malora e a danno nostro;"
+          "t": "Il miele va in malora e a danno nostro;",
+          "desde": 58.03,
+          "hasta": 61.39
         },
         {
-          "t": "ché mentre noi spendiamo in bollo e in tassa,"
+          "t": "ché mentre noi spendiamo in bollo e in tassa,",
+          "desde": 61.39,
+          "hasta": 63.99
         },
         {
-          "t": "in carta, in procedura ed in inchiostro,"
+          "t": "in carta, in procedura ed in inchiostro,",
+          "desde": 63.99,
+          "hasta": 64.75
         },
         {
-          "t": "del nostro miel è il giudice che ingrassa."
+          "t": "del nostro miel è il giudice che ingrassa.",
+          "desde": 66.42,
+          "hasta": 69.23
         },
         {
-          "t": "Andiam invece ed api e calabroni"
+          "t": "Andiam invece ed api e calabroni",
+          "desde": 69.91,
+          "hasta": 71.72
         },
         {
-          "t": "a lavorar nell’orto,"
+          "t": "a lavorar nell’orto,",
+          "desde": 71.72,
+          "hasta": 73.24
         },
         {
-          "t": "e le case ed i favi più ben fatti"
+          "t": "e le case ed i favi più ben fatti",
+          "desde": 73.24,
+          "hasta": 75.47
         },
         {
-          "t": "indicheranno la ragione e il torto -."
+          "t": "indicheranno la ragione e il torto -.",
+          "desde": 75.47,
+          "hasta": 77.59
         },
         {
-          "t": "Naturalmente dissero di no"
+          "t": "Naturalmente dissero di no",
+          "desde": 77.88,
+          "hasta": 80.37
         },
         {
-          "t": "i Calabroni, e il miele"
+          "t": "i Calabroni, e il miele",
+          "desde": 80.37,
+          "hasta": 82.27
         },
         {
-          "t": "alle Pecchie la Vespa giudicò."
+          "t": "alle Pecchie la Vespa giudicò.",
+          "desde": 82.27,
+          "hasta": 84.32
         },
         {
-          "t": "Magari si facesse ogni processo,"
+          "t": "Magari si facesse ogni processo,",
+          "desde": 84.32,
+          "hasta": 86.79
         },
         {
-          "t": "come dicon che facciano in Turchia,"
+          "t": "come dicon che facciano in Turchia,",
+          "desde": 86.79,
+          "hasta": 88.87
         },
         {
-          "t": "senza tutta la lunga litania"
+          "t": "senza tutta la lunga litania",
+          "desde": 89.92,
+          "hasta": 91.93
         },
         {
-          "t": "di spese e ciarle inutili d’adesso!"
+          "t": "di spese e ciarle inutili d’adesso!",
+          "desde": 91.93,
+          "hasta": 94.12
         },
         {
-          "t": "Il buon senso val più di tutti quanti"
+          "t": "Il buon senso val più di tutti quanti",
+          "desde": 94.12,
+          "hasta": 97.02
         },
         {
-          "t": "i codici, o, sofferto strazi e croci,"
+          "t": "i codici, o, sofferto strazi e croci,",
+          "desde": 97.02,
+          "hasta": 99.92
         },
         {
-          "t": "il giudice di solito ha le noci,"
+          "t": "il giudice di solito ha le noci,",
+          "desde": 99.92,
+          "hasta": 102.63
         },
         {
-          "t": "e non restan che i gusci ai litiganti."
+          "t": "e non restan che i gusci ai litiganti.",
+          "desde": 102.63,
+          "hasta": 105.94
         }
       ]
     },
@@ -2229,97 +3403,159 @@
       "desde": "https://archive.org/download/favole_di_la_fontaine_01_librivox/favole_22_libro01_lafontaine_64kb.mp3",
       "renglones": [
         {
-          "t": "Disse la Quercia ad una Canna un giorno:"
+          "t": "Disse la Quercia ad una Canna un giorno:",
+          "desde": 15.0,
+          "hasta": 19.12
         },
         {
-          "t": "- Infelice nel mondo è il tuo destino:"
+          "t": "- Infelice nel mondo è il tuo destino:",
+          "desde": 19.12,
+          "hasta": 21.04
         },
         {
-          "t": "non ti si posa addosso un uccellino,"
+          "t": "non ti si posa addosso un uccellino,",
+          "desde": 21.04,
+          "hasta": 24.0
         },
         {
-          "t": "né un soffio d’aria ti svolazza intorno,"
+          "t": "né un soffio d’aria ti svolazza intorno,",
+          "desde": 24.0,
+          "hasta": 26.26
         },
         {
-          "t": "che tu non abbia ad abbassar la testa."
+          "t": "che tu non abbia ad abbassar la testa.",
+          "desde": 26.26,
+          "hasta": 28.81
         },
         {
-          "t": "Guarda me, che gigante a un monte eguale,"
+          "t": "Guarda me, che gigante a un monte eguale,",
+          "desde": 28.81,
+          "hasta": 31.6
         },
         {
-          "t": "non solo innalzo contro il sol la cresta,"
+          "t": "non solo innalzo contro il sol la cresta,",
+          "desde": 32.27,
+          "hasta": 35.27
         },
         {
-          "t": "ma sfido il temporale."
+          "t": "ma sfido il temporale.",
+          "desde": 35.27,
+          "hasta": 36.89
         },
         {
-          "t": "Per te sembra tempesta ogni sospiro,"
+          "t": "Per te sembra tempesta ogni sospiro,",
+          "desde": 36.89,
+          "hasta": 39.4
         },
         {
-          "t": "un sospiro a me sembra ogni tempesta."
+          "t": "un sospiro a me sembra ogni tempesta.",
+          "desde": 39.4,
+          "hasta": 42.09
         },
         {
-          "t": "Pazienza ancor, se concedesse il Cielo"
+          "t": "Pazienza ancor, se concedesse il Cielo",
+          "desde": 42.09,
+          "hasta": 45.31
         },
         {
-          "t": "che voi nasceste all’ombra mia sicura:"
+          "t": "che voi nasceste all’ombra mia sicura:",
+          "desde": 45.31,
+          "hasta": 47.72
         },
         {
-          "t": "ma vuole la natura"
+          "t": "ma vuole la natura",
+          "desde": 47.72,
+          "hasta": 49.03
         },
         {
-          "t": "farvi nascer di solito alla riva"
+          "t": "farvi nascer di solito alla riva",
+          "desde": 49.03,
+          "hasta": 50.09
         },
         {
-          "t": "delle paludi, in mezzo ai venti e al gelo."
+          "t": "delle paludi, in mezzo ai venti e al gelo.",
+          "desde": 50.72,
+          "hasta": 53.33
         },
         {
-          "t": "- La tua pietà capisco che deriva"
+          "t": "- La tua pietà capisco che deriva",
+          "desde": 53.43,
+          "hasta": 55.83
         },
         {
-          "t": "da buon cuore, - rispose a lei la Canna. -"
+          "t": "da buon cuore, - rispose a lei la Canna. -",
+          "desde": 55.83,
+          "hasta": 58.47
         },
         {
-          "t": "Il vento che mi affanna"
+          "t": "Il vento che mi affanna",
+          "desde": 58.47,
+          "hasta": 60.25
         },
         {
-          "t": "mi può piegar, non farmi troppo male,"
+          "t": "mi può piegar, non farmi troppo male,",
+          "desde": 60.25,
+          "hasta": 63.3
         },
         {
-          "t": "ciò che non sempre anche alle querce arriva."
+          "t": "ciò che non sempre anche alle querce arriva.",
+          "desde": 63.8,
+          "hasta": 65.63
         },
         {
-          "t": "Tu sei forte, ma chi fino a dimani"
+          "t": "Tu sei forte, ma chi fino a dimani",
+          "desde": 65.63,
+          "hasta": 67.89
         },
         {
-          "t": "può garantirti il legno della schiena? -"
+          "t": "può garantirti il legno della schiena? -",
+          "desde": 67.89,
+          "hasta": 70.87
         },
         {
-          "t": "E detto questo appena,"
+          "t": "E detto questo appena,",
+          "desde": 70.87,
+          "hasta": 72.41
         },
         {
-          "t": "il più forte scoppiò degli uragani,"
+          "t": "il più forte scoppiò degli uragani,",
+          "desde": 72.41,
+          "hasta": 74.91
         },
         {
-          "t": "come il polo non soffia mai l’uguale."
+          "t": "come il polo non soffia mai l’uguale.",
+          "desde": 74.91,
+          "hasta": 77.7
         },
         {
-          "t": "La molle Canna piegasi,"
+          "t": "La molle Canna piegasi,",
+          "desde": 77.7,
+          "hasta": 79.84
         },
         {
-          "t": "e resiste la Quercia anche ai più forti"
+          "t": "e resiste la Quercia anche ai più forti",
+          "desde": 79.84,
+          "hasta": 82.07
         },
         {
-          "t": "colpi del vento, per un po’, ma infine"
+          "t": "colpi del vento, per un po’, ma infine",
+          "desde": 82.07,
+          "hasta": 85.48
         },
         {
-          "t": "sradica il vento il tronco,"
+          "t": "sradica il vento il tronco,",
+          "desde": 85.48,
+          "hasta": 87.9
         },
         {
-          "t": "che mandava le foglie al ciel vicine,"
+          "t": "che mandava le foglie al ciel vicine,",
+          "desde": 87.9,
+          "hasta": 90.2
         },
         {
-          "t": "e le barbe nel Regno imo dei morti."
+          "t": "e le barbe nel Regno imo dei morti.",
+          "desde": 90.2,
+          "hasta": 93.68
         }
       ]
     }

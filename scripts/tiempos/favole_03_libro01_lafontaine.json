@@ -1,0 +1,67 @@
+{
+  "id": "favole_03_libro01_lafontaine",
+  "titulo": "La Rana e il Bove",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 15.0,
+      "hasta": 18.0,
+      "texto": "Grande non più d’un ovo di gallina"
+    },
+    {
+      "desde": 18.0,
+      "hasta": 22.0,
+      "texto": "vedendo il Bove e bello e grasso e grosso,"
+    },
+    {
+      "desde": 22.0,
+      "hasta": 24.95,
+      "texto": "una Rana si gonfia a più non posso"
+    },
+    {
+      "desde": 24.95,
+      "hasta": 27.42,
+      "texto": "per non esser del Bove più piccina."
+    },
+    {
+      "desde": 27.42,
+      "hasta": 31.08,
+      "texto": "- Guardami adesso, - esclama in aria tronfia, -"
+    },
+    {
+      "desde": 31.08,
+      "hasta": 35.12,
+      "texto": "son ben grossa? - Non basta, o vecchia amica -."
+    },
+    {
+      "desde": 35.12,
+      "hasta": 38.3,
+      "texto": "E la rana si gonfia e gonfia e gonfia"
+    },
+    {
+      "desde": 38.99,
+      "hasta": 41.62,
+      "texto": "infin che scoppia come una vescica."
+    },
+    {
+      "desde": 42.51,
+      "hasta": 44.46,
+      "texto": "Borghesi, ch’è più il fumo che l’arrosto,"
+    },
+    {
+      "desde": 44.46,
+      "hasta": 47.3,
+      "texto": "signori ambiziosi e senza testa,"
+    },
+    {
+      "desde": 47.3,
+      "hasta": 49.98,
+      "texto": "o gente a cui ripugna stare a posto,"
+    },
+    {
+      "desde": 49.98,
+      "hasta": 53.18,
+      "texto": "quante sono le rane come questa!"
+    }
+  ]
+}

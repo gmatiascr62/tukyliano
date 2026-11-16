@@ -1,0 +1,87 @@
+{
+  "id": "favole_20_libro01_lafontaine",
+  "titulo": "La Gallina e la Perla",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 17.38,
+      "hasta": 19.03,
+      "texto": "Razzolando, una Gallina"
+    },
+    {
+      "desde": 19.03,
+      "hasta": 20.96,
+      "texto": "una Perla ritrovò,"
+    },
+    {
+      "desde": 20.96,
+      "hasta": 22.03,
+      "texto": "una perla vera e fina"
+    },
+    {
+      "desde": 22.36,
+      "hasta": 24.08,
+      "texto": "che all’orefice portò,"
+    },
+    {
+      "desde": 24.14,
+      "hasta": 25.76,
+      "texto": "giudicando con ragione"
+    },
+    {
+      "desde": 25.76,
+      "hasta": 27.76,
+      "texto": "che una perla alla fin fine"
+    },
+    {
+      "desde": 27.76,
+      "hasta": 29.7,
+      "texto": "non è poi quel tal boccone"
+    },
+    {
+      "desde": 29.7,
+      "hasta": 31.85,
+      "texto": "che conviene alle galline."
+    },
+    {
+      "desde": 32.32,
+      "hasta": 33.96,
+      "texto": "Tal e qual quell’ignorante,"
+    },
+    {
+      "desde": 33.96,
+      "hasta": 35.63,
+      "texto": "che uno scritto ereditò,"
+    },
+    {
+      "desde": 35.63,
+      "hasta": 37.87,
+      "texto": "di buon cuor con un sonante"
+    },
+    {
+      "desde": 37.87,
+      "hasta": 39.82,
+      "texto": "ducatone barattò,"
+    },
+    {
+      "desde": 39.82,
+      "hasta": 41.6,
+      "texto": "giudicando con ragione,"
+    },
+    {
+      "desde": 41.6,
+      "hasta": 44.12,
+      "texto": "anche lui, che all’occorrenza"
+    },
+    {
+      "desde": 44.12,
+      "hasta": 45.5,
+      "texto": "un sonante ducatone"
+    },
+    {
+      "desde": 45.5,
+      "hasta": 47.12,
+      "texto": "vale tutta la sapienza."
+    }
+  ]
+}

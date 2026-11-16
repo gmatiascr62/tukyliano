@@ -1,0 +1,267 @@
+{
+  "id": "favole_07_libro01_lafontaine",
+  "titulo": "La Bisaccia",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 16.02,
+      "hasta": 20.53,
+      "texto": "Barba Giove disse un giorno:"
+    },
+    {
+      "desde": 20.53,
+      "hasta": 23.21,
+      "texto": "- Vengan quanti al mondo sono"
+    },
+    {
+      "desde": 23.21,
+      "hasta": 24.66,
+      "texto": "animali malcontenti"
+    },
+    {
+      "desde": 24.66,
+      "hasta": 27.44,
+      "texto": "e ciascun di lor mi parli"
+    },
+    {
+      "desde": 27.44,
+      "hasta": 29.16,
+      "texto": "senza fare complimenti,"
+    },
+    {
+      "desde": 29.8,
+      "hasta": 30.24,
+      "texto": "ch’io vedrò dal mio gran trono"
+    },
+    {
+      "desde": 30.92,
+      "hasta": 33.84,
+      "texto": "se si possa contentarli -."
+    },
+    {
+      "desde": 33.84,
+      "hasta": 35.71,
+      "texto": "Il babbione per suo conto"
+    },
+    {
+      "desde": 35.71,
+      "hasta": 35.83,
+      "texto": "si dichiara arcicontento"
+    },
+    {
+      "desde": 37.24,
+      "hasta": 39.8,
+      "texto": "senza tema di confronto."
+    },
+    {
+      "desde": 39.8,
+      "hasta": 41.88,
+      "texto": "Una bestia, figurarsi!"
+    },
+    {
+      "desde": 41.88,
+      "hasta": 43.52,
+      "texto": "che cammina a quattro mani,"
+    },
+    {
+      "desde": 43.52,
+      "hasta": 45.2,
+      "texto": "così bella e di talento,"
+    },
+    {
+      "desde": 45.2,
+      "hasta": 47.62,
+      "texto": "non sarebbe un’ingiustizia"
+    },
+    {
+      "desde": 47.62,
+      "hasta": 49.6,
+      "texto": "se volesse lamentarsi?"
+    },
+    {
+      "desde": 49.6,
+      "hasta": 51.18,
+      "texto": "Ma una grande compassione"
+    },
+    {
+      "desde": 51.4,
+      "hasta": 53.69,
+      "texto": "egli sente in cor per l’orso,"
+    },
+    {
+      "desde": 53.69,
+      "hasta": 55.65,
+      "texto": "che gli sembra un così stupido"
+    },
+    {
+      "desde": 55.65,
+      "hasta": 56.98,
+      "texto": "materiale bestïone,"
+    },
+    {
+      "desde": 56.98,
+      "hasta": 58.66,
+      "texto": "così rozzo e disadatto,"
+    },
+    {
+      "desde": 58.66,
+      "hasta": 60.34,
+      "texto": "che i pittori si rifiutano"
+    },
+    {
+      "desde": 60.34,
+      "hasta": 62.58,
+      "texto": "fin di pingerne il ritratto."
+    },
+    {
+      "desde": 62.58,
+      "hasta": 64.53,
+      "texto": "L’orso subito protesta"
+    },
+    {
+      "desde": 64.53,
+      "hasta": 67.15,
+      "texto": "contro questa insinuazione."
+    },
+    {
+      "desde": 67.15,
+      "hasta": 69.79,
+      "texto": "Quel che a lui sembra mal fatto,"
+    },
+    {
+      "desde": 69.79,
+      "hasta": 72.58,
+      "texto": "corto in coda e grosso in testa,"
+    },
+    {
+      "desde": 72.58,
+      "hasta": 74.2,
+      "texto": "una macchina pesante"
+    },
+    {
+      "desde": 74.2,
+      "hasta": 76.39,
+      "texto": "senza garbo e proporzione,"
+    },
+    {
+      "desde": 76.39,
+      "hasta": 78.58,
+      "texto": "è piuttosto l’elefante."
+    },
+    {
+      "desde": 78.6,
+      "hasta": 80.46,
+      "texto": "A sua volta anche costui,"
+    },
+    {
+      "desde": 80.65,
+      "hasta": 82.42,
+      "texto": "ch’è un buonissimo pedante,"
+    },
+    {
+      "desde": 82.53,
+      "hasta": 84.13,
+      "texto": "dice mal della balena"
+    },
+    {
+      "desde": 84.13,
+      "hasta": 86.64,
+      "texto": "tutta schiena, tutta schiena."
+    },
+    {
+      "desde": 86.64,
+      "hasta": 88.63,
+      "texto": "Ogni mal è del vicino,"
+    },
+    {
+      "desde": 88.63,
+      "hasta": 90.75,
+      "texto": "e per essere discreti"
+    },
+    {
+      "desde": 90.75,
+      "hasta": 91.09,
+      "texto": "fa l’istesso panegirico"
+    },
+    {
+      "desde": 92.94,
+      "hasta": 95.2,
+      "texto": "la formica al moscherino."
+    },
+    {
+      "desde": 96.02,
+      "hasta": 97.16,
+      "texto": "Barba Giove soddisfatto"
+    },
+    {
+      "desde": 97.16,
+      "hasta": 98.63,
+      "texto": "li rimanda in santa pace."
+    },
+    {
+      "desde": 98.63,
+      "hasta": 100.47,
+      "texto": "Per venire adesso al fatto"
+    },
+    {
+      "desde": 100.47,
+      "hasta": 101.91,
+      "texto": "non vi sembra che a un dipresso"
+    },
+    {
+      "desde": 102.75,
+      "hasta": 104.72,
+      "texto": "anche noi facciam lo stesso?"
+    },
+    {
+      "desde": 105.26,
+      "hasta": 107.47,
+      "texto": "Linci a scorgere del prossimo"
+    },
+    {
+      "desde": 107.47,
+      "hasta": 109.03,
+      "texto": "i difetti, siamo poi"
+    },
+    {
+      "desde": 109.03,
+      "hasta": 111.33,
+      "texto": "talpe cieche sol per noi."
+    },
+    {
+      "desde": 111.33,
+      "hasta": 113.56,
+      "texto": "Quando viene in questa valle"
+    },
+    {
+      "desde": 113.97,
+      "hasta": 115.36,
+      "texto": "porta ognuno sulle spalle"
+    },
+    {
+      "desde": 115.36,
+      "hasta": 116.94,
+      "texto": "una duplice bisaccia."
+    },
+    {
+      "desde": 116.94,
+      "hasta": 119.1,
+      "texto": "Dentro a quella che sta innanzi"
+    },
+    {
+      "desde": 119.74,
+      "hasta": 121.25,
+      "texto": "volentieri ognun di noi"
+    },
+    {
+      "desde": 121.25,
+      "hasta": 122.84,
+      "texto": "i difetti altrui vi caccia,"
+    },
+    {
+      "desde": 122.84,
+      "hasta": 126.92,
+      "texto": "e nell’altra mette i suoi."
+    }
+  ]
+}

@@ -1,0 +1,272 @@
+{
+  "id": "favole_08_libro01_lafontaine",
+  "titulo": "La Rondine e gli Uccellini",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 14.72,
+      "hasta": 16.93,
+      "texto": "Molte cose una Rondine vedute"
+    },
+    {
+      "desde": 17.3,
+      "hasta": 19.6,
+      "texto": "ne’ suoi viaggi avea di là del mare."
+    },
+    {
+      "desde": 19.6,
+      "hasta": 22.08,
+      "texto": "Viaggiando c’è sempre da imparare"
+    },
+    {
+      "desde": 22.08,
+      "hasta": 24.12,
+      "texto": "e tanto ben la nostra rondinella"
+    },
+    {
+      "desde": 24.68,
+      "hasta": 27.12,
+      "texto": "apprese a strologare il cielo e i venti,"
+    },
+    {
+      "desde": 27.12,
+      "hasta": 28.28,
+      "texto": "che ai naviganti indizio"
+    },
+    {
+      "desde": 28.28,
+      "hasta": 30.4,
+      "texto": "era di tempo bello o di procella."
+    },
+    {
+      "desde": 30.5,
+      "hasta": 33.56,
+      "texto": "Venne il tempo che getta le sementi"
+    },
+    {
+      "desde": 33.56,
+      "hasta": 35.84,
+      "texto": "della canape in terra il contadino."
+    },
+    {
+      "desde": 35.84,
+      "hasta": 38.22,
+      "texto": "Vedendo questo disse: - State attenti,"
+    },
+    {
+      "desde": 38.22,
+      "hasta": 40.98,
+      "texto": "uccelli, non mi va questa faccenda;"
+    },
+    {
+      "desde": 40.98,
+      "hasta": 43.51,
+      "texto": "per voi semina insidie quella mano."
+    },
+    {
+      "desde": 43.51,
+      "hasta": 45.04,
+      "texto": "Per me, se c’è pericolo,"
+    },
+    {
+      "desde": 45.04,
+      "hasta": 47.6,
+      "texto": "saprò bene volarmene lontano."
+    },
+    {
+      "desde": 47.6,
+      "hasta": 50.39,
+      "texto": "Da quei solchi vedrete uscir gl’inganni,"
+    },
+    {
+      "desde": 50.39,
+      "hasta": 53.27,
+      "texto": "trappole e reti e panie ed altri affanni"
+    },
+    {
+      "desde": 53.27,
+      "hasta": 55.35,
+      "texto": "come dire la morte o la prigione."
+    },
+    {
+      "desde": 55.35,
+      "hasta": 58.39,
+      "texto": "Dunque, - aggiunse la Rondine prudente, -"
+    },
+    {
+      "desde": 58.39,
+      "hasta": 60.55,
+      "texto": "codesti grani subito mangiate -."
+    },
+    {
+      "desde": 60.55,
+      "hasta": 62.03,
+      "texto": "Ma gli Uccelli risposero a fischiate."
+    },
+    {
+      "desde": 63.6,
+      "hasta": 65.13,
+      "texto": "Essi risero poi della balorda,"
+    },
+    {
+      "desde": 65.13,
+      "hasta": 67.36,
+      "texto": "che mentre era sì ricca la stagione"
+    },
+    {
+      "desde": 67.36,
+      "hasta": 70.39,
+      "texto": "e pieno il campo d’ogni altra pastura,"
+    },
+    {
+      "desde": 70.39,
+      "hasta": 70.98,
+      "texto": "volesse, profetessa di sventura,"
+    },
+    {
+      "desde": 72.75,
+      "hasta": 75.61,
+      "texto": "costringerli a mangiar roba indigesta"
+    },
+    {
+      "desde": 75.61,
+      "hasta": 77.39,
+      "texto": "e cruda come questa."
+    },
+    {
+      "desde": 77.39,
+      "hasta": 79.21,
+      "texto": "Fossero stati mezzo milione,"
+    },
+    {
+      "desde": 79.21,
+      "hasta": 81.07,
+      "texto": "non bastavano ancora a ripulire"
+    },
+    {
+      "desde": 81.07,
+      "hasta": 83.39,
+      "texto": "una provincia di quell’erba dura."
+    },
+    {
+      "desde": 83.52,
+      "hasta": 86.14,
+      "texto": "- Uccelli, non mi va questa faccenda, -"
+    },
+    {
+      "desde": 86.14,
+      "hasta": 88.3,
+      "texto": "la rondinella ritornava a dire, -"
+    },
+    {
+      "desde": 88.5,
+      "hasta": 90.94,
+      "texto": "mal’erba cresce presto e non vi attenda"
+    },
+    {
+      "desde": 90.94,
+      "hasta": 92.78,
+      "texto": "di non aver creduto il pentimento."
+    },
+    {
+      "desde": 92.78,
+      "hasta": 94.79,
+      "texto": "Quando la neve coprirà la terra,"
+    },
+    {
+      "desde": 94.79,
+      "hasta": 96.01,
+      "texto": "sarà divertimento"
+    },
+    {
+      "desde": 96.01,
+      "hasta": 98.32,
+      "texto": "di tanta gente in ozio agli uccellini"
+    },
+    {
+      "desde": 98.32,
+      "hasta": 100.46,
+      "texto": "il far con lacci e trappole la guerra."
+    },
+    {
+      "desde": 100.48,
+      "hasta": 104.03,
+      "texto": "Voi non potete come è dato a noi,"
+    },
+    {
+      "desde": 104.03,
+      "hasta": 106.44,
+      "texto": "e come fan le gru, fan gli stornelli,"
+    },
+    {
+      "desde": 107.03,
+      "hasta": 109.55,
+      "texto": "passar del mar, dei monti oltre i confini."
+    },
+    {
+      "desde": 109.55,
+      "hasta": 111.07,
+      "texto": "Altro dunque per voi"
+    },
+    {
+      "desde": 111.07,
+      "hasta": 113.12,
+      "texto": "non rimane che starvene al sicuro"
+    },
+    {
+      "desde": 113.12,
+      "hasta": 115.49,
+      "texto": "dentro i crepacci d’un cadente muro -."
+    },
+    {
+      "desde": 115.49,
+      "hasta": 117.57,
+      "texto": "Seccati di sentirla predicare,"
+    },
+    {
+      "desde": 117.57,
+      "hasta": 119.91,
+      "texto": "a far rumor cominciano gli Uccelli,"
+    },
+    {
+      "desde": 119.91,
+      "hasta": 121.6,
+      "texto": "come i Troiani usavano di fare"
+    },
+    {
+      "desde": 121.6,
+      "hasta": 124.43,
+      "texto": "se la bocca Cassandra appena apria."
+    },
+    {
+      "desde": 124.43,
+      "hasta": 127.31,
+      "texto": "Così per questi come accadde a quelli,"
+    },
+    {
+      "desde": 127.31,
+      "hasta": 127.35,
+      "texto": "quando rimaser presi"
+    },
+    {
+      "desde": 128.8,
+      "hasta": 129.5,
+      "texto": "pur troppo s’avverò la profezia."
+    },
+    {
+      "desde": 130.44,
+      "hasta": 133.5,
+      "texto": "Anche fra noi succede tal e quale,"
+    },
+    {
+      "desde": 133.5,
+      "hasta": 136.33,
+      "texto": "che non sentiam che il sentimento nostro."
+    },
+    {
+      "desde": 136.33,
+      "hasta": 138.86,
+      "texto": "Se non è sopra, non si crede al male."
+    }
+  ]
+}

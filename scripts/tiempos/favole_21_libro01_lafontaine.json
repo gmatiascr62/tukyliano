@@ -1,0 +1,187 @@
+{
+  "id": "favole_21_libro01_lafontaine",
+  "titulo": "I Calabroni e le Api",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 14.92,
+      "hasta": 18.06,
+      "texto": "Era sorta fra l’Api e i Calabroni"
+    },
+    {
+      "desde": 18.06,
+      "hasta": 21.01,
+      "texto": "per un favo di miel una gran lite,"
+    },
+    {
+      "desde": 21.01,
+      "hasta": 22.75,
+      "texto": "di cui volevano essere padroni"
+    },
+    {
+      "desde": 23.21,
+      "hasta": 24.66,
+      "texto": "d’ambo le parti e con furore tale,"
+    },
+    {
+      "desde": 24.66,
+      "hasta": 26.42,
+      "texto": "che infine il grande affare"
+    },
+    {
+      "desde": 26.42,
+      "hasta": 28.88,
+      "texto": "d’una Vespa fu tratto al tribunale."
+    },
+    {
+      "desde": 29.34,
+      "hasta": 31.74,
+      "texto": "La Vespa non sapea che giudicare."
+    },
+    {
+      "desde": 31.74,
+      "hasta": 34.92,
+      "texto": "Intorno al miel alcuni testimoni"
+    },
+    {
+      "desde": 35.54,
+      "hasta": 36.32,
+      "texto": "dicean d’aver veduto bestie alate"
+    },
+    {
+      "desde": 38.9,
+      "hasta": 40.94,
+      "texto": "giallo-nere, ronzanti e fusolate,"
+    },
+    {
+      "desde": 40.94,
+      "hasta": 42.77,
+      "texto": "ma in queste condizioni"
+    },
+    {
+      "desde": 44.04,
+      "hasta": 45.32,
+      "texto": "potevan esser api e calabroni."
+    },
+    {
+      "desde": 45.34,
+      "hasta": 47.66,
+      "texto": "Torna la Vespa allora a investigare,"
+    },
+    {
+      "desde": 47.66,
+      "hasta": 49.96,
+      "texto": "interroga un intero formicaio,"
+    },
+    {
+      "desde": 49.96,
+      "hasta": 52.74,
+      "texto": "ma le cose non restano più chiare."
+    },
+    {
+      "desde": 53.19,
+      "hasta": 55.53,
+      "texto": "Allor disse una Pecchia: - O non vi pare"
+    },
+    {
+      "desde": 55.53,
+      "hasta": 58.03,
+      "texto": "che duri già da un pezzo questo guaio?"
+    },
+    {
+      "desde": 58.03,
+      "hasta": 61.39,
+      "texto": "Il miele va in malora e a danno nostro;"
+    },
+    {
+      "desde": 61.39,
+      "hasta": 63.99,
+      "texto": "ché mentre noi spendiamo in bollo e in tassa,"
+    },
+    {
+      "desde": 63.99,
+      "hasta": 64.75,
+      "texto": "in carta, in procedura ed in inchiostro,"
+    },
+    {
+      "desde": 66.42,
+      "hasta": 69.23,
+      "texto": "del nostro miel è il giudice che ingrassa."
+    },
+    {
+      "desde": 69.91,
+      "hasta": 71.72,
+      "texto": "Andiam invece ed api e calabroni"
+    },
+    {
+      "desde": 71.72,
+      "hasta": 73.24,
+      "texto": "a lavorar nell’orto,"
+    },
+    {
+      "desde": 73.24,
+      "hasta": 75.47,
+      "texto": "e le case ed i favi più ben fatti"
+    },
+    {
+      "desde": 75.47,
+      "hasta": 77.59,
+      "texto": "indicheranno la ragione e il torto -."
+    },
+    {
+      "desde": 77.88,
+      "hasta": 80.37,
+      "texto": "Naturalmente dissero di no"
+    },
+    {
+      "desde": 80.37,
+      "hasta": 82.27,
+      "texto": "i Calabroni, e il miele"
+    },
+    {
+      "desde": 82.27,
+      "hasta": 84.32,
+      "texto": "alle Pecchie la Vespa giudicò."
+    },
+    {
+      "desde": 84.32,
+      "hasta": 86.79,
+      "texto": "Magari si facesse ogni processo,"
+    },
+    {
+      "desde": 86.79,
+      "hasta": 88.87,
+      "texto": "come dicon che facciano in Turchia,"
+    },
+    {
+      "desde": 89.92,
+      "hasta": 91.93,
+      "texto": "senza tutta la lunga litania"
+    },
+    {
+      "desde": 91.93,
+      "hasta": 94.12,
+      "texto": "di spese e ciarle inutili d’adesso!"
+    },
+    {
+      "desde": 94.12,
+      "hasta": 97.02,
+      "texto": "Il buon senso val più di tutti quanti"
+    },
+    {
+      "desde": 97.02,
+      "hasta": 99.92,
+      "texto": "i codici, o, sofferto strazi e croci,"
+    },
+    {
+      "desde": 99.92,
+      "hasta": 102.63,
+      "texto": "il giudice di solito ha le noci,"
+    },
+    {
+      "desde": 102.63,
+      "hasta": 105.94,
+      "texto": "e non restan che i gusci ai litiganti."
+    }
+  ]
+}
