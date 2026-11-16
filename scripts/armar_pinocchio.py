@@ -320,6 +320,8 @@ def main():
             'credito': 'Grabado por voluntarios de LibriVox. Dominio '
                        'público.',
             'textoDe': 'Wikisource, del original de 1883',
+            # Quién firma lo que suena, para la pantalla bloqueada.
+            'deQuien': 'Pinocchio di Collodi',
             'capitulos': capitulos,
         }, fh, ensure_ascii=False)
         fh.write('\n')

@@ -1,0 +1,63 @@
+# Publica los audios de Pinocchio.
+#
+# Mismo arreglo que el de las fábulas: los trae de LibriVox y los deja como
+# adjuntos de un release con etiqueta fija, que es de donde los baja la app.
+# Se corre a mano y casi nunca.
+#
+# Va en su propio workflow y con su propia etiqueta, y no agregado al de las
+# fábulas, por una razón concreta: son 132 MB. Juntarlos obligaría a volver
+# a subir los 18 MB de las fábulas cada vez que haya que corregir un
+# capítulo de Pinocchio, y al revés. Cada colección se publica sola.
+name: Pinocchio
+
+on:
+  workflow_dispatch: {}
+
+jobs:
+  publicar:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Armar el catálogo y bajar los audios de LibriVox
+        # Wikisource corta a quien le pide seguido, así que esto se toma su
+        # tiempo: treinta y seis capítulos a paso de hombre.
+        timeout-minutes: 60
+        run: python3 scripts/armar_pinocchio.py --bajar --carpeta /tmp/pinocchio
+
+      - name: Ver qué quedó
+        run: |
+          ls -la /tmp/pinocchio | head -8
+          du -sh /tmp/pinocchio
+          test "$(ls /tmp/pinocchio/*.mp3 | wc -l)" = "36"
+
+      - name: Publicarlos en el release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          # --clobber reemplaza los que ya estén: así volver a correr esto es
+          # inofensivo y sirve para corregir un capítulo sin tocar la app.
+          if ! gh release view pinocchio-1 >/dev/null 2>&1; then
+            gh release create pinocchio-1 \
+              --title "Le avventure di Pinocchio" \
+              --notes "Los treinta y seis capítulos leídos por voluntarios de LibriVox. Obra de 1883 y grabaciones de dominio público. La app los baja de acá; no van adentro del APK." \
+              --latest=false
+          fi
+          gh release upload pinocchio-1 /tmp/pinocchio/*.mp3 --clobber
+
+      - name: Comprobar que se bajan de donde dice el catálogo
+        run: |
+          UNO=$(python3 -c "
+          import json
+          d = json.load(open('flutter_app/assets/pinocchio.json'))
+          print(d['base'] + '/' + d['capitulos'][0]['archivo'])
+          ")
+          echo "probando $UNO"
+          # Sin esto, la app saldría publicada apuntando a direcciones que no
+          # existen y el error recién se vería en el celular.
+          curl -sSfL -o /tmp/prueba.mp3 "$UNO"
+          test -s /tmp/prueba.mp3
+          echo "bajó $(stat -c%s /tmp/prueba.mp3) bytes"
