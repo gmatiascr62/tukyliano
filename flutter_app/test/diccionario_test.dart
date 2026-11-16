@@ -1,3 +1,6 @@
+import 'dart:convert';
+
+import 'package:flutter/services.dart' show rootBundle;
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/repositorio_diccionario.dart';
 import 'package:tukyliano/logica/diccionario_buscar.dart';
@@ -170,6 +173,69 @@ void main() {
       for (final clave in diccionario.italiano.keys.take(500)) {
         expect(clave, clave.toLowerCase(), reason: clave);
         expect(clave, isNot(matches(RegExp('[áéíóúàèìòù]'))), reason: clave);
+      }
+    });
+  });
+
+  group('leer las fábulas con el diccionario', () {
+    late Diccionario diccionario;
+    late List<String> palabras;
+
+    setUpAll(() async {
+      TestWidgetsFlutterBinding.ensureInitialized();
+      diccionario = await RepositorioDiccionario().cargar();
+      final catalogo = jsonDecode(
+        await rootBundle.loadString('assets/favole.json'),
+      ) as Map<String, dynamic>;
+      final vistas = <String>{};
+      for (final favola in catalogo['favole'] as List) {
+        for (final renglon in (favola as Map)['renglones'] as List) {
+          final texto = (renglon as Map)['t'] as String;
+          for (final palabra in texto.split(RegExp(r'[\s/]+'))) {
+            final limpia = palabra
+                .toLowerCase()
+                .replaceAll(RegExp(r"[^\p{L}'’]", unicode: true), '');
+            if (limpia.isNotEmpty) vistas.add(limpia);
+          }
+        }
+      }
+      palabras = vistas.toList()..sort();
+    });
+
+    /// Los nombres propios del libro. No van en un diccionario: Garibaldi
+    /// no se traduce. Están acá para que el test pueda decir "todo lo
+    /// demás tiene que estar" en vez de conformarse con un porcentaje.
+    const nombres = {
+      'simonide', 'polluce', 'rochefoucauld', 'orecchialunga', 'malerba',
+      'lamagna', 'l’olimpo', 'cassandra', 'bertoldo', 'bertoldi',
+      'all’elicona',
+    };
+
+    test('se puede tocar cualquier palabra y sale algo', () {
+      // Lo que mide esto es la experiencia completa: diccionario, tabla de
+      // formas, apóstrofo, apócope y las traducciones, todo junto. Empezó
+      // en 82 de cada 100 palabras y está en 99.
+      final sinNada = [
+        for (final palabra in palabras)
+          if (!nombres.contains(palabra) && traducir(diccionario, palabra) == null)
+            palabra,
+      ];
+      expect(sinNada, isEmpty,
+          reason: 'no se encuentran: ${sinNada.take(25).join(" ")}');
+    });
+
+    test('las que Matías probó a mano', () {
+      // lumicino la tocó él en el primer renglón de Il Lupo e il Cane y no
+      // estaba. Ningún diccionario italiano-español libre la trae.
+      for (final (palabra, dice) in [
+        ('lumicino', 'velita'),
+        ('babbuasso', 'pavote'),
+        ('stracciata', 'desgarrada'),
+        ('garbo', 'gracia'),
+      ]) {
+        final hallada = traducir(diccionario, palabra);
+        expect(hallada, isNotNull, reason: palabra);
+        expect(hallada!.comoSeDice, contains(dice), reason: palabra);
       }
     });
   });

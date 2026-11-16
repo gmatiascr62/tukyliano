@@ -67,6 +67,16 @@ const Map<String, String> _sinTilde = {
   'ó': 'o',
   'ù': 'u',
   'ú': 'u',
+  // La diéresis. En italiano moderno no se usa, pero el verso del siglo
+  // XIX la pone para que una vocal cuente como sílaba aparte y el
+  // endecasílabo cierre: "bestïone" se lee bes-ti-o-ne. Sin esto, la
+  // letra no se reconoce, se convierte en espacio y la palabra se parte
+  // al medio.
+  'ä': 'a',
+  'ë': 'e',
+  'ï': 'i',
+  'ö': 'o',
+  'ü': 'u',
 };
 
 final RegExp _sirve = RegExp(r"[a-z0-9']");

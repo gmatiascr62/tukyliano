@@ -1,0 +1,3898 @@
+{
+ "comoSeHizo": "Traducidas con Gemini (gemini-3.6-flash) por scripts/traducir_lo_que_falta.py, con el renglón donde aparece cada una como contexto. Verificadas por el script y revisadas por muestreo.",
+ "palabras": {
+  "accomoda": {
+   "es": [
+    "conviene",
+    "sirve"
+   ],
+   "base": "accomodare",
+   "visto": 1
+  },
+  "accorrono": {
+   "es": [
+    "acuden",
+    "corren"
+   ],
+   "base": "accorrere",
+   "visto": 1
+  },
+  "accozzate": {
+   "es": [
+    "junten",
+    "combinen"
+   ],
+   "base": "accozzare",
+   "visto": 1
+  },
+  "addosso": {
+   "es": [
+    "encima"
+   ],
+   "base": "addosso",
+   "visto": 2
+  },
+  "affaccio": {
+   "es": [
+    "asomó",
+    "asomo"
+   ],
+   "base": "affacciarsi",
+   "visto": 1
+  },
+  "aiutarci": {
+   "es": [
+    "ayudarnos"
+   ],
+   "base": "aiutare",
+   "visto": 1
+  },
+  "aiutarla": {
+   "es": [
+    "ayudarla"
+   ],
+   "base": "aiutare",
+   "visto": 1
+  },
+  "aiutarmi": {
+   "es": [
+    "ayudarme"
+   ],
+   "base": "aiutare",
+   "visto": 2
+  },
+  "aiutarti": {
+   "es": [
+    "ayudarte"
+   ],
+   "base": "aiutare",
+   "visto": 2
+  },
+  "alfin": {
+   "es": [
+    "por fin",
+    "al final"
+   ],
+   "base": "alfine",
+   "visto": 1
+  },
+  "all'erta": {
+   "es": [
+    "alerta",
+    "atentos"
+   ],
+   "base": "all'erta",
+   "visto": 1
+  },
+  "all'ingresso": {
+   "es": [
+    "a la entrada",
+    "al ingreso"
+   ],
+   "base": "ingresso",
+   "visto": 1
+  },
+  "all'insu": {
+   "es": [
+    "para arriba",
+    "hacia arriba"
+   ],
+   "base": "all'insù",
+   "visto": 1
+  },
+  "all'orefice": {
+   "es": [
+    "al orfebre",
+    "al joyero"
+   ],
+   "base": "orefice",
+   "visto": 1
+  },
+  "all'uscio": {
+   "es": [
+    "a la puerta"
+   ],
+   "base": "uscio",
+   "visto": 1
+  },
+  "allegramente": {
+   "es": [
+    "alegremente",
+    "con alegría"
+   ],
+   "base": "allegramente",
+   "visto": 1
+  },
+  "allievi": {
+   "es": [
+    "alumnos",
+    "aprendices"
+   ],
+   "base": "allievo",
+   "visto": 2
+  },
+  "almen": {
+   "es": [
+    "al menos",
+    "por lo menos"
+   ],
+   "base": "almeno",
+   "visto": 1
+  },
+  "almeno": {
+   "es": [
+    "al menos",
+    "por lo menos"
+   ],
+   "base": "almeno",
+   "visto": 2
+  },
+  "altrettanto": {
+   "es": [
+    "lo mismo",
+    "igualmente"
+   ],
+   "base": "altrettanto",
+   "visto": 1
+  },
+  "alzarmi": {
+   "es": [
+    "levantarme"
+   ],
+   "base": "alzarsi",
+   "visto": 1
+  },
+  "amalfitana": {
+   "es": [
+    "amalfitano",
+    "de Amalfi"
+   ],
+   "base": "amalfitano",
+   "visto": 2
+  },
+  "amen": {
+   "es": [
+    "santiamén",
+    "abrir y cerrar"
+   ],
+   "base": "amen",
+   "visto": 1
+  },
+  "anch'essa": {
+   "es": [
+    "ella también",
+    "también ella"
+   ],
+   "base": "anch'esso",
+   "visto": 1
+  },
+  "andarci": {
+   "es": [
+    "ir ahí",
+    "ir allá"
+   ],
+   "base": "andare",
+   "visto": 2
+  },
+  "annega": {
+   "es": [
+    "se ahoga"
+   ],
+   "base": "annegare",
+   "visto": 1
+  },
+  "appoggiato": {
+   "es": [
+    "apoyado"
+   ],
+   "base": "appoggiare",
+   "visto": 3
+  },
+  "apprese": {
+   "es": [
+    "aprendió"
+   ],
+   "base": "apprendere",
+   "visto": 1
+  },
+  "apria": {
+   "es": [
+    "abría"
+   ],
+   "base": "aprire",
+   "visto": 1
+  },
+  "arcicontento": {
+   "es": [
+    "re contento",
+    "supercontento"
+   ],
+   "base": "arcicontento",
+   "visto": 1
+  },
+  "armare": {
+   "es": [
+    "armar",
+    "equipar"
+   ],
+   "base": "armare",
+   "visto": 1
+  },
+  "asciugata": {
+   "es": [
+    "secada",
+    "seca"
+   ],
+   "base": "asciugare",
+   "visto": 2
+  },
+  "attingea": {
+   "es": [
+    "sacaba",
+    "extraía"
+   ],
+   "base": "attingere",
+   "visto": 1
+  },
+  "attirasse": {
+   "es": [
+    "atrajera",
+    "llamara"
+   ],
+   "base": "attirare",
+   "visto": 1
+  },
+  "austriaci": {
+   "es": [
+    "austríacos"
+   ],
+   "base": "austriaco",
+   "visto": 2
+  },
+  "avvicino": {
+   "es": [
+    "acerco",
+    "aproximo"
+   ],
+   "base": "avvicinare",
+   "visto": 2
+  },
+  "avvide": {
+   "es": [
+    "dio cuenta",
+    "percibió"
+   ],
+   "base": "avvedersi",
+   "visto": 1
+  },
+  "avvisare": {
+   "es": [
+    "avisar",
+    "advertir"
+   ],
+   "base": "avvisare",
+   "visto": 1
+  },
+  "avvisarmi": {
+   "es": [
+    "avisarme"
+   ],
+   "base": "avvisare",
+   "visto": 3
+  },
+  "babbione": {
+   "es": [
+    "boludo",
+    "bobo",
+    "pavote"
+   ],
+   "base": "babbione",
+   "visto": 1
+  },
+  "babbuasso": {
+   "es": [
+    "pavote",
+    "bobo",
+    "tarado"
+   ],
+   "base": "babbuasso",
+   "visto": 1
+  },
+  "balaustra": {
+   "es": [
+    "baranda",
+    "balaustrada"
+   ],
+   "base": "balaustra",
+   "visto": 1
+  },
+  "balenar": {
+   "es": [
+    "brillar",
+    "relampaguear"
+   ],
+   "base": "balenare",
+   "visto": 1
+  },
+  "balia": {
+   "es": [
+    "merced",
+    "arbitrio"
+   ],
+   "base": "balìa",
+   "visto": 1
+  },
+  "balorda": {
+   "es": [
+    "tonta",
+    "boba"
+   ],
+   "base": "balordo",
+   "visto": 1
+  },
+  "barattolo": {
+   "es": [
+    "frasco",
+    "tarro"
+   ],
+   "base": "barattolo",
+   "visto": 2
+  },
+  "bastavano": {
+   "es": [
+    "bastaban",
+    "alcanzaban"
+   ],
+   "base": "bastare",
+   "visto": 1
+  },
+  "beato": {
+   "es": [
+    "chocho",
+    "dichoso",
+    "feliz"
+   ],
+   "base": "beato",
+   "visto": 3
+  },
+  "beccacce": {
+   "es": [
+    "chochas",
+    "becadas"
+   ],
+   "base": "beccaccia",
+   "visto": 1
+  },
+  "bellimbusti": {
+   "es": [
+    "pisaverdes",
+    "petiteros",
+    "presuntuosos"
+   ],
+   "base": "bellimbusto",
+   "visto": 1
+  },
+  "belva": {
+   "es": [
+    "fiera",
+    "bestia"
+   ],
+   "base": "belva",
+   "visto": 1
+  },
+  "benevola": {
+   "es": [
+    "benévola",
+    "bondadosa"
+   ],
+   "base": "benevolo",
+   "visto": 1
+  },
+  "bestione": {
+   "es": [
+    "zopenco",
+    "animalón",
+    "bestia"
+   ],
+   "base": "bestione",
+   "visto": 1
+  },
+  "bevea": {
+   "es": [
+    "bebía",
+    "tomaba"
+   ],
+   "base": "bere",
+   "visto": 1
+  },
+  "bisaccia": {
+   "es": [
+    "alforja",
+    "bolso"
+   ],
+   "base": "bisaccia",
+   "visto": 2
+  },
+  "bisogna": {
+   "es": [
+    "hace falta",
+    "hay que"
+   ],
+   "base": "bisognare",
+   "visto": 2
+  },
+  "bisognava": {
+   "es": [
+    "hacía falta",
+    "se necesitaba",
+    "había que"
+   ],
+   "base": "bisognare",
+   "visto": 1
+  },
+  "bisogno": {
+   "es": [
+    "necesidad",
+    "falta"
+   ],
+   "base": "bisogno",
+   "visto": 1
+  },
+  "blu": {
+   "es": [
+    "azul"
+   ],
+   "base": "blu",
+   "visto": 5
+  },
+  "borsa": {
+   "es": [
+    "bolso",
+    "cartera",
+    "bolsa"
+   ],
+   "base": "borsa",
+   "visto": 4
+  },
+  "borse": {
+   "es": [
+    "bolsas",
+    "carteras"
+   ],
+   "base": "borsa",
+   "visto": 2
+  },
+  "bottin": {
+   "es": [
+    "botín",
+    "presa"
+   ],
+   "base": "bottino",
+   "visto": 1
+  },
+  "bravo": {
+   "es": [
+    "bueno",
+    "hábil"
+   ],
+   "base": "bravo",
+   "visto": 2
+  },
+  "brillano": {
+   "es": [
+    "brillan",
+    "relucen"
+   ],
+   "base": "brillare",
+   "visto": 1
+  },
+  "brizzolato": {
+   "es": [
+    "cano",
+    "entrecano"
+   ],
+   "base": "brizzolato",
+   "visto": 1
+  },
+  "brontoloni": {
+   "es": [
+    "rezongones",
+    "cascarrabias",
+    "quejosos"
+   ],
+   "base": "brontolone",
+   "visto": 1
+  },
+  "buongiorno": {
+   "es": [
+    "buen día",
+    "buenos días"
+   ],
+   "base": "buongiorno",
+   "visto": 3
+  },
+  "burbanza": {
+   "es": [
+    "arrogancia",
+    "soberbia"
+   ],
+   "base": "burbanza",
+   "visto": 1
+  },
+  "cagione": {
+   "es": [
+    "causa",
+    "motivo"
+   ],
+   "base": "cagione",
+   "visto": 1
+  },
+  "campagnol": {
+   "es": [
+    "de campo",
+    "campestre"
+   ],
+   "base": "campagnolo",
+   "visto": 1
+  },
+  "cangiando": {
+   "es": [
+    "cambiando"
+   ],
+   "base": "cangiare",
+   "visto": 1
+  },
+  "capitato": {
+   "es": [
+    "pasado",
+    "ocurrido"
+   ],
+   "base": "capitare",
+   "visto": 1
+  },
+  "capponi": {
+   "es": [
+    "capones"
+   ],
+   "base": "cappone",
+   "visto": 1
+  },
+  "capretta": {
+   "es": [
+    "cabrita",
+    "chivita"
+   ],
+   "base": "capretta",
+   "visto": 1
+  },
+  "carezzandogli": {
+   "es": [
+    "acariciándole"
+   ],
+   "base": "carezzare",
+   "visto": 1
+  },
+  "carlona": {
+   "es": [
+    "al tun tún",
+    "a la ligera"
+   ],
+   "base": "carlona",
+   "visto": 1
+  },
+  "cartellina": {
+   "es": [
+    "carpeta"
+   ],
+   "base": "cartellina",
+   "visto": 2
+  },
+  "cassa": {
+   "es": [
+    "caja"
+   ],
+   "base": "cassa",
+   "visto": 1
+  },
+  "casse": {
+   "es": [
+    "cajas"
+   ],
+   "base": "cassa",
+   "visto": 1
+  },
+  "cassiera": {
+   "es": [
+    "cajera"
+   ],
+   "base": "cassiere",
+   "visto": 4
+  },
+  "cheto": {
+   "es": [
+    "tranquilo",
+    "callado"
+   ],
+   "base": "cheto",
+   "visto": 1
+  },
+  "chiamarlo": {
+   "es": [
+    "llamarlo"
+   ],
+   "base": "chiamare",
+   "visto": 1
+  },
+  "chiamarti": {
+   "es": [
+    "llamarte"
+   ],
+   "base": "chiamare",
+   "visto": 1
+  },
+  "chiederle": {
+   "es": [
+    "preguntarle",
+    "pedirle"
+   ],
+   "base": "chiedere",
+   "visto": 1
+  },
+  "chiederti": {
+   "es": [
+    "preguntarte",
+    "pedirte"
+   ],
+   "base": "chiedere",
+   "visto": 1
+  },
+  "ciascuna": {
+   "es": [
+    "cada una"
+   ],
+   "base": "ciascuno",
+   "visto": 1
+  },
+  "civilta": {
+   "es": [
+    "educación",
+    "cortesía"
+   ],
+   "base": "civiltà",
+   "visto": 1
+  },
+  "codesti": {
+   "es": [
+    "esos"
+   ],
+   "base": "codesto",
+   "visto": 1
+  },
+  "colpo": {
+   "es": [
+    "de golpe",
+    "golpe"
+   ],
+   "base": "colpo",
+   "visto": 2
+  },
+  "comandare": {
+   "es": [
+    "mandar",
+    "ordenar"
+   ],
+   "base": "comandare",
+   "visto": 1
+  },
+  "comandavano": {
+   "es": [
+    "mandaban",
+    "gobernaban"
+   ],
+   "base": "comandare",
+   "visto": 5
+  },
+  "combatto": {
+   "es": [
+    "peleo",
+    "combato"
+   ],
+   "base": "combattere",
+   "visto": 1
+  },
+  "combattuto": {
+   "es": [
+    "peleado",
+    "combatido"
+   ],
+   "base": "combattere",
+   "visto": 1
+  },
+  "compassione": {
+   "es": [
+    "compasión",
+    "lástima"
+   ],
+   "base": "compassione",
+   "visto": 1
+  },
+  "compenso": {
+   "es": [
+    "recompensa",
+    "pago"
+   ],
+   "base": "compenso",
+   "visto": 1
+  },
+  "comunella": {
+   "es": [
+    "alianza",
+    "complicidad"
+   ],
+   "base": "comunella",
+   "visto": 1
+  },
+  "condottiero": {
+   "es": [
+    "mercenario",
+    "líder militar"
+   ],
+   "base": "condottiero",
+   "visto": 2
+  },
+  "confezione": {
+   "es": [
+    "paquete",
+    "envase"
+   ],
+   "base": "confezione",
+   "visto": 2
+  },
+  "confronto": {
+   "es": [
+    "comparación"
+   ],
+   "base": "confronto",
+   "visto": 3
+  },
+  "congiura": {
+   "es": [
+    "conspiración",
+    "complot"
+   ],
+   "base": "congiura",
+   "visto": 2
+  },
+  "congiurati": {
+   "es": [
+    "conspiradores",
+    "confabulados"
+   ],
+   "base": "congiurato",
+   "visto": 2
+  },
+  "conoscendolo": {
+   "es": [
+    "conociéndolo"
+   ],
+   "base": "conoscere",
+   "visto": 1
+  },
+  "conquistato": {
+   "es": [
+    "conquistado"
+   ],
+   "base": "conquistare",
+   "visto": 1
+  },
+  "conquisto": {
+   "es": [
+    "conquistó"
+   ],
+   "base": "conquistare",
+   "visto": 1
+  },
+  "consigliere": {
+   "es": [
+    "consejero",
+    "asesor"
+   ],
+   "base": "consigliere",
+   "visto": 1
+  },
+  "contentarli": {
+   "es": [
+    "contentarlos",
+    "satisfacerlos"
+   ],
+   "base": "contentare",
+   "visto": 1
+  },
+  "contrastarmi": {
+   "es": [
+    "disputarme",
+    "enfrentarme"
+   ],
+   "base": "contrastare",
+   "visto": 1
+  },
+  "conveniente": {
+   "es": [
+    "conveniente",
+    "ventajoso",
+    "barato"
+   ],
+   "base": "conveniente",
+   "visto": 2
+  },
+  "coppieri": {
+   "es": [
+    "coperos"
+   ],
+   "base": "coppiere",
+   "visto": 1
+  },
+  "corpaccio": {
+   "es": [
+    "cuerpazo",
+    "cuerpo grande"
+   ],
+   "base": "corpo",
+   "visto": 1
+  },
+  "cospetto": {
+   "es": [
+    "presencia",
+    "comparación"
+   ],
+   "base": "cospetto",
+   "visto": 1
+  },
+  "costiera": {
+   "es": [
+    "costa"
+   ],
+   "base": "costiera",
+   "visto": 3
+  },
+  "costringerli": {
+   "es": [
+    "obligarlos",
+    "forzarlos"
+   ],
+   "base": "costringere",
+   "visto": 1
+  },
+  "costui": {
+   "es": [
+    "este",
+    "este tipo"
+   ],
+   "base": "costui",
+   "visto": 1
+  },
+  "crepacci": {
+   "es": [
+    "grietas",
+    "fisuras"
+   ],
+   "base": "crepaccio",
+   "visto": 1
+  },
+  "cristal": {
+   "es": [
+    "cristal",
+    "vidrio"
+   ],
+   "base": "cristallo",
+   "visto": 1
+  },
+  "cronache": {
+   "es": [
+    "crónicas"
+   ],
+   "base": "cronaca",
+   "visto": 1
+  },
+  "d'ambo": {
+   "es": [
+    "de ambos",
+    "de ambas"
+   ],
+   "base": "ambo",
+   "visto": 1
+  },
+  "d'anitre": {
+   "es": [
+    "de patos"
+   ],
+   "base": "anatra",
+   "visto": 1
+  },
+  "d'eloquenza": {
+   "es": [
+    "de elocuencia"
+   ],
+   "base": "eloquenza",
+   "visto": 1
+  },
+  "d'illusion": {
+   "es": [
+    "de ilusión",
+    "del engaño"
+   ],
+   "base": "illusione",
+   "visto": 1
+  },
+  "d'intorbidar": {
+   "es": [
+    "de enturbiar",
+    "de ensuciar"
+   ],
+   "base": "intorbidare",
+   "visto": 1
+  },
+  "dagli": {
+   "es": [
+    "de los",
+    "desde los"
+   ],
+   "base": "da",
+   "visto": 2
+  },
+  "dall'impaccio": {
+   "es": [
+    "del aprieto",
+    "del lío"
+   ],
+   "base": "impaccio",
+   "visto": 1
+  },
+  "dargli": {
+   "es": [
+    "darle"
+   ],
+   "base": "dare",
+   "visto": 1
+  },
+  "darti": {
+   "es": [
+    "darte",
+    "preocuparte"
+   ],
+   "base": "darsi",
+   "visto": 1
+  },
+  "davanti": {
+   "es": [
+    "adelante",
+    "enfrente",
+    "delante"
+   ],
+   "base": "davanti",
+   "visto": 10
+  },
+  "decenni": {
+   "es": [
+    "décadas"
+   ],
+   "base": "decennio",
+   "visto": 1
+  },
+  "dell'adulator": {
+   "es": [
+    "del adulador",
+    "del franelero"
+   ],
+   "base": "adulatore",
+   "visto": 1
+  },
+  "dell'affanno": {
+   "es": [
+    "angustia",
+    "aflicción"
+   ],
+   "base": "affanno",
+   "visto": 1
+  },
+  "dell'app": {
+   "es": [
+    "aplicación",
+    "app"
+   ],
+   "base": "app",
+   "visto": 1
+  },
+  "denunce": {
+   "es": [
+    "denuncias"
+   ],
+   "base": "denuncia",
+   "visto": 1
+  },
+  "dicea": {
+   "es": [
+    "decía"
+   ],
+   "base": "dire",
+   "visto": 1
+  },
+  "dicean": {
+   "es": [
+    "decían"
+   ],
+   "base": "dire",
+   "visto": 1
+  },
+  "diecimila": {
+   "es": [
+    "diez mil"
+   ],
+   "base": "diecimila",
+   "visto": 1
+  },
+  "digrignando": {
+   "es": [
+    "mostrando",
+    "rechinando"
+   ],
+   "base": "digrignare",
+   "visto": 1
+  },
+  "dimanda": {
+   "es": [
+    "pregunta",
+    "pide"
+   ],
+   "base": "domandare",
+   "visto": 1
+  },
+  "dimmi": {
+   "es": [
+    "decime"
+   ],
+   "base": "dire",
+   "visto": 3
+  },
+  "dimostrare": {
+   "es": [
+    "demostrar",
+    "probar"
+   ],
+   "base": "dimostrare",
+   "visto": 1
+  },
+  "dipende": {
+   "es": [
+    "depende"
+   ],
+   "base": "dipendere",
+   "visto": 1
+  },
+  "dipresso": {
+   "es": [
+    "cerca",
+    "aproximadamente"
+   ],
+   "base": "dipresso",
+   "visto": 1
+  },
+  "direttore": {
+   "es": [
+    "director"
+   ],
+   "base": "direttore",
+   "visto": 3
+  },
+  "dirle": {
+   "es": [
+    "decirle"
+   ],
+   "base": "dire",
+   "visto": 1
+  },
+  "dirlo": {
+   "es": [
+    "decirlo"
+   ],
+   "base": "dire",
+   "visto": 2
+  },
+  "dirmi": {
+   "es": [
+    "decirme"
+   ],
+   "base": "dire",
+   "visto": 1
+  },
+  "dirti": {
+   "es": [
+    "decirte"
+   ],
+   "base": "dire",
+   "visto": 1
+  },
+  "disadatto": {
+   "es": [
+    "inadaptado",
+    "desubicado"
+   ],
+   "base": "disadatto",
+   "visto": 1
+  },
+  "discende": {
+   "es": [
+    "desciende",
+    "baja"
+   ],
+   "base": "discendere",
+   "visto": 1
+  },
+  "disgraziato": {
+   "es": [
+    "desgraciado",
+    "desdichado"
+   ],
+   "base": "disgraziato",
+   "visto": 1
+  },
+  "dispensa": {
+   "es": [
+    "despensa",
+    "alacena"
+   ],
+   "base": "dispensa",
+   "visto": 2
+  },
+  "dispetto": {
+   "es": [
+    "despecho",
+    "maldad"
+   ],
+   "base": "dispetto",
+   "visto": 1
+  },
+  "disputavan": {
+   "es": [
+    "disputaban",
+    "peleaban"
+   ],
+   "base": "disputare",
+   "visto": 1
+  },
+  "dotta": {
+   "es": [
+    "erudita",
+    "culta"
+   ],
+   "base": "dotto",
+   "visto": 1
+  },
+  "dov'e": {
+   "es": [
+    "dónde está"
+   ],
+   "base": "dove",
+   "visto": 1
+  },
+  "ducale": {
+   "es": [
+    "ducal"
+   ],
+   "base": "ducale",
+   "visto": 1
+  },
+  "duemilanove": {
+   "es": [
+    "dos mil nueve"
+   ],
+   "base": "duemilanove",
+   "visto": 1
+  },
+  "duomo": {
+   "es": [
+    "catedral"
+   ],
+   "base": "duomo",
+   "visto": 1
+  },
+  "eleggerlo": {
+   "es": [
+    "elegirlo"
+   ],
+   "base": "eleggere",
+   "visto": 1
+  },
+  "emigrazione": {
+   "es": [
+    "emigración"
+   ],
+   "base": "emigrazione",
+   "visto": 1
+  },
+  "facea": {
+   "es": [
+    "hacía"
+   ],
+   "base": "fare",
+   "visto": 1
+  },
+  "facean": {
+   "es": [
+    "hacían"
+   ],
+   "base": "fare",
+   "visto": 1
+  },
+  "fardello": {
+   "es": [
+    "fardo",
+    "carga",
+    "peso"
+   ],
+   "base": "fardello",
+   "visto": 1
+  },
+  "fargli": {
+   "es": [
+    "hacerle"
+   ],
+   "base": "fare",
+   "visto": 1
+  },
+  "farla": {
+   "es": [
+    "hacerla"
+   ],
+   "base": "fare",
+   "visto": 1
+  },
+  "farlo": {
+   "es": [
+    "hacerlo"
+   ],
+   "base": "fare",
+   "visto": 1
+  },
+  "farmi": {
+   "es": [
+    "hacerme"
+   ],
+   "base": "fare",
+   "visto": 1
+  },
+  "farvi": {
+   "es": [
+    "hacerles",
+    "hacerlos"
+   ],
+   "base": "fare",
+   "visto": 1
+  },
+  "fastel": {
+   "es": [
+    "atado",
+    "haz",
+    "fardo"
+   ],
+   "base": "fastello",
+   "visto": 1
+  },
+  "fatela": {
+   "es": [
+    "háganla",
+    "hacéla"
+   ],
+   "base": "fare",
+   "visto": 2
+  },
+  "fatterelli": {
+   "es": [
+    "anécdotas",
+    "historietas",
+    "cuentitos"
+   ],
+   "base": "fatterello",
+   "visto": 1
+  },
+  "favoletta": {
+   "es": [
+    "fabulita",
+    "cuentito"
+   ],
+   "base": "favoletta",
+   "visto": 1
+  },
+  "fecegli": {
+   "es": [
+    "le hizo"
+   ],
+   "base": "fare",
+   "visto": 1
+  },
+  "fetta": {
+   "es": [
+    "porción",
+    "rebanada",
+    "feta"
+   ],
+   "base": "fetta",
+   "visto": 1
+  },
+  "fiato": {
+   "es": [
+    "aliento",
+    "aire"
+   ],
+   "base": "fiato",
+   "visto": 1
+  },
+  "ficcatemi": {
+   "es": [
+    "métanme",
+    "pónganme"
+   ],
+   "base": "ficcare",
+   "visto": 1
+  },
+  "figurarsi": {
+   "es": [
+    "imaginate",
+    "figurate"
+   ],
+   "base": "figurarsi",
+   "visto": 1
+  },
+  "fiorino": {
+   "es": [
+    "florín"
+   ],
+   "base": "fiorino",
+   "visto": 2
+  },
+  "fischiate": {
+   "es": [
+    "silbidos",
+    "abucheos",
+    "chistidos"
+   ],
+   "base": "fischiata",
+   "visto": 1
+  },
+  "fissato": {
+   "es": [
+    "obsesionado",
+    "encaprichado"
+   ],
+   "base": "fissato",
+   "visto": 2
+  },
+  "fisso": {
+   "es": [
+    "fijo",
+    "concentrado",
+    "absorto"
+   ],
+   "base": "fisso",
+   "visto": 1
+  },
+  "foresta": {
+   "es": [
+    "bosque",
+    "selva"
+   ],
+   "base": "foresta",
+   "visto": 1
+  },
+  "formicaio": {
+   "es": [
+    "hormiguero"
+   ],
+   "base": "formicaio",
+   "visto": 1
+  },
+  "frollo": {
+   "es": [
+    "blando",
+    "tierno",
+    "extenuado"
+   ],
+   "base": "frollo",
+   "visto": 1
+  },
+  "frontiera": {
+   "es": [
+    "frontera"
+   ],
+   "base": "frontiera",
+   "visto": 1
+  },
+  "frontiere": {
+   "es": [
+    "fronteras"
+   ],
+   "base": "frontiera",
+   "visto": 2
+  },
+  "furba": {
+   "es": [
+    "astuta",
+    "pilla",
+    "viva"
+   ],
+   "base": "furbo",
+   "visto": 1
+  },
+  "furore": {
+   "es": [
+    "furor",
+    "furia"
+   ],
+   "base": "furore",
+   "visto": 1
+  },
+  "fusolate": {
+   "es": [
+    "estilizadas",
+    "ahusadas",
+    "alargadas"
+   ],
+   "base": "fusolato",
+   "visto": 1
+  },
+  "gabbamondo": {
+   "es": [
+    "embustero",
+    "engañador",
+    "farsante"
+   ],
+   "base": "gabbamondo",
+   "visto": 1
+  },
+  "galante": {
+   "es": [
+    "galán",
+    "enamorado"
+   ],
+   "base": "galante",
+   "visto": 1
+  },
+  "garantirti": {
+   "es": [
+    "garantizarte",
+    "asegurarte"
+   ],
+   "base": "garantire",
+   "visto": 1
+  },
+  "generatore": {
+   "es": [
+    "generador"
+   ],
+   "base": "generatore",
+   "visto": 1
+  },
+  "ghiotta": {
+   "es": [
+    "golosa",
+    "glotona",
+    "codiciosa"
+   ],
+   "base": "ghiotto",
+   "visto": 1
+  },
+  "ghiotto": {
+   "es": [
+    "goloso",
+    "comilón"
+   ],
+   "base": "ghiotto",
+   "visto": 1
+  },
+  "ghiottonerie": {
+   "es": [
+    "manjares",
+    "delicias"
+   ],
+   "base": "ghiottoneria",
+   "visto": 1
+  },
+  "giallonere": {
+   "es": [
+    "amarillo y negro"
+   ],
+   "base": "giallonero",
+   "visto": 1
+  },
+  "giovarti": {
+   "es": [
+    "servirte",
+    "ayudarte"
+   ],
+   "base": "giovare",
+   "visto": 1
+  },
+  "girasse": {
+   "es": [
+    "girara",
+    "anduviera"
+   ],
+   "base": "girare",
+   "visto": 1
+  },
+  "giro": {
+   "es": [
+    "giró",
+    "dobló",
+    "viró"
+   ],
+   "base": "girare",
+   "visto": 1
+  },
+  "giudizio": {
+   "es": [
+    "cabeza",
+    "juicio",
+    "sensatez"
+   ],
+   "base": "giudizio",
+   "visto": 1
+  },
+  "glieli": {
+   "es": [
+    "se los",
+    "se las"
+   ],
+   "base": "glieli",
+   "visto": 2
+  },
+  "glielo": {
+   "es": [
+    "se lo",
+    "se la"
+   ],
+   "base": "glielo",
+   "visto": 2
+  },
+  "gnocco": {
+   "es": [
+    "ñoqui"
+   ],
+   "base": "gnocco",
+   "visto": 1
+  },
+  "granello": {
+   "es": [
+    "grano",
+    "granito"
+   ],
+   "base": "granello",
+   "visto": 1
+  },
+  "guardami": {
+   "es": [
+    "mirame"
+   ],
+   "base": "guardare",
+   "visto": 1
+  },
+  "guardarmi": {
+   "es": [
+    "mirarme"
+   ],
+   "base": "guardare",
+   "visto": 1
+  },
+  "illustri": {
+   "es": [
+    "ilustres",
+    "prestigiosos"
+   ],
+   "base": "illustre",
+   "visto": 1
+  },
+  "imo": {
+   "es": [
+    "profundo",
+    "ínfimo"
+   ],
+   "base": "imo",
+   "visto": 1
+  },
+  "impalcatura": {
+   "es": [
+    "andamio",
+    "estructura"
+   ],
+   "base": "impalcatura",
+   "visto": 1
+  },
+  "impiccati": {
+   "es": [
+    "ahorcados"
+   ],
+   "base": "impiccato",
+   "visto": 1
+  },
+  "impiccato": {
+   "es": [
+    "ahorcado",
+    "colgado"
+   ],
+   "base": "impiccare",
+   "visto": 2
+  },
+  "indizio": {
+   "es": [
+    "señal",
+    "indicio"
+   ],
+   "base": "indizio",
+   "visto": 1
+  },
+  "infelice": {
+   "es": [
+    "infeliz",
+    "desdichado"
+   ],
+   "base": "infelice",
+   "visto": 1
+  },
+  "infilavano": {
+   "es": [
+    "metían",
+    "deslizaban"
+   ],
+   "base": "infilare",
+   "visto": 1
+  },
+  "ingaggiato": {
+   "es": [
+    "contratado",
+    "reclutado"
+   ],
+   "base": "ingaggiare",
+   "visto": 1
+  },
+  "ingresso": {
+   "es": [
+    "entrada",
+    "ingreso"
+   ],
+   "base": "ingresso",
+   "visto": 1
+  },
+  "iniziare": {
+   "es": [
+    "empezar",
+    "comenzar"
+   ],
+   "base": "iniziare",
+   "visto": 1
+  },
+  "innalzo": {
+   "es": [
+    "levanto",
+    "alzo"
+   ],
+   "base": "innalzare",
+   "visto": 1
+  },
+  "innamorato": {
+   "es": [
+    "enamorado"
+   ],
+   "base": "innamorato",
+   "visto": 3
+  },
+  "innanzi": {
+   "es": [
+    "adelante",
+    "enfrente"
+   ],
+   "base": "innanzi",
+   "visto": 1
+  },
+  "insidie": {
+   "es": [
+    "trampas",
+    "asechanzas"
+   ],
+   "base": "insidia",
+   "visto": 1
+  },
+  "intanto": {
+   "es": [
+    "mientras tanto"
+   ],
+   "base": "intanto",
+   "visto": 2
+  },
+  "interessa": {
+   "es": [
+    "interesa",
+    "importa"
+   ],
+   "base": "interessare",
+   "visto": 2
+  },
+  "intorbidare": {
+   "es": [
+    "enturbiar",
+    "ensuciar"
+   ],
+   "base": "intorbidare",
+   "visto": 1
+  },
+  "irta": {
+   "es": [
+    "erizada",
+    "llena"
+   ],
+   "base": "irto",
+   "visto": 1
+  },
+  "ispeglio": {
+   "es": [
+    "espejo"
+   ],
+   "base": "ispeglio",
+   "visto": 1
+  },
+  "l'angherie": {
+   "es": [
+    "atropellos",
+    "abusos"
+   ],
+   "base": "angheria",
+   "visto": 1
+  },
+  "l'attira": {
+   "es": [
+    "atrae",
+    "seduce"
+   ],
+   "base": "attirare",
+   "visto": 1
+  },
+  "l'impalcatura": {
+   "es": [
+    "andamio"
+   ],
+   "base": "impalcatura",
+   "visto": 1
+  },
+  "l'intorbidi": {
+   "es": [
+    "enturbiás",
+    "embarrás"
+   ],
+   "base": "intorbidire",
+   "visto": 1
+  },
+  "l'istesso": {
+   "es": [
+    "mismo",
+    "igual"
+   ],
+   "base": "stesso",
+   "visto": 1
+  },
+  "l'ombrellone": {
+   "es": [
+    "sombrilla"
+   ],
+   "base": "ombrellone",
+   "visto": 1
+  },
+  "lacci": {
+   "es": [
+    "lazos",
+    "trampas"
+   ],
+   "base": "laccio",
+   "visto": 1
+  },
+  "lamentarsi": {
+   "es": [
+    "quejarse",
+    "lamentarse"
+   ],
+   "base": "lamentarsi",
+   "visto": 1
+  },
+  "lassu": {
+   "es": [
+    "allá arriba",
+    "arriba"
+   ],
+   "base": "lassù",
+   "visto": 1
+  },
+  "latta": {
+   "es": [
+    "lata"
+   ],
+   "base": "latta",
+   "visto": 2
+  },
+  "latticini": {
+   "es": [
+    "lácteos"
+   ],
+   "base": "latticinio",
+   "visto": 2
+  },
+  "leccornia": {
+   "es": [
+    "manjar",
+    "delicia"
+   ],
+   "base": "leccornia",
+   "visto": 1
+  },
+  "lieta": {
+   "es": [
+    "alegre",
+    "contenta"
+   ],
+   "base": "lieto",
+   "visto": 1
+  },
+  "lieto": {
+   "es": [
+    "alegre",
+    "contento"
+   ],
+   "base": "lieto",
+   "visto": 1
+  },
+  "litania": {
+   "es": [
+    "letanía",
+    "cantinela"
+   ],
+   "base": "litania",
+   "visto": 1
+  },
+  "litiganti": {
+   "es": [
+    "litigantes",
+    "partes"
+   ],
+   "base": "litigante",
+   "visto": 1
+  },
+  "lumicino": {
+   "es": [
+    "velita",
+    "luz baja"
+   ],
+   "base": "lumicino",
+   "visto": 1
+  },
+  "luogo": {
+   "es": [
+    "lugar",
+    "sitio"
+   ],
+   "base": "luogo",
+   "visto": 1
+  },
+  "m'innamora": {
+   "es": [
+    "enamora",
+    "atrae"
+   ],
+   "base": "innamorare",
+   "visto": 1
+  },
+  "madonna": {
+   "es": [
+    "doña",
+    "señora"
+   ],
+   "base": "madonna",
+   "visto": 1
+  },
+  "magari": {
+   "es": [
+    "ojalá",
+    "ojalá que"
+   ],
+   "base": "magari",
+   "visto": 1
+  },
+  "maggiore": {
+   "es": [
+    "mayor"
+   ],
+   "base": "maggiore",
+   "visto": 9
+  },
+  "magistrale": {
+   "es": [
+    "magistral",
+    "pedante"
+   ],
+   "base": "magistrale",
+   "visto": 1
+  },
+  "malandrina": {
+   "es": [
+    "pilla",
+    "sinvergüenza"
+   ],
+   "base": "malandrino",
+   "visto": 1
+  },
+  "malcontenti": {
+   "es": [
+    "descontentos",
+    "inconformes"
+   ],
+   "base": "malcontento",
+   "visto": 1
+  },
+  "malora": {
+   "es": [
+    "perdición",
+    "ruina"
+   ],
+   "base": "malora",
+   "visto": 1
+  },
+  "malviventi": {
+   "es": [
+    "malvivientes",
+    "delincuentes"
+   ],
+   "base": "malvivente",
+   "visto": 1
+  },
+  "malvolentieri": {
+   "es": [
+    "de mala gana"
+   ],
+   "base": "malvolentieri",
+   "visto": 1
+  },
+  "menar": {
+   "es": [
+    "mover",
+    "batir"
+   ],
+   "base": "menare",
+   "visto": 1
+  },
+  "mercanti": {
+   "es": [
+    "comerciantes",
+    "mercaderes"
+   ],
+   "base": "mercante",
+   "visto": 4
+  },
+  "merciai": {
+   "es": [
+    "mercachifles",
+    "comerciantes",
+    "vendedores"
+   ],
+   "base": "merciaio",
+   "visto": 1
+  },
+  "meschinello": {
+   "es": [
+    "pobrecito",
+    "desdichado",
+    "pobre diablo"
+   ],
+   "base": "meschino",
+   "visto": 1
+  },
+  "metterli": {
+   "es": [
+    "ponerlos",
+    "meterlos"
+   ],
+   "base": "mettere",
+   "visto": 2
+  },
+  "millantatore": {
+   "es": [
+    "fanfarrón",
+    "bravucón",
+    "charlatán"
+   ],
+   "base": "millantatore",
+   "visto": 1
+  },
+  "monco": {
+   "es": [
+    "manco",
+    "lisiado"
+   ],
+   "base": "monco",
+   "visto": 1
+  },
+  "monna": {
+   "es": [
+    "doña"
+   ],
+   "base": "monna",
+   "visto": 1
+  },
+  "moscherino": {
+   "es": [
+    "mosquito",
+    "mosquita",
+    "jején"
+   ],
+   "base": "moscherino",
+   "visto": 1
+  },
+  "mugnaio": {
+   "es": [
+    "molinero"
+   ],
+   "base": "mugnaio",
+   "visto": 1
+  },
+  "n'e": {
+   "es": [
+    "se ha"
+   ],
+   "base": "essere",
+   "visto": 2
+  },
+  "nastro": {
+   "es": [
+    "cinta"
+   ],
+   "base": "nastro",
+   "visto": 2
+  },
+  "negli": {
+   "es": [
+    "en los"
+   ],
+   "base": "in",
+   "visto": 4
+  },
+  "nello": {
+   "es": [
+    "en el"
+   ],
+   "base": "in",
+   "visto": 4
+  },
+  "nordest": {
+   "es": [
+    "noreste"
+   ],
+   "base": "nordest",
+   "visto": 1
+  },
+  "obbligato": {
+   "es": [
+    "agradecido",
+    "obligado"
+   ],
+   "base": "obbligato",
+   "visto": 1
+  },
+  "od": {
+   "es": [
+    "o",
+    "u"
+   ],
+   "base": "o",
+   "visto": 1
+  },
+  "ombrellone": {
+   "es": [
+    "sombrilla",
+    "parasol"
+   ],
+   "base": "ombrellone",
+   "visto": 1
+  },
+  "omicidi": {
+   "es": [
+    "asesinatos",
+    "homicidios"
+   ],
+   "base": "omicidio",
+   "visto": 2
+  },
+  "orgogliosi": {
+   "es": [
+    "orgullosos"
+   ],
+   "base": "orgoglioso",
+   "visto": 2
+  },
+  "ottantamila": {
+   "es": [
+    "ochenta mil"
+   ],
+   "base": "ottantamila",
+   "visto": 2
+  },
+  "ottimo": {
+   "es": [
+    "excelente",
+    "buenísimo"
+   ],
+   "base": "ottimo",
+   "visto": 2
+  },
+  "pagnotta": {
+   "es": [
+    "pan",
+    "hogaza"
+   ],
+   "base": "pagnotta",
+   "visto": 2
+  },
+  "panie": {
+   "es": [
+    "trampas",
+    "ligas"
+   ],
+   "base": "pania",
+   "visto": 1
+  },
+  "papato": {
+   "es": [
+    "papado"
+   ],
+   "base": "papato",
+   "visto": 2
+  },
+  "paradiso": {
+   "es": [
+    "paraíso"
+   ],
+   "base": "paradiso",
+   "visto": 1
+  },
+  "paternale": {
+   "es": [
+    "sermón",
+    "retada"
+   ],
+   "base": "paternale",
+   "visto": 1
+  },
+  "pecchia": {
+   "es": [
+    "abeja"
+   ],
+   "base": "pecchia",
+   "visto": 1
+  },
+  "pecchie": {
+   "es": [
+    "abejas"
+   ],
+   "base": "pecchia",
+   "visto": 1
+  },
+  "pelata": {
+   "es": [
+    "pelada",
+    "calva"
+   ],
+   "base": "pelato",
+   "visto": 1
+  },
+  "pelato": {
+   "es": [
+    "pelado",
+    "calvo"
+   ],
+   "base": "pelato",
+   "visto": 1
+  },
+  "piagnolosa": {
+   "es": [
+    "llorona",
+    "quejosa"
+   ],
+   "base": "piagnoloso",
+   "visto": 1
+  },
+  "piattello": {
+   "es": [
+    "platito"
+   ],
+   "base": "piattello",
+   "visto": 1
+  },
+  "piccina": {
+   "es": [
+    "chiquita",
+    "pequeña"
+   ],
+   "base": "piccino",
+   "visto": 1
+  },
+  "piegasi": {
+   "es": [
+    "se dobla",
+    "se inclina"
+   ],
+   "base": "piegarsi",
+   "visto": 1
+  },
+  "piemontese": {
+   "es": [
+    "piemontés"
+   ],
+   "base": "piemontese",
+   "visto": 2
+  },
+  "pigliarlo": {
+   "es": [
+    "agarrarlo",
+    "tomarlo"
+   ],
+   "base": "pigliare",
+   "visto": 1
+  },
+  "pigliero": {
+   "es": [
+    "tomaré",
+    "agarraré"
+   ],
+   "base": "pigliare",
+   "visto": 1
+  },
+  "piglio": {
+   "es": [
+    "agarro",
+    "tomo"
+   ],
+   "base": "pigliare",
+   "visto": 1
+  },
+  "pingerne": {
+   "es": [
+    "pintar"
+   ],
+   "base": "pingere",
+   "visto": 1
+  },
+  "pitocchi": {
+   "es": [
+    "mendigos",
+    "pobres"
+   ],
+   "base": "pitocco",
+   "visto": 1
+  },
+  "pochissimi": {
+   "es": [
+    "muy pocos",
+    "poquísimos"
+   ],
+   "base": "poco",
+   "visto": 1
+  },
+  "pochissimo": {
+   "es": [
+    "muy poco",
+    "poquísimo"
+   ],
+   "base": "poco",
+   "visto": 1
+  },
+  "poveretto": {
+   "es": [
+    "pobrecito",
+    "pobre diablo"
+   ],
+   "base": "poveretto",
+   "visto": 1
+  },
+  "poveri": {
+   "es": [
+    "pobres"
+   ],
+   "base": "povero",
+   "visto": 1
+  },
+  "poverino": {
+   "es": [
+    "pobrecito"
+   ],
+   "base": "poverino",
+   "visto": 1
+  },
+  "povero": {
+   "es": [
+    "pobre"
+   ],
+   "base": "povero",
+   "visto": 1
+  },
+  "pranzetto": {
+   "es": [
+    "almuercito",
+    "comidita"
+   ],
+   "base": "pranzo",
+   "visto": 1
+  },
+  "precise": {
+   "es": [
+    "precisas"
+   ],
+   "base": "preciso",
+   "visto": 1
+  },
+  "prendea": {
+   "es": [
+    "agarraba",
+    "tomaba"
+   ],
+   "base": "prendere",
+   "visto": 1
+  },
+  "prenderti": {
+   "es": [
+    "buscarte",
+    "agarrarte"
+   ],
+   "base": "prendere",
+   "visto": 2
+  },
+  "prigione": {
+   "es": [
+    "cárcel",
+    "prisión"
+   ],
+   "base": "prigione",
+   "visto": 1
+  },
+  "procedura": {
+   "es": [
+    "procedimiento",
+    "trámite"
+   ],
+   "base": "procedura",
+   "visto": 1
+  },
+  "procella": {
+   "es": [
+    "tormenta",
+    "tempestad"
+   ],
+   "base": "procella",
+   "visto": 1
+  },
+  "profetessa": {
+   "es": [
+    "profetisa"
+   ],
+   "base": "profetessa",
+   "visto": 1
+  },
+  "pronta": {
+   "es": [
+    "lista",
+    "rápida"
+   ],
+   "base": "pronto",
+   "visto": 1
+  },
+  "pronti": {
+   "es": [
+    "listos",
+    "preparados"
+   ],
+   "base": "pronto",
+   "visto": 5
+  },
+  "pronto": {
+   "es": [
+    "listo",
+    "preparado"
+   ],
+   "base": "pronto",
+   "visto": 7
+  },
+  "propizio": {
+   "es": [
+    "propicio"
+   ],
+   "base": "propizio",
+   "visto": 1
+  },
+  "protettori": {
+   "es": [
+    "protectores"
+   ],
+   "base": "protettore",
+   "visto": 1
+  },
+  "provocandolo": {
+   "es": [
+    "provocándolo"
+   ],
+   "base": "provocare",
+   "visto": 1
+  },
+  "pulire": {
+   "es": [
+    "limpiar"
+   ],
+   "base": "pulire",
+   "visto": 1
+  },
+  "puliva": {
+   "es": [
+    "limpiaba"
+   ],
+   "base": "pulire",
+   "visto": 2
+  },
+  "quadri": {
+   "es": [
+    "cuadros",
+    "pinturas"
+   ],
+   "base": "quadro",
+   "visto": 4
+  },
+  "quadro": {
+   "es": [
+    "cuadro",
+    "pintura"
+   ],
+   "base": "quadro",
+   "visto": 3
+  },
+  "qualunque": {
+   "es": [
+    "cualquier",
+    "cualquiera"
+   ],
+   "base": "qualunque",
+   "visto": 3
+  },
+  "ragazzino": {
+   "es": [
+    "chico",
+    "pibe"
+   ],
+   "base": "ragazzino",
+   "visto": 2
+  },
+  "rallegra": {
+   "es": [
+    "se alegra"
+   ],
+   "base": "rallegrarsi",
+   "visto": 1
+  },
+  "rallegrarsi": {
+   "es": [
+    "alegrarse",
+    "festejar"
+   ],
+   "base": "rallegrarsi",
+   "visto": 1
+  },
+  "rapir": {
+   "es": [
+    "raptar",
+    "secuestrar",
+    "llevarse"
+   ],
+   "base": "rapire",
+   "visto": 1
+  },
+  "rapisce": {
+   "es": [
+    "cautiva",
+    "arrebata",
+    "secuestra"
+   ],
+   "base": "rapire",
+   "visto": 1
+  },
+  "razzolando": {
+   "es": [
+    "escarbando",
+    "rasqueteando"
+   ],
+   "base": "razzolare",
+   "visto": 1
+  },
+  "regal": {
+   "es": [
+    "real",
+    "regio"
+   ],
+   "base": "regale",
+   "visto": 1
+  },
+  "regali": {
+   "es": [
+    "regalos"
+   ],
+   "base": "regalo",
+   "visto": 1
+  },
+  "reggere": {
+   "es": [
+    "sostener",
+    "bancar",
+    "aguantar"
+   ],
+   "base": "reggere",
+   "visto": 1
+  },
+  "reggono": {
+   "es": [
+    "se sostienen",
+    "se bancan"
+   ],
+   "base": "reggersi",
+   "visto": 1
+  },
+  "richiama": {
+   "es": [
+    "trae",
+    "recuerda"
+   ],
+   "base": "richiamare",
+   "visto": 1
+  },
+  "riesco": {
+   "es": [
+    "puedo",
+    "consigo"
+   ],
+   "base": "riuscire",
+   "visto": 2
+  },
+  "rimanda": {
+   "es": [
+    "devuelve",
+    "manda de vuelta",
+    "despacha"
+   ],
+   "base": "rimandare",
+   "visto": 1
+  },
+  "rinascita": {
+   "es": [
+    "renacimiento",
+    "renacer"
+   ],
+   "base": "rinascita",
+   "visto": 3
+  },
+  "ringraziarono": {
+   "es": [
+    "agradecieron"
+   ],
+   "base": "ringraziare",
+   "visto": 1
+  },
+  "ringrazio": {
+   "es": [
+    "agradezco"
+   ],
+   "base": "ringraziare",
+   "visto": 2
+  },
+  "rinunciava": {
+   "es": [
+    "renunciaba"
+   ],
+   "base": "rinunciare",
+   "visto": 2
+  },
+  "ripugna": {
+   "es": [
+    "repugna",
+    "asquea"
+   ],
+   "base": "ripugnare",
+   "visto": 1
+  },
+  "ripulire": {
+   "es": [
+    "limpiar",
+    "desvalijar"
+   ],
+   "base": "ripulire",
+   "visto": 1
+  },
+  "risanarlo": {
+   "es": [
+    "curarlo",
+    "sanarlo"
+   ],
+   "base": "risanare",
+   "visto": 1
+  },
+  "risorgere": {
+   "es": [
+    "resucitar",
+    "renacer",
+    "resurgir"
+   ],
+   "base": "risorgere",
+   "visto": 1
+  },
+  "ritrae": {
+   "es": [
+    "obtiene",
+    "saca"
+   ],
+   "base": "ritrarre",
+   "visto": 1
+  },
+  "ritrovo": {
+   "es": [
+    "encontró",
+    "halló"
+   ],
+   "base": "ritrovare",
+   "visto": 1
+  },
+  "riuscito": {
+   "es": [
+    "pudo",
+    "logró"
+   ],
+   "base": "riuscire",
+   "visto": 2
+  },
+  "riusciva": {
+   "es": [
+    "podía",
+    "lograba"
+   ],
+   "base": "riuscire",
+   "visto": 2
+  },
+  "rivali": {
+   "es": [
+    "rivales"
+   ],
+   "base": "rivale",
+   "visto": 1
+  },
+  "ronzanti": {
+   "es": [
+    "zumbadoras",
+    "zumbantes"
+   ],
+   "base": "ronzante",
+   "visto": 1
+  },
+  "rozzo": {
+   "es": [
+    "tosco",
+    "basto",
+    "ordinario"
+   ],
+   "base": "rozzo",
+   "visto": 1
+  },
+  "s'avvero": {
+   "es": [
+    "se cumplió",
+    "se realizó"
+   ],
+   "base": "avverarsi",
+   "visto": 1
+  },
+  "sacchetti": {
+   "es": [
+    "bolsitas",
+    "bolsas"
+   ],
+   "base": "sacchetto",
+   "visto": 1
+  },
+  "sacchetto": {
+   "es": [
+    "bolsita",
+    "bolsa"
+   ],
+   "base": "sacchetto",
+   "visto": 2
+  },
+  "sacrestia": {
+   "es": [
+    "sacristía"
+   ],
+   "base": "sacrestia",
+   "visto": 2
+  },
+  "salgo": {
+   "es": [
+    "subo"
+   ],
+   "base": "salire",
+   "visto": 1
+  },
+  "salirci": {
+   "es": [
+    "subir ahí",
+    "subir"
+   ],
+   "base": "salire",
+   "visto": 1
+  },
+  "salita": {
+   "es": [
+    "subió",
+    "subida"
+   ],
+   "base": "salire",
+   "visto": 2
+  },
+  "salotto": {
+   "es": [
+    "living",
+    "sala"
+   ],
+   "base": "salotto",
+   "visto": 4
+  },
+  "sapea": {
+   "es": [
+    "sabía"
+   ],
+   "base": "sapere",
+   "visto": 1
+  },
+  "saperlo": {
+   "es": [
+    "saberlo"
+   ],
+   "base": "sapere",
+   "visto": 2
+  },
+  "satanasso": {
+   "es": [
+    "diablo",
+    "demonio"
+   ],
+   "base": "satanasso",
+   "visto": 1
+  },
+  "sbagliata": {
+   "es": [
+    "equivocada",
+    "incorrecta"
+   ],
+   "base": "sbagliato",
+   "visto": 1
+  },
+  "sbasoffiare": {
+   "es": [
+    "morfar",
+    "devorar",
+    "lastrar"
+   ],
+   "base": "sbasoffiare",
+   "visto": 1
+  },
+  "sbrigo": {
+   "es": [
+    "me apuro"
+   ],
+   "base": "sbrigarsi",
+   "visto": 1
+  },
+  "sbuca": {
+   "es": [
+    "aparece",
+    "sale",
+    "asoma"
+   ],
+   "base": "sbucare",
+   "visto": 1
+  },
+  "scaffale": {
+   "es": [
+    "estante",
+    "repisa",
+    "estantería"
+   ],
+   "base": "scaffale",
+   "visto": 4
+  },
+  "scaffali": {
+   "es": [
+    "estantes",
+    "repisas"
+   ],
+   "base": "scaffale",
+   "visto": 1
+  },
+  "schiaffo": {
+   "es": [
+    "cachetada",
+    "bofetada"
+   ],
+   "base": "schiaffo",
+   "visto": 2
+  },
+  "schianta": {
+   "es": [
+    "se rompe",
+    "se parte",
+    "se quiebra"
+   ],
+   "base": "schiantare",
+   "visto": 1
+  },
+  "scimunito": {
+   "es": [
+    "pavote",
+    "tonto",
+    "estúpido"
+   ],
+   "base": "scimunito",
+   "visto": 1
+  },
+  "scogliera": {
+   "es": [
+    "acantilado"
+   ],
+   "base": "scogliera",
+   "visto": 2
+  },
+  "scolpiva": {
+   "es": [
+    "esculpía"
+   ],
+   "base": "scolpire",
+   "visto": 1
+  },
+  "scompiacente": {
+   "es": [
+    "desobligante",
+    "antipático"
+   ],
+   "base": "scompiacente",
+   "visto": 1
+  },
+  "sconclusionato": {
+   "es": [
+    "sin sentido",
+    "descabellado",
+    "incoherente"
+   ],
+   "base": "sconclusionato",
+   "visto": 1
+  },
+  "sconosciuta": {
+   "es": [
+    "desconocida"
+   ],
+   "base": "sconosciuto",
+   "visto": 3
+  },
+  "scorgere": {
+   "es": [
+    "distinguir",
+    "divisar",
+    "percibir"
+   ],
+   "base": "scorgere",
+   "visto": 1
+  },
+  "seccati": {
+   "es": [
+    "podridos",
+    "cansados",
+    "hartos"
+   ],
+   "base": "seccato",
+   "visto": 1
+  },
+  "sedicesimo": {
+   "es": [
+    "decimosexto",
+    "dieciseisavo"
+   ],
+   "base": "sedicesimo",
+   "visto": 1
+  },
+  "selva": {
+   "es": [
+    "selva",
+    "bosque"
+   ],
+   "base": "selva",
+   "visto": 1
+  },
+  "sembrano": {
+   "es": [
+    "parecen"
+   ],
+   "base": "sembrare",
+   "visto": 3
+  },
+  "sembrava": {
+   "es": [
+    "parecía"
+   ],
+   "base": "sembrare",
+   "visto": 1
+  },
+  "sementi": {
+   "es": [
+    "semillas"
+   ],
+   "base": "semente",
+   "visto": 1
+  },
+  "sentenza": {
+   "es": [
+    "veredicto",
+    "juicio",
+    "conclusión"
+   ],
+   "base": "sentenza",
+   "visto": 1
+  },
+  "sentenze": {
+   "es": [
+    "juicios",
+    "veredictos"
+   ],
+   "base": "sentenza",
+   "visto": 1
+  },
+  "sentimento": {
+   "es": [
+    "sentimiento"
+   ],
+   "base": "sentimento",
+   "visto": 1
+  },
+  "sentirla": {
+   "es": [
+    "escucharla",
+    "oírla"
+   ],
+   "base": "sentire",
+   "visto": 1
+  },
+  "serve": {
+   "es": [
+    "hace falta",
+    "sirve"
+   ],
+   "base": "servire",
+   "visto": 4
+  },
+  "servi": {
+   "es": [
+    "sirvió"
+   ],
+   "base": "servire",
+   "visto": 1
+  },
+  "servita": {
+   "es": [
+    "servida"
+   ],
+   "base": "servito",
+   "visto": 1
+  },
+  "servito": {
+   "es": [
+    "servido"
+   ],
+   "base": "servito",
+   "visto": 1
+  },
+  "servitore": {
+   "es": [
+    "sirviente"
+   ],
+   "base": "servitore",
+   "visto": 1
+  },
+  "serviva": {
+   "es": [
+    "servía"
+   ],
+   "base": "servire",
+   "visto": 2
+  },
+  "servivano": {
+   "es": [
+    "servían",
+    "hacían falta"
+   ],
+   "base": "servire",
+   "visto": 2
+  },
+  "servono": {
+   "es": [
+    "sirven",
+    "hacen falta"
+   ],
+   "base": "servire",
+   "visto": 3
+  },
+  "sfregio": {
+   "es": [
+    "agravio",
+    "insulto",
+    "ofensa"
+   ],
+   "base": "sfregio",
+   "visto": 1
+  },
+  "sgorga": {
+   "es": [
+    "brota",
+    "fluye",
+    "mana"
+   ],
+   "base": "sgorgare",
+   "visto": 1
+  },
+  "sguardo": {
+   "es": [
+    "mirada"
+   ],
+   "base": "sguardo",
+   "visto": 2
+  },
+  "siciliani": {
+   "es": [
+    "sicilianos"
+   ],
+   "base": "siciliano",
+   "visto": 1
+  },
+  "simpatico": {
+   "es": [
+    "simpático",
+    "copado",
+    "amable"
+   ],
+   "base": "simpatico",
+   "visto": 3
+  },
+  "sistemati": {
+   "es": [
+    "ubicados",
+    "acomodados",
+    "establecidos"
+   ],
+   "base": "sistemato",
+   "visto": 1
+  },
+  "sistemo": {
+   "es": [
+    "comodo",
+    "ordeno",
+    "arreglo"
+   ],
+   "base": "sistemare",
+   "visto": 2
+  },
+  "smette": {
+   "es": [
+    "deja",
+    "para",
+    "cesa"
+   ],
+   "base": "smettere",
+   "visto": 1
+  },
+  "soccorso": {
+   "es": [
+    "socorro",
+    "auxilio",
+    "ayuda"
+   ],
+   "base": "soccorso",
+   "visto": 1
+  },
+  "soggiunse": {
+   "es": [
+    "agregó",
+    "añadió"
+   ],
+   "base": "soggiungere",
+   "visto": 1
+  },
+  "solaio": {
+   "es": [
+    "altillo",
+    "entrepiso",
+    "techo"
+   ],
+   "base": "solaio",
+   "visto": 1
+  },
+  "solenne": {
+   "es": [
+    "solemne"
+   ],
+   "base": "solenne",
+   "visto": 1
+  },
+  "solletica": {
+   "es": [
+    "cosquillea",
+    "halaga",
+    "tienta"
+   ],
+   "base": "solleticare",
+   "visto": 1
+  },
+  "soltanto": {
+   "es": [
+    "solo",
+    "solamente",
+    "nomás"
+   ],
+   "base": "soltanto",
+   "visto": 1
+  },
+  "somarello": {
+   "es": [
+    "burrito",
+    "asno"
+   ],
+   "base": "somarello",
+   "visto": 1
+  },
+  "somigliante": {
+   "es": [
+    "parecido",
+    "similar",
+    "semejante"
+   ],
+   "base": "somigliante",
+   "visto": 1
+  },
+  "somministra": {
+   "es": [
+    "encaja",
+    "aplica",
+    "da"
+   ],
+   "base": "somministrare",
+   "visto": 1
+  },
+  "sonagliera": {
+   "es": [
+    "cascabelera",
+    "cascabeles",
+    "sonajero"
+   ],
+   "base": "sonagliera",
+   "visto": 1
+  },
+  "soprammercato": {
+   "es": [
+    "colmo",
+    "yapa",
+    "añadidura"
+   ],
+   "base": "soprammercato",
+   "visto": 1
+  },
+  "sopraviene": {
+   "es": [
+    "aparece",
+    "llega",
+    "cae"
+   ],
+   "base": "sopravvenire",
+   "visto": 1
+  },
+  "sosta": {
+   "es": [
+    "pausa",
+    "descanso",
+    "parada"
+   ],
+   "base": "sosta",
+   "visto": 1
+  },
+  "spalanca": {
+   "es": [
+    "abre"
+   ],
+   "base": "spalancare",
+   "visto": 1
+  },
+  "sparlato": {
+   "es": [
+    "hablado mal",
+    "chismeado",
+    "criticado"
+   ],
+   "base": "sparlare",
+   "visto": 1
+  },
+  "sparse": {
+   "es": [
+    "esparció",
+    "desparramó"
+   ],
+   "base": "spargere",
+   "visto": 3
+  },
+  "spazzo": {
+   "es": [
+    "barrió",
+    "devoró",
+    "limpió"
+   ],
+   "base": "spazzare",
+   "visto": 1
+  },
+  "spelacchiato": {
+   "es": [
+    "despeluchado",
+    "pelado",
+    "desplumado"
+   ],
+   "base": "spelacchiato",
+   "visto": 1
+  },
+  "spettami": {
+   "es": [
+    "me toca",
+    "me corresponde"
+   ],
+   "base": "spettare",
+   "visto": 1
+  },
+  "spicco": {
+   "es": [
+    "salto",
+    "brinco"
+   ],
+   "base": "spicco",
+   "visto": 1
+  },
+  "spiegarlo": {
+   "es": [
+    "explicarlo"
+   ],
+   "base": "spiegare",
+   "visto": 1
+  },
+  "squisito": {
+   "es": [
+    "atento",
+    "exquisito",
+    "refinado"
+   ],
+   "base": "squisito",
+   "visto": 1
+  },
+  "stagionato": {
+   "es": [
+    "maduro",
+    "curado"
+   ],
+   "base": "stagionato",
+   "visto": 2
+  },
+  "stanotte": {
+   "es": [
+    "esta noche",
+    "anoche"
+   ],
+   "base": "stanotte",
+   "visto": 1
+  },
+  "stanza": {
+   "es": [
+    "pieza",
+    "habitación",
+    "cuarto"
+   ],
+   "base": "stanza",
+   "visto": 1
+  },
+  "starvene": {
+   "es": [
+    "quedarse",
+    "estar"
+   ],
+   "base": "starsi",
+   "visto": 1
+  },
+  "stendere": {
+   "es": [
+    "colgar",
+    "tender",
+    "extender"
+   ],
+   "base": "stendere",
+   "visto": 2
+  },
+  "stendeva": {
+   "es": [
+    "colgaba",
+    "tendía",
+    "extendía"
+   ],
+   "base": "stendere",
+   "visto": 2
+  },
+  "stendo": {
+   "es": [
+    "tiendo",
+    "cuelgo",
+    "extiendo"
+   ],
+   "base": "stendere",
+   "visto": 1
+  },
+  "stipendio": {
+   "es": [
+    "sueldo",
+    "salario"
+   ],
+   "base": "stipendio",
+   "visto": 1
+  },
+  "stornelli": {
+   "es": [
+    "estorninos"
+   ],
+   "base": "stornello",
+   "visto": 1
+  },
+  "storpiata": {
+   "es": [
+    "lisiada",
+    "mutilada"
+   ],
+   "base": "storpiato",
+   "visto": 1
+  },
+  "straccia": {
+   "es": [
+    "desgarra",
+    "despedaza"
+   ],
+   "base": "stracciare",
+   "visto": 1
+  },
+  "stracciata": {
+   "es": [
+    "desgarrada",
+    "miserable"
+   ],
+   "base": "stracciato",
+   "visto": 1
+  },
+  "strazi": {
+   "es": [
+    "tormentos",
+    "suplicios"
+   ],
+   "base": "strazio",
+   "visto": 1
+  },
+  "strologare": {
+   "es": [
+    "astrologar",
+    "adivinar"
+   ],
+   "base": "strologare",
+   "visto": 1
+  },
+  "succede": {
+   "es": [
+    "pasa",
+    "sucede"
+   ],
+   "base": "succedere",
+   "visto": 6
+  },
+  "succedendo": {
+   "es": [
+    "pasando",
+    "sucediendo"
+   ],
+   "base": "succedere",
+   "visto": 2
+  },
+  "succedeva": {
+   "es": [
+    "pasaba",
+    "sucedía"
+   ],
+   "base": "succedere",
+   "visto": 1
+  },
+  "succedevano": {
+   "es": [
+    "pasaban",
+    "sucedían"
+   ],
+   "base": "succedere",
+   "visto": 2
+  },
+  "succhio": {
+   "es": [
+    "chupo",
+    "mamo"
+   ],
+   "base": "succhiare",
+   "visto": 1
+  },
+  "sullo": {
+   "es": [
+    "en el",
+    "sobre el"
+   ],
+   "base": "su",
+   "visto": 2
+  },
+  "suvvia": {
+   "es": [
+    "dale",
+    "vamos"
+   ],
+   "base": "suvvia",
+   "visto": 1
+  },
+  "sventura": {
+   "es": [
+    "desgracia",
+    "desdicha"
+   ],
+   "base": "sventura",
+   "visto": 1
+  },
+  "svolazza": {
+   "es": [
+    "revolotea",
+    "vuela"
+   ],
+   "base": "svolazzare",
+   "visto": 1
+  },
+  "tacito": {
+   "es": [
+    "tácito",
+    "silencioso"
+   ],
+   "base": "tacito",
+   "visto": 1
+  },
+  "telegiornale": {
+   "es": [
+    "noticiero"
+   ],
+   "base": "telegiornale",
+   "visto": 4
+  },
+  "tema": {
+   "es": [
+    "temor",
+    "miedo"
+   ],
+   "base": "tema",
+   "visto": 1
+  },
+  "temerario": {
+   "es": [
+    "temerario",
+    "imprudente"
+   ],
+   "base": "temerario",
+   "visto": 1
+  },
+  "terminale": {
+   "es": [
+    "terminal"
+   ],
+   "base": "terminale",
+   "visto": 2
+  },
+  "tirami": {
+   "es": [
+    "sacame",
+    "librame"
+   ],
+   "base": "tirare",
+   "visto": 1
+  },
+  "tisici": {
+   "es": [
+    "tísicos",
+    "tuberculosos"
+   ],
+   "base": "tisico",
+   "visto": 1
+  },
+  "toccarlo": {
+   "es": [
+    "tocarlo"
+   ],
+   "base": "toccare",
+   "visto": 1
+  },
+  "toglierle": {
+   "es": [
+    "sacarle",
+    "quitarle"
+   ],
+   "base": "togliere",
+   "visto": 1
+  },
+  "torcer": {
+   "es": [
+    "desviar",
+    "apartar"
+   ],
+   "base": "torcere",
+   "visto": 1
+  },
+  "tormento": {
+   "es": [
+    "tormento",
+    "suplicio"
+   ],
+   "base": "tormento",
+   "visto": 1
+  },
+  "totale": {
+   "es": [
+    "total"
+   ],
+   "base": "totale",
+   "visto": 2
+  },
+  "traditori": {
+   "es": [
+    "traidores"
+   ],
+   "base": "traditore",
+   "visto": 1
+  },
+  "trarlo": {
+   "es": [
+    "sacarlo",
+    "librarlo"
+   ],
+   "base": "trarre",
+   "visto": 1
+  },
+  "trascinando": {
+   "es": [
+    "arrastrando"
+   ],
+   "base": "trascinare",
+   "visto": 1
+  },
+  "traslocare": {
+   "es": [
+    "mudarse"
+   ],
+   "base": "traslocare",
+   "visto": 2
+  },
+  "traslocato": {
+   "es": [
+    "mudado"
+   ],
+   "base": "traslocare",
+   "visto": 2
+  },
+  "trasportatore": {
+   "es": [
+    "transportista",
+    "fletero"
+   ],
+   "base": "trasportatore",
+   "visto": 2
+  },
+  "trave": {
+   "es": [
+    "viga",
+    "tirante"
+   ],
+   "base": "trave",
+   "visto": 1
+  },
+  "tremava": {
+   "es": [
+    "temblaba"
+   ],
+   "base": "tremare",
+   "visto": 2
+  },
+  "tremavano": {
+   "es": [
+    "temblaban"
+   ],
+   "base": "tremare",
+   "visto": 2
+  },
+  "tribunale": {
+   "es": [
+    "tribunal",
+    "juzgado"
+   ],
+   "base": "tribunale",
+   "visto": 4
+  },
+  "trista": {
+   "es": [
+    "mala",
+    "malvada"
+   ],
+   "base": "tristo",
+   "visto": 1
+  },
+  "troiani": {
+   "es": [
+    "troyanos"
+   ],
+   "base": "troiano",
+   "visto": 1
+  },
+  "trombetta": {
+   "es": [
+    "trompeta"
+   ],
+   "base": "trombetta",
+   "visto": 1
+  },
+  "tronfia": {
+   "es": [
+    "agrandada",
+    "creída",
+    "engreída"
+   ],
+   "base": "tronfio",
+   "visto": 1
+  },
+  "trovarti": {
+   "es": [
+    "visitarte",
+    "encontrarte"
+   ],
+   "base": "trovare",
+   "visto": 2
+  },
+  "tv": {
+   "es": [
+    "tele",
+    "televisión"
+   ],
+   "base": "tv",
+   "visto": 2
+  },
+  "uccel": {
+   "es": [
+    "pájaro",
+    "ave"
+   ],
+   "base": "uccello",
+   "visto": 1
+  },
+  "uccellini": {
+   "es": [
+    "pajaritos",
+    "pájaros"
+   ],
+   "base": "uccellino",
+   "visto": 2
+  },
+  "uccellino": {
+   "es": [
+    "pajarito"
+   ],
+   "base": "uccellino",
+   "visto": 1
+  },
+  "uccidere": {
+   "es": [
+    "matar",
+    "asesinar"
+   ],
+   "base": "uccidere",
+   "visto": 1
+  },
+  "ucciso": {
+   "es": [
+    "asesinado",
+    "matado"
+   ],
+   "base": "uccidere",
+   "visto": 1
+  },
+  "vattene": {
+   "es": [
+    "andate",
+    "tomátela",
+    "rajá"
+   ],
+   "base": "andarsene",
+   "visto": 4
+  },
+  "vedendolo": {
+   "es": [
+    "viéndolo",
+    "al verlo"
+   ],
+   "base": "vedere",
+   "visto": 1
+  },
+  "vederci": {
+   "es": [
+    "vernos",
+    "encontrarnos"
+   ],
+   "base": "vedere",
+   "visto": 2
+  },
+  "vederlo": {
+   "es": [
+    "verlo"
+   ],
+   "base": "vedere",
+   "visto": 2
+  },
+  "vederti": {
+   "es": [
+    "verte"
+   ],
+   "base": "vedere",
+   "visto": 2
+  },
+  "vedovelle": {
+   "es": [
+    "viuditas"
+   ],
+   "base": "vedovella",
+   "visto": 1
+  },
+  "venditore": {
+   "es": [
+    "vendedor"
+   ],
+   "base": "venditore",
+   "visto": 1
+  },
+  "vezzo": {
+   "es": [
+    "mimo",
+    "cariño"
+   ],
+   "base": "vezzo",
+   "visto": 1
+  },
+  "video": {
+   "es": [
+    "video"
+   ],
+   "base": "video",
+   "visto": 1
+  },
+  "vietato": {
+   "es": [
+    "prohibido"
+   ],
+   "base": "vietare",
+   "visto": 1
+  },
+  "vigliacco": {
+   "es": [
+    "cobarde",
+    "cagón"
+   ],
+   "base": "vigliacco",
+   "visto": 2
+  },
+  "vigna": {
+   "es": [
+    "viñedo",
+    "viña"
+   ],
+   "base": "vigna",
+   "visto": 9
+  },
+  "vivean": {
+   "es": [
+    "vivían"
+   ],
+   "base": "vivere",
+   "visto": 1
+  },
+  "volarmene": {
+   "es": [
+    "volarme"
+   ],
+   "base": "volarsene",
+   "visto": 1
+  },
+  "voltarsi": {
+   "es": [
+    "darse vuelta",
+    "voltearse"
+   ],
+   "base": "voltarsi",
+   "visto": 1
+  },
+  "votazione": {
+   "es": [
+    "votación"
+   ],
+   "base": "votazione",
+   "visto": 1
+  },
+  "yogurt": {
+   "es": [
+    "yogur"
+   ],
+   "base": "yogurt",
+   "visto": 1
+  },
+  "zero": {
+   "es": [
+    "cero"
+   ],
+   "base": "zero",
+   "visto": 1
+  },
+  "zitti": {
+   "es": [
+    "callados",
+    "silenciosos"
+   ],
+   "base": "zitto",
+   "visto": 2
+  },
+  "zitto": {
+   "es": [
+    "callado"
+   ],
+   "base": "zitto",
+   "visto": 3
+  }
+ }
+}

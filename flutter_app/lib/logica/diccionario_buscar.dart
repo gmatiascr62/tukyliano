@@ -102,11 +102,16 @@ Traduccion? traducir(Diccionario diccionario, String pedido) {
   final clave = normalizar(palabra);
   if (clave.isEmpty) return null;
 
-  for (final (mapa, esItaliano, formas) in [
+  // Primero todo lo que esté tal cual en el diccionario, probando las
+  // formas de cada idioma. Esto va antes que la tabla de conjugaciones
+  // porque cuando la palabra está, esa es la buena: "vale" es una palabra
+  // italiana y además una forma de "valere", y corresponde mostrar la
+  // palabra.
+  for (final (mapa, esItaliano, comoPodriaSer) in [
     (diccionario.italiano, true, _comoPodriaSerEnItaliano),
     (diccionario.espanol, false, _comoPodriaSerEnEspanol),
   ]) {
-    for (final forma in formas(clave)) {
+    for (final forma in comoPodriaSer(clave)) {
       final encontrada = mapa[forma];
       if (encontrada != null && encontrada.isNotEmpty) {
         return (encontrada.join(', '), esItaliano, '');
@@ -114,13 +119,18 @@ Traduccion? traducir(Diccionario diccionario, String pedido) {
     }
   }
 
-  // Último recurso: la tabla de formas conjugadas, que sabe de verdad de
-  // qué palabra viene cada una. Va al final y no al principio porque
-  // cuando la palabra está tal cual en el diccionario, esa es la buena:
-  // "vale" es una palabra italiana y además una forma de "valere", y lo
-  // que corresponde mostrar es lo primero.
-  final base = diccionario.formas[clave];
-  if (base != null) {
+  // Y recién después la tabla de conjugaciones, con TODAS las formas que
+  // se probaron antes y no solo con la palabra entera.
+  //
+  // Que hubiera que decirlo lo descubrió un test: "ch’abbia" se parte en
+  // "ch" y "abbia", "abbia" está en la tabla y viene de "avere", y aun
+  // así no se encontraba, porque los pedazos de la elisión se buscaban
+  // únicamente en el diccionario. Lo mismo con el apócope: "avean" probaba
+  // "aveano" contra el diccionario, donde no está, y nunca contra la
+  // tabla, donde sí.
+  for (final forma in _comoPodriaSerEnItaliano(clave)) {
+    final base = diccionario.formas[forma];
+    if (base == null) continue;
     final encontrada = diccionario.italiano[base];
     if (encontrada != null && encontrada.isNotEmpty) {
       return (encontrada.join(', '), true, base);
