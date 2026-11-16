@@ -201,7 +201,9 @@ class _PantallaChatState extends State<PantallaChat> {
       final cerro = widget.escena.termina && cierraLaEscena(contestado);
       final dicho = cerro ? sinLaMarcaDelFinal(contestado) : contestado;
       // No se muestra una corrección que repite lo que escribió.
-      final deLaIa = sinCorreccionRepetida(dicho, texto);
+      // Y la marca de la corrección se lee en castellano: lo que viene
+      // después sigue en italiano, que es lo que hay que aprender.
+      final deLaIa = conLaMarcaEnCastellano(sinCorreccionRepetida(dicho, texto));
       // Las traducciones van arriba, como antes, pero salen del diccionario.
       final respuesta =
           traducido.isEmpty ? deLaIa : '$traducido\n$deLaIa';
@@ -214,7 +216,9 @@ class _PantallaChatState extends State<PantallaChat> {
       _irAlFinal();
       // Tapada hay que decirla sola: es la única forma de saber qué contestó.
       // Destapada se toca la burbuja, igual que un renglón de los cuentos.
-      if (_soloEscuchar && _puedeHablar) _voz.decir(sinMarcas(respuesta));
+      if (_soloEscuchar && _puedeHablar) {
+        _voz.decir(sinMarcas(paraLeerEnVozAlta(respuesta)));
+      }
     } catch (error) {
       if (!mounted) return;
       setState(() {
@@ -249,7 +253,7 @@ class _PantallaChatState extends State<PantallaChat> {
 
   void _escuchar(String texto) {
     if (!_puedeHablar) return;
-    _voz.decir(sinMarcas(texto));
+    _voz.decir(sinMarcas(paraLeerEnVozAlta(texto)));
   }
 
   Future<void> _cambiarVelocidad() async {

@@ -301,4 +301,44 @@ void main() {
           'Ciao!');
     });
   });
+
+  group('la marca de corrección en pantalla', () {
+    test('se lee en castellano y la frase corregida queda intacta', () {
+      // El aviso y el barista llegan en la misma burbuja. Con los dos en
+      // italiano, el aviso se lee como una frase más de la charla.
+      expect(
+        conLaMarcaEnCastellano('Volevi dire: Io bevo il caffè\nEcco a te.'),
+        'Se dice así: Io bevo il caffè\nEcco a te.',
+      );
+    });
+
+    test('también la vieja y la mitad en castellano', () {
+      expect(conLaMarcaEnCastellano('Correzione: Io bevo'),
+          'Se dice así: Io bevo');
+      expect(conLaMarcaEnCastellano('Volevi decir: Io bevo'),
+          'Se dice así: Io bevo');
+    });
+
+    test('no toca un mensaje sin corrección', () {
+      for (final dicho in [
+        'Ecco a te.',
+        'Sì, ecco. Vuoi altro?',
+        // Ojo con esta: dice "dire" pero no es la marca.
+        'Cosa vuoi dire?',
+      ]) {
+        expect(conLaMarcaEnCastellano(dicho), dicho, reason: dicho);
+      }
+    });
+
+    test('para leer en voz alta se saca la marca entera', () {
+      // La voz es italiana: leer "Se dice así" con acento italiano suena a
+      // error, y leer "Volevi dire" sería decirle en italiano algo que no
+      // es parte de la charla.
+      expect(
+        paraLeerEnVozAlta('Volevi dire: Io bevo il caffè\nEcco a te.'),
+        'Io bevo il caffè\nEcco a te.',
+      );
+      expect(paraLeerEnVozAlta('Ecco a te.'), 'Ecco a te.');
+    });
+  });
 }

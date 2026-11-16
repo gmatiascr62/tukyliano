@@ -377,8 +377,11 @@ void main() {
       await _escribir(tester, 'io ando al lavoro');
       await _enviar(tester);
 
-      expect(find.textContaining('Correzione: io vado al lavoro'),
+      // La marca se lee en castellano; la frase corregida sigue en italiano,
+      // que es lo que hay que aprender.
+      expect(find.textContaining('Se dice así: io vado al lavoro'),
           findsOneWidget);
+      expect(find.textContaining('Correzione:'), findsNothing);
     });
   });
 

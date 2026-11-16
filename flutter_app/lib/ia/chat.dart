@@ -259,6 +259,49 @@ final RegExp _empiezaCorreccion = RegExp(
   caseSensitive: false,
 );
 
+/// Lo que se lee en pantalla donde el modelo escribió "Volevi dire:".
+///
+/// La marca se le pide en italiano al servidor y así se deja: el modelo la
+/// escribe sola y cambiársela sería tocar el prompt para ganar nada. Lo que
+/// se cambia es lo que se muestra.
+///
+/// En castellano porque hace falta distinguir de un vistazo dos cosas que
+/// llegan en la misma burbuja: el barista hablándote —que es italiano y hay
+/// que leerlo— y el aviso de que lo que escribiste no se dice así. Con las
+/// dos en italiano, el aviso se lee como una frase más de la charla.
+const String seDiceAsi = 'Se dice así:';
+
+/// Cambia la marca de corrección al castellano, dejando la frase corregida
+/// intacta.
+///
+/// Solo toca el principio del renglón. Lo que sigue es italiano bien dicho y
+/// es lo que hay que aprender.
+String conLaMarcaEnCastellano(String respuesta) =>
+    _conLaMarca(respuesta, (resto) => '$seDiceAsi$resto');
+
+/// Lo mismo para leer en voz alta, pero sin la marca.
+///
+/// La voz es italiana. Leer "Se dice así" con acento italiano suena a
+/// error, y leer "Volevi dire" sería decirle en italiano algo que no es
+/// parte de la charla. Se saca y se lee la frase corregida sola, que es lo
+/// único que vale la pena escuchar de ese renglón.
+String paraLeerEnVozAlta(String respuesta) =>
+    _conLaMarca(respuesta, (resto) => resto.trimLeft());
+
+String _conLaMarca(String respuesta, String Function(String) queHacer) => [
+      for (final renglon in respuesta.split('\n'))
+        _cambiarLaMarca(renglon, queHacer),
+    ].join('\n');
+
+String _cambiarLaMarca(String renglon, String Function(String) queHacer) {
+  // Los espacios de adelante se guardan: sacarlos movería el renglón.
+  final adelante = renglon.length - renglon.trimLeft().length;
+  final texto = renglon.trimLeft();
+  final marca = _empiezaCorreccion.matchAsPrefix(texto);
+  if (marca == null) return renglon;
+  return renglon.substring(0, adelante) + queHacer(texto.substring(marca.end));
+}
+
 /// Signos que no cambian lo que dice una frase.
 final RegExp _signos = RegExp(r'[.,;:!?¡¿"“”]');
 final RegExp _espacios = RegExp(r'\s+');
