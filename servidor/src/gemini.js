@@ -19,14 +19,24 @@
 // Si la clave no está, esto devuelve null y el servidor contesta que no
 // sabe. No se rompe nada: queda como estaba antes de que esto existiera.
 
-const MODELO = 'gemini-3.6-flash';
+// flash-lite y no flash. La diferencia no es la calidad —las dos aciertan
+// lo mismo en las veinte palabras con las que se probó— sino el tiempo:
+// flash *piensa* antes de contestar, y para traducir una palabra eso es
+// tiempo puro. Medido: 72 segundos contra 2,9.
+const MODELO = 'gemini-3.1-flash-lite';
 const URL = 'https://generativelanguage.googleapis.com/v1beta/models/' +
   `${MODELO}:generateContent`;
 
-// Cuánto se espera antes de darse por vencido. Alguien que tocó una
-// palabra está mirando la pantalla: si tarda más que esto, prefiere un
-// "no está" a seguir esperando.
-const CUANTO_ESPERAR = 12000;
+// Cuánto espera el servidor a Gemini. Generoso, porque esto NO es lo que
+// espera la persona: el que tocó la palabra recibe su respuesta mucho
+// antes (ver CUANTO_ESPERA_LA_PERSONA en palabras.js) y esta promesa
+// sigue sola hasta guardar lo que llegue.
+//
+// Hace falta que sea generoso porque la demora es traicionera: la mediana
+// es de 2,7 segundos, pero una de cada siete llamadas tarda más de un
+// minuto. Cortar ahí sería tirar la palabra justo cuando estaba por
+// llegar, y dejar que el próximo que la busque juegue a la misma lotería.
+const CUANTO_ESPERAR = 90000;
 
 const PEDIDO = `Sos un diccionario italiano → español rioplatense.
 

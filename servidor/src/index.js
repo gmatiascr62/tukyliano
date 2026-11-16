@@ -19,7 +19,7 @@ import { queSalioMal } from './respuestas.js';
 const TOPES_POR_DEFECTO = { deCadaUno: 60, deTodos: 2000 };
 
 export default {
-  async fetch(pedido, ambiente) {
+  async fetch(pedido, ambiente, contexto) {
     const donde = new URL(pedido.url);
 
     // Para saber si está vivo sin gastar ni una neurona.
@@ -66,6 +66,11 @@ export default {
                             TOPES_DE_PALABRAS.deTodos),
           },
           ahora: new Date(),
+          // Deja que la pregunta a Gemini siga viva después de haberle
+          // contestado a la app. Sin esto, Cloudflare mata el worker al
+          // devolver la respuesta y la palabra que estaba por llegar se
+          // pierde: el próximo que la busque pagaría la misma espera.
+          seguirDespues: (promesa) => contexto.waitUntil(promesa),
         });
       } catch (error) {
         console.error('se rompió buscando una palabra', error);

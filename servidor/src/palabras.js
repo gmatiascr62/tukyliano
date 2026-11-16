@@ -118,7 +118,10 @@ async function unaMas(base, quien, dia) {
 
 /** Atiende un pedido de traducción. */
 export async function atenderLaPalabra(cuerpo, afuera) {
-  const { base, clave, permitidos, topes, ahora } = afuera;
+  const {
+    base, clave, permitidos, topes, ahora, seguirDespues,
+    cuantoEspera = CUANTO_ESPERA_LA_PERSONA,
+  } = afuera;
 
   const pedido = loQueMando(cuerpo);
   if (pedido === null) return queSalioMal('pedidoRaro');
@@ -142,11 +145,43 @@ export async function atenderLaPalabra(cuerpo, afuera) {
   if (cuantas.totales > topes.deTodos) return queSalioMal('topeDelServidor');
   if (cuantas.suyos > topes.deCadaUno) return queSalioMal('topeDeLaPersona');
 
-  const { que, porQue } = await loQueDijo(pedido.palabra, pedido.donde, clave);
-  if (!que) return noLaSabe(pedido.palabra, porQue);
+  // 3. La IA. Pero el que preguntó no espera lo que tarde: espera lo que
+  //    aguanta mirando la pantalla, y después se va con un "no está".
+  //
+  //    La demora de Gemini es traicionera: la mediana es de 2,7 segundos,
+  //    pero una de cada siete llamadas tarda más de un minuto. Si se
+  //    cortara ahí, esa palabra se perdería, y el próximo que la busque
+  //    jugaría a la misma lotería.
+  //
+  //    Así que la pregunta sigue sola, aunque la respuesta ya se haya ido.
+  //    El primero que buscó "lumicino" un día lento se queda sin ella; el
+  //    segundo la recibe de la base al instante. La palabra entra igual.
+  const laPregunta = (async () => {
+    const { que } = await loQueDijo(pedido.palabra, pedido.donde, clave);
+    if (que) await guardar(base, pedido.palabra, que, dia);
+    return que;
+  })();
 
-  await guardar(base, pedido.palabra, que, dia);
+  if (seguirDespues) seguirDespues(laPregunta);
+
+  const que = await loQuePrimeroLlegue(laPregunta, cuantoEspera);
+  if (!que) return noLaSabe(pedido.palabra, 'tardo');
   return laRespuesta(pedido.palabra, que, 'ia');
+}
+
+/// Cuánto aguanta mirando la pantalla el que tocó una palabra. Pasado
+/// esto prefiere un "no está" a seguir esperando.
+export const CUANTO_ESPERA_LA_PERSONA = 7000;
+
+/** Lo que conteste la pregunta, o null si se pasó de tiempo.
+ *
+ * No cancela nada: la pregunta sigue su camino y guarda lo que llegue.
+ */
+function loQuePrimeroLlegue(laPregunta, cuanto = CUANTO_ESPERA_LA_PERSONA) {
+  return Promise.race([
+    laPregunta.catch(() => null),
+    new Promise((listo) => setTimeout(() => listo(null), cuanto)),
+  ]);
 }
 
 /** Si puede preguntar. Mismo criterio que el chat. */
