@@ -238,6 +238,24 @@ void main() {
         expect(hallada!.comoSeDice, contains(dice), reason: palabra);
       }
     });
+
+    test('los modismos están, y la forma también', () {
+      // Matías tocó "lumicino" en "Un Lupo già ridotto al lumicino" y le
+      // salió "velita, luz baja". El lobo no está reducido a una velita:
+      // está en las últimas.
+      //
+      // Lo que falló no fue el modelo sino cómo se le preguntaba: de a
+      // treinta palabras por vez pierde los modismos, y de a una pierde la
+      // forma gramatical. Por eso ahora se juntan las dos corridas, y este
+      // test tiene las dos mitades para que no se pueda arreglar una
+      // rompiendo la otra.
+      expect(traducir(diccionario, 'lumicino')!.comoSeDice,
+          contains('las últimas'));
+
+      // La forma: plural donde va plural, imperfecto donde va imperfecto.
+      expect(traducir(diccionario, 'pecchie')!.comoSeDice, startsWith('abejas'));
+      expect(traducir(diccionario, 'dicean')!.comoSeDice, startsWith('decían'));
+    });
   });
 
   group('la tabla de formas conjugadas', () {

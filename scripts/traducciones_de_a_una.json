@@ -47,6 +47,3928 @@
    ],
    "base": "aiutare",
    "donde": "Nessuno potrà aiutarci"
+  },
+  "aiutarla": {
+   "es": [
+    "ayudarla"
+   ],
+   "base": "aiutare",
+   "donde": "Nessuno ha potuto aiutarla"
+  },
+  "aiutarmi": {
+   "es": [
+    "ayudarme"
+   ],
+   "base": "aiutare",
+   "donde": "Marco è venuto ad aiutarmi"
+  },
+  "aiutarti": {
+   "es": [
+    "ayudarte"
+   ],
+   "base": "aiutare",
+   "donde": "Ho voluto aiutarti"
+  },
+  "alfin": {
+   "es": [
+    "al final",
+    "por fin"
+   ],
+   "base": "alla fine",
+   "donde": "Due vedovelle alfin preser possesso"
+  },
+  "all'erta": {
+   "es": [
+    "alerta",
+    "atento"
+   ],
+   "base": "all'erta",
+   "donde": "grazie ai cani che stavan sempre all’erta,"
+  },
+  "all'ingresso": {
+   "es": [
+    "en la entrada"
+   ],
+   "base": "ingresso",
+   "donde": "Dopo circa dieci minuti arrivo all'ingresso."
+  },
+  "all'insu": {
+   "es": [
+    "hacia arriba",
+    "mirando arriba"
+   ],
+   "base": "all'insù",
+   "donde": "Ci mette quattro anni, in piedi, con la testa all'insù."
+  },
+  "all'orefice": {
+   "es": [
+    "joyero"
+   ],
+   "base": "orefice",
+   "donde": "che all’orefice portò,"
+  },
+  "all'uscio": {
+   "es": [
+    "a la puerta"
+   ],
+   "base": "uscio",
+   "donde": "La Morte viene all’uscio e si presenta"
+  },
+  "allegramente": {
+   "es": [
+    "alegremente",
+    "contento"
+   ],
+   "base": "allegramente",
+   "donde": "che un boccon mangeremo allegramente"
+  },
+  "allievi": {
+   "es": [
+    "alumnos",
+    "aprendices"
+   ],
+   "base": "allievo",
+   "donde": "Era simpatico, veloce, e aveva una bottega piena di allievi."
+  },
+  "almen": {
+   "es": [
+    "al menos",
+    "por lo menos"
+   ],
+   "base": "almeno",
+   "donde": "occupò del discorso almen tre quarti."
+  },
+  "almeno": {
+   "es": [
+    "por lo menos",
+    "al menos"
+   ],
+   "base": "almeno",
+   "donde": "Erano banchieri, non principi. Almeno all'inizio."
+  },
+  "altrettanto": {
+   "es": [
+    "igualmente",
+    "lo mismo"
+   ],
+   "base": "altrettanto",
+   "donde": "di fare, se vi accomoda, altrettanto?"
+  },
+  "alzarmi": {
+   "es": [
+    "levantarme"
+   ],
+   "base": "alzarsi",
+   "donde": "Dovevo alzarmi presto"
+  },
+  "amalfitana": {
+   "es": [
+    "de Amalfi"
+   ],
+   "base": "amalfitano",
+   "donde": "Una settimana in Costiera Amalfitana"
+  },
+  "amen": {
+   "es": [
+    "en un santiamén",
+    "al toque",
+    "en un segundo"
+   ],
+   "base": "amen",
+   "donde": "Ma la Volpe in un amen spazzò tutto."
+  },
+  "anch'essa": {
+   "es": [
+    "ella también",
+    "también ella"
+   ],
+   "base": "anch'essa",
+   "donde": "Per trar vendetta dell’inganno, anch’essa"
+  },
+  "andarci": {
+   "es": [
+    "ir ahí",
+    "llegar"
+   ],
+   "base": "andare",
+   "donde": "andarci"
+  },
+  "annega": {
+   "es": [
+    "se ahoga",
+    "se está ahogando"
+   ],
+   "base": "annegare",
+   "donde": "- Aiuto, aiuto! - grida quel che annega."
+  },
+  "appoggiato": {
+   "es": [
+    "apoyó",
+    "dejó"
+   ],
+   "base": "appoggiare",
+   "donde": "ha appoggiato"
+  },
+  "apprese": {
+   "es": [
+    "aprendió",
+    "empezó a"
+   ],
+   "base": "apprendere",
+   "donde": "apprese a strologare il cielo e i venti,"
+  },
+  "apria": {
+   "es": [
+    "abría"
+   ],
+   "base": "aprire",
+   "donde": "se la bocca Cassandra appena apria."
+  },
+  "arcicontento": {
+   "es": [
+    "contentísimo",
+    "muy feliz"
+   ],
+   "base": "arcicontento",
+   "donde": "si dichiara arcicontento"
+  },
+  "armare": {
+   "es": [
+    "armar",
+    "equipar"
+   ],
+   "base": "armare",
+   "donde": "così potenti, che potrebbe armare"
+  },
+  "asciugata": {
+   "es": [
+    "se secó"
+   ],
+   "base": "asciugarsi",
+   "donde": "si è asciugata"
+  },
+  "attingea": {
+   "es": [
+    "sacaba",
+    "tomaba"
+   ],
+   "base": "attingere",
+   "donde": "Ben vi attingea col becco la Cicogna"
+  },
+  "attirasse": {
+   "es": [
+    "atrajera",
+    "llamara"
+   ],
+   "base": "attrarre",
+   "donde": "che attirasse sull’oro l’attenzione."
+  },
+  "austriaci": {
+   "es": [
+    "austríacos"
+   ],
+   "base": "austriaco",
+   "donde": "A nord-est c'erano la Lombardia e il Veneto, ma erano austriaci."
+  },
+  "avvicino": {
+   "es": [
+    "acerco",
+    "aproximo"
+   ],
+   "base": "avvicinare",
+   "donde": "avvicino"
+  },
+  "avvide": {
+   "es": [
+    "darse cuenta"
+   ],
+   "base": "avvedersi",
+   "donde": "si avvide, ahi troppo tardi!"
+  },
+  "avvisare": {
+   "es": [
+    "avisar",
+    "notificar",
+    "advertir"
+   ],
+   "base": "avvisare",
+   "donde": "Dovevate avvisare"
+  },
+  "avvisarmi": {
+   "es": [
+    "avisarme",
+    "notificarme"
+   ],
+   "base": "avvisare",
+   "donde": "Non hai potuto avvisarmi"
+  },
+  "babbione": {
+   "es": [
+    "pelotudo",
+    "boludo",
+    "pavo"
+   ],
+   "base": "babbione",
+   "donde": "Il babbione per suo conto"
+  },
+  "babbuasso": {
+   "es": [
+    "tonto",
+    "pavo",
+    "boludo"
+   ],
+   "base": "babbuasso",
+   "donde": "- Ah scimunito, ah sciocco, ah babbuasso!"
+  },
+  "balaustra": {
+   "es": [
+    "baranda",
+    "balaustrada"
+   ],
+   "base": "balaustra",
+   "donde": "Saltò la balaustra e corse nella sacrestia."
+  },
+  "balenar": {
+   "es": [
+    "brillar",
+    "centellear",
+    "aparecer"
+   ],
+   "base": "balenare",
+   "donde": "gli facea balenar davanti questo"
+  },
+  "balia": {
+   "es": [
+    "merced",
+    "poder"
+   ],
+   "base": "balìa",
+   "donde": "che sono alla balìa"
+  },
+  "balorda": {
+   "es": [
+    "tonta",
+    "estúpida",
+    "boba"
+   ],
+   "base": "balordo",
+   "donde": "Essi risero poi della balorda,"
+  },
+  "barattolo": {
+   "es": [
+    "frasco",
+    "tarro"
+   ],
+   "base": "barattolo",
+   "donde": "barattolo"
+  },
+  "bastavano": {
+   "es": [
+    "no alcanzaban",
+    "no bastaban"
+   ],
+   "base": "bastare",
+   "donde": "non bastavano ancora a ripulire"
+  },
+  "beato": {
+   "es": [
+    "feliz",
+    "dichoso",
+    "contento"
+   ],
+   "base": "beato",
+   "donde": "si dava l’aria, in ciò fisso e beato,"
+  },
+  "beccacce": {
+   "es": [
+    "becada",
+    "chocha perdiz"
+   ],
+   "base": "beccaccia",
+   "donde": "a un pranzo di beccacce allo stufato"
+  },
+  "bellimbusti": {
+   "es": [
+    "dandy",
+    "chanta",
+    "facha"
+   ],
+   "base": "bellimbusto",
+   "donde": "de’ merciai, specchi in petto ai bellimbusti"
+  },
+  "belva": {
+   "es": [
+    "bestia",
+    "fiera"
+   ],
+   "base": "belva",
+   "donde": "ché il grosso corpo della brutta belva"
+  },
+  "benevola": {
+   "es": [
+    "benevolente",
+    "bondadoso"
+   ],
+   "base": "benevolo",
+   "donde": "benevola che, ovunque egli girasse"
+  },
+  "bestione": {
+   "es": [
+    "bestia grande",
+    "animalote"
+   ],
+   "base": "bestione",
+   "donde": "materiale bestïone,"
+  },
+  "bevea": {
+   "es": [
+    "bebe",
+    "toma"
+   ],
+   "base": "bere",
+   "donde": "bevea cheto un Agnello,"
+  },
+  "bisaccia": {
+   "es": [
+    "morral",
+    "bolsa"
+   ],
+   "base": "bisaccia",
+   "donde": "La Bisaccia"
+  },
+  "bisogna": {
+   "es": [
+    "hace falta",
+    "es necesario"
+   ],
+   "base": "bisognare",
+   "donde": "bisogna ch’essi sputino sentenze."
+  },
+  "bisognava": {
+   "es": [
+    "hacía falta",
+    "era necesario"
+   ],
+   "base": "bisognare",
+   "donde": "Il primo: la lingua. Bisognava insegnare l'italiano a tutti."
+  },
+  "bisogno": {
+   "es": [
+    "necesidad",
+    "hace falta"
+   ],
+   "base": "bisogno",
+   "donde": "Ho bisogno ___ aiuto"
+  },
+  "blu": {
+   "es": [
+    "azul"
+   ],
+   "base": "blu",
+   "donde": "Ho uno zaino blu"
+  },
+  "borsa": {
+   "es": [
+    "bolsa",
+    "cartera"
+   ],
+   "base": "borsa",
+   "donde": "borsa"
+  },
+  "borse": {
+   "es": [
+    "bolsas",
+    "bolsos"
+   ],
+   "base": "borsa",
+   "donde": "Intanto metto la spesa nelle borse."
+  },
+  "bottin": {
+   "es": [
+    "botín",
+    "saqueo"
+   ],
+   "base": "bottino",
+   "donde": "Tratta dal buon bottin ecco una banda"
+  },
+  "bravo": {
+   "es": [
+    "genio",
+    "capo",
+    "bueno"
+   ],
+   "base": "bravo",
+   "donde": "Sei stato molto bravo"
+  },
+  "brillano": {
+   "es": [
+    "brillan",
+    "resplandecen"
+   ],
+   "base": "brillare",
+   "donde": "onde brillano i due santi gemelli"
+  },
+  "brizzolato": {
+   "es": [
+    "canoso",
+    "entrecano"
+   ],
+   "base": "brizzolato",
+   "donde": "Un Uom, già stagionato e brizzolato,"
+  },
+  "brontoloni": {
+   "es": [
+    "gruñón",
+    "rezongón"
+   ],
+   "base": "brontolone",
+   "donde": "e brontoloni e critici ignoranti,"
+  },
+  "buongiorno": {
+   "es": [
+    "buen día",
+    "hola"
+   ],
+   "base": "buongiorno",
+   "donde": "«Buongiorno,» ha detto Elena. «Sono Elena Ricci.»"
+  },
+  "burbanza": {
+   "es": [
+    "arrogancia",
+    "soberbia"
+   ],
+   "base": "burbanza",
+   "donde": "la stupida burbanza magistrale."
+  },
+  "cagione": {
+   "es": [
+    "causa",
+    "motivo"
+   ],
+   "base": "cagione",
+   "donde": "del nemico ei fu cagione"
+  },
+  "campagnol": {
+   "es": [
+    "campesino",
+    "rural"
+   ],
+   "base": "campagnolo",
+   "donde": "Un Topo campagnol venne invitato"
+  },
+  "cangiando": {
+   "es": [
+    "cambiando",
+    "modificando"
+   ],
+   "base": "cambiare",
+   "donde": "- Ti legano? - esclamò cangiando tono. -"
+  },
+  "capitato": {
+   "es": [
+    "pasó",
+    "ocurrió"
+   ],
+   "base": "capitare",
+   "donde": "strano, ma ver, ch’è capitato a me."
+  },
+  "capponi": {
+   "es": [
+    "capones"
+   ],
+   "base": "cappone",
+   "donde": "di carne e d’ossa, d’anitre e capponi,"
+  },
+  "capretta": {
+   "es": [
+    "cabrita"
+   ],
+   "base": "capretta",
+   "donde": "un cervo nella fossa un dì della capretta,"
+  },
+  "carezzandogli": {
+   "es": [
+    "acariciándole"
+   ],
+   "base": "accarezzare",
+   "donde": "per vezzo carezzandogli la testa,"
+  },
+  "carlona": {
+   "es": [
+    "a la bartola",
+    "desprolijamente",
+    "a la que te criaste"
+   ],
+   "base": "carlona",
+   "donde": "vivean sì sconosciuti alla carlona,"
+  },
+  "cartellina": {
+   "es": [
+    "carpeta",
+    "folio"
+   ],
+   "base": "cartellina",
+   "donde": "cartellina"
+  },
+  "cassa": {
+   "es": [
+    "caja",
+    "efectivo",
+    "tesorería"
+   ],
+   "base": "cassa",
+   "donde": "cassa/casse"
+  },
+  "casse": {
+   "es": [
+    "cajas",
+    "cajones"
+   ],
+   "base": "cassa",
+   "donde": "cassa/casse"
+  },
+  "cassiera": {
+   "es": [
+    "cajera"
+   ],
+   "base": "cassiera",
+   "donde": "cassiera"
+  },
+  "cheto": {
+   "es": [
+    "tranquilo",
+    "calmo"
+   ],
+   "base": "cheto",
+   "donde": "bevea cheto un Agnello,"
+  },
+  "chiamarlo": {
+   "es": [
+    "llamarlo"
+   ],
+   "base": "chiamare",
+   "donde": "Dovrò chiamarlo domani"
+  },
+  "chiamarti": {
+   "es": [
+    "llamarte"
+   ],
+   "base": "chiamare",
+   "donde": "Volevo chiamarti ieri"
+  },
+  "chiederle": {
+   "es": [
+    "preguntarle",
+    "pedirle"
+   ],
+   "base": "chiedere",
+   "donde": "«Rosa, posso chiederle una cosa?»"
+  },
+  "chiederti": {
+   "es": [
+    "preguntarte",
+    "pedirte"
+   ],
+   "base": "chiedere",
+   "donde": "«Posso chiederti una cosa?» ha detto Elena."
+  },
+  "ciascuna": {
+   "es": [
+    "cada una"
+   ],
+   "base": "ciascuno",
+   "donde": "fosse a ciascuna d’esse somigliante."
+  },
+  "civilta": {
+   "es": [
+    "cortesía",
+    "educación",
+    "urbanidad"
+   ],
+   "base": "civiltà",
+   "donde": "con molta civiltà"
+  },
+  "codesti": {
+   "es": [
+    "esos",
+    "aquellos"
+   ],
+   "base": "codesto",
+   "donde": "codesti grani subito mangiate -."
+  },
+  "colpo": {
+   "es": [
+    "de repente",
+    "de golpe"
+   ],
+   "base": "colpo",
+   "donde": "di colpo"
+  },
+  "comandare": {
+   "es": [
+    "mandar",
+    "dar órdenes"
+   ],
+   "base": "comandare",
+   "donde": "Comandavano senza comandare. Era la loro specialità."
+  },
+  "comandavano": {
+   "es": [
+    "mandaban",
+    "gobernaban"
+   ],
+   "base": "comandare",
+   "donde": "Non comandavano con le leggi, comandavano con il denaro."
+  },
+  "combatto": {
+   "es": [
+    "peleo",
+    "lucho"
+   ],
+   "base": "combattere",
+   "donde": "Oggi combatto per te, l'anno prossimo contro di te."
+  },
+  "combattuto": {
+   "es": [
+    "peleó",
+    "luchó"
+   ],
+   "base": "combattere",
+   "donde": "Ha combattuto anche in Sud America, in Brasile e in Uruguay."
+  },
+  "compassione": {
+   "es": [
+    "compasión",
+    "lástima"
+   ],
+   "base": "compassione",
+   "donde": "Ma una grande compassione"
+  },
+  "compenso": {
+   "es": [
+    "remuneración",
+    "pago",
+    "sueldo"
+   ],
+   "base": "compenso",
+   "donde": "se dal lavor ritrae qualche compenso."
+  },
+  "comunella": {
+   "es": [
+    "compinche",
+    "alianza",
+    "complicidad"
+   ],
+   "base": "comunella",
+   "donde": "Si narra che una volta stringesser comunella"
+  },
+  "condottiero": {
+   "es": [
+    "mercenario",
+    "jefe militar"
+   ],
+   "base": "condottiero",
+   "donde": "In italiano si dice condottiero: chi affitta il suo esercito."
+  },
+  "confezione": {
+   "es": [
+    "envase",
+    "paquete",
+    "confección"
+   ],
+   "base": "confezione",
+   "donde": "confezione"
+  },
+  "confronto": {
+   "es": [
+    "comparación",
+    "cotejo"
+   ],
+   "base": "confronto",
+   "donde": "senza tema di confronto."
+  },
+  "congiura": {
+   "es": [
+    "conspiración",
+    "complot"
+   ],
+   "base": "congiura",
+   "donde": "Dietro alla congiura non c'erano solo i Pazzi."
+  },
+  "congiurati": {
+   "es": [
+    "conspiradores",
+    "golpistas"
+   ],
+   "base": "congiurato",
+   "donde": "La folla trovò i congiurati uno per uno."
+  },
+  "conoscendolo": {
+   "es": [
+    "conociéndolo",
+    "sabiendo cómo es"
+   ],
+   "base": "conoscere",
+   "donde": "Conoscendolo, non mi sorprende"
+  },
+  "conquistato": {
+   "es": [
+    "conquistado",
+    "logrado",
+    "ganado"
+   ],
+   "base": "conquistare",
+   "donde": "Tutto quello che ha conquistato, glielo regala."
+  },
+  "conquisto": {
+   "es": [
+    "conquistó",
+    "tomó"
+   ],
+   "base": "conquistare",
+   "donde": "Conquistò mezza Italia centrale in tre anni."
+  },
+  "consigliere": {
+   "es": [
+    "consejero",
+    "asesor"
+   ],
+   "base": "consigliere",
+   "donde": "tacito consigliere delle belle."
+  },
+  "contentarli": {
+   "es": [
+    "conformarlos",
+    "satisfacerlos"
+   ],
+   "base": "contentare",
+   "donde": "se si possa contentarli -."
+  },
+  "contrastarmi": {
+   "es": [
+    "llevarme la contra",
+    "oponerse"
+   ],
+   "base": "contrastare",
+   "donde": "e se la quarta qualcuno osasse contrastarmi"
+  },
+  "conveniente": {
+   "es": [
+    "adecuado",
+    "apropiado",
+    "conveniente"
+   ],
+   "base": "conveniente",
+   "donde": "conveniente"
+  },
+  "coppieri": {
+   "es": [
+    "copero",
+    "camarero"
+   ],
+   "base": "coppiere",
+   "donde": "e piatti rompe e va sopra ai coppieri."
+  },
+  "corpaccio": {
+   "es": [
+    "cuerpazo",
+    "cuerpo grande"
+   ],
+   "base": "corpaccio",
+   "donde": "con un sol capo sopra un gran corpaccio,"
+  },
+  "cospetto": {
+   "es": [
+    "presencia",
+    "frente a"
+   ],
+   "base": "cospetto",
+   "donde": "del suo paese, che al cospetto un zero"
+  },
+  "costiera": {
+   "es": [
+    "costa",
+    "litoral"
+   ],
+   "base": "costiera",
+   "donde": "Una settimana in Costiera Amalfitana"
+  },
+  "costringerli": {
+   "es": [
+    "obligarlos",
+    "forzarlos"
+   ],
+   "base": "costringere",
+   "donde": "costringerli a mangiar roba indigesta"
+  },
+  "costui": {
+   "es": [
+    "este tipo",
+    "este sujeto"
+   ],
+   "base": "costui",
+   "donde": "A sua volta anche costui,"
+  },
+  "crepacci": {
+   "es": [
+    "grietas",
+    "hendiduras"
+   ],
+   "base": "crepaccio",
+   "donde": "dentro i crepacci d’un cadente muro -."
+  },
+  "cristal": {
+   "es": [
+    "cristal",
+    "vidrio"
+   ],
+   "base": "cristallo",
+   "donde": "ch’ei non può dal cristal torcer lo sguardo."
+  },
+  "cronache": {
+   "es": [
+    "crónicas",
+    "noticias"
+   ],
+   "base": "cronaca",
+   "donde": "Diecimila persone, dicono le cronache."
+  },
+  "d'ambo": {
+   "es": [
+    "de ambos",
+    "de los dos"
+   ],
+   "base": "ambo",
+   "donde": "d’ambo le parti e con furore tale,"
+  },
+  "d'anitre": {
+   "es": [
+    "pato"
+   ],
+   "base": "anatra",
+   "donde": "di carne e d’ossa, d’anitre e capponi,"
+  },
+  "d'eloquenza": {
+   "es": [
+    "elocuencia"
+   ],
+   "base": "eloquenza",
+   "donde": "e sparse d’eloquenza i più bei fiori"
+  },
+  "d'illusion": {
+   "es": [
+    "desengaño",
+    "desilusión"
+   ],
+   "base": "disinganno",
+   "donde": "Per trarlo d’illusion fece la sorte"
+  },
+  "d'intorbidar": {
+   "es": [
+    "enturbiar",
+    "ensuciar"
+   ],
+   "base": "intorbidare",
+   "donde": "d’intorbidar la fonte mia così?"
+  },
+  "dagli": {
+   "es": [
+    "de los"
+   ],
+   "base": "da",
+   "donde": "dagli arbusti tirò"
+  },
+  "dall'impaccio": {
+   "es": [
+    "apuro",
+    "dificultad",
+    "traba"
+   ],
+   "base": "impaccio",
+   "donde": "a poco a poco fuori dall’impaccio."
+  },
+  "dargli": {
+   "es": [
+    "darle",
+    "matarlo"
+   ],
+   "base": "dare",
+   "donde": "che pensò di dargli morte"
+  },
+  "darti": {
+   "es": [
+    "angustiarse",
+    "afligirse"
+   ],
+   "base": "darsi",
+   "donde": "- Suvvia non darti pena,"
+  },
+  "davanti": {
+   "es": [
+    "delante",
+    "enfrente"
+   ],
+   "base": "davanti",
+   "donde": "gli facea balenar davanti questo"
+  },
+  "decenni": {
+   "es": [
+    "décadas"
+   ],
+   "base": "decennio",
+   "donde": "Il buco era lì, aperto, da decenni. Quando pioveva, pioveva dentro."
+  },
+  "dell'adulator": {
+   "es": [
+    "adulador",
+    "chupamedias"
+   ],
+   "base": "adulatore",
+   "donde": "chi dell’adulator paga le spese."
+  },
+  "dell'affanno": {
+   "es": [
+    "angustia",
+    "desasosiego",
+    "aflicción"
+   ],
+   "base": "affanno",
+   "donde": "Andate pure a prender dell’affanno"
+  },
+  "dell'app": {
+   "es": [
+    "de la aplicación"
+   ],
+   "base": "app",
+   "donde": "Io sono Lorenzo e questo è il podcast dell'app Tukyliano."
+  },
+  "denunce": {
+   "es": [
+    "denuncias",
+    "acusaciones"
+   ],
+   "base": "denuncia",
+   "donde": "Buchi dove si infilavano denunce contro i vicini."
+  },
+  "dicea": {
+   "es": [
+    "decía"
+   ],
+   "base": "dire",
+   "donde": "ch’ei dicea tutti falsi e accusatori."
+  },
+  "dicean": {
+   "es": [
+    "dicen",
+    "aseguran"
+   ],
+   "base": "dire",
+   "donde": "dicean d’aver veduto bestie alate"
+  },
+  "diecimila": {
+   "es": [
+    "diez mil"
+   ],
+   "base": "diecimila",
+   "donde": "Diecimila persone, dicono le cronache."
+  },
+  "digrignando": {
+   "es": [
+    "gruñendo",
+    "mostrando los dientes"
+   ],
+   "base": "digrignare",
+   "donde": "risponde il Lupo digrignando i denti, -"
+  },
+  "dimanda": {
+   "es": [
+    "pregunta",
+    "consulta"
+   ],
+   "base": "domanda",
+   "donde": "le dimanda chiaro e netto:"
+  },
+  "dimmi": {
+   "es": [
+    "decime",
+    "decime vos"
+   ],
+   "base": "dire",
+   "donde": "dimmi"
+  },
+  "dimostrare": {
+   "es": [
+    "demostrar",
+    "probar"
+   ],
+   "base": "dimostrare",
+   "donde": "Vuol dimostrare questa favoletta"
+  },
+  "dipende": {
+   "es": [
+    "depende"
+   ],
+   "base": "dipendere",
+   "donde": "Dipende da chi paga meglio."
+  },
+  "dipresso": {
+   "es": [
+    "más o menos",
+    "aproximadamente"
+   ],
+   "base": "dipresso",
+   "donde": "non vi sembra che a un dipresso"
+  },
+  "direttore": {
+   "es": [
+    "director",
+    "gerente",
+    "jefe"
+   ],
+   "base": "direttore",
+   "donde": "Lui conosce il direttore"
+  },
+  "dirle": {
+   "es": [
+    "decirle"
+   ],
+   "base": "dire",
+   "donde": "«Ma io devo dirle una cosa.»"
+  },
+  "dirlo": {
+   "es": [
+    "decirlo",
+    "ni lo digas"
+   ],
+   "base": "dire",
+   "donde": "non dirlo mai"
+  },
+  "dirmi": {
+   "es": [
+    "decirme"
+   ],
+   "base": "dire",
+   "donde": "Cosa volevi dirmi?"
+  },
+  "dirti": {
+   "es": [
+    "decirte"
+   ],
+   "base": "dire",
+   "donde": "Devo dirti anche la parte che non si racconta mai."
+  },
+  "disadatto": {
+   "es": [
+    "inadaptado",
+    "desubicado"
+   ],
+   "base": "disadatto",
+   "donde": "così rozzo e disadatto,"
+  },
+  "discende": {
+   "es": [
+    "baja",
+    "desciende"
+   ],
+   "base": "discendere",
+   "donde": "Ma specchio ancora, o illusion, discende"
+  },
+  "disgraziato": {
+   "es": [
+    "desgraciado",
+    "infeliz"
+   ],
+   "base": "disgraziato",
+   "donde": "La Morte e il Disgraziato"
+  },
+  "dispensa": {
+   "es": [
+    "alacena",
+    "despensa"
+   ],
+   "base": "dispensa",
+   "donde": "dispensa"
+  },
+  "dispetto": {
+   "es": [
+    "malicia",
+    "fastidio",
+    "despecho"
+   ],
+   "base": "dispetto",
+   "donde": "Ma il pranzo fu servito per dispetto"
+  },
+  "disputavan": {
+   "es": [
+    "discutían",
+    "peleaban"
+   ],
+   "base": "disputare",
+   "donde": "e a pugni il disputavan fra di loro:"
+  },
+  "dotta": {
+   "es": [
+    "culta",
+    "erudita"
+   ],
+   "base": "dotto",
+   "donde": "razza dotta più in chiacchiere che in scienze,"
+  },
+  "dov'e": {
+   "es": [
+    "dónde"
+   ],
+   "base": "dove",
+   "donde": "Non so dov'è"
+  },
+  "ducale": {
+   "es": [
+    "ducal",
+    "del palacio"
+   ],
+   "base": "ducale",
+   "donde": "Alcune si vedono ancora oggi, a Palazzo Ducale."
+  },
+  "duemilanove": {
+   "es": [
+    "dos mil nueve"
+   ],
+   "base": "duemilanove",
+   "donde": "«Madre: Teresa Ricci, morta nel duemilanove.»"
+  },
+  "duomo": {
+   "es": [
+    "catedral"
+   ],
+   "base": "duomo",
+   "donde": "Il Duomo di Firenze era pieno di gente."
+  },
+  "eleggerlo": {
+   "es": [
+    "elegirlo",
+    "escogerlo"
+   ],
+   "base": "eleggere",
+   "donde": "E per eleggerlo inventarono un sistema assurdo."
+  },
+  "emigrazione": {
+   "es": [
+    "emigración",
+    "exilio"
+   ],
+   "base": "emigrazione",
+   "donde": "L'Italia unita e la grande emigrazione nascono quasi insieme."
+  },
+  "facea": {
+   "es": [
+    "hacía"
+   ],
+   "base": "fare",
+   "donde": "gli facea balenar davanti questo"
+  },
+  "facean": {
+   "es": [
+    "hacían",
+    "le cortejaban"
+   ],
+   "base": "fare",
+   "donde": "che gli facean la corte."
+  },
+  "fardello": {
+   "es": [
+    "carga",
+    "peso"
+   ],
+   "base": "fardello",
+   "donde": "perché mi aiuti a reggere un po’ questo fardello -."
+  },
+  "fargli": {
+   "es": [
+    "hacerle"
+   ],
+   "base": "fare",
+   "donde": "certissima di fargli un gran favor."
+  },
+  "farla": {
+   "es": [
+    "hacerla"
+   ],
+   "base": "fare",
+   "donde": "Brunelleschi dice che lui sa come farla."
+  },
+  "farlo": {
+   "es": [
+    "hacerlo"
+   ],
+   "base": "fare",
+   "donde": "Disse che non voleva farlo dentro una chiesa."
+  },
+  "farmi": {
+   "es": [
+    "hacerme"
+   ],
+   "base": "fare",
+   "donde": "mi può piegar, non farmi troppo male,"
+  },
+  "farvi": {
+   "es": [
+    "hacerles",
+    "hacerte"
+   ],
+   "base": "fare",
+   "donde": "farvi nascer di solito alla riva"
+  },
+  "fastel": {
+   "es": [
+    "atado",
+    "haz",
+    "fajo"
+   ],
+   "base": "fastello",
+   "donde": "Sotto un fastel di legna, non men che sotto il peso"
+  },
+  "fatela": {
+   "es": [
+    "hacétela",
+    "haganla"
+   ],
+   "base": "farsi",
+   "donde": "fatela"
+  },
+  "fatterelli": {
+   "es": [
+    "cuentitos",
+    "anécdotas"
+   ],
+   "base": "fatterello",
+   "donde": "con tal copia di storie e fatterelli,"
+  },
+  "favoletta": {
+   "es": [
+    "cuentito",
+    "fábula corta"
+   ],
+   "base": "favoletta",
+   "donde": "Vuol dimostrare questa favoletta"
+  },
+  "fecegli": {
+   "es": [
+    "hacerle",
+    "cagarle"
+   ],
+   "base": "fare",
+   "donde": "senza processo fecegli la festa."
+  },
+  "fetta": {
+   "es": [
+    "porción",
+    "tajada"
+   ],
+   "base": "fetta",
+   "donde": "Ho ___ via una fetta di torta."
+  },
+  "fiato": {
+   "es": [
+    "aliento",
+    "aire"
+   ],
+   "base": "fiato",
+   "donde": "pesto, monco, senza fiato"
+  },
+  "ficcatemi": {
+   "es": [
+    "métanme",
+    "acuéstenme"
+   ],
+   "base": "ficcare",
+   "donde": "- Voi ficcatemi in un letto,"
+  },
+  "figurarsi": {
+   "es": [
+    "¡ni hablar!",
+    "¡imaginate!",
+    "¡por favor!"
+   ],
+   "base": "figurarsi",
+   "donde": "Una bestia, figurarsi!"
+  },
+  "fiorino": {
+   "es": [
+    "florín"
+   ],
+   "base": "fiorino",
+   "donde": "La sua moneta, il fiorino, valeva ovunque."
+  },
+  "fischiate": {
+   "es": [
+    "silbidos",
+    "chiflidos"
+   ],
+   "base": "fischiare",
+   "donde": "Ma gli Uccelli risposero a fischiate."
+  },
+  "fissato": {
+   "es": [
+    "obsesionado",
+    "encaprichado"
+   ],
+   "base": "fissato",
+   "donde": "era fissato"
+  },
+  "fisso": {
+   "es": [
+    "concentrado",
+    "absorto",
+    "fijo"
+   ],
+   "base": "fisso",
+   "donde": "si dava l’aria, in ciò fisso e beato,"
+  },
+  "foresta": {
+   "es": [
+    "bosque",
+    "selva"
+   ],
+   "base": "foresta",
+   "donde": "Così dicendo, in mezzo alla foresta"
+  },
+  "formicaio": {
+   "es": [
+    "hormiguero"
+   ],
+   "base": "formicaio",
+   "donde": "interroga un intero formicaio,"
+  },
+  "frollo": {
+   "es": [
+    "flojo",
+    "blando",
+    "débil"
+   ],
+   "base": "frollo",
+   "donde": "gli venne visto spelacchiato e frollo"
+  },
+  "frontiera": {
+   "es": [
+    "frontera",
+    "aduana"
+   ],
+   "base": "frontiera",
+   "donde": "A ogni frontiera c'erano i documenti e le tasse."
+  },
+  "frontiere": {
+   "es": [
+    "fronteras",
+    "límites"
+   ],
+   "base": "frontiera",
+   "donde": "frontiere"
+  },
+  "furba": {
+   "es": [
+    "astuta",
+    "pícara"
+   ],
+   "base": "furbo",
+   "donde": "la Cicogna invitò la furba amica,"
+  },
+  "furore": {
+   "es": [
+    "furia",
+    "rabia"
+   ],
+   "base": "furore",
+   "donde": "d’ambo le parti e con furore tale,"
+  },
+  "fusolate": {
+   "es": [
+    "ahusado",
+    "fusiforme"
+   ],
+   "base": "fusolato",
+   "donde": "giallo-nere, ronzanti e fusolate,"
+  },
+  "gabbamondo": {
+   "es": [
+    "engañador",
+    "estafador"
+   ],
+   "base": "gabbamondo",
+   "donde": "ma non così Madonna Gabbamondo,"
+  },
+  "galante": {
+   "es": [
+    "coqueto",
+    "galán",
+    "caballeroso"
+   ],
+   "base": "galante",
+   "donde": "per fare che il galante"
+  },
+  "garantirti": {
+   "es": [
+    "asegurar",
+    "garantizar"
+   ],
+   "base": "garantire",
+   "donde": "può garantirti il legno della schiena? -"
+  },
+  "generatore": {
+   "es": [
+    "generador",
+    "grupo electrógeno"
+   ],
+   "base": "generatore",
+   "donde": "Stefano ha acceso il generatore."
+  },
+  "ghiotta": {
+   "es": [
+    "glotón",
+    "comilón"
+   ],
+   "base": "ghiotto",
+   "donde": "Inutil dir che quella gente ghiotta"
+  },
+  "ghiotto": {
+   "es": [
+    "glotón",
+    "comilón"
+   ],
+   "base": "ghiotto",
+   "donde": "se ne partì quell’animale ghiotto"
+  },
+  "ghiottonerie": {
+   "es": [
+    "manjares",
+    "delicias"
+   ],
+   "base": "ghiottoneria",
+   "donde": "ghiottonerie da re,"
+  },
+  "giallonere": {
+   "es": [
+    "amarillo y negro"
+   ],
+   "base": "giallonero",
+   "donde": "giallo-nere, ronzanti e fusolate,"
+  },
+  "giovarti": {
+   "es": [
+    "ayudarte",
+    "serte útil"
+   ],
+   "base": "giovare",
+   "donde": "posso giovarti? - O grazie, soltanto ti chiamai,"
+  },
+  "girasse": {
+   "es": [
+    "diera vueltas",
+    "mirara"
+   ],
+   "base": "girare",
+   "donde": "benevola che, ovunque egli girasse"
+  },
+  "giro": {
+   "es": [
+    "orientó",
+    "dirigió"
+   ],
+   "base": "girare",
+   "donde": "girò la vela al vento,"
+  },
+  "giudizio": {
+   "es": [
+    "sentido común",
+    "juicio",
+    "madurez"
+   ],
+   "base": "giudizio",
+   "donde": "di prender moglie e mettere giudizio."
+  },
+  "glieli": {
+   "es": [
+    "se los",
+    "se los hizo"
+   ],
+   "base": "glielo",
+   "donde": "glieli ha fatti firmare"
+  },
+  "glielo": {
+   "es": [
+    "se lo"
+   ],
+   "base": "glielo",
+   "donde": "Ma non vuole spiegare il metodo, per paura che glielo rubino."
+  },
+  "gnocco": {
+   "es": [
+    "ñoqui",
+    "tonto"
+   ],
+   "base": "gnocco",
+   "donde": "gnocco"
+  },
+  "granello": {
+   "es": [
+    "granito",
+    "pizca"
+   ],
+   "base": "granello",
+   "donde": "senza più un granello e senza"
+  },
+  "guardami": {
+   "es": [
+    "mírame"
+   ],
+   "base": "guardare",
+   "donde": "- Guardami adesso, - esclama in aria tronfia, -"
+  },
+  "guardarmi": {
+   "es": [
+    "mirarme"
+   ],
+   "base": "guardare",
+   "donde": "Lei ___ via senza guardarmi."
+  },
+  "illustri": {
+   "es": [
+    "distinguidos",
+    "notables",
+    "ilustres"
+   ],
+   "base": "illustre",
+   "donde": "degl’impieghi illustri ed alti, -"
+  },
+  "imo": {
+   "es": [
+    "lo más profundo",
+    "fondo"
+   ],
+   "base": "imo",
+   "donde": "e le barbe nel Regno imo dei morti."
+  },
+  "impalcatura": {
+   "es": [
+    "andamio",
+    "estructura"
+   ],
+   "base": "impalcatura",
+   "donde": "impalcatura"
+  },
+  "impiccati": {
+   "es": [
+    "ahorcados"
+   ],
+   "base": "impiccato",
+   "donde": "Un ragazzo di ventisei anni disegnò uno degli impiccati."
+  },
+  "impiccato": {
+   "es": [
+    "ahorcado"
+   ],
+   "base": "impiccare",
+   "donde": "L'arcivescovo fu impiccato alle finestre del palazzo del governo."
+  },
+  "indizio": {
+   "es": [
+    "pista",
+    "señal",
+    "indicio"
+   ],
+   "base": "indizio",
+   "donde": "che ai naviganti indizio"
+  },
+  "infelice": {
+   "es": [
+    "infeliz",
+    "desdichado"
+   ],
+   "base": "infelice",
+   "donde": "- Infelice nel mondo è il tuo destino:"
+  },
+  "infilavano": {
+   "es": [
+    "metían",
+    "introducían"
+   ],
+   "base": "infilare",
+   "donde": "Buchi dove si infilavano denunce contro i vicini."
+  },
+  "ingaggiato": {
+   "es": [
+    "contratado",
+    "reclutado"
+   ],
+   "base": "ingaggiare",
+   "donde": "Il soldato professionista che avevano ingaggiato si era rifiutato."
+  },
+  "ingresso": {
+   "es": [
+    "entrada",
+    "ingreso"
+   ],
+   "base": "ingresso",
+   "donde": "ingresso"
+  },
+  "iniziare": {
+   "es": [
+    "empezar",
+    "arrancar"
+   ],
+   "base": "iniziare",
+   "donde": "Lei potrà iniziare lunedì"
+  },
+  "innalzo": {
+   "es": [
+    "levanto",
+    "alzo"
+   ],
+   "base": "innalzare",
+   "donde": "non solo innalzo contro il sol la cresta,"
+  },
+  "innamorato": {
+   "es": [
+    "enamorado",
+    "novio"
+   ],
+   "base": "innamorato",
+   "donde": "e strappa e strappa, il nostro innamorato"
+  },
+  "innanzi": {
+   "es": [
+    "delante",
+    "enfrente"
+   ],
+   "base": "innanzi",
+   "donde": "Dentro a quella che sta innanzi"
+  },
+  "insidie": {
+   "es": [
+    "trampas",
+    "engaños",
+    "asechanzas"
+   ],
+   "base": "insidia",
+   "donde": "per voi semina insidie quella mano."
+  },
+  "intanto": {
+   "es": [
+    "mientras tanto",
+    "por ahora"
+   ],
+   "base": "intanto",
+   "donde": "intanto"
+  },
+  "interessa": {
+   "es": [
+    "te importe",
+    "te interese"
+   ],
+   "base": "interessare",
+   "donde": "Arriviamo ai tre nomi che conosci anche se non ti interessa l'arte."
+  },
+  "intorbidare": {
+   "es": [
+    "enturbiar",
+    "nublar"
+   ],
+   "base": "intorbidare",
+   "donde": "della regal sua fonte intorbidare."
+  },
+  "irta": {
+   "es": [
+    "lleno",
+    "espinoso",
+    "difícil"
+   ],
+   "base": "irto",
+   "donde": "che fanno a un pover’uomo la vita irta di spine."
+  },
+  "ispeglio": {
+   "es": [
+    "espejo"
+   ],
+   "base": "specchio",
+   "donde": "gli altrui difetti in cui come in ispeglio"
+  },
+  "l'angherie": {
+   "es": [
+    "abusos",
+    "vejaciones",
+    "extorsiones"
+   ],
+   "base": "angheria",
+   "donde": "la moglie, i figli, i debiti, le tasse e l’angherie"
+  },
+  "l'attira": {
+   "es": [
+    "la atrae"
+   ],
+   "base": "attirare",
+   "donde": "sgorga e l’attira di sì strano incanto"
+  },
+  "l'impalcatura": {
+   "es": [
+    "andamio"
+   ],
+   "base": "impalcatura",
+   "donde": "La costruisce senza l'impalcatura di legno che usavano tutti."
+  },
+  "l'intorbidi": {
+   "es": [
+    "enturbiás",
+    "nublás"
+   ],
+   "base": "intorbidire",
+   "donde": "- Io dico che l’intorbidi, - arrabbiato"
+  },
+  "l'istesso": {
+   "es": [
+    "el mismo",
+    "igual"
+   ],
+   "base": "lo stesso",
+   "donde": "fa l’istesso panegirico"
+  },
+  "l'ombrellone": {
+   "es": [
+    "sombrilla"
+   ],
+   "base": "ombrellone",
+   "donde": "Anna dorme sotto l'ombrellone."
+  },
+  "lacci": {
+   "es": [
+    "lazos",
+    "trampas"
+   ],
+   "base": "laccio",
+   "donde": "il far con lacci e trappole la guerra."
+  },
+  "lamentarsi": {
+   "es": [
+    "quejarse",
+    "lamentarse"
+   ],
+   "base": "lamentarsi",
+   "donde": "se volesse lamentarsi?"
+  },
+  "lassu": {
+   "es": [
+    "allá arriba",
+    "en el cielo"
+   ],
+   "base": "lassù",
+   "donde": "e a un uomo tanto caro a Quei lassù"
+  },
+  "latta": {
+   "es": [
+    "hojalata"
+   ],
+   "base": "latta",
+   "donde": "scatola di latta"
+  },
+  "latticini": {
+   "es": [
+    "lácteos",
+    "productos lácteos"
+   ],
+   "base": "latticino",
+   "donde": "latticini"
+  },
+  "leccornia": {
+   "es": [
+    "manjar",
+    "delicia"
+   ],
+   "base": "leccornia",
+   "donde": "mangiavan quella grassa leccornia"
+  },
+  "lieta": {
+   "es": [
+    "alegre",
+    "contenta"
+   ],
+   "base": "lieto",
+   "donde": "in lieta compagnia -."
+  },
+  "lieto": {
+   "es": [
+    "contento",
+    "alegre"
+   ],
+   "base": "lieto",
+   "donde": "lieto ciascun del suo miglior umore."
+  },
+  "litania": {
+   "es": [
+    "cantinela",
+    "retahíla"
+   ],
+   "base": "litania",
+   "donde": "senza tutta la lunga litania"
+  },
+  "litiganti": {
+   "es": [
+    "litigantes",
+    "pleiteadores"
+   ],
+   "base": "litigante",
+   "donde": "e non restan che i gusci ai litiganti."
+  },
+  "lumicino": {
+   "es": [
+    "las últimas",
+    "agonizante"
+   ],
+   "base": "lumicino",
+   "donde": "Un Lupo già ridotto al lumicino"
+  },
+  "luogo": {
+   "es": [
+    "lugar",
+    "zona",
+    "paraje"
+   ],
+   "base": "luogo",
+   "donde": "col gran signor del luogo che detto era Leone,"
+  },
+  "m'innamora": {
+   "es": [
+    "me enamora",
+    "me cautiva"
+   ],
+   "base": "innamorare",
+   "donde": "non è una vita, no, che m’innamora -."
+  },
+  "madonna": {
+   "es": [
+    "señora",
+    "virgen"
+   ],
+   "base": "madonna",
+   "donde": "ma non così Madonna Gabbamondo,"
+  },
+  "magari": {
+   "es": [
+    "ojalá",
+    "quizás"
+   ],
+   "base": "magari",
+   "donde": "Magari si facesse ogni processo,"
+  },
+  "maggiore": {
+   "es": [
+    "hermano mayor"
+   ],
+   "base": "maggiore",
+   "donde": "Sono il fratello maggiore"
+  },
+  "magistrale": {
+   "es": [
+    "soberbio",
+    "arrogante",
+    "majestuoso"
+   ],
+   "base": "magistrale",
+   "donde": "la stupida burbanza magistrale."
+  },
+  "malandrina": {
+   "es": [
+    "pícaro",
+    "astuto",
+    "bandido"
+   ],
+   "base": "malandrino",
+   "donde": "come una vecchia volpe malandrina"
+  },
+  "malcontenti": {
+   "es": [
+    "descontentos",
+    "insatisfechos"
+   ],
+   "base": "malcontento",
+   "donde": "animali malcontenti"
+  },
+  "malora": {
+   "es": [
+    "arruinarse",
+    "echarse a perder"
+   ],
+   "base": "andare in malora",
+   "donde": "Il miele va in malora e a danno nostro;"
+  },
+  "malviventi": {
+   "es": [
+    "delincuentes",
+    "malvivientes",
+    "chorros"
+   ],
+   "base": "malvivente",
+   "donde": "a cui tocca di questi malviventi!"
+  },
+  "malvolentieri": {
+   "es": [
+    "de mala gana",
+    "sin ganas"
+   ],
+   "base": "malvolentieri",
+   "donde": "di prestar malvolentieri,"
+  },
+  "menar": {
+   "es": [
+    "mover",
+    "agitar"
+   ],
+   "base": "menare",
+   "donde": "in pagamento del menar la coda -."
+  },
+  "mercanti": {
+   "es": [
+    "comerciantes",
+    "mercaderes"
+   ],
+   "base": "mercante",
+   "donde": "Era una repubblica di mercanti e di banchieri."
+  },
+  "merciai": {
+   "es": [
+    "vendedor",
+    "mercachifle"
+   ],
+   "base": "merciaio",
+   "donde": "de’ merciai, specchi in petto ai bellimbusti"
+  },
+  "meschinello": {
+   "es": [
+    "pobrecito",
+    "desdichado"
+   ],
+   "base": "meschinello",
+   "donde": "portato il meschinello,"
+  },
+  "metterli": {
+   "es": [
+    "ponerlos",
+    "colocarlos"
+   ],
+   "base": "mettere",
+   "donde": "metterli"
+  },
+  "millantatore": {
+   "es": [
+    "fanfarrón",
+    "chanta",
+    "mentiroso"
+   ],
+   "base": "millantatore",
+   "donde": "così millantatore"
+  },
+  "monco": {
+   "es": [
+    "manco",
+    "discapacitado"
+   ],
+   "base": "monco",
+   "donde": "pesto, monco, senza fiato"
+  },
+  "monna": {
+   "es": [
+    "doña",
+    "señora"
+   ],
+   "base": "monna",
+   "donde": "Monna Volpe un bel dì fece lo spicco"
+  },
+  "moscherino": {
+   "es": [
+    "mosquito",
+    "mosquita"
+   ],
+   "base": "moscherino",
+   "donde": "la formica al moscherino."
+  },
+  "mugnaio": {
+   "es": [
+    "molinero"
+   ],
+   "base": "mugnaio",
+   "donde": "- meglio il mulo d’un mugnaio"
+  },
+  "n'e": {
+   "es": [
+    "se fue",
+    "se marchó"
+   ],
+   "base": "andarsene",
+   "donde": "se n'è andata"
+  },
+  "nastro": {
+   "es": [
+    "cinta",
+    "listón"
+   ],
+   "base": "nastro",
+   "donde": "nastro"
+  },
+  "negli": {
+   "es": [
+    "en los"
+   ],
+   "base": "in",
+   "donde": "A Firenze, negli stessi anni, uno scrive un libretto corto."
+  },
+  "nello": {
+   "es": [
+    "en el"
+   ],
+   "base": "in",
+   "donde": "Andavamo sempre nello stesso bar"
+  },
+  "nordest": {
+   "es": [
+    "noreste"
+   ],
+   "base": "nord-est",
+   "donde": "A nord-est c'erano la Lombardia e il Veneto, ma erano austriaci."
+  },
+  "obbligato": {
+   "es": [
+    "agradecido",
+    "muy reconocido"
+   ],
+   "base": "obbligato",
+   "donde": "di cui proprio vi son molto obbligato."
+  },
+  "od": {
+   "es": [
+    "o"
+   ],
+   "base": "o",
+   "donde": "In ogni cosa, a torto od a ragione,"
+  },
+  "ombrellone": {
+   "es": [
+    "sombrilla",
+    "parasol"
+   ],
+   "base": "ombrellone",
+   "donde": "ombrellone"
+  },
+  "omicidi": {
+   "es": [
+    "asesinatos",
+    "homicidios"
+   ],
+   "base": "omicidio",
+   "donde": "Pagavano la bellezza e organizzavano gli omicidi."
+  },
+  "orgogliosi": {
+   "es": [
+    "orgullosos",
+    "soberbios"
+   ],
+   "base": "orgoglioso",
+   "donde": "Antichi, orgogliosi, e stanchi di stare al secondo posto."
+  },
+  "ottantamila": {
+   "es": [
+    "ochenta mil"
+   ],
+   "base": "ottantamila",
+   "donde": "«I soldi in banca,» ha ripetuto Riccardo. «Ottantamila euro.»"
+  },
+  "ottimo": {
+   "es": [
+    "buenísimo",
+    "excelente"
+   ],
+   "base": "ottimo",
+   "donde": "ottimo"
+  },
+  "pagnotta": {
+   "es": [
+    "pan",
+    "bollo"
+   ],
+   "base": "pagnotta",
+   "donde": "pagnotta"
+  },
+  "panie": {
+   "es": [
+    "trampas",
+    "redes"
+   ],
+   "base": "pania",
+   "donde": "trappole e reti e panie ed altri affanni"
+  },
+  "papato": {
+   "es": [
+    "papado"
+   ],
+   "base": "papato",
+   "donde": "Rodrigo Borgia comprò il papato nel 1492."
+  },
+  "paradiso": {
+   "es": [
+    "paraíso",
+    "cielo"
+   ],
+   "base": "paradiso",
+   "donde": "Non era un paradiso: era sorveglianza."
+  },
+  "paternale": {
+   "es": [
+    "reto",
+    "sermón",
+    "regaño"
+   ],
+   "base": "paternale",
+   "donde": "gli somministra questa paternale:"
+  },
+  "pecchia": {
+   "es": [
+    "abeja"
+   ],
+   "base": "ape",
+   "donde": "Allor disse una Pecchia: - O non vi pare"
+  },
+  "pecchie": {
+   "es": [
+    "abeja"
+   ],
+   "base": "pecchia",
+   "donde": "alle Pecchie la Vespa giudicò."
+  },
+  "pelata": {
+   "es": [
+    "pelado",
+    "calvo"
+   ],
+   "base": "pelato",
+   "donde": "non c’è testa pelata che resista -."
+  },
+  "pelato": {
+   "es": [
+    "pelado",
+    "sin nada"
+   ],
+   "base": "pelato",
+   "donde": "di restar fra le due tutto pelato."
+  },
+  "piagnolosa": {
+   "es": [
+    "llorona",
+    "quejosa"
+   ],
+   "base": "piagnoloso",
+   "donde": "Affamata e piagnolosa"
+  },
+  "piattello": {
+   "es": [
+    "platito",
+    "platillo"
+   ],
+   "base": "piattello",
+   "donde": "servita in un piattello. Or capirete"
+  },
+  "piccina": {
+   "es": [
+    "pequeña",
+    "chiquita"
+   ],
+   "base": "piccino",
+   "donde": "per non esser del Bove più piccina."
+  },
+  "piegasi": {
+   "es": [
+    "se dobla",
+    "se inclina"
+   ],
+   "base": "piegarsi",
+   "donde": "La molle Canna piegasi,"
+  },
+  "piemontese": {
+   "es": [
+    "piamontés"
+   ],
+   "base": "piemontese",
+   "donde": "Il napoletano, il siciliano, il veneto, il piemontese."
+  },
+  "pigliarlo": {
+   "es": [
+    "tomarlo",
+    "agarrarlo"
+   ],
+   "base": "pigliare",
+   "donde": "di pigliarlo colle buone."
+  },
+  "pigliero": {
+   "es": [
+    "tomaré",
+    "agarraré"
+   ],
+   "base": "pigliare",
+   "donde": "vendetta piglierò -."
+  },
+  "piglio": {
+   "es": [
+    "agarro",
+    "tomo"
+   ],
+   "base": "pigliare",
+   "donde": "La terza me la piglio perché sono il Leone,"
+  },
+  "pingerne": {
+   "es": [
+    "pintar",
+    "dibujar"
+   ],
+   "base": "pingere",
+   "donde": "fin di pingerne il ritratto."
+  },
+  "pitocchi": {
+   "es": [
+    "pordiosero",
+    "mendigo"
+   ],
+   "base": "pitocco",
+   "donde": "abbaiare ai pitocchi ed alla luna"
+  },
+  "pochissimi": {
+   "es": [
+    "poquísimos",
+    "muy pocos"
+   ],
+   "base": "pochissimo",
+   "donde": "In ogni caso, pochissimi."
+  },
+  "pochissimo": {
+   "es": [
+    "poquísimo",
+    "casi nada"
+   ],
+   "base": "pochissimo",
+   "donde": "Vi prometto pochissimo da fare;"
+  },
+  "poveretto": {
+   "es": [
+    "pobrecito",
+    "pobre tipo"
+   ],
+   "base": "poveretto",
+   "donde": "- Poveretto, - esclama, - a morte"
+  },
+  "poveri": {
+   "es": [
+    "pobres",
+    "desdichados"
+   ],
+   "base": "povero",
+   "donde": "morir tisici! ah poveri parenti"
+  },
+  "poverino": {
+   "es": [
+    "pobrecito",
+    "pobre"
+   ],
+   "base": "poverino",
+   "donde": "Ma tanto è il male e il peso che il poverino affanna,"
+  },
+  "povero": {
+   "es": [
+    "pobre",
+    "desdichado"
+   ],
+   "base": "povero",
+   "donde": "a lui risponde il povero innocente, -"
+  },
+  "pranzetto": {
+   "es": [
+    "almuercito",
+    "comidita"
+   ],
+   "base": "pranzetto",
+   "donde": "Vide e lodò il pranzetto preparato,"
+  },
+  "precise": {
+   "es": [
+    "exactas",
+    "precisas"
+   ],
+   "base": "preciso",
+   "donde": "Sembra ovvio, ma nessuno lo faceva con regole precise."
+  },
+  "prendea": {
+   "es": [
+    "se la agarra",
+    "se enoja"
+   ],
+   "base": "prendersela",
+   "donde": "se la prendea di rabbia con gli specchi"
+  },
+  "prenderti": {
+   "es": [
+    "buscar",
+    "pasarte a buscar"
+   ],
+   "base": "prendere",
+   "donde": "Sono venuto a prenderti"
+  },
+  "prigione": {
+   "es": [
+    "cárcel",
+    "prisión"
+   ],
+   "base": "prigione",
+   "donde": "come dire la morte o la prigione."
+  },
+  "procedura": {
+   "es": [
+    "trámite",
+    "procedimiento"
+   ],
+   "base": "procedura",
+   "donde": "in carta, in procedura ed in inchiostro,"
+  },
+  "procella": {
+   "es": [
+    "tormenta",
+    "tempestad"
+   ],
+   "base": "procella",
+   "donde": "era di tempo bello o di procella."
+  },
+  "profetessa": {
+   "es": [
+    "agorera",
+    "pájaro de mal agüero"
+   ],
+   "base": "profetessa",
+   "donde": "volesse, profetessa di sventura,"
+  },
+  "pronta": {
+   "es": [
+    "rápida",
+    "lista"
+   ],
+   "base": "pronto",
+   "donde": "andò pronta all’invito."
+  },
+  "pronti": {
+   "es": [
+    "listos",
+    "preparados"
+   ],
+   "base": "pronto",
+   "donde": "Siamo pronti per uscire"
+  },
+  "pronto": {
+   "es": [
+    "listo",
+    "preparado"
+   ],
+   "base": "pronto",
+   "donde": "Sarò pronto tra poco"
+  },
+  "propizio": {
+   "es": [
+    "oportuno",
+    "favorable"
+   ],
+   "base": "propizio",
+   "donde": "credette giunto il momento propizio"
+  },
+  "protettori": {
+   "es": [
+    "protectores",
+    "patronos"
+   ],
+   "base": "protettore",
+   "donde": "degli atleti i due santi protettori."
+  },
+  "provocandolo": {
+   "es": [
+    "desafiando",
+    "provocando"
+   ],
+   "base": "provocare",
+   "donde": "provocandolo in duello."
+  },
+  "pulire": {
+   "es": [
+    "limpiar"
+   ],
+   "base": "pulire",
+   "donde": "Dovevamo pulire la casa"
+  },
+  "puliva": {
+   "es": [
+    "limpiaba"
+   ],
+   "base": "pulire",
+   "donde": "puliva"
+  },
+  "quadri": {
+   "es": [
+    "cuadros",
+    "pinturas"
+   ],
+   "base": "quadro",
+   "donde": "Ma il Rinascimento non è solo gente ricca che compra quadri."
+  },
+  "quadro": {
+   "es": [
+    "cuadro",
+    "pintura"
+   ],
+   "base": "quadro",
+   "donde": "Non è un quadro. È un modo di guardare."
+  },
+  "qualunque": {
+   "es": [
+    "cualquier",
+    "sea cual sea"
+   ],
+   "base": "qualunque",
+   "donde": "Per qualunque cosa accada,"
+  },
+  "ragazzino": {
+   "es": [
+    "pibe",
+    "chico",
+    "gurí"
+   ],
+   "base": "ragazzino",
+   "donde": "Un ragazzino di tredici anni entra così nel suo giardino."
+  },
+  "rallegra": {
+   "es": [
+    "se alegra",
+    "se regocija"
+   ],
+   "base": "rallegrarsi",
+   "donde": "il Lupo si rallegra fino al pianto."
+  },
+  "rallegrarsi": {
+   "es": [
+    "alegrarse",
+    "ponerse contento"
+   ],
+   "base": "rallegrarsi",
+   "donde": "Comincia in prima a rallegrarsi tanto"
+  },
+  "rapir": {
+   "es": [
+    "arrebatar",
+    "cautivar"
+   ],
+   "base": "rapire",
+   "donde": "che si senta rapir da una gallina."
+  },
+  "rapisce": {
+   "es": [
+    "arrebata",
+    "cautiva"
+   ],
+   "base": "rapire",
+   "donde": "è quel fiume che l’anima rapisce."
+  },
+  "razzolando": {
+   "es": [
+    "escarbando",
+    "buscando comida"
+   ],
+   "base": "razzolare",
+   "donde": "Razzolando, una Gallina"
+  },
+  "regal": {
+   "es": [
+    "real",
+    "regio"
+   ],
+   "base": "regale",
+   "donde": "della regal sua fonte intorbidare."
+  },
+  "regali": {
+   "es": [
+    "regalos",
+    "obsequios"
+   ],
+   "base": "regalo",
+   "donde": "Do i regali ___ bambini"
+  },
+  "reggere": {
+   "es": [
+    "aguantar",
+    "sostener",
+    "bancar"
+   ],
+   "base": "reggere",
+   "donde": "perché mi aiuti a reggere un po’ questo fardello -."
+  },
+  "reggono": {
+   "es": [
+    "sostenerse",
+    "aguantarse"
+   ],
+   "base": "reggere",
+   "donde": "Quattro milioni di mattoni, messi in un modo che si reggono da soli."
+  },
+  "richiama": {
+   "es": [
+    "me hace acordar",
+    "me trae a la mente"
+   ],
+   "base": "richiamare",
+   "donde": "un certo caso mi richiama in mente"
+  },
+  "riesco": {
+   "es": [
+    "no puedo",
+    "no me sale"
+   ],
+   "base": "riuscire",
+   "donde": "non riesco a stare via"
+  },
+  "rimanda": {
+   "es": [
+    "despacha",
+    "manda de vuelta"
+   ],
+   "base": "rimandare",
+   "donde": "li rimanda in santa pace."
+  },
+  "rinascita": {
+   "es": [
+    "renacimiento",
+    "resurgimiento"
+   ],
+   "base": "rinascita",
+   "donde": "Rinascimento vuol dire rinascita: nascere un'altra volta."
+  },
+  "ringraziarono": {
+   "es": [
+    "agradecieron",
+    "dieron las gracias"
+   ],
+   "base": "ringraziare",
+   "donde": "che dell’elogio in prima il ringraziarono,"
+  },
+  "ringrazio": {
+   "es": [
+    "agradezco",
+    "te agradezco"
+   ],
+   "base": "ringraziare",
+   "donde": "ringrazio"
+  },
+  "rinunciava": {
+   "es": [
+    "renunciaba",
+    "dejaba"
+   ],
+   "base": "rinunciare",
+   "donde": "rinunciava"
+  },
+  "ripugna": {
+   "es": [
+    "da asco",
+    "repugna",
+    "molesta"
+   ],
+   "base": "ripugnare",
+   "donde": "o gente a cui ripugna stare a posto,"
+  },
+  "ripulire": {
+   "es": [
+    "limpiar",
+    "higienizar"
+   ],
+   "base": "ripulire",
+   "donde": "non bastavano ancora a ripulire"
+  },
+  "risanarlo": {
+   "es": [
+    "sanarlo",
+    "repararlo"
+   ],
+   "base": "risanare",
+   "donde": "ovunque insomma a risanarlo il caso"
+  },
+  "risorgere": {
+   "es": [
+    "resurgir",
+    "renacer"
+   ],
+   "base": "risorgere",
+   "donde": "Vuol dire risorgere, nascere un'altra volta."
+  },
+  "ritrae": {
+   "es": [
+    "obtiene",
+    "saca",
+    "recibe"
+   ],
+   "base": "ritrarre",
+   "donde": "se dal lavor ritrae qualche compenso."
+  },
+  "ritrovo": {
+   "es": [
+    "reencontró",
+    "volvió a hallar"
+   ],
+   "base": "ritrovare",
+   "donde": "una Perla ritrovò,"
+  },
+  "riuscito": {
+   "es": [
+    "pudo",
+    "logró"
+   ],
+   "base": "riuscire",
+   "donde": "non è riuscito a"
+  },
+  "riusciva": {
+   "es": [
+    "podía",
+    "lograba"
+   ],
+   "base": "riuscire",
+   "donde": "non riusciva a"
+  },
+  "rivali": {
+   "es": [
+    "rivales",
+    "competidores"
+   ],
+   "base": "rivale",
+   "donde": "e che, senza rivali, d’un bell’uomo"
+  },
+  "ronzanti": {
+   "es": [
+    "zumbantes",
+    "que zumban"
+   ],
+   "base": "ronzante",
+   "donde": "giallo-nere, ronzanti e fusolate,"
+  },
+  "rozzo": {
+   "es": [
+    "tosco",
+    "grosero",
+    "rústico"
+   ],
+   "base": "rozzo",
+   "donde": "così rozzo e disadatto,"
+  },
+  "s'avvero": {
+   "es": [
+    "se cumplió",
+    "se hizo realidad"
+   ],
+   "base": "avverarsi",
+   "donde": "pur troppo s’avverò la profezia."
+  },
+  "sacchetti": {
+   "es": [
+    "bolsas",
+    "bolsitas"
+   ],
+   "base": "sacchetto",
+   "donde": "Anna ___ via sempre i sacchetti."
+  },
+  "sacchetto": {
+   "es": [
+    "bolsita",
+    "bolsa"
+   ],
+   "base": "sacchetto",
+   "donde": "sacchetto"
+  },
+  "sacrestia": {
+   "es": [
+    "sacristía"
+   ],
+   "base": "sacrestia",
+   "donde": "Saltò la balaustra e corse nella sacrestia."
+  },
+  "salgo": {
+   "es": [
+    "subo",
+    "me subo"
+   ],
+   "base": "salire",
+   "donde": "Salgo ___ treno alle otto."
+  },
+  "salirci": {
+   "es": [
+    "subir",
+    "trepar"
+   ],
+   "base": "salirci",
+   "donde": "È ancora in piedi. Puoi salirci: sono più di quattrocento scalini."
+  },
+  "salita": {
+   "es": [
+    "subió",
+    "ascendió"
+   ],
+   "base": "salire",
+   "donde": "è salita"
+  },
+  "salotto": {
+   "es": [
+    "living",
+    "sala de estar"
+   ],
+   "base": "salotto",
+   "donde": "salotto"
+  },
+  "sapea": {
+   "es": [
+    "sabía",
+    "podía"
+   ],
+   "base": "sapere",
+   "donde": "La Vespa non sapea che giudicare."
+  },
+  "saperlo": {
+   "es": [
+    "saberlo"
+   ],
+   "base": "sapere",
+   "donde": "Non potevi saperlo"
+  },
+  "satanasso": {
+   "es": [
+    "diablo",
+    "demonio",
+    "bicho"
+   ],
+   "base": "satanasso",
+   "donde": "Guarda dove si caccia il satanasso."
+  },
+  "sbagliata": {
+   "es": [
+    "equivocada",
+    "errónea"
+   ],
+   "base": "sbagliato",
+   "donde": "___ via la pagina sbagliata."
+  },
+  "sbasoffiare": {
+   "es": [
+    "tragar",
+    "engullir"
+   ],
+   "base": "sbasoffiare",
+   "donde": "e sbasoffiare poi certi bocconi"
+  },
+  "sbrigo": {
+   "es": [
+    "me apuro",
+    "me doy prisa"
+   ],
+   "base": "sbrigarsi",
+   "donde": "Dovendo uscire, mi sbrigo"
+  },
+  "sbuca": {
+   "es": [
+    "aparece",
+    "asoma",
+    "sale"
+   ],
+   "base": "sbucare",
+   "donde": "quand’ecco sbuca un lupo maledetto,"
+  },
+  "scaffale": {
+   "es": [
+    "estante",
+    "repisa"
+   ],
+   "base": "scaffale",
+   "donde": "scaffale"
+  },
+  "scaffali": {
+   "es": [
+    "estantes",
+    "repisas"
+   ],
+   "base": "scaffale",
+   "donde": "I libri sono ___ scaffali"
+  },
+  "schiaffo": {
+   "es": [
+    "cachetazo",
+    "bofetada"
+   ],
+   "base": "schiaffo",
+   "donde": "schiaffo"
+  },
+  "schianta": {
+   "es": [
+    "se quiebra",
+    "se rompe",
+    "se parte"
+   ],
+   "base": "schiantarsi",
+   "donde": "Ed ecco a un tratto una trave si schianta,"
+  },
+  "scimunito": {
+   "es": [
+    "boludo",
+    "pelotudo",
+    "pavote"
+   ],
+   "base": "scimunito",
+   "donde": "- Ah scimunito, ah sciocco, ah babbuasso!"
+  },
+  "scogliera": {
+   "es": [
+    "acantilado",
+    "costa rocosa"
+   ],
+   "base": "scogliera",
+   "donde": "scogliera"
+  },
+  "scolpiva": {
+   "es": [
+    "esculpía",
+    "tallaba"
+   ],
+   "base": "scolpire",
+   "donde": "Lorenzo il Magnifico non dipingeva e non scolpiva."
+  },
+  "scompiacente": {
+   "es": [
+    "desagradable",
+    "descortés"
+   ],
+   "base": "scompiacente",
+   "donde": "Non volendo mostrarsi scompiacente,"
+  },
+  "sconclusionato": {
+   "es": [
+    "desatinado",
+    "sin sentido",
+    "desordenado"
+   ],
+   "base": "sconclusionato",
+   "donde": "- Qual dura sorte in questo mondo sconclusionato"
+  },
+  "sconosciuta": {
+   "es": [
+    "desconocida",
+    "extraña"
+   ],
+   "base": "sconosciuto",
+   "donde": "sconosciuta"
+  },
+  "scorgere": {
+   "es": [
+    "divisar",
+    "distinguir",
+    "ver"
+   ],
+   "base": "scorgere",
+   "donde": "Linci a scorgere del prossimo"
+  },
+  "seccati": {
+   "es": [
+    "hartos",
+    "cansados",
+    "fastidiados"
+   ],
+   "base": "seccare",
+   "donde": "Seccati di sentirla predicare,"
+  },
+  "sedicesimo": {
+   "es": [
+    "decimosexto"
+   ],
+   "base": "sedicesimo",
+   "donde": "Parliamo quindi del quindicesimo secolo. Il Cinquecento è il sedicesimo."
+  },
+  "selva": {
+   "es": [
+    "bosque",
+    "selva"
+   ],
+   "base": "selva",
+   "donde": "Mi trovavo per caso in una selva,"
+  },
+  "sembrano": {
+   "es": [
+    "parecen",
+    "se ven"
+   ],
+   "base": "sembrare",
+   "donde": "sembrano"
+  },
+  "sembrava": {
+   "es": [
+    "parecía",
+    "se veía"
+   ],
+   "base": "sembrare",
+   "donde": "Poi si è seduta, e sembrava improvvisamente vecchissima."
+  },
+  "sementi": {
+   "es": [
+    "semillas"
+   ],
+   "base": "semente",
+   "donde": "Venne il tempo che getta le sementi"
+  },
+  "sentenza": {
+   "es": [
+    "conclusión",
+    "veredicto",
+    "sentencia"
+   ],
+   "base": "sentenza",
+   "donde": "È questa, io credo, in ultima sentenza"
+  },
+  "sentenze": {
+   "es": [
+    "sentencias",
+    "dictámenes",
+    "frases"
+   ],
+   "base": "sentenza",
+   "donde": "bisogna ch’essi sputino sentenze."
+  },
+  "sentimento": {
+   "es": [
+    "sentimiento",
+    "emoción"
+   ],
+   "base": "sentimento",
+   "donde": "che non sentiam che il sentimento nostro."
+  },
+  "sentirla": {
+   "es": [
+    "escucharla",
+    "oírla"
+   ],
+   "base": "sentire",
+   "donde": "Seccati di sentirla predicare,"
+  },
+  "serve": {
+   "es": [
+    "hace falta",
+    "es necesario"
+   ],
+   "base": "servire",
+   "donde": "Se serve, metti la velocità lenta."
+  },
+  "servi": {
+   "es": [
+    "sirvió",
+    "fue útil"
+   ],
+   "base": "servire",
+   "donde": "Il primo lo annullarono quando non servì più."
+  },
+  "servita": {
+   "es": [
+    "servido"
+   ],
+   "base": "servito",
+   "donde": "servita in un piattello. Or capirete"
+  },
+  "servito": {
+   "es": [
+    "servido",
+    "puesto"
+   ],
+   "base": "servire",
+   "donde": "Ma il pranzo fu servito per dispetto"
+  },
+  "servitore": {
+   "es": [
+    "sirviente",
+    "mozo"
+   ],
+   "base": "servitore",
+   "donde": "A un tratto entra correndo un servitore"
+  },
+  "serviva": {
+   "es": [
+    "servía",
+    "atendía"
+   ],
+   "base": "servire",
+   "donde": "In fondo alla sala, Rosa serviva il caffè."
+  },
+  "servivano": {
+   "es": [
+    "servían",
+    "hacían falta"
+   ],
+   "base": "servire",
+   "donde": "servivano"
+  },
+  "servono": {
+   "es": [
+    "hacen falta",
+    "se necesitan"
+   ],
+   "base": "servire",
+   "donde": "servono"
+  },
+  "sfregio": {
+   "es": [
+    "desaire",
+    "humillación",
+    "ofensa"
+   ],
+   "base": "sfregio",
+   "donde": "che mi fa sfregio, è un pezzo che lo so."
+  },
+  "sgorga": {
+   "es": [
+    "brota",
+    "mana"
+   ],
+   "base": "sgorgare",
+   "donde": "sgorga e l’attira di sì strano incanto"
+  },
+  "sguardo": {
+   "es": [
+    "mirada",
+    "ojeada"
+   ],
+   "base": "sguardo",
+   "donde": "sguardo"
+  },
+  "siciliani": {
+   "es": [
+    "sicilianos"
+   ],
+   "base": "siciliano",
+   "donde": "Si sentivano siciliani, veneti, napoletani."
+  },
+  "simpatico": {
+   "es": [
+    "simpático",
+    "agradable"
+   ],
+   "base": "simpatico",
+   "donde": "Era simpatico, veloce, e aveva una bottega piena di allievi."
+  },
+  "sistemati": {
+   "es": [
+    "acomodados",
+    "ubicados",
+    "resueltos"
+   ],
+   "base": "sistemare",
+   "donde": "E aveva figli. Riconosciuti, presentati, sistemati."
+  },
+  "sistemo": {
+   "es": [
+    "acomodo",
+    "organizo",
+    "arreglo"
+   ],
+   "base": "sistemare",
+   "donde": "sistemo"
+  },
+  "smette": {
+   "es": [
+    "deja de",
+    "para de"
+   ],
+   "base": "smettere",
+   "donde": "E l'artista smette di essere un artigiano qualunque."
+  },
+  "soccorso": {
+   "es": [
+    "ayuda",
+    "auxilio"
+   ],
+   "base": "soccorso",
+   "donde": "In suo soccorso un Misero la Morte"
+  },
+  "soggiunse": {
+   "es": [
+    "agregó",
+    "añadió"
+   ],
+   "base": "soggiungere",
+   "donde": "- Questo, - soggiunse il Turco intelligente, -"
+  },
+  "solaio": {
+   "es": [
+    "techo",
+    "cielo raso"
+   ],
+   "base": "solaio",
+   "donde": "cade il solaio, ed anfore e bicchieri"
+  },
+  "solenne": {
+   "es": [
+    "solemne",
+    "importante"
+   ],
+   "base": "solenne",
+   "donde": "Il segnale era il momento più solenne della messa."
+  },
+  "solletica": {
+   "es": [
+    "hace cosquillas",
+    "halaga"
+   ],
+   "base": "solleticare",
+   "donde": "La lode il cor solletica alle belle,"
+  },
+  "soltanto": {
+   "es": [
+    "solo",
+    "solamente"
+   ],
+   "base": "soltanto",
+   "donde": "posso giovarti? - O grazie, soltanto ti chiamai,"
+  },
+  "somarello": {
+   "es": [
+    "burrito",
+    "asno"
+   ],
+   "base": "somarello",
+   "donde": "Due Ladri avean rubato un Somarello"
+  },
+  "somigliante": {
+   "es": [
+    "parecido",
+    "similar"
+   ],
+   "base": "somigliante",
+   "donde": "fosse a ciascuna d’esse somigliante."
+  },
+  "somministra": {
+   "es": [
+    "le da",
+    "le receta",
+    "le aplica"
+   ],
+   "base": "somministrare",
+   "donde": "gli somministra questa paternale:"
+  },
+  "sonagliera": {
+   "es": [
+    "cascabeles",
+    "sonajero"
+   ],
+   "base": "sonagliera",
+   "donde": "colla bella sonagliera"
+  },
+  "soprammercato": {
+   "es": [
+    "encima",
+    "además",
+    "por añadidura"
+   ],
+   "base": "soprammercato",
+   "donde": "Sempre col pane in lite e per soprammercato"
+  },
+  "sopraviene": {
+   "es": [
+    "aparece",
+    "llega",
+    "sobreviene"
+   ],
+   "base": "sopravvenire",
+   "donde": "un terzo sopraviene,"
+  },
+  "sosta": {
+   "es": [
+    "descanso",
+    "pausa"
+   ],
+   "base": "sosta",
+   "donde": "Loro lavoravano senza sosta"
+  },
+  "spalanca": {
+   "es": [
+    "abre de par",
+    "desboca"
+   ],
+   "base": "spalancare",
+   "donde": "spalanca il becco e uscir lascia il formaggio."
+  },
+  "sparlato": {
+   "es": [
+    "hablar mal",
+    "criticar"
+   ],
+   "base": "sparlare",
+   "donde": "hai sparlato di me. - Non si può dire,"
+  },
+  "sparse": {
+   "es": [
+    "esparcir",
+    "dispersar"
+   ],
+   "base": "spargere",
+   "donde": "e sparse d’eloquenza i più bei fiori"
+  },
+  "spazzo": {
+   "es": [
+    "barrió",
+    "limpió"
+   ],
+   "base": "spazzare",
+   "donde": "Ma la Volpe in un amen spazzò tutto."
+  },
+  "spelacchiato": {
+   "es": [
+    "despeluchado",
+    "pelado",
+    "desgastado"
+   ],
+   "base": "spelacchiato",
+   "donde": "gli venne visto spelacchiato e frollo"
+  },
+  "spettami": {
+   "es": [
+    "corresponder",
+    "tocar"
+   ],
+   "base": "spettare",
+   "donde": "- Un’altra parte - aggiunge, - ancor spettami in sorte"
+  },
+  "spicco": {
+   "es": [
+    "salto",
+    "impulso"
+   ],
+   "base": "spicco",
+   "donde": "Monna Volpe un bel dì fece lo spicco"
+  },
+  "spiegarlo": {
+   "es": [
+    "explicarlo"
+   ],
+   "base": "spiegare",
+   "donde": "Nessuno ha saputo spiegarlo"
+  },
+  "squisito": {
+   "es": [
+    "exquisito",
+    "delicioso",
+    "amable"
+   ],
+   "base": "squisito",
+   "donde": "fu cortese e squisito io non dirò."
+  },
+  "stagionato": {
+   "es": [
+    "maduro",
+    "añejo"
+   ],
+   "base": "stagionato",
+   "donde": "L'Uomo stagionato e le due Amanti"
+  },
+  "stanotte": {
+   "es": [
+    "anoche"
+   ],
+   "base": "stanotte",
+   "donde": "Non ho potuto dormire stanotte"
+  },
+  "stanza": {
+   "es": [
+    "habitación",
+    "cuarto"
+   ],
+   "base": "stanza",
+   "donde": "Alle undici è entrato nella stanza di Elena senza bussare."
+  },
+  "starvene": {
+   "es": [
+    "quedarse ahí",
+    "permanecer ahí"
+   ],
+   "base": "starevene",
+   "donde": "non rimane che starvene al sicuro"
+  },
+  "stendere": {
+   "es": [
+    "tender",
+    "extender"
+   ],
+   "base": "stendere",
+   "donde": "stendeva / stendere"
+  },
+  "stendeva": {
+   "es": [
+    "extendía",
+    "tendía"
+   ],
+   "base": "stendere",
+   "donde": "stendeva / stendere"
+  },
+  "stendo": {
+   "es": [
+    "tiendo",
+    "extiendo"
+   ],
+   "base": "stendere",
+   "donde": "«Signor Riccardo, io stendo le lenzuola.»"
+  },
+  "stipendio": {
+   "es": [
+    "sueldo",
+    "salario"
+   ],
+   "base": "stipendio",
+   "donde": "stipendio"
+  },
+  "stornelli": {
+   "es": [
+    "canciones populares",
+    "coplas"
+   ],
+   "base": "stornello",
+   "donde": "e come fan le gru, fan gli stornelli,"
+  },
+  "storpiata": {
+   "es": [
+    "deformada",
+    "lisiada"
+   ],
+   "base": "storpiare",
+   "donde": "uscì pesta e storpiata."
+  },
+  "straccia": {
+   "es": [
+    "despedaza",
+    "desgarra"
+   ],
+   "base": "stracciare",
+   "donde": "E subito coll’unghie straccia la bestia in quarti."
+  },
+  "stracciata": {
+   "es": [
+    "desgarrada",
+    "rota",
+    "arruinada"
+   ],
+   "base": "stracciato",
+   "donde": "vita stracciata e senza conclusione"
+  },
+  "strazi": {
+   "es": [
+    "tormentos",
+    "sufrimientos"
+   ],
+   "base": "strazio",
+   "donde": "i codici, o, sofferto strazi e croci,"
+  },
+  "strologare": {
+   "es": [
+    "interpretar",
+    "adivinar"
+   ],
+   "base": "astrologare",
+   "donde": "apprese a strologare il cielo e i venti,"
+  },
+  "succede": {
+   "es": [
+    "pasa",
+    "ocurre"
+   ],
+   "base": "succedere",
+   "donde": "Anche fra noi succede tal e quale,"
+  },
+  "succedendo": {
+   "es": [
+    "pasando",
+    "ocurriendo"
+   ],
+   "base": "succedere",
+   "donde": "stava succedendo"
+  },
+  "succedeva": {
+   "es": [
+    "pasaba",
+    "ocurría"
+   ],
+   "base": "succedere",
+   "donde": "E tutto questo succedeva mentre si dipingeva la Cappella Sistina."
+  },
+  "succedevano": {
+   "es": [
+    "pasaban",
+    "ocurrían",
+    "sucedían"
+   ],
+   "base": "succedere",
+   "donde": "succedevano"
+  },
+  "succhio": {
+   "es": [
+    "chupar",
+    "mamar"
+   ],
+   "base": "succhiare",
+   "donde": "ancora io succhio la mammella, o Sire."
+  },
+  "sullo": {
+   "es": [
+    "en el",
+    "sobre el"
+   ],
+   "base": "su",
+   "donde": "Prima, nei quadri, tutto stava sullo stesso piano."
+  },
+  "suvvia": {
+   "es": [
+    "dale",
+    "vamos",
+    "anímate"
+   ],
+   "base": "suvvia",
+   "donde": "- Suvvia non darti pena,"
+  },
+  "sventura": {
+   "es": [
+    "desgracia",
+    "mala suerte"
+   ],
+   "base": "sventura",
+   "donde": "volesse, profetessa di sventura,"
+  },
+  "svolazza": {
+   "es": [
+    "vuela",
+    "revolotea"
+   ],
+   "base": "svolazzare",
+   "donde": "né un soffio d’aria ti svolazza intorno,"
+  },
+  "tacito": {
+   "es": [
+    "callado",
+    "silencioso",
+    "discreto"
+   ],
+   "base": "tacito",
+   "donde": "tacito consigliere delle belle."
+  },
+  "telegiornale": {
+   "es": [
+    "noticiero",
+    "informativo"
+   ],
+   "base": "telegiornale",
+   "donde": "Guardate il telegiornale?"
+  },
+  "tema": {
+   "es": [
+    "miedo",
+    "temor"
+   ],
+   "base": "tema",
+   "donde": "senza tema di confronto."
+  },
+  "temerario": {
+   "es": [
+    "atrevido",
+    "imprudente",
+    "audaz"
+   ],
+   "base": "temerario",
+   "donde": "Aspetta, temerario! - Maestà, -"
+  },
+  "terminale": {
+   "es": [
+    "terminal",
+    "extremo"
+   ],
+   "base": "terminale",
+   "donde": "terminale"
+  },
+  "tirami": {
+   "es": [
+    "tirame",
+    "lanzame"
+   ],
+   "base": "tirare",
+   "donde": "Prima di pena tirami, se puoi,"
+  },
+  "tisici": {
+   "es": [
+    "tísico",
+    "enfermo"
+   ],
+   "base": "tisico",
+   "donde": "morir tisici! ah poveri parenti"
+  },
+  "toccarlo": {
+   "es": [
+    "tocarlo"
+   ],
+   "base": "toccare",
+   "donde": "Nessuno osò più toccarlo."
+  },
+  "toglierle": {
+   "es": [
+    "quitarle",
+    "sacarle"
+   ],
+   "base": "togliere",
+   "donde": "E che lui doveva solo toglierle il resto di intorno."
+  },
+  "torcer": {
+   "es": [
+    "apartar",
+    "desviar"
+   ],
+   "base": "torcere",
+   "donde": "ch’ei non può dal cristal torcer lo sguardo."
+  },
+  "tormento": {
+   "es": [
+    "sufrimiento",
+    "tormento",
+    "angustia"
+   ],
+   "base": "tormento",
+   "donde": "che andare, per fuggir tanto tormento,"
+  },
+  "totale": {
+   "es": [
+    "total",
+    "entero",
+    "completo"
+   ],
+   "base": "totale",
+   "donde": "totale"
+  },
+  "traditori": {
+   "es": [
+    "traidores"
+   ],
+   "base": "traditore",
+   "donde": "Ah i tempi tristi, oh i figli traditori... -."
+  },
+  "trarlo": {
+   "es": [
+    "sacarlo",
+    "extraerlo"
+   ],
+   "base": "trarre",
+   "donde": "Per trarlo d’illusion fece la sorte"
+  },
+  "trascinando": {
+   "es": [
+    "arrastrando",
+    "llevando"
+   ],
+   "base": "trascinare",
+   "donde": "andava trascinando il doloroso fianco"
+  },
+  "traslocare": {
+   "es": [
+    "mudarse"
+   ],
+   "base": "traslocare",
+   "donde": "Loro hanno dovuto traslocare"
+  },
+  "traslocato": {
+   "es": [
+    "se mudaron",
+    "mudarse"
+   ],
+   "base": "traslocare",
+   "donde": "Abbiamo saputo che hanno traslocato"
+  },
+  "trasportatore": {
+   "es": [
+    "transportista",
+    "transportador"
+   ],
+   "base": "trasportatore",
+   "donde": "trasportatore"
+  },
+  "trave": {
+   "es": [
+    "viga"
+   ],
+   "base": "trave",
+   "donde": "Ed ecco a un tratto una trave si schianta,"
+  },
+  "tremava": {
+   "es": [
+    "temblaba",
+    "tiritaba"
+   ],
+   "base": "tremare",
+   "donde": "tremava"
+  },
+  "tremavano": {
+   "es": [
+    "temblaban",
+    "tiritaban"
+   ],
+   "base": "tremare",
+   "donde": "tremavano"
+  },
+  "tribunale": {
+   "es": [
+    "juzgado",
+    "tribunal"
+   ],
+   "base": "tribunale",
+   "donde": "d’una Vespa fu tratto al tribunale."
+  },
+  "trista": {
+   "es": [
+    "mala",
+    "perversa"
+   ],
+   "base": "triste",
+   "donde": "di far a modo suo; che s’ella è trista,"
+  },
+  "troiani": {
+   "es": [
+    "troyanos"
+   ],
+   "base": "troiano",
+   "donde": "come i Troiani usavano di fare"
+  },
+  "trombetta": {
+   "es": [
+    "trompeta"
+   ],
+   "base": "trombetta",
+   "donde": "La fama andò a sonar la sua trombetta"
+  },
+  "tronfia": {
+   "es": [
+    "soberbio",
+    "engreído",
+    "fanfarrón"
+   ],
+   "base": "tronfio",
+   "donde": "- Guardami adesso, - esclama in aria tronfia, -"
+  },
+  "trovarti": {
+   "es": [
+    "visitarte",
+    "verte"
+   ],
+   "base": "trovare",
+   "donde": "Andrò a trovarti presto"
+  },
+  "tv": {
+   "es": [
+    "tele",
+    "televisión"
+   ],
+   "base": "televisione",
+   "donde": "Loro vogliono guardare la TV"
+  },
+  "uccel": {
+   "es": [
+    "pájaro",
+    "ave"
+   ],
+   "base": "uccello",
+   "donde": "uccel di voi più vago in tutto il bosco."
+  },
+  "uccellini": {
+   "es": [
+    "pajaritos"
+   ],
+   "base": "uccellino",
+   "donde": "La Rondine e gli Uccellini"
+  },
+  "uccellino": {
+   "es": [
+    "pajarito"
+   ],
+   "base": "uccellino",
+   "donde": "non ti si posa addosso un uccellino,"
+  },
+  "uccidere": {
+   "es": [
+    "matar",
+    "asesinar"
+   ],
+   "base": "uccidere",
+   "donde": "Uccidere i due fratelli Medici nello stesso momento."
+  },
+  "ucciso": {
+   "es": [
+    "asesinado",
+    "matado"
+   ],
+   "base": "uccidere",
+   "donde": "Il secondo marito fu ucciso."
+  },
+  "vattene": {
+   "es": [
+    "andate",
+    "tomátelas",
+    "largate"
+   ],
+   "base": "andarsene",
+   "donde": "poi - Vattene, - gli dissero, -"
+  },
+  "vedendolo": {
+   "es": [
+    "viéndolo",
+    "al verlo"
+   ],
+   "base": "vedere",
+   "donde": "Ma vedendolo un po’ forte,"
+  },
+  "vederci": {
+   "es": [
+    "vernos",
+    "juntarnos"
+   ],
+   "base": "vedersi",
+   "donde": "Possiamo vederci sabato"
+  },
+  "vederlo": {
+   "es": [
+    "verlo"
+   ],
+   "base": "vedere",
+   "donde": "Avete potuto vederlo ieri"
+  },
+  "vederti": {
+   "es": [
+    "verte",
+    "ver a vos"
+   ],
+   "base": "vedere",
+   "donde": "Ho voluto vederti ieri"
+  },
+  "vedovelle": {
+   "es": [
+    "viuditas",
+    "viudas jóvenes"
+   ],
+   "base": "vedovella",
+   "donde": "Due vedovelle alfin preser possesso"
+  },
+  "venditore": {
+   "es": [
+    "vendedor"
+   ],
+   "base": "venditore",
+   "donde": "Abbiamo ___ via il venditore."
+  },
+  "vezzo": {
+   "es": [
+    "manía",
+    "costumbre",
+    "vicio"
+   ],
+   "base": "vezzo",
+   "donde": "per vezzo carezzandogli la testa,"
+  },
+  "video": {
+   "es": [
+    "video",
+    "clip"
+   ],
+   "base": "video",
+   "donde": "Avete guardato il video?"
+  },
+  "vietato": {
+   "es": [
+    "prohibido",
+    "vedado"
+   ],
+   "base": "vietare",
+   "donde": "Il nome dei Pazzi fu cancellato. Vietato usarlo."
+  },
+  "vigliacco": {
+   "es": [
+    "cobarde",
+    "cagón"
+   ],
+   "base": "vigliacco",
+   "donde": "vigliacco"
+  },
+  "vigna": {
+   "es": [
+    "viñedo",
+    "viña"
+   ],
+   "base": "vigna",
+   "donde": "vigna"
+  },
+  "vivean": {
+   "es": [
+    "viven",
+    "están"
+   ],
+   "base": "vivere",
+   "donde": "vivean sì sconosciuti alla carlona,"
+  },
+  "volarmene": {
+   "es": [
+    "irse volando",
+    "escaparse"
+   ],
+   "base": "volarsene",
+   "donde": "saprò bene volarmene lontano."
+  },
+  "voltarsi": {
+   "es": [
+    "darse vuelta",
+    "mirar atrás"
+   ],
+   "base": "voltarsi",
+   "donde": "___ via senza voltarsi."
+  },
+  "votazione": {
+   "es": [
+    "votación",
+    "elección"
+   ],
+   "base": "votazione",
+   "donde": "Dieci passaggi, metà a sorte e metà a votazione."
+  },
+  "yogurt": {
+   "es": [
+    "yogur"
+   ],
+   "base": "yogurt",
+   "donde": "yogurt"
+  },
+  "zero": {
+   "es": [
+    "un don nadie",
+    "un cero"
+   ],
+   "base": "zero",
+   "donde": "del suo paese, che al cospetto un zero"
+  },
+  "zitti": {
+   "es": [
+    "callados",
+    "silencio"
+   ],
+   "base": "zitto",
+   "donde": "zitti"
+  },
+  "zitto": {
+   "es": [
+    "callado",
+    "silencioso"
+   ],
+   "base": "zitto",
+   "donde": "Avendo ragione, non sto zitto"
   }
  }
 }

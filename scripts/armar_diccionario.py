@@ -357,20 +357,77 @@ def lo_que_tradujo_la_ia():
     Si el archivo no está, el diccionario se arma igual: estas palabras
     son las raras, y sin ellas queda como estaba antes.
     """
-    donde = os.path.join(os.path.dirname(os.path.abspath(__file__)),
-                         'traducciones.json')
+    aca = os.path.dirname(os.path.abspath(__file__))
+    deATreinta = las_de(os.path.join(aca, 'traducciones.json'))
+    deAUna = las_de(os.path.join(aca, 'traducciones_de_a_una.json'))
+    if not deATreinta and not deAUna:
+        print('sin traducciones: se arma sin ellas', file=sys.stderr)
+        return {}
+
+    salida = {}
+    for palabra in set(deATreinta) | set(deAUna):
+        juntas = juntar(deATreinta.get(palabra, []), deAUna.get(palabra, []))
+        if juntas:
+            salida[sin_tilde(palabra)] = juntas
+    return salida
+
+
+def las_de(donde):
+    """Las traducciones de un archivo, o nada si no está."""
     if not os.path.exists(donde):
-        print('sin traducciones.json: se arma sin ellas', file=sys.stderr)
         return {}
     with open(donde, encoding='utf-8') as f:
         palabras = json.load(f)['palabras']
+    return {
+        p: [t for t in que.get('es', []) if t]
+        for p, que in palabras.items()
+    }
 
-    salida = {}
-    for palabra, que in palabras.items():
-        traducciones = [t for t in que.get('es', []) if t]
-        if traducciones:
-            salida[sin_tilde(palabra)] = traducciones[:TOPE]
-    return salida
+
+def juntar(deATreinta, deAUna):
+    """Las dos listas en una, sin repetir, la mejor de cada una adelante.
+
+    Las dos corridas se equivocan en cosas distintas y ninguna gana
+    siempre, así que no se elige: se juntan.
+
+    - De a treinta respeta la forma: "pecchie" es "abejas" y no "abeja",
+      "dicean" es "decían" y no "dicen". Por eso va primera.
+    - De a una entiende los modismos: "ridotto al lumicino" no es estar
+      reducido a una velita, es estar en las últimas. Por eso su primera
+      acepción va segunda, donde se ve, y no al final donde se pierde.
+
+    Se descartan las que son la misma palabra con otra terminación
+    —"abeja" cuando ya está "abejas"— que no agregan nada y gastan uno de
+    los tres lugares que se muestran.
+    """
+    # Tres y no cinco como el resto del diccionario: estas vienen de dos
+    # corridas distintas y juntarlas las estira. "velita, las últimas,
+    # luz baja" se lee de un vistazo; con dos más, ya no.
+    juntas = []
+    for cual in entreveradas(deATreinta, deAUna):
+        if len(juntas) >= 3:
+            break
+        if not any(esCasiLaMisma(cual, puesta) for puesta in juntas):
+            juntas.append(cual)
+    return juntas
+
+
+def entreveradas(primera, segunda):
+    """Una de cada una por vez, empezando por la primera lista."""
+    for i in range(max(len(primera), len(segunda))):
+        if i < len(primera):
+            yield primera[i]
+        if i < len(segunda):
+            yield segunda[i]
+
+
+def esCasiLaMisma(una, otra):
+    """Si son la misma palabra con otra terminación."""
+    a, b = sin_tilde(una.lower()), sin_tilde(otra.lower())
+    if a == b:
+        return True
+    corta, larga = sorted((a, b), key=len)
+    return len(larga) - len(corta) <= 2 and larga.startswith(corta)
 
 
 def main():
