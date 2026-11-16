@@ -13,6 +13,7 @@ importe cómo se escribió. Los valores van como se escriben de verdad.
 Se corre:  python3 -I armar_diccionario.py <ita-spa.tei> <carpeta assets>
 """
 import json
+import os
 import sys
 import unicodedata
 from xml.etree import ElementTree
@@ -210,6 +211,33 @@ DELASFAVOLE = {
     "ch'io": ['que yo'], "l'arte": ['el arte'],
 }
 
+# Las que la IA no podía juzgar, escritas a mano.
+#
+# Son las que se escriben igual en italiano y en castellano. Cuando Gemini
+# contesta "finalmente" para "finalmente", no hay forma de saber desde
+# afuera si tradujo o si copió la palabra porque no sabía, que es
+# exactamente lo que hace cuando no sabe. El control las rechaza a todas,
+# y después se miran de a una: son veintiséis, y mirarlas es más barato
+# que discutir con el control.
+#
+# Cinco de estas no eran iguales y las habría tirado igual: garbo,
+# pastura, sire, regio e ignoto.
+LASQUELAIANOPUDO = {
+    'finalmente': ['finalmente', 'por fin'], 'regalo': ['regalo'],
+    'cima': ['cima', 'cumbre'], 'lista': ['lista'],
+    'sorprende': ['sorprende'], 'conviene': ['conviene'],
+    'ignoto': ['desconocido', 'ignoto'], 'limoncello': ['limoncello'],
+    'siciliano': ['siciliano'], 'taxi': ['taxi'],
+    'beneficio': ['beneficio', 'provecho'], 'conquista': ['conquista'],
+    'garbo': ['gracia', 'donaire'], 'impedirlo': ['impedirlo'],
+    'indigesta': ['indigesta', 'pesada'],
+    'infame': ['infame', 'miserable'], 'mostrarlo': ['mostrarlo'],
+    'pastura': ['pasto', 'forraje'], 'prepotente': ['prepotente'],
+    'pura': ['pura'], 'regala': ['regala'], 'regio': ['real', 'regio'],
+    'transilvano': ['transilvano'], 'tremenda': ['tremenda'],
+    'usarlo': ['usarlo'], 'sire': ['señor'],
+}
+
 SUELTAS_ES = {
     'es': ['è'], 'dificil': ['difficile'], 'vez': ['volta'],
     'anoche': ['ieri sera'], 'mama': ['mamma'], 'papa': ['papà'],
@@ -317,6 +345,34 @@ def leer_verbos(assets, it_es, es_it_verbos):
     return cuantas
 
 
+def lo_que_tradujo_la_ia():
+    """Las traducciones de scripts/traducciones.json, si está.
+
+    De las palabras que faltaban, Wiktionary conoce casi todas: existen y
+    están bien escritas. Lo que no hay en ningún lado libre es la
+    traducción al castellano —FreeDict tiene 14.000 palabras y no trae
+    "lumicino"—, así que se tradujeron una sola vez con Gemini y quedaron
+    escritas acá. Ver scripts/traducir_lo_que_falta.py.
+
+    Si el archivo no está, el diccionario se arma igual: estas palabras
+    son las raras, y sin ellas queda como estaba antes.
+    """
+    donde = os.path.join(os.path.dirname(os.path.abspath(__file__)),
+                         'traducciones.json')
+    if not os.path.exists(donde):
+        print('sin traducciones.json: se arma sin ellas', file=sys.stderr)
+        return {}
+    with open(donde, encoding='utf-8') as f:
+        palabras = json.load(f)['palabras']
+
+    salida = {}
+    for palabra, que in palabras.items():
+        traducciones = [t for t in que.get('es', []) if t]
+        if traducciones:
+            salida[sin_tilde(palabra)] = traducciones[:TOPE]
+    return salida
+
+
 def main():
     tei, assets = sys.argv[1], sys.argv[2]
 
@@ -330,7 +386,15 @@ def main():
 
     # Lo escrito a mano va último y pisa: si FreeDict dice que "macchina" es
     # "máquina", acá decimos que también es "auto", y va primero.
-    for mano in (FUNCION, BASICAS, VERBOS, SUELTAS, DELASFAVOLE):
+    # Las que tradujo Gemini van ANTES que las escritas a mano: si alguna
+    # vez se escribe a mano una que la IA ya había traducido, gana la de
+    # la persona.
+    de_la_ia = lo_que_tradujo_la_ia()
+    for clave, traducciones in de_la_ia.items():
+        sumar(it_es, clave, traducciones)
+
+    for mano in (FUNCION, BASICAS, VERBOS, SUELTAS, DELASFAVOLE,
+                 LASQUELAIANOPUDO):
         for clave, traducciones in mano.items():
             clave = clave.rstrip('_').replace('_adv', '')
             it_es[sin_tilde(clave)] = traducciones + [
