@@ -54,7 +54,20 @@ Devolvé SOLO un objeto JSON, sin explicar nada y sin \`\`\`:
  * recibir "no está" y no un error.
  */
 export async function queQuiereDecir(palabra, donde, clave) {
-  if (!clave) return null;
+  const { que } = await loQueDijo(palabra, donde, clave);
+  return que;
+}
+
+/** Lo mismo, pero contando también por qué no se pudo.
+ *
+ * El motivo es un número —el código HTTP que devolvió Google— o una
+ * palabra. No revela nada de la clave y ahorra tener que leer los logs de
+ * Cloudflare para saber si la clave no sirve (403), si se acabó la cuota
+ * (429) o si el pedido está mal armado (400). Desde afuera esas tres se
+ * ven igual: "no sé qué quiere decir".
+ */
+export async function loQueDijo(palabra, donde, clave) {
+  if (!clave) return { que: null, porQue: 'sinClave' };
 
   const texto = donde
     ? `${PEDIDO}\n\npalabra: ${palabra}\nrenglón: ${donde}`
@@ -79,36 +92,38 @@ export async function queQuiereDecir(palabra, donde, clave) {
     });
   } catch (error) {
     console.error('gemini no contestó', String(error));
-    return null;
+    return { que: null, porQue: String(error).includes('timeout')
+      ? 'tardo' : 'red' };
   }
 
   if (!contestado.ok) {
     console.error('gemini dijo que no', contestado.status);
-    return null;
+    return { que: null, porQue: contestado.status };
   }
 
   let datos;
   try {
     datos = await contestado.json();
   } catch {
-    return null;
+    return { que: null, porQue: 'noEsJson' };
   }
 
   const crudo = datos?.candidates?.[0]?.content?.parts
     ?.map((p) => p?.text ?? '')
     .join('')
     .trim();
-  if (!crudo) return null;
+  if (!crudo) return { que: null, porQue: 'vacio' };
 
   let dicho;
   try {
     dicho = JSON.parse(crudo);
   } catch {
     console.error('gemini no devolvió JSON', crudo.slice(0, 120));
-    return null;
+    return { que: null, porQue: 'noEsJson' };
   }
 
-  return loQuePasaElControl(palabra, dicho);
+  const que = loQuePasaElControl(palabra, dicho);
+  return { que, porQue: que ? '' : 'noSupo' };
 }
 
 /// Cuánto puede medir una traducción. Más que esto no es una traducción,
