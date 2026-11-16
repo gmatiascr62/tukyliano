@@ -265,6 +265,49 @@ void main() {
       }
     });
 
+    test('el apóstrofo curvo se busca igual que el recto', () {
+      // Los textos de Wikisource usan ’ y el diccionario guarda '. Sin
+      // esto, "d’un" se busca como "dun" —el apóstrofo se caía al limpiar
+      // la palabra— y la elisión no se partía nunca. Son 146 palabras de
+      // las veintidós fábulas.
+      for (final palabra in ['d’un', 'l’arte', 'ch’io', 'dell’amico']) {
+        expect(traducir(diccionario, palabra), isNotNull, reason: palabra);
+        // Y el mismo resultado escrito con el apóstrofo recto.
+        expect(
+          traducir(diccionario, palabra.replaceAll('’', "'"))!.comoSeDice,
+          traducir(diccionario, palabra)!.comoSeDice,
+          reason: palabra,
+        );
+      }
+    });
+
+    test('el apócope del verso se resuelve', () {
+      // "contar" por contare, "ciel" por cielo, "facciam" por facciamo.
+      for (final forma in ['contar', 'ciel', 'facciam', 'passar', 'morir']) {
+        expect(traducir(diccionario, forma), isNotNull, reason: forma);
+      }
+    });
+
+    test('el apócope no le gana a una palabra que existe', () {
+      // "col" es "con el", no "collo" (cuello), y "colla" acá es "con la"
+      // antes que "pegamento". La regla de apócope agrega una vocal a
+      // cualquier cosa y acierta de casualidad, así que va última y
+      // además estas están escritas a mano.
+      expect(traducir(diccionario, 'col')!.comoSeDice, 'con el');
+      expect(traducir(diccionario, 'colla')!.comoSeDice, startsWith('con la'));
+    });
+
+    test('las palabras de todos los días que faltaban, están', () {
+      // El diccionario tenía 14.000 entradas y no tenía "grande". Salieron
+      // de contar qué no encontraba la app en las veintidós fábulas.
+      for (final palabra in [
+        'tanto', 'grande', 'subito', 'qualche', 'mezzo', 'grosso',
+        'dietro', 'contro', 'dunque', 'assai', 'maestro', 'bestia',
+      ]) {
+        expect(diccionario.italiano[palabra], isNotNull, reason: palabra);
+      }
+    });
+
     test('sin el archivo de formas el diccionario sigue andando', () {
       // Perder las conjugaciones es perder la mitad de las palabras de un
       // texto; perder el diccionario es perder el traductor. Son dos

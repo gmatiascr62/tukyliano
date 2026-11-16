@@ -43,7 +43,12 @@ class Traduccion {
 ///
 /// Null cuando no encontró absolutamente nada.
 Traduccion? traducir(Diccionario diccionario, String pedido) {
-  final limpio = pedido.trim();
+  // El apóstrofo curvo pasa a recto antes que nada. Los textos de
+  // Wikisource lo usan —"all’erta", "d’un", "ch’io"— y el diccionario
+  // guarda el recto, así que sin esto la elisión no se parte nunca y
+  // "d’un" se busca como "dun", que no existe. Son 146 palabras de las
+  // veintidós fábulas: tres de cada cien.
+  final limpio = pedido.replaceAll('’', "'").replaceAll('‘', "'").trim();
   if (limpio.isEmpty) return null;
 
   // Primero la frase entera: hay entradas de más de una palabra ("ieri
@@ -144,8 +149,9 @@ Iterable<String> _comoPodriaSerEnItaliano(String palabra) sync* {
 
   if (palabra.length < 3) return;
   final sinUltima = palabra.substring(0, palabra.length - 1);
+  final ultima = palabra[palabra.length - 1];
 
-  switch (palabra[palabra.length - 1]) {
+  switch (ultima) {
     case 'i':
       // bambini → bambino, chiavi → chiave, amiche → amica
       if (palabra.endsWith('hi')) yield '${palabra.substring(0, palabra.length - 2)}co';
@@ -159,6 +165,20 @@ Iterable<String> _comoPodriaSerEnItaliano(String palabra) sync* {
     case 'a':
       // nuova → nuovo
       yield '${sinUltima}o';
+  }
+
+  // El apócope del verso: la palabra pierde la última sílaba para entrar
+  // en el metro. "contar" por contare, "ciel" por cielo, "facciam" por
+  // facciamo, "avean" por aveano. En italiano moderno casi no pasa; en
+  // las fábulas del siglo XIX pasa en cada renglón.
+  //
+  // Va último de todo a propósito. Es el intento menos confiable que hay
+  // —agregarle una vocal a cualquier cosa acierta de casualidad— así que
+  // solo corre cuando nada más encontró nada.
+  if ('lnrm'.contains(ultima)) {
+    yield '${palabra}e';
+    yield '${palabra}o';
+    yield '${palabra}a';
   }
 }
 
