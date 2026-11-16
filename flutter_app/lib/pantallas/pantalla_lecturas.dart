@@ -276,11 +276,22 @@ class _DeQueVa extends StatelessWidget {
   final bool bajando;
   final VoidCallback? alBajarTodas;
 
+  /// Hasta cuánto se ofrece bajar de un saque.
+  ///
+  /// Las veintidós fábulas son 18 MB y ofrecerlas juntas es una comodidad.
+  /// Los treinta y seis capítulos de Pinocchio son 131, y un botón que con
+  /// un toque se lleva 131 MB de datos no es una comodidad: es una trampa,
+  /// sobre todo para el que lo toca en la calle creyendo que es como el
+  /// otro. Arriba de esto no se ofrece y cada capítulo se baja al tocarlo,
+  /// que es lo que uno hace igual cuando va a escuchar uno.
+  static const _cuantoEsDemasiado = 60 * 1024 * 1024;
+
   @override
   Widget build(BuildContext context) {
     if (faltan.isEmpty) return const SizedBox.shrink();
 
     final pesan = faltan.fold<int>(0, (suma, f) => suma + f.bytes);
+    if (pesan > _cuantoEsDemasiado) return const SizedBox.shrink();
     final enMegas = (pesan / 1048576).toStringAsFixed(1);
 
     return Padding(
@@ -329,6 +340,15 @@ class _UnaFavola extends StatelessWidget {
       ),
       title: Text(
         lectura.titulo,
+        // Hasta dos renglones. Los títulos de los capítulos de Pinocchio
+        // son el resumen entero —"La storia di Pinocchio col
+        // Grillo-parlante, dove si vede come i ragazzi cattivi hanno a
+        // noia di sentirsi correggere da chi ne sa più di loro"— y sin
+        // tope ocupan cinco renglones cada uno: entran cinco capítulos en
+        // la pantalla y son treinta y seis. Recortado se ve de qué va y
+        // la lista se puede recorrer.
+        maxLines: 2,
+        overflow: TextOverflow.ellipsis,
         style: const TextStyle(
           fontSize: 15.5,
           fontWeight: FontWeight.w500,

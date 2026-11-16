@@ -184,8 +184,14 @@ Widget comoEnLaApp(Widget pantalla) => Scaffold(
 /// Bajo el reloj falso de los tests de widget, leer un asset con rootBundle
 /// no termina nunca: la pantalla se queda cargando y la foto sale en blanco.
 /// Se lee el mismo archivo con dart:io, que sí contesta.
-RepositorioLecturas _elCatalogoDeVerdad() => RepositorioLecturas(
-      leerAsset: (_) async => File('assets/favole.json').readAsStringSync(),
+RepositorioLecturas _elCatalogoDeVerdad({
+  String archivo = 'assets/favole.json',
+  String clave = 'favole',
+}) =>
+    RepositorioLecturas(
+      leerAsset: (cual) async => File(cual).readAsStringSync(),
+      archivo: archivo,
+      clave: clave,
     );
 
 /// Un diccionario chiquito. El de verdad son 770 KB y para una foto no hace
@@ -287,6 +293,21 @@ void main() {
           cual,
           comoEnLaApp(PantallaLecturas(
             repositorio: _elCatalogoDeVerdad(),
+            descargas: _descargasDeMentira(),
+            reproductor: ReproductorFalso(),
+            diccionario: _diccionarioChico(),
+          )),
+        );
+
+      case 'pinocchio':
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaLecturas(
+            repositorio: _elCatalogoDeVerdad(
+              archivo: 'assets/pinocchio.json',
+              clave: 'capitulos',
+            ),
             descargas: _descargasDeMentira(),
             reproductor: ReproductorFalso(),
             diccionario: _diccionarioChico(),
