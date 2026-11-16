@@ -158,6 +158,58 @@ SUELTAS = {
     'altro': ['otro'], 'altra': ['otra'], 'ieri sera': ['anoche'],
 }
 
+# Las que faltaban para leer las fábulas de La Fontaine.
+#
+# Salieron de contar: se midió, palabra por palabra, qué no encontraba la
+# app en los 3915 renglones de las veintidós, y se escribieron las que
+# aparecen dos veces o más. No son palabras raras ni literarias: son
+# "tanto", "grande", "subito", "dietro", "contro". El diccionario tiene
+# 14.000 entradas y no tenía "grande".
+#
+# Es lo que pasa con un diccionario sacado de Wiktionary: trae
+# "acciaio inossidabile" y no trae "tanto", porque nadie se sienta a
+# escribir la entrada de una palabra que todo el mundo sabe.
+DELASFAVOLE = {
+    'tanto': ['tanto'], 'tanta': ['tanta'], 'grande': ['grande'],
+    'gran': ['gran'], 'grosso': ['grueso', 'gordo'],
+    'subito': ['enseguida', 'de inmediato'], 'sembra': ['parece'],
+    'qualche': ['algún', 'alguno'], 'mezzo': ['medio'],
+    'dietro': ['detrás', 'atrás'], 'contro': ['contra'],
+    'dunque': ['entonces', 'así que'], 'assai': ['bastante', 'mucho'],
+    'proprio': ['propio', 'justamente'], 'ricco': ['rico'],
+    'bestia': ['bestia', 'animal'], 'maestro': ['maestro'],
+    'favola': ['fábula'], 'solito': ['habitual'],
+    'torto': ['culpa', 'agravio'], 'infine': ['al fin', 'por fin'],
+    'altrui': ['ajeno', 'de otro'], 'brava': ['buena', 'hábil'],
+    'bove': ['buey'], 'boccone': ['bocado'], 'boccon': ['bocado'],
+    'lite': ['pelea', 'pleito'], 'numi': ['dioses'],
+    'desinare': ['comer', 'almorzar'], 'faccenda': ['asunto'],
+    'fessura': ['grieta', 'rendija'], 'giuro': ['juro'],
+    'giammai': ['jamás'], 'narra': ['cuenta', 'narra'],
+    'mogio': ['cabizbajo'], 'sciocco': ['tonto'],
+    'sconosciuti': ['desconocidos'], 'ciarle': ['chismes'],
+    'ciascun': ['cada uno'], 'tondo': ['redondo'],
+    'trappole': ['trampas'], 'traverso': ['través'],
+    'sonante': ['sonante', 'contante'], 'ducatone': ['ducado'],
+    'rondinella': ['golondrina'], 'avvenne': ['ocurrió'],
+    'affanna': ['agobia', 'afana'], 'piglia': ['agarra', 'toma'],
+    'dirgli': ['decirle'], 'or': ['ahora'], 'ah': ['ah'], 'oh': ['oh'],
+    'pur': ['aun así', 'también'], 'ver': ['verdad'],
+    "pro'": ['provecho'],
+
+    # Las contracciones con "con", que el diccionario no tiene y la regla
+    # del apócope resolvía mal: sin esto, "col" caía en "collo" y la app
+    # contestaba "cuello" donde dice "con el". Y "colla", que sí estaba,
+    # contestaba "pegamento" donde dice "con la".
+    'col': ['con el'], 'coi': ['con los'], 'collo_': ['con lo'],
+    'colla': ['con la', 'cola', 'pegamento'], 'colle': ['con las'],
+    'cogli': ['con los'], 'pel': ['por el'], 'pei': ['por los'],
+
+    # Con apóstrofo, que es como aparecen en el verso.
+    "c'e": ['hay'], "ch'e": ['que es'], "d'un": ['de un'],
+    "ch'io": ['que yo'], "l'arte": ['el arte'],
+}
+
 SUELTAS_ES = {
     'es': ['è'], 'dificil': ['difficile'], 'vez': ['volta'],
     'anoche': ['ieri sera'], 'mama': ['mamma'], 'papa': ['papà'],
@@ -278,7 +330,7 @@ def main():
 
     # Lo escrito a mano va último y pisa: si FreeDict dice que "macchina" es
     # "máquina", acá decimos que también es "auto", y va primero.
-    for mano in (FUNCION, BASICAS, VERBOS, SUELTAS):
+    for mano in (FUNCION, BASICAS, VERBOS, SUELTAS, DELASFAVOLE):
         for clave, traducciones in mano.items():
             clave = clave.rstrip('_').replace('_adv', '')
             it_es[sin_tilde(clave)] = traducciones + [

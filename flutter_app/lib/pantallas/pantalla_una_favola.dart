@@ -186,9 +186,12 @@ class _PantallaUnaFavolaState extends State<PantallaUnaFavola> {
   void _queQuiereDecir(String palabra) {
     // Sin signos y en minúscula: el diccionario guarda las palabras así, y
     // en un verso la primera de cada renglón va en mayúscula.
+    // El apóstrofo curvo se conserva: es el que usan los textos de
+    // Wikisource, y si se cae acá "d’un" llega como "dun" y no hay cómo
+    // partirlo después.
     final limpia = palabra
         .toLowerCase()
-        .replaceAll(RegExp(r"[^\p{L}']", unicode: true), '');
+        .replaceAll(RegExp(r"[^\p{L}'’]", unicode: true), '');
     if (limpia.isEmpty) return;
 
     final traduccion = traducir(widget.diccionario, limpia);
