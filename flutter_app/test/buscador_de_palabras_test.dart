@@ -45,6 +45,9 @@ BuscadorDePalabras _buscador(Servidor servidor) => BuscadorDePalabras(
       // Sin carpeta donde escribir, QuienSoy igual inventa un número para
       // esta sesión. Así el test no toca el disco.
       quienSoy: QuienSoy(carpeta: () async => null),
+      // Sin esperar de verdad entre intentos: el test prueba que se
+      // reintente, no el reloj.
+      esperar: (_) async {},
     );
 
 void main() {
@@ -122,6 +125,54 @@ void main() {
     expect(await buscador.buscar(_chico, 'lumicino'), isNull);
     // Y lo que sí está sigue saliendo igual, que es lo importante.
     expect((await buscador.buscar(_chico, 'acqua'))!.comoSeDice, 'agua');
+  });
+
+  test('si la IA todavía está pensando, se vuelve a preguntar', () async {
+    // "Todavía no" no es "no existe". El servidor le contesta rápido al que
+    // pregunta y sigue esperando a la IA por su cuenta; cuando llega, la
+    // guarda. La segunda pregunta cae en la base, no en la IA.
+    //
+    // Sin esto, el primero que busca una palabra casi nunca la recibe,
+    // aunque la palabra haya llegado al servidor un segundo después.
+    var cuantas = 0;
+    final buscador = _buscador(Servidor(
+      url: 'https://servidor-de-mentira',
+      cliente: MockClient((_) async {
+        cuantas++;
+        final cuerpo = cuantas == 1
+            ? {'es': [], 'base': '', 'porQue': 'tardo'}
+            : {'es': ['morfar'], 'base': ''};
+        return http.Response(
+          jsonEncode(cuerpo),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        );
+      }),
+    ));
+
+    final hallada = await buscador.buscar(_chico, 'sbasoffiare');
+
+    expect(hallada, isNotNull);
+    expect(hallada!.comoSeDice, 'morfar');
+    expect(cuantas, 2);
+  });
+
+  test('si en el segundo intento tampoco está, se deja de insistir', () async {
+    var cuantas = 0;
+    final buscador = _buscador(Servidor(
+      url: 'https://servidor-de-mentira',
+      cliente: MockClient((_) async {
+        cuantas++;
+        return http.Response(
+          jsonEncode({'es': [], 'base': '', 'porQue': 'tardo'}),
+          200,
+          headers: {'content-type': 'application/json; charset=utf-8'},
+        );
+      }),
+    ));
+
+    expect(await buscador.buscar(_chico, 'chirimbolo'), isNull);
+    expect(cuantas, 2, reason: 'insistió de más');
   });
 
   test('sabe cuándo puede contestar sin internet', () async {

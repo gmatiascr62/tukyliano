@@ -20,12 +20,25 @@ import 'quien_soy.dart';
 /// Y la del medio existe porque sin ella, tocar dos veces la misma palabra en
 /// la misma pantalla serían dos viajes a internet para la misma respuesta.
 class BuscadorDePalabras {
-  BuscadorDePalabras({Servidor? servidor, QuienSoy? quienSoy})
-      : _servidor = servidor ?? Servidor(),
-        _quienSoy = quienSoy ?? QuienSoy();
+  BuscadorDePalabras({
+    Servidor? servidor,
+    QuienSoy? quienSoy,
+    Future<void> Function(Duration)? esperar,
+  })  : _servidor = servidor ?? Servidor(),
+        _quienSoy = quienSoy ?? QuienSoy(),
+        _esperar = esperar ?? Future<void>.delayed;
 
   final Servidor _servidor;
   final QuienSoy _quienSoy;
+
+  /// Cómo se espera entre un intento y el otro. Los tests pasan uno que no
+  /// espera nada, así no tardan cuatro segundos de verdad.
+  final Future<void> Function(Duration) _esperar;
+
+  /// Cuánto se le da a la IA antes de volver a preguntar. Medido desde
+  /// Cloudflare: la mediana de Gemini está en unos ocho segundos y el
+  /// servidor contesta a los siete, así que con cuatro más alcanza.
+  static const _loQueTardaEnLlegar = Duration(seconds: 4);
 
   /// Lo que ya se preguntó en esta sesión. Se pierde al cerrar la app, y
   /// está bien que se pierda: lo que vale la pena guardar para siempre se
@@ -49,11 +62,31 @@ class BuscadorDePalabras {
     if (_loQueYaSe.containsKey(clave)) return _loQueYaSe[clave];
 
     final quien = await _quienSoy.cual();
-    final delServidor = await _servidor.queQuiereDecir(
+    var delServidor = await _servidor.queQuiereDecir(
       quien: quien,
       palabra: palabra,
       donde: donde,
     );
+
+    // "Todavía no" no es "no existe".
+    //
+    // El servidor le contesta rápido al que pregunta y sigue esperando a la
+    // IA por su cuenta: cuando la respuesta llega, la guarda. Desde
+    // Cloudflare esa espera son unos ocho segundos, un poco más de lo que el
+    // servidor aguanta antes de contestar.
+    //
+    // Así que se le da tiempo y se pregunta una vez más. La segunda no
+    // vuelve a molestar a la IA: cae en la base, donde la palabra ya está, y
+    // contesta en menos de un segundo. Sin esto, el primero que busca una
+    // palabra casi nunca la recibe, aunque la palabra haya llegado.
+    if (delServidor.laEstanBuscando) {
+      await _esperar(_loQueTardaEnLlegar);
+      delServidor = await _servidor.queQuiereDecir(
+        quien: quien,
+        palabra: palabra,
+        donde: donde,
+      );
+    }
 
     final hallada = delServidor.hay
         ? Traduccion(
