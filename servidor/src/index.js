@@ -23,8 +23,17 @@ export default {
     const donde = new URL(pedido.url);
 
     // Para saber si está vivo sin gastar ni una neurona.
+    //
+    // `diccionario` dice si la clave de Gemini está cargada. Es un sí o un
+    // no: no dice cuál es, ni cuánto mide, ni una letra. Sirve para
+    // distinguir las dos cosas que se ven igual desde afuera —la clave no
+    // está, o está y Gemini falla— sin tener que leer los logs de
+    // Cloudflare.
     if (pedido.method === 'GET' && donde.pathname === '/salud') {
-      return Response.json({ ok: true });
+      return Response.json({
+        ok: true,
+        diccionario: Boolean(ambiente.GEMINI_API_KEY),
+      });
     }
 
     const esCharla = pedido.method === 'POST' && donde.pathname === '/charla';
