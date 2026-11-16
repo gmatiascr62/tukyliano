@@ -5,9 +5,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
+import 'package:tukyliano/datos/buscador_de_palabras.dart';
 import 'package:tukyliano/datos/descargas.dart';
 import 'package:tukyliano/datos/repositorio_diccionario.dart';
+import 'package:tukyliano/datos/quien_soy.dart';
 import 'package:tukyliano/datos/repositorio_favole.dart';
+import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/modelos/favola.dart';
 import 'package:tukyliano/pantallas/pantalla_favole.dart';
 import 'package:tukyliano/tema.dart';
@@ -52,6 +55,7 @@ Future<void> _abrir(
   required DescargasFalsas descargas,
   required ReproductorFalso reproductor,
   String? catalogo,
+  BuscadorDePalabras? buscador,
 }) async {
   usarPantallaDeCelular(tester);
   await tester.pumpWidget(MaterialApp(
@@ -66,6 +70,7 @@ Future<void> _abrir(
         diccionario: RepositorioDiccionario(
           leerAsset: (_) async => _diccionarioDePrueba,
         ),
+        buscador: buscador,
       ),
     ),
   ));
@@ -345,6 +350,67 @@ void main() {
       await tester.pumpAndSettle();
 
       expect(find.textContaining('cigarra'), findsOne);
+    });
+
+    testWidgets('una palabra que no está se le pregunta al servidor',
+        (tester) async {
+      // Es el caso de Matías: apretó "lumicino" en Il Lupo e il Cane y no
+      // estaba. Ahora el servidor la busca, la guarda, y el próximo que la
+      // toque la recibe de la base sin gastar nada.
+      final pedidos = <String>[];
+      await _abrir(
+        tester,
+        descargas: DescargasFalsas(),
+        reproductor: ReproductorFalso(),
+        buscador: BuscadorDePalabras(
+          quienSoy: QuienSoy(carpeta: () async => null),
+          servidor: Servidor(
+            url: 'https://servidor-de-mentira',
+            cliente: MockClient((pedido) async {
+              pedidos.add(pedido.body);
+              return http.Response(
+                jsonEncode({'es': ['en las últimas'], 'base': ''}),
+                200,
+                headers: {'content-type': 'application/json; charset=utf-8'},
+              );
+            }),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('La Cicala e la Formica'));
+      await tester.pumpAndSettle();
+      // "imprudente" no está en el diccionario chico de este test.
+      await tester.tapOnText(find.textRange.ofSubstring('imprudente'));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('en las últimas'), findsOne);
+      // Y se le mandó el renglón, que es lo que desambigua.
+      expect(pedidos.single, contains('imprudente'));
+      expect(pedidos.single, contains('La Cicala che imprudente'));
+    });
+
+    testWidgets('si el servidor tampoco la sabe, lo dice y no se rompe',
+        (tester) async {
+      await _abrir(
+        tester,
+        descargas: DescargasFalsas(),
+        reproductor: ReproductorFalso(),
+        buscador: BuscadorDePalabras(
+          quienSoy: QuienSoy(carpeta: () async => null),
+          servidor: Servidor(
+            url: 'https://servidor-de-mentira',
+            cliente: MockClient((_) async => throw const SocketException('')),
+          ),
+        ),
+      );
+
+      await tester.tap(find.text('La Cicala e la Formica'));
+      await tester.pumpAndSettle();
+      await tester.tapOnText(find.textRange.ofSubstring('imprudente'));
+      await tester.pumpAndSettle();
+
+      expect(find.textContaining('no está en el diccionario'), findsOne);
     });
 
     testWidgets('si no se pudo bajar lo dice y deja reintentar',

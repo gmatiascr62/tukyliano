@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../datos/buscador_de_palabras.dart';
 import '../datos/descargas.dart';
 import '../datos/reproductor.dart';
 import '../datos/repositorio_diccionario.dart';
@@ -28,12 +29,17 @@ class PantallaFavole extends StatefulWidget {
     this.descargas,
     this.reproductor,
     this.diccionario,
+    this.buscador,
   });
 
   final RepositorioFavole? repositorio;
   final Descargas? descargas;
   final Reproductor? reproductor;
   final RepositorioDiccionario? diccionario;
+
+  /// Quién busca las palabras que el diccionario no tiene. Se le pasa a la
+  /// pantalla de la fábula, que es donde se tocan.
+  final BuscadorDePalabras? buscador;
 
   @override
   State<PantallaFavole> createState() => _PantallaFavoleState();
@@ -188,6 +194,7 @@ class _PantallaFavoleState extends State<PantallaFavole> {
         ruta: _rutaAbierta,
         reproductor: _reproductor,
         diccionario: _elDiccionario,
+        buscador: widget.buscador,
         alVolver: () => _cerrarLaFavola(abierta),
       );
     }
