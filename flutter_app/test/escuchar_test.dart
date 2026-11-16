@@ -167,6 +167,32 @@ void _elCatalogoDePinocchio() {
           findsOneWidget);
     });
 
+    test('no se coló nada de Wikisource en el texto', () {
+      // El número de página del libro escaneado, con su enlace de editar,
+      // viene en el medio del texto: "gli era entrato addosso una gran
+      // [p. 9 modifica]paura". Doscientos cuarenta renglones lo tenían, y
+      // no se ve hasta leer una fábula entera.
+      final sucia = RegExp(r'\[p\.|modifica|mw-parser|dc:title');
+      for (final capitulo in catalogo.lecturas) {
+        for (final renglon in capitulo.renglones) {
+          expect(sucia.hasMatch(renglon.texto), isFalse,
+              reason: '${capitulo.titulo}: ${renglon.texto}');
+        }
+      }
+    });
+
+    test('ningún renglón es tan largo que no se pueda seguir', () {
+      // Collodi escribe frases larguísimas unidas por comas: la más larga
+      // del libro son 2308 caracteres, dos minutos y medio de audio en un
+      // solo renglón. Iluminar eso no dice dónde va el audio.
+      for (final capitulo in catalogo.lecturas) {
+        for (final renglon in capitulo.renglones) {
+          expect(renglon.texto.length, lessThanOrEqualTo(260),
+              reason: renglon.texto);
+        }
+      }
+    });
+
     test('el texto está partido en oraciones, no en párrafos', () {
       // En prosa un párrafo dura entre medio minuto y un minuto, y un
       // renglón iluminado de un minuto no dice dónde va el audio.

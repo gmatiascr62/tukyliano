@@ -86,6 +86,23 @@ def pedirleAWikisource(parametros):
             time.sleep(ESPERAR_ENTRE_PEDIDOS * (intento + 1))
 
 
+# El número de página del libro escaneado, con su enlace para editarlo.
+# Wikisource lo mete en el medio del texto, y sacar las marcas sin sacar
+# esto deja "[p. 9 modifica]" partiendo una frase al medio: "gli era
+# entrato addosso una gran [p. 9 modifica]paura". Doscientos cuarenta
+# renglones lo tenían.
+#
+# Hay que sacarlo con contenido y todo, no solo las marcas, porque el
+# número y la palabra "modifica" son texto adentro de esos elementos.
+UN_NUMERO_DE_PAGINA = re.compile(
+    r'<span[^>]*class="[^"]*numeropagina[^"]*".*?</span></span></span>',
+    re.S)
+
+
+def sinLosNumerosDePagina(crudo):
+    return UN_NUMERO_DE_PAGINA.sub('', crudo)
+
+
 # Lo que viene adelante del capítulo y no es el capítulo: los metadatos
 # del libro escaneado y la hoja de estilos que Wikisource mete adentro del
 # primer párrafo.
@@ -178,7 +195,7 @@ def elTextoDe(numero):
     if 'error' in datos:
         raise SystemExit(f"capítulo {numero}: {datos['error'].get('info')}")
 
-    crudo = datos['parse']['text']
+    crudo = sinLosNumerosDePagina(datos['parse']['text'])
     parrafos = []
     for pedazo in re.findall(r'<p[^>]*>(.*?)</p>', crudo, re.S):
         texto = re.sub(r'<[^>]+>', '', pedazo)
@@ -202,6 +219,48 @@ FIN_DE_ORACION = re.compile(r'(?<=[.!?…])\s+(?=[«"—\-A-ZÀ-ÜÈÉÌÒÙ])')
 MINIMO = 12
 
 
+# Hasta acá llega un renglón. Medido sobre el libro entero, son unos
+# quince segundos de audio, que es lo que alguien aguanta siguiendo un
+# renglón iluminado sin perderse.
+#
+# Hace falta porque Collodi escribe frases larguísimas unidas por comas:
+# la más larga del libro —Pinocchio contándole todo a Geppetto de un
+# tirón— son 2308 caracteres, dos minutos y medio de audio en un solo
+# renglón. Iluminar eso no dice dónde va: dice que estás en el libro.
+HASTA_ACA = 220
+
+# Dónde conviene cortar una frase demasiado larga, de mejor a peor. El
+# punto y coma y los dos puntos son pausas de verdad; la coma es lo que
+# queda cuando no hay otra cosa.
+DONDE_CORTAR = ('; ', ': ', ', ')
+
+
+def cortarLosLargos(renglones):
+    """Parte los renglones que no entran, por la pausa más cercana."""
+    salida = []
+    for renglon in renglones:
+        while len(renglon) > HASTA_ACA:
+            corte = -1
+            for donde in DONDE_CORTAR:
+                corte = renglon.rfind(donde, 0, HASTA_ACA)
+                if corte > HASTA_ACA // 3:
+                    corte += len(donde) - 1
+                    break
+                corte = -1
+            if corte < 0:
+                # Ni una pausa: se corta en el último espacio. Pasa con
+                # las enumeraciones sin puntuación, y es preferible a un
+                # renglón que dura un minuto.
+                corte = renglon.rfind(' ', 0, HASTA_ACA)
+                if corte < HASTA_ACA // 3:
+                    break
+            salida.append(renglon[:corte + 1].strip())
+            renglon = renglon[corte + 1:].strip()
+        if renglon:
+            salida.append(renglon)
+    return salida
+
+
 def enOraciones(parrafos):
     """Parte los párrafos en oraciones, que es lo que se ilumina.
 
@@ -219,7 +278,7 @@ def enOraciones(parrafos):
                 renglones[-1] = f'{renglones[-1]} {oracion}'
             else:
                 renglones.append(oracion)
-    return renglones
+    return cortarLosLargos(renglones)
 
 
 def esElResumen(parrafo, titulo):
