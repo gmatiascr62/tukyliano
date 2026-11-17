@@ -157,16 +157,31 @@ export async function atenderLaPalabra(cuerpo, afuera) {
   //    El primero que buscó "lumicino" un día lento se queda sin ella; el
   //    segundo la recibe de la base al instante. La palabra entra igual.
   const laPregunta = (async () => {
-    const { que } = await loQueDijo(pedido.palabra, pedido.donde, clave);
+    const { que, porQue } = await loQueDijo(pedido.palabra, pedido.donde,
+                                            clave);
     if (que) await guardar(base, pedido.palabra, que, dia);
-    return que;
+    return { que, porQue };
   })();
 
   if (seguirDespues) seguirDespues(laPregunta);
 
-  const que = await loQuePrimeroLlegue(laPregunta, cuantoEspera);
-  if (!que) return noLaSabe(pedido.palabra, 'tardo');
-  return laRespuesta(pedido.palabra, que, 'ia');
+  const salio = await loQuePrimeroLlegue(laPregunta, cuantoEspera);
+  if (salio?.que) return laRespuesta(pedido.palabra, salio.que, 'ia');
+
+  // Por qué no hay respuesta, y no un "tardó" para todo.
+  //
+  // Antes esto decía siempre 'tardo', y era mentira en casi todos los
+  // casos: Gemini puede contestar que no en medio segundo. El día que
+  // Google suspendió la cuenta por una factura impaga —un 403 instantáneo
+  // en cada pedido— el servidor seguía diciendo "tardó", y para encontrar
+  // la causa hubo que llamar a Gemini a mano desde afuera.
+  //
+  // Ahora 'tardo' significa que de verdad se acabó el tiempo, y cualquier
+  // otra cosa —el código HTTP que devolvió Google, 'sinClave', 'red'—
+  // viaja tal cual. No se muestra en pantalla: la app sigue diciendo que
+  // no está. Pero queda en la respuesta, que es donde se mira cuando algo
+  // no anda.
+  return noLaSabe(pedido.palabra, salio?.porQue || 'tardo');
 }
 
 /// Cuánto aguanta mirando la pantalla el que tocó una palabra. Pasado
