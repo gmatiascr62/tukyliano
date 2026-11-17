@@ -1,0 +1,377 @@
+{
+  "id": "pinocchio_25",
+  "titulo": "25. Pinocchio promette alla Fata di essere buono e di studiare, perché è stufo di fare il burattino e vuol diventare un bravo ragazzo.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.12,
+    "hasta": 38.12,
+    "texto": "Pinocchio promette alla Fata di essere buono e di studiare, perché è stufo di fare il burattino e vuol diventare un bravo ragazzo."
+  },
+  "renglones": [
+    {
+      "desde": 39.51,
+      "hasta": 45.28,
+      "texto": "In sulle prime, la buona donnina cominciò col dire che lei non era la piccola Fata dai capelli turchini:"
+    },
+    {
+      "desde": 45.28,
+      "hasta": 53.78,
+      "texto": "ma poi, vedendosi oramai scoperta e non volendo mandare più in lungo la commedia, fini per farsi riconoscere, e disse a Pinocchio:"
+    },
+    {
+      "desde": 53.78,
+      "hasta": 55.54,
+      "texto": "— Birba d’un burattino!"
+    },
+    {
+      "desde": 55.54,
+      "hasta": 56.23,
+      "texto": "Come mai ti sei accorto che ero io?"
+    },
+    {
+      "desde": 58.6,
+      "hasta": 61.21,
+      "texto": "— Gli è il gran bene che vi voglio, quello che me l’ha detto."
+    },
+    {
+      "desde": 61.21,
+      "hasta": 62.38,
+      "texto": "— Ti ricordi, eh?"
+    },
+    {
+      "desde": 63.26,
+      "hasta": 68.58,
+      "texto": "Mi lasciasti bambina, e ora mi ritrovi donna; tanto donna, che potrei quasi farti da mamma."
+    },
+    {
+      "desde": 69.89,
+      "hasta": 73.38,
+      "texto": "— E io l’ho caro dimolto, perchè così, invece di sorellina, vi chiamerò la mia mamma."
+    },
+    {
+      "desde": 73.44,
+      "hasta": 77.8,
+      "texto": "Gli è tanto tempo che mi struggo di avere una mamma come tutti gli altri ragazzi!..."
+    },
+    {
+      "desde": 77.86,
+      "hasta": 81.98,
+      "texto": "Ma come avete fatto a crescere così presto? ― È un segreto."
+    },
+    {
+      "desde": 82.05,
+      "hasta": 85.3,
+      "texto": "— Insegnatemelo: vorrei crescere un poco anch’io."
+    },
+    {
+      "desde": 85.3,
+      "hasta": 86.38,
+      "texto": "Non lo vedete?"
+    },
+    {
+      "desde": 86.66,
+      "hasta": 88.8,
+      "texto": "Son sempre rimasto alto come un soldo di cacio."
+    },
+    {
+      "desde": 89.59,
+      "hasta": 94.16,
+      "texto": "— Ma tu non puoi crescere — replicò la Fata. — Perchè?"
+    },
+    {
+      "desde": 94.16,
+      "hasta": 96.22,
+      "texto": "— Perchè i burattini non crescono mai."
+    },
+    {
+      "desde": 96.22,
+      "hasta": 100.16,
+      "texto": "Nascono burattini, vivono burattini e muoiono burattini."
+    },
+    {
+      "desde": 100.16,
+      "hasta": 102.22,
+      "texto": "— Oh! sono stufo di far sempre il burattino!"
+    },
+    {
+      "desde": 102.22,
+      "hasta": 105.16,
+      "texto": "— gridò Pinocchio, dandosi uno scappellotto."
+    },
+    {
+      "desde": 105.16,
+      "hasta": 107.8,
+      "texto": "— Sarebbe ora che diventassi anch’io un uomo…"
+    },
+    {
+      "desde": 109.16,
+      "hasta": 113.16,
+      "texto": "— E lo diventerai, se saprai meritartelo… — Davvero?"
+    },
+    {
+      "desde": 113.51,
+      "hasta": 116.01,
+      "texto": "E che posso fare per meritarmelo?"
+    },
+    {
+      "desde": 116.01,
+      "hasta": 120.11,
+      "texto": "— Una cosa facilissima: avvezzarti a essere un ragazzino perbene."
+    },
+    {
+      "desde": 120.97,
+      "hasta": 122.93,
+      "texto": "— O che forse non lo sono?"
+    },
+    {
+      "desde": 122.93,
+      "hasta": 124.32,
+      "texto": "— Tutt’altro!"
+    },
+    {
+      "desde": 124.32,
+      "hasta": 127.69,
+      "texto": "I ragazzi perbene sono ubbidienti, e tu invece…"
+    },
+    {
+      "desde": 129.06,
+      "hasta": 129.69,
+      "texto": "— E io non ubbidisco mai."
+    },
+    {
+      "desde": 129.69,
+      "hasta": 133.66,
+      "texto": "— I ragazzi perbene prendono amore allo studio e al lavoro, e tu…"
+    },
+    {
+      "desde": 133.66,
+      "hasta": 137.48,
+      "texto": "— E io, invece, faccio il bighellone e il vagabondo tutto l’anno."
+    },
+    {
+      "desde": 137.48,
+      "hasta": 140.98,
+      "texto": "— I ragazzi perbene dicono sempre la verità…"
+    },
+    {
+      "desde": 140.98,
+      "hasta": 142.84,
+      "texto": "— E io sempre le bugie."
+    },
+    {
+      "desde": 142.84,
+      "hasta": 146.08,
+      "texto": "— I ragazzi perbene vanno volentieri alla scuola…"
+    },
+    {
+      "desde": 146.08,
+      "hasta": 149.1,
+      "texto": "— E a me la scuola mi fa venire i dolori di corpo."
+    },
+    {
+      "desde": 149.1,
+      "hasta": 151.78,
+      "texto": "Ma da oggi in poi voglio mutar vita."
+    },
+    {
+      "desde": 151.96,
+      "hasta": 153.18,
+      "texto": "— Me lo prometti?"
+    },
+    {
+      "desde": 153.18,
+      "hasta": 154.38,
+      "texto": "— Lo prometto."
+    },
+    {
+      "desde": 154.38,
+      "hasta": 159.18,
+      "texto": "Voglio diventare un ragazzino perbene, e voglio essere la consolazione del mio babbo…"
+    },
+    {
+      "desde": 159.18,
+      "hasta": 161.78,
+      "texto": "Dove sarà il mio povero babbo, a quest’ora?"
+    },
+    {
+      "desde": 161.93,
+      "hasta": 163.08,
+      "texto": "— Non lo so."
+    },
+    {
+      "desde": 163.08,
+      "hasta": 166.78,
+      "texto": "— Avrò mai la fortuna di poterlo rivedere e abbracciare?"
+    },
+    {
+      "desde": 166.87,
+      "hasta": 169.9,
+      "texto": "— Credo di sì: anzi ne sono sicura. —"
+    },
+    {
+      "desde": 169.9,
+      "hasta": 179.46,
+      "texto": "A questa risposta fu tale e tanta la contentezza di Pinocchio, che prese le mani alla Fata e cominciò a baciargliele con tanta foga, che pareva quasi fuori di sè."
+    },
+    {
+      "desde": 179.46,
+      "hasta": 183.06,
+      "texto": "Poi, alzando il viso e guardandola amorosamente, le domandò:"
+    },
+    {
+      "desde": 183.14,
+      "hasta": 187.12,
+      "texto": "— Dimmi, mammina: dunque non è vero che tu sia morta?"
+    },
+    {
+      "desde": 187.93,
+      "hasta": 190.24,
+      "texto": "— Par di no — rispose sorridendo la Fata."
+    },
+    {
+      "desde": 190.24,
+      "hasta": 194.74,
+      "texto": "— Se tu sapessi che dolore e che serratura alla gola che provai, quando lessi qui giace…"
+    },
+    {
+      "desde": 196.52,
+      "hasta": 199.76,
+      "texto": "— Lo so: ed è per questo che ti ho perdonato."
+    },
+    {
+      "desde": 199.76,
+      "hasta": 212.38,
+      "texto": "La sincerità del tuo dolore mi fece conoscere che tu avevi il cuore buono: e dai ragazzi buoni di cuore, anche se sono un po’ monelli e avvezzati male, c’è sempre da sperar qualcosa: ossia, c’è"
+    },
+    {
+      "desde": 212.38,
+      "hasta": 215.66,
+      "texto": "sempre da sperare che rientrino sulla vera strada."
+    },
+    {
+      "desde": 215.66,
+      "hasta": 219.08,
+      "texto": "Ecco perchè son venuta a cercarti fin qui."
+    },
+    {
+      "desde": 219.08,
+      "hasta": 220.74,
+      "texto": "Io sarò la tua mamma…"
+    },
+    {
+      "desde": 220.74,
+      "hasta": 222.13,
+      "texto": "― Oh che bella cosa!"
+    },
+    {
+      "desde": 222.13,
+      "hasta": 224.84,
+      "texto": "— gridò Pinocchio saltando dall’allegrezza."
+    },
+    {
+      "desde": 224.84,
+      "hasta": 228.16,
+      "texto": "— Tu mi ubbidirai e farai sempre quello che ti dirò io."
+    },
+    {
+      "desde": 228.16,
+      "hasta": 231.27,
+      "texto": "— Volentieri, volentieri, volentieri!"
+    },
+    {
+      "desde": 231.27,
+      "hasta": 236.82,
+      "texto": "— Fino da domani, — soggiunse la Fata, — tu comincerai coll’andare a scuola. —"
+    },
+    {
+      "desde": 236.82,
+      "hasta": 239.82,
+      "texto": "Pinocchio diventò subito un po’ meno allegro."
+    },
+    {
+      "desde": 239.82,
+      "hasta": 243.48,
+      "texto": "— Poi sceglierai a tuo piacere un’arte o un mestiere… —"
+    },
+    {
+      "desde": 243.48,
+      "hasta": 245.33,
+      "texto": "Pinocchio diventò serio."
+    },
+    {
+      "desde": 245.33,
+      "hasta": 247.39,
+      "texto": "— Che cosa brontoli fra i denti?"
+    },
+    {
+      "desde": 247.39,
+      "hasta": 250.63,
+      "texto": "— domandò la Fata con accento risentito. — Dicevo…"
+    },
+    {
+      "desde": 251.54,
+      "hasta": 257.57,
+      "texto": "— mugolò il burattino a mezza voce, — che oramai per andare a scuola mi pare un po’ tardi…"
+    },
+    {
+      "desde": 257.57,
+      "hasta": 259.14,
+      "texto": "— Nossignore."
+    },
+    {
+      "desde": 259.14,
+      "hasta": 262.85,
+      "texto": "Tieni a mente che per istruirsi e per imparare non è mai tardi."
+    },
+    {
+      "desde": 262.85,
+      "hasta": 266.57,
+      "texto": "— Ma io non voglio fare nè arti nè mestieri… — Perchè?"
+    },
+    {
+      "desde": 266.57,
+      "hasta": 268.77,
+      "texto": "— Perchè a lavorare mi par fatica."
+    },
+    {
+      "desde": 268.77,
+      "hasta": 275.53,
+      "texto": "— Ragazzo mio, — disse la Fata — quelli che dicono così, finiscono quasi sempre o in carcere o all’ospedale."
+    },
+    {
+      "desde": 275.53,
+      "hasta": 283.41,
+      "texto": "L’uomo, per tua regola, nasca ricco o povero, è obbligato in questo mondo a far qualcosa, a occuparsi, a lavorare."
+    },
+    {
+      "desde": 283.41,
+      "hasta": 285.95,
+      "texto": "Guai a lasciarsi prendere dall’ozio!"
+    },
+    {
+      "desde": 285.95,
+      "hasta": 302.09,
+      "texto": "L’ozio è una bruttissima malattia e bisogna guarirla subito, fin da bambini; se no, quando siamo grandi, non si guarisce più. —"
+    },
+    {
+      "desde": 302.09,
+      "hasta": 302.09,
+      "texto": "Queste parole toccarono l’animo di Pinocchio, il quale, rialzando vivacemente la testa, disse alla Fata:"
+    },
+    {
+      "desde": 302.09,
+      "hasta": 311.96,
+      "texto": "— Io studierò, io lavorerò, io farò tutto quello che mi dirai, perchè insomma, la vita del burattino mi è venuta a noia, e voglio diventare un ragazzo a tutti i costi."
+    },
+    {
+      "desde": 311.96,
+      "hasta": 313.88,
+      "texto": "Me l’hai promesso, non è vero?"
+    },
+    {
+      "desde": 313.88,
+      "hasta": 317.68,
+      "texto": "— Te l’ho promesso, e ora dipende da te. ―"
+    }
+  ]
+}
