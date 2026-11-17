@@ -5,6 +5,7 @@ import 'package:url_launcher/url_launcher.dart';
 
 import '../datos/android.dart';
 import '../datos/audio_de_fondo.dart';
+import '../datos/donde_suena_la_radio.dart';
 import '../datos/reproductor.dart';
 import '../datos/repositorio_radios.dart';
 import '../modelos/radio_italiana.dart';
@@ -25,10 +26,16 @@ import '../tema.dart';
 /// todo el tiempo que está abierta, y entrar a mirar no tiene por qué
 /// gastarlos.
 class PantallaRadio extends StatefulWidget {
-  const PantallaRadio({super.key, this.repositorio, this.reproductor});
+  const PantallaRadio({
+    super.key,
+    this.repositorio,
+    this.reproductor,
+    this.dondeSuena,
+  });
 
   final RepositorioRadios? repositorio;
   final Reproductor? reproductor;
+  final DondeSuenaLaRadio? dondeSuena;
 
   @override
   State<PantallaRadio> createState() => _PantallaRadioState();
@@ -46,6 +53,8 @@ class _PantallaRadioState extends State<PantallaRadio> {
       widget.repositorio ?? RepositorioRadios();
   late final Reproductor _reproductor =
       widget.reproductor ?? ReproductorDeVerdad();
+  late final DondeSuenaLaRadio _dondeSuena =
+      widget.dondeSuena ?? DondeSuenaLaRadio();
 
   List<RadioItaliana> _radios = const [];
   RadioItaliana? _cual;
@@ -122,8 +131,14 @@ class _PantallaRadioState extends State<PantallaRadio> {
       _porQueFallo = null;
     });
 
+    // Para las emisoras que reparten desde varios nodos, cuál toca hoy lo
+    // decide su balanceador. Si no contesta, esto devuelve la dirección de
+    // siempre y la radio suena igual.
+    final donde = await _dondeSuena.de(radio);
+    if (!mounted) return;
+
     final abrio = await _reproductor.cargarDesdeInternet(
-      radio.stream,
+      donde,
       titulo: radio.nombre,
       deQuien: radio.quien,
     );

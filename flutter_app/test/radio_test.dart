@@ -3,8 +3,11 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:tukyliano/datos/android.dart';
 import 'package:tukyliano/datos/audio_de_fondo.dart';
+import 'package:tukyliano/datos/donde_suena_la_radio.dart';
 import 'package:tukyliano/datos/repositorio_radios.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 
@@ -25,16 +28,28 @@ Future<void> _bajarDelTodo(WidgetTester tester) async {
   await tester.pumpAndSettle();
 }
 
+/// Un balanceador que no contesta, que es lo normal en un test.
+///
+/// Va explícito y no se deja el de verdad porque el de verdad saldría a
+/// internet: un test no puede depender de que haya red, ni esperar a que una
+/// consulta se dé por vencida. Sin balanceador la radio suena por la
+/// dirección del catálogo, que es lo que esperan los tests de abajo.
+DondeSuenaLaRadio _sinBalanceador() => DondeSuenaLaRadio(
+      cliente: MockClient((_) async => throw const SocketException('')),
+    );
+
 Future<void> _abrir(
   WidgetTester tester, {
   required ReproductorFalso reproductor,
   String? asset,
+  DondeSuenaLaRadio? dondeSuena,
 }) async {
   await tester.pumpWidget(MaterialApp(
     home: Scaffold(
       body: PantallaRadio(
         repositorio: _repositorio(asset: asset),
         reproductor: reproductor,
+        dondeSuena: dondeSuena ?? _sinBalanceador(),
       ),
     ),
   ));
@@ -153,6 +168,38 @@ void main() {
       expect(reproductor.andando, isTrue);
       expect(find.text('Sonando en vivo'), findsOne);
       expect(find.byIcon(Icons.stop), findsOne);
+    });
+
+    testWidgets('con balanceador, suena por el nodo de hoy', (tester) async {
+      // Senti Chi Parla reparte desde decenas de nodos y cuál toca lo decide
+      // su balanceador en el momento. Antes la app tenía clavado un nodo,
+      // que funciona hasta el día que ese nodo deje de servir.
+      final reproductor = ReproductorFalso();
+      await _abrir(
+        tester,
+        reproductor: reproductor,
+        dondeSuena: DondeSuenaLaRadio(
+          cliente: MockClient.streaming((_, _) async => http.StreamedResponse(
+                const Stream<List<int>>.empty(),
+                302,
+                headers: {
+                  'location':
+                      'http://15113.live.streamtheworld.com/SAM01AAC222_SC',
+                },
+              )),
+        ),
+      );
+
+      await tester.tap(find.byIcon(Icons.play_arrow));
+      await tester.pumpAndSettle();
+
+      // Y por https, aunque el balanceador conteste http: Android bloquea
+      // el tráfico sin cifrar.
+      expect(
+        reproductor.laUrl,
+        'https://15113.live.streamtheworld.com/SAM01AAC222_SC',
+      );
+      expect(find.text('Sonando en vivo'), findsOne);
     });
 
     testWidgets('el segundo toque la para', (tester) async {
