@@ -54,7 +54,7 @@
       "texto": "E ora avete capito, miei piccoli lettori, qual era il bel mestiere che faceva l’omino?"
     },
     {
-      "desde": 127.02,
+      "desde": 131.14,
       "hasta": 136.02,
       "texto": "Questo brutto mostriciattolo, che aveva la fisionomia tutta di latte e miele, andava di tanto in tanto con un carro a girare per il mondo;"
     },
@@ -65,7 +65,7 @@
     },
     {
       "desde": 143.21,
-      "hasta": 151.3,
+      "hasta": 149.85,
       "texto": "e dopo averli caricati sul suo carro, li conduceva nel «Paese dei balocchi» perchè passassero tutto il loro tempo in giuochi, in chiassate e in divertimenti."
     },
     {
@@ -140,11 +140,11 @@
     },
     {
       "desde": 229.94,
-      "hasta": 232.94,
+      "hasta": 231.2,
       "texto": "— J-a, j-a, il fieno mi fa dolere il corpo!…"
     },
     {
-      "desde": 232.94,
+      "desde": 235.8,
       "hasta": 238.06,
       "texto": "— Pretenderesti, dunque, che un somaro, pari tuo, lo dovessi mantenere a petti di pollo e cappone in galantina?"
     },
@@ -195,11 +195,11 @@
     },
     {
       "desde": 297.72,
-      "hasta": 301.26,
+      "hasta": 300.72,
       "texto": "Allora prese una boccata di paglia tritata: e in quel mentre che la stava masticando,"
     },
     {
-      "desde": 301.86,
+      "desde": 302.99,
       "hasta": 311.48,
       "texto": "si dovè persuadere che il sapore della paglia tritata non somigliava punto nè al risotto alla milanese nè ai maccheroni alla napoletana. — Pazienza!"
     },
@@ -264,6 +264,26 @@
       "texto": "I cartelloni di vario colore, attaccati alle cantonate delle strade, dicevano così:"
     },
     {
+      "desde": 377.93,
+      "hasta": 380.57,
+      "texto": "Grande spettacolo di gala."
+    },
+    {
+      "desde": 380.57,
+      "hasta": 392.7,
+      "texto": "Per questa sera avranno luogo i soliti salti ed esercizi sorprendenti, eseguiti da tutti gli artisti e da tutti i cavalli d’ambo i sessi della compagnia."
+    },
+    {
+      "desde": 392.7,
+      "hasta": 401.04,
+      "texto": "E più sarà presentato per la prima volta il famoso ciuchino Pinocchio, detto la stella della danza."
+    },
+    {
+      "desde": 401.09,
+      "hasta": 404.35,
+      "texto": "Il teatro sarà illuminato a giorno."
+    },
+    {
       "desde": 404.35,
       "hasta": 411.95,
       "texto": "Quella sera, come potete figurarvelo, un’ora prima che cominciasse lo spettacolo, il teatro era pieno stipato."
@@ -300,7 +320,7 @@
     },
     {
       "desde": 468.31,
-      "hasta": 475.32,
+      "hasta": 473.51,
       "texto": "che ebbe già l’onore di ballare al cospetto di sua maestà l’imperatore di tutte le principali corti d’Europa."
     },
     {
@@ -315,7 +335,7 @@
     },
     {
       "desde": 495.17,
-      "hasta": 497.65,
+      "hasta": 496.24,
       "texto": "Egli era tutto agghindato a festa."
     },
     {
@@ -425,11 +445,11 @@
     },
     {
       "desde": 645.83,
-      "hasta": 646.83,
+      "hasta": 648.63,
       "texto": "— Al trotto!"
     },
     {
-      "desde": 646.83,
+      "desde": 648.63,
       "hasta": 650.2,
       "texto": "— E Pinocchio, ubbidiente al comando, cambiò il passo in trotto."
     },
@@ -610,11 +630,11 @@
     },
     {
       "desde": 839.83,
-      "hasta": 842.83,
+      "hasta": 840.67,
       "texto": "— Quanto vuoi di cotesto ciuchino zoppo?"
     },
     {
-      "desde": 842.83,
+      "desde": 840.67,
       "hasta": 843.83,
       "texto": "— Venti lire."
     },

@@ -355,6 +355,52 @@ def guardadoEnDisco(numero, traerlo):
     return datos, False
 
 
+# El único texto del libro que no sale de Wikisource.
+#
+# En el capítulo 33 el lector lee en voz alta el cartel que anuncia el
+# espectáculo, y son veintiséis segundos. En Wikisource ese cartel no es
+# texto: es la foto del afiche escaneado, metida entre las páginas 247 y
+# 248 del djvu, así que no hay nada que extraer. Quedaba como el único
+# hueco del libro: el audio lee y el renglón iluminado se queda quieto.
+#
+# Las palabras son las que se oyen en la grabación, no las que yo recuerde
+# del libro. Matías transcribió el capítulo con un reconocedor de voz y de
+# ahí salen; su archivo ubica el cartel entre el segundo 377,7 y el 403,9,
+# que es exactamente el hueco que medía el alineado.
+#
+# El cartel está en mayúsculas en el libro escaneado —es un afiche—, pero
+# acá va en minúscula y sin cortes de línea: lo que se ilumina siguiendo el
+# audio es una oración, y whisper no reconoce mayúsculas de todos modos.
+EL_CARTEL_DEL_TEATRO = (
+    'Grande spettacolo di gala.',
+    'Per questa sera avranno luogo i soliti salti ed esercizi '
+    'sorprendenti, eseguiti da tutti gli artisti e da tutti i cavalli '
+    'd’ambo i sessi della compagnia.',
+    'E più sarà presentato per la prima volta il famoso ciuchino '
+    'Pinocchio, detto la stella della danza.',
+    'Il teatro sarà illuminato a giorno.',
+)
+
+# Dónde va: justo después de la frase que lo presenta.
+LO_PRESENTA = 'I cartelloni di vario colore'
+
+
+def conElCartelDelTeatro(numero, parrafos):
+    """Le mete al capítulo 33 el cartel que Wikisource no tiene como texto."""
+    if numero != 33:
+        return parrafos
+    donde = [i for i, p in enumerate(parrafos) if LO_PRESENTA in p]
+    if len(donde) != 1:
+        # Si Wikisource cambia y la frase se mueve o desaparece, esto tiene
+        # que avisar en vez de pegar el cartel en cualquier lado o de
+        # dejarlo afuera sin que se note.
+        raise SystemExit(
+            f'capítulo 33: esperaba una sola vez {LO_PRESENTA!r} para saber '
+            f'dónde va el cartel del teatro, y lo encontré {len(donde)}')
+    corte = donde[0] + 1
+    return parrafos[:corte] + list(EL_CARTEL_DEL_TEATRO) + parrafos[corte:]
+
+
 def elTextoDe(numero):
     """Los párrafos del capítulo, ya sin marcas ni basura.
 
@@ -376,6 +422,8 @@ def elTextoDe(numero):
         if SOLO_UN_NUMERO.match(texto) or SOLO_UN_ADORNO.match(texto):
             continue
         parrafos.append(texto)
+
+    parrafos = conElCartelDelTeatro(numero, parrafos)
 
     seColo = leyendasQueNoSonTexto(datos['parse']['text']) & set(parrafos)
     if seColo:
