@@ -1,0 +1,677 @@
+{
+  "id": "pinocchio_29",
+  "titulo": "29. Ritorna a casa della Fata, la quale gli promette che il giorno dopo non sarà più un burattino, ma diventerà un ragazzo. Gran colazione di caffè-e-latte per festeggiare questo grande avvenimento.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 48.75,
+      "hasta": 60.51,
+      "texto": "Mentre il pescatore era proprio sul punto di buttar Pinocchio nella padella, entrò nella grotta un grosso cane condotto là dall’odore acutissimo e ghiotto della frittura."
+    },
+    {
+      "desde": 60.51,
+      "hasta": 61.1,
+      "texto": "— Passa via!"
+    },
+    {
+      "desde": 61.1,
+      "hasta": 65.81,
+      "texto": "— gli gridò il pescatore minacciandolo e tenendo sempre in mano il burattino infarinato."
+    },
+    {
+      "desde": 66.73,
+      "hasta": 76.97,
+      "texto": "Ma il povero cane aveva una fame per quattro, e mugolando e dimenando la coda, pareva che dicesse: ― Dammi un boccon di frittura e ti lascio in pace."
+    },
+    {
+      "desde": 76.97,
+      "hasta": 78.48,
+      "texto": "— Passa via, ti dico!"
+    },
+    {
+      "desde": 78.48,
+      "hasta": 82.73,
+      "texto": "— gli ripetè il pescatore; e allungò la gamba per tirargli una pedata."
+    },
+    {
+      "desde": 82.73,
+      "hasta": 93.17,
+      "texto": "Allora il cane che, quando aveva fame davvero, non era avvezzo a lasciarsi posar mosche sul naso, si rivoltò ringhioso al pescatore, mostrandogli le sue terribili zanne."
+    },
+    {
+      "desde": 93.17,
+      "hasta": 97.77,
+      "texto": "In quel mentre si udì nella grotta una vocina fioca fioca, che disse:"
+    },
+    {
+      "desde": 97.77,
+      "hasta": 99.52,
+      "texto": "— Salvami, Alidoro!"
+    },
+    {
+      "desde": 99.52,
+      "hasta": 101.53,
+      "texto": "Se non mi salvi, son fritto!"
+    },
+    {
+      "desde": 101.53,
+      "hasta": 112.71,
+      "texto": "Il cane riconobbe subito la voce di Pinocchio, e si accòrse con sua grandissima maraviglia, che la vocina era uscita da quel fagotto infarinato, che il pescatore teneva in mano."
+    },
+    {
+      "desde": 112.71,
+      "hasta": 114.39,
+      "texto": "Allora che cosa fa?"
+    },
+    {
+      "desde": 114.39,
+      "hasta": 123.85,
+      "texto": "Spicca un gran lancio da terra, abbocca quel fagotto infarinato, e tenendolo leggermente coi denti, esce correndo dalla grotta, e via come un baleno!"
+    },
+    {
+      "desde": 123.85,
+      "hasta": 138.53,
+      "texto": "Il pescatore arrabbiatissimo di vedersi strappar di mano un pesce, che egli avrebbe mangiato tanto volentieri, si provò a rincorrere il cane; ma fatti pochi passi gli venne un nodo di tosse e dovè tornarsene indietro."
+    },
+    {
+      "desde": 138.57,
+      "hasta": 141.64,
+      "texto": "Intanto Alidoro, ritrovata che ebbe la viottola"
+    },
+    {
+      "desde": 141.64,
+      "hasta": 146.72,
+      "texto": "che conduceva al paese, si fermò e posò delicatamente in terra l’amico Pinocchio."
+    },
+    {
+      "desde": 146.72,
+      "hasta": 148.87,
+      "texto": "— Quanto ti debbo ringraziare!"
+    },
+    {
+      "desde": 148.87,
+      "hasta": 150.28,
+      "texto": "— disse il burattino."
+    },
+    {
+      "desde": 150.28,
+      "hasta": 155.94,
+      "texto": "— Non c’è bisogno; — replicò il cane — tu salvasti me, e quel che è fatto è reso."
+    },
+    {
+      "desde": 155.94,
+      "hasta": 160.36,
+      "texto": "Si sa: in questo mondo bisogna tutti aiutarsi l’uno con l’altro."
+    },
+    {
+      "desde": 160.36,
+      "hasta": 162.9,
+      "texto": "— Ma come mai sei capitato in quella grotta?"
+    },
+    {
+      "desde": 162.9,
+      "hasta": 169.98,
+      "texto": "— Ero sempre qui disteso sulla spiaggia più morto che vivo, quando il vento mi ha portato da lontano un odorino di frittura."
+    },
+    {
+      "desde": 170.78,
+      "hasta": 174.58,
+      "texto": "Quell’odorino mi ha stuzzicato l’appetito, e io gli sono andato dietro."
+    },
+    {
+      "desde": 174.58,
+      "hasta": 177.18,
+      "texto": "Se arrivavo un minuto più tardi!…"
+    },
+    {
+      "desde": 177.18,
+      "hasta": 178.04,
+      "texto": "— Non me lo dire!"
+    },
+    {
+      "desde": 178.04,
+      "hasta": 180.98,
+      "texto": "— urlò Pinocchio che tremava ancora dalla paura."
+    },
+    {
+      "desde": 180.98,
+      "hasta": 182.5,
+      "texto": "— Non me lo dire!"
+    },
+    {
+      "desde": 182.5,
+      "hasta": 187.3,
+      "texto": "Se tu arrivavi un minuto più tardi, a quest’ora io ero bell’e fritto, mangiato e digerito."
+    },
+    {
+      "desde": 187.34,
+      "hasta": 190.82,
+      "texto": "Brrr! mi vengono i brividi soltanto a pensarvi!… ―"
+    },
+    {
+      "desde": 191.73,
+      "hasta": 201.69,
+      "texto": "Alidoro, ridendo, stese la zampa destra verso il burattino, il quale gliela strinse forte forte in segno di grande amicizia: e dopo si lasciarono."
+    },
+    {
+      "desde": 201.69,
+      "hasta": 212.37,
+      "texto": "Il cane riprese la strada di casa: e Pinocchio, rimasto solo, andò a una capanna lì poco distante, e domandò a un vecchietto che stava sulla porta a scaldarsi al sole:"
+    },
+    {
+      "desde": 212.41,
+      "hasta": 218.97,
+      "texto": "— Dite, galantuomo, sapete nulla di un povero ragazzo ferito nel capo e che si chiamava Eugenio?"
+    },
+    {
+      "desde": 218.97,
+      "hasta": 223.37,
+      "texto": "— Il ragazzo è stato portato da alcuni pescatori in questa capanna, e ora…"
+    },
+    {
+      "desde": 223.37,
+      "hasta": 224.37,
+      "texto": "— Ora sarà morto!…"
+    },
+    {
+      "desde": 224.37,
+      "hasta": 227.07,
+      "texto": "— interruppe Pinocchio, con gran dolore."
+    },
+    {
+      "desde": 227.07,
+      "hasta": 231.05,
+      "texto": "— No: ora è vivo, ed è già ritornato a casa sua."
+    },
+    {
+      "desde": 231.05,
+      "hasta": 232.57,
+      "texto": "— Davvero?… davvero?…"
+    },
+    {
+      "desde": 232.57,
+      "hasta": 235.35,
+      "texto": "— gridò il burattino, saltando dall’allegrezza."
+    },
+    {
+      "desde": 235.35,
+      "hasta": 237.85,
+      "texto": "— Dunque la ferita non era grave?..."
+    },
+    {
+      "desde": 237.85,
+      "hasta": 246.61,
+      "texto": "— Ma poteva riuscire gravissima e anche mortale, — rispose il vecchietto — perchè gli tirarono nel capo un grosso libro rilegato in cartone."
+    },
+    {
+      "desde": 246.61,
+      "hasta": 248.14,
+      "texto": "— E chi glielo tirò?"
+    },
+    {
+      "desde": 248.14,
+      "hasta": 250.99,
+      "texto": "— Un suo compagno di scuola: un certo Pinocchio...."
+    },
+    {
+      "desde": 250.99,
+      "hasta": 252.76,
+      "texto": "— E chi è questo Pinocchio?"
+    },
+    {
+      "desde": 252.76,
+      "hasta": 255.43,
+      "texto": "— domandò il burattino facendo lo gnorri."
+    },
+    {
+      "desde": 255.47,
+      "hasta": 260.39,
+      "texto": "— Dicono che sia un ragazzaccio, un vagabondo, un vero rompicollo. — Calunnie!"
+    },
+    {
+      "desde": 260.39,
+      "hasta": 261.35,
+      "texto": "Tutte calunnie!"
+    },
+    {
+      "desde": 261.42,
+      "hasta": 264.19,
+      "texto": "— Lo conosci tu questo Pinocchio? — Di vista!"
+    },
+    {
+      "desde": 264.19,
+      "hasta": 265.67,
+      "texto": "— rispose il burattino."
+    },
+    {
+      "desde": 265.81,
+      "hasta": 267.44,
+      "texto": "— E tu, che concetto ne hai?"
+    },
+    {
+      "desde": 267.57,
+      "hasta": 269.47,
+      "texto": "— gli chiese il vecchietto."
+    },
+    {
+      "desde": 269.53,
+      "hasta": 276.35,
+      "texto": "— A me mi pare un gran buon figliuolo, pieno di voglia di studiare, obbediente, affezionato al suo babbo e alla sua famiglia.... —"
+    },
+    {
+      "desde": 276.39,
+      "hasta": 285.09,
+      "texto": "Mentre il burattino sfilava a faccia fresca tutte queste bugie, si toccò il naso e si accorse che il naso gli era allungato più di un palmo."
+    },
+    {
+      "desde": 285.4,
+      "hasta": 288.0,
+      "texto": "Allora tutto impaurito cominciò a gridare:"
+    },
+    {
+      "desde": 288.0,
+      "hasta": 297.92,
+      "texto": "— Non date retta, galantuomo, a tutto il bene che ve ne ho detto; perchè conosco benissimo Pinocchio e posso assicurarvi anch’io ch’è davvero un ragazzaccio, un disubbidiente e uno svogliato,"
+    },
+    {
+      "desde": 298.64,
+      "hasta": 302.32,
+      "texto": "e che invece di andare a scuola, va coi compagni a fare lo sbarazzino!"
+    },
+    {
+      "desde": 302.32,
+      "hasta": 308.86,
+      "texto": "Appena ebbe pronunziate queste parole, il suo naso raccorcì e tornò alla grandezza naturale, come era prima."
+    },
+    {
+      "desde": 308.86,
+      "hasta": 311.26,
+      "texto": "— E perchè sei tutto bianco a codesto modo?"
+    },
+    {
+      "desde": 311.31,
+      "hasta": 312.42,
+      "texto": "— gli domandò a un tratto il vecchietto."
+    },
+    {
+      "desde": 313.21,
+      "hasta": 324.9,
+      "texto": "— Vi dirò.... senza avvedermene, mi sono strofinato a un muro, che era imbiancato di fresco — rispose il burattino vergognandosi a raccontare che lo avevano infarinato come un pesce, per poi friggerlo in padella."
+    },
+    {
+      "desde": 324.98,
+      "hasta": 331.0,
+      "texto": "— O della tua giacchetta, de’ tuoi calzoncini e del tuo berretto, che cosa ne hai fatto?"
+    },
+    {
+      "desde": 331.08,
+      "hasta": 333.84,
+      "texto": "— Ho incontrato i ladri e mi hanno spogliato."
+    },
+    {
+      "desde": 333.84,
+      "hasta": 340.76,
+      "texto": "Dite, buon vecchio, non avreste per caso da darmi un po’ di vestituccio, tanto perchè io possa ritornare a casa?"
+    },
+    {
+      "desde": 340.76,
+      "hasta": 346.8,
+      "texto": "— Ragazzo mio; in quanto a vestiti, io non ho che un piccolo sacchetto, dove ci tengo i lupini."
+    },
+    {
+      "desde": 346.8,
+      "hasta": 348.8,
+      "texto": "Se lo vuoi, piglialo: eccolo là. —"
+    },
+    {
+      "desde": 348.86,
+      "hasta": 362.11,
+      "texto": "Pinocchio non se lo fece dire due volte: prese subito il sacchetto dei lupini che era vuoto, e dopo averci fatto colle forbici una piccola buca nel fondo e due buche dalle parti, se lo infilò a uso camicia."
+    },
+    {
+      "desde": 362.11,
+      "hasta": 365.83,
+      "texto": "E vestito leggerino a quel modo, si avviò verso il paese."
+    },
+    {
+      "desde": 365.83,
+      "hasta": 375.11,
+      "texto": "Ma, lungo la strada, non si sentiva punto tranquillo; tant’è vero che faceva un passo avanti e uno indietro e, discorrendo da sè solo andava dicendo:"
+    },
+    {
+      "desde": 375.11,
+      "hasta": 377.93,
+      "texto": "— Come farò a presentarmi alla mia buona Fatina?"
+    },
+    {
+      "desde": 377.93,
+      "hasta": 379.97,
+      "texto": "Che dirà quando mi vedrà?…"
+    },
+    {
+      "desde": 379.97,
+      "hasta": 383.31,
+      "texto": "Vorrà perdonarmi questa seconda birichinata?…"
+    },
+    {
+      "desde": 383.31,
+      "hasta": 388.28,
+      "texto": "Scommetto che non me la perdona!… oh! non me la perdona di certo!…"
+    },
+    {
+      "desde": 388.28,
+      "hasta": 394.25,
+      "texto": "E mi sta il dovere: perchè io sono un monello che prometto sempre di correggermi, e non mantengo mai!… ―"
+    },
+    {
+      "desde": 394.25,
+      "hasta": 407.53,
+      "texto": "Arrivò al paese che era già notte buia; e perchè faceva tempaccio e l’acqua veniva giù a catinelle, andò diritto diritto alla casa della Fata, coll’animo risoluto di bussare alla porta e di farsi aprire."
+    },
+    {
+      "desde": 407.53,
+      "hasta": 415.27,
+      "texto": "Ma quando fu lì, sentì mancarsi il coraggio, e invece di bussare, si allontanò, correndo, una ventina di passi."
+    },
+    {
+      "desde": 416.01,
+      "hasta": 428.42,
+      "texto": "Poi tornò una seconda volta alla porta, e non concluse nulla: poi si avvicinò una terza volta e nulla: la quarta volta prese, tremando, il battente di ferro in mano, e bussò un piccolo colpettino."
+    },
+    {
+      "desde": 428.42,
+      "hasta": 442.75,
+      "texto": "Aspetta, aspetta, finalmente dopo mezz’ora si aprì una finestra dell’ultimo piano (la casa era di quattro piani) e Pinocchio vide affacciarsi una grossa Lumaca, che aveva un lumicino acceso sul capo, la quale disse:"
+    },
+    {
+      "desde": 442.75,
+      "hasta": 444.56,
+      "texto": "— Chi è a quest’ora?"
+    },
+    {
+      "desde": 444.56,
+      "hasta": 446.08,
+      "texto": "— La Fata è in casa?"
+    },
+    {
+      "desde": 446.08,
+      "hasta": 447.52,
+      "texto": "— domandò il burattino."
+    },
+    {
+      "desde": 447.52,
+      "hasta": 454.83,
+      "texto": "— La Fata dorme e non vuol essere svegliata: ma tu chi sei? — Sono io! — Chi io?"
+    },
+    {
+      "desde": 454.9,
+      "hasta": 455.83,
+      "texto": "— Pinocchio."
+    },
+    {
+      "desde": 455.97,
+      "hasta": 457.83,
+      "texto": "— Chi Pinocchio?"
+    },
+    {
+      "desde": 457.89,
+      "hasta": 460.63,
+      "texto": "— Il burattino, quello che sta in casa colla Fata."
+    },
+    {
+      "desde": 460.79,
+      "hasta": 467.55,
+      "texto": "— Ah! ho capito; — disse la Lumaca — aspettami costì, che ora scendo giù e ti apro subito."
+    },
+    {
+      "desde": 467.55,
+      "hasta": 470.67,
+      "texto": "— Spicciatevi, per carità, perchè io muoio dal freddo."
+    },
+    {
+      "desde": 470.75,
+      "hasta": 475.86,
+      "texto": "— Ragazzo mio, io sono una Lumaca, e le Lumache non hanno mai fretta. —"
+    },
+    {
+      "desde": 475.86,
+      "hasta": 490.9,
+      "texto": "Intanto passò un’ora, ne passarono due e la porta non si apriva: per cui Pinocchio, che tremava dal freddo, dalla paura e dall’acqua che aveva addosso, si fece cuore e bussò una seconda volta, e bussò più forte."
+    },
+    {
+      "desde": 490.9,
+      "hasta": 497.14,
+      "texto": "A quel secondo colpo si aprì una finestra del piano di sotto e si affacciò la solita Lumaca."
+    },
+    {
+      "desde": 497.8,
+      "hasta": 502.19,
+      "texto": "— Lumachina bella, — gridò Pinocchio dalla strada, — sono due ore che aspetto!"
+    },
+    {
+      "desde": 502.19,
+      "hasta": 506.41,
+      "texto": "E due ore, a questa serataccia, diventano più lunghe di due anni."
+    },
+    {
+      "desde": 506.41,
+      "hasta": 508.55,
+      "texto": "Spicciatevi, per carità."
+    },
+    {
+      "desde": 508.55,
+      "hasta": 518.7,
+      "texto": "— Ragazzo mio — gli rispose dalla finestra quella bestiuola tutta pace e tutta flemma — ragazzo mio, io sono una Lumaca, e le Lumache non hanno mai fretta."
+    },
+    {
+      "desde": 518.7,
+      "hasta": 520.66,
+      "texto": "— E la finestra si richiuse."
+    },
+    {
+      "desde": 521.04,
+      "hasta": 528.96,
+      "texto": "Di lì a poco suonò la mezzanotte: poi il tocco, poi le due dopo mezzanotte, e la porta era sempre chiusa."
+    },
+    {
+      "desde": 528.96,
+      "hasta": 538.16,
+      "texto": "Allora Pinocchio, perduta la pazienza, afferrò con rabbia il battente della porta per bussare un gran colpo da far rintronare tutto il casamento;"
+    },
+    {
+      "desde": 538.16,
+      "hasta": 547.74,
+      "texto": "ma il battente che era di ferro, diventò a un tratto un’anguilla viva, che sgusciandogli dalle mani sparì in un rigagnolo d’acqua, che scorreva in mezzo alla strada. — Ah, sì?"
+    },
+    {
+      "desde": 547.74,
+      "hasta": 551.04,
+      "texto": "— gridò Pinocchio sempre più accecato dalla collera."
+    },
+    {
+      "desde": 551.04,
+      "hasta": 555.16,
+      "texto": "— Se il battente è sparito, io seguiterò a bussare a furia di calci. —"
+    },
+    {
+      "desde": 555.16,
+      "hasta": 560.72,
+      "texto": "E tiratosi un poco indietro, lasciò andare una solennissima pedata nell’uscio della casa."
+    },
+    {
+      "desde": 560.72,
+      "hasta": 576.26,
+      "texto": "Il colpo fu così forte, che il piede penetrò nel legno fino a mezzo: e quando il burattino si provò a ricavarlo fuori, fu tutta fatica inutile, perchè il piede c’era rimasto conficcato dentro, come un chiodo ribadito."
+    },
+    {
+      "desde": 576.26,
+      "hasta": 578.23,
+      "texto": "Figuratevi il povero Pinocchio!"
+    },
+    {
+      "desde": 578.23,
+      "hasta": 583.54,
+      "texto": "Dovè passare tutto il resto della notte con un piede in terra e con quell’altro per aria."
+    },
+    {
+      "desde": 583.54,
+      "hasta": 587.58,
+      "texto": "La mattina, sul far del giorno, finalmente la porta si aprì."
+    },
+    {
+      "desde": 587.58,
+      "hasta": 595.41,
+      "texto": "Quella brava bestiuola della Lumaca, a scendere dal quarto piano fino all’uscio di strada, ci aveva messo solamente nove ore."
+    },
+    {
+      "desde": 595.41,
+      "hasta": 598.35,
+      "texto": "Bisogna proprio dire che avesse fatto una sudata."
+    },
+    {
+      "desde": 598.35,
+      "hasta": 600.98,
+      "texto": "— Che cosa fate con codesto piede conficcato nell’uscio?"
+    },
+    {
+      "desde": 602.13,
+      "hasta": 604.41,
+      "texto": "— domandò ridendo al burattino."
+    },
+    {
+      "desde": 604.41,
+      "hasta": 605.93,
+      "texto": "— È stata una disgrazia."
+    },
+    {
+      "desde": 605.93,
+      "hasta": 615.88,
+      "texto": "Vedete un po’, Lumachina bella, se vi riesce di liberarmi da questo supplizio. ― Ragazzo mio, costì ci vuole un legnaiolo, e io non ho mai fatto la legnaiola."
+    },
+    {
+      "desde": 615.88,
+      "hasta": 618.36,
+      "texto": "— Pregate la Fata da parte mia!…"
+    },
+    {
+      "desde": 618.36,
+      "hasta": 621.16,
+      "texto": "— La Fata dorme e non vuol essere svegliata."
+    },
+    {
+      "desde": 621.16,
+      "hasta": 625.84,
+      "texto": "— Ma che cosa volete che io faccia, inchiodato tutto il giorno a questa porta?"
+    },
+    {
+      "desde": 625.84,
+      "hasta": 629.36,
+      "texto": "— Divertiti a contare le formicole che passano per la strada."
+    },
+    {
+      "desde": 629.36,
+      "hasta": 634.78,
+      "texto": "— Portatemi almeno qualche cosa da mangiare, perchè mi sento rifinito. — Subito!"
+    },
+    {
+      "desde": 634.78,
+      "hasta": 636.0,
+      "texto": "— disse la Lumaca."
+    },
+    {
+      "desde": 636.95,
+      "hasta": 642.12,
+      "texto": "Difatti dopo tre ore e mezzo, Pinocchio la vide tornare con un vassoio d’argento in capo."
+    },
+    {
+      "desde": 642.12,
+      "hasta": 647.52,
+      "texto": "Nel vassoio c’era un pane, un pollastro arrosto e quattro albicocche mature."
+    },
+    {
+      "desde": 648.04,
+      "hasta": 650.71,
+      "texto": "— Ecco la colazione che vi manda la Fata — disse la Lumaca."
+    },
+    {
+      "desde": 651.52,
+      "hasta": 656.12,
+      "texto": "Alla vista di quella grazia di Dio, il burattino sentì consolarsi tutto."
+    },
+    {
+      "desde": 656.12,
+      "hasta": 667.53,
+      "texto": "Ma quale fu il suo disinganno, quando incominciando a mangiare, si dovè accorgere che il pane era di gesso, il pollastro di cartone e le quattro albicocche di alabastro, colorite, come se fossero vere."
+    },
+    {
+      "desde": 668.75,
+      "hasta": 682.67,
+      "texto": "Voleva piangere, voleva darsi alla disperazione, voleva buttar via il vassoio e quel che c’era dentro; ma invece, o fosse il gran dolore o la gran languidezza di stomaco, fatto sta che cadde svenuto."
+    },
+    {
+      "desde": 682.67,
+      "hasta": 688.43,
+      "texto": "Quando si riebbe, si trovò disteso sopra un sofà, e la Fata era accanto a lui."
+    },
+    {
+      "desde": 688.43,
+      "hasta": 694.79,
+      "texto": "— Anche per questa volta ti perdono: — gli disse la Fata — ma guai a te, se me ne fai un’altra delle tue!… —"
+    },
+    {
+      "desde": 694.79,
+      "hasta": 700.53,
+      "texto": "Pinocchio promise e giurò che avrebbe studiato, e che si sarebbe condotto sempre bene."
+    },
+    {
+      "desde": 700.53,
+      "hasta": 703.57,
+      "texto": "E mantenne la parola per tutto il resto dell’anno."
+    },
+    {
+      "desde": 704.09,
+      "hasta": 711.9,
+      "texto": "Difatti agli esami delle vacanze, ebbe l’onore di essere il più bravo della scuola; e i suoi portamenti, in generale, furono giudicati così lodevoli"
+    },
+    {
+      "desde": 712.56,
+      "hasta": 716.39,
+      "texto": "e soddisfacenti, che la Fata, tutta contenta, gli disse:"
+    },
+    {
+      "desde": 716.39,
+      "hasta": 721.13,
+      "texto": "— Domani finalmente il tuo desiderio sarà appagato! — Cioè?"
+    },
+    {
+      "desde": 721.13,
+      "hasta": 726.51,
+      "texto": "— Domani finirai di essere un burattino di legno, e diventerai un ragazzo per bene.—"
+    },
+    {
+      "desde": 726.55,
+      "hasta": 733.52,
+      "texto": "Chi non ha veduto la gioia di Pinocchio, a questa notizia tanto sospirata, non potrà mai figurarsela."
+    },
+    {
+      "desde": 733.52,
+      "hasta": 743.56,
+      "texto": "Tutti i suoi amici e compagni di scuola dovevano essere invitati per il giorno dopo a una gran colazione in casa della Fata, per festeggiare insieme il grande avvenimento:"
+    },
+    {
+      "desde": 743.56,
+      "hasta": 751.56,
+      "texto": "e la Fata aveva fatto preparare dugento tazze di caffè-e-latte e quattrocento panini imburrati di dentro e di fuori."
+    },
+    {
+      "desde": 752.22,
+      "hasta": 757.49,
+      "texto": "Quella giornata prometteva di riuscire molto bella e molto allegra: ma...."
+    },
+    {
+      "desde": 759.07,
+      "hasta": 763.07,
+      "texto": "Disgraziatamente, nella vita dei burattini, c’è sempre un ma, che sciupa ogni cosa."
+    }
+  ]
+}

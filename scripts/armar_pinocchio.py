@@ -152,8 +152,19 @@ ACA_EMPIEZA = 'testi'
 # línea de Collodi. El epitafio del capítulo 23 no está ahí, así que se
 # salva, que es lo que había que cuidar.
 NI_MIRAR = ('style', 'script', 'table')
+# Y font-size:smaller, que es con lo que el libro marca lo que no es el
+# cuento: la leyenda de cada ilustración y el resumen del capítulo. Son
+# noventa y nueve en el libro y ninguno es prosa —los resúmenes salen del
+# índice y son el título, y cada leyenda repite una frase que está en el
+# texto—, así que se revisaron los noventa y nueve antes de sacarlos.
+#
+# Hacen falta las dos reglas, esta y centertext: veintiuna leyendas no
+# están centradas sino en un cajón flotante al costado, y con centertext
+# sola se colaban igual. Entraban como renglones que nadie lee en voz
+# alta, y un renglón así no se ilumina nunca.
 NI_MIRAR_SI_DICE = ('numeropagina', 'myspan1', 'freedimg', 'linkmodifica',
-                    'quality-msg', 'centertext', 'intest')
+                    'quality-msg', 'centertext', 'intest',
+                    'font-size:smaller')
 
 # Abren párrafo: el <p> de siempre, y el <div> con sangría que Wikisource
 # usa cuando una ilustración parte el párrafo en dos.
@@ -351,7 +362,63 @@ def elTextoDe(numero):
         if SOLO_UN_NUMERO.match(texto):
             continue
         parrafos.append(texto)
+
+    seColo = leyendasQueNoSonTexto(datos['parse']['text']) & set(parrafos)
+    if seColo:
+        raise SystemExit(
+            f'capítulo {numero}: se colaron {len(seColo)} leyendas de '
+            f'ilustración como si fueran texto del cuento, y son renglones '
+            f'que nunca se van a iluminar porque nadie los lee en voz alta. '
+            f'La primera: {sorted(seColo)[0][:90]!r}')
     return parrafos, estaba
+
+
+# Las leyendas y los resúmenes, sacados a mano del HTML.
+#
+# Esto no usa el parser a propósito: es el control de que el parser hizo su
+# trabajo, y un control que comparte el código de lo que controla no
+# controla nada. Si el parser deja pasar una leyenda, esto la encuentra por
+# otro camino y el build se cae en vez de publicar renglones muertos.
+#
+# Hizo falta porque el primer arreglo sacó las leyendas centradas y dio por
+# resuelto el problema, y quedaron veintiuna en cajones flotantes. El test
+# que escribí entonces miraba una leyenda puntual —justo una de las que sí
+# se habían arreglado— y pasaba en verde con las otras veintiuna adentro.
+UNA_LEYENDA = re.compile(
+    r'<span style="font-size:smaller">(.*?)</span>', re.S)
+
+
+def sonLeyendas(crudo):
+    sueltas = set()
+    for hallado in UNA_LEYENDA.finditer(crudo):
+        texto = re.sub(r'<[^>]+>', '', hallado.group(1))
+        texto = re.sub(r'\s+', ' ', html.unescape(texto)).strip()
+        if texto:
+            sueltas.add(texto)
+    return sueltas
+
+
+def leyendasQueNoSonTexto(crudo):
+    """Las leyendas que, si aparecen como renglón, están de más.
+
+    Hay leyendas que son además una línea del cuento: el capítulo 9 ilustra
+    "— Vuoi darmi quattro soldi di quest'Abbecedario nuovo?" y esa misma
+    pregunta es un párrafo del diálogo tres líneas después. Esa tiene que
+    quedar, y por eso no alcanza con comparar contra la lista de leyendas:
+    así, el control pedía borrar diálogo de Collodi.
+
+    Una leyenda es legítima como renglón si existe también como párrafo
+    propio del cuento, mirando el HTML con las leyendas tapadas.
+    """
+    leyendas = sonLeyendas(crudo)
+    sinLeyendas = UNA_LEYENDA.sub(' ', crudo)
+    tambienSonTexto = set()
+    for pedazo in re.findall(r'<p[^>]*>(.*?)</p>', sinLeyendas, re.S):
+        plano = re.sub(r'<[^>]+>', '', pedazo)
+        plano = re.sub(r'\s+', ' ', html.unescape(plano)).strip()
+        if plano in leyendas:
+            tambienSonTexto.add(plano)
+    return leyendas - tambienSonTexto
 
 
 # Dónde termina una oración: punto, signo o puntos suspensivos, seguidos

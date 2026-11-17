@@ -233,26 +233,58 @@ void _elCatalogoDePinocchio() {
           reason: 'ningún capítulo tiene tiempos: este test no probó nada');
     });
 
-    test('las leyendas de las ilustraciones no son renglones', () {
-      // El libro escaneado trae ilustraciones con su leyenda, y Wikisource
-      // las mete en el medio del párrafo. Entraban al catálogo como si
-      // fueran texto del cuento: un renglón que nadie lee en voz alta y
-      // que por lo tanto nunca se ilumina.
+    test('ni las leyendas ni los resúmenes son renglones', () {
+      // El libro escaneado trae ilustraciones con su leyenda, y el resumen
+      // de cada capítulo arriba. Nada de eso se lee en voz alta, así que
+      // como renglón es un renglón que no se ilumina nunca.
       //
-      // Y de paso partían el párrafo en dos. Estas dos mitades son una
-      // sola frase de Collodi con la ilustración en el medio, y tienen que
-      // llegar pegadas.
-      final cap16 = catalogo.lecturas[15];
-      final texto16 = cap16.renglones.map((r) => r.texto).join(' ');
-      expect(texto16, contains('cento pariglie di topini bianchi'));
-      expect(cap16.renglones.map((r) => r.texto),
-          isNot(contains('Il Can-barbone partì come un barbero.')));
+      // Los tres de acá abajo entraban por tres caminos distintos, y son
+      // tres y no uno a propósito: la primera versión de este test miraba
+      // una sola leyenda —justo una de las que ya estaban arregladas— y
+      // pasaba en verde con las otras adentro. Un test que mira un caso
+      // puntual de una familia de bugs no cubre la familia.
+      const noVan = [
+        // Leyenda en un cajón flotante al costado, no centrada.
+        'Un grosso Falco venne a posarsi sul davanzale della finestra.',
+        // Resumen del capítulo, colado en el medio del cuento.
+        'Dopo cinque mesi di cuccagna, Pinocchio con sua grande meraviglia '
+            'sente spuntarsi un bel pajo d’orecchie asinine, e diventa un '
+            'ciuchino, con la coda e tutto.',
+        'Pinocchio gettato in mare, è mangiato dai pesci, e ritorna ad '
+            'essere un burattino come prima: ma mentre nuota per salvarsi, '
+            'è ingoiato dal terribile Pesce-cane.',
+        // Leyenda dentro de la tabla de la ilustración.
+        'Il Can-barbone partì come un barbero.',
+      ];
+      for (final capitulo in catalogo.lecturas) {
+        for (final renglon in capitulo.renglones) {
+          expect(noVan, isNot(contains(renglon.texto)),
+              reason: '${capitulo.titulo}: "${renglon.texto}" no se lee en '
+                  'el audio');
+        }
+      }
 
-      // Y el párrafo del capítulo 1 que se perdía entero: sin él, el audio
+      // Y lo que sí tiene que estar: las dos mitades del párrafo que la
+      // ilustración partía al medio, pegadas.
+      final texto16 =
+          catalogo.lecturas[15].renglones.map((r) => r.texto).join(' ');
+      expect(texto16, contains('cento pariglie di topini bianchi'));
+      // La leyenda se va, pero la frase del cuento que repetía queda.
+      expect(texto16, contains('venne a posarsi sul davanzale'));
+
+      // El párrafo del capítulo 1 que se perdía entero: sin él, el audio
       // presenta a maestro Ciliegia y en la pantalla no pasa nada.
-      final texto1 = catalogo.lecturas[0].renglones.map((r) => r.texto).join(' ');
+      final texto1 =
+          catalogo.lecturas[0].renglones.map((r) => r.texto).join(' ');
       expect(texto1, contains('mastr’Antonio'));
       expect(texto1, contains('come una ciliegia matura'));
+
+      // Y un diálogo que además es leyenda —el capítulo 9 ilustra la
+      // pregunta y tres líneas después alguien la dice— tiene que quedar:
+      // el control de que no se cuelen leyendas no puede borrar diálogo.
+      final texto9 =
+          catalogo.lecturas[8].renglones.map((r) => r.texto).join(' ');
+      expect(texto9, contains('Vuoi darmi quattro soldi'));
     });
 
     test('el texto está partido en oraciones, no en párrafos', () {
