@@ -80,10 +80,10 @@ void main() {
   testWidgets('se empieza por el título, no por el cuento', (tester) async {
     final reproductor = await _abrir(tester);
 
-    // Treinta y dos y medio: medio segundo antes de donde el alineado dice
-    // que arranca, porque whisper marca el arranque de una palabra con
-    // menos precisión que eso y si no se come la primera sílaba.
-    expect(reproductor.donde, const Duration(milliseconds: 32500));
+    // Dos segundos y medio antes de donde el alineado dice que arranca el
+    // título: ahí el lector está diciendo "Capitolo primo", que oírlo no
+    // molesta, y así no se come el principio del título.
+    expect(reproductor.donde, const Duration(milliseconds: 30500));
   });
 
   testWidgets('el título se pinta mientras lo leen', (tester) async {

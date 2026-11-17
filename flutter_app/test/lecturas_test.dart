@@ -536,11 +536,14 @@ void main() {
 
       test('se empieza por el título y no por el cuento', () {
         final lectura = conTitulo(desde: 33, hasta: 41.26);
-        // Medio segundo antes del 33: whisper marca el arranque de una
-        // palabra con menos precisión que eso, y arrancar justo encima se
-        // come la primera sílaba.
+        // Dos segundos y medio antes del 33. El alineado marca el título
+        // tarde porque el título sale del índice y el lector lee el del
+        // capítulo, que no siempre dice lo mismo: el 2 tiene "Maestro
+        // Ciliegia" contra "Mastro Ciliegia" y pierde la primera palabra.
+        // Pasarse no cuesta —antes va "Capitolo primo"— y quedarse corto
+        // se come el principio del título.
         expect(lectura.dondeEmpiezaDeVerdad,
-            const Duration(milliseconds: 32500));
+            const Duration(milliseconds: 30500));
       });
 
       test('nunca antes del principio del archivo', () {

@@ -82,6 +82,24 @@ class Lectura {
   /// aprender a hablar, el italiano de Pinocchio es mejor material.
   final List<RenglonDeLectura> renglones;
 
+  /// Cuánto antes del título se empieza a reproducir.
+  ///
+  /// El alineado marca el título tarde, y no por imprecisión de whisper sino
+  /// por una razón concreta: el título sale del índice del libro y el lector
+  /// lee el del capítulo, que no siempre dice lo mismo. El capítulo 2 es el
+  /// caso claro —el índice dice "Maestro Ciliegia" y el lector dice "Mastro
+  /// Ciliegia"—, así que la primera palabra no coincide y el alineado
+  /// arranca en la segunda.
+  ///
+  /// Medido contra la transcripción del audio: en el capítulo 1 el alineado
+  /// llega 0,8 segundos tarde y en el 2, 1,9. Dos segundos y medio los cubre
+  /// con margen.
+  ///
+  /// Pasarse no cuesta nada: justo antes del título el lector dice "Capitolo
+  /// primo", así que lo que se oye de más es el número del capítulo. Quedarse
+  /// corto, en cambio, se come la primera palabra del título.
+  static const _elAire = Duration(milliseconds: 2500);
+
   /// Cuándo el lector lee el título, en las colecciones donde lo lee.
   ///
   /// En Pinocchio el lector dice "Capitolo primo" y después el título
@@ -126,11 +144,7 @@ class Lectura {
   Duration? get dondeEmpiezaDeVerdad {
     final elTitulo = tituloDesde;
     if (elTitulo != null) {
-      // Medio segundo antes, porque whisper marca el arranque de una
-      // palabra con menos precisión que eso y de lo contrario se come la
-      // primera sílaba. Oír un instante de silencio no molesta; oír "ome
-      // andò" en vez de "Come andò", sí.
-      final conAire = elTitulo - const Duration(milliseconds: 500);
+      final conAire = elTitulo - _elAire;
       return conAire < Duration.zero ? Duration.zero : conAire;
     }
     for (final renglon in renglones) {
