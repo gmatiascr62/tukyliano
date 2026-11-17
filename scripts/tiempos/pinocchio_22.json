@@ -1,0 +1,332 @@
+{
+  "id": "pinocchio_22",
+  "titulo": "22. Pinocchio scuopre i ladri e, in ricompensa di essere stato fedele, vien posto in libertà.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 28.37,
+    "hasta": 33.97,
+    "texto": "Pinocchio scuopre i ladri e, in ricompensa di essere stato fedele, vien posto in libertà."
+  },
+  "renglones": [
+    {
+      "desde": 33.97,
+      "hasta": 47.33,
+      "texto": "Ed era già più di due ore che dormiva saporitamente, quando verso la mezzanotte fu svegliato da un bisbiglio e da un pissi-pissi di vocine strane, che gli parve di sentire nell’aia."
+    },
+    {
+      "desde": 47.67,
+      "hasta": 57.33,
+      "texto": "Messa fuori la punta del naso dalla buca del casotto, vide riunite a consiglio quattro bestiuole di pelame scuro, che parevano gatti."
+    },
+    {
+      "desde": 57.33,
+      "hasta": 65.97,
+      "texto": "Ma non erano gatti: erano faine, animaletti carnivori, ghiottosissimi d’uova e di pollastrine giovani."
+    },
+    {
+      "desde": 65.99,
+      "hasta": 73.07,
+      "texto": "Una di queste faine, staccandosi dalle sue compagne, andò alla buca del casotto e disse sottovoce:"
+    },
+    {
+      "desde": 73.82,
+      "hasta": 74.72,
+      "texto": "— Buona sera, Melampo."
+    },
+    {
+      "desde": 74.97,
+      "hasta": 78.56,
+      "texto": "— Io non mi chiamo Melampo — rispose il burattino."
+    },
+    {
+      "desde": 78.56,
+      "hasta": 80.26,
+      "texto": "— O dunque chi sei?"
+    },
+    {
+      "desde": 80.52,
+      "hasta": 81.96,
+      "texto": "— Io sono Pinocchio."
+    },
+    {
+      "desde": 82.22,
+      "hasta": 84.6,
+      "texto": "— E che cosa fai costì?"
+    },
+    {
+      "desde": 84.6,
+      "hasta": 86.12,
+      "texto": "— Faccio il cane di guardia."
+    },
+    {
+      "desde": 86.18,
+      "hasta": 90.32,
+      "texto": "— O Melampo dov’è? dov’è il vecchio cane, che stava in questo casotto?"
+    },
+    {
+      "desde": 90.48,
+      "hasta": 92.36,
+      "texto": "― È morto questa mattina."
+    },
+    {
+      "desde": 92.67,
+      "hasta": 94.86,
+      "texto": "— Morto? povera bestia!…"
+    },
+    {
+      "desde": 95.25,
+      "hasta": 96.34,
+      "texto": "Era tanto buono!…"
+    },
+    {
+      "desde": 96.34,
+      "hasta": 101.46,
+      "texto": "Ma giudicandoti dalla fisonomia, anche te mi sembri un cane di garbo."
+    },
+    {
+      "desde": 101.46,
+      "hasta": 104.45,
+      "texto": "— Domando scusa, io non sono un cane!…"
+    },
+    {
+      "desde": 104.45,
+      "hasta": 105.49,
+      "texto": "— O chi sei?"
+    },
+    {
+      "desde": 105.49,
+      "hasta": 107.42,
+      "texto": "— Io sono un burattino."
+    },
+    {
+      "desde": 107.42,
+      "hasta": 110.23,
+      "texto": "— E fai da cane di guardia?"
+    },
+    {
+      "desde": 110.23,
+      "hasta": 112.33,
+      "texto": "— Pur troppo: per mia punizione!…"
+    },
+    {
+      "desde": 112.33,
+      "hasta": 119.17,
+      "texto": "— Ebbene, io ti propongo gli stessi patti che avevo col defunto Melampo, e sarai contento."
+    },
+    {
+      "desde": 119.17,
+      "hasta": 119.17,
+      "texto": "— E questi patti sarebbero?"
+    },
+    {
+      "desde": 119.17,
+      "hasta": 128.31,
+      "texto": "— Noi verremo una volta la settimana, come per il passato, a visitare di notte questo pollaio e porteremo via otto galline."
+    },
+    {
+      "desde": 128.31,
+      "hasta": 140.61,
+      "texto": "Di queste galline, sette le mangeremo noi, e una la daremo a te, a condizione, s’intende bene, che tu faccia finta di dormire e non ti venga mai l’estro di abbaiare e di svegliare il contadino."
+    },
+    {
+      "desde": 140.61,
+      "hasta": 143.32,
+      "texto": "— E Melampo faceva proprio così?"
+    },
+    {
+      "desde": 143.32,
+      "hasta": 145.04,
+      "texto": "— domandò Pinocchio."
+    },
+    {
+      "desde": 145.04,
+      "hasta": 149.36,
+      "texto": "— Faceva così, e fra noi e lui, siamo andati sempre d’accordo."
+    },
+    {
+      "desde": 149.36,
+      "hasta": 159.4,
+      "texto": "Dormi dunque tranquillamente, e stai sicuro che prima di partire di qui ti lasceremo sul casotto una gallina bell’e pelata per la colazione di domani."
+    },
+    {
+      "desde": 159.4,
+      "hasta": 161.04,
+      "texto": "Ci siamo intesi bene?"
+    },
+    {
+      "desde": 161.06,
+      "hasta": 162.56,
+      "texto": "— Anche troppo bene!…"
+    },
+    {
+      "desde": 162.56,
+      "hasta": 171.26,
+      "texto": "— rispose Pinocchio: e tentennò il capo in un certo modo minaccioso, come se avesse voluto dire: — Fra poco ci riparleremo!… —"
+    },
+    {
+      "desde": 171.26,
+      "hasta": 180.0,
+      "texto": "Quando le quattro faine si credettero sicure del fatto loro, andarono difilato al pollaio, che rimaneva appunto vicinissimo al casotto del cane;"
+    },
+    {
+      "desde": 180.0,
+      "hasta": 188.66,
+      "texto": "e aperta a furia di denti e di unghioli la porticina di legno, che ne chiudeva l’entrata, vi sgusciarono dentro, una dopo l’altra."
+    },
+    {
+      "desde": 188.77,
+      "hasta": 195.44,
+      "texto": "Ma non erano ancora finite d’entrare, che sentirono la porticina richiudersi con grandissima violenza."
+    },
+    {
+      "desde": 195.44,
+      "hasta": 205.0,
+      "texto": "Quello che l’aveva richiusa era Pinocchio; il quale, non contento di averla richiusa, vi passò davanti per maggior sicurezza una grossa pietra, a guisa di puntello."
+    },
+    {
+      "desde": 205.0,
+      "hasta": 209.47,
+      "texto": "E poi cominciò ad abbaiare: e, abbaiando proprio proprio come se fosse un cane di guardia, faceva colla voce: bù-bù-bù-bù."
+    },
+    {
+      "desde": 213.62,
+      "hasta": 219.21,
+      "texto": "A quella abbaiata, il contadino saltò il letto, e preso il fucile e affacciatosi alla finestra, domandò:"
+    },
+    {
+      "desde": 219.21,
+      "hasta": 220.29,
+      "texto": "— Che c’è di nuovo?"
+    },
+    {
+      "desde": 220.29,
+      "hasta": 221.65,
+      "texto": "— Ci sono i ladri!"
+    },
+    {
+      "desde": 221.65,
+      "hasta": 223.21,
+      "texto": "— rispose Pinocchio."
+    },
+    {
+      "desde": 223.21,
+      "hasta": 224.37,
+      "texto": "— Dove sono?"
+    },
+    {
+      "desde": 224.37,
+      "hasta": 225.37,
+      "texto": "— Nel pollaio."
+    },
+    {
+      "desde": 225.37,
+      "hasta": 226.73,
+      "texto": "— Ora scendo subito. —"
+    },
+    {
+      "desde": 226.73,
+      "hasta": 239.05,
+      "texto": "E difatti, in men che si dice amen, il contadino scese: entrò di corsa nel pollaio, e dopo avere acchiappate e rinchiuse in un sacco le quattro faine, disse loro con accento di vera contentezza:"
+    },
+    {
+      "desde": 239.05,
+      "hasta": 242.07,
+      "texto": "— Alla fine siete cascate nelle mie mani!"
+    },
+    {
+      "desde": 242.07,
+      "hasta": 244.71,
+      "texto": "Potrei punirvi, ma sì vil non sono!"
+    },
+    {
+      "desde": 244.71,
+      "hasta": 252.7,
+      "texto": "Mi contenterò, invece, di portarvi domani all’oste del vicino paese, il quale vi spellerà e vi cucinerà a uso lepre dolce e forte."
+    },
+    {
+      "desde": 252.7,
+      "hasta": 259.09,
+      "texto": "È un onore che non vi meritate, ma gli uomini generosi come me non badano a queste piccolezze!… —"
+    },
+    {
+      "desde": 259.09,
+      "hasta": 265.69,
+      "texto": "Quindi, avvicinatosi a Pinocchio, cominciò a fargli molte carezze, e fra le altre cose, gli domandò:"
+    },
+    {
+      "desde": 265.91,
+      "hasta": 269.35,
+      "texto": "— Com’hai fatto a scoprire il complotto di queste quattro ladroncelle?"
+    },
+    {
+      "desde": 269.35,
+      "hasta": 273.97,
+      "texto": "E dire che Melampo, il mio fido Melampo, non s’era mai accorto di nulla!…"
+    },
+    {
+      "desde": 273.97,
+      "hasta": 283.31,
+      "texto": "— Il burattino, allora, avrebbe potuto raccontare quel che sapeva; avrebbe potuto, cioè, raccontare i patti vergognosi che passavano tra il cane e le faine;"
+    },
+    {
+      "desde": 283.31,
+      "hasta": 289.6,
+      "texto": "ma ricordandosi che il cane era morto, pensò subito dentro di sè: — A che serve accusare i morti?…"
+    },
+    {
+      "desde": 289.6,
+      "hasta": 294.8,
+      "texto": "I morti son morti, e la miglior cosa che si possa fare è quella di lasciarli in pace!…"
+    },
+    {
+      "desde": 294.8,
+      "hasta": 298.44,
+      "texto": "— All’arrivo delle faine sull’aia, eri sveglio o dormivi?"
+    },
+    {
+      "desde": 299.7,
+      "hasta": 300.68,
+      "texto": "— continuò a chiedergli il contadino."
+    },
+    {
+      "desde": 300.68,
+      "hasta": 308.34,
+      "texto": "— Dormivo: — rispose Pinocchio — ma le faine mi hanno svegliato coi loro chiacchiericci, e una è venuta fin qui al casotto per dirmi:"
+    },
+    {
+      "desde": 308.34,
+      "hasta": 315.08,
+      "texto": "«Se prometti di non abbaiare, e di non svegliare il padrone, noi ti regaleremo una pollastra bell’e pelata!» Capite, eh?"
+    },
+    {
+      "desde": 317.35,
+      "hasta": 319.47,
+      "texto": "Avere la sfacciataggine di fare a me una simile proposta!"
+    },
+    {
+      "desde": 319.47,
+      "hasta": 330.45,
+      "texto": "Perchè bisogna sapere che io sono un burattino, che avrò tutti i difetti di questo mondo: ma non avrò mai quello di star di balla e di reggere il sacco alla gente disonesta!"
+    },
+    {
+      "desde": 330.47,
+      "hasta": 331.5,
+      "texto": "— Bravo ragazzo!"
+    },
+    {
+      "desde": 331.5,
+      "hasta": 331.83,
+      "texto": "— gridò il contadino, battendogli sur una spalla."
+    },
+    {
+      "desde": 334.81,
+      "hasta": 341.76,
+      "texto": "— Cotesti sentimenti ti fanno onore: e per provarti la mia grande soddisfazione, ti lascio libero fin d’ora di tornare a casa. —"
+    },
+    {
+      "desde": 341.76,
+      "hasta": 344.22,
+      "texto": "E gli levò il collare da cane."
+    }
+  ]
+}
