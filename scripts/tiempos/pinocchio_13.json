@@ -1,0 +1,332 @@
+{
+  "id": "pinocchio_13",
+  "titulo": "13. L’osteria del Gambero Rosso.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 34.09,
+      "hasta": 42.07,
+      "texto": "Cammina, cammina, cammina, alla fine sul far della sera arrivarono stanchi morti all’osteria del Gambero Rosso."
+    },
+    {
+      "desde": 42.07,
+      "hasta": 49.45,
+      "texto": "— Fermiamoci un po’ qui, — disse la Volpe, — tanto per mangiare un boccone e per riposarci qualche ora."
+    },
+    {
+      "desde": 49.45,
+      "hasta": 54.97,
+      "texto": "A mezzanotte poi ripartiremo per essere domani, all’alba, nel Campo dei miracoli. —"
+    },
+    {
+      "desde": 54.97,
+      "hasta": 61.09,
+      "texto": "Entrati nell’osteria, si posero tutt’e tre a tavola: ma nessuno di loro aveva appetito."
+    },
+    {
+      "desde": 61.09,
+      "hasta": 72.99,
+      "texto": "Il povero Gatto, sentendosi gravemente indisposto di stomaco, non potè mangiare altro che trentacinque triglie con salsa di pomodoro e quattro porzioni di trippa alla parmigiana:"
+    },
+    {
+      "desde": 72.99,
+      "hasta": 80.03,
+      "texto": "e perchè la trippa non gli pareva condita abbastanza, si rifece tre volte a chiedere il burro e il formaggio grattato!"
+    },
+    {
+      "desde": 80.03,
+      "hasta": 91.74,
+      "texto": "La Volpe avrebbe spelluzzicato volentieri qualche cosa anche lei: ma siccome il medico le aveva ordinato una grandissima dieta, così dovè contentarsi di una semplice lepre dolce e forte,"
+    },
+    {
+      "desde": 91.74,
+      "hasta": 96.55,
+      "texto": "con un leggerissimo contorno di pollastre ingrassate e di galletti di primo canto."
+    },
+    {
+      "desde": 96.57,
+      "hasta": 107.58,
+      "texto": "Dopo la lepre si fece portare per tornagusto un cibreino di pernici, di starne, di conigli, di ranocchi, di lucertole e d’uva paradisa; e poi non volle altro."
+    },
+    {
+      "desde": 107.58,
+      "hasta": 113.46,
+      "texto": "Aveva tanta nausea per il cibo, diceva lei, che non poteva accostarsi nulla alla bocca."
+    },
+    {
+      "desde": 113.46,
+      "hasta": 116.23,
+      "texto": "Quello che mangiò meno di tutti fu Pinocchio."
+    },
+    {
+      "desde": 116.23,
+      "hasta": 121.78,
+      "texto": "Chiese uno spicchio di noce e un cantuccino di pane e lasciò nel piatto ogni cosa."
+    },
+    {
+      "desde": 121.78,
+      "hasta": 129.2,
+      "texto": "Il povero figliuolo, col pensiero sempre fisso al Campo dei miracoli, aveva preso un’indigestione anticipata di monete d’oro."
+    },
+    {
+      "desde": 130.19,
+      "hasta": 132.5,
+      "texto": "Quand’ebbero cenato, la Volpe disse all’oste:"
+    },
+    {
+      "desde": 133.17,
+      "hasta": 138.28,
+      "texto": "— Datemi due buone camere, una per il signor Pinocchio e un’altra per me e per il mio compagno."
+    },
+    {
+      "desde": 138.28,
+      "hasta": 141.76,
+      "texto": "Prima di ripartire stiacceremo un sonnellino."
+    },
+    {
+      "desde": 141.78,
+      "hasta": 147.54,
+      "texto": "Ricordatevi, però, che a mezzanotte vogliamo essere svegliati per continuare il nostro viaggio."
+    },
+    {
+      "desde": 148.52,
+      "hasta": 156.18,
+      "texto": "— Sissignore — rispose l’oste, e strizzò l’occhio alla Volpe e al Gatto, come dire: « Ho mangiato la foglia e ci siamo intesi!… » —"
+    },
+    {
+      "desde": 156.18,
+      "hasta": 162.32,
+      "texto": "Appena che Pinocchio fu entrato nel letto, si addormentò a colpo, e principiò a sognare."
+    },
+    {
+      "desde": 162.32,
+      "hasta": 176.42,
+      "texto": "E sognando gli pareva di essere in mezzo a un campo, e questo campo era pieno di arboscelli carichi di grappoli, e questi grappoli erano carichi di zecchini d’oro che, dondolandosi mossi dal vento, facevano zin, zin,"
+    },
+    {
+      "desde": 179.27,
+      "hasta": 191.14,
+      "texto": "zin, quasi volessero dire: « Chi ci vuole, venga a prenderci. » Ma quando Pinocchio fu sul più bello, quando cioe allungò la mano per prendere a manciate tutte quelle belle monete e mettersele in tasca,"
+    },
+    {
+      "desde": 191.14,
+      "hasta": 196.74,
+      "texto": "si trovò svegliato all’improvviso da tre violentissimi colpi dati nella porta di camera."
+    },
+    {
+      "desde": 196.74,
+      "hasta": 200.1,
+      "texto": "Era l’oste che veniva a dirgli che la mezzanotte era sonata."
+    },
+    {
+      "desde": 200.84,
+      "hasta": 203.04,
+      "texto": "— E i miei compagni sono pronti?"
+    },
+    {
+      "desde": 203.04,
+      "hasta": 204.8,
+      "texto": "— gli domandò il burattino."
+    },
+    {
+      "desde": 204.8,
+      "hasta": 208.08,
+      "texto": "— Altro che pronti! son partiti due ore fa."
+    },
+    {
+      "desde": 208.08,
+      "hasta": 210.2,
+      "texto": "— Perchè mai tanta fretta?"
+    },
+    {
+      "desde": 210.2,
+      "hasta": 212.44,
+      "texto": "— Perchè il Gatto ha ricevuto un’imbasciata"
+    },
+    {
+      "desde": 212.44,
+      "hasta": 216.88,
+      "texto": "che il suo gattino maggiore, malato di geloni ai piedi, stava in pericolo di vita."
+    },
+    {
+      "desde": 217.02,
+      "hasta": 219.27,
+      "texto": "— E la cena l’hanno pagata?"
+    },
+    {
+      "desde": 219.36,
+      "hasta": 220.77,
+      "texto": "— Che vi pare?"
+    },
+    {
+      "desde": 220.9,
+      "hasta": 227.46,
+      "texto": "Quelle lì sono persone troppo educate, perchè facciano un affronto simile alla signoria vostra. — Peccato!"
+    },
+    {
+      "desde": 227.46,
+      "hasta": 230.37,
+      "texto": "Quest’affronto mi avrebbe fatto tanto piacere!"
+    },
+    {
+      "desde": 230.37,
+      "hasta": 232.85,
+      "texto": "— disse Pinocchio, grattandosi il capo."
+    },
+    {
+      "desde": 232.92,
+      "hasta": 233.82,
+      "texto": "Poi domandò:"
+    },
+    {
+      "desde": 233.96,
+      "hasta": 237.33,
+      "texto": "— E dove hanno detto di aspettarmi quei buoni amici?"
+    },
+    {
+      "desde": 237.4,
+      "hasta": 241.98,
+      "texto": "— Al Campo dei miracoli, domattina, allo spuntare del giorno. ―"
+    },
+    {
+      "desde": 241.98,
+      "hasta": 248.08,
+      "texto": "Pinocchio pagò uno zecchino per la cena sua e per quella dei suoi compagni, e dopo partì."
+    },
+    {
+      "desde": 248.08,
+      "hasta": 256.52,
+      "texto": "Ma si può dire che partisse a tastoni, perchè fuori dell’osteria c’era un buio così buio, che non ci si vedeva da qui a lì."
+    },
+    {
+      "desde": 256.52,
+      "hasta": 260.16,
+      "texto": "Nella campagna all’intorno non si sentiva alitare una foglia."
+    },
+    {
+      "desde": 260.16,
+      "hasta": 272.0,
+      "texto": "Solamente alcuni uccellacci notturni, traversando la strada da una siepe all’altra, venivano a sbattere le ali sul naso di Pinocchio, il quale, facendo un salto indietro per la paura, gridava: — Chi va là?"
+    },
+    {
+      "desde": 273.19,
+      "hasta": 277.49,
+      "texto": "— e l’eco delle colline circostanti ripeteva in lontananza: — Chi va là? chi va là? chi va là?"
+    },
+    {
+      "desde": 280.91,
+      "hasta": 294.57,
+      "texto": "Intanto, mentre camminava, vide sul tronco di un albero un piccolo animaletto, che riluceva di una luce pallida e opaca, come un lumino da notte dentro una lampada di porcellana trasparente. — Chi sei?"
+    },
+    {
+      "desde": 294.57,
+      "hasta": 295.99,
+      "texto": "— gli domandò Pinocchio."
+    },
+    {
+      "desde": 295.99,
+      "hasta": 304.53,
+      "texto": "— Sono l’ombra del Grillo-parlante, — rispose l’animaletto con una vocina fioca fioca, che pareva venisse dal mondo di là."
+    },
+    {
+      "desde": 304.53,
+      "hasta": 306.13,
+      "texto": "— Che vuoi da me?"
+    },
+    {
+      "desde": 306.13,
+      "hasta": 307.33,
+      "texto": "— disse il burattino."
+    },
+    {
+      "desde": 307.35,
+      "hasta": 309.26,
+      "texto": "— Voglio darti un consiglio."
+    },
+    {
+      "desde": 309.3,
+      "hasta": 319.2,
+      "texto": "Ritorna indietro e porta i quattro zecchini, che ti sono rimasti, al tuo povero babbo, che piange e si dispera per non averti più veduto."
+    },
+    {
+      "desde": 319.2,
+      "hasta": 324.85,
+      "texto": "— Domani il mio babbo sarà un gran signore, perchè questi quattro zecchini diventeranno duemila."
+    },
+    {
+      "desde": 325.6,
+      "hasta": 331.6,
+      "texto": "— Non ti fidare, ragazzo mio, di quelli che promettono di farti ricco dalla mattina alla sera."
+    },
+    {
+      "desde": 331.6,
+      "hasta": 333.53,
+      "texto": "Per il solito o sono matti o imbroglioni!"
+    },
+    {
+      "desde": 336.05,
+      "hasta": 337.71,
+      "texto": "Dài retta a me, ritorna indietro."
+    },
+    {
+      "desde": 337.71,
+      "hasta": 339.79,
+      "texto": "— E io invece voglio andare avanti."
+    },
+    {
+      "desde": 339.79,
+      "hasta": 341.39,
+      "texto": "— L’ora è tarda!…"
+    },
+    {
+      "desde": 341.39,
+      "hasta": 343.91,
+      "texto": "— Voglio andare avanti."
+    },
+    {
+      "desde": 343.91,
+      "hasta": 345.87,
+      "texto": "— La nottata è scura…"
+    },
+    {
+      "desde": 345.87,
+      "hasta": 348.11,
+      "texto": "— Voglio andare avanti."
+    },
+    {
+      "desde": 348.11,
+      "hasta": 350.29,
+      "texto": "— La strada è pericolosa…"
+    },
+    {
+      "desde": 350.29,
+      "hasta": 352.43,
+      "texto": "— Voglio andare avanti."
+    },
+    {
+      "desde": 352.43,
+      "hasta": 360.41,
+      "texto": "— Ricordati che i ragazzi che vogliono fare di loro capriccio e a modo loro, prima o poi se ne pentono."
+    },
+    {
+      "desde": 360.41,
+      "hasta": 362.15,
+      "texto": "— Le solite storie."
+    },
+    {
+      "desde": 363.21,
+      "hasta": 363.95,
+      "texto": "Buona notte, Grillo."
+    },
+    {
+      "desde": 364.49,
+      "hasta": 368.77,
+      "texto": "— Buona notte, Pinocchio, e che il cielo ti salvi dalla guazza e dagli assassini. ―"
+    },
+    {
+      "desde": 368.77,
+      "hasta": 379.93,
+      "texto": "Appena dette queste ultime parole, il Grillo-parlante si spense a un tratto, come si spenge un lume soffiandoci sopra, e la strada rimase più buia di prima."
+    }
+  ]
+}
