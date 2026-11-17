@@ -1,0 +1,677 @@
+{
+  "id": "pinocchio_27",
+  "titulo": "27. Gran combattimento fra Pinocchio e i suoi compagni: uno de’ quali essendo rimasto ferito, Pinocchio viene arrestato dai carabinieri.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 47.16,
+      "hasta": 55.64,
+      "texto": "Giunto che fu sulla spiaggia, Pinocchio dètte subito una grande occhiata sul mare; ma non vide nessun Pesce-cane."
+    },
+    {
+      "desde": 55.64,
+      "hasta": 59.8,
+      "texto": "Il mare era tutto liscio come un gran cristallo da specchio."
+    },
+    {
+      "desde": 59.8,
+      "hasta": 62.5,
+      "texto": "— O il Pesce-cane dov’è?"
+    },
+    {
+      "desde": 62.5,
+      "hasta": 64.76,
+      "texto": "— domandò, voltandosi ai compagni."
+    },
+    {
+      "desde": 65.14,
+      "hasta": 68.6,
+      "texto": "— Sarà andato a far colazione — rispose uno di loro, ridendo."
+    },
+    {
+      "desde": 68.6,
+      "hasta": 75.28,
+      "texto": "— O si sarà buttato sul letto per far un sonnellino — soggiunse un altro, ridendo più forte che mai."
+    },
+    {
+      "desde": 75.32,
+      "hasta": 88.45,
+      "texto": "Da quelle risposte sconclusionate e da quelle risatacce grulle, Pinocchio capì che i suoi compagni gli avevano fatto una brutta celia, dandogli ad intendere una cosa che non era vera;"
+    },
+    {
+      "desde": 88.45,
+      "hasta": 92.79,
+      "texto": "e pigliandosela a male, disse a loro con voce di bizza:"
+    },
+    {
+      "desde": 92.79,
+      "hasta": 97.79,
+      "texto": "— E ora? che sugo ci avete trovato a darmi ad intendere la storiella del Pesce-cane?"
+    },
+    {
+      "desde": 97.83,
+      "hasta": 99.72,
+      "texto": "— Il sugo c’è sicuro!…"
+    },
+    {
+      "desde": 100.49,
+      "hasta": 102.3,
+      "texto": "— risposero in coro quei monelli."
+    },
+    {
+      "desde": 102.3,
+      "hasta": 103.18,
+      "texto": "— E sarebbe?"
+    },
+    {
+      "desde": 103.18,
+      "hasta": 107.59,
+      "texto": "— Quello di farti perdere la scuola e di farti venire con noi."
+    },
+    {
+      "desde": 107.59,
+      "hasta": 113.05,
+      "texto": "Non ti vergogni a mostrarti tutti i giorni così preciso e così diligente alla lezione?"
+    },
+    {
+      "desde": 113.05,
+      "hasta": 116.43,
+      "texto": "Non ti vergogni a studiar tanto, come fai?"
+    },
+    {
+      "desde": 116.43,
+      "hasta": 119.59,
+      "texto": "— E se io studio, che cosa ve ne importa?"
+    },
+    {
+      "desde": 119.59,
+      "hasta": 126.43,
+      "texto": "— A noi ce ne importa moltissimo, perchè ci costringi a fare una brutta figura col maestro… — Perchè?"
+    },
+    {
+      "desde": 126.43,
+      "hasta": 132.87,
+      "texto": "— Perchè gli scolari che studiano fanno sempre scomparire quelli, come noi, che non hanno voglia di studiare."
+    },
+    {
+      "desde": 132.87,
+      "hasta": 134.99,
+      "texto": "E noi non vogliamo scomparire!"
+    },
+    {
+      "desde": 134.99,
+      "hasta": 137.71,
+      "texto": "Anche noi abbiamo il nostro amor proprio!…"
+    },
+    {
+      "desde": 137.71,
+      "hasta": 140.99,
+      "texto": "— E allora che cosa devo fare per contentarvi?"
+    },
+    {
+      "desde": 140.99,
+      "hasta": 147.51,
+      "texto": "— Devi prendere a noia, anche tu, la scuola, la lezione e il maestro, che sono i nostri tre grandi nemici."
+    },
+    {
+      "desde": 147.51,
+      "hasta": 150.61,
+      "texto": "— E se io volessi seguitare a studiare?"
+    },
+    {
+      "desde": 150.61,
+      "hasta": 155.35,
+      "texto": "— Noi non ti guarderemo più in faccia, e alla prima occasione ce la pagherai."
+    },
+    {
+      "desde": 155.35,
+      "hasta": 160.71,
+      "texto": "— In verità mi fate quasi ridere — disse il burattino con una scrollatina di capo."
+    },
+    {
+      "desde": 160.85,
+      "hasta": 161.48,
+      "texto": "— Ehi, Pinocchio!"
+    },
+    {
+      "desde": 161.48,
+      "hasta": 165.33,
+      "texto": "— gridò allora il più grande di quei ragazzi andandogli sul viso."
+    },
+    {
+      "desde": 165.33,
+      "hasta": 173.82,
+      "texto": "— Non venir qui a fare lo smargiasso: non venir qui a far tanto il galletto!… perchè se tu non hai paura di noi, neanche noi abbiamo paura di te!"
+    },
+    {
+      "desde": 173.82,
+      "hasta": 178.01,
+      "texto": "Ricordati che tu sei solo e noi siamo in sette."
+    },
+    {
+      "desde": 178.01,
+      "hasta": 182.06,
+      "texto": "— Sette come i peccati mortali, — disse Pinocchio con una gran risata."
+    },
+    {
+      "desde": 182.06,
+      "hasta": 183.66,
+      "texto": "— Avete sentito?"
+    },
+    {
+      "desde": 183.66,
+      "hasta": 185.28,
+      "texto": "Ci ha insultati tutti!"
+    },
+    {
+      "desde": 185.28,
+      "hasta": 188.46,
+      "texto": "Ci ha chiamati col nome di peccati mortali!…"
+    },
+    {
+      "desde": 188.46,
+      "hasta": 194.17,
+      "texto": "— Pinocchio! chiedici scusa dell’offesa… e se no, guai a te!… — Cucù!"
+    },
+    {
+      "desde": 194.17,
+      "hasta": 198.98,
+      "texto": "— fece il burattino, battendosi coll’indice sulla punta del naso, in segno di canzonatura."
+    },
+    {
+      "desde": 200.14,
+      "hasta": 203.12,
+      "texto": "— Pinocchio! la finisce male!… — Cucù!"
+    },
+    {
+      "desde": 203.12,
+      "hasta": 206.44,
+      "texto": "— Ne toccherai quanto un somaro!… — Cucù!"
+    },
+    {
+      "desde": 206.44,
+      "hasta": 210.23,
+      "texto": "— Ritornerai a casa col naso rotto!… — Cucù!"
+    },
+    {
+      "desde": 210.23,
+      "hasta": 212.5,
+      "texto": "— Ora il Cucù te lo darò io!"
+    },
+    {
+      "desde": 212.5,
+      "hasta": 214.6,
+      "texto": "— gridò il più ardito di quei monelli."
+    },
+    {
+      "desde": 214.6,
+      "hasta": 218.75,
+      "texto": "— Prendi intanto quest’acconto, e serbalo per la cena di stasera. —"
+    },
+    {
+      "desde": 218.75,
+      "hasta": 222.13,
+      "texto": "E nel dir così gli appiccicò un pugno nel capo."
+    },
+    {
+      "desde": 222.13,
+      "hasta": 234.73,
+      "texto": "Ma fu, come si suol dire, botta e risposta; perchè il burattino, com’era da aspettarselo, rispose subito con un altro pugno: e lì, da un momento all’altro, il combattimento diventò generale e accanito."
+    },
+    {
+      "desde": 234.73,
+      "hasta": 238.52,
+      "texto": "Pinocchio, sebbene fosse solo, si difendeva come un eroe."
+    },
+    {
+      "desde": 238.52,
+      "hasta": 245.61,
+      "texto": "Con quei suoi piedi di legno durissimo lavorava così bene, da tener sempre i suoi nemici a rispettosa distanza."
+    },
+    {
+      "desde": 245.61,
+      "hasta": 250.96,
+      "texto": "Dove i suoi piedi potevano arrivare e toccare, ci lasciavano sempre un livido per ricordo."
+    },
+    {
+      "desde": 251.0,
+      "hasta": 258.96,
+      "texto": "Allora i ragazzi indispettiti di non potersi misurare col burattino a corpo a corpo, pensarono bene di metter mano ai proiettili;"
+    },
+    {
+      "desde": 258.96,
+      "hasta": 272.66,
+      "texto": "e sciolti i fagotti de’ loro libri di scuola, cominciarono a scagliare contro di lui i Sillabari, le Grammatiche, i Giannettini, i Minuzzoli, i Racconti del Thouar, il Pulcino della Baccini e altri libri scolastici:"
+    },
+    {
+      "desde": 272.66,
+      "hasta": 283.03,
+      "texto": "ma il burattino, che era d’occhio svelto e ammalizzito, faceva sempre civetta a tempo, sicchè i volumi, passandogli di sopra al capo, andavano tutti a cascare nel mare."
+    },
+    {
+      "desde": 283.03,
+      "hasta": 284.75,
+      "texto": "Figuratevi i pesci!"
+    },
+    {
+      "desde": 284.75,
+      "hasta": 290.58,
+      "texto": "I pesci, credendo che quei libri fossero roba da mangiare, correvano a frotte a fior d’acqua;"
+    },
+    {
+      "desde": 290.58,
+      "hasta": 304.18,
+      "texto": "ma dopo avere abboccata qualche pagina o qualche frontespizio, la risputavano subito, facendo con la bocca una certa smorfia, che pareva volesse dire: «Non è roba per noi: noi siamo avvezzi a cibarci molto meglio!»"
+    },
+    {
+      "desde": 304.18,
+      "hasta": 317.75,
+      "texto": "Intanto il combattimento s’inferociva sempre più, quand’ecco che un grosso Granchio, che era uscito fuori dell’acqua e s’era adagio adagio arrampicato fin sulla spiaggia, gridò con una vociaccia di trombone infreddato:"
+    },
+    {
+      "desde": 318.37,
+      "hasta": 320.61,
+      "texto": "— Smettetela, birichini che non siete altro!"
+    },
+    {
+      "desde": 320.61,
+      "hasta": 325.68,
+      "texto": "Queste guerre manesche fra ragazzi e ragazzi raramente vanno a finir bene."
+    },
+    {
+      "desde": 325.68,
+      "hasta": 327.93,
+      "texto": "Qualche disgrazia accade sempre!… —"
+    },
+    {
+      "desde": 327.93,
+      "hasta": 329.88,
+      "texto": "Povero Granchio!"
+    },
+    {
+      "desde": 329.88,
+      "hasta": 332.46,
+      "texto": "Fu lo stesso che avesse predicato al vento."
+    },
+    {
+      "desde": 332.46,
+      "hasta": 339.17,
+      "texto": "Anzi, quella birba di Pinocchio, voltandosi indietro a guardarlo in cagnesco, gli disse sgarbatamente:"
+    },
+    {
+      "desde": 339.17,
+      "hasta": 341.49,
+      "texto": "— Chetati, Granchio dell’uggia!"
+    },
+    {
+      "desde": 341.49,
+      "hasta": 347.61,
+      "texto": "Faresti meglio a succiare due pasticche di lichene per guarire da codesta infreddatura di gola."
+    },
+    {
+      "desde": 347.64,
+      "hasta": 350.22,
+      "texto": "Va’ piuttosto a letto, e cerca di sudare!"
+    },
+    {
+      "desde": 350.22,
+      "hasta": 361.92,
+      "texto": "In quel frattempo i ragazzi, che avevano finito oramai di tirare tutti i loro libri, occhiarono lì a poca distanza il fagotto dei libri del burattino, e se ne impadronirono in men che non si dice."
+    },
+    {
+      "desde": 361.92,
+      "hasta": 367.85,
+      "texto": "Fra questi libri, v’era un volume rilegato in cartoncino grosso, colla costola e colle punte di cartapecora."
+    },
+    {
+      "desde": 368.96,
+      "hasta": 372.12,
+      "texto": "Era un Trattato di Aritmetica."
+    },
+    {
+      "desde": 372.12,
+      "hasta": 375.04,
+      "texto": "Vi lascio immaginare se era peso di molto!"
+    },
+    {
+      "desde": 375.04,
+      "hasta": 382.26,
+      "texto": "Uno di quei monelli agguantò quel volume, e presa di mira la testa di Pinocchio, lo scagliò con quanta forza aveva nel braccio:"
+    },
+    {
+      "desde": 382.26,
+      "hasta": 391.5,
+      "texto": "ma invece di cogliere il burattino, colse nella testa uno dei compagni, il quale diventò bianco come un panno lavato, e non disse altro che queste parole:"
+    },
+    {
+      "desde": 391.5,
+      "hasta": 394.9,
+      "texto": "— O mamma mia,… aiutatemi perchè muoio!…"
+    },
+    {
+      "desde": 394.9,
+      "hasta": 397.7,
+      "texto": "— Poi cadde disteso sulla rena del lido."
+    },
+    {
+      "desde": 397.7,
+      "hasta": 404.94,
+      "texto": "Alla vista di quel morticino, i ragazzi spaventati si dettero a scappare a gambe, e in pochi minuti non si videro più."
+    },
+    {
+      "desde": 404.94,
+      "hasta": 414.92,
+      "texto": "Ma Pinocchio rimase lì; e sebbene per il dolore e per lo spavento, anche lui fosse più morto che vivo, nondimeno corse ad inzuppare il suo fazzoletto nell’acqua del mare,"
+    },
+    {
+      "desde": 414.92,
+      "hasta": 418.58,
+      "texto": "e si pose a bagnare la tempia del suo povero compagno di scuola."
+    },
+    {
+      "desde": 418.62,
+      "hasta": 424.07,
+      "texto": "E intanto, piangendo dirottamente e disperandosi, lo chiamava per nome e gli diceva:"
+    },
+    {
+      "desde": 424.07,
+      "hasta": 428.38,
+      "texto": "— Eugenio!… povero Eugenio mio!… apri gli occhi e guardami!…"
+    },
+    {
+      "desde": 428.44,
+      "hasta": 430.2,
+      "texto": "Perchè non mi rispondi?"
+    },
+    {
+      "desde": 430.26,
+      "hasta": 433.28,
+      "texto": "Non sono stato io, sai, che ti ho fatto tanto male!"
+    },
+    {
+      "desde": 433.36,
+      "hasta": 435.68,
+      "texto": "Credilo, non sono stato io!…"
+    },
+    {
+      "desde": 435.75,
+      "hasta": 437.48,
+      "texto": "Apri gli occhi, Eugenio…"
+    },
+    {
+      "desde": 437.67,
+      "hasta": 440.84,
+      "texto": "Se tieni gli occhi chiusi, mi farai morire anche me…"
+    },
+    {
+      "desde": 441.32,
+      "hasta": 443.92,
+      "texto": "O Dio mio! come farò ora a tornare a casa?…"
+    },
+    {
+      "desde": 443.98,
+      "hasta": 447.32,
+      "texto": "Con che coraggio potrò presentarmi alla mia buona mamma?"
+    },
+    {
+      "desde": 447.4,
+      "hasta": 448.6,
+      "texto": "Che sarà di me?…"
+    },
+    {
+      "desde": 448.67,
+      "hasta": 449.76,
+      "texto": "Dove fuggirò?…"
+    },
+    {
+      "desde": 449.84,
+      "hasta": 451.84,
+      "texto": "Dove andrò a nascondermi?…"
+    },
+    {
+      "desde": 451.84,
+      "hasta": 456.09,
+      "texto": "Oh quant’era meglio, mille volte meglio che fossi andato a scuola!…"
+    },
+    {
+      "desde": 456.09,
+      "hasta": 460.1,
+      "texto": "Perchè ho dato retta a questi compagni, che sono la mia dannazione?"
+    },
+    {
+      "desde": 460.1,
+      "hasta": 473.11,
+      "texto": "E il maestro me l’aveva detto!… e la mia mamma me l’aveva ripetuto: «Guardati dai cattivi compagni!» Ma io sono un testardo… un caparbiaccio… lascio dir tutti, e poi fo sempre a modo mio!"
+    },
+    {
+      "desde": 473.11,
+      "hasta": 475.28,
+      "texto": "E dopo mi tocca a scontarle…"
+    },
+    {
+      "desde": 475.28,
+      "hasta": 480.93,
+      "texto": "E così, da che sono al mondo, non ho mai avuto un quarto d’ora di bene. Dio mio!"
+    },
+    {
+      "desde": 480.93,
+      "hasta": 485.86,
+      "texto": "Che sarà di me, che sarà di me, che sarà di me? ―"
+    },
+    {
+      "desde": 485.86,
+      "hasta": 497.16,
+      "texto": "E Pinocchio continuava a piangere, a berciare, a darsi dei pugni nel capo e a chiamar per nome il povero Eugenio, quando sentì a un tratto un rumore sordo di passi che si avvicinavano."
+    },
+    {
+      "desde": 497.2,
+      "hasta": 500.49,
+      "texto": "Si voltò: erano due carabinieri."
+    },
+    {
+      "desde": 500.49,
+      "hasta": 503.25,
+      "texto": "— Che cosa fai così sdraiato per terra?"
+    },
+    {
+      "desde": 504.29,
+      "hasta": 505.49,
+      "texto": "— domandarono a Pinocchio."
+    },
+    {
+      "desde": 505.49,
+      "hasta": 507.49,
+      "texto": "— Assisto questo mio compagno di scuola."
+    },
+    {
+      "desde": 507.49,
+      "hasta": 509.49,
+      "texto": "— Che gli è venuto male?"
+    },
+    {
+      "desde": 510.21,
+      "hasta": 511.49,
+      "texto": "— Par di sì!…"
+    },
+    {
+      "desde": 511.49,
+      "hasta": 512.29,
+      "texto": "— Altro che male!"
+    },
+    {
+      "desde": 512.29,
+      "hasta": 516.49,
+      "texto": "— disse uno dei carabinieri chinandosi e osservando Eugenio da vicino."
+    },
+    {
+      "desde": 516.49,
+      "hasta": 521.13,
+      "texto": "— Questo ragazzo è stato ferito in una tempia: chi è che l’ha ferito? — Io no!"
+    },
+    {
+      "desde": 521.13,
+      "hasta": 524.74,
+      "texto": "— balbettò il burattino che non aveva più fiato in corpo."
+    },
+    {
+      "desde": 524.74,
+      "hasta": 529.11,
+      "texto": "— Se non sei stato tu, chi è stato dunque che l’ha ferito? — Io no!"
+    },
+    {
+      "desde": 529.11,
+      "hasta": 530.6,
+      "texto": "— ripetè Pinocchio."
+    },
+    {
+      "desde": 530.6,
+      "hasta": 532.67,
+      "texto": "— E con che cosa è stato ferito?"
+    },
+    {
+      "desde": 532.67,
+      "hasta": 533.84,
+      "texto": "— Con questo libro."
+    },
+    {
+      "desde": 533.84,
+      "hasta": 541.75,
+      "texto": "— E il burattino raccattò di terra il Trattato di Aritmetica, rilegato in cartone e cartapecora, per mostrarlo al carabiniere."
+    },
+    {
+      "desde": 541.75,
+      "hasta": 545.63,
+      "texto": "— E questo libro di chi è? — Mio."
+    },
+    {
+      "desde": 545.63,
+      "hasta": 548.39,
+      "texto": "— Basta così: non occorre altro."
+    },
+    {
+      "desde": 548.39,
+      "hasta": 552.56,
+      "texto": "Rizzati subito, e vien via con noi. — Ma io…"
+    },
+    {
+      "desde": 552.56,
+      "hasta": 554.01,
+      "texto": "— Via con noi!…"
+    },
+    {
+      "desde": 554.01,
+      "hasta": 556.04,
+      "texto": "— Ma io sono innocente…"
+    },
+    {
+      "desde": 556.04,
+      "hasta": 557.47,
+      "texto": "— Via con noi! ―"
+    },
+    {
+      "desde": 557.47,
+      "hasta": 567.66,
+      "texto": "Prima di partire, i carabinieri chiamarono alcuni pescatori, che in quel momento passavano per l’appunto colla loro barca vicino alla spiaggia, e dissero loro:"
+    },
+    {
+      "desde": 567.66,
+      "hasta": 570.84,
+      "texto": "— Vi affidiamo questo ragazzetto ferito nel capo."
+    },
+    {
+      "desde": 570.84,
+      "hasta": 573.64,
+      "texto": "Portatelo a casa vostra e assistetelo."
+    },
+    {
+      "desde": 573.64,
+      "hasta": 576.22,
+      "texto": "Domani torneremo a vederlo. ―"
+    },
+    {
+      "desde": 576.22,
+      "hasta": 583.06,
+      "texto": "Quindi si volsero a Pinocchio, e dopo averlo messo in mezzo a loro due, gl’intimarono con accento soldatesco:"
+    },
+    {
+      "desde": 583.06,
+      "hasta": 587.3,
+      "texto": "— Avanti! e cammina spedito! se no, peggio per te! ―"
+    },
+    {
+      "desde": 587.34,
+      "hasta": 593.27,
+      "texto": "Senza farselo ripetere, il burattino cominciò a camminare per quella viottola, che conduceva al paese."
+    },
+    {
+      "desde": 593.27,
+      "hasta": 598.29,
+      "texto": "Ma il povero diavolo non sapeva più nemmeno lui in che mondo si fosse."
+    },
+    {
+      "desde": 598.29,
+      "hasta": 601.64,
+      "texto": "Gli pareva di sognare, e che brutto sogno!"
+    },
+    {
+      "desde": 601.64,
+      "hasta": 602.88,
+      "texto": "Era fuori di sè."
+    },
+    {
+      "desde": 602.88,
+      "hasta": 612.23,
+      "texto": "I suoi occhi vedevano tutto doppio: le gambe gli tremavano: la lingua gli era rimasta attaccata al palato e non poteva più spiccicare una sola parola."
+    },
+    {
+      "desde": 612.27,
+      "hasta": 625.53,
+      "texto": "Eppure, in mezzo a quella specie di stupidità e di rintontimento, una spina acutissima gli bucava il cuore: il pensiero, cioè, di dover passare sotto le finestre di casa della sua buona fata, in mezzo ai carabinieri."
+    },
+    {
+      "desde": 625.53,
+      "hasta": 628.83,
+      "texto": "Avrebbe preferito piuttosto di morire."
+    },
+    {
+      "desde": 628.83,
+      "hasta": 639.43,
+      "texto": "Erano già arrivati e stavano per entrare in paese, quando una folata di vento strapazzone levò di testa a Pinocchio il berretto, portandoglielo lontano una diecina di passi."
+    },
+    {
+      "desde": 639.49,
+      "hasta": 644.81,
+      "texto": "— Si contentano — disse il burattino ai carabinieri — che vada a riprendere il mio berretto?"
+    },
+    {
+      "desde": 644.81,
+      "hasta": 646.96,
+      "texto": "— Vai pure; ma facciamo una cosa lesta. —"
+    },
+    {
+      "desde": 647.77,
+      "hasta": 658.68,
+      "texto": "Il burattino andò, raccattò il berretto.... ma invece di metterselo in capo, se lo mise in bocca fra i denti, e poi cominciò a correre di gran carriera verso la spiaggia del mare."
+    },
+    {
+      "desde": 658.68,
+      "hasta": 661.21,
+      "texto": "Andava via come una palla di fucile."
+    },
+    {
+      "desde": 661.21,
+      "hasta": 672.72,
+      "texto": "I carabinieri, giudicando che fosse difficile raggiungerlo, gli aizzarono dietro un grosso cane mastino che aveva guadagnato il primo premio a tutte le corse dei cani."
+    },
+    {
+      "desde": 672.72,
+      "hasta": 682.79,
+      "texto": "Pinocchio correva, e il cane correva più di lui; per cui tutta la gente si affacciava alle finestre e si affollava in mezzo alla strada, ansiosa di veder la fine di un palio così inferocito."
+    },
+    {
+      "desde": 683.44,
+      "hasta": 695.66,
+      "texto": "Ma non potè levarsi questa voglia, perchè il can mastino e Pinocchio sollevarono lungo la strada un tal polverone, che dopo pochi minuti non era possibile di veder più nulla."
+    }
+  ]
+}

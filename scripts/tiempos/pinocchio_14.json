@@ -1,0 +1,292 @@
+{
+  "id": "pinocchio_14",
+  "titulo": "14. Pinocchio, per non aver dato retta ai buoni consigli del Grillo-parlante, s’imbatte negli assassini.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 38.59,
+      "hasta": 39.8,
+      "texto": "— Davvero...."
+    },
+    {
+      "desde": 39.8,
+      "hasta": 46.57,
+      "texto": "— disse fra sè il burattino rimettendosi in viaggio — come siamo disgraziati noialtri poveri ragazzi!"
+    },
+    {
+      "desde": 46.57,
+      "hasta": 52.15,
+      "texto": "Tutti ci sgridano, tutti ci ammoniscono, tutti ci dànno consigli."
+    },
+    {
+      "desde": 52.15,
+      "hasta": 59.26,
+      "texto": "A lasciarli dire, tutti si metterebbero in capo di essere i nostri babbi e i nostri maestri; tutti; anche i Grilli-parlanti."
+    },
+    {
+      "desde": 60.91,
+      "hasta": 69.28,
+      "texto": "Ecco qui: perchè io non ho voluto dar retta a quell’uggioso di Grillo, chi lo sa quante disgrazie, secondo lui, mi dovrebbero accadere!"
+    },
+    {
+      "desde": 69.28,
+      "hasta": 72.4,
+      "texto": "Dovrei incontrare anche gli assassini!"
+    },
+    {
+      "desde": 73.13,
+      "hasta": 77.24,
+      "texto": "Meno male che agli assassini io non ci credo, nè ci ho creduto mai."
+    },
+    {
+      "desde": 77.24,
+      "hasta": 84.36,
+      "texto": "Per me gli assassini sono stati inventati apposta dai babbi, per far paura ai ragazzi che vogliono andare fuori la notte."
+    },
+    {
+      "desde": 84.36,
+      "hasta": 89.46,
+      "texto": "E poi, se anche li trovassi qui sulla strada, mi darebbero forse soggezione?"
+    },
+    {
+      "desde": 89.46,
+      "hasta": 96.36,
+      "texto": "Neanche per sogno, anderei loro sul viso, gridando: «Signori assassini, che cosa vogliono da me?"
+    },
+    {
+      "desde": 96.36,
+      "hasta": 99.36,
+      "texto": "Si rammentino che con me non si scherza!"
+    },
+    {
+      "desde": 99.36,
+      "hasta": 103.0,
+      "texto": "Se ne vadano dunque per i fatti loro, e zitti!»."
+    },
+    {
+      "desde": 103.0,
+      "hasta": 110.84,
+      "texto": "A questa parlantina fatta sul serio, quei poveri assassini, mi par di vederli, scapperebbero via come il vento."
+    },
+    {
+      "desde": 110.84,
+      "hasta": 118.52,
+      "texto": "Caso poi fossero tanto ineducati da non voler scappare, allora scapperei io, e così la farei finita… ―"
+    },
+    {
+      "desde": 119.54,
+      "hasta": 127.92,
+      "texto": "Ma Pinocchio non potè finire il suo ragionamento, perchè in quel punto gli parve di sentire dietro di sè un leggerissimo fruscìo di foglie."
+    },
+    {
+      "desde": 127.92,
+      "hasta": 141.93,
+      "texto": "Si voltò a guardare, e vide nel buio due figuracce nere, tutte imbacuccate in due sacchi da carbone, le quali correvano dietro a lui a salti e in punta di piedi, come se fossero due fantasmi."
+    },
+    {
+      "desde": 141.93,
+      "hasta": 143.45,
+      "texto": "— Eccoli davvero!"
+    },
+    {
+      "desde": 143.45,
+      "hasta": 152.44,
+      "texto": "— disse dentro di sè: e non sapendo dove nascondere i quattro zecchini, se li nascose in bocca e precisamente sotto la lingua."
+    },
+    {
+      "desde": 152.44,
+      "hasta": 154.12,
+      "texto": "Poi si provò a scappare."
+    },
+    {
+      "desde": 154.12,
+      "hasta": 163.01,
+      "texto": "Ma non aveva ancor fatto il primo passo, che sentì agguantarsi per le braccia e intese due voci orribili e cavernose, che gli dissero:"
+    },
+    {
+      "desde": 163.01,
+      "hasta": 165.53,
+      "texto": "— O la borsa o la vita! ―"
+    },
+    {
+      "desde": 165.53,
+      "hasta": 176.56,
+      "texto": "Pinocchio non potendo rispondere con le parole a motivo delle monete che aveva in bocca, fece mille salamelecchi e mille pantomime, per dare ad intendere a quei due incappati,"
+    },
+    {
+      "desde": 176.56,
+      "hasta": 186.97,
+      "texto": "di cui si vedevano soltanto gli occhi attraverso i buchi dei sacchi, che lui era un povero burattino e che non aveva in tasca nemmeno un centesimo falso. — Via via!"
+    },
+    {
+      "desde": 187.2,
+      "hasta": 191.03,
+      "texto": "Meno ciarle e fuori i denari — gridarono minacciosamente i due briganti."
+    },
+    {
+      "desde": 191.76,
+      "hasta": 197.48,
+      "texto": "E il burattino fece col capo e colle mani un segno, come dire: « Non ne ho »."
+    },
+    {
+      "desde": 197.48,
+      "hasta": 203.52,
+      "texto": "— Metti fuori i denari o sei morto; — disse l’assassino più alto di statura. — Morto!"
+    },
+    {
+      "desde": 203.52,
+      "hasta": 204.62,
+      "texto": "— ripetè l’altro."
+    },
+    {
+      "desde": 204.62,
+      "hasta": 208.16,
+      "texto": "— E dopo ammazzato te, ammazzeremo anche tuo padre!"
+    },
+    {
+      "desde": 208.16,
+      "hasta": 209.76,
+      "texto": "— Anche tuo padre!"
+    },
+    {
+      "desde": 209.76,
+      "hasta": 212.48,
+      "texto": "— No, no, no, il mio povero babbo no!"
+    },
+    {
+      "desde": 212.48,
+      "hasta": 218.8,
+      "texto": "— gridò Pinocchio con accento disperato: ma nel gridare così, gli zecchini gli sonarono in bocca."
+    },
+    {
+      "desde": 218.88,
+      "hasta": 223.81,
+      "texto": "— Ah furfante! dunque i denari te li sei nascosti sotto la lingua?"
+    },
+    {
+      "desde": 224.46,
+      "hasta": 225.28,
+      "texto": "Sputali subito! ―"
+    },
+    {
+      "desde": 225.37,
+      "hasta": 227.2,
+      "texto": "E Pinocchio, duro."
+    },
+    {
+      "desde": 227.28,
+      "hasta": 228.8,
+      "texto": "— Ah! tu fai il sordo?"
+    },
+    {
+      "desde": 228.8,
+      "hasta": 232.44,
+      "texto": "Aspetta un po’, che penseremo noi a farteli sputare! ―"
+    },
+    {
+      "desde": 233.19,
+      "hasta": 242.96,
+      "texto": "Difatti uno di loro afferrò il burattino per la punta del naso e quell’altro lo prese per la bazza, e lì cominciarono a tirare screanzatamente uno per in qua l’altro per in là,"
+    },
+    {
+      "desde": 242.96,
+      "hasta": 247.18,
+      "texto": "tanto da costringerlo a spalancare la bocca: ma non ci fu verso."
+    },
+    {
+      "desde": 247.18,
+      "hasta": 250.88,
+      "texto": "La bocca del burattino pareva inchiodata e ribadita."
+    },
+    {
+      "desde": 250.9,
+      "hasta": 259.56,
+      "texto": "Allora l’assassino più piccolo di statura, cavato fuori un coltellaccio, provò a conficcarglielo a guisa di leva e di scalpello fra le labbra:"
+    },
+    {
+      "desde": 259.56,
+      "hasta": 270.05,
+      "texto": "ma Pinocchio, lesto come un lampo, gli azzannò la mano coi denti, e dopo avergliela con un morso staccata di netto, la sputò e figuratevi la sua maraviglia quando, invece di una mano,"
+    },
+    {
+      "desde": 270.05,
+      "hasta": 273.46,
+      "texto": "si accòrse di aver sputato in terra uno zampetto di gatto."
+    },
+    {
+      "desde": 274.45,
+      "hasta": 283.36,
+      "texto": "Incoraggito da questa prima vittoria, si liberò a forza dalle unghie degli assassini, e saltata la siepe della strada, cominciò a fuggire per la campagna."
+    },
+    {
+      "desde": 283.36,
+      "hasta": 295.13,
+      "texto": "E gli assassini a correre dietro a lui, come due cani dietro a una lepre: e quello che aveva perduto uno zampetto correva con una gamba sola, nè si è saputo mai come facesse."
+    },
+    {
+      "desde": 295.13,
+      "hasta": 299.13,
+      "texto": "Dopo una corsa di quindici chilometri, Pinocchio non ne poteva più."
+    },
+    {
+      "desde": 299.13,
+      "hasta": 306.71,
+      "texto": "Allora vistosi perso, si arrampicò su per il fusto di un altissimo pino e si pose a sedere in vetta ai rami."
+    },
+    {
+      "desde": 306.71,
+      "hasta": 315.87,
+      "texto": "Gli assassini tentarono di arrampicarsi anche loro, ma giunti a metà del fusto sdrucciolarono, e ricascando a terra, si spellarono le mani e i piedi."
+    },
+    {
+      "desde": 315.87,
+      "hasta": 324.23,
+      "texto": "Non per questo si dettero per vinti: che anzi, raccolto un fastello di legna secche a piè del pino, vi appiccarono il fuoco."
+    },
+    {
+      "desde": 324.23,
+      "hasta": 330.48,
+      "texto": "In men che non si dice, il pino cominciò a bruciare e a divampare, come una candela agitata dal vento."
+    },
+    {
+      "desde": 330.48,
+      "hasta": 343.59,
+      "texto": "Pinocchio, vedendo che le fiamme salivano sempre più, e non volendo far la fine del piccione arrosto, spiccò un bel salto di vetta all’albero, e via a correre daccapo attraverso i campi e ai vigneti."
+    },
+    {
+      "desde": 343.59,
+      "hasta": 348.3,
+      "texto": "E gli assassini dietro, sempre dietro, senza stancarsi mai."
+    },
+    {
+      "desde": 348.3,
+      "hasta": 364.46,
+      "texto": "Intanto cominciava a baluginare il giorno e si trovò improvvisamente sbarrato il passo da un fosso largo e profondissimo, tutto pieno di acquaccia sudicia, color del caffè e latte. Che fare?"
+    },
+    {
+      "desde": 364.46,
+      "hasta": 371.46,
+      "texto": "« Una, due, tre! » gridò il burattino, e slanciandosi con una gran rincorsa, saltò dall’altra parte."
+    },
+    {
+      "desde": 371.46,
+      "hasta": 379.75,
+      "texto": "E gli assassini saltarono anche loro, ma non avendo preso bene la misura, patatunfete!… cascarono giù nel bel mezzo del fosso."
+    },
+    {
+      "desde": 379.75,
+      "hasta": 385.14,
+      "texto": "Pinocchio che sentì il tonfo e gli schizzi dell’acqua, urlò ridendo e seguitando a correre:"
+    },
+    {
+      "desde": 385.14,
+      "hasta": 387.45,
+      "texto": "— Buon bagno, signori assassini. ―"
+    },
+    {
+      "desde": 387.45,
+      "hasta": 400.94,
+      "texto": "E già si figurava che fossero bell’e affogati, quando invece, voltandosi a guardare, si accòrse che gli correvano dietro tutt’ e due, sempre imbacuccati nei loro sacchi, e grondanti acqua come due panieri sfondati."
+    }
+  ]
+}

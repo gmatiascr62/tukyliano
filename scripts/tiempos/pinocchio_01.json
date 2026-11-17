@@ -29,6 +29,16 @@
       "texto": "Non era un legno di lusso, ma un semplice pezzo da catasta, di quelli che d’inverno si mettono nelle stufe e nei caminetti per accendere il fuoco e per riscaldare le stanze."
     },
     {
+      "desde": 68.34,
+      "hasta": 82.03,
+      "texto": "Non so come andasse, ma il fatto gli è che un bel giorno questo pezzo di legno capitò nella bottega di un vecchio falegname, il quale aveva nome mastr’Antonio, se non che tutti lo chiamavano maestro Ciliegia,"
+    },
+    {
+      "desde": 83.23,
+      "hasta": 89.6,
+      "texto": "per via della punta del suo naso, che era sempre lustra e paonazza, come una ciliegia matura."
+    },
+    {
       "desde": 89.86,
       "hasta": 100.61,
       "texto": "Appena maestro Ciliegia ebbe visto quel pezzo di legno, si rallegrò tutto; e dandosi una fregatina di mani per la contentezza, borbottò a mezza voce:"
@@ -39,9 +49,14 @@
       "texto": "— Questo legno è capitato a tempo; voglio servirmene per fare una gamba di tavolino. —"
     },
     {
-      "desde": 106.78,
+      "desde": 106.33,
+      "hasta": 112.66,
+      "texto": "Detto fatto, prese subito l’ascia arrotata per cominciare a levargli la scorza e a digrossarlo;"
+    },
+    {
+      "desde": 114.09,
       "hasta": 126.3,
-      "texto": "[p. 7 modifica]Detto fatto, prese subito l’ascia arrotata per cominciare a levargli la scorza e a digrossarlo; ma quando fu lì per lasciare andare la prima asciata, rimase col braccio sospeso in aria, perchè sentì una vocina sottile sottile, che disse raccomandandosi:"
+      "texto": "ma quando fu lì per lasciare andare la prima asciata, rimase col braccio sospeso in aria, perchè sentì una vocina sottile sottile, che disse raccomandandosi:"
     },
     {
       "desde": 126.39,
@@ -60,8 +75,13 @@
     },
     {
       "desde": 142.49,
+      "hasta": 157.25,
+      "texto": "Guardò sotto il banco, e nessuno: guardò dentro un armadio che stava sempre chiuso, e nessuno; guardò nel corbello dei trucioli e della segatura, e nessuno;"
+    },
+    {
+      "desde": 157.25,
       "hasta": 162.8,
-      "texto": "Guardò sotto il banco, e nessuno: guardò dentro un armadio che stava sempre chiuso, e nessuno; guardò nel corbello dei trucioli e della segatura, e nessuno; aprì l’uscio di bottega per dare un’occhiata anche sulla strada, e nessuno."
+      "texto": "aprì l’uscio di bottega per dare un’occhiata anche sulla strada, e nessuno."
     },
     {
       "desde": 163.03,
@@ -96,7 +116,7 @@
     {
       "desde": 187.53,
       "hasta": 200.75,
-      "texto": "Questa volta maestro Ciliegia restò di stucco, cogli occhi fuori del capo per la paura, colla bocca [p. 8 modifica]spalancata e colla lingua giù ciondoloni fino al mento, come un mascherone da fontana."
+      "texto": "Questa volta maestro Ciliegia restò di stucco, cogli occhi fuori del capo per la paura, colla bocca spalancata e colla lingua giù ciondoloni fino al mento, come un mascherone da fontana."
     },
     {
       "desde": 200.99,
@@ -171,7 +191,7 @@
     {
       "desde": 284.53,
       "hasta": 292.26,
-      "texto": "E perchè gli era entrato addosso una gran [p. 9 modifica]paura, si provò a canterellare per farsi un po’ di coraggio."
+      "texto": "E perchè gli era entrato addosso una gran paura, si provò a canterellare per farsi un po’ di coraggio."
     },
     {
       "desde": 292.26,

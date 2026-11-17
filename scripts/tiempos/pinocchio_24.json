@@ -1,0 +1,527 @@
+{
+  "id": "pinocchio_24",
+  "titulo": "24. Pinocchio arriva all’isola delle Api industriose e ritrova la Fata.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 32.45,
+      "hasta": 39.9,
+      "texto": "Pinocchio, animato dalla speranza di arrivare in tempo a dare aiuto al suo povero babbo, nuotò tutta quanta la notte."
+    },
+    {
+      "desde": 39.9,
+      "hasta": 42.23,
+      "texto": "E che orribile nottata fu quella!"
+    },
+    {
+      "desde": 42.23,
+      "hasta": 47.86,
+      "texto": "Diluviò, grandinò, tuonò spaventosamente e con certi lampi che pareva di giorno."
+    },
+    {
+      "desde": 47.86,
+      "hasta": 52.7,
+      "texto": "Sul far del mattino, gli riuscì di vedere poco distante una lunga striscia di terra."
+    },
+    {
+      "desde": 52.7,
+      "hasta": 54.66,
+      "texto": "Era un’isola in mezzo al mare."
+    },
+    {
+      "desde": 54.66,
+      "hasta": 59.66,
+      "texto": "Allora fece di tutto per arrivare a quella spiaggia: ma inutilmente."
+    },
+    {
+      "desde": 59.66,
+      "hasta": 67.66,
+      "texto": "Le onde, rincorrendosi e accavallandosi, se lo abballottavano fra di loro, come se fosse stato un fuscello o un filo di paglia."
+    },
+    {
+      "desde": 67.66,
+      "hasta": 76.52,
+      "texto": "Alla fine, e per sua buona fortuna, venne un’ondata tanto prepotente e impetuosa, che lo scaraventò di peso sulla rena del lido."
+    },
+    {
+      "desde": 76.52,
+      "hasta": 88.74,
+      "texto": "Il colpo fu così forte, che battendo in terra, gli crocchiarono tutte le costole e tutte le congiunture: ma si consolò subito col dire: — Anche per questa volta l’ho scampata bella! —"
+    },
+    {
+      "desde": 88.74,
+      "hasta": 99.21,
+      "texto": "Intanto a poco a poco il cielo si rasserenò; il sole apparve fuori in tutto il suo splendore, e il mare diventò tranquillissimo e buono come un olio."
+    },
+    {
+      "desde": 99.21,
+      "hasta": 112.13,
+      "texto": "Allora il burattino distese i suoi panni al sole per rasciugarli e si pose a guardare di qua e di là se per caso avesse potuto scorgere su quella immensa spianata d’acqua una piccola barchetta con un omino dentro."
+    },
+    {
+      "desde": 112.13,
+      "hasta": 122.17,
+      "texto": "Ma dopo aver guardato ben bene, non vide altro dinanzi a sè che cielo, mare e qualche vela di bastimento, ma così lontana lontana, che pareva una mosca."
+    },
+    {
+      "desde": 122.17,
+      "hasta": 124.85,
+      "texto": "— Sapessi almeno come si chiama quest’isola!"
+    },
+    {
+      "desde": 124.85,
+      "hasta": 126.21,
+      "texto": "— andava dicendo."
+    },
+    {
+      "desde": 126.21,
+      "hasta": 139.75,
+      "texto": "— Sapessi almeno se quest’isola è abitata da gente di garbo, voglio dire da gente che non abbia il vizio di attaccare i ragazzi ai rami degli alberi! ma a chi mai posso domandarlo? a chi, se non c’è nessuno?…—"
+    },
+    {
+      "desde": 139.75,
+      "hasta": 150.25,
+      "texto": "Quest’idea di trovarsi solo, solo, solo, in mezzo a quel gran paese disabitato, gli messe addosso tanta malinconia, che stava lì lì per piangere;"
+    },
+    {
+      "desde": 150.25,
+      "hasta": 160.61,
+      "texto": "quando tutt’a un tratto vide passare, a poca distanza dalla riva, un grosso pesce che se ne andava tranquillamente per i fatti suoi con tutta la testa fuori dell’acqua."
+    },
+    {
+      "desde": 160.61,
+      "hasta": 165.9,
+      "texto": "Non sapendo come chiamarlo per nome, il burattino gli gridò a voce alta, per farsi sentire:"
+    },
+    {
+      "desde": 165.9,
+      "hasta": 170.04,
+      "texto": "— Ehi, signor pesce, che mi permetterebbe una parola?"
+    },
+    {
+      "desde": 170.04,
+      "hasta": 178.1,
+      "texto": "— Anche due, — rispose il pesce, il quale era un Delfino così garbato, come se ne trovano pochi in tutti i mari del mondo."
+    },
+    {
+      "desde": 178.1,
+      "hasta": 185.78,
+      "texto": "— Mi farebbe il piacere di dirmi se in quest’isola vi sono dei paesi dove si possa mangiare, senza pericolo d’esser mangiati?"
+    },
+    {
+      "desde": 186.2,
+      "hasta": 187.04,
+      "texto": "— Ve ne sono sicuro!"
+    },
+    {
+      "desde": 187.04,
+      "hasta": 188.46,
+      "texto": "— rispose il Delfino."
+    },
+    {
+      "desde": 188.62,
+      "hasta": 192.0,
+      "texto": "— Anzi, ne troverai uno poco lontano di qui."
+    },
+    {
+      "desde": 192.0,
+      "hasta": 194.45,
+      "texto": "— E che strada si fa per andarvi?"
+    },
+    {
+      "desde": 194.45,
+      "hasta": 199.97,
+      "texto": "— Devi prendere quella viottola là, a mancina, e camminare sempre diritto al naso."
+    },
+    {
+      "desde": 199.97,
+      "hasta": 200.93,
+      "texto": "Non puoi sbagliare."
+    },
+    {
+      "desde": 200.93,
+      "hasta": 202.53,
+      "texto": "— Mi dica un’altra cosa."
+    },
+    {
+      "desde": 202.53,
+      "hasta": 210.85,
+      "texto": "Lei che passeggia tutto il giorno e tutta la notte per il mare, non avrebbe incontrato per caso una piccola barchettina con dentro il mi’ babbo?"
+    },
+    {
+      "desde": 211.13,
+      "hasta": 212.76,
+      "texto": "— E chi è il tuo babbo?"
+    },
+    {
+      "desde": 212.88,
+      "hasta": 218.44,
+      "texto": "— Gli è il babbo più buono del mondo, come io sono il figliuolo più cattivo che si possa dare."
+    },
+    {
+      "desde": 218.83,
+      "hasta": 224.38,
+      "texto": "— Colla burrasca che ha fatto questa notte — rispose il Delfino — la barchetta sarà andata sott’acqua."
+    },
+    {
+      "desde": 224.55,
+      "hasta": 225.84,
+      "texto": "— E il mio babbo?"
+    },
+    {
+      "desde": 225.98,
+      "hasta": 234.92,
+      "texto": "— A quest’ora l’avrà inghiottito il terribile Pesce-cane, che da qualche giorno è venuto a spargere lo sterminio e la desolazione nelle nostre acque."
+    },
+    {
+      "desde": 235.32,
+      "hasta": 237.52,
+      "texto": "— Che è grosso di molto questo Pesce-cane?"
+    },
+    {
+      "desde": 237.72,
+      "hasta": 240.92,
+      "texto": "— domandò Pinocchio, che di già cominciava a tremare dalla paura."
+    },
+    {
+      "desde": 241.2,
+      "hasta": 242.5,
+      "texto": "— Se gli è grosso!…"
+    },
+    {
+      "desde": 242.8,
+      "hasta": 244.4,
+      "texto": "— replicò il Delfino."
+    },
+    {
+      "desde": 244.4,
+      "hasta": 252.73,
+      "texto": "— Perchè tu possa fartene un’idea, ti dirò che è più grosso di un casamento di cinque piani, ed ha una boccaccia così larga e profonda,"
+    },
+    {
+      "desde": 252.73,
+      "hasta": 257.97,
+      "texto": "che ci passerebbe comodamente tutto il treno della strada ferrata colla macchina accesa."
+    },
+    {
+      "desde": 257.97,
+      "hasta": 258.95,
+      "texto": "— Mamma mia!"
+    },
+    {
+      "desde": 258.95,
+      "hasta": 270.95,
+      "texto": "— gridò spaventato il burattino; e rivestitosi in fretta e furia, si voltò al Delfino e gli disse: — Arrivederla, signor pesce: scusi tanto l’incomodo, e mille grazie della sua garbatezza. —"
+    },
+    {
+      "desde": 271.15,
+      "hasta": 279.18,
+      "texto": "Detto ciò, prese subito la viottola e cominciò a camminare di un passo svelto: tanto svelto, che pareva quasi che corresse."
+    },
+    {
+      "desde": 279.18,
+      "hasta": 283.93,
+      "texto": "E a ogni più piccolo rumore che sentiva, si voltava subito a guardare indietro,"
+    },
+    {
+      "desde": 283.93,
+      "hasta": 292.4,
+      "texto": "per la paura di vedersi inseguire da quel terribile Pesce-cane grosso come una casa di cinque piani e con un treno della strada ferrata in bocca."
+    },
+    {
+      "desde": 292.4,
+      "hasta": 303.6,
+      "texto": "Dopo aver camminato più di mezz’ora, arrivò a un piccolo paese detto « il paese delle Api industriose. » Le strade formicolavano di persone che correvano di qua e di là per le loro faccende:"
+    },
+    {
+      "desde": 303.6,
+      "hasta": 307.6,
+      "texto": "tutti lavoravano, tutti avevano qualche cosa da fare."
+    },
+    {
+      "desde": 307.6,
+      "hasta": 310.62,
+      "texto": "Non si trovava un ozioso o un vagabondo nemmeno a cercarlo col lumicino."
+    },
+    {
+      "desde": 311.9,
+      "hasta": 317.58,
+      "texto": "— Ho capito; — disse subito quello svogliato di Pinocchio, — questo paese non è fatto per me!"
+    },
+    {
+      "desde": 317.67,
+      "hasta": 320.0,
+      "texto": "Io non son nato per lavorare!"
+    },
+    {
+      "desde": 320.0,
+      "hasta": 330.28,
+      "texto": "— Intanto la fame lo tormentava, perchè erano oramai passate ventiquattr’ore che non aveva mangiato più nulla; nemmeno una pietanza di vecce. Che fare?"
+    },
+    {
+      "desde": 330.28,
+      "hasta": 338.88,
+      "texto": "Non gli restavano che due modi per potersi sdigiunare: o chiedere un po’ di lavoro, o chiedere in elemosina un soldo o un boccon di pane."
+    },
+    {
+      "desde": 338.88,
+      "hasta": 348.44,
+      "texto": "A chiedere l’elemosina si vergognava: perchè il suo babbo gli aveva predicato sempre che l’elemosina hanno il diritto di chiederla solamente i vecchi e gl’infermi."
+    },
+    {
+      "desde": 348.44,
+      "hasta": 356.55,
+      "texto": "I veri poveri, in questo mondo, meritevoli di assistenza e di compassione, non sono altro che quelli che, per ragione d’età o di malattia,"
+    },
+    {
+      "desde": 356.55,
+      "hasta": 361.58,
+      "texto": "si trovano condannati a non potersi più guadagnare il pane col lavoro delle proprie mani."
+    },
+    {
+      "desde": 361.58,
+      "hasta": 368.26,
+      "texto": "Tutti gli altri hanno l’obbligo di lavorare; e se non lavorano e patiscono la fame, tanto peggio per loro."
+    },
+    {
+      "desde": 368.39,
+      "hasta": 377.06,
+      "texto": "In quel frattempo, passò per la strada un uomo tutto sudato e trafelato, il quale da sè tirava con gran fatica due carretti carichi di carbone."
+    },
+    {
+      "desde": 377.23,
+      "hasta": 384.35,
+      "texto": "Pinocchio, giudicandolo dalla fisonomia per un buon uomo, gli si accostò e, abbassando gli occhi dalla vergogna, gli disse sottovoce:"
+    },
+    {
+      "desde": 385.35,
+      "hasta": 390.03,
+      "texto": "— Mi fareste la carità di darmi un soldo, perchè mi sento morir dalla fame?"
+    },
+    {
+      "desde": 390.03,
+      "hasta": 398.75,
+      "texto": "— Non un soldo solo, — rispose il carbonaio — ma te ne do quattro, a patto che tu m’aiuti a tirare fino a casa questi due carretti di carbone."
+    },
+    {
+      "desde": 398.95,
+      "hasta": 399.8,
+      "texto": "— Mi meraviglio!"
+    },
+    {
+      "desde": 399.87,
+      "hasta": 407.01,
+      "texto": "— rispose il burattino quasi offeso; — per vostra regola io non ho fatto mai il somaro; io non ho mai tirato il carretto!"
+    },
+    {
+      "desde": 407.32,
+      "hasta": 408.15,
+      "texto": "— Meglio per te!"
+    },
+    {
+      "desde": 408.15,
+      "hasta": 408.91,
+      "texto": "— rispose il carbonaio."
+    },
+    {
+      "desde": 410.3,
+      "hasta": 419.01,
+      "texto": "— Allora, ragazzo mio, se ti senti davvero morir dalla fame, mangia due belle fette della tua superbia e bada di non prendere un’indigestione."
+    },
+    {
+      "desde": 419.29,
+      "hasta": 425.01,
+      "texto": "Dopo pochi minuti passò per la via un muratore, che portava sulle spalle un corbello di calcina."
+    },
+    {
+      "desde": 425.26,
+      "hasta": 430.82,
+      "texto": "— Fareste, galantuomo, la carità d’un soldo a un povero ragazzo, che sbadiglia dall’appetito?"
+    },
+    {
+      "desde": 430.82,
+      "hasta": 437.54,
+      "texto": "— Volentieri; vieni con me a portar calcina, — rispose il muratore — e invece d’un soldo, te ne darò cinque."
+    },
+    {
+      "desde": 437.54,
+      "hasta": 442.82,
+      "texto": "— Ma la calcina è pesa, — replicò Pinocchio, — e io non voglio durar fatica."
+    },
+    {
+      "desde": 442.82,
+      "hasta": 449.3,
+      "texto": "— Se non vuoi durar fatica, allora, ragazzo mio, divertiti a sbadigliare, e buon pro ti faccia. —"
+    },
+    {
+      "desde": 449.3,
+      "hasta": 456.68,
+      "texto": "In men di mezz’ora passarono altre venti persone, e a tutte Pinocchio chiese un po’ d’elemosina, ma tutte gli risposero:"
+    },
+    {
+      "desde": 456.68,
+      "hasta": 458.68,
+      "texto": "— Non ti vergogni?"
+    },
+    {
+      "desde": 458.68,
+      "hasta": 464.58,
+      "texto": "Invece di fare il bighellone per la strada, va’ piuttosto a cercarti un po’ di lavoro, e impara a guadagnarti il pane! —"
+    },
+    {
+      "desde": 464.58,
+      "hasta": 468.82,
+      "texto": "Finalmente passò una buona donnina, che portava due brocche d’acqua."
+    },
+    {
+      "desde": 468.82,
+      "hasta": 474.1,
+      "texto": "— Vi contentate, buona donna, che io beva una sorsata d’acqua alla vostra brocca?"
+    },
+    {
+      "desde": 474.28,
+      "hasta": 477.41,
+      "texto": "— chiese Pinocchio, che bruciava dall’arsione della sete."
+    },
+    {
+      "desde": 477.41,
+      "hasta": 479.31,
+      "texto": "— Bevi pure, ragazzo mio!"
+    },
+    {
+      "desde": 479.31,
+      "hasta": 482.01,
+      "texto": "— disse la donnina, posando le due brocche in terra."
+    },
+    {
+      "desde": 482.01,
+      "hasta": 487.65,
+      "texto": "Quando Pinocchio ebbe bevuto come una spugna, borbottò a mezza voce, asciugandosi la bocca:"
+    },
+    {
+      "desde": 487.65,
+      "hasta": 489.34,
+      "texto": "— La sete me la sono levata!"
+    },
+    {
+      "desde": 489.34,
+      "hasta": 491.61,
+      "texto": "Così mi potessi levar la fame!… —"
+    },
+    {
+      "desde": 491.61,
+      "hasta": 495.53,
+      "texto": "La buona donnina, sentendo queste parole, soggiunse subito:"
+    },
+    {
+      "desde": 495.53,
+      "hasta": 500.96,
+      "texto": "— Se mi aiuti a portare a casa una di queste brocche d’acqua, ti darò un bel pezzo di pane. —"
+    },
+    {
+      "desde": 500.96,
+      "hasta": 505.05,
+      "texto": "Pinocchio guardò la brocca, e non rispose nè sì nè no."
+    },
+    {
+      "desde": 505.05,
+      "hasta": 512.16,
+      "texto": "— E insieme col pane ti darò un bel piatto di cavol fiore condito coll’olio e coll’aceto, — soggiunse la buona donna."
+    },
+    {
+      "desde": 512.16,
+      "hasta": 517.0,
+      "texto": "Pinocchio dètte un’altra occhiata alla brocca, e non rispose nè sì nè no."
+    },
+    {
+      "desde": 517.0,
+      "hasta": 520.92,
+      "texto": "— E dopo il cavol fiore ti darò un bel confetto ripieno di rosolio. —"
+    },
+    {
+      "desde": 520.92,
+      "hasta": 528.4,
+      "texto": "Alle seduzioni di quest’ultima ghiottoneria, Pinocchio non seppe più resistere e, fatto un animo risoluto, disse: — Pazienza!"
+    },
+    {
+      "desde": 529.31,
+      "hasta": 531.88,
+      "texto": "Vi porterò la brocca fino a casa!"
+    },
+    {
+      "desde": 531.88,
+      "hasta": 538.48,
+      "texto": "La brocca era molto pesa, e il burattino, non avendo forza di portarla colle mani, si rassegnò a portarla in capo."
+    },
+    {
+      "desde": 539.02,
+      "hasta": 548.2,
+      "texto": "Arrivati a casa, la buona donnina fece sedere Pinocchio a una piccola tavola apparecchiata, e gli pose davanti il pane, il cavolfiore condito e il confetto."
+    },
+    {
+      "desde": 548.2,
+      "hasta": 551.1,
+      "texto": "Pinocchio non mangiò, ma diluviò."
+    },
+    {
+      "desde": 551.1,
+      "hasta": 556.46,
+      "texto": "Il suo stomaco pareva un quartiere rimasto vuoto e disabitato da cinque mesi."
+    },
+    {
+      "desde": 556.46,
+      "hasta": 563.34,
+      "texto": "Calmati a poco a poco i morsi rabbiosi della fame, allora alzò il capo per ringraziare la sua benefattrice:"
+    },
+    {
+      "desde": 563.34,
+      "hasta": 576.45,
+      "texto": "ma non aveva ancora finito di fissarla in volto, che cacciò un lunghissimo ohhh! di maraviglia e rimase là incantato, cogli occhi spalancati, colla forchetta per aria e colla bocca piena di pane e di cavol fiore."
+    },
+    {
+      "desde": 577.66,
+      "hasta": 579.25,
+      "texto": "— Che cos’è mai tutta questa meraviglia?"
+    },
+    {
+      "desde": 581.13,
+      "hasta": 582.98,
+      "texto": "— disse ridendo la buona donna. — Egli è…"
+    },
+    {
+      "desde": 582.98,
+      "hasta": 598.21,
+      "texto": "— rispose balbettando Pinocchio — egli è.... egli è.... che voi somigliate.... voi mi rammentate.... sì, sì, sì, la stessa voce gli stessi occhi... gli stessi capelli… sì, sì,"
+    },
+    {
+      "desde": 598.21,
+      "hasta": 602.16,
+      "texto": "sì.... anche voi avete i capelli turchini.... come lei!"
+    },
+    {
+      "desde": 602.34,
+      "hasta": 603.33,
+      "texto": "O Fatina mia!..."
+    },
+    {
+      "desde": 603.51,
+      "hasta": 607.1,
+      "texto": "O Fatina mia!... ditemi che siete voi, proprio voi!..."
+    },
+    {
+      "desde": 607.1,
+      "hasta": 610.28,
+      "texto": "Non mi fate più piangere! Se sapeste!"
+    },
+    {
+      "desde": 610.28,
+      "hasta": 613.1,
+      "texto": "Ho pianto tanto, ho patito tanto!... —"
+    },
+    {
+      "desde": 613.12,
+      "hasta": 621.97,
+      "texto": "E nel dir così, Pinocchio piangeva dirottamente, e gettandosi ginocchioni per terra abbracciava i ginocchi di quella donnina misteriosa."
+    }
+  ]
+}

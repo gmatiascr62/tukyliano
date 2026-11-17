@@ -198,6 +198,22 @@ def transcribir(audio, carpeta):
     return palabras, len(pedazos)
 
 
+# Cuántas palabras seguidas hacen falta para creerle a una coincidencia.
+#
+# Una sola palabra suelta no dice nada: adelante de cada capítulo va la
+# presentación de LibriVox, que dice "Le avventure di Pinocchio di
+# Collodi", y con eso al renglón 1 del capítulo 30 le coincidía la palabra
+# "Pinocchio" allá en el segundo 0,8. Como el arranque de un renglón es el
+# mínimo de sus coincidencias, ese renglón arrancaba en 0,8 y duraba
+# cincuenta segundos: quedaba iluminado durante todo el aviso, y la app
+# perdía de dónde arranca el cuento para poder ofrecer saltarlo.
+#
+# Tres seguidas ya no es casualidad. Los renglones de una o dos palabras
+# —"— No."— dejan de coincidir y pasan a estimarse entre sus vecinos, que
+# para dos palabras da lo mismo.
+PALABRAS_SEGUIDAS = 3
+
+
 def alinear(renglones, palabras):
     """Le pone tiempos a cada renglón del texto.
 
@@ -213,7 +229,9 @@ def alinear(renglones, palabras):
     comparador = SequenceMatcher(None, delTexto, deWhisper, autojunk=False)
 
     tiempos = [[] for _ in renglones]
-    for enElTexto, enWhisper, cuantas in comparador.get_matching_blocks():
+    bloques = [b for b in comparador.get_matching_blocks()
+               if b[2] >= PALABRAS_SEGUIDAS]
+    for enElTexto, enWhisper, cuantas in bloques:
         for i in range(cuantas):
             _, inicio, fin = palabras[enWhisper + i]
             tiempos[deQueRenglon[enElTexto + i]].append((inicio, fin))
@@ -230,20 +248,44 @@ def alinear(renglones, palabras):
     sinNingunaPalabra = [i for i, t in enumerate(tiempos) if not t]
     rellenarLosHuecos(resultado, palabras)
 
-    for i in range(len(resultado)):
-        # Sin esto dos renglones se pintan a la vez en el borde.
-        if i + 1 < len(resultado) and \
-                resultado[i]['fin'] > resultado[i + 1]['inicio']:
-            resultado[i]['fin'] = resultado[i + 1]['inicio']
-        resultado[i]['inicio'] = round(resultado[i]['inicio'], 2)
-        resultado[i]['fin'] = round(resultado[i]['fin'], 2)
+    enOrden(resultado)
 
-    coincidieron = sum(n for _, _, n in comparador.get_matching_blocks())
+    coincidieron = sum(n for _, _, n in bloques)
     return resultado, {
         'palabras': len(delTexto),
         'coincidieron': coincidieron,
         'estimados': sinNingunaPalabra,
     }
+
+
+# A cuántos caracteres por segundo se lee, si no se puede medir. Es la
+# mediana de las veintidós fábulas y los capítulos ya alineados; se usa
+# solo cuando en el audio no coincidió ni un renglón, que no pasó nunca.
+UN_RITMO_CUALQUIERA = 14.0
+
+# Antes de este segundo no empieza el texto en ninguna grabación de
+# LibriVox: adelante va la presentación. Medido en lo que hay alineado,
+# el arranque más temprano es 14,7 s en las fábulas y 20 en Pinocchio,
+# así que diez deja margen y sigue agarrando un renglón 1 pegado al
+# comienzo del audio, que es el síntoma de que se comió el aviso.
+ANTES_NO_EMPIEZA = 10.0
+
+
+def alRitmoDeEste(resultado):
+    """Caracteres por segundo, medidos en los renglones que coincidieron.
+
+    Se mide en el audio que se está alineando y no se usa un número fijo
+    porque cada lector de LibriVox lee a su velocidad, y los capítulos de
+    Pinocchio los leen distintas personas.
+    """
+    ritmos = [
+        len(r['texto']) / (r['fin'] - r['inicio'])
+        for r in resultado
+        if r['inicio'] is not None and r['fin'] - r['inicio'] > 0.5
+    ]
+    if not ritmos:
+        return UN_RITMO_CUALQUIERA
+    return sorted(ritmos)[len(ritmos) // 2]
 
 
 def rellenarLosHuecos(resultado, palabras):
@@ -264,14 +306,33 @@ def rellenarLosHuecos(resultado, palabras):
         while hasta < cuantos and resultado[hasta]['inicio'] is None:
             hasta += 1
 
-        desde = resultado[i - 1]['fin'] if i > 0 else 0.0
         if hasta < cuantos:
             final = resultado[hasta]['inicio']
         else:
-            final = palabras[-1][2] if palabras else desde
+            final = palabras[-1][2] if palabras else 0.0
 
         largos = [max(len(resultado[k]['texto']), 1) for k in range(i, hasta)]
         total = sum(largos)
+
+        if i > 0:
+            desde = resultado[i - 1]['fin']
+        else:
+            # Arrancar en 0 el primer renglón, cuando es estimado, es
+            # ponerlo arriba de la presentación de LibriVox: "Chapter 30 of
+            # The Adventures of Pinocchio. This is a LibriVox recording..."
+            # son unos cuarenta segundos antes de que empiece el cuento.
+            #
+            # En el capítulo 30 pasaba eso: el renglón 1 arrancaba en 0,8 y
+            # duraba cincuenta segundos. Dos consecuencias, las dos
+            # visibles: el renglón queda iluminado todo el aviso, y
+            # dondeEmpiezaDeVerdad —que es con lo que la app ofrece saltar
+            # la presentación— devolvía 0,8 y no había nada que saltar.
+            #
+            # Así que se estima para atrás, al ritmo de lectura de este
+            # mismo audio: el renglón termina donde empieza la primera
+            # palabra reconocida y dura lo que tarda en leerse.
+            desde = max(0.0, final - total / alRitmoDeEste(resultado))
+
         donde = desde
         for k, largo in zip(range(i, hasta), largos):
             cuanto = (final - desde) * largo / total
@@ -306,6 +367,37 @@ def deUnAudio(audio, renglones):
     return resultado, comoSalio
 
 
+def enOrden(resultado):
+    """Deja los tiempos en orden, que es lo que la app da por cierto.
+
+    Tres cosas que tienen que valer siempre, y antes solo valía la tercera:
+
+    1. Un renglón no arranca antes que el anterior. Las palabras que
+       devuelve whisper se pisan un poco en el borde entre dos pedazos, así
+       que el siguiente renglón puede coincidir un instante antes de que
+       termine el anterior.
+    2. Un renglón no termina antes de arrancar. En el capítulo 25 el
+       renglón 70 iba de 302,09 a 301,74 —duración negativa— porque se
+       estimó entre dos coincidencias que venían pisadas, y el reparto a
+       prorrata le dio un tramo de largo negativo. La app lo pinta con
+       `donde >= desde && donde < hasta`, que para eso nunca es cierto: era
+       un renglón que no se iluminaba nunca.
+    3. Un renglón no sigue pintado cuando ya arrancó el siguiente, o en el
+       borde se ven dos iluminados a la vez.
+    """
+    ultimo = 0.0
+    for r in resultado:
+        r['inicio'] = max(r['inicio'], ultimo)
+        r['fin'] = max(r['fin'], r['inicio'])
+        ultimo = r['inicio']
+    for i in range(len(resultado) - 1):
+        resultado[i]['fin'] = min(resultado[i]['fin'],
+                                  resultado[i + 1]['inicio'])
+    for r in resultado:
+        r['inicio'] = round(r['inicio'], 2)
+        r['fin'] = round(max(r['fin'], r['inicio']), 2)
+
+
 def lasQuejas(resultado, comoSalio):
     """Los motivos para no confiar en este alineado, si hay.
 
@@ -332,6 +424,15 @@ def lasQuejas(resultado, comoSalio):
         if resultado[i]['inicio'] > resultado[i + 1]['inicio']:
             quejas.append(f'el renglón {i + 2} arranca antes que el anterior')
             break
+
+    # Adelante va la presentación de LibriVox —quién lee, de qué libro—, y
+    # en Pinocchio son unos cuarenta segundos. Si el primer renglón arranca
+    # antes de eso es que se la comió: queda iluminado todo el aviso, y la
+    # app pierde de dónde arranca el cuento para poder saltarlo.
+    if resultado and resultado[0]['inicio'] < ANTES_NO_EMPIEZA:
+        quejas.append(
+            f"el renglón 1 arranca en el segundo "
+            f"{resultado[0]['inicio']:.0f}, encima de la presentación")
 
     # Un renglón de verso dura dos o tres segundos. Quince quiere decir
     # que de ahí en adelante el resaltado se queda clavado.

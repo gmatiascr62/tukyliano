@@ -1,0 +1,717 @@
+{
+  "id": "pinocchio_34",
+  "titulo": "34. Pinocchio, gettato in mare, è mangiato dai pesci e ritorna ed essere un burattino come prima; ma mentre nuota per salvarsi, è ingoiato dal terribile Pesce-cane.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 43.51,
+      "hasta": 51.62,
+      "texto": "Dopo cinquanta minuti che il ciuchino era sott’acqua, il compratore disse, discorrendo da sè solo:"
+    },
+    {
+      "desde": 51.62,
+      "hasta": 54.89,
+      "texto": "— A quest’ora il mio povero ciuchino zoppo deve essere bell’ e affogato."
+    },
+    {
+      "desde": 55.9,
+      "hasta": 60.64,
+      "texto": "Ritiriamolo dunque su, e facciamo con la sua pelle questo bel tamburo. —"
+    },
+    {
+      "desde": 60.64,
+      "hasta": 71.58,
+      "texto": "E cominciò a tirare la fune, con la quale lo aveva legato per una gamba: e tira, tira, tira, alla fine vide apparire a fior d’acqua.... Indovinate?"
+    },
+    {
+      "desde": 71.58,
+      "hasta": 79.38,
+      "texto": "Invece di un ciuchino morto, vide apparire a fior d’acqua un burattino vivo che scodinzolava come un’anguilla."
+    },
+    {
+      "desde": 79.38,
+      "hasta": 88.38,
+      "texto": "Vedendo quel burattino di legno, il pover’uomo credè di sognare e rimase lì intontito, a bocca aperta e con gli occhi fuori della testa."
+    },
+    {
+      "desde": 88.42,
+      "hasta": 93.07,
+      "texto": "Riavutosi un poco dal suo primo stupore, disse piangendo e balbettando:"
+    },
+    {
+      "desde": 93.07,
+      "hasta": 96.32,
+      "texto": "— E il ciuchino che ho gettato in mare dov’è?..."
+    },
+    {
+      "desde": 96.65,
+      "hasta": 97.71,
+      "texto": "— Quel ciuchino son io!"
+    },
+    {
+      "desde": 97.71,
+      "hasta": 101.72,
+      "texto": "— rispose il burattino, ridendo. — Tu? — Io."
+    },
+    {
+      "desde": 101.82,
+      "hasta": 103.28,
+      "texto": "— Ah! mariuolo!"
+    },
+    {
+      "desde": 104.39,
+      "hasta": 106.32,
+      "texto": "Pretenderesti forse burlarti di me?"
+    },
+    {
+      "desde": 106.39,
+      "hasta": 107.53,
+      "texto": "— Burlarmi di voi?"
+    },
+    {
+      "desde": 107.53,
+      "hasta": 111.0,
+      "texto": "Tutt’altro, caro padrone: io vi parlo sul serio."
+    },
+    {
+      "desde": 111.07,
+      "hasta": 118.04,
+      "texto": "— Ma come mai tu, che poco fa eri un ciuchino, ora stando nell’acqua, sei diventato un burattino di legno?…"
+    },
+    {
+      "desde": 118.35,
+      "hasta": 120.51,
+      "texto": "— Sarà effetto dell’acqua del mare."
+    },
+    {
+      "desde": 120.51,
+      "hasta": 122.94,
+      "texto": "Il mare ne fa di questi scherzi."
+    },
+    {
+      "desde": 122.94,
+      "hasta": 125.05,
+      "texto": "— Bada, burattino, bada!…"
+    },
+    {
+      "desde": 125.05,
+      "hasta": 128.1,
+      "texto": "Non credere di divertirti alle mie spalle."
+    },
+    {
+      "desde": 128.1,
+      "hasta": 130.88,
+      "texto": "Guai a te, se mi scappa la pazienza!"
+    },
+    {
+      "desde": 130.88,
+      "hasta": 134.98,
+      "texto": "— Ebbene, padrone: volete sapere tutta la vera storia?"
+    },
+    {
+      "desde": 134.98,
+      "hasta": 138.8,
+      "texto": "Scioglietemi questa gamba e io ve la racconterò.―"
+    },
+    {
+      "desde": 138.8,
+      "hasta": 147.91,
+      "texto": "Quel buon pasticcione del compratore, curioso di conoscere la vera storia, gli sciolse subito il nodo della fune, che lo teneva legato:"
+    },
+    {
+      "desde": 147.91,
+      "hasta": 153.21,
+      "texto": "e allora Pinocchio, trovandosi libero come un uccello nell’aria, prese a dirgli così:"
+    },
+    {
+      "desde": 153.85,
+      "hasta": 162.84,
+      "texto": "— Sappiate dunque che io ero un burattino di legno come sono oggi: ma mi trovavo a tocco e non tocco di diventare un ragazzo, come in questo mondo ce n’è tanti:"
+    },
+    {
+      "desde": 163.45,
+      "hasta": 176.5,
+      "texto": "se non che per la mia poca voglia di studiare e per dar retta ai cattivi compagni, scappai di casa… e un bel giorno, svegliandomi, mi trovai cambiato in un somaro con tanto d'orecchi… e con tanto di coda!…"
+    },
+    {
+      "desde": 176.5,
+      "hasta": 178.65,
+      "texto": "Che vergogna fu quella per me!…"
+    },
+    {
+      "desde": 178.65,
+      "hasta": 183.89,
+      "texto": "Una vergogna, caro padrone, che Sant’Antonio benedetto non la faccia provare neppure a voi!"
+    },
+    {
+      "desde": 183.89,
+      "hasta": 195.54,
+      "texto": "Portato a vendere sul mercato degli asini, fui comprato dal Direttore di una compagnia equestre, il quale si messe in capo di far di me un gran ballerino o un gran saltatore di cerchi;"
+    },
+    {
+      "desde": 195.54,
+      "hasta": 203.1,
+      "texto": "ma una sera durante lo spettacolo, feci in teatro una brutta cascata, e rimasi zoppo da tutt’e due le gambe."
+    },
+    {
+      "desde": 203.1,
+      "hasta": 211.1,
+      "texto": "Allora il Direttore non sapendo che cosa farsi d’un asino zoppo, mi mandò a rivendere, e voi mi avete comprato!"
+    },
+    {
+      "desde": 211.1,
+      "hasta": 212.59,
+      "texto": "— Pur troppo!"
+    },
+    {
+      "desde": 212.59,
+      "hasta": 214.43,
+      "texto": "E ti ho pagato venti soldi."
+    },
+    {
+      "desde": 214.43,
+      "hasta": 216.43,
+      "texto": "E ora, chi mi rende i miei poveri venti soldi?"
+    },
+    {
+      "desde": 217.58,
+      "hasta": 219.51,
+      "texto": "— E perchè mi avete comprato?"
+    },
+    {
+      "desde": 219.57,
+      "hasta": 224.51,
+      "texto": "Voi mi avete comprato per fare con la mia pelle un tamburo!… un tamburo!…"
+    },
+    {
+      "desde": 224.51,
+      "hasta": 225.6,
+      "texto": "— Pur troppo!…"
+    },
+    {
+      "desde": 225.6,
+      "hasta": 228.51,
+      "texto": "E ora dove troverò un’altra pelle!…"
+    },
+    {
+      "desde": 228.59,
+      "hasta": 231.51,
+      "texto": "— Non vi date alla disperazione, padrone."
+    },
+    {
+      "desde": 231.57,
+      "hasta": 234.01,
+      "texto": "Dei ciuchini ce n’è tanti, in questo mondo!"
+    },
+    {
+      "desde": 234.07,
+      "hasta": 237.43,
+      "texto": "— Dimmi, monello impertinente: e la tua storia finisce qui?"
+    },
+    {
+      "desde": 237.43,
+      "hasta": 242.69,
+      "texto": "— No, — rispose il burattino, — ci sono altre due parole, e poi è finita."
+    },
+    {
+      "desde": 242.69,
+      "hasta": 255.21,
+      "texto": "Dopo avermi comprato, mi avete condotto in questo luogo per uccidermi, ma poi, cedendo a un sentimento pietoso d’umanità, avete preferito di legarmi un sasso al collo e di gettarmi in fondo al mare."
+    },
+    {
+      "desde": 255.21,
+      "hasta": 261.84,
+      "texto": "Questo sentimento di delicatezza vi onora moltissimo, e io ve ne serberò eterna riconoscenza."
+    },
+    {
+      "desde": 262.61,
+      "hasta": 267.44,
+      "texto": "Per altro, caro padrone, questa volta avete fatto i vostri conti senza la Fata…"
+    },
+    {
+      "desde": 267.44,
+      "hasta": 269.48,
+      "texto": "— E chi è questa Fata?"
+    },
+    {
+      "desde": 269.48,
+      "hasta": 282.58,
+      "texto": "— È la mia mamma, la quale somiglia a tutte quelle buone mamme, che vogliono un gran bene ai loro ragazzi e non li perdono mai d’occhio, e li assistono amorosamente in ogni disgrazia, anche quando questi ragazzi,"
+    },
+    {
+      "desde": 282.58,
+      "hasta": 289.97,
+      "texto": "per le loro scapataggini e per i loro cattivi portamenti, meriterebbero di essere abbandonati e lasciati in balia a sè stessi."
+    },
+    {
+      "desde": 289.97,
+      "hasta": 303.0,
+      "texto": "Dicevo, dunque, che la buona Fata, appena mi vide in pericolo di affogare, mandò subito intorno a me un branco infinito di pesci, i quali credendomi davvero un ciuchino bell’e morto, cominciarono a mangiarmi!"
+    },
+    {
+      "desde": 303.0,
+      "hasta": 305.24,
+      "texto": "E che bocconi che facevano!"
+    },
+    {
+      "desde": 305.24,
+      "hasta": 310.0,
+      "texto": "Non avrei mai creduto che i pesci fossero più ghiotti anche dei ragazzi!"
+    },
+    {
+      "desde": 310.0,
+      "hasta": 321.6,
+      "texto": "Chi mi mangiò gli orecchi, chi mi mangiò il muso, chi il collo e la criniera, chi la pelle delle zampe, chi la pelliccia della schiena… e fra gli altri, vi fu un pesciolino così garbato,"
+    },
+    {
+      "desde": 321.6,
+      "hasta": 324.8,
+      "texto": "che si degnò perfino di mangiarmi la coda."
+    },
+    {
+      "desde": 324.8,
+      "hasta": 331.59,
+      "texto": "— Da oggi in poi — disse il compratore inorridito — faccio giuro di non assaggiar più carne di pesce."
+    },
+    {
+      "desde": 331.59,
+      "hasta": 337.11,
+      "texto": "Mi dispiacerebbe troppo di aprire una triglia o un nasello fritto e di trovargli in corpo una coda di ciuco!"
+    },
+    {
+      "desde": 337.77,
+      "hasta": 341.57,
+      "texto": "— Io la penso come voi — replicò il burattino, ridendo."
+    },
+    {
+      "desde": 341.87,
+      "hasta": 355.67,
+      "texto": "— Del resto, dovete sapere che quando i pesci ebbero finito di mangiarmi tutta quella buccia asinina, che mi copriva dalla testa ai piedi, arrivarono, com’è naturale, all’osso… o per dir meglio, arrivarono al legno,"
+    },
+    {
+      "desde": 355.67,
+      "hasta": 358.97,
+      "texto": "perchè, come vedete, io son fatto di legno durissimo."
+    },
+    {
+      "desde": 358.97,
+      "hasta": 370.73,
+      "texto": "Ma dopo dato i primi morsi, quei pesci ghiottoni si accòrsero subito che il legno non era ciccia per i loro denti, e nauseati da questo cibo indigesto se ne andarono chi in qua chi in là,"
+    },
+    {
+      "desde": 370.73,
+      "hasta": 373.44,
+      "texto": "senza voltarsi nemmeno a dirmi grazie…"
+    },
+    {
+      "desde": 373.44,
+      "hasta": 381.52,
+      "texto": "Ed eccovi raccontato come qualmente voi, tirando su la fune, avete trovato un burattino vivo, invece d’un ciuchino morto."
+    },
+    {
+      "desde": 381.52,
+      "hasta": 384.0,
+      "texto": "— Io mi rido della tua storia — gridò il compratore imbestialito."
+    },
+    {
+      "desde": 386.08,
+      "hasta": 390.4,
+      "texto": "— Io so che ho speso venti soldi per comprarti, e rivoglio i miei quattrini."
+    },
+    {
+      "desde": 390.4,
+      "hasta": 392.0,
+      "texto": "Sai che cosa farò?"
+    },
+    {
+      "desde": 392.0,
+      "hasta": 397.5,
+      "texto": "Ti porterò daccapo al mercato, e ti rivenderò a peso di legno stagionato per accendere il fuoco nel caminetto."
+    },
+    {
+      "desde": 398.69,
+      "hasta": 402.97,
+      "texto": "— Rivendetemi pure: io sono contento — disse Pinocchio."
+    },
+    {
+      "desde": 402.97,
+      "hasta": 407.15,
+      "texto": "Ma nel dir così, fece un bel salto e schizzò in mezzo all’acqua."
+    },
+    {
+      "desde": 407.15,
+      "hasta": 413.15,
+      "texto": "E nuotando allegramente e allontanandosi dalla spiaggia, gridava al povero compratore:"
+    },
+    {
+      "desde": 413.15,
+      "hasta": 418.65,
+      "texto": "— Addio, padrone; se avete bisogno di una pelle per fare un tamburo, ricordatevi di me. —"
+    },
+    {
+      "desde": 418.65,
+      "hasta": 424.49,
+      "texto": "E poi rideva e seguitava a nuotare: e dopo un poco, rivoltandosi indietro, urlava più forte:"
+    },
+    {
+      "desde": 424.57,
+      "hasta": 431.57,
+      "texto": "— Addio, padrone;… se avete bisogno di un po’ di legno stagionato per accendere il caminetto, ricordatevi di me. —"
+    },
+    {
+      "desde": 431.57,
+      "hasta": 436.73,
+      "texto": "Fatto sta che in un batter d’occhio si era tanto allontanato, che non si vedeva quasi più;"
+    },
+    {
+      "desde": 436.73,
+      "hasta": 448.07,
+      "texto": "ossia si vedeva solamente sulla superficie del mare un puntolino nero, che di tanto in tanto rizzava le gambe fuori dell’acqua e faceva capriole e salti, come un delfino in vena di buonumore."
+    },
+    {
+      "desde": 449.1,
+      "hasta": 463.22,
+      "texto": "Intanto che Pinocchio nuotava alla ventura, vide in mezzo al mare uno scoglio che pareva di marmo bianco, e su in cima allo scoglio, una bella caprettina che belava amorosamente e gli faceva segno di avvicinarsi."
+    },
+    {
+      "desde": 463.22,
+      "hasta": 475.45,
+      "texto": "La cosa più singolare era questa: che la lana della caprettina, invece di esser bianca, o nera, o pallata di più colori, come quella delle altre capre, era invece turchina, ma d’un turchino così sfolgorante,"
+    },
+    {
+      "desde": 476.39,
+      "hasta": 479.75,
+      "texto": "che rammentava moltissimo i capelli della bella Bambina."
+    },
+    {
+      "desde": 479.75,
+      "hasta": 485.05,
+      "texto": "Lascio pensare a voi se il cuore del povero Pinocchio cominciò a battere più forte!"
+    },
+    {
+      "desde": 485.09,
+      "hasta": 490.15,
+      "texto": "Raddoppiando di forza e di energia si diè a nuotare verso lo scoglio bianco;"
+    },
+    {
+      "desde": 490.15,
+      "hasta": 501.38,
+      "texto": "ed era già a mezza strada, quand’ecco uscir fuori dall’acqua e venirgli incontro un’orribile testa di mostro marino, con la bocca spalancata come una voragine, e tre filari di zanne,"
+    },
+    {
+      "desde": 501.38,
+      "hasta": 503.71,
+      "texto": "che avrebbero fatto paura anche a vederle dipinte."
+    },
+    {
+      "desde": 504.4,
+      "hasta": 507.62,
+      "texto": "E sapete chi era quel mostro marino?"
+    },
+    {
+      "desde": 507.62,
+      "hasta": 518.25,
+      "texto": "Quel mostro marino era nè più nè meno quel gigantesco Pesce-cane ricordato più volte in questa storia, e che per le sue stragi e per la sua insaziabile voracità,"
+    },
+    {
+      "desde": 518.25,
+      "hasta": 522.26,
+      "texto": "veniva soprannominato «l’Attila dei pesci e dei pescatori.»"
+    },
+    {
+      "desde": 522.26,
+      "hasta": 526.44,
+      "texto": "Immaginatevi lo spavento del povero Pinocchio, alla vista del mostro."
+    },
+    {
+      "desde": 526.44,
+      "hasta": 536.15,
+      "texto": "Cercò di scansarlo, di cambiare strada: cercò di fuggire: ma quella immensa bocca spalancata gli veniva sempre incontro con la velocità di una saetta."
+    },
+    {
+      "desde": 536.84,
+      "hasta": 539.12,
+      "texto": "— Affrettati, Pinocchio, per carità!"
+    },
+    {
+      "desde": 539.12,
+      "hasta": 541.75,
+      "texto": "— gridava belando la bella caprettina."
+    },
+    {
+      "desde": 541.75,
+      "hasta": 547.38,
+      "texto": "E Pinocchio nuotava disperatamente con le braccia, col petto, con le gambe e coi piedi."
+    },
+    {
+      "desde": 547.38,
+      "hasta": 550.33,
+      "texto": "— Corri, Pinocchio, perchè il mostro si avvicina!… ―"
+    },
+    {
+      "desde": 550.33,
+      "hasta": 555.72,
+      "texto": "E Pinocchio, raccogliendo tutte le sue forze, raddoppiava di lena nella corsa."
+    },
+    {
+      "desde": 555.76,
+      "hasta": 559.36,
+      "texto": "— Bada, Pinocchio!… il mostro ti raggiunge! Eccolo!… Eccolo!…"
+    },
+    {
+      "desde": 559.36,
+      "hasta": 562.76,
+      "texto": "Affrettati, per carità, o sei perduto!… —"
+    },
+    {
+      "desde": 562.76,
+      "hasta": 568.24,
+      "texto": "E Pinocchio a nuotare più lesto che mai, e via, via, e via, come andrebbe una palla di fucile."
+    },
+    {
+      "desde": 568.24,
+      "hasta": 577.36,
+      "texto": "E già era presso allo scoglio, e già la caprettina, spenzolandosi tutta sul mare, gli porgeva le sue zampine davanti per aiutarlo a uscire dall’acqua… Ma!…"
+    },
+    {
+      "desde": 577.36,
+      "hasta": 579.12,
+      "texto": "Ma oramai era tardi!"
+    },
+    {
+      "desde": 579.12,
+      "hasta": 581.6,
+      "texto": "Il mostro lo aveva raggiunto."
+    },
+    {
+      "desde": 581.6,
+      "hasta": 594.73,
+      "texto": "Il mostro, tirando il fiato a sè, si bevve il povero burattino, come avrebbe bevuto un uovo di gallina, e lo inghiottì con tanta violenza e con tanta avidità, che Pinocchio, cascando giù in corpo al Pesce-cane,"
+    },
+    {
+      "desde": 595.16,
+      "hasta": 599.59,
+      "texto": "battè un colpo così screanzato da restarne sbalordito per un quarto d’ora."
+    },
+    {
+      "desde": 599.59,
+      "hasta": 606.27,
+      "texto": "Quando ritornò in sè da quello sbigottimento, non sapeva raccapezzarsi, nemmeno lui, in che mondo si fosse."
+    },
+    {
+      "desde": 606.27,
+      "hasta": 617.5,
+      "texto": "Intorno a sè c’era da ogni parte un gran buio: ma un buio così nero e profondo, che gli pareva di essere entrato col capo in un calamaio pieno d’inchiostro."
+    },
+    {
+      "desde": 617.5,
+      "hasta": 626.9,
+      "texto": "Stette in ascolto e non sentì nessun rumore: solamente di tanto in tanto sentiva battersi nel viso alcune grandi buffate di vento."
+    },
+    {
+      "desde": 626.94,
+      "hasta": 634.74,
+      "texto": "Da principio non sapeva intendere da dove quel vento uscisse: ma poi capì che usciva dai polmoni del mostro."
+    },
+    {
+      "desde": 634.74,
+      "hasta": 643.52,
+      "texto": "Perchè bisogna sapere che il Pesce-cane soffriva moltissimo d’asma, e quando respirava pareva proprio che soffiasse la tramontana."
+    },
+    {
+      "desde": 643.52,
+      "hasta": 657.13,
+      "texto": "Pinocchio, sulle prime, s’ingegnò di farsi un po’ di coraggio: ma quand’ebbe la prova e la riprova di trovarsi chiuso in corpo al mostro marino allora cominciò a piangere e a strillare; e piangendo diceva:"
+    },
+    {
+      "desde": 657.13,
+      "hasta": 658.61,
+      "texto": "— Aiuto! aiuto!"
+    },
+    {
+      "desde": 658.61,
+      "hasta": 659.81,
+      "texto": "Oh povero me!"
+    },
+    {
+      "desde": 659.81,
+      "hasta": 662.25,
+      "texto": "Non c’è nessuno che venga a salvarmi?"
+    },
+    {
+      "desde": 662.25,
+      "hasta": 664.78,
+      "texto": "— Chi vuoi che ti salvi, disgraziato?…"
+    },
+    {
+      "desde": 664.78,
+      "hasta": 668.93,
+      "texto": "— disse in quel buio una vociaccia fessa di chitarra scordata."
+    },
+    {
+      "desde": 668.93,
+      "hasta": 670.31,
+      "texto": "— Chi è che parla così?"
+    },
+    {
+      "desde": 670.31,
+      "hasta": 674.17,
+      "texto": "— domandò Pinocchio, sentendosi gelare dallo spavento."
+    },
+    {
+      "desde": 674.17,
+      "hasta": 679.53,
+      "texto": "— Sono io! sono un povero Tonno, inghiottito dal Pesce-cane insieme con te."
+    },
+    {
+      "desde": 679.63,
+      "hasta": 681.72,
+      "texto": "E tu che pesce sei?"
+    },
+    {
+      "desde": 681.79,
+      "hasta": 684.25,
+      "texto": "— Io non ho che veder nulla coi pesci."
+    },
+    {
+      "desde": 684.25,
+      "hasta": 685.8,
+      "texto": "Io sono un burattino."
+    },
+    {
+      "desde": 685.87,
+      "hasta": 690.56,
+      "texto": "— E allora se non sei un pesce, perchè ti sei fatto inghiottire dal mostro?"
+    },
+    {
+      "desde": 690.63,
+      "hasta": 695.08,
+      "texto": "— Non son io, che mi son fatto inghiottire: gli è lui che mi ha inghiottito!"
+    },
+    {
+      "desde": 695.15,
+      "hasta": 697.92,
+      "texto": "Ed ora, che cosa dobbiamo fare qui al buio?…"
+    },
+    {
+      "desde": 697.98,
+      "hasta": 702.28,
+      "texto": "— Rassegnarsi e aspettare che il Pesce-cane ci abbia digeriti tutt’e due!…"
+    },
+    {
+      "desde": 702.34,
+      "hasta": 704.5,
+      "texto": "— Ma io non voglio esser digerito!"
+    },
+    {
+      "desde": 705.47,
+      "hasta": 707.26,
+      "texto": "— urlò Pinocchio, ricominciando a piangere."
+    },
+    {
+      "desde": 707.26,
+      "hasta": 719.52,
+      "texto": "— Neppure io vorrei esser digerito, — soggiunse il Tonno — ma io sono abbastanza filosofo e mi consolo pensando che, quando si nasce Tonni, c’è più dignità a morir sott’acqua che sott’olio!…"
+    },
+    {
+      "desde": 719.52,
+      "hasta": 720.61,
+      "texto": "— Scioccherie!"
+    },
+    {
+      "desde": 720.61,
+      "hasta": 722.0,
+      "texto": "— gridò Pinocchio."
+    },
+    {
+      "desde": 722.0,
+      "hasta": 729.34,
+      "texto": "— La mia è un’opinione — replicò il Tonno — e le opinioni, come dicono i Tonni politici, vanno rispettate!"
+    },
+    {
+      "desde": 729.34,
+      "hasta": 733.91,
+      "texto": "— Insomma… io voglio andarmene di qui… io voglio fuggire…"
+    },
+    {
+      "desde": 733.91,
+      "hasta": 736.16,
+      "texto": "— Fuggi, se ti riesce!…"
+    },
+    {
+      "desde": 736.16,
+      "hasta": 738.08,
+      "texto": "— È molto grosso questo Pesce-cane che ci ha inghiottiti?"
+    },
+    {
+      "desde": 739.16,
+      "hasta": 740.84,
+      "texto": "— domandò il burattino."
+    },
+    {
+      "desde": 740.84,
+      "hasta": 746.16,
+      "texto": "— Figurati che il suo corpo è più lungo di un chilometro, senza contare la coda. ―"
+    },
+    {
+      "desde": 746.16,
+      "hasta": 753.2,
+      "texto": "Nel tempo che faceva questa conversazione al buio, parve a Pinocchio di vedere, lontano lontano, una specie di chiarore."
+    },
+    {
+      "desde": 753.2,
+      "hasta": 756.43,
+      "texto": "— Che cosa sarà mai quel lumicino lontano lontano?"
+    },
+    {
+      "desde": 756.43,
+      "hasta": 757.86,
+      "texto": "— disse Pinocchio."
+    },
+    {
+      "desde": 757.86,
+      "hasta": 764.42,
+      "texto": "— Sarà qualche nostro compagno di sventura, che aspetterà, come noi, il momento di esser digerito!…."
+    },
+    {
+      "desde": 764.42,
+      "hasta": 766.3,
+      "texto": "— Voglio andare a trovarlo."
+    },
+    {
+      "desde": 766.3,
+      "hasta": 772.66,
+      "texto": "Non potrebbe darsi il caso che fosse qualche vecchio pesce capace di insegnarmi la strada per fuggire?"
+    },
+    {
+      "desde": 772.66,
+      "hasta": 775.64,
+      "texto": "— Io te l’auguro di cuore, caro burattino."
+    },
+    {
+      "desde": 775.64,
+      "hasta": 776.8,
+      "texto": "— Addio, Tonno."
+    },
+    {
+      "desde": 776.8,
+      "hasta": 780.04,
+      "texto": "— Addio, burattino; e buona fortuna."
+    },
+    {
+      "desde": 780.04,
+      "hasta": 781.76,
+      "texto": "— Dove ci rivedremo?…"
+    },
+    {
+      "desde": 781.76,
+      "hasta": 782.6,
+      "texto": "— Chi lo sa?…"
+    },
+    {
+      "desde": 782.6,
+      "hasta": 784.22,
+      "texto": "È meglio non pensarci neppure! —"
+    }
+  ]
+}

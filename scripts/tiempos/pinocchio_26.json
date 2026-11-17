@@ -1,0 +1,287 @@
+{
+  "id": "pinocchio_26",
+  "titulo": "26. Pinocchio va co’ suoi compagni di scuola in riva al mare, per vedere il terribile Pescecane.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 39.54,
+      "hasta": 43.46,
+      "texto": "Il giorno dopo Pinocchio andò alla scuola comunale."
+    },
+    {
+      "desde": 43.46,
+      "hasta": 49.16,
+      "texto": "Figuratevi quelle birbe di ragazzi, quando videro entrare nella loro scuola un burattino!"
+    },
+    {
+      "desde": 49.16,
+      "hasta": 51.84,
+      "texto": "Fu una risata, che non finiva più."
+    },
+    {
+      "desde": 51.84,
+      "hasta": 59.22,
+      "texto": "Chi gli faceva uno scherzo, chi un altro: chi gli levava il berretto di mano: chi gli tirava il giubbettino di dietro;"
+    },
+    {
+      "desde": 59.22,
+      "hasta": 70.34,
+      "texto": "chi si provava a fargli coll’inchiostro due grandi baffi sotto il naso, e chi si attentava perfino a legargli dei fili ai piedi e alle mani per farlo ballare."
+    },
+    {
+      "desde": 70.34,
+      "hasta": 83.21,
+      "texto": "Per un poco Pinocchio usò disinvoltura e tirò via; ma finalmente, sentendosi scappar la pazienza, si rivolse a quelli, che più lo tafanavano e si pigliavano giuoco di lui, e disse loro a muso duro:"
+    },
+    {
+      "desde": 84.1,
+      "hasta": 88.55,
+      "texto": "— Badate, ragazzi: io non son venuto qui per essere il vostro buffone."
+    },
+    {
+      "desde": 88.55,
+      "hasta": 92.1,
+      "texto": "Io rispetto gli altri e voglio essere rispettato."
+    },
+    {
+      "desde": 92.14,
+      "hasta": 92.75,
+      "texto": "— Bravo Berlicche!"
+    },
+    {
+      "desde": 93.61,
+      "hasta": 95.9,
+      "texto": "Hai parlato come un libro stampato!"
+    },
+    {
+      "desde": 95.9,
+      "hasta": 106.4,
+      "texto": "— urlarono quei monelli, buttandosi via dalle matte risate: e uno di loro più impertinente degli altri, allungò la mano coll’idea di prendere il burattino per la punta del naso."
+    },
+    {
+      "desde": 106.4,
+      "hasta": 112.32,
+      "texto": "Ma non fece a tempo: perchè Pinocchio stese la gamba sotto la tavola, e gli consegnò una pedata negli stinchi."
+    },
+    {
+      "desde": 113.12,
+      "hasta": 114.57,
+      "texto": "— Ohi! che piedi duri!"
+    },
+    {
+      "desde": 114.57,
+      "hasta": 118.54,
+      "texto": "— urlò il ragazzo stropicciandosi il livido che gli aveva fatto il burattino."
+    },
+    {
+      "desde": 118.85,
+      "hasta": 121.46,
+      "texto": "— E che gomiti!… anche più duri dei piedi!"
+    },
+    {
+      "desde": 121.46,
+      "hasta": 127.05,
+      "texto": "— disse un altro che, per i suoi scherzi sguaiati, s’era beccata una gomitata nello stomaco."
+    },
+    {
+      "desde": 127.05,
+      "hasta": 138.85,
+      "texto": "Fatto sta che dopo quel calcio e quella gomitata, Pinocchio acquistò subito la stima e la simpatia di tutti i ragazzi di scuola: e tutti gli facevano mille carezze e tutti gli volevano un bene dell’anima."
+    },
+    {
+      "desde": 138.85,
+      "hasta": 149.55,
+      "texto": "E anche il maestro se ne lodava, perchè lo vedeva attento, studioso, intelligente, sempre il primo a entrare nella scuola, sempre l’ultimo a rizzarsi in piedi, a scuola finita."
+    },
+    {
+      "desde": 149.55,
+      "hasta": 160.65,
+      "texto": "Il solo difetto che avesse era quello di bazzicare troppi compagni; e fra questi c’erano molti monelli conosciutissimi per la loro poco voglia di studiare e di farsi onore."
+    },
+    {
+      "desde": 160.65,
+      "hasta": 167.25,
+      "texto": "Il maestro lo avvertiva tutti i giorni, e anche la buona Fata non mancava di dirgli e di ripetergli più volte:"
+    },
+    {
+      "desde": 167.31,
+      "hasta": 169.39,
+      "texto": "— Bada, Pinocchio!"
+    },
+    {
+      "desde": 169.39,
+      "hasta": 178.43,
+      "texto": "Quei tuoi compagnacci di scuola finiranno, prima o poi, col farti perdere l’amore allo studio e, forse forse, col tirarti addosso qualche grossa disgrazia."
+    },
+    {
+      "desde": 178.43,
+      "hasta": 179.75,
+      "texto": "― Non c’è pericolo!"
+    },
+    {
+      "desde": 179.75,
+      "hasta": 188.35,
+      "texto": "— rispondeva il burattino, facendo una spallucciata, e toccandosi coll’indice in mezzo alla fronte, come per dire: «C’è tanto giudizio qui dentro!»"
+    },
+    {
+      "desde": 188.35,
+      "hasta": 197.35,
+      "texto": "Ora avvenne che un bel giorno, mentre camminava verso la scuola, incontrò un branco dei soliti compagni, che andandogli incontro, gli dissero:"
+    },
+    {
+      "desde": 197.35,
+      "hasta": 199.46,
+      "texto": "— Sai la gran notizia? — No."
+    },
+    {
+      "desde": 199.46,
+      "hasta": 205.87,
+      "texto": "— Qui nel mare vicino è arrivato un Pesce-cane grosso come una montagna. — Davvero?…"
+    },
+    {
+      "desde": 205.87,
+      "hasta": 209.94,
+      "texto": "Che sia quel medesimo Pesce-cane di quando affogò il mio povero babbo?"
+    },
+    {
+      "desde": 209.94,
+      "hasta": 212.02,
+      "texto": "— Noi andiamo alla spiaggia per vederlo."
+    },
+    {
+      "desde": 212.02,
+      "hasta": 213.38,
+      "texto": "Vuoi venire anche tu?"
+    },
+    {
+      "desde": 213.38,
+      "hasta": 216.09,
+      "texto": "— Io, no: voglio andare a scuola."
+    },
+    {
+      "desde": 216.09,
+      "hasta": 218.05,
+      "texto": "— Che t’importa della scuola?"
+    },
+    {
+      "desde": 218.05,
+      "hasta": 220.05,
+      "texto": "Alla scuola ci anderemo domani."
+    },
+    {
+      "desde": 220.05,
+      "hasta": 225.05,
+      "texto": "Con una lezione di più o con una di meno, si rimane sempre gli stessi somari."
+    },
+    {
+      "desde": 225.05,
+      "hasta": 227.05,
+      "texto": "— E il maestro che dirà?"
+    },
+    {
+      "desde": 227.05,
+      "hasta": 229.19,
+      "texto": "— Il maestro si lascia dire."
+    },
+    {
+      "desde": 229.19,
+      "hasta": 231.03,
+      "texto": "È pagato apposta per brontolare tutti i giorni."
+    },
+    {
+      "desde": 232.05,
+      "hasta": 233.05,
+      "texto": "— E la mia mamma?"
+    },
+    {
+      "desde": 233.05,
+      "hasta": 237.05,
+      "texto": "— Le mamme non sanno mai nulla, — risposero quei malanni."
+    },
+    {
+      "desde": 237.05,
+      "hasta": 239.08,
+      "texto": "— Sapete che cosa farò?"
+    },
+    {
+      "desde": 239.08,
+      "hasta": 239.84,
+      "texto": "— disse Pinocchio."
+    },
+    {
+      "desde": 239.84,
+      "hasta": 244.78,
+      "texto": "— Il Pesce-cane voglio vederlo per certe mie ragioni… ma anderò a vederlo dopo la scuola."
+    },
+    {
+      "desde": 244.78,
+      "hasta": 246.3,
+      "texto": "— Povero giucco!"
+    },
+    {
+      "desde": 246.98,
+      "hasta": 248.41,
+      "texto": "— ribattè uno del branco."
+    },
+    {
+      "desde": 248.41,
+      "hasta": 253.1,
+      "texto": "— Che credi che un pesce di quella grossezza voglia star lì a fare il comodo tuo?"
+    },
+    {
+      "desde": 253.1,
+      "hasta": 254.47,
+      "texto": "Appena s’è annoiato,"
+    },
+    {
+      "desde": 254.83,
+      "hasta": 259.06,
+      "texto": "piglia il dirizzone per un’altra parte, e allora chi s’è visto s’è visto."
+    },
+    {
+      "desde": 259.06,
+      "hasta": 261.66,
+      "texto": "— Quanto tempo ci vuole di qui alla spiaggia?"
+    },
+    {
+      "desde": 261.66,
+      "hasta": 263.06,
+      "texto": "— domandò il burattino."
+    },
+    {
+      "desde": 263.13,
+      "hasta": 266.17,
+      "texto": "— Fra un’ora, siamo bell’e andati e tornati."
+    },
+    {
+      "desde": 266.17,
+      "hasta": 270.09,
+      "texto": "— Dunque, via! e chi più corre, è più bravo!"
+    },
+    {
+      "desde": 270.09,
+      "hasta": 271.05,
+      "texto": "— gridò Pinocchio."
+    },
+    {
+      "desde": 271.05,
+      "hasta": 281.39,
+      "texto": "Dato così il segnale della partenza, quel branco di monelli coi loro libri e i loro quaderni sotto il braccio si messero a correre attraverso ai campi e Pinocchio era sempre avanti a tutti,"
+    },
+    {
+      "desde": 281.39,
+      "hasta": 283.65,
+      "texto": "pareva che avesse le ali ai piedi."
+    },
+    {
+      "desde": 283.69,
+      "hasta": 297.05,
+      "texto": "Di tanto in tanto, voltandosi indietro, canzonava i suoi compagni rimasti a una bella distanza, e nel vederli ansanti, trafelati, polverosi e con tanto di lingua fuori, se la rideva proprio di cuore."
+    },
+    {
+      "desde": 297.05,
+      "hasta": 304.55,
+      "texto": "Lo sciagurato, in quel momento, non sapeva a quali paure e a quali orribili disgrazie andava incontro."
+    }
+  ]
+}

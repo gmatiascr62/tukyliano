@@ -193,6 +193,162 @@ void _elCatalogoDePinocchio() {
       }
     });
 
+    test('no hay audio sin texto en el medio de un capítulo', () {
+      // **Este es el test que faltaba.** Todos los de arriba miran lo que
+      // está en el catálogo; ninguno miraba lo que *falta*, y durante un
+      // rato faltaron párrafos enteros de Collodi sin que se notara: el
+      // texto que quedaba era impecable, solo que con agujeros. En el
+      // capítulo 1 eran veintidós segundos donde se presenta maestro
+      // Ciliegia, en el 16 veinticinco de la carrozzina. El audio los lee
+      // y en la pantalla el renglón iluminado se queda clavado.
+      //
+      // Un párrafo que falta se ve así: un hueco entre el final de un
+      // renglón y el arranque del siguiente. Con el texto completo el
+      // hueco más grande de un capítulo es de 1,9 segundos —la pausa que
+      // hace quien lee entre dos párrafos—, así que ocho segundos es
+      // holgado para no saltar por una pausa larga y sigue agarrando
+      // cualquier frase que se haya perdido.
+      const cuantoSeAguanta = Duration(seconds: 8);
+
+      // El único hueco que se acepta, y se acepta porque no hay nada que
+      // hacerle: en el capítulo 33 el lector lee en voz alta el cartel que
+      // anuncia el espectáculo —"I cartelloni di vario colore, attaccati
+      // alle cantonate delle strade, dicevano così:"— y en Wikisource ese
+      // cartel no es texto, es la foto del afiche escaneado. No hay de
+      // dónde sacar esas palabras. Son veintiséis segundos.
+      //
+      // Va anotado acá y no silenciado en el código del catálogo para que
+      // se vea: es un agujero conocido, no un agujero olvidado.
+      const elCartelDelTeatro = 'I cartelloni di vario colore';
+      var conTiempos = 0;
+
+      for (final capitulo in catalogo.lecturas) {
+        final marcados =
+            capitulo.renglones.where((r) => r.desde != null).toList();
+        if (marcados.isEmpty) continue;
+        conTiempos++;
+
+        for (var i = 0; i < marcados.length - 1; i++) {
+          if (marcados[i].texto.contains(elCartelDelTeatro)) continue;
+          final termina = marcados[i].hasta ?? marcados[i].desde!;
+          final arranca = marcados[i + 1].desde!;
+          expect(arranca - termina, lessThan(cuantoSeAguanta),
+              reason: '${capitulo.titulo}: entre "${marcados[i].texto}" y '
+                  '"${marcados[i + 1].texto}" hay audio que no tiene '
+                  'renglón');
+        }
+      }
+
+      // Si ningún capítulo tuviera tiempos, el test pasaría sin mirar
+      // nada y no se notaría.
+      expect(conTiempos, greaterThan(0),
+          reason: 'ningún capítulo tiene tiempos: este test no probó nada');
+    });
+
+    test('ni las leyendas ni los resúmenes son renglones', () {
+      // El libro escaneado trae ilustraciones con su leyenda, y el resumen
+      // de cada capítulo arriba. Nada de eso se lee en voz alta, así que
+      // como renglón es un renglón que no se ilumina nunca.
+      //
+      // Los tres de acá abajo entraban por tres caminos distintos, y son
+      // tres y no uno a propósito: la primera versión de este test miraba
+      // una sola leyenda —justo una de las que ya estaban arregladas— y
+      // pasaba en verde con las otras adentro. Un test que mira un caso
+      // puntual de una familia de bugs no cubre la familia.
+      const noVan = [
+        // Leyenda en un cajón flotante al costado, no centrada.
+        'Un grosso Falco venne a posarsi sul davanzale della finestra.',
+        // Resumen del capítulo, colado en el medio del cuento.
+        'Dopo cinque mesi di cuccagna, Pinocchio con sua grande meraviglia '
+            'sente spuntarsi un bel pajo d’orecchie asinine, e diventa un '
+            'ciuchino, con la coda e tutto.',
+        'Pinocchio gettato in mare, è mangiato dai pesci, e ritorna ad '
+            'essere un burattino come prima: ma mentre nuota per salvarsi, '
+            'è ingoiato dal terribile Pesce-cane.',
+        // Leyenda dentro de la tabla de la ilustración.
+        'Il Can-barbone partì come un barbero.',
+      ];
+      for (final capitulo in catalogo.lecturas) {
+        for (final renglon in capitulo.renglones) {
+          expect(noVan, isNot(contains(renglon.texto)),
+              reason: '${capitulo.titulo}: "${renglon.texto}" no se lee en '
+                  'el audio');
+        }
+      }
+
+      // Y lo que sí tiene que estar: las dos mitades del párrafo que la
+      // ilustración partía al medio, pegadas.
+      final texto16 =
+          catalogo.lecturas[15].renglones.map((r) => r.texto).join(' ');
+      expect(texto16, contains('cento pariglie di topini bianchi'));
+      // La leyenda se va, pero la frase del cuento que repetía queda.
+      expect(texto16, contains('venne a posarsi sul davanzale'));
+
+      // El párrafo del capítulo 1 que se perdía entero: sin él, el audio
+      // presenta a maestro Ciliegia y en la pantalla no pasa nada.
+      final texto1 =
+          catalogo.lecturas[0].renglones.map((r) => r.texto).join(' ');
+      expect(texto1, contains('mastr’Antonio'));
+      expect(texto1, contains('come una ciliegia matura'));
+
+      // Y un diálogo que además es leyenda —el capítulo 9 ilustra la
+      // pregunta y tres líneas después alguien la dice— tiene que quedar:
+      // el control de que no se cuelen leyendas no puede borrar diálogo.
+      final texto9 =
+          catalogo.lecturas[8].renglones.map((r) => r.texto).join(' ');
+      expect(texto9, contains('Vuoi darmi quattro soldi'));
+    });
+
+    test('lo que el libro centra y el audio lee no se tira', () {
+      // La otra cara del test de arriba, y la que costó caro: por sacar
+      // las leyendas se fue también el epitafio de la lápida del capítulo
+      // 23, que el audio sí lee. Son nueve segundos de audio sin renglón.
+      //
+      // Lo peor no fue el bug sino cómo pasó: cuando agregué la regla que
+      // se lo comía, verifiqué que el epitafio quedara. Después agregué
+      // otra regla y no volví a mirarlo. Por eso está acá: para que la
+      // próxima regla que saque adornos tenga que pasar por esto.
+      final cap23 =
+          catalogo.lecturas[22].renglones.map((r) => r.texto).join(' ');
+      for (final linea in [
+        'qui giace',
+        'la bambina dai capelli turchini',
+        'morta di dolore',
+        'fratellino pinocchio',
+      ]) {
+        expect(cap23, contains(linea), reason: 'el epitafio de la lápida');
+      }
+
+      // El proverbio del capítulo 36 es la misma trampa: la ilustración lo
+      // cita como leyenda y además está dicho en el cuento.
+      final cap36 =
+          catalogo.lecturas[35].renglones.map((r) => r.texto).join(' ');
+      expect(cap36, contains('Chi ruba il mantello'));
+    });
+
+    test('ningún capítulo arranca encima de la presentación', () {
+      // Adelante de cada grabación va el aviso de LibriVox —quién lee, de
+      // qué libro—, que en Pinocchio son unos cuarenta segundos. Si el
+      // primer renglón con tiempo arranca antes, se lo comió: queda
+      // iluminado todo el aviso y dondeEmpiezaDeVerdad —con lo que la app
+      // ofrece saltarlo— deja de servir.
+      //
+      // Pasaba en el capítulo 30: al renglón 1 le coincidía la palabra
+      // "Pinocchio" del propio aviso, y como el arranque de un renglón es
+      // el mínimo de sus coincidencias, arrancaba en el segundo 0,8.
+      var conTiempos = 0;
+      for (final capitulo in catalogo.lecturas) {
+        final empieza = capitulo.dondeEmpiezaDeVerdad;
+        if (empieza == null) continue;
+        conTiempos++;
+        expect(empieza, greaterThan(const Duration(seconds: 10)),
+            reason: '${capitulo.titulo}: el primer renglón cae encima de la '
+                'presentación de LibriVox');
+      }
+      expect(conTiempos, greaterThan(0),
+          reason: 'ningún capítulo tiene tiempos: este test no probó nada');
+    });
+
     test('el texto está partido en oraciones, no en párrafos', () {
       // En prosa un párrafo dura entre medio minuto y un minuto, y un
       // renglón iluminado de un minuto no dice dónde va el audio.

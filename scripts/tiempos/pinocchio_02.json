@@ -1,0 +1,272 @@
+{
+  "id": "pinocchio_02",
+  "titulo": "2. Maestro Ciliegia regala il pezzo di legno al suo amico Geppetto, il quale lo prende per fabbricarsi un burattino maraviglioso che sappia ballare, tirar di scherma e fare i salti mortali.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 49.61,
+      "hasta": 53.39,
+      "texto": "In quel punto fu bussato alla porta."
+    },
+    {
+      "desde": 53.39,
+      "hasta": 60.13,
+      "texto": "— Passate pure, — disse il falegname, senza aver la forza di rizzarsi in piedi."
+    },
+    {
+      "desde": 60.13,
+      "hasta": 66.45,
+      "texto": "Allora entrò in bottega un vecchietto tutto arzillo, il quale aveva nome Geppetto;"
+    },
+    {
+      "desde": 67.18,
+      "hasta": 81.52,
+      "texto": "ma i ragazzi del vicinato, quando lo volevano far montare su tutte le furie, lo chiamavano col soprannome di Polendina, a motivo della sua parrucca gialla, che somigliava moltissimo alla polendina di granturco."
+    },
+    {
+      "desde": 83.78,
+      "hasta": 85.53,
+      "texto": "Geppetto era bizzosissimo."
+    },
+    {
+      "desde": 85.53,
+      "hasta": 88.68,
+      "texto": "Guai a chiamarlo Polendina!"
+    },
+    {
+      "desde": 88.68,
+      "hasta": 93.85,
+      "texto": "Diventava subito una bestia, e non c’era più verso di tenerlo."
+    },
+    {
+      "desde": 95.98,
+      "hasta": 96.56,
+      "texto": "— Buon giorno, mastr’Antonio, — disse Geppetto."
+    },
+    {
+      "desde": 98.1,
+      "hasta": 101.85,
+      "texto": "— Che cosa fate costì per terra?"
+    },
+    {
+      "desde": 102.1,
+      "hasta": 104.85,
+      "texto": "— Insegno l’abbaco alle formicole."
+    },
+    {
+      "desde": 104.85,
+      "hasta": 106.85,
+      "texto": "— Buon pro vi faccia."
+    },
+    {
+      "desde": 107.1,
+      "hasta": 112.85,
+      "texto": "— Chi vi ha portato da me, compar Geppetto? — Le gambe."
+    },
+    {
+      "desde": 113.1,
+      "hasta": 117.69,
+      "texto": "Sappiate, mastr’Antonio, che son venuto da voi, per chiedervi un favore."
+    },
+    {
+      "desde": 118.89,
+      "hasta": 124.13,
+      "texto": "— Eccomi qui, pronto a servirvi, — replicò il falegname rizzandosi su i ginocchi."
+    },
+    {
+      "desde": 125.61,
+      "hasta": 128.05,
+      "texto": "— Stamani m’è piovuta nel cervello un’idea."
+    },
+    {
+      "desde": 129.25,
+      "hasta": 130.75,
+      "texto": "— Sentiamola."
+    },
+    {
+      "desde": 130.75,
+      "hasta": 143.2,
+      "texto": "— Ho pensato di fabbricarmi da me un bel burattino di legno: ma un burattino maraviglioso, che sappia ballare, tirar di scherma e fare i salti mortali."
+    },
+    {
+      "desde": 143.2,
+      "hasta": 151.2,
+      "texto": "Con questo burattino voglio girare il mondo, per buscarmi un tozzo di pane e un bicchier di vino: che ve ne pare?"
+    },
+    {
+      "desde": 151.2,
+      "hasta": 153.44,
+      "texto": "— Bravo Polendina!"
+    },
+    {
+      "desde": 153.44,
+      "hasta": 157.0,
+      "texto": "— gridò la solita vocina, che non si capiva di dove uscisse."
+    },
+    {
+      "desde": 157.0,
+      "hasta": 167.86,
+      "texto": "A sentirsi chiamar Polendina, compar Geppetto diventò rosso come un peperone dalla bizza, e voltandosi verso il falegname, gli disse imbestialito:"
+    },
+    {
+      "desde": 168.78,
+      "hasta": 170.92,
+      "texto": "— Perchè mi offendete?"
+    },
+    {
+      "desde": 170.92,
+      "hasta": 173.24,
+      "texto": "— Chi vi offende?"
+    },
+    {
+      "desde": 173.24,
+      "hasta": 175.38,
+      "texto": "— Mi avete detto Polendina!"
+    },
+    {
+      "desde": 175.38,
+      "hasta": 177.02,
+      "texto": "— Non sono stato io."
+    },
+    {
+      "desde": 177.23,
+      "hasta": 179.62,
+      "texto": "— Sta’ un po’ a vedere che sarò stato io!"
+    },
+    {
+      "desde": 179.62,
+      "hasta": 185.66,
+      "texto": "Io dico che siete stato voi. — No! — Sì! — No! — Sì! —"
+    },
+    {
+      "desde": 185.66,
+      "hasta": 195.75,
+      "texto": "E riscaldandosi sempre più, vennero dalle parole ai fatti, e acciuffatisi fra di loro, si graffiarono, si morsero e si sbertucciarono."
+    },
+    {
+      "desde": 195.75,
+      "hasta": 206.75,
+      "texto": "Finito il combattimento, mastr’Antonio si trovò fra le mani la parrucca gialla di Geppetto, e Geppetto si accòrse di avere in bocca la parrucca brizzolata del falegname."
+    },
+    {
+      "desde": 206.75,
+      "hasta": 208.68,
+      "texto": "— Rendimi la mia parrucca!"
+    },
+    {
+      "desde": 208.68,
+      "hasta": 210.33,
+      "texto": "— gridò mastr’Antonio."
+    },
+    {
+      "desde": 210.33,
+      "hasta": 213.86,
+      "texto": "— E tu rendimi la mia, e rifacciamo la pace. —"
+    },
+    {
+      "desde": 213.86,
+      "hasta": 223.1,
+      "texto": "I due vecchietti, dopo aver ripreso ognuno di loro la propria parrucca, si strinsero la mano e giurarono di rimanere buoni amici per tutta la vita."
+    },
+    {
+      "desde": 223.1,
+      "hasta": 231.5,
+      "texto": "— Dunque, compar Geppetto, — disse il falegname in segno di pace fatta — qual è il piacere che volete da me?"
+    },
+    {
+      "desde": 231.5,
+      "hasta": 237.17,
+      "texto": "— Vorrei un po’ di legno per fabbricare il mio burattino; me lo date?"
+    },
+    {
+      "desde": 238.31,
+      "hasta": 245.27,
+      "texto": "Mastr’Antonio, tutto contento, andò subito a prendere sul banco quel pezzo del legno che era stato cagione a lui di tante paure."
+    },
+    {
+      "desde": 245.27,
+      "hasta": 259.22,
+      "texto": "Ma quando fu lì per consegnarlo all’amico, il pezzo di legno dette uno scossone, e sgusciandogli violentemente dalle mani, andò a battere con forza negli stinchi impresciuttiti del povero Geppetto."
+    },
+    {
+      "desde": 259.85,
+      "hasta": 266.31,
+      "texto": "— Ah! gli è con questo bel garbo, mastr’Antonio, che voi regalate la vostra roba?"
+    },
+    {
+      "desde": 266.56,
+      "hasta": 268.15,
+      "texto": "M’avete quasi azzoppito!..."
+    },
+    {
+      "desde": 268.4,
+      "hasta": 270.39,
+      "texto": "— Vi giuro che non sono stato io!"
+    },
+    {
+      "desde": 270.39,
+      "hasta": 272.15,
+      "texto": "— Allora sarò stato io!..."
+    },
+    {
+      "desde": 272.15,
+      "hasta": 274.99,
+      "texto": "— La colpa è tutta di questo legno...."
+    },
+    {
+      "desde": 274.99,
+      "hasta": 279.15,
+      "texto": "— Lo so che è del legno: ma siete voi che me l’avete tirato nelle gambe!"
+    },
+    {
+      "desde": 279.15,
+      "hasta": 281.79,
+      "texto": "— Io non ve l’ho tirato! — Bugiardo!"
+    },
+    {
+      "desde": 282.71,
+      "hasta": 286.14,
+      "texto": "— Geppetto, non mi offendete: se no vi chiamo Polendina!... — Asino!"
+    },
+    {
+      "desde": 286.14,
+      "hasta": 287.83,
+      "texto": "— Polendina! — Somaro!"
+    },
+    {
+      "desde": 287.83,
+      "hasta": 289.02,
+      "texto": "— Polendina!"
+    },
+    {
+      "desde": 289.02,
+      "hasta": 289.46,
+      "texto": "— Brutto scimmiotto!"
+    },
+    {
+      "desde": 290.23,
+      "hasta": 291.88,
+      "texto": "— Polendina! —"
+    },
+    {
+      "desde": 291.88,
+      "hasta": 302.88,
+      "texto": "A sentirsi chiamar Polendina per la terza volta, Geppetto perse il lume degli occhi, si avventò sul falegname e lì se ne dettero un sacco e una sporta."
+    },
+    {
+      "desde": 302.88,
+      "hasta": 310.36,
+      "texto": "A battaglia finita, mastr’Antonio si trovò due graffi di più sul naso, e quell’altro due bottoni di meno al giubbetto."
+    },
+    {
+      "desde": 311.3,
+      "hasta": 319.1,
+      "texto": "Pareggiati in questo modo i loro conti, si strinsero la mano e giurarono di rimanere buoni amici per tutta la vita."
+    },
+    {
+      "desde": 319.1,
+      "hasta": 328.9,
+      "texto": "Intanto Geppetto prese con sè il suo bravo pezzo di legno, e ringraziato mastr’Antonio, se ne tornò zoppicando a casa."
+    }
+  ]
+}
