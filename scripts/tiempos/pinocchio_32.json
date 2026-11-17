@@ -1,0 +1,607 @@
+{
+  "id": "pinocchio_32",
+  "titulo": "32. A Pinocchio gli vengono gli orecchi di ciuco, e poi diventa un ciuchino vero e comincia a ragliare.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 31.82,
+    "hasta": 38.82,
+    "texto": "A Pinocchio gli vengono gli orecchi di ciuco, e poi diventa un ciuchino vero e comincia a ragliare."
+  },
+  "renglones": [
+    {
+      "desde": 38.82,
+      "hasta": 43.0,
+      "texto": "E questa sorpresa quale fu?"
+    },
+    {
+      "desde": 43.0,
+      "hasta": 56.66,
+      "texto": "Ve lo dirò io, miei cari e piccoli lettori: la sorpresa fu che Pinocchio, svegliandosi, gli venne fatto naturalmente di grattarsi il capo; e nel grattarsi il capo si accòrse...."
+    },
+    {
+      "desde": 56.66,
+      "hasta": 60.66,
+      "texto": "Indovinate un po’ di che cosa si accòrse?"
+    },
+    {
+      "desde": 60.66,
+      "hasta": 67.32,
+      "texto": "Si accòrse, con suo grandissimo stupore, che gli orecchi gli erano cresciuti più d’un palmo."
+    },
+    {
+      "desde": 67.32,
+      "hasta": 77.3,
+      "texto": "Voi sapete che il burattino, fin dalla nascita, aveva gli orecchi piccini piccini: tanto piccini che, a occhio nudo, non si vedevano neppure!"
+    },
+    {
+      "desde": 77.3,
+      "hasta": 88.3,
+      "texto": "Immaginatevi dunque come restò, quando dovè toccar con mano che i suoi orecchi, durante la notte, erano così allungati, che parevano due spazzole di padule."
+    },
+    {
+      "desde": 88.32,
+      "hasta": 101.98,
+      "texto": "Andò subito in cerca di uno specchio, per potersi vedere: ma non trovando uno specchio, empì d’acqua la catinella del lavamano, e specchiandovisi dentro, vide quel che non avrebbe mai voluto vedere:"
+    },
+    {
+      "desde": 101.98,
+      "hasta": 108.5,
+      "texto": "vide, cioè, la sua immagine abbellita di un magnifico paio di orecchi asinini."
+    },
+    {
+      "desde": 108.5,
+      "hasta": 114.18,
+      "texto": "Lascio pensare a voi il dolore, la vergogna e la disperazione del povero Pinocchio!"
+    },
+    {
+      "desde": 114.18,
+      "hasta": 126.13,
+      "texto": "Cominciò a piangere, a strillare, a battere la testa nel muro: ma quanto più si disperava, e più i suoi orecchi crescevano, crescevano, crescevano e diventavano pelosi verso la cima."
+    },
+    {
+      "desde": 126.2,
+      "hasta": 138.94,
+      "texto": "Al rumore di quelle grida acutissime, entrò nella stanza una bella Marmottina, che abitava il piano di sopra: la quale, vedendo il burattino in così grandi smanie, gli domandò premurosamente:"
+    },
+    {
+      "desde": 138.94,
+      "hasta": 141.36,
+      "texto": "— Che cos’hai, mio caro casigliano?"
+    },
+    {
+      "desde": 141.36,
+      "hasta": 149.62,
+      "texto": "— Sono malato, Marmottina mia, molto malato.... e malato d’una malattia che mi fa paura! te ne intendi tu del polso?"
+    },
+    {
+      "desde": 149.62,
+      "hasta": 150.75,
+      "texto": "— Un pochino."
+    },
+    {
+      "desde": 150.75,
+      "hasta": 154.3,
+      "texto": "— Senti dunque se per caso avessi la febbre. ―"
+    },
+    {
+      "desde": 154.3,
+      "hasta": 162.18,
+      "texto": "La Marmottina alzò la zampa destra davanti: e dopo aver tastato il polso a Pinocchio, gli disse sospirando:"
+    },
+    {
+      "desde": 162.18,
+      "hasta": 167.4,
+      "texto": "— Amico mio, mi dispiace doverti dare una cattiva notizia!… — Cioè?"
+    },
+    {
+      "desde": 167.4,
+      "hasta": 170.93,
+      "texto": "— Tu hai una gran brutta febbre!"
+    },
+    {
+      "desde": 170.93,
+      "hasta": 173.08,
+      "texto": "— E che febbre sarebbe?"
+    },
+    {
+      "desde": 173.08,
+      "hasta": 175.66,
+      "texto": "— È la febbre del somaro."
+    },
+    {
+      "desde": 175.66,
+      "hasta": 177.55,
+      "texto": "— Non la capisco questa febbre!"
+    },
+    {
+      "desde": 177.55,
+      "hasta": 180.88,
+      "texto": "— rispose il burattino, che l’aveva pur troppo capita."
+    },
+    {
+      "desde": 180.88,
+      "hasta": 191.68,
+      "texto": "— Allora te la spiegherò io; — soggiunse la Marmottina — sappi dunque, che fra due o tre ore tu non sarai più nè un burattino, nè un ragazzo...."
+    },
+    {
+      "desde": 191.68,
+      "hasta": 193.32,
+      "texto": "— E che cosa sarò?"
+    },
+    {
+      "desde": 193.32,
+      "hasta": 202.4,
+      "texto": "— Fra due o tre ore, tu diventerai un ciuchino vero e proprio, come quelli che tirano il carretto e che portano i cavoli e l’insalata al mercato."
+    },
+    {
+      "desde": 202.4,
+      "hasta": 204.27,
+      "texto": "— Oh! povero me! povero me!"
+    },
+    {
+      "desde": 204.27,
+      "hasta": 206.7,
+      "texto": "— gridò Pinocchio pigliandosi con le mani tutt’e due gli orec-"
+    },
+    {
+      "desde": 210.84,
+      "hasta": 213.26,
+      "texto": "chi, e tirandoli e strappandoli rabbiosamente, come se fossero gli orecchi di un altro."
+    },
+    {
+      "desde": 213.26,
+      "hasta": 219.26,
+      "texto": "— Caro mio, — replicò la Marmottina per consolarlo — che cosa ci vuoi tu fare?"
+    },
+    {
+      "desde": 221.48,
+      "hasta": 233.4,
+      "texto": "Oramai è destino, oramai è scritto nei decreti della sapienza, che tutti quei ragazzi svogliati che, pigliando a noia i libri, le scuole e i maestri, passano le loro giornate in balocchi, in giuochi e in divertimenti,"
+    },
+    {
+      "desde": 233.81,
+      "hasta": 237.48,
+      "texto": "debbano finire prima o poi col trasformarsi in tanti piccoli somari."
+    },
+    {
+      "desde": 238.28,
+      "hasta": 240.28,
+      "texto": "— Ma davvero è proprio così?"
+    },
+    {
+      "desde": 240.28,
+      "hasta": 244.17,
+      "texto": "— domandò singhiozzando il burattino."
+    },
+    {
+      "desde": 244.17,
+      "hasta": 245.07,
+      "texto": "— Pur troppo è così!"
+    },
+    {
+      "desde": 245.07,
+      "hasta": 247.22,
+      "texto": "E ora i pianti sono inutili."
+    },
+    {
+      "desde": 247.22,
+      "hasta": 249.28,
+      "texto": "Bisognava pensarci prima!"
+    },
+    {
+      "desde": 249.28,
+      "hasta": 255.28,
+      "texto": "— Ma la colpa non è mia: la colpa, credilo, Marmottina, è tutta di Lucignolo!…"
+    },
+    {
+      "desde": 255.3,
+      "hasta": 257.74,
+      "texto": "— E chi è questo Lucignolo?"
+    },
+    {
+      "desde": 257.82,
+      "hasta": 259.82,
+      "texto": "— Un mio compagno di scuola."
+    },
+    {
+      "desde": 259.9,
+      "hasta": 273.58,
+      "texto": "Io volevo tornare a casa: io volevo essere ubbidiente: io volevo seguitare a studiare e a farmi onore.... ma Lucignolo mi disse: ― «Perchè vuoi tu annoiarti a studiare? perchè vuoi andare alla scuola?…"
+    },
+    {
+      "desde": 273.65,
+      "hasta": 282.44,
+      "texto": "Vieni piuttosto con me, nel Paese dei balocchi: lì non studieremo più: lì ci divertiremo dalla mattina alla sera e staremo sempre allegri.»"
+    },
+    {
+      "desde": 282.44,
+      "hasta": 287.16,
+      "texto": "— E perchè seguisti il consiglio di quel falso amico, di quel cattivo compagno?"
+    },
+    {
+      "desde": 287.16,
+      "hasta": 294.95,
+      "texto": "— Perchè?… perchè, Marmottina mia, io sono un burattino senza giudizio.... e senza cuore."
+    },
+    {
+      "desde": 295.02,
+      "hasta": 298.23,
+      "texto": "Oh! se avessi avuto un zinzino di cuore, non avrei mai abbandonata quella buona Fata,"
+    },
+    {
+      "desde": 300.12,
+      "hasta": 310.45,
+      "texto": "che mi voleva bene come una mamma e che aveva fatto tanto per me!… e a quest’ora non sarei più un burattino.... ma sarei invece un ragazzino ammodo, come ce n’è tanti!"
+    },
+    {
+      "desde": 310.45,
+      "hasta": 313.35,
+      "texto": "Oh!… ma se incontro Lucignolo, guai a lui!"
+    },
+    {
+      "desde": 313.35,
+      "hasta": 316.25,
+      "texto": "Gliene voglio dire un sacco e una sporta. ―"
+    },
+    {
+      "desde": 316.25,
+      "hasta": 318.73,
+      "texto": "E fece l’atto di volere uscire."
+    },
+    {
+      "desde": 318.73,
+      "hasta": 319.45,
+      "texto": "Ma quando fu"
+    },
+    {
+      "desde": 319.45,
+      "hasta": 326.15,
+      "texto": "sulla porta, si ricordò che aveva gli orecchi d’asino, e vergognandosi di mostrarli in pubblico, che cosa inventò?"
+    },
+    {
+      "desde": 326.54,
+      "hasta": 330.91,
+      "texto": "Preso un gran berretto di cotone, e, ficcatoselo in testa, se lo ingozzò fin sotto gli orecchi."
+    },
+    {
+      "desde": 332.7,
+      "hasta": 334.44,
+      "texto": "Poi uscì, e si dette a cercare Lucignolo da per tutto."
+    },
+    {
+      "desde": 336.46,
+      "hasta": 341.86,
+      "texto": "Lo cercò nelle strade, nelle piazze, nei teatrini, in ogni luogo: ma non lo trovò."
+    },
+    {
+      "desde": 341.86,
+      "hasta": 347.02,
+      "texto": "Ne chiese notizia a quanti incontrò per la via, ma nessuno l’aveva veduto."
+    },
+    {
+      "desde": 347.02,
+      "hasta": 351.94,
+      "texto": "Allora andò a cercarlo a casa: e arrivato alla porta, bussò. — Chi è?"
+    },
+    {
+      "desde": 351.94,
+      "hasta": 354.5,
+      "texto": "— domandò Lucignolo di dentro. — Sono io!"
+    },
+    {
+      "desde": 354.5,
+      "hasta": 355.82,
+      "texto": "— rispose il burattino."
+    },
+    {
+      "desde": 355.82,
+      "hasta": 357.82,
+      "texto": "— Aspetta un poco, e ti aprirò. ―"
+    },
+    {
+      "desde": 357.82,
+      "hasta": 370.82,
+      "texto": "Dopo mezz’ora la porta si aprì: e figuratevi come restò Pinocchio quando, entrando nella stanza, vide il suo amico Lucignolo con un gran berretto di cotone in testa, che gli scendeva fin sotto il naso."
+    },
+    {
+      "desde": 370.82,
+      "hasta": 376.68,
+      "texto": "Alla vista di quel berretto, Pinocchio sentì quasi consolarsi e pensò subito dentro di sè:"
+    },
+    {
+      "desde": 376.68,
+      "hasta": 380.14,
+      "texto": "― Che l’amico sia malato della mia medesima malattia?"
+    },
+    {
+      "desde": 380.14,
+      "hasta": 382.62,
+      "texto": "Che abbia anche lui la febbre del ciuchino?… ―"
+    },
+    {
+      "desde": 382.62,
+      "hasta": 387.18,
+      "texto": "E facendo finta di non essersi accorto di nulla, gli domandò sorridendo:"
+    },
+    {
+      "desde": 387.25,
+      "hasta": 389.5,
+      "texto": "— Come stai, mio caro Lucignolo?"
+    },
+    {
+      "desde": 389.59,
+      "hasta": 393.54,
+      "texto": "— Benissimo: come un topo in una forma di cacio parmigiano."
+    },
+    {
+      "desde": 393.62,
+      "hasta": 395.5,
+      "texto": "— Lo dici proprio sul serio?"
+    },
+    {
+      "desde": 395.5,
+      "hasta": 404.55,
+      "texto": "— E perchè dovrei dirti una bugia? ― Scusami, amico: e allora perchè tieni in capo cotesto berretto di cotone, che ti cuopre tutti gli orecchi?"
+    },
+    {
+      "desde": 404.62,
+      "hasta": 409.37,
+      "texto": "— Me l’ha ordinato il medico, perchè mi son fatto male a un ginocchio."
+    },
+    {
+      "desde": 409.45,
+      "hasta": 414.73,
+      "texto": "E tu, caro Pinocchio, perchè porti codesto berretto di cotone ingozzato fin sotto gli orecchi?"
+    },
+    {
+      "desde": 415.37,
+      "hasta": 419.09,
+      "texto": "— Me l’ha ordinato il medico, perchè mi sono sbucciato un piede."
+    },
+    {
+      "desde": 419.16,
+      "hasta": 420.87,
+      "texto": "— Oh! povero Pinocchio!…"
+    },
+    {
+      "desde": 420.97,
+      "hasta": 423.09,
+      "texto": "— Oh! povero Lucignolo!… ―"
+    },
+    {
+      "desde": 423.09,
+      "hasta": 431.87,
+      "texto": "A queste parole tenne dietro un lunghissimo silenzio, durante il quale i due amici non fecero altro che guardarsi fra loro, in atto di canzonatura."
+    },
+    {
+      "desde": 431.87,
+      "hasta": 438.3,
+      "texto": "Finalmente il burattino, con una vocina melliflua e flautata, disse al suo compagno:"
+    },
+    {
+      "desde": 438.3,
+      "hasta": 444.87,
+      "texto": "— Levami una curiosità, mio caro Lucignolo: hai mai sofferto di malattia agli orecchi?"
+    },
+    {
+      "desde": 444.89,
+      "hasta": 448.08,
+      "texto": "— Mai!… e tu? — Mai!"
+    },
+    {
+      "desde": 448.93,
+      "hasta": 453.08,
+      "texto": "Per altro da questa mattina in poi ho un orecchio che mi fa spasimare."
+    },
+    {
+      "desde": 453.08,
+      "hasta": 455.08,
+      "texto": "— Ho lo stesso male anch’io."
+    },
+    {
+      "desde": 455.08,
+      "hasta": 456.08,
+      "texto": "— Anche tu?…"
+    },
+    {
+      "desde": 456.08,
+      "hasta": 459.08,
+      "texto": "E qual è l’orecchio che ti duole?"
+    },
+    {
+      "desde": 459.69,
+      "hasta": 461.08,
+      "texto": "— Tutt’e due. E tu?"
+    },
+    {
+      "desde": 461.53,
+      "hasta": 462.08,
+      "texto": "— Tutt’e due."
+    },
+    {
+      "desde": 462.08,
+      "hasta": 465.08,
+      "texto": "Che sia la medesima malattia?"
+    },
+    {
+      "desde": 465.08,
+      "hasta": 467.08,
+      "texto": "— Ho paura di sì."
+    },
+    {
+      "desde": 467.21,
+      "hasta": 469.63,
+      "texto": "— Vuoi farmi un piacere, Lucignolo?"
+    },
+    {
+      "desde": 469.63,
+      "hasta": 470.67,
+      "texto": "— Volentieri!"
+    },
+    {
+      "desde": 470.67,
+      "hasta": 472.11,
+      "texto": "Con tutto il cuore."
+    },
+    {
+      "desde": 472.11,
+      "hasta": 474.71,
+      "texto": "— Mi fai vedere i tuoi orecchi?"
+    },
+    {
+      "desde": 474.71,
+      "hasta": 475.59,
+      "texto": "— Perchè no?"
+    },
+    {
+      "desde": 475.59,
+      "hasta": 478.67,
+      "texto": "Ma prima voglio vedere i tuoi, caro Pinocchio."
+    },
+    {
+      "desde": 478.67,
+      "hasta": 481.35,
+      "texto": "— No: il primo devi esser tu."
+    },
+    {
+      "desde": 481.35,
+      "hasta": 483.16,
+      "texto": "— No, carino!"
+    },
+    {
+      "desde": 483.16,
+      "hasta": 484.51,
+      "texto": "Prima tu e dopo io!"
+    },
+    {
+      "desde": 484.51,
+      "hasta": 489.35,
+      "texto": "— Ebbene, — disse allora il burattino — facciamo un patto da buoni amici."
+    },
+    {
+      "desde": 489.35,
+      "hasta": 490.71,
+      "texto": "— Sentiamo il patto."
+    },
+    {
+      "desde": 490.71,
+      "hasta": 496.23,
+      "texto": "— Leviamoci tutt’e due il berretto nello stesso tempo: accetti? — Accetto."
+    },
+    {
+      "desde": 496.23,
+      "hasta": 498.27,
+      "texto": "— Dunque attenti!―"
+    },
+    {
+      "desde": 498.27,
+      "hasta": 502.59,
+      "texto": "E Pinocchio cominciò a contare a voce alta: — Uno! Due! Tre!―"
+    },
+    {
+      "desde": 502.59,
+      "hasta": 508.75,
+      "texto": "Alla parola tre! i due ragazzi presero i loro berretti di capo e li gettarono in aria."
+    },
+    {
+      "desde": 508.75,
+      "hasta": 513.68,
+      "texto": "E allora avvenne una scena, che parrebbe incredibile, se non fosse vera."
+    },
+    {
+      "desde": 513.68,
+      "hasta": 526.97,
+      "texto": "Avvenne, cioè, che Pinocchio e Lucignolo, quando si videro colpiti tutt’e due dalla medesima disgrazia, invece di restar mortificati e dolenti, cominciarono ad ammiccarsi i loro orecchi smisuratamente cresciuti,"
+    },
+    {
+      "desde": 526.97,
+      "hasta": 531.42,
+      "texto": "e dopo mille sguaiataggini finirono col dare una bella risata."
+    },
+    {
+      "desde": 531.42,
+      "hasta": 538.6,
+      "texto": "E risero, risero, risero da doversi reggere il corpo: se non che, sul più bello del ridere, Lucignolo"
+    },
+    {
+      "desde": 540.61,
+      "hasta": 543.98,
+      "texto": "Lucignolo tutt’a un tratto si chetò, e barcollando e cambiando di colore, disse all’amico:"
+    },
+    {
+      "desde": 543.98,
+      "hasta": 545.51,
+      "texto": "— Aiuto, aiuto, Pinocchio!"
+    },
+    {
+      "desde": 545.51,
+      "hasta": 547.16,
+      "texto": "— Che cos’hai?"
+    },
+    {
+      "desde": 547.75,
+      "hasta": 551.36,
+      "texto": "— Ohimè! non mi riesce più di star ritto sulle gambe."
+    },
+    {
+      "desde": 551.36,
+      "hasta": 555.88,
+      "texto": "— Non mi riesce più neanche a me — gridò Pinocchio, piangendo e traballando."
+    },
+    {
+      "desde": 555.88,
+      "hasta": 562.17,
+      "texto": "E mentre dicevano così, si piegarono tutt’e due carponi a terra e, camminando colle mani"
+    },
+    {
+      "desde": 562.17,
+      "hasta": 566.25,
+      "texto": "e coi piedi, cominciarono a girare e a correre per la stanza."
+    },
+    {
+      "desde": 566.25,
+      "hasta": 579.55,
+      "texto": "E intanto che correvano, i loro bracci diventarono zampe, i loro visi si allungarono e diventarono musi, e le loro schiene si coprirono di un pelame grigiolino chiaro, brizzolato di nero."
+    },
+    {
+      "desde": 579.57,
+      "hasta": 583.62,
+      "texto": "Ma il momento più brutto per que’ due sciagurati sapete quando fu?"
+    },
+    {
+      "desde": 583.62,
+      "hasta": 589.81,
+      "texto": "Il momento più brutto e più umiliante fu quello quando sentirono spuntarsi di dietro la coda."
+    },
+    {
+      "desde": 589.81,
+      "hasta": 596.01,
+      "texto": "Vinti allora dalla vergogna e dal dolore, si provarono a piangere e a lamentarsi del loro destino."
+    },
+    {
+      "desde": 596.01,
+      "hasta": 597.8,
+      "texto": "Non l’avessero mai fatto!"
+    },
+    {
+      "desde": 597.82,
+      "hasta": 606.62,
+      "texto": "Invece di gemiti e di lamenti, mandavano fuori dei ragli asinini: e ragliando sonoramente, facevano tutt’e due in coro: j-a, j-a, j-a."
+    },
+    {
+      "desde": 609.52,
+      "hasta": 615.22,
+      "texto": "In quel frattempo fu bussato alla porta, e una voce di fuori disse: — Aprite!"
+    },
+    {
+      "desde": 615.22,
+      "hasta": 620.1,
+      "texto": "Sono l’omino, sono il conduttore del carro che vi portò in questo paese."
+    },
+    {
+      "desde": 620.1,
+      "hasta": 623.4,
+      "texto": "Aprite subito, guai a voi! —"
+    }
+  ]
+}
