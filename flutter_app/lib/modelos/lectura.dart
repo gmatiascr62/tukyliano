@@ -91,14 +91,21 @@ class Lectura {
   /// Ciliegia"—, así que la primera palabra no coincide y el alineado
   /// arranca en la segunda.
   ///
-  /// Medido contra la transcripción del audio: en el capítulo 1 el alineado
-  /// llega 0,8 segundos tarde y en el 2, 1,9. Dos segundos y medio los cubre
-  /// con margen.
+  /// Medido contra la transcripción del audio en los tres capítulos de los
+  /// que se tiene: el alineado llega 0,78 segundos tarde en el 1, 1,92 en el
+  /// 2 y 2,54 en el 33. El error crece con el largo del título, que encaja
+  /// con la explicación: cuanto más largo, más chances de que las primeras
+  /// palabras no coincidan.
   ///
-  /// Pasarse no cuesta nada: justo antes del título el lector dice "Capitolo
-  /// primo", así que lo que se oye de más es el número del capítulo. Quedarse
-  /// corto, en cambio, se come la primera palabra del título.
-  static const _elAire = Duration(milliseconds: 2500);
+  /// De ahí cuatro segundos y no dos y medio. Dos y medio parecía alcanzar
+  /// con los dos primeros capítulos y con el 33 se quedaba corto por cuatro
+  /// centésimas, que es la clase de margen que no es margen.
+  ///
+  /// Pasarse cuesta poco: lo que se oye de más es el final de la
+  /// presentación de LibriVox —el nombre de quien lee— y el "Capitolo
+  /// primo". Quedarse corto, en cambio, se come el principio del título,
+  /// que es justo lo que se vino a arreglar.
+  static const _elAire = Duration(seconds: 4);
 
   /// Cuándo el lector lee el título, en las colecciones donde lo lee.
   ///

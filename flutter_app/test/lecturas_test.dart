@@ -536,14 +536,38 @@ void main() {
 
       test('se empieza por el título y no por el cuento', () {
         final lectura = conTitulo(desde: 33, hasta: 41.26);
-        // Dos segundos y medio antes del 33. El alineado marca el título
-        // tarde porque el título sale del índice y el lector lee el del
-        // capítulo, que no siempre dice lo mismo: el 2 tiene "Maestro
-        // Ciliegia" contra "Mastro Ciliegia" y pierde la primera palabra.
-        // Pasarse no cuesta —antes va "Capitolo primo"— y quedarse corto
-        // se come el principio del título.
-        expect(lectura.dondeEmpiezaDeVerdad,
-            const Duration(milliseconds: 30500));
+        // Cuatro segundos antes del 33. El alineado marca el título tarde
+        // porque el título sale del índice y el lector lee el del capítulo,
+        // que no siempre dice lo mismo: el 2 tiene "Maestro Ciliegia"
+        // contra "Mastro Ciliegia" y pierde la primera palabra. Medido, el
+        // retraso llega a 2,54 segundos en el capítulo 33.
+        expect(lectura.dondeEmpiezaDeVerdad, const Duration(seconds: 29));
+      });
+
+      test('el aire alcanza para los tres capítulos medidos', () {
+        // Las únicas tres mediciones de verdad que hay: Matías transcribió
+        // esos capítulos con un reconocedor de voz y ahí se ve en qué
+        // segundo el lector empieza el título. Contra eso se sabe cuánto
+        // tarde lo marca el alineado.
+        //
+        // Esto no es una comprobación de estilo: con dos segundos y medio
+        // de aire el capítulo 33 arrancaba cuatro centésimas tarde y se
+        // comía el principio del título. Si alguien baja el aire, acá se
+        // entera.
+        // Capítulo, lo que dice el alineado, cuándo empieza de verdad.
+        const medidos = <(int, double, double)>[
+          (1, 33.0, 32.22),
+          (2, 34.6, 32.68),
+          (33, 32.78, 30.24),
+        ];
+        for (final (capitulo, segunElAlineado, deVerdad) in medidos) {
+          final lectura =
+              conTitulo(desde: segunElAlineado, hasta: segunElAlineado + 8);
+          final arranca = lectura.dondeEmpiezaDeVerdad!.inMilliseconds / 1000;
+          expect(arranca, lessThanOrEqualTo(deVerdad),
+              reason: 'capítulo $capitulo: se arranca en $arranca y el '
+                  'título empieza en $deVerdad');
+        }
       });
 
       test('nunca antes del principio del archivo', () {

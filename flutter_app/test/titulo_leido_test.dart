@@ -80,10 +80,11 @@ void main() {
   testWidgets('se empieza por el título, no por el cuento', (tester) async {
     final reproductor = await _abrir(tester);
 
-    // Dos segundos y medio antes de donde el alineado dice que arranca el
-    // título: ahí el lector está diciendo "Capitolo primo", que oírlo no
-    // molesta, y así no se come el principio del título.
-    expect(reproductor.donde, const Duration(milliseconds: 30500));
+    // Cuatro segundos antes de donde el alineado dice que arranca el
+    // título: ahí el lector está terminando la presentación y diciendo
+    // "Capitolo primo", que oírlo no molesta, y así no se come el
+    // principio del título.
+    expect(reproductor.donde, const Duration(seconds: 29));
   });
 
   testWidgets('el título se pinta mientras lo leen', (tester) async {
