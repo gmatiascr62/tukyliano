@@ -131,18 +131,38 @@ class _PantallaRadioState extends State<PantallaRadio> {
       _porQueFallo = null;
     });
 
-    // Para las emisoras que reparten desde varios nodos, cuál toca hoy lo
-    // decide su balanceador. Si no contesta, esto devuelve la dirección de
-    // siempre y la radio suena igual.
-    final donde = await _dondeSuena.de(radio);
-    if (!mounted) return;
-
-    final abrio = await _reproductor.cargarDesdeInternet(
-      donde,
+    // Primero la dirección del catálogo, y recién si falla se le pregunta al
+    // balanceador de la emisora.
+    //
+    // Estuvo al revés un rato y fue peor: el balanceador reparte entre
+    // decenas de nodos y el que te toca puede estar lejos o cargado. La
+    // dirección del catálogo no es una cualquiera —es la que se escuchó y se
+    // sabe que llega bien desde acá—, así que sortear un nodo nuevo en cada
+    // play es cambiar algo bueno conocido por algo desconocido. Se oyó
+    // entrecortado y se volvió atrás.
+    //
+    // Pero el balanceador no sobra: el día que ese nodo deje de servir, es
+    // lo único que sabe cuál lo reemplazó. Ahí sí vale preguntarle, porque
+    // la alternativa es que la radio no suene.
+    var abrio = await _reproductor.cargarDesdeInternet(
+      radio.stream,
       titulo: radio.nombre,
       deQuien: radio.quien,
     );
     if (!mounted) return;
+
+    if (!abrio && radio.balanceador.isNotEmpty) {
+      final otro = await _dondeSuena.de(radio);
+      if (!mounted) return;
+      if (otro != radio.stream) {
+        abrio = await _reproductor.cargarDesdeInternet(
+          otro,
+          titulo: radio.nombre,
+          deQuien: radio.quien,
+        );
+        if (!mounted) return;
+      }
+    }
 
     if (!abrio) {
       setState(() {

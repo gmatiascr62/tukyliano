@@ -170,11 +170,42 @@ void main() {
       expect(find.byIcon(Icons.stop), findsOne);
     });
 
-    testWidgets('con balanceador, suena por el nodo de hoy', (tester) async {
-      // Senti Chi Parla reparte desde decenas de nodos y cuál toca lo decide
-      // su balanceador en el momento. Antes la app tenía clavado un nodo,
-      // que funciona hasta el día que ese nodo deje de servir.
+    testWidgets('no le pregunta al balanceador si la de siempre anda',
+        (tester) async {
+      // El balanceador reparte entre decenas de nodos y el que toca puede
+      // estar lejos o cargado. La dirección del catálogo es la que se
+      // escuchó y se sabe que llega bien, así que no se cambia por una
+      // sorteada mientras funcione. Estuvo al revés un rato y se oía
+      // entrecortado.
+      var preguntaron = false;
       final reproductor = ReproductorFalso();
+      await _abrir(
+        tester,
+        reproductor: reproductor,
+        dondeSuena: DondeSuenaLaRadio(cliente: MockClient((_) async {
+          preguntaron = true;
+          return http.Response('', 302);
+        })),
+      );
+
+      await tester.tap(find.byIcon(Icons.play_arrow));
+      await tester.pumpAndSettle();
+
+      expect(
+        reproductor.laUrl,
+        'https://24293.live.streamtheworld.com/SAM01AAC222_SC',
+      );
+      expect(preguntaron, isFalse);
+      expect(find.text('Sonando en vivo'), findsOne);
+    });
+
+    testWidgets('si la de siempre no abre, prueba con el balanceador',
+        (tester) async {
+      // El día que ese nodo deje de servir, el balanceador es lo único que
+      // sabe cuál lo reemplazó.
+      final reproductor = _ReproductorQueFallaCon(
+        'https://24293.live.streamtheworld.com/SAM01AAC222_SC',
+      );
       await _abrir(
         tester,
         reproductor: reproductor,
@@ -427,6 +458,26 @@ void main() {
       expect(find.textContaining('servicio:'), findsOne);
     });
   });
+}
+
+/// Un reproductor al que una dirección puntual no le abre.
+///
+/// Sirve para probar qué hace la pantalla cuando el nodo del catálogo deja
+/// de servir, que es el día para el que está el balanceador.
+class _ReproductorQueFallaCon extends ReproductorFalso {
+  _ReproductorQueFallaCon(this.laQueNoAbre);
+
+  final String laQueNoAbre;
+
+  @override
+  Future<bool> cargarDesdeInternet(
+    String url, {
+    String? titulo,
+    String? deQuien,
+  }) async {
+    if (url == laQueNoAbre) return false;
+    return super.cargarDesdeInternet(url, titulo: titulo, deQuien: deQuien);
+  }
 }
 
 /// Igual que el falso, pero cuenta cuántas veces se le pidió abrir el stream.
