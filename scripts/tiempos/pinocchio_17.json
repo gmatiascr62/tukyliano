@@ -1,0 +1,517 @@
+{
+  "id": "pinocchio_17",
+  "titulo": "17. Pinocchio mangia lo zucchero, ma non vuol purgarsi: Però quando vede i becchini che vengono a portarlo via, allora si purga. Poi dice una bugia e per gastigo gli cresce il naso.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 27.27,
+    "hasta": 38.63,
+    "texto": "Pinocchio mangia lo zucchero, ma non vuol purgarsi: Però quando vede i becchini che vengono a portarlo via, allora si purga. Poi dice una bugia e per gastigo gli cresce il naso."
+  },
+  "renglones": [
+    {
+      "desde": 38.63,
+      "hasta": 49.18,
+      "texto": "Appena i tre medici furono usciti di camera, la Fata si accostò a Pinocchio, e, dopo averlo toccato sulla fronte, si accòrse che era travagliato da un febbrone da non si dire."
+    },
+    {
+      "desde": 49.53,
+      "hasta": 57.33,
+      "texto": "Allora sciolse una certa polverina bianca in un mezzo bicchier d’acqua, e porgendolo al burattino, gli disse amorosamente:"
+    },
+    {
+      "desde": 57.33,
+      "hasta": 60.67,
+      "texto": "— Bevila, e in pochi giorni sarai guarito. —"
+    },
+    {
+      "desde": 60.67,
+      "hasta": 66.51,
+      "texto": "Pinocchio guardò il bicchiere, storse un po’ la bocca, e poi dimanda con voce di piagnisteo:"
+    },
+    {
+      "desde": 66.51,
+      "hasta": 68.39,
+      "texto": "— È dolce o amara?"
+    },
+    {
+      "desde": 68.39,
+      "hasta": 69.66,
+      "texto": "— È amara, ma ti farà bene."
+    },
+    {
+      "desde": 70.96,
+      "hasta": 72.83,
+      "texto": "— Se è amara non la voglio."
+    },
+    {
+      "desde": 73.75,
+      "hasta": 75.2,
+      "texto": "— Da’ retta a me: bevila."
+    },
+    {
+      "desde": 75.2,
+      "hasta": 77.21,
+      "texto": "— A me l’amaro non mi piace."
+    },
+    {
+      "desde": 77.21,
+      "hasta": 82.78,
+      "texto": "— Bevila: e quando l’avrai bevuta, ti darò una pallina di zucchero, per rifarti la bocca."
+    },
+    {
+      "desde": 82.9,
+      "hasta": 84.78,
+      "texto": "— Dov’è la pallina di zucchero?"
+    },
+    {
+      "desde": 84.85,
+      "hasta": 89.31,
+      "texto": "— Eccola qui — disse la Fata, tirandola fuori da una zuccheriera d’oro."
+    },
+    {
+      "desde": 89.31,
+      "hasta": 93.78,
+      "texto": "— Prima voglio la pallina di zucchero, e poi beverò quell’acquaccia amara...."
+    },
+    {
+      "desde": 93.9,
+      "hasta": 95.2,
+      "texto": "— Me lo prometti? — Sì.... —"
+    },
+    {
+      "desde": 95.2,
+      "hasta": 101.38,
+      "texto": "La fata gli dette la pallina, e Pinocchio, dopo averla sgranocchiata e ingoiata in un attimo, disse leccandosi i labbri:"
+    },
+    {
+      "desde": 102.63,
+      "hasta": 105.97,
+      "texto": "— Bella cosa se anche lo zucchero fosse una medicina!..."
+    },
+    {
+      "desde": 105.97,
+      "hasta": 107.87,
+      "texto": "Mi purgherei tutt’ i giorni."
+    },
+    {
+      "desde": 107.87,
+      "hasta": 113.41,
+      "texto": "— Ora mantieni la promessa e bevi queste poche gocciole d’acqua, che ti renderanno la salute. —"
+    },
+    {
+      "desde": 113.41,
+      "hasta": 123.48,
+      "texto": "Pinocchio prese di mala voglia il bicchiere in mano e vi ficcò dentro la punta del naso: poi se l’accostò alla bocca: poi tornò a ficcarci la punta del naso: finalmente disse:"
+    },
+    {
+      "desde": 123.48,
+      "hasta": 125.74,
+      "texto": "— È troppo amara! troppo amara!"
+    },
+    {
+      "desde": 125.74,
+      "hasta": 127.5,
+      "texto": "Io non la posso bere."
+    },
+    {
+      "desde": 127.5,
+      "hasta": 130.3,
+      "texto": "— Come fai a dirlo, se non l’hai nemmeno assaggiata?"
+    },
+    {
+      "desde": 130.3,
+      "hasta": 131.27,
+      "texto": "— Me lo figuro!"
+    },
+    {
+      "desde": 131.98,
+      "hasta": 132.86,
+      "texto": "L’ho sentita all’odore."
+    },
+    {
+      "desde": 132.86,
+      "hasta": 136.88,
+      "texto": "Voglio prima un’altra pallina di zucchero… e poi la beverò! —"
+    },
+    {
+      "desde": 136.88,
+      "hasta": 145.75,
+      "texto": "Allora la Fata, con tutta la pazienza di una buona mamma, gli pose in bocca un altro po’ di zucchero; e dopo gli presentò daccapo il bicchiere."
+    },
+    {
+      "desde": 145.75,
+      "hasta": 147.08,
+      "texto": "— Così non lo posso bere!"
+    },
+    {
+      "desde": 147.08,
+      "hasta": 150.59,
+      "texto": "— disse il burattino, facendo mille smorfie. — Perchè?"
+    },
+    {
+      "desde": 150.59,
+      "hasta": 153.67,
+      "texto": "— Perchè mi dà noia quel guanciale che ho laggiù sui piedi. —"
+    },
+    {
+      "desde": 153.67,
+      "hasta": 155.75,
+      "texto": "La Fata gli levò il guanciale."
+    },
+    {
+      "desde": 155.75,
+      "hasta": 156.59,
+      "texto": "— È inutile!"
+    },
+    {
+      "desde": 156.59,
+      "hasta": 158.75,
+      "texto": "Nemmeno così la posso bere…"
+    },
+    {
+      "desde": 158.75,
+      "hasta": 160.53,
+      "texto": "— Che cos’altro ti dà noia?"
+    },
+    {
+      "desde": 160.53,
+      "hasta": 163.63,
+      "texto": "— Mi dà noia l’uscio di camera, che è mezzo aperto."
+    },
+    {
+      "desde": 163.63,
+      "hasta": 166.29,
+      "texto": "La Fata andò, e chiuse l’uscio di camera."
+    },
+    {
+      "desde": 166.49,
+      "hasta": 173.5,
+      "texto": "— Insomma, — gridò Pinocchio dando in uno scoppio di pianto — quest’acquaccia amara, non la voglio bere, no, no, no!…"
+    },
+    {
+      "desde": 173.5,
+      "hasta": 176.1,
+      "texto": "— Ragazzo mio, te ne pentirai…"
+    },
+    {
+      "desde": 176.1,
+      "hasta": 177.54,
+      "texto": "— Non me n’importa…"
+    },
+    {
+      "desde": 177.54,
+      "hasta": 179.84,
+      "texto": "— La tua malattia è grave."
+    },
+    {
+      "desde": 179.84,
+      "hasta": 181.4,
+      "texto": "— Non me n’importa…"
+    },
+    {
+      "desde": 181.4,
+      "hasta": 184.42,
+      "texto": "— La febbre ti porterà in poche ore all’altro mondo…"
+    },
+    {
+      "desde": 184.42,
+      "hasta": 185.76,
+      "texto": "— Non me n’importa…"
+    },
+    {
+      "desde": 185.76,
+      "hasta": 187.48,
+      "texto": "— Non hai paura della morte?"
+    },
+    {
+      "desde": 187.48,
+      "hasta": 188.45,
+      "texto": "— Punto paura!"
+    },
+    {
+      "desde": 188.45,
+      "hasta": 191.68,
+      "texto": "Piuttosto morire, che bevere quella medicina cattiva. —"
+    },
+    {
+      "desde": 191.71,
+      "hasta": 200.65,
+      "texto": "A questo punto, la porta della camera si spalancò, ed entrarono dentro quattro conigli neri come l’inchiostro, che portavano sulle spalle una piccola bara da morto."
+    },
+    {
+      "desde": 200.65,
+      "hasta": 204.26,
+      "texto": "— Che cosa volete da me?"
+    },
+    {
+      "desde": 204.26,
+      "hasta": 207.69,
+      "texto": "— gridò Pinocchio, rizzandosi tutto impaurito a sedere sul letto."
+    },
+    {
+      "desde": 207.69,
+      "hasta": 210.69,
+      "texto": "— Siamo venuti a prenderti — rispose il coniglio più grosso."
+    },
+    {
+      "desde": 210.69,
+      "hasta": 211.69,
+      "texto": "— A prendermi?"
+    },
+    {
+      "desde": 211.69,
+      "hasta": 213.69,
+      "texto": "Ma io non sono ancora morto!..."
+    },
+    {
+      "desde": 213.81,
+      "hasta": 221.64,
+      "texto": "— Ancora no: ma ti restano pochi momenti di vita, avendo tu ricusato di bevere la medicina, che ti avrebbe guarito dalla febbre!"
+    },
+    {
+      "desde": 221.64,
+      "hasta": 222.01,
+      "texto": "— O Fata mia, o Fata mia!"
+    },
+    {
+      "desde": 224.06,
+      "hasta": 227.66,
+      "texto": "— cominciò allora a strillare il burattino — datemi subito quel bicchiere..."
+    },
+    {
+      "desde": 227.66,
+      "hasta": 232.34,
+      "texto": "Spicciatevi, per carità, perchè non voglio morire, no… non voglio morire. —"
+    },
+    {
+      "desde": 232.34,
+      "hasta": 236.93,
+      "texto": "E preso il bicchiere con tutt’e due le mani, lo votò in un fiato. — Pazienza!"
+    },
+    {
+      "desde": 236.93,
+      "hasta": 238.07,
+      "texto": "— dissero i conigli."
+    },
+    {
+      "desde": 238.07,
+      "hasta": 240.77,
+      "texto": "— Per questa volta abbiamo fatto il viaggio a ufo."
+    },
+    {
+      "desde": 240.77,
+      "hasta": 247.71,
+      "texto": "— E tiratisi di nuovo la piccola bara sulle spalle, uscirono di camera bofonchiando e mormorando fra i denti."
+    },
+    {
+      "desde": 247.71,
+      "hasta": 259.51,
+      "texto": "Fatto sta che di lì a pochi minuti, Pinocchio saltò giù dal letto, bell’e guarito; perchè bisogna sapere che i burattini di legno hanno il privilegio di ammalarsi di rado e di guarire prestissimo."
+    },
+    {
+      "desde": 259.54,
+      "hasta": 265.95,
+      "texto": "E la Fata, vedendolo correre e ruzzare per la camera, vispo e allegro come un gallettino di primo canto, gli disse:"
+    },
+    {
+      "desde": 265.95,
+      "hasta": 269.12,
+      "texto": "— Dunque la mia medicina t’ha fatto bene davvero?"
+    },
+    {
+      "desde": 269.12,
+      "hasta": 270.12,
+      "texto": "— Altro che bene!"
+    },
+    {
+      "desde": 270.12,
+      "hasta": 271.64,
+      "texto": "Mi ha rimesso al mondo!"
+    },
+    {
+      "desde": 271.64,
+      "hasta": 278.2,
+      "texto": "— E allora come mai ti sei fatto tanto pregare a beverla? ― Egli è che noi ragazzi siamo tutti così!"
+    },
+    {
+      "desde": 278.2,
+      "hasta": 281.98,
+      "texto": "Abbiamo più paura delle medicine che del male. ― Vergogna!"
+    },
+    {
+      "desde": 281.98,
+      "hasta": 289.58,
+      "texto": "I ragazzi dovrebbero sapere che un buon medicamento preso a tempo, può salvarli da una grave malattia e fors’anche dalla morte...."
+    },
+    {
+      "desde": 289.58,
+      "hasta": 292.58,
+      "texto": "— Oh! ma un’altra volta non mi farò tanto pregare!"
+    },
+    {
+      "desde": 292.58,
+      "hasta": 299.0,
+      "texto": "Mi rammenterò di quei conigli neri, con la bara sulle spalle.... e allora piglierò subito il bicchiere in mano e giù...."
+    },
+    {
+      "desde": 299.0,
+      "hasta": 304.18,
+      "texto": "— Ora vieni un po’ qui da me, e raccontami come andò che ti trovasti fra le mani degli assassini."
+    },
+    {
+      "desde": 304.21,
+      "hasta": 311.19,
+      "texto": "— Gli andò, che il burattinaio Mangiafoco, mi dette cinque monete d’oro, e mi disse: — To’, portale al tuo babbo!"
+    },
+    {
+      "desde": 311.19,
+      "hasta": 318.47,
+      "texto": "— e io, invece, per la strada trovai una Volpe e un Gatto, due persone molto per bene, che mi dissero: — Vuoi che codeste monete diventino mille e duemila?"
+    },
+    {
+      "desde": 320.36,
+      "hasta": 323.59,
+      "texto": "Vieni con noi, e ti condurremo al Campo dei Miracoli."
+    },
+    {
+      "desde": 323.59,
+      "hasta": 330.91,
+      "texto": "— E io dissi, andiamo; — e loro dissero: — Fermiamoci qui all’osteria del Gambero Rosso, e dopo la mezzanotte ripartiremo."
+    },
+    {
+      "desde": 330.91,
+      "hasta": 335.17,
+      "texto": "— E io quando mi svegliai, non c’erano più, perchè erano partiti."
+    },
+    {
+      "desde": 335.17,
+      "hasta": 346.7,
+      "texto": "Allora io cominciai a camminare di notte, che era un buio che pareva impossibile, per cui trovai per la strada due assassini dentro due sacchi da carbone, che mi dissero: — Metti fuori i quattrini;"
+    },
+    {
+      "desde": 346.7,
+      "hasta": 358.62,
+      "texto": "— e io dissi: — non ce n’ho; — perchè le monete d’oro me l’ero nascoste in bocca, e uno degli assassini si provò a mettermi le mani in bocca, e io con un morso gli staccai la mano e poi la sputai,"
+    },
+    {
+      "desde": 358.62,
+      "hasta": 361.75,
+      "texto": "ma invece di una mano sputai uno zampetto di gatto."
+    },
+    {
+      "desde": 361.75,
+      "hasta": 369.97,
+      "texto": "E gli assassini a corrermi dietro, e io corri che ti corri, finchè mi raggiunsero, e mi legarono per il collo a un albero di questo bosco col dire:"
+    },
+    {
+      "desde": 369.97,
+      "hasta": 378.31,
+      "texto": "— Domani torneremo qui, e allora sarai morto e colla bocca aperta, e così ti porteremo via le monete d’oro che hai nascoste sotto la lingua. —"
+    },
+    {
+      "desde": 378.31,
+      "hasta": 379.56,
+      "texto": "— E ora le quattro monete dove le hai messe?"
+    },
+    {
+      "desde": 381.23,
+      "hasta": 382.13,
+      "texto": "— gli domandò la Fata."
+    },
+    {
+      "desde": 382.13,
+      "hasta": 383.05,
+      "texto": "— Le ho perdute!"
+    },
+    {
+      "desde": 383.05,
+      "hasta": 387.93,
+      "texto": "— rispose Pinocchio; ma disse una bugia, perchè invece le aveva in tasca."
+    },
+    {
+      "desde": 387.93,
+      "hasta": 392.81,
+      "texto": "Appena detta la bugia il suo naso, che era già lungo, gli crebbe subito due dita di più."
+    },
+    {
+      "desde": 392.81,
+      "hasta": 394.13,
+      "texto": "— E dove le hai perdute?"
+    },
+    {
+      "desde": 394.13,
+      "hasta": 395.97,
+      "texto": "— Nel bosco qui vicino. —"
+    },
+    {
+      "desde": 395.97,
+      "hasta": 399.45,
+      "texto": "A questa seconda bugia, il naso seguitò a crescere."
+    },
+    {
+      "desde": 399.45,
+      "hasta": 409.11,
+      "texto": "— Se le hai perdute nel bosco vicino — disse la Fata — le cercheremo e le ritroveremo: perchè tutto quello che si perde nel vicino bosco, si ritrova sempre."
+    },
+    {
+      "desde": 409.11,
+      "hasta": 419.91,
+      "texto": "— Ah! ora che mi rammento bene — replicò il burattino imbrogliandosi — le quattro monete non le ho perdute, ma senza avvedermene, le ho inghiottite mentre bevevo la vostra medicina. —"
+    },
+    {
+      "desde": 419.91,
+      "hasta": 427.85,
+      "texto": "A questa terza bugia, il naso gli si allungò in un modo così straordinario, che il povero Pinocchio non poteva più girarsi da nessuna parte."
+    },
+    {
+      "desde": 427.88,
+      "hasta": 438.26,
+      "texto": "Se si voltava di qui, batteva il naso nel letto o nei vetri della finestra, se si voltava di là, lo batteva nelle pareti o nella porta di camera, se alzava un po’ di più il capo,"
+    },
+    {
+      "desde": 438.26,
+      "hasta": 440.66,
+      "texto": "correva il rischio di ficcarlo in un occhio alla Fata."
+    },
+    {
+      "desde": 441.78,
+      "hasta": 443.38,
+      "texto": "E la Fata lo guardava e rideva."
+    },
+    {
+      "desde": 443.38,
+      "hasta": 444.5,
+      "texto": "— Perchè ridete?"
+    },
+    {
+      "desde": 444.5,
+      "hasta": 449.98,
+      "texto": "— gli domandò il burattino, tutto confuso e impensierito di quel suo naso che cresceva a occhiate."
+    },
+    {
+      "desde": 449.98,
+      "hasta": 451.94,
+      "texto": "— Rido della bugia che hai detto."
+    },
+    {
+      "desde": 452.44,
+      "hasta": 454.32,
+      "texto": "— Come mai sapete che ho detto una bugia?"
+    },
+    {
+      "desde": 454.32,
+      "hasta": 468.26,
+      "texto": "— Le bugie, ragazzo mio, si riconoscono subito, perchè ve ne sono di due specie: vi sono le bugie che hanno le gambe corte, e le bugie che hanno il naso lungo: la tua per l’appunto è di quelle che hanno il naso lungo. ―"
+    },
+    {
+      "desde": 468.26,
+      "hasta": 475.04,
+      "texto": "Pinocchio, non sapendo più dove nascondersi per la vergogna, si provò a fuggire di camera, ma non gli riuscì."
+    },
+    {
+      "desde": 475.08,
+      "hasta": 479.2,
+      "texto": "Il suo naso era cresciuto tanto, che non passava più dalla porta."
+    }
+  ]
+}

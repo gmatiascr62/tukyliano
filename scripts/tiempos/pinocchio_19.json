@@ -1,0 +1,252 @@
+{
+  "id": "pinocchio_19",
+  "titulo": "19. Pinocchio è derubato delle sue monete d’oro e, per gastigo, si busca quattro mesi di prigione.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 27.94,
+    "hasta": 35.27,
+    "texto": "Pinocchio è derubato delle sue monete d’oro e, per gastigo, si busca quattro mesi di prigione."
+  },
+  "renglones": [
+    {
+      "desde": 35.27,
+      "hasta": 45.95,
+      "texto": "Il burattino, ritornato in città, cominciò a contare i minuti a uno a uno: e quando gli parve che fosse l’ora, riprese subito la strada che menava al Campo dei miracoli."
+    },
+    {
+      "desde": 45.95,
+      "hasta": 56.71,
+      "texto": "E mentre camminava con passo frettoloso, il cuore gli batteva forte e gli faceva tic, tac, tic, tac, come un orologio da sala, quando corre davvero."
+    },
+    {
+      "desde": 56.71,
+      "hasta": 59.13,
+      "texto": "E intanto pensava dentro di sè:"
+    },
+    {
+      "desde": 59.13,
+      "hasta": 64.35,
+      "texto": "— E se invece di mille monete, ne trovassi su i rami dell’albero duemila?..."
+    },
+    {
+      "desde": 64.35,
+      "hasta": 66.64,
+      "texto": "E se invece di duemila, ne trovassi cinquemila?"
+    },
+    {
+      "desde": 67.69,
+      "hasta": 71.47,
+      "texto": "E se invece di cinquemila ne trovassi centomila?"
+    },
+    {
+      "desde": 71.74,
+      "hasta": 74.58,
+      "texto": "O che bel signore, allora, che diventerei!..."
+    },
+    {
+      "desde": 74.58,
+      "hasta": 88.65,
+      "texto": "Vorrei avere un bel palazzo, mille cavallini di legno e mille scuderie, per potermi baloccare, una cantina di rosolii e di alchermes, e una libreria tutta piena di canditi, di torte, di panettoni,"
+    },
+    {
+      "desde": 88.65,
+      "hasta": 91.98,
+      "texto": "di mandorlati e di cialdoni colla panna. —"
+    },
+    {
+      "desde": 92.18,
+      "hasta": 102.09,
+      "texto": "Così fantasticando, giunse in vicinanza del campo, e lì si fermò a guardare se per caso avesse potuto scorgere qualche albero coi rami carichi di"
+    },
+    {
+      "desde": 102.09,
+      "hasta": 104.45,
+      "texto": "monete: ma non vide nulla."
+    },
+    {
+      "desde": 104.45,
+      "hasta": 115.37,
+      "texto": "Fece altri cento passi in avanti, e nulla; entrò sul campo.… andò proprio su quella piccola buca, dove aveva sotterrato i suoi zecchini, e nulla."
+    },
+    {
+      "desde": 115.57,
+      "hasta": 125.86,
+      "texto": "Allora diventò pensieroso, e, dimenticando le regole del Galateo e della buona creanza, tirò fuori una mano di tasca e si dette una lunghissima grattatina di capo."
+    },
+    {
+      "desde": 125.86,
+      "hasta": 138.0,
+      "texto": "In quel mentre sentì fischiare negli orecchi una gran risata: e voltatosi in su, vide sopra un albero un grosso pappagallo, che si spollinava le poche penne che aveva addosso."
+    },
+    {
+      "desde": 138.31,
+      "hasta": 139.28,
+      "texto": "— Perchè ridi?"
+    },
+    {
+      "desde": 139.34,
+      "hasta": 141.84,
+      "texto": "— gli domandò Pinocchio con voce di bizza."
+    },
+    {
+      "desde": 141.98,
+      "hasta": 146.6,
+      "texto": "— Rido, perchè nello spollinarmi mi son fatto il solletico sotto le ali. ―"
+    },
+    {
+      "desde": 146.7,
+      "hasta": 148.31,
+      "texto": "Il burattino non rispose."
+    },
+    {
+      "desde": 148.31,
+      "hasta": 156.81,
+      "texto": "Andò alla gora e riempita d’acqua la solita ciabatta, si pose nuovamente ad annaffiare la terra che ricopriva le monete d’oro."
+    },
+    {
+      "desde": 157.25,
+      "hasta": 164.95,
+      "texto": "Quand’ecco che un’altra risata, anche più impertinente della prima, si fece sentire nella solitudine silenziosa di quel campo."
+    },
+    {
+      "desde": 165.15,
+      "hasta": 171.75,
+      "texto": "— Insomma, — gridò Pinocchio, arrabbiandosi, — si può sapere, Pappagallo mal educato, di che cosa ridi?"
+    },
+    {
+      "desde": 171.75,
+      "hasta": 179.01,
+      "texto": "— Rido di quei barbagianni, che credono a tutte le scioccherie e che si lasciano trappolare da chi è più furbo di loro."
+    },
+    {
+      "desde": 179.01,
+      "hasta": 180.27,
+      "texto": "— Parli forse di me?"
+    },
+    {
+      "desde": 180.27,
+      "hasta": 191.75,
+      "texto": "— Sì, parlo di te, povero Pinocchio, di te che sei così dolce di sale, da credere che i denari si possano seminare e raccogliere nei campi, come si seminano i fagiuoli e le zucche."
+    },
+    {
+      "desde": 192.06,
+      "hasta": 195.63,
+      "texto": "Anch’io l’ho creduto una volta, e oggi ne porto le pene."
+    },
+    {
+      "desde": 195.63,
+      "hasta": 208.21,
+      "texto": "Oggi (ma troppo tardi!) mi son dovuto persuadere che per mettere insieme onestamente pochi soldi, bisogna saperseli guadagnare o col lavoro delle proprie mani o coll’ingegno della propria testa."
+    },
+    {
+      "desde": 208.47,
+      "hasta": 214.33,
+      "texto": "— Non ti capisco, — disse il burattino, che già cominciava a tremare dalla paura. — Pazienza!"
+    },
+    {
+      "desde": 214.33,
+      "hasta": 217.13,
+      "texto": "Mi spiegherò meglio — soggiunse il Pappagallo."
+    },
+    {
+      "desde": 217.13,
+      "hasta": 227.79,
+      "texto": "— Sappi dunque che, mentre tu eri in città, la Volpe e il Gatto sono tornati in questo campo: hanno preso le monete d’oro sotterrate, e poi sono fuggiti come il vento."
+    },
+    {
+      "desde": 227.79,
+      "hasta": 230.06,
+      "texto": "E ora chi li raggiunge, è bravo! ―"
+    },
+    {
+      "desde": 230.06,
+      "hasta": 238.1,
+      "texto": "Pinocchio restò a bocca aperta, e non volendo credere alle parole del Pappagallo, cominciò colle mani e colle unghie a scavare il terreno che aveva annaffiato."
+    },
+    {
+      "desde": 239.06,
+      "hasta": 248.04,
+      "texto": "E scava, scava, scava, fece una buca così profonda, che ci sarebbe entrato per ritto un pagliaio: ma le monete non c' erano più."
+    },
+    {
+      "desde": 248.84,
+      "hasta": 257.68,
+      "texto": "Preso allora dalla disperazione, tornò di corsa in città e andò difilato in tribunale, per denunziare al giudice i due malandrini, che lo avevano derubato."
+    },
+    {
+      "desde": 257.68,
+      "hasta": 269.42,
+      "texto": "Il giudice era uno scimmione della razza dei Gorilla: un vecchio scimmione rispettabile per la sua grave età, per la sua barba bianca e specialmente per i suoi occhiali d’oro, senza vetri,"
+    },
+    {
+      "desde": 269.42,
+      "hasta": 276.06,
+      "texto": "che era costretto a portare continuamente, a motivo d’una flussione d’occhi, che lo tormentava da parecchi anni."
+    },
+    {
+      "desde": 276.06,
+      "hasta": 287.9,
+      "texto": "Pinocchio, alla presenza del giudice, raccontò per filo e per segno l’iniqua frode, di cui era stato vittima; dette il nome, il cognome e i connotati dei malandrini, e finì chiedendo giustizia."
+    },
+    {
+      "desde": 287.9,
+      "hasta": 298.95,
+      "texto": "Il giudice lo ascoltò con molta benignità; prese vivissima parte al racconto: s’intenerì, si commosse: e quando il burattino non ebbe più nulla da dire, allungò la mano e suonò il campanello."
+    },
+    {
+      "desde": 298.95,
+      "hasta": 302.13,
+      "texto": "A quella scampanellata comparvero subito due can mastini vestiti da giandarmi."
+    },
+    {
+      "desde": 304.47,
+      "hasta": 308.17,
+      "texto": "Allora il giudice, accennando Pinocchio ai giandarmi, disse loro:"
+    },
+    {
+      "desde": 308.17,
+      "hasta": 316.33,
+      "texto": "— Quel povero diavolo è stato derubato di quattro monete d’oro: pigliatelo dunque e mettetelo subito in prigione. ―"
+    },
+    {
+      "desde": 316.33,
+      "hasta": 329.38,
+      "texto": "Il burattino, sentendosi dare questa sentenza fra capo e collo, rimase di princisbecco e voleva protestare: ma i giandarmi, a scanso di perditempi inutili, gli tapparono la bocca e lo condussero in gattabuia."
+    },
+    {
+      "desde": 329.38,
+      "hasta": 338.74,
+      "texto": "E lì v’ebbe a rimanere quattro mesi: quattro lunghissimi mesi: e vi sarebbe rimasto anche di più, se non si fosse dato un caso fortunatissimo."
+    },
+    {
+      "desde": 338.74,
+      "hasta": 351.77,
+      "texto": "Perchè bisogna sapere che il giovane Imperatore che regnava nella città di Acchiappacitrulli, avendo riportato una gran vittoria contro i suoi nemici, ordinò grandi feste pubbliche, luminarie, fuochi artificiali,"
+    },
+    {
+      "desde": 351.77,
+      "hasta": 359.75,
+      "texto": "corse di barberi e velocipedi, e in segno di maggiore esultanza, volle che fossero aperte le carceri e mandati fuori tutti i malandrini."
+    },
+    {
+      "desde": 359.91,
+      "hasta": 364.15,
+      "texto": "— Se escono di prigione gli altri, voglio uscire anch’io — disse Pinocchio al carceriere."
+    },
+    {
+      "desde": 364.29,
+      "hasta": 369.14,
+      "texto": "— Voi no, — rispose il carceriere — perchè voi non siete del bel numero...."
+    },
+    {
+      "desde": 369.14,
+      "hasta": 373.3,
+      "texto": "— Domando scusa; — replicò Pinocchio — sono un malandrino anch’io."
+    },
+    {
+      "desde": 373.3,
+      "hasta": 383.46,
+      "texto": "— In questo caso avete mille ragioni, — disse il carceriere; e levandosi il berretto rispettosamente e salutandolo, gli aprì le porte della prigione e lo lasciò scappare."
+    }
+  ]
+}

@@ -1,0 +1,252 @@
+{
+  "id": "pinocchio_15",
+  "titulo": "15. Gli assassini inseguono Pinocchio; e, dopo averlo raggiunto, lo impiccano a un ramo della Quercia grande.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 31.38,
+    "hasta": 38.15,
+    "texto": "Gli assassini inseguono Pinocchio; e, dopo averlo raggiunto, lo impiccano a un ramo della Quercia grande."
+  },
+  "renglones": [
+    {
+      "desde": 38.15,
+      "hasta": 48.17,
+      "texto": "Allora il burattino, perdutosi d’animo fu proprio sul punto di gettarsi a terra e di darsi per vinto, quando nel girare gli occhi all’intorno,"
+    },
+    {
+      "desde": 48.17,
+      "hasta": 54.91,
+      "texto": "vide fra mezzo al verde cupo degli alberi biancheggiare in lontananza una casina candida come la neve."
+    },
+    {
+      "desde": 54.91,
+      "hasta": 60.17,
+      "texto": "— Se io avessi tanto fiato da arrivare fino a quella casa, forse sarei salvo!"
+    },
+    {
+      "desde": 60.17,
+      "hasta": 62.23,
+      "texto": "— disse dentro di sè."
+    },
+    {
+      "desde": 62.23,
+      "hasta": 66.56,
+      "texto": "E senza indugiare un minuto, riprese a correre per il bosco a carriera distesa."
+    },
+    {
+      "desde": 68.0,
+      "hasta": 69.16,
+      "texto": "E gli assassini sempre dietro."
+    },
+    {
+      "desde": 69.16,
+      "hasta": 78.27,
+      "texto": "E dopo una corsa disperata di quasi due ore, finalmente, tutto trafelato, arrivò alla porta di quella casina e bussò."
+    },
+    {
+      "desde": 78.27,
+      "hasta": 80.19,
+      "texto": "Nessuno rispose."
+    },
+    {
+      "desde": 80.19,
+      "hasta": 89.35,
+      "texto": "Tornò a bussare con maggior violenza, perchè sentiva avvicinarsi il rumore dei passi e il respiro grosso e affannoso dei suoi persecutori."
+    },
+    {
+      "desde": 89.35,
+      "hasta": 90.97,
+      "texto": "Lo stesso silenzio."
+    },
+    {
+      "desde": 90.97,
+      "hasta": 99.03,
+      "texto": "Avvedutosi che il bussare non giovava a nulla, cominciò per disperazione a dare calci e zuccate nella porta."
+    },
+    {
+      "desde": 99.03,
+      "hasta": 112.13,
+      "texto": "Allora si affacciò alla finestra una bella Bambina, coi capelli turchini e il viso bianco come un’immagine di cera, gli occhi chiusi e le mani incrociate sul petto, la quale senza muover punto le labbra,"
+    },
+    {
+      "desde": 112.13,
+      "hasta": 115.79,
+      "texto": "disse con una vocina che pareva venisse dall’altro mondo:"
+    },
+    {
+      "desde": 115.83,
+      "hasta": 120.12,
+      "texto": "— In questa casa non c’è nessuno; sono tutti morti."
+    },
+    {
+      "desde": 120.19,
+      "hasta": 121.38,
+      "texto": "— Aprimi almeno tu!"
+    },
+    {
+      "desde": 121.38,
+      "hasta": 124.72,
+      "texto": "— gridò Pinocchio piangendo e raccomandandosi."
+    },
+    {
+      "desde": 124.81,
+      "hasta": 126.64,
+      "texto": "— Sono morta anch’io."
+    },
+    {
+      "desde": 126.75,
+      "hasta": 130.28,
+      "texto": "— Morta? e allora che cosa fai costì alla finestra?"
+    },
+    {
+      "desde": 130.36,
+      "hasta": 133.36,
+      "texto": "— Aspetto la bara che venga a portarmi via. -"
+    },
+    {
+      "desde": 133.43,
+      "hasta": 138.8,
+      "texto": "Appena detto così, la Bambina disparve e la finestra si richiuse senza far rumore."
+    },
+    {
+      "desde": 138.87,
+      "hasta": 145.23,
+      "texto": "— O bella bambina dai capelli turchini, — gridava Pinocchio, — aprimi per carità!"
+    },
+    {
+      "desde": 146.42,
+      "hasta": 148.64,
+      "texto": "Abbi compassione di un povero ragazzo inseguìto dagli assass… —"
+    },
+    {
+      "desde": 150.8,
+      "hasta": 157.99,
+      "texto": "Ma non potè finir la parola, perchè sentì afferrarsi per il collo, e le solite due vociacce che gli brontolarono minacciosamente:"
+    },
+    {
+      "desde": 157.99,
+      "hasta": 159.94,
+      "texto": "— Ora non ci scappi più! —"
+    },
+    {
+      "desde": 159.94,
+      "hasta": 167.0,
+      "texto": "Il burattino, vedendosi balenare la morte dinanzi agli occhi, fu preso da un tremito così forte, che nel tremare,"
+    },
+    {
+      "desde": 167.0,
+      "hasta": 173.54,
+      "texto": "gli sonavano le giunture delle sue gambe di legno e i quattro zecchini che teneva nascosti sotto la lingua. — Dunque?"
+    },
+    {
+      "desde": 173.54,
+      "hasta": 178.58,
+      "texto": "— gli domandarono gli assassini — vuoi aprirla la bocca, sì o no?"
+    },
+    {
+      "desde": 178.66,
+      "hasta": 180.2,
+      "texto": "Ah! non rispondi?…"
+    },
+    {
+      "desde": 180.2,
+      "hasta": 183.94,
+      "texto": "Lascia fare: che questa volta te la faremo aprir noi!… —"
+    },
+    {
+      "desde": 183.94,
+      "hasta": 192.1,
+      "texto": "E cavati fuori due coltellacci lunghi lunghi e affilati come rasoi, zaff e zaff… gli affibbiarono due colpi nel mezzo alle reni."
+    },
+    {
+      "desde": 192.98,
+      "hasta": 205.46,
+      "texto": "Ma il burattino per sua fortuna era fatto d’un legno durissimo, motivo per cui le lame, spezzandosi, andarono in mille schegge e gli assassini rimasero col manico dei coltelli in mano, a guardarsi in faccia."
+    },
+    {
+      "desde": 205.46,
+      "hasta": 209.74,
+      "texto": "— Ho capito; — disse allora uno di loro — bisogna impiccarlo."
+    },
+    {
+      "desde": 209.74,
+      "hasta": 211.26,
+      "texto": "Impicchiamolo!"
+    },
+    {
+      "desde": 211.26,
+      "hasta": 214.02,
+      "texto": "— Impicchiamolo — ripetè l’altro."
+    },
+    {
+      "desde": 214.02,
+      "hasta": 225.93,
+      "texto": "Detto fatto gli legarono le mani dietro le spalle, e passatogli un nodo scorsoio intorno alla gola, lo attaccarono penzoloni al ramo di una grossa pianta detta la Quercia grande."
+    },
+    {
+      "desde": 225.93,
+      "hasta": 238.89,
+      "texto": "Poi si posero là, seduti sull’erba, aspettando che il burattino facesse l’ultimo sgambetto: ma il burattino, dopo tre ore, aveva sempre gli occhi aperti, la bocca chiusa e sgambettava più che mai."
+    },
+    {
+      "desde": 238.94,
+      "hasta": 243.92,
+      "texto": "Annoiati finalmente di aspettare, si voltarono a Pinocchio e gli dissero sghignazzando:"
+    },
+    {
+      "desde": 245.0,
+      "hasta": 246.57,
+      "texto": "— Addio a domani."
+    },
+    {
+      "desde": 246.57,
+      "hasta": 255.24,
+      "texto": "Quando domani torneremo qui, si spera che ci farai la garbatezza di farti trovare bell’e morto e con la bocca spalancata. ―"
+    },
+    {
+      "desde": 255.24,
+      "hasta": 256.95,
+      "texto": "E se ne andarono."
+    },
+    {
+      "desde": 256.95,
+      "hasta": 264.95,
+      "texto": "Intanto s’era levato un vento impetuoso di tramontana, che soffiando e mugghiando con rabbia, sbatacchiava in qua e in là il povero impiccato,"
+    },
+    {
+      "desde": 264.95,
+      "hasta": 269.95,
+      "texto": "facendolo dondolare violentemente come il battaglio d’una campana che suona a festa."
+    },
+    {
+      "desde": 270.02,
+      "hasta": 278.77,
+      "texto": "E quel dondolìo gli cagionava acutissimi spasimi, e il nodo scorsoio, stringendosi sempre più alla gola, gli toglieva il respiro."
+    },
+    {
+      "desde": 278.77,
+      "hasta": 290.93,
+      "texto": "A poco a poco gli occhi gli si appannarono; e sebbene sentisse avvicinarsi la morte, pure sperava sempre che da un momento a un altro sarebbe capitata qualche anima pietosa a dargli aiuto."
+    },
+    {
+      "desde": 290.98,
+      "hasta": 302.52,
+      "texto": "Ma quando, aspetta aspetta, vide che non compariva nessuno, proprio nessuno, allora gli tornò in mente il suo povero babbo… e balbettò quasi moribondo:"
+    },
+    {
+      "desde": 304.29,
+      "hasta": 307.57,
+      "texto": "— Oh babbo mio! se tu fossi qui!… ―"
+    },
+    {
+      "desde": 307.57,
+      "hasta": 310.37,
+      "texto": "E non ebbe fiato per dir altro."
+    },
+    {
+      "desde": 310.37,
+      "hasta": 317.28,
+      "texto": "Chiuse gli occhi, aprì la bocca, stirò le gambe, e dato un grande scrollone, rimase lì come intirizzito."
+    }
+  ]
+}
