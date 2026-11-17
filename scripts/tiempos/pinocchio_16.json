@@ -1,0 +1,262 @@
+{
+  "id": "pinocchio_16",
+  "titulo": "16. La bella Bambina dai capelli turchini fa raccogliere il burattino: lo mette a letto, e chiama tre medici per sapere se sia vivo o morto.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "renglones": [
+    {
+      "desde": 40.55,
+      "hasta": 54.29,
+      "texto": "In quel mentre che il povero Pinocchio impiccato dagli assassini a un ramo della Quercia grande, pareva oramai più morto che vivo, la bella Bambina dai capelli turchini si affacciò daccapo alla finestra,"
+    },
+    {
+      "desde": 54.29,
+      "hasta": 67.55,
+      "texto": "e impietositasi alla vista di quell’infelice che, sospeso per il collo, ballava il trescone alle ventate di tramontana, battè per tre volte le mani insieme, e fece tre piccoli colpi."
+    },
+    {
+      "desde": 67.57,
+      "hasta": 77.56,
+      "texto": "A questo segnale si sentì un gran rumore di ali che volavano con foga precipitosa, e un grosso Falco venne a posarsi sul davanzale della finestra."
+    },
+    {
+      "desde": 77.88,
+      "hasta": 80.8,
+      "texto": "— Che cosa comandate, mia graziosa Fata?"
+    },
+    {
+      "desde": 80.8,
+      "hasta": 92.6,
+      "texto": "— disse il Falco abbassando il becco in atto di reverenza; perchè bisogna sapere che la Bambina dai capelli turchini non era altro, in fin dei conti, che una buonissima Fata,"
+    },
+    {
+      "desde": 92.6,
+      "hasta": 96.74,
+      "texto": "che da più di mill’anni abitava nelle vicinanze di quel bosco."
+    },
+    {
+      "desde": 96.74,
+      "hasta": 103.22,
+      "texto": "— Vedi tu quel burattino attaccato penzoloni a un ramo della Quercia grande? — Lo vedo."
+    },
+    {
+      "desde": 103.54,
+      "hasta": 107.14,
+      "texto": "— Orbene: vola subito laggiù: rompi col tuo"
+    },
+    {
+      "desde": 107.14,
+      "hasta": 107.14,
+      "texto": "Un grosso Falco venne a posarsi sul davanzale della finestra."
+    },
+    {
+      "desde": 107.14,
+      "hasta": 113.88,
+      "texto": "fortissimo becco il nodo che lo tiene sospeso in aria e posalo delicatamente sdraiato sull’erba a piè della Quercia. —"
+    },
+    {
+      "desde": 115.04,
+      "hasta": 119.57,
+      "texto": "Il Falco volò via e dopo due minuti tornò dicendo:"
+    },
+    {
+      "desde": 119.57,
+      "hasta": 122.43,
+      "texto": "— Quel che mi avete comandato, è fatto."
+    },
+    {
+      "desde": 122.43,
+      "hasta": 124.15,
+      "texto": "— E come l’hai trovato?"
+    },
+    {
+      "desde": 124.15,
+      "hasta": 125.47,
+      "texto": "Vivo o morto?"
+    },
+    {
+      "desde": 125.47,
+      "hasta": 139.21,
+      "texto": "— A vederlo, pareva morto, ma non dev’essere ancora morto perbene, perchè, appena gli ho sciolto il nodo scorsoio che lo stringeva intorno alla gola, ha lasciato andare un sospiro, balbettando a mezza voce:"
+    },
+    {
+      "desde": 139.39,
+      "hasta": 141.17,
+      "texto": "«Ora mi sento meglio!». —"
+    },
+    {
+      "desde": 141.17,
+      "hasta": 153.74,
+      "texto": "Allora la Fata, battendo le mani insieme, fece due piccoli colpi, e apparve un magnifico Can-barbone, che camminava ritto sulle gambe di dietro, tale e quale come se fosse un uomo."
+    },
+    {
+      "desde": 153.74,
+      "hasta": 157.66,
+      "texto": "Il Can-barbone era vestito da cocchiere in livrea di gala."
+    },
+    {
+      "desde": 157.66,
+      "hasta": 166.1,
+      "texto": "Aveva in capo un nicchiettino a tre punte gallonato d’oro, una parrucca bionda coi riccioli che gli scendevano giù per il collo,"
+    },
+    {
+      "desde": 166.1,
+      "hasta": 179.04,
+      "texto": "una giubba color di cioccolata coi bottoni di brillanti e con due grandi tasche per tenervi gli ossi, che gli regalava a pranzo la padrona, un paio di calzon corti di velluto cremisi, le calze di seta,"
+    },
+    {
+      "desde": 179.04,
+      "hasta": 189.16,
+      "texto": "gli scarpini scollati, e di dietro una specie di fodera da ombrelli, tutta di raso turchino, per mettervi dentro la coda, quando il tempo cominciava a piovere."
+    },
+    {
+      "desde": 189.18,
+      "hasta": 190.97,
+      "texto": "— Su da bravo, Medoro!"
+    },
+    {
+      "desde": 190.97,
+      "hasta": 192.06,
+      "texto": "— disse la Fata al Can-barbone."
+    },
+    {
+      "desde": 193.36,
+      "hasta": 199.18,
+      "texto": "— Fa’ subito attaccare la più bella carrozza della mia scuderia e prendi la via del bosco."
+    },
+    {
+      "desde": 199.18,
+      "hasta": 206.18,
+      "texto": "Arrivato che sarai sotto la Quercia grande, troverai disteso sull’erba un povero burattino mezzo morto."
+    },
+    {
+      "desde": 206.18,
+      "hasta": 213.98,
+      "texto": "Raccoglilo con garbo, posalo pari pari sui cuscini della carrozza e portamelo qui. Hai capito? —"
+    },
+    {
+      "desde": 213.98,
+      "hasta": 223.17,
+      "texto": "Il Can-barbone, per fare intendere che aveva capito, dimenò tre o quattro volte la fodera di raso turchino, che aveva dietro, e partì come un barbero."
+    },
+    {
+      "desde": 223.17,
+      "hasta": 234.34,
+      "texto": "Di lì a poco, si vide uscire dalla scuderia una bella carrozzina color dell’aria, tutta imbottita di penne di canarino e foderata nell’interno di panna montata e di crema coi savoiardi."
+    },
+    {
+      "desde": 235.61,
+      "hasta": 238.79,
+      "texto": "La carrozzina era tirata da cento pariglie di topini"
+    },
+    {
+      "desde": 238.79,
+      "hasta": 247.86,
+      "texto": "bianchi, e il Can-barbone, seduto a cassetta, schioccava la frusta a destra e a sinistra, come un vetturino quand’ha paura di aver fatto tardi."
+    },
+    {
+      "desde": 247.86,
+      "hasta": 260.79,
+      "texto": "Non era ancora passato un quarto d’ora, che la carrozzina tornò, e la Fata, che stava aspettando sull’uscio di casa, prese in collo il povero burattino, e portatolo in una cameretta che aveva le pareti di madreperla,"
+    },
+    {
+      "desde": 261.62,
+      "hasta": 265.88,
+      "texto": "mandò subito a chiamare i medici più famosi del vicinato."
+    },
+    {
+      "desde": 265.88,
+      "hasta": 272.06,
+      "texto": "E i medici arrivarono subito, uno dopo l’altro: arrivò, cioè, un Corvo, una Civetta e un Grillo-parlante."
+    },
+    {
+      "desde": 273.45,
+      "hasta": 286.45,
+      "texto": "— Vorrei sapere da lor signori, — disse la Fata, rivolgendosi ai tre medici riuniti intorno al letto di Pinocchio, — vorrei sapere da lor signori se questo disgraziato burattino sia vivo o morto!... —"
+    },
+    {
+      "desde": 286.45,
+      "hasta": 299.67,
+      "texto": "A quest’invito, il Corvo, facendosi avanti per il primo, tastò il polso a Pinocchio: poi gli tastò il naso, poi il dito mignolo dei piedi: e quand’ebbe tastato ben bene, pronunziò solennemente queste parole:"
+    },
+    {
+      "desde": 299.67,
+      "hasta": 308.67,
+      "texto": "— A mio credere il burattino è bell’e morto: ma se per disgrazia non fosse morto, allora sarebbe indizio sicuro che è sempre vivo!"
+    },
+    {
+      "desde": 308.85,
+      "hasta": 323.86,
+      "texto": "— Mi dispiace, — disse la Civetta — di dover contraddire il Corvo, mio illustre amico e collega; per me, invece, il burattino è sempre vivo; ma se per disgrazia non fosse vivo, allora sarebbe segno che è morto davvero."
+    },
+    {
+      "desde": 323.86,
+      "hasta": 325.26,
+      "texto": "— E lei non dice nulla?"
+    },
+    {
+      "desde": 325.26,
+      "hasta": 326.43,
+      "texto": "— domandò la Fata al Grillo-parlante."
+    },
+    {
+      "desde": 327.98,
+      "hasta": 335.55,
+      "texto": "— Io dico che il medico prudente, quando non sa quello che dice, la miglior cosa che possa fare, è quella di stare zitto."
+    },
+    {
+      "desde": 335.55,
+      "hasta": 341.82,
+      "texto": "Del resto quel burattino lì, non m’è fisonomia nuova: io lo conosco da un pezzo! —"
+    },
+    {
+      "desde": 341.82,
+      "hasta": 351.02,
+      "texto": "Pinocchio, che fin allora era stato immobile come un vero pezzo di legno, ebbe una specie di fremito convulso, che fece scuotere tutto il letto."
+    },
+    {
+      "desde": 351.02,
+      "hasta": 356.66,
+      "texto": "— Quel burattino lì — seguitò a dire il Grillo-parlante — è una birba matricolata… —"
+    },
+    {
+      "desde": 356.66,
+      "hasta": 359.66,
+      "texto": "Pinocchio aprì gli occhi e li richiuse subito."
+    },
+    {
+      "desde": 359.66,
+      "hasta": 362.85,
+      "texto": "— È un monellaccio, uno svogliato, un vagabondo... —"
+    },
+    {
+      "desde": 362.85,
+      "hasta": 365.87,
+      "texto": "Pinocchio si nascose la faccia sotto i lenzuoli."
+    },
+    {
+      "desde": 365.87,
+      "hasta": 372.3,
+      "texto": "— Quel burattino lì è un figliuolo disubbidiente, che farà morire di crepacuore il suo povero babbo!… —"
+    },
+    {
+      "desde": 372.3,
+      "hasta": 377.2,
+      "texto": "A questo punto si sentì nella camera un suono soffocato di pianti e singhiozzi."
+    },
+    {
+      "desde": 377.2,
+      "hasta": 385.5,
+      "texto": "Figuratevi come rimasero tutti, allorchè, sollevati un poco i lenzuoli, si accorsero che quello che piangeva e singhiozzava era Pinocchio."
+    },
+    {
+      "desde": 385.97,
+      "hasta": 391.81,
+      "texto": "— Quando il morto piange è segno che è in via di guarigione — disse solennemente il Corvo."
+    },
+    {
+      "desde": 391.81,
+      "hasta": 401.54,
+      "texto": "— Mi duole di contraddire il mio illustre amico e collega, — soggiunse la Civetta — ma per me quando il morto piange, è segno che gli dispiace a morire. ―"
+    }
+  ]
+}
