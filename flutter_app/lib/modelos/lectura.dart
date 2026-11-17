@@ -55,6 +55,8 @@ class Lectura {
     required this.segundos,
     required this.bytes,
     this.renglones = const [],
+    this.tituloDesde,
+    this.tituloHasta,
   });
 
   final String id;
@@ -80,6 +82,24 @@ class Lectura {
   /// aprender a hablar, el italiano de Pinocchio es mejor material.
   final List<RenglonDeLectura> renglones;
 
+  /// Cuándo el lector lee el título, en las colecciones donde lo lee.
+  ///
+  /// En Pinocchio el lector dice "Capitolo primo" y después el título
+  /// entero, y recién ahí empieza el cuento. El título no es un renglón de
+  /// la lista —es el encabezado, y como renglón aparecería dos veces— pero
+  /// tiene su momento, y sin él la app arrancaba pasado el título: quedaba
+  /// escrito arriba sin que se oyera nunca.
+  final Duration? tituloDesde;
+  final Duration? tituloHasta;
+
+  /// Si en este momento se está leyendo el título.
+  bool tituloSuenaEn(Duration donde) {
+    final arranca = tituloDesde;
+    final termina = tituloHasta;
+    if (arranca == null || termina == null) return false;
+    return donde >= arranca && donde < termina;
+  }
+
   bool get tieneTexto => renglones.isNotEmpty;
 
   /// Si se sabe en qué momento se dice cada renglón.
@@ -94,12 +114,25 @@ class Lectura {
     return -1;
   }
 
-  /// Dónde arranca el primer verso. Null si no está marcado.
+  /// Dónde arranca lo que se vino a escuchar. Null si no está marcado.
   ///
   /// Importa porque antes va la presentación de LibriVox —quién lee, de qué
   /// libro—, y en una fábula de minuto y medio son dieciséis segundos de
   /// espera antes de que empiece lo que se vino a escuchar.
+  ///
+  /// Donde el lector lee el título, eso **también** es lo que se vino a
+  /// escuchar: es la primera línea del capítulo, está escrita arriba y hay
+  /// que oírla. Saltearla dejaba una frase a la vista que no sonaba nunca.
   Duration? get dondeEmpiezaDeVerdad {
+    final elTitulo = tituloDesde;
+    if (elTitulo != null) {
+      // Medio segundo antes, porque whisper marca el arranque de una
+      // palabra con menos precisión que eso y de lo contrario se come la
+      // primera sílaba. Oír un instante de silencio no molesta; oír "ome
+      // andò" en vez de "Come andò", sí.
+      final conAire = elTitulo - const Duration(milliseconds: 500);
+      return conAire < Duration.zero ? Duration.zero : conAire;
+    }
     for (final renglon in renglones) {
       if (renglon.desde != null) return renglon.desde;
     }
@@ -131,6 +164,8 @@ class Lectura {
           for (final r in (datos['renglones'] as List? ?? []))
             RenglonDeLectura.desdeJson(r),
         ],
+        tituloDesde: RenglonDeLectura._comoDuracion(datos['tituloDesde']),
+        tituloHasta: RenglonDeLectura._comoDuracion(datos['tituloHasta']),
       );
 }
 

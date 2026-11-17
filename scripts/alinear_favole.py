@@ -18,6 +18,7 @@ Requiere ffmpeg y whisper.cpp (ver alinear.py).
 """
 import json
 import os
+import re
 import subprocess
 import sys
 
@@ -28,14 +29,22 @@ ACA = os.path.dirname(os.path.abspath(__file__))
 # duración, peso y renglones— y lo único que cambia es de qué archivo
 # salen y bajo qué clave está la lista.
 COLECCIONES = {
-    'favole': ('favole.json', 'favole'),
-    'pinocchio': ('pinocchio.json', 'capitulos'),
+    'favole': ('favole.json', 'favole', False),
+    'pinocchio': ('pinocchio.json', 'capitulos', True),
 }
 CUAL = os.environ.get('COLECCION', 'favole')
 if CUAL not in COLECCIONES:
     raise SystemExit(f'no conozco la colección {CUAL!r}: '
                      f'{", ".join(COLECCIONES)}')
-ELARCHIVO, LACLAVE = COLECCIONES[CUAL]
+# El tercero es si el lector lee el título antes de empezar. En Pinocchio sí:
+# a los treinta segundos dice "Capitolo primo" y después el título entero, y
+# recién a los cuarenta y uno empieza el cuento. Si no se alinea, la app
+# arranca después y el título queda escrito arriba sin que se oiga nunca.
+ELARCHIVO, LACLAVE, LEEELTITULO = COLECCIONES[CUAL]
+
+# "1. Come andò che..." -> "Come andò che...". El número no se lee: el lector
+# dice "Capitolo primo", que es otra cosa.
+SOLO_EL_TITULO = re.compile(r'^\d+\.\s*')
 
 ELCATALOGO = os.path.join(ACA, '..', 'flutter_app', 'assets', ELARCHIVO)
 LOSTIEMPOS = os.path.join(ACA, 'tiempos')
@@ -49,8 +58,18 @@ def elCatalogo():
 
 
 def losRenglones(favola):
-    """El texto de la fábula, un renglón por elemento."""
-    return [r['t'] if isinstance(r, dict) else r for r in favola['renglones']]
+    """El texto de la fábula, un renglón por elemento.
+
+    En las colecciones donde el lector lee el título, va adelante como un
+    renglón más: es la única forma de saber en qué segundo lo lee. Al
+    guardar se separa del resto, porque en la app no es un renglón de la
+    lista sino el encabezado.
+    """
+    renglones = [r['t'] if isinstance(r, dict) else r
+                 for r in favola['renglones']]
+    if LEEELTITULO:
+        return [SOLO_EL_TITULO.sub('', favola['titulo'])] + renglones
+    return renglones
 
 
 def bajarElAudio(base, archivo):
@@ -75,15 +94,23 @@ def bajarElAudio(base, archivo):
 def guardar(favola, resultado):
     os.makedirs(LOSTIEMPOS, exist_ok=True)
     donde = os.path.join(LOSTIEMPOS, f"{favola['id']}.json")
+    enTiempos = [{'desde': r['inicio'], 'hasta': r['fin'], 'texto': r['texto']}
+                 for r in resultado]
+    guardado = {
+        'id': favola['id'],
+        'titulo': favola['titulo'],
+        'comoSeHizo': 'Alineado con scripts/alinear_favole.py '
+                      '(whisper.cpp small, de a pedazos de 22 s).',
+    }
+    if LEEELTITULO:
+        # El primero es el título, que fue adelante para alinearlo pero no es
+        # un renglón de la lista: en la app es el encabezado.
+        guardado['elTitulo'] = enTiempos[0]
+        enTiempos = enTiempos[1:]
+    guardado['renglones'] = enTiempos
+
     with open(donde, 'w', encoding='utf-8') as fh:
-        json.dump({
-            'id': favola['id'],
-            'titulo': favola['titulo'],
-            'comoSeHizo': 'Alineado con scripts/alinear_favole.py '
-                          '(whisper.cpp small, de a pedazos de 22 s).',
-            'renglones': [{'desde': r['inicio'], 'hasta': r['fin'],
-                           'texto': r['texto']} for r in resultado],
-        }, fh, ensure_ascii=False, indent=2)
+        json.dump(guardado, fh, ensure_ascii=False, indent=2)
         fh.write('\n')
     return donde
 

@@ -69,6 +69,11 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
   /// la presentación de LibriVox, y al final el cierre.
   int _enElRenglon = -1;
 
+  /// True mientras el lector lee el título, que en Pinocchio lo lee antes de
+  /// empezar el cuento. Se ilumina como cualquier renglón: es la primera
+  /// línea del capítulo, nada más que vive en el encabezado.
+  bool _enElTitulo = false;
+
   StreamSubscription<Duration>? _siguiendo;
   StreamSubscription<void>? _esperandoElFinal;
 
@@ -136,9 +141,13 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
 
   void _vaPor(Duration donde) {
     if (!mounted) return;
+    final enElTitulo = widget.lectura.tituloSuenaEn(donde);
     final cual = widget.lectura.cualSuena(donde);
-    if (cual == _enElRenglon) return;
-    setState(() => _enElRenglon = cual);
+    if (cual == _enElRenglon && enElTitulo == _enElTitulo) return;
+    setState(() {
+      _enElRenglon = cual;
+      _enElTitulo = enElTitulo;
+    });
     if (cual >= 0 && _sonando) _acercarA(cual);
   }
 
@@ -147,6 +156,7 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
     setState(() {
       _sonando = false;
       _enElRenglon = -1;
+      _enElTitulo = false;
     });
   }
 
@@ -248,7 +258,11 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _Cabecera(lectura: lectura, alVolver: widget.alVolver),
+        _Cabecera(
+          lectura: lectura,
+          alVolver: widget.alVolver,
+          leyendoElTitulo: _enElTitulo,
+        ),
         if (_porQueNoSuena != null)
           _NoAbre(porQue: _porQueNoSuena!)
         else
@@ -277,9 +291,16 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
 }
 
 class _Cabecera extends StatelessWidget {
-  const _Cabecera({required this.lectura, required this.alVolver});
+  const _Cabecera({
+    required this.lectura,
+    required this.alVolver,
+    this.leyendoElTitulo = false,
+  });
 
   final Lectura lectura;
+
+  /// True mientras el lector lee el título en voz alta.
+  final bool leyendoElTitulo;
   final VoidCallback alVolver;
 
   @override
@@ -299,12 +320,22 @@ class _Cabecera extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 const SizedBox(height: 8),
-                Text(
-                  lectura.titulo,
-                  style: const TextStyle(
-                    fontSize: 19,
-                    fontWeight: FontWeight.w700,
-                    color: Tema.titulo,
+                // Se pinta igual que un renglón mientras el lector lo lee:
+                // en Pinocchio el título es la primera línea del capítulo,
+                // no un rótulo. Vive acá arriba y no en la lista para no
+                // aparecer dos veces.
+                Container(
+                  color: leyendoElTitulo ? Tema.verdeSuave : null,
+                  padding: leyendoElTitulo
+                      ? const EdgeInsets.symmetric(vertical: 2, horizontal: 4)
+                      : null,
+                  child: Text(
+                    lectura.titulo,
+                    style: const TextStyle(
+                      fontSize: 19,
+                      fontWeight: FontWeight.w700,
+                      color: Tema.titulo,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 2),

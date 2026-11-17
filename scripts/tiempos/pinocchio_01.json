@@ -2,6 +2,11 @@
   "id": "pinocchio_01",
   "titulo": "1. Come andò che maestro Ciliegia, falegname, trovò un pezzo di legno, che piangeva e rideva come un bambino.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 33.0,
+    "hasta": 41.26,
+    "texto": "Come andò che maestro Ciliegia, falegname, trovò un pezzo di legno, che piangeva e rideva come un bambino."
+  },
   "renglones": [
     {
       "desde": 41.26,
@@ -59,7 +64,7 @@
       "texto": "ma quando fu lì per lasciare andare la prima asciata, rimase col braccio sospeso in aria, perchè sentì una vocina sottile sottile, che disse raccomandandosi:"
     },
     {
-      "desde": 126.39,
+      "desde": 127.55,
       "hasta": 128.72,
       "texto": "— Non mi picchiar tanto forte! —"
     },
@@ -130,11 +135,11 @@
     },
     {
       "desde": 211.22,
-      "hasta": 214.7,
+      "hasta": 213.51,
       "texto": "Eppure qui non c’è anima viva."
     },
     {
-      "desde": 214.7,
+      "desde": 214.9,
       "hasta": 220.64,
       "texto": "Che sia per caso questo pezzo di legno che abbia imparato a piangere e a lamentarsi come un bambino?"
     },

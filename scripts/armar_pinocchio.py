@@ -401,6 +401,38 @@ def conElCartelDelTeatro(numero, parrafos):
     return parrafos[:corte] + list(EL_CARTEL_DEL_TEATRO) + parrafos[corte:]
 
 
+def elTiempoDelTitulo(capitulo):
+    """En qué momento el lector lee el título del capítulo.
+
+    Lo deja el alineador en el archivo de tiempos, aparte de los renglones:
+    va adelante para poder alinearlo, pero en la app no es un renglón de la
+    lista sino el encabezado, y si fuera renglón aparecería dos veces.
+
+    Devuelve None si ese capítulo todavía no se alineó con el título, que es
+    lo que pasa con los archivos viejos.
+    """
+    donde = os.path.join(ACA, 'tiempos', f"{capitulo['id']}.json")
+    if not os.path.exists(donde):
+        return None
+    with open(donde, encoding='utf-8') as fh:
+        elTitulo = json.load(fh).get('elTitulo')
+    if not elTitulo:
+        return None
+    # Que el texto sea de verdad el título de este capítulo: si Wikisource
+    # cambió el título, el tiempo guardado es de otra frase.
+    if favole.comparable(elTitulo['texto']) != favole.comparable(
+            SIN_EL_NUMERO.sub('', capitulo['titulo'])):
+        print(f"el tiempo del título de {capitulo['titulo'][:40]} es de otra "
+              'versión del texto: se ignora', file=sys.stderr)
+        return None
+    return elTitulo
+
+
+# "1. Come andò che..." -> "Come andò che...". El número no se lee: el lector
+# dice "Capitolo primo", que es otra cosa.
+SIN_EL_NUMERO = re.compile(r'^\d+\.\s*')
+
+
 def elTextoDe(numero):
     """Los párrafos del capítulo, ya sin marcas ni basura.
 
@@ -640,6 +672,14 @@ def main():
                 {'t': m['texto'], 'desde': m['desde'], 'hasta': m['hasta']}
                 for m in marcados
             ]
+            # Cuándo lee el título, que en Pinocchio lo lee: dice "Capitolo
+            # primo" y después el título entero, y recién ahí empieza el
+            # cuento. Sin esto la app arrancaba pasado el título, y el
+            # título quedaba escrito arriba sin que se oyera nunca.
+            elTitulo = elTiempoDelTitulo(capitulo)
+            if elTitulo is not None:
+                capitulo['tituloDesde'] = elTitulo['desde']
+                capitulo['tituloHasta'] = elTitulo['hasta']
         del capitulo['numero']
 
     assets = os.path.join(ACA, '..', 'flutter_app', 'assets')

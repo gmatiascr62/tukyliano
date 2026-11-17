@@ -512,6 +512,58 @@ void main() {
       expect(sinMarcar.sigueElAudio, isFalse);
       expect(sinMarcar.cualSuena(const Duration(seconds: 10)), -1);
       expect(sinMarcar.dondeEmpiezaDeVerdad, isNull);
+      expect(sinMarcar.tituloSuenaEn(const Duration(seconds: 10)), isFalse);
+    });
+
+    group('el título leído', () {
+      // En Pinocchio el lector dice "Capitolo primo" y después el título
+      // entero, y recién a los cuarenta y un segundos empieza el cuento.
+      // La app saltaba directo al cuento para ahorrar la presentación de
+      // LibriVox, y de paso se salteaba el título: quedaba escrito arriba
+      // en negrita sin que se oyera nunca.
+      Lectura conTitulo({double? desde, double? hasta}) => Lectura.desdeJson({
+            'id': 'x',
+            'titulo': '1. Come andò che maestro Ciliegia',
+            'archivo': 'x.mp3',
+            'segundos': 335,
+            'bytes': 1000,
+            'tituloDesde': ?desde,
+            'tituloHasta': ?hasta,
+            'renglones': [
+              {'t': 'C’era una volta', 'desde': 41.26, 'hasta': 43.66},
+            ],
+          });
+
+      test('se empieza por el título y no por el cuento', () {
+        final lectura = conTitulo(desde: 33, hasta: 41.26);
+        // Medio segundo antes del 33: whisper marca el arranque de una
+        // palabra con menos precisión que eso, y arrancar justo encima se
+        // come la primera sílaba.
+        expect(lectura.dondeEmpiezaDeVerdad,
+            const Duration(milliseconds: 32500));
+      });
+
+      test('nunca antes del principio del archivo', () {
+        expect(conTitulo(desde: 0.2, hasta: 3).dondeEmpiezaDeVerdad,
+            Duration.zero);
+      });
+
+      test('sin título leído, se empieza por el primer renglón', () {
+        // Las fábulas son así: el lector no lee el título.
+        expect(conTitulo().dondeEmpiezaDeVerdad,
+            const Duration(milliseconds: 41260));
+      });
+
+      test('sabe cuándo se está leyendo', () {
+        final lectura = conTitulo(desde: 33, hasta: 41.26);
+        expect(lectura.tituloSuenaEn(const Duration(seconds: 32)), isFalse);
+        expect(lectura.tituloSuenaEn(const Duration(seconds: 35)), isTrue);
+        // Justo cuando arranca el primer renglón ya no: si no, se verían
+        // dos cosas pintadas a la vez.
+        expect(lectura.tituloSuenaEn(const Duration(milliseconds: 41260)),
+            isFalse);
+        expect(lectura.tituloSuenaEn(const Duration(seconds: 50)), isFalse);
+      });
     });
 
     testWidgets('sabe qué renglón suena en cada momento', (tester) async {
