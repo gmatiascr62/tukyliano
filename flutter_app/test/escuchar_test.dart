@@ -193,6 +193,68 @@ void _elCatalogoDePinocchio() {
       }
     });
 
+    test('no hay audio sin texto en el medio de un capítulo', () {
+      // **Este es el test que faltaba.** Todos los de arriba miran lo que
+      // está en el catálogo; ninguno miraba lo que *falta*, y durante un
+      // rato faltaron párrafos enteros de Collodi sin que se notara: el
+      // texto que quedaba era impecable, solo que con agujeros. En el
+      // capítulo 1 eran veintidós segundos donde se presenta maestro
+      // Ciliegia, en el 16 veinticinco de la carrozzina. El audio los lee
+      // y en la pantalla el renglón iluminado se queda clavado.
+      //
+      // Un párrafo que falta se ve así: un hueco entre el final de un
+      // renglón y el arranque del siguiente. Con el texto completo el
+      // hueco más grande de un capítulo es de 1,9 segundos —la pausa que
+      // hace quien lee entre dos párrafos—, así que ocho segundos es
+      // holgado para no saltar por una pausa larga y sigue agarrando
+      // cualquier frase que se haya perdido.
+      const cuantoSeAguanta = Duration(seconds: 8);
+      var conTiempos = 0;
+
+      for (final capitulo in catalogo.lecturas) {
+        final marcados =
+            capitulo.renglones.where((r) => r.desde != null).toList();
+        if (marcados.isEmpty) continue;
+        conTiempos++;
+
+        for (var i = 0; i < marcados.length - 1; i++) {
+          final termina = marcados[i].hasta ?? marcados[i].desde!;
+          final arranca = marcados[i + 1].desde!;
+          expect(arranca - termina, lessThan(cuantoSeAguanta),
+              reason: '${capitulo.titulo}: entre "${marcados[i].texto}" y '
+                  '"${marcados[i + 1].texto}" hay audio que no tiene '
+                  'renglón');
+        }
+      }
+
+      // Si ningún capítulo tuviera tiempos, el test pasaría sin mirar
+      // nada y no se notaría.
+      expect(conTiempos, greaterThan(0),
+          reason: 'ningún capítulo tiene tiempos: este test no probó nada');
+    });
+
+    test('las leyendas de las ilustraciones no son renglones', () {
+      // El libro escaneado trae ilustraciones con su leyenda, y Wikisource
+      // las mete en el medio del párrafo. Entraban al catálogo como si
+      // fueran texto del cuento: un renglón que nadie lee en voz alta y
+      // que por lo tanto nunca se ilumina.
+      //
+      // Y de paso partían el párrafo en dos. Estas dos mitades son una
+      // sola frase de Collodi con la ilustración en el medio, y tienen que
+      // llegar pegadas.
+      final cap16 = catalogo.lecturas[15];
+      final texto16 = cap16.renglones.map((r) => r.texto).join(' ');
+      expect(texto16, contains('cento pariglie di topini bianchi'));
+      expect(cap16.renglones.map((r) => r.texto),
+          isNot(contains('Il Can-barbone partì come un barbero.')));
+
+      // Y el párrafo del capítulo 1 que se perdía entero: sin él, el audio
+      // presenta a maestro Ciliegia y en la pantalla no pasa nada.
+      final texto1 = catalogo.lecturas[0].renglones.map((r) => r.texto).join(' ');
+      expect(texto1, contains('mastr’Antonio'));
+      expect(texto1, contains('come una ciliegia matura'));
+    });
+
     test('el texto está partido en oraciones, no en párrafos', () {
       // En prosa un párrafo dura entre medio minuto y un minuto, y un
       // renglón iluminado de un minuto no dice dónde va el audio.

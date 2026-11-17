@@ -33,6 +33,7 @@ es prosa:
 
 import argparse
 import html
+from html.parser import HTMLParser
 import json
 import os
 import re
@@ -86,27 +87,173 @@ def pedirleAWikisource(parametros):
             time.sleep(ESPERAR_ENTRE_PEDIDOS * (intento + 1))
 
 
-# El número de página del libro escaneado, con su enlace para editarlo.
-# Wikisource lo mete en el medio del texto, y sacar las marcas sin sacar
-# esto deja "[p. 9 modifica]" partiendo una frase al medio: "gli era
-# entrato addosso una gran [p. 9 modifica]paura". Doscientos cuarenta
-# renglones lo tenían.
-#
-# Hay que sacarlo con contenido y todo, no solo las marcas, porque el
-# número y la palabra "modifica" son texto adentro de esos elementos.
-UN_NUMERO_DE_PAGINA = re.compile(
-    r'<span[^>]*class="[^"]*numeropagina[^"]*".*?</span></span></span>',
-    re.S)
-
-
-def sinLosNumerosDePagina(crudo):
-    return UN_NUMERO_DE_PAGINA.sub('', crudo)
-
-
 # Lo que viene adelante del capítulo y no es el capítulo: los metadatos
-# del libro escaneado y la hoja de estilos que Wikisource mete adentro del
-# primer párrafo.
+# del libro escaneado. Queda de red por si aparece un adorno nuevo que el
+# parser de abajo no conozca.
 NO_ES_TEXTO = ('<dc:', '.mw-parser-output', 'mw-parser-output')
+
+
+# Cómo se saca la prosa del HTML de Wikisource
+# ============================================
+#
+# Esto estaba hecho con tres regex —saca el número de página, saca las
+# marcas, agarrá lo que haya entre <p> y </p>— y cada una se comía texto
+# de Collodi en silencio. Tres mecanismos distintos, encontrados de a uno:
+#
+# 1. El <style> que Wikisource mete adentro del párrafo donde arranca una
+#    ilustración. Sacar las marcas no saca lo que hay *adentro* del
+#    <style>: dejaba el CSS como texto en el medio de la frase, el párrafo
+#    caía en el filtro NO_ES_TEXTO —dice "mw-parser-output", no es texto—
+#    y se tiraba entero, con las dos mitades de Collodi adentro.
+#
+# 2. Los párrafos que no vienen en un <p> sino en un <div
+#    style="text-indent:2em">. Wikisource los arma así cuando una
+#    ilustración flotante parte el párrafo, porque un bloque no puede ir
+#    adentro de un <p>. Son veintiún párrafos en dieciocho capítulos, y el
+#    extractor que solo miraba <p> no los veía.
+#
+# 3. La ilustración en el medio del párrafo, que viene como una <table>
+#    con la imagen y su leyenda. Cortar en el primer </div> partía el
+#    párrafo al medio, y la leyenda —"Il Can-barbone partì come un
+#    barbero."— entraba como si fuera texto del cuento. No se lee en el
+#    audio: es un renglón que nunca se ilumina.
+#
+# Nada de esto se ve leyendo el catálogo: el texto que queda es impecable,
+# solo que le falta un párrafo. Ningún test lo agarraba porque todos miran
+# lo que está y ninguno lo que falta. Aparecieron alineando, como huecos de
+# veintidós y veinticinco segundos de audio sin un renglón que iluminar.
+#
+# Por eso ahora se parsea en serio en vez de sumar un regex por bug: se
+# recorre el árbol, se saltan los adornos con hijos y todo, y el texto de
+# un párrafo partido por una ilustración se vuelve a pegar —"cento
+# pariglie di topini" + "bianchi, e il Can-barbone" es un solo párrafo.
+
+# Dónde empieza el capítulo.
+#
+# La página de Wikisource arranca con su propia cabecera —título, autor,
+# año, de qué escaneo sale, "Informazioni sulla fonte del testo"— y el
+# cuento viene después, adentro de un <div class="testi">. Sin esta puerta
+# esos trescientos caracteres de cabecera entraban como si fueran los
+# primeros renglones del capítulo, y el renglón iluminado arrancaba
+# corrido en todos.
+ACA_EMPIEZA = 'testi'
+
+# Adornos que se saltan con todo lo que tengan adentro.
+#
+# La hoja de estilos y el script, porque su contenido no es texto. La
+# tabla, porque es la ilustración con su leyenda. El número de página, que
+# es el "[p. 9 modifica]" partiendo una frase al medio. Y los spans con
+# que Wikisource envuelve una imagen suelta, que traen la leyenda adentro.
+#
+# Y centertext, que es todo lo que el libro centra y el audio no lee: el
+# número romano del capítulo, su resumen, las rayas que separan escenas y
+# las leyendas de las ilustraciones —"Entrò in casa dalla finestra."—. Se
+# revisaron los treinta y seis: adentro de un centertext no hay una sola
+# línea de Collodi. El epitafio del capítulo 23 no está ahí, así que se
+# salva, que es lo que había que cuidar.
+NI_MIRAR = ('style', 'script', 'table')
+NI_MIRAR_SI_DICE = ('numeropagina', 'myspan1', 'freedimg', 'linkmodifica',
+                    'quality-msg', 'centertext', 'intest')
+
+# Abren párrafo: el <p> de siempre, y el <div> con sangría que Wikisource
+# usa cuando una ilustración parte el párrafo en dos.
+ABRE_PARRAFO = ('p', 'div', 'dd')
+
+# Las que no llevan cierre. No van a la pila de etiquetas abiertas porque
+# quedarían colgadas y correrían la cuenta de dónde abrió cada cosa.
+SE_CIERRAN_SOLAS = ('br', 'img', 'link', 'meta', 'hr', 'input', 'source')
+
+
+class SacarLaProsa(HTMLParser):
+    """Los párrafos del capítulo, sin los adornos de Wikisource.
+
+    Un párrafo partido por una ilustración vuelve a quedar entero: lo que
+    hay antes y lo que hay después del adorno se pegan, porque en el libro
+    es una sola frase.
+    """
+
+    def __init__(self):
+        super().__init__(convert_charrefs=True)
+        self.parrafos = []
+        self._juntando = []
+        # Las etiquetas abiertas, en orden. Todo lo demás son posiciones
+        # en esta pila: dónde abrió el capítulo y dónde abrió el adorno que
+        # se está salteando. Así cerrar una etiqueta es truncar la pila, y
+        # un adorno que se cierra no deja nada colgado.
+        self._pila = []
+        self._capitulo = None
+        self._adorno = None
+
+    def _esAdorno(self, etiqueta, atributos):
+        if etiqueta in NI_MIRAR:
+            return True
+        comoVino = ' '.join(
+            v.lower() for _, v in atributos if v).replace(' ', '')
+        return any(x in comoVino for x in NI_MIRAR_SI_DICE)
+
+    def _esParrafo(self, etiqueta, atributos):
+        if etiqueta == 'p':
+            return True
+        if etiqueta not in ABRE_PARRAFO:
+            return False
+        # El <div> solo abre párrafo si tiene sangría: los otros son
+        # cajas de maquetado y abrir párrafo en cada uno partiría el texto.
+        estilo = dict(atributos).get('style') or ''
+        return 'text-indent' in estilo.replace(' ', '')
+
+    def handle_starttag(self, etiqueta, atributos):
+        # Las que no cierran nunca —<br>, <img>, <link>— no van a la pila:
+        # si fueran, quedarían colgadas y la cuenta se correría.
+        if etiqueta in SE_CIERRAN_SOLAS:
+            return
+        self._pila.append(etiqueta)
+        if self._capitulo is None:
+            clases = (dict(atributos).get('class') or '').split()
+            if ACA_EMPIEZA in clases:
+                self._capitulo = len(self._pila) - 1
+            return
+        if self._adorno is not None:
+            return
+        if self._esAdorno(etiqueta, atributos):
+            # No se cierra el párrafo: la ilustración parte la frase al
+            # medio y las dos mitades son un solo párrafo del libro.
+            self._adorno = len(self._pila) - 1
+            return
+        if self._esParrafo(etiqueta, atributos):
+            self._cerrarParrafo()
+
+    def handle_endtag(self, etiqueta):
+        if etiqueta in SE_CIERRAN_SOLAS or etiqueta not in self._pila:
+            return
+        donde = len(self._pila) - 1 - self._pila[::-1].index(etiqueta)
+        del self._pila[donde:]
+
+        if self._adorno is not None and donde <= self._adorno:
+            self._adorno = None
+            return
+        if self._adorno is not None:
+            return
+        if etiqueta in ABRE_PARRAFO:
+            self._cerrarParrafo()
+        # Cuando se cierra el <div class="testi"> se terminó el capítulo:
+        # lo que venga después son los enlaces al anterior y al siguiente.
+        if self._capitulo is not None and donde <= self._capitulo:
+            self._cerrarParrafo()
+            self._capitulo = None
+
+    def handle_data(self, texto):
+        if self._capitulo is not None and self._adorno is None:
+            self._juntando.append(texto)
+
+    def _cerrarParrafo(self):
+        texto = re.sub(r'\s+', ' ', ''.join(self._juntando)).strip()
+        self._juntando = []
+        if texto:
+            self.parrafos.append(texto)
+
+    def terminar(self):
+        self._cerrarParrafo()
+        return self.parrafos
 
 
 def losTitulos():
@@ -195,12 +342,10 @@ def elTextoDe(numero):
     if 'error' in datos:
         raise SystemExit(f"capítulo {numero}: {datos['error'].get('info')}")
 
-    crudo = sinLosNumerosDePagina(datos['parse']['text'])
+    sacador = SacarLaProsa()
+    sacador.feed(datos['parse']['text'])
     parrafos = []
-    for pedazo in re.findall(r'<p[^>]*>(.*?)</p>', crudo, re.S):
-        texto = re.sub(r'<[^>]+>', '', pedazo)
-        texto = html.unescape(texto).strip()
-        texto = re.sub(r'\s+', ' ', texto)
+    for texto in sacador.terminar():
         if len(texto) < 3 or any(x in texto for x in NO_ES_TEXTO):
             continue
         if SOLO_UN_NUMERO.match(texto):
