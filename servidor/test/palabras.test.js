@@ -195,6 +195,33 @@ test('si la IA tarda, al que preguntó no se lo hace esperar', async () => {
   assert.ok(tardo < 1000, `tardó ${tardo} ms en contestar`);
 });
 
+test('si Google rechaza el pedido, no se dice que tardó', async () => {
+  // Esto pasó de verdad: Google suspendió la cuenta por una factura impaga
+  // y empezó a contestar 403 al instante. El servidor seguía informando
+  // "tardo" —que era falso, contestaba en medio segundo— y encontrar la
+  // causa costó llamar a Gemini a mano desde afuera.
+  //
+  // El motivo no se le muestra a nadie en pantalla: la app sigue diciendo
+  // que la palabra no está. Pero viaja en la respuesta, que es donde se
+  // mira cuando algo no anda.
+  const base = new BaseDeMentira();
+  globalThis.fetch = async () => ({
+    ok: false,
+    status: 403,
+    text: async () => 'billing',
+  });
+
+  const contesto = await atenderLaPalabra(
+    { palabra: 'sbasoffiare', quien: 'uno' },
+    afuera(base),
+  );
+
+  const dijo = await contesto.json();
+  assert.equal(dijo.de, 'nadie');
+  assert.equal(dijo.es.length, 0);
+  assert.equal(dijo.porQue, 403);
+});
+
 test('y la palabra se guarda igual, para el que venga después', async () => {
   // Esta es la parte que importa: el primero se queda sin ella, pero la
   // palabra entra. El segundo la recibe de la base al instante.

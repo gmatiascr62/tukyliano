@@ -314,6 +314,31 @@ void main() {
           )),
         );
 
+      case 'pinocchio-titulo':
+        // El capítulo 1 con el reloj puesto mientras el lector lee el
+        // título: así se ve que el título es la primera línea del texto y
+        // se pinta como cualquier renglón, en vez de estar clavado arriba.
+        final conTitulo = ReproductorFalso();
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaLecturas(
+            repositorio: _elCatalogoDeVerdad(
+              archivo: 'assets/pinocchio.json',
+              clave: 'capitulos',
+            ),
+            descargas: _descargasDeMentira(),
+            reproductor: conTitulo,
+            diccionario: _diccionarioChico(),
+          )),
+          despuesDeAbrir: (t) async {
+            await t.tap(find.textContaining('Come andò che maestro Ciliegia'));
+            await t.pumpAndSettle();
+            conTitulo.correrA(const Duration(seconds: 36));
+            await t.pumpAndSettle();
+          },
+        );
+
       case 'bar':
         // Con la escena ya empezada, una corrección adentro y el barista
         // cerrando: es lo que hay que mirar. Recién abierta solo se ve el

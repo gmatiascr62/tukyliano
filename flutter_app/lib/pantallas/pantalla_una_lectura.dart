@@ -258,11 +258,7 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        _Cabecera(
-          lectura: lectura,
-          alVolver: widget.alVolver,
-          leyendoElTitulo: _enElTitulo,
-        ),
+        _Cabecera(lectura: lectura, alVolver: widget.alVolver),
         if (_porQueNoSuena != null)
           _NoAbre(porQue: _porQueNoSuena!)
         else
@@ -277,8 +273,10 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
         Expanded(
           child: lectura.tieneTexto
               ? _ElTexto(
+                  lectura: lectura,
                   renglones: lectura.renglones,
                   enElRenglon: _enElRenglon,
+                  leyendoElTitulo: _enElTitulo,
                   claves: _claves,
                   scroll: _scroll,
                   alTocarPalabra: _queQuiereDecir,
@@ -291,63 +289,28 @@ class _PantallaUnaLecturaState extends State<PantallaUnaLectura> {
 }
 
 class _Cabecera extends StatelessWidget {
-  const _Cabecera({
-    required this.lectura,
-    required this.alVolver,
-    this.leyendoElTitulo = false,
-  });
+  const _Cabecera({required this.lectura, required this.alVolver});
 
   final Lectura lectura;
-
-  /// True mientras el lector lee el título en voz alta.
-  final bool leyendoElTitulo;
   final VoidCallback alVolver;
 
   @override
   Widget build(BuildContext context) {
+    // Sin el título: el título es la primera línea del texto y se va para
+    // arriba con el resto. Acá queda lo que tiene que estar siempre a mano,
+    // que es la salida y cuánto dura.
     return Padding(
       padding: const EdgeInsets.fromLTRB(4, 4, 16, 4),
       child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           IconButton(
             onPressed: alVolver,
             icon: const Icon(Icons.arrow_back),
-            tooltip: 'Volver a las fábulas',
+            tooltip: 'Volver a la lista',
           ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 8),
-                // Se pinta igual que un renglón mientras el lector lo lee:
-                // en Pinocchio el título es la primera línea del capítulo,
-                // no un rótulo. Vive acá arriba y no en la lista para no
-                // aparecer dos veces.
-                Container(
-                  color: leyendoElTitulo ? Tema.verdeSuave : null,
-                  padding: leyendoElTitulo
-                      ? const EdgeInsets.symmetric(vertical: 2, horizontal: 4)
-                      : null,
-                  child: Text(
-                    lectura.titulo,
-                    style: const TextStyle(
-                      fontSize: 19,
-                      fontWeight: FontWeight.w700,
-                      color: Tema.titulo,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 2),
-                Text(
-                  lectura.cuantoDura,
-                  style: const TextStyle(
-                    fontSize: 12,
-                    color: Tema.textoTenue,
-                  ),
-                ),
-              ],
-            ),
+          Text(
+            lectura.cuantoDura,
+            style: const TextStyle(fontSize: 13, color: Tema.textoTenue),
           ),
         ],
       ),
@@ -438,17 +401,54 @@ class _SinTexto extends StatelessWidget {
 }
 
 /// El texto, con cada palabra tocable.
+/// El título del capítulo, como primera línea del texto.
+///
+/// Se pinta igual que un renglón mientras el lector lo lee, porque es eso:
+/// la primera línea, no un rótulo. En Pinocchio el lector dice "Capitolo
+/// primo" y después el título entero, y recién ahí empieza el cuento.
+class _ElTitulo extends StatelessWidget {
+  const _ElTitulo({required this.lectura, required this.leyendolo});
+
+  final Lectura lectura;
+  final bool leyendolo;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      color: leyendolo ? Tema.verdeSuave : null,
+      padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
+      margin: const EdgeInsets.only(bottom: 14),
+      child: Text(
+        lectura.titulo,
+        style: const TextStyle(
+          fontSize: 19,
+          height: 1.3,
+          fontWeight: FontWeight.w700,
+          color: Tema.titulo,
+        ),
+      ),
+    );
+  }
+}
+
 class _ElTexto extends StatefulWidget {
   const _ElTexto({
+    required this.lectura,
     required this.renglones,
     required this.enElRenglon,
+    required this.leyendoElTitulo,
     required this.claves,
     required this.scroll,
     required this.alTocarPalabra,
   });
 
+  /// Para el título, que va como primer renglón del texto.
+  final Lectura lectura;
   final List<RenglonDeLectura> renglones;
   final int enElRenglon;
+
+  /// True mientras el lector lee el título en voz alta.
+  final bool leyendoElTitulo;
   final List<GlobalKey> claves;
   final ScrollController scroll;
   /// Se le pasa la palabra y el renglón entero. El renglón es lo que
@@ -482,8 +482,22 @@ class _ElTextoState extends State<_ElTexto> {
     return ListView.builder(
       controller: widget.scroll,
       padding: const EdgeInsets.fromLTRB(22, 14, 22, 28),
-      itemCount: widget.renglones.length + 1,
-      itemBuilder: (context, i) {
+      // El título adelante y el pie atrás, con el texto en el medio.
+      itemCount: widget.renglones.length + 2,
+      itemBuilder: (context, puesto) {
+        // El título va adentro del texto y no en una barra fija arriba
+        // porque es la primera línea del capítulo, no un rótulo: en un libro
+        // está arriba de la página y se va cuando uno avanza. Clavado arriba
+        // se quedaba a la vista todo el capítulo, ocupando lugar y
+        // repitiendo algo que ya pasó.
+        if (puesto == 0) {
+          return _ElTitulo(
+            lectura: widget.lectura,
+            leyendolo: widget.leyendoElTitulo,
+          );
+        }
+
+        final i = puesto - 1;
         if (i == widget.renglones.length) {
           return const Padding(
             padding: EdgeInsets.only(top: 20),
