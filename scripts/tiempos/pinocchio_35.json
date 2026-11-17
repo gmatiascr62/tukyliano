@@ -1,0 +1,457 @@
+{
+  "id": "pinocchio_35",
+  "titulo": "35. Pinocchio ritrova in corpo al Pesce-cane… Chi ritrova? Leggete questo capitolo e lo saprete.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 30.2,
+    "hasta": 38.47,
+    "texto": "Pinocchio ritrova in corpo al Pesce-cane… Chi ritrova? Leggete questo capitolo e lo saprete."
+  },
+  "renglones": [
+    {
+      "desde": 38.47,
+      "hasta": 52.92,
+      "texto": "Pinocchio, appena che ebbe detto addio al suo buon amico Tonno, si mosse brancolando in mezzo a quel buio, e camminando a tastoni dentro il corpo del Pesce-cane, si avviò, un passo dietro l’altro,"
+    },
+    {
+      "desde": 52.92,
+      "hasta": 58.01,
+      "texto": "verso quel piccolo chiarore che vedeva baluginare lontano lontano."
+    },
+    {
+      "desde": 58.01,
+      "hasta": 71.06,
+      "texto": "E nel camminare sentì che i suoi piedi sguazzavano in una pozzanghera d’acqua grassa e sdrucciolona, e quell’acqua sapeva di un odore così acuto di pesce fritto, che gli pareva di essere a mezza quaresima."
+    },
+    {
+      "desde": 71.06,
+      "hasta": 83.05,
+      "texto": "E più andava avanti, e più il chiarore si faceva rilucente e distinto: finchè, cammina cammina, alla fine arrivò: e quando fu arrivato.... che cosa trovò?"
+    },
+    {
+      "desde": 83.05,
+      "hasta": 97.0,
+      "texto": "Ve lo do a indovinare in mille: trovò una piccola tavola apparecchiata, con sopra una candela accesa infilata in una bottiglia di cristallo verde, e seduto a tavola un vecchiettino tutto bianco,"
+    },
+    {
+      "desde": 97.0,
+      "hasta": 108.96,
+      "texto": "come se fosse di neve o di panna montata, il quale se ne stava lì biascicando alcuni pesciolini vivi, ma tanto vivi, che alle volte, mentre li mangiava, gli scappavano perfino di bocca."
+    },
+    {
+      "desde": 108.96,
+      "hasta": 119.33,
+      "texto": "A quella vista il povero Pinocchio ebbe un’allegrezza così grande e così inaspettata, che ci mancò un ètte non cadesse in delirio."
+    },
+    {
+      "desde": 119.33,
+      "hasta": 129.01,
+      "texto": "Voleva ridere, voleva piangere, voleva dire un monte di cose; e invece mugolava confusamente e balbettava delle parole tronche e sconclusionate."
+    },
+    {
+      "desde": 129.01,
+      "hasta": 136.85,
+      "texto": "Finalmente gli riuscì di cacciar fuori un grido di gioia, e spalancando le braccia e gettandosi al collo del vecchietto, cominciò a urlare:"
+    },
+    {
+      "desde": 136.85,
+      "hasta": 139.51,
+      "texto": "— Oh! babbino mio! finalmente vi ho ritrovato!"
+    },
+    {
+      "desde": 140.56,
+      "hasta": 144.33,
+      "texto": "Ora poi non vi lascio più, mai più, mai più!"
+    },
+    {
+      "desde": 144.33,
+      "hasta": 146.59,
+      "texto": "— Dunque gli occhi mi dicono il vero?"
+    },
+    {
+      "desde": 146.59,
+      "hasta": 149.41,
+      "texto": "— replicò il vecchietto stropicciandosi gli occhi."
+    },
+    {
+      "desde": 149.41,
+      "hasta": 152.77,
+      "texto": "— Dunque tu se’ proprio il mi’ caro Pinocchio?"
+    },
+    {
+      "desde": 152.77,
+      "hasta": 155.53,
+      "texto": "— Sì, sì, sono io, proprio io!"
+    },
+    {
+      "desde": 155.53,
+      "hasta": 158.93,
+      "texto": "E voi mi avete digià perdonato, non è vero?"
+    },
+    {
+      "desde": 158.93,
+      "hasta": 164.1,
+      "texto": "Oh! babbino mio, come siete buono!... e pensare che io, invece...."
+    },
+    {
+      "desde": 164.1,
+      "hasta": 169.16,
+      "texto": "Oh! ma se sapeste quante disgrazie mi son piovute sul capo e quante cose mi son andate a traverso!"
+    },
+    {
+      "desde": 170.83,
+      "hasta": 178.79,
+      "texto": "Figuratevi che il giorno che voi, povero babbino, col vendere la vostra casacca, mi compraste l’Abbecedario per andare a scuola, io scappai a vedere i burattini,"
+    },
+    {
+      "desde": 178.79,
+      "hasta": 189.6,
+      "texto": "e il burattinaio mi voleva mettere sul fuoco perchè gli cocessi il montone arrosto, che fu quello poi che mi dètte cinque monete d’oro, perchè le portassi a voi, ma io trovai la Volpe e il Gatto,"
+    },
+    {
+      "desde": 189.6,
+      "hasta": 201.88,
+      "texto": "che mi condussero all’Osteria del Gambero Rosso dove mangiarono come lupi, e partito solo di notte incontrai gli assassini che si messero a corrermi dietro, e io via, e loro dietro, e io via e loro sempre dietro,"
+    },
+    {
+      "desde": 201.88,
+      "hasta": 214.13,
+      "texto": "e io via, finchè m’impiccarono a un ramo della Quercia Grande, dovecchè la bella Bambina dai capelli turchini mi mandò a prendere con una carrozzina, e i medici, quando m’ebbero visitato, dissero subito:"
+    },
+    {
+      "desde": 214.13,
+      "hasta": 223.52,
+      "texto": "«Se non è morto, è segno che è sempre vivo», e allora mi scappò detto una bugia, e il naso cominciò a crescermi e non mi passava più dalla porta di camera,"
+    },
+    {
+      "desde": 223.52,
+      "hasta": 235.38,
+      "texto": "motivo per cui andai con la Volpe e col Gatto a sotterrare le quattro monete d’oro, che una l’avevo spesa all’osteria, e il pappagallo si messe a ridere, e viceversa di duemila monete non trovai più nulla,"
+    },
+    {
+      "desde": 235.38,
+      "hasta": 246.57,
+      "texto": "la quale il giudice quando seppe che ero stato derubato, mi fece subito mettere in prigione, per dare una soddisfazione ai ladri, di dove, col venir via, vidi un bel grappolo d’uva in un campo,"
+    },
+    {
+      "desde": 246.57,
+      "hasta": 257.67,
+      "texto": "che rimasi preso alla tagliola e il contadino di santa ragione mi messe il collare da cane perchè facessi la guardia al pollaio, che riconobbe la mia innocenza e mi lasciò andare, e il serpente,"
+    },
+    {
+      "desde": 259.24,
+      "hasta": 268.3,
+      "texto": "colla coda che gli fumava, cominciò a ridere e gli si strappò una vena sul petto, e così ritornai alla casa della bella Bambina, che era morta, e il Colombo vedendo che piangevo mi disse:"
+    },
+    {
+      "desde": 268.3,
+      "hasta": 277.99,
+      "texto": "«Ho visto il tu’ babbo che si fabbricava una barchettina per venirti a cercare» e io gli dissi: «Oh! se avessi le ali anch’io» e lui mi disse: «Vuoi venire dal tuo babbo?» e io gli dissi:"
+    },
+    {
+      "desde": 278.44,
+      "hasta": 285.19,
+      "texto": "« Magari! ma chi mi ci porta?» e lui mi disse: «Ti ci porto io» e io gli dissi: «Come?» e lui mi disse:"
+    },
+    {
+      "desde": 285.19,
+      "hasta": 292.33,
+      "texto": "«Montami sulla groppa» e così abbiamo volato tutta la notte, poi la mattina tutti i pescatori che guardavano verso il mare mi dissero:"
+    },
+    {
+      "desde": 292.33,
+      "hasta": 301.89,
+      "texto": "«C’è un pover’omo in una barchetta che sta per affogare» e io da lontano vi riconobbi subito, perchè me lo diceva il core, e vi feci segno di tornare alla spiaggia...."
+    },
+    {
+      "desde": 301.89,
+      "hasta": 310.78,
+      "texto": "— Ti riconobbi anch’ io, — disse Geppetto — e sarei volentieri tornato alla spiaggia: ma come fare? il mare era grosso e un cavallone m’arrovesciò la barchetta."
+    },
+    {
+      "desde": 312.45,
+      "hasta": 324.7,
+      "texto": "Allora un orribile Pesce-cane che era lì vicino, appena che m’ebbe visto nell’acqua, corse subito verso di me, e tirata fuori la lingua, mi prese pari pari, e m’inghiottì come un tortellino di Bologna."
+    },
+    {
+      "desde": 324.7,
+      "hasta": 327.14,
+      "texto": "— E quant’è che siete chiuso qui dentro?"
+    },
+    {
+      "desde": 327.14,
+      "hasta": 328.29,
+      "texto": "— domandò Pinocchio."
+    },
+    {
+      "desde": 328.29,
+      "hasta": 334.81,
+      "texto": "— Da quel giorno in poi, saranno ormai due anni: due anni, Pinocchio mio.... che mi son parsi due secoli!"
+    },
+    {
+      "desde": 334.81,
+      "hasta": 336.43,
+      "texto": "— E come avete fatto a campare?"
+    },
+    {
+      "desde": 336.43,
+      "hasta": 338.07,
+      "texto": "E dove avete trovata la candela?"
+    },
+    {
+      "desde": 338.07,
+      "hasta": 341.65,
+      "texto": "E i fiammiferi per accenderla, chi ve li ha dati?"
+    },
+    {
+      "desde": 341.65,
+      "hasta": 343.41,
+      "texto": "— Ora ti racconterò tutto."
+    },
+    {
+      "desde": 343.41,
+      "hasta": 351.94,
+      "texto": "Devi dunque sapere che quella medesima burrasca, che rovesciò la mia barchetta, fece anche affondare un bastimento mercantile."
+    },
+    {
+      "desde": 351.94,
+      "hasta": 364.81,
+      "texto": "I marinai si salvarono tutti, ma il bastimento colò a fondo, e il solito Pesce-cane, che quel giorno aveva un appetito eccellente, dopo aver inghiottito me, inghiottì anche il bastimento.... — Come?"
+    },
+    {
+      "desde": 364.81,
+      "hasta": 366.66,
+      "texto": "Lo inghiottì tutto in un boccone?..."
+    },
+    {
+      "desde": 366.66,
+      "hasta": 369.18,
+      "texto": "— domandò Pinocchio maravigliato."
+    },
+    {
+      "desde": 369.18,
+      "hasta": 376.27,
+      "texto": "— Tutto in un boccone: e risputò solamente l’albero maestro, perchè gli era rimasto fra i denti come una lisca."
+    },
+    {
+      "desde": 376.27,
+      "hasta": 388.62,
+      "texto": "Per mia gran fortuna, quel bastimento era carico di carne conservata in cassette di stagno, ma di biscotto, ossia di pane abbrostolito, di bottiglie di vino, d’uva secca, di cacio, di caffè, di zucchero,"
+    },
+    {
+      "desde": 388.62,
+      "hasta": 392.38,
+      "texto": "di candele steariche e di scatole di fiammiferi di cera."
+    },
+    {
+      "desde": 392.43,
+      "hasta": 406.98,
+      "texto": "Con tutta questa grazia di Dio ho potuto campare due anni: ma oggi sono agli ultimi sgoccioli: oggi nella dispensa non c’è più nulla, e questa candela, che vedi accesa, è l’ultima candela che mi sia rimasta… — E dopo?"
+    },
+    {
+      "desde": 406.98,
+      "hasta": 410.34,
+      "texto": "— E dopo, caro mio, rimarremo tutt’e due al buio."
+    },
+    {
+      "desde": 410.34,
+      "hasta": 415.75,
+      "texto": "— Allora, babbino mio, — disse Pinocchio — non c’è tempo da perdere."
+    },
+    {
+      "desde": 415.75,
+      "hasta": 418.37,
+      "texto": "Bisogna pensar subito a fuggire."
+    },
+    {
+      "desde": 418.37,
+      "hasta": 420.14,
+      "texto": "— A fuggire?… e come?"
+    },
+    {
+      "desde": 420.14,
+      "hasta": 424.6,
+      "texto": "— Scappando dalla bocca del Pesce-cane e gettandosi a nuoto in mare."
+    },
+    {
+      "desde": 424.6,
+      "hasta": 428.44,
+      "texto": "— Tu parli bene: ma io, caro Pinocchio, non so nuotare!"
+    },
+    {
+      "desde": 428.44,
+      "hasta": 429.68,
+      "texto": "— E che importa?…"
+    },
+    {
+      "desde": 429.68,
+      "hasta": 436.6,
+      "texto": "Voi mi monterete a cavalluccio sulle spalle, e io, che sono un buon nuotatore, vi porterò sano e salvo fino alla spiaggia."
+    },
+    {
+      "desde": 436.6,
+      "hasta": 438.38,
+      "texto": "— Illusioni, ragazzo mio!"
+    },
+    {
+      "desde": 439.51,
+      "hasta": 442.58,
+      "texto": "— replicò Geppetto, scotendo il capo e sorridendo malinconicamente."
+    },
+    {
+      "desde": 442.58,
+      "hasta": 450.4,
+      "texto": "— Ti par egli possibile che un burattino, alto appena un metro come sei tu, possa aver tanta forza da portarmi a nuoto sulle spalle?"
+    },
+    {
+      "desde": 450.4,
+      "hasta": 452.36,
+      "texto": "— Provatevi e vedrete!"
+    },
+    {
+      "desde": 452.36,
+      "hasta": 459.08,
+      "texto": "A ogni modo, se sarà scritto in cielo che dobbiamo morire, avremo almeno la gran consolazione di morire abbracciati insieme. ―"
+    },
+    {
+      "desde": 459.08,
+      "hasta": 465.28,
+      "texto": "E senza dir altro, Pinocchio prese in mano la candela, e andando avanti per far lume, disse al suo babbo:"
+    },
+    {
+      "desde": 465.28,
+      "hasta": 466.83,
+      "texto": "— Venite dietro a me, e non abbiate paura."
+    },
+    {
+      "desde": 468.08,
+      "hasta": 473.99,
+      "texto": "— E così camminarono un bel pezzo, e traversarono tutto il corpo e tutto lo stomaco del Pesce-cane."
+    },
+    {
+      "desde": 473.99,
+      "hasta": 483.63,
+      "texto": "Ma giunti che furono al punto dove cominciava la spaziosa gola del mostro, pensarono bene di fermarsi per dare un’occhiata e cogliere il momento opportuno alla fuga."
+    },
+    {
+      "desde": 483.63,
+      "hasta": 493.53,
+      "texto": "Ora bisogna sapere che il Pesce-cane, essendo molto vecchio e soffrendo d’asma e di palpitazione di cuore, era costretto a dormire a bocca aperta:"
+    },
+    {
+      "desde": 493.53,
+      "hasta": 505.67,
+      "texto": "per cui Pinocchio affacciandosi al principio della gola, e guardando in su, potè vedere al di fuori di quell’enorme bocca spalancata un bel pezzo di cielo stellato e un bellissimo lume di luna."
+    },
+    {
+      "desde": 505.67,
+      "hasta": 510.83,
+      "texto": "— Questo è il vero momento di scappare — bisbigliò allora, voltandosi al suo babbo."
+    },
+    {
+      "desde": 510.83,
+      "hasta": 516.22,
+      "texto": "— Il Pesce-cane dorme come un ghiro: il mare è tranquillo e ci si vede come di giorno."
+    },
+    {
+      "desde": 516.22,
+      "hasta": 521.3,
+      "texto": "Venite dunque, babbino, dietro a me, e fra poco saremo salvi. —"
+    },
+    {
+      "desde": 521.3,
+      "hasta": 529.94,
+      "texto": "Detto fatto salirono su per la gola del mostro marino, e arrivati in quell’immensa bocca cominciarono a camminare in punta di piedi sulla lingua; ;"
+    },
+    {
+      "desde": 529.94,
+      "hasta": 534.7,
+      "texto": "una lingua così larga e così lunga, che pareva il viottolone d’un giardino."
+    },
+    {
+      "desde": 534.7,
+      "hasta": 545.37,
+      "texto": "E già stavano lì lì per fare il gran salto e per gettarsi a nuoto nel mare, quando, sul più bello, il Pesce-cane starnutì, e nello starnutire, dètte uno scossone così violento,"
+    },
+    {
+      "desde": 545.37,
+      "hasta": 552.62,
+      "texto": "che Pinocchio e Geppetto si trovarono rimbalzati all’indietro e scaraventati nuovamente in fondo allo stomaco del mostro."
+    },
+    {
+      "desde": 552.67,
+      "hasta": 558.71,
+      "texto": "Nel grand’urto della caduta la candela si spense, e padre e figliuolo rimasero al buio. — E ora?…"
+    },
+    {
+      "desde": 558.71,
+      "hasta": 561.37,
+      "texto": "— domandò Pinocchio facendosi serio."
+    },
+    {
+      "desde": 561.37,
+      "hasta": 564.48,
+      "texto": "— Ora, ragazzo mio, siamo bell’e perduti."
+    },
+    {
+      "desde": 564.48,
+      "hasta": 565.84,
+      "texto": "— Perchè perduti?"
+    },
+    {
+      "desde": 566.35,
+      "hasta": 569.68,
+      "texto": "Datemi la mano, babbino, e badate di non sdrucciolare!…"
+    },
+    {
+      "desde": 569.68,
+      "hasta": 571.14,
+      "texto": "— Dove mi conduci?"
+    },
+    {
+      "desde": 571.14,
+      "hasta": 573.38,
+      "texto": "— Dobbiamo ritentare la fuga."
+    },
+    {
+      "desde": 573.38,
+      "hasta": 575.38,
+      "texto": "Venite con me e non abbiate paura. —"
+    },
+    {
+      "desde": 575.66,
+      "hasta": 587.32,
+      "texto": "Ciò detto, Pinocchio prese il suo babbo per la mano: e camminando sempre in punta di piedi, risalirono insieme su per la gola del mostro: poi traversarono tutta la lingua e scavalcarono i tre filari di denti."
+    },
+    {
+      "desde": 588.05,
+      "hasta": 593.01,
+      "texto": "Prima però di fare il gran salto, il burattino disse al suo babbo:"
+    },
+    {
+      "desde": 593.01,
+      "hasta": 597.27,
+      "texto": "— Montatemi a cavalluccio sulle spalle e abbracciatemi forte forte."
+    },
+    {
+      "desde": 597.27,
+      "hasta": 599.13,
+      "texto": "Al resto ci penso io. —"
+    },
+    {
+      "desde": 599.13,
+      "hasta": 601.54,
+      "texto": "Appena Geppetto si fu accomodato per bene"
+    },
+    {
+      "desde": 601.54,
+      "hasta": 608.53,
+      "texto": "sulle spalle del figliuolo, il bravo Pinocchio, sicuro del fatto suo, si gettò nell’acqua e cominciò a nuotare."
+    },
+    {
+      "desde": 608.58,
+      "hasta": 619.8,
+      "texto": "Il mare era tranquillo come un olio: la luna splendeva in tutto il suo chiarore, e il Pesce-cane seguitava a dormire di un sonno così profondo, che non l’avrebbe svegliato nemmeno una cannonata."
+    }
+  ]
+}
