@@ -77,6 +77,28 @@ Color? _comoEstaElTitulo(WidgetTester tester) {
 }
 
 void main() {
+  testWidgets('el título es la primera línea del texto, no una barra fija',
+      (tester) async {
+    // Estuvo un rato clavado arriba en una cabecera propia y Matías lo
+    // marcó enseguida: "debería verse como el resto de la historia, que se
+    // vaya para arriba a medida que va pasando la historia". Tiene razón,
+    // y es como funciona un libro: el título está arriba de la página y se
+    // va cuando uno avanza. Clavado arriba se quedaba a la vista el
+    // capítulo entero, ocupando lugar y repitiendo algo que ya pasó.
+    await _abrir(tester);
+
+    // Adentro de la lista que se desplaza, no afuera.
+    expect(
+      find.descendant(
+        of: find.byType(ListView),
+        matching: find.text(_elTitulo),
+      ),
+      findsOneWidget,
+    );
+    // Y una sola vez: si además quedara en una cabecera, se vería dos veces.
+    expect(find.text(_elTitulo), findsOneWidget);
+  });
+
   testWidgets('se empieza por el título, no por el cuento', (tester) async {
     final reproductor = await _abrir(tester);
 
