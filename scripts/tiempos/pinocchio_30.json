@@ -1,0 +1,622 @@
+{
+  "id": "pinocchio_30",
+  "titulo": "30. Pinocchio, invece di diventare un ragazzo, parte di nascosto col suo amico Lucignolo per il Paese dei Balocchi.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.49,
+    "hasta": 40.79,
+    "texto": "Pinocchio, invece di diventare un ragazzo, parte di nascosto col suo amico Lucignolo per il Paese dei Balocchi."
+  },
+  "renglones": [
+    {
+      "desde": 41.13,
+      "hasta": 48.95,
+      "texto": "Com’è naturale, Pinocchio chiese subito alla Fata il permesso di andare in giro per la città a fare gl’inviti: e la Fata gli disse:"
+    },
+    {
+      "desde": 50.79,
+      "hasta": 59.26,
+      "texto": "— Va’ pure a invitare i tuoi compagni per la colazione di domani: ma ricordati di tornare a casa prima che faccia notte. Hai capito?"
+    },
+    {
+      "desde": 59.26,
+      "hasta": 64.47,
+      "texto": "— Fra un’ora prometto di essere bell’ e ritornato — replicò il burattino."
+    },
+    {
+      "desde": 64.47,
+      "hasta": 65.9,
+      "texto": "— Bada, Pinocchio!"
+    },
+    {
+      "desde": 65.9,
+      "hasta": 70.87,
+      "texto": "I ragazzi fanno presto a promettere, ma il più delle volte, fanno tardi a mantenere."
+    },
+    {
+      "desde": 70.87,
+      "hasta": 77.12,
+      "texto": "— Ma io non sono come gli altri: io, quando dico una cosa, la mantengo. — Vedremo."
+    },
+    {
+      "desde": 77.12,
+      "hasta": 81.79,
+      "texto": "Caso poi tu disubbidissi, tanto peggio per te. — Perchè?"
+    },
+    {
+      "desde": 81.79,
+      "hasta": 88.43,
+      "texto": "— Perchè i ragazzi che non dànno retta ai consigli di chi ne sa più di loro, vanno sempre incontro a qualche disgrazia."
+    },
+    {
+      "desde": 88.43,
+      "hasta": 89.79,
+      "texto": "— E io l’ho provato!"
+    },
+    {
+      "desde": 89.79,
+      "hasta": 91.17,
+      "texto": "— disse Pinocchio."
+    },
+    {
+      "desde": 91.17,
+      "hasta": 93.04,
+      "texto": "— Ma ora non ci ricasco più!"
+    },
+    {
+      "desde": 93.04,
+      "hasta": 95.35,
+      "texto": "— Vedremo se dici il vero.—"
+    },
+    {
+      "desde": 95.35,
+      "hasta": 105.59,
+      "texto": "Senza aggiungere altre parole, il burattino salutò la sua buona Fata, che era per lui una specie di mamma, e cantando e ballando uscì fuori dalla porta di casa."
+    },
+    {
+      "desde": 105.59,
+      "hasta": 109.82,
+      "texto": "In poco più d’un’ora tutti i suoi amici furono invitati."
+    },
+    {
+      "desde": 109.82,
+      "hasta": 116.03,
+      "texto": "Alcuni accettarono subito e di gran cuore, altri, da principio, si fecero un po’ pregare;"
+    },
+    {
+      "desde": 116.04,
+      "hasta": 127.6,
+      "texto": "ma quando seppero che i panini da inzuppare nel caffè-e-latte sarebbero stati imburrati anche dalla parte di fuori, finirono tutti col dire: — Verremo anche noi, per farti piacere. —"
+    },
+    {
+      "desde": 127.6,
+      "hasta": 137.28,
+      "texto": "Ora bisogna sapere che Pinocchio, fra i suoi amici e compagni di scuola, ne aveva uno prediletto e carissimo, il quale si chiamava di nome Romeo;"
+    },
+    {
+      "desde": 137.28,
+      "hasta": 148.54,
+      "texto": "ma tutti lo chiamavano col soprannome di Lucignolo, per via del suo personalino asciutto, secco e allampanato, tale e quale come il lucignuolo nuovo di un lumino da notte."
+    },
+    {
+      "desde": 148.54,
+      "hasta": 155.74,
+      "texto": "Lucignolo era il ragazzo più svogliato e più birichino di tutta la scuola: ma Pinocchio gli voleva un gran bene."
+    },
+    {
+      "desde": 156.27,
+      "hasta": 167.7,
+      "texto": "Difatti andò subito a cercarlo a casa per invitarlo alla colazione, e non lo trovò: tornò una seconda volta, e Lucignolo non c’era: tornò una terza volta, e fece la strada invano."
+    },
+    {
+      "desde": 168.56,
+      "hasta": 170.52,
+      "texto": "Dove poterlo ripescare?"
+    },
+    {
+      "desde": 170.52,
+      "hasta": 177.12,
+      "texto": "Cerca di qua, cerca di là, finalmente lo vide nascosto sotto il portico di una casa di contadini."
+    },
+    {
+      "desde": 177.12,
+      "hasta": 178.92,
+      "texto": "— Che cosa fai costì?"
+    },
+    {
+      "desde": 178.92,
+      "hasta": 179.62,
+      "texto": "— gli domandò Pinocchio, avanzandosi."
+    },
+    {
+      "desde": 183.06,
+      "hasta": 185.4,
+      "texto": "— Aspetto la mezzanotte, per partire.... — Dove vai?"
+    },
+    {
+      "desde": 185.4,
+      "hasta": 187.89,
+      "texto": "— Lontano, lontano, lontano!"
+    },
+    {
+      "desde": 187.89,
+      "hasta": 191.77,
+      "texto": "— E io che son venuto a cercarti a casa tre volte!..."
+    },
+    {
+      "desde": 191.77,
+      "hasta": 193.86,
+      "texto": "— Che cosa volevi da me?"
+    },
+    {
+      "desde": 193.86,
+      "hasta": 195.92,
+      "texto": "— Non sai il grande avvenimento?"
+    },
+    {
+      "desde": 195.92,
+      "hasta": 197.94,
+      "texto": "Non sai la fortuna che mi è toccata? — Quale?"
+    },
+    {
+      "desde": 198.94,
+      "hasta": 204.74,
+      "texto": "— Domani finisco di essere un burattino e divento un ragazzo come te, e come tutti gli altri."
+    },
+    {
+      "desde": 204.74,
+      "hasta": 206.14,
+      "texto": "— Buon pro ti faccia."
+    },
+    {
+      "desde": 206.14,
+      "hasta": 209.52,
+      "texto": "— Domani dunque ti aspetto a colazione a casa mia."
+    },
+    {
+      "desde": 209.52,
+      "hasta": 212.22,
+      "texto": "— Ma se ti dico che parto questa sera."
+    },
+    {
+      "desde": 212.32,
+      "hasta": 214.9,
+      "texto": "— A che ora? — Fra poco."
+    },
+    {
+      "desde": 214.9,
+      "hasta": 215.9,
+      "texto": "— E dove vai?"
+    },
+    {
+      "desde": 215.9,
+      "hasta": 222.5,
+      "texto": "— Vado ad abitare in un paese.... che è il più bel paese di questo mondo: una vera cuccagna!..."
+    },
+    {
+      "desde": 222.5,
+      "hasta": 224.18,
+      "texto": "— E come si chiama?"
+    },
+    {
+      "desde": 224.18,
+      "hasta": 228.66,
+      "texto": "— Si chiama il «Paese dei Balocchi.» Perchè non vieni anche tu?"
+    },
+    {
+      "desde": 228.66,
+      "hasta": 230.66,
+      "texto": "— Io? no davvero!"
+    },
+    {
+      "desde": 230.66,
+      "hasta": 231.41,
+      "texto": "— Hai torto, Pinocchio!"
+    },
+    {
+      "desde": 233.15,
+      "hasta": 234.27,
+      "texto": "Credilo a me, che se non vieni, te ne pentirai."
+    },
+    {
+      "desde": 235.55,
+      "hasta": 239.53,
+      "texto": "Dove vuoi trovare un paese più sano per noialtri ragazzi?"
+    },
+    {
+      "desde": 239.53,
+      "hasta": 245.05,
+      "texto": "Lì non vi sono scuole: lì non vi sono maestri; lì non vi sono libri."
+    },
+    {
+      "desde": 245.05,
+      "hasta": 247.63,
+      "texto": "In quel paese benedetto non si studia mai."
+    },
+    {
+      "desde": 247.63,
+      "hasta": 253.83,
+      "texto": "Il giovedì non si fa scuola: e ogni settimana è composta di sei giovedì e di una domenica."
+    },
+    {
+      "desde": 253.83,
+      "hasta": 260.25,
+      "texto": "Figurati che le vacanze dell’autunno cominciano col primo di gennaio e finiscono coll’ultimo di dicembre."
+    },
+    {
+      "desde": 260.25,
+      "hasta": 263.41,
+      "texto": "Ecco un paese, come piace veramente a me!"
+    },
+    {
+      "desde": 263.41,
+      "hasta": 266.59,
+      "texto": "Ecco come dovrebbero essere tutti i paesi civili!..."
+    },
+    {
+      "desde": 266.59,
+      "hasta": 271.29,
+      "texto": "— Ma come si passano le giornate nel «Paese dei Balocchi?»"
+    },
+    {
+      "desde": 271.29,
+      "hasta": 274.93,
+      "texto": "— Si passano baloccandosi e divertendosi dalla mattina alla sera."
+    },
+    {
+      "desde": 274.93,
+      "hasta": 279.26,
+      "texto": "La sera poi si va a letto, e la mattina dopo si ricomincia daccapo."
+    },
+    {
+      "desde": 280.25,
+      "hasta": 281.97,
+      "texto": "Che te ne pare? — Uhm!..."
+    },
+    {
+      "desde": 282.3,
+      "hasta": 289.66,
+      "texto": "— fece Pinocchio; e tentennò leggermente il capo, come dire: — È una vita che la farei volentieri anch’io."
+    },
+    {
+      "desde": 289.66,
+      "hasta": 294.0,
+      "texto": "— Dunque, vuoi partire con me? Sì o no? Risolviti."
+    },
+    {
+      "desde": 294.0,
+      "hasta": 296.76,
+      "texto": "— No, no, no e poi no."
+    },
+    {
+      "desde": 297.08,
+      "hasta": 303.0,
+      "texto": "Oramai ho promesso alla mia buona Fata di diventare un ragazzo perbene, e voglio mantenere la promessa."
+    },
+    {
+      "desde": 303.0,
+      "hasta": 309.4,
+      "texto": "Anzi, siccome vedo che il sole va sotto, così ti lascio subito e scappo via."
+    },
+    {
+      "desde": 309.4,
+      "hasta": 311.63,
+      "texto": "Dunque addio, e buon viaggio."
+    },
+    {
+      "desde": 311.63,
+      "hasta": 314.87,
+      "texto": "— Dove corri con tanta furia? — A casa."
+    },
+    {
+      "desde": 314.87,
+      "hasta": 318.43,
+      "texto": "La mia buona Fata vuole che ritorni prima di notte."
+    },
+    {
+      "desde": 318.43,
+      "hasta": 320.27,
+      "texto": "— Aspetta altri due minuti."
+    },
+    {
+      "desde": 320.27,
+      "hasta": 322.15,
+      "texto": "— Faccio troppo tardi."
+    },
+    {
+      "desde": 322.15,
+      "hasta": 324.19,
+      "texto": "— Due minuti soli."
+    },
+    {
+      "desde": 324.19,
+      "hasta": 326.07,
+      "texto": "— E se poi la Fata mi grida?"
+    },
+    {
+      "desde": 326.07,
+      "hasta": 327.34,
+      "texto": "— Lasciala gridare."
+    },
+    {
+      "desde": 327.34,
+      "hasta": 331.79,
+      "texto": "Quando avrà gridato ben bene, si cheterà — disse quella birba di Lucignolo."
+    },
+    {
+      "desde": 331.81,
+      "hasta": 333.1,
+      "texto": "— E come fai?"
+    },
+    {
+      "desde": 333.1,
+      "hasta": 335.35,
+      "texto": "Parti solo o in compagnia? — Solo?"
+    },
+    {
+      "desde": 335.35,
+      "hasta": 337.7,
+      "texto": "Saremo più di cento ragazzi."
+    },
+    {
+      "desde": 337.77,
+      "hasta": 339.76,
+      "texto": "— E il viaggio lo fate a piedi?"
+    },
+    {
+      "desde": 340.67,
+      "hasta": 346.7,
+      "texto": "— Fra poco passerà di qui il carro che mi deve prendere e condurre fin dentro ai confini di quel fortunatissimo paese."
+    },
+    {
+      "desde": 346.8,
+      "hasta": 351.7,
+      "texto": "— Che cosa pagherei che il carro passasse ora!... — Perchè?"
+    },
+    {
+      "desde": 351.76,
+      "hasta": 353.76,
+      "texto": "— Per vedervi partire tutti insieme."
+    },
+    {
+      "desde": 354.28,
+      "hasta": 356.7,
+      "texto": "— Rimani qui un altro poco e ci vedrai."
+    },
+    {
+      "desde": 356.7,
+      "hasta": 359.3,
+      "texto": "— No, no: voglio ritornare a casa."
+    },
+    {
+      "desde": 359.3,
+      "hasta": 361.2,
+      "texto": "— Aspetta altri due minuti."
+    },
+    {
+      "desde": 361.2,
+      "hasta": 363.26,
+      "texto": "— Ho indugiato anche troppo."
+    },
+    {
+      "desde": 363.26,
+      "hasta": 365.28,
+      "texto": "La Fata starà in pensiero per me."
+    },
+    {
+      "desde": 365.28,
+      "hasta": 366.68,
+      "texto": "— Povera Fata!"
+    },
+    {
+      "desde": 366.68,
+      "hasta": 370.1,
+      "texto": "Che ha paura forse che ti mangino i pipistrelli?"
+    },
+    {
+      "desde": 370.1,
+      "hasta": 376.44,
+      "texto": "— Ma dunque, — soggiunse Pinocchio — tu sei veramente sicuro che in quel paese non ci sono punte scuole?…"
+    },
+    {
+      "desde": 376.49,
+      "hasta": 378.57,
+      "texto": "— Neanche l’ombra."
+    },
+    {
+      "desde": 378.57,
+      "hasta": 379.72,
+      "texto": "— E nemmeno maestri?"
+    },
+    {
+      "desde": 379.72,
+      "hasta": 381.09,
+      "texto": "— Nemmeno uno."
+    },
+    {
+      "desde": 381.09,
+      "hasta": 383.86,
+      "texto": "— E non c’è mai l’obbligo di studiare?"
+    },
+    {
+      "desde": 383.86,
+      "hasta": 385.09,
+      "texto": "— Mai, mai, mai!"
+    },
+    {
+      "desde": 385.09,
+      "hasta": 386.11,
+      "texto": "— Che bel paese!"
+    },
+    {
+      "desde": 386.11,
+      "hasta": 390.36,
+      "texto": "— disse Pinocchio, sentendo venirsi l’acquolina in bocca."
+    },
+    {
+      "desde": 390.36,
+      "hasta": 391.57,
+      "texto": "— Che bel paese!"
+    },
+    {
+      "desde": 391.57,
+      "hasta": 394.92,
+      "texto": "Io non ci sono stato mai, ma me lo figuro!…"
+    },
+    {
+      "desde": 394.92,
+      "hasta": 396.44,
+      "texto": "— Perchè non vieni anche tu?"
+    },
+    {
+      "desde": 396.44,
+      "hasta": 397.98,
+      "texto": "— È inutile che tu mi tenti!"
+    },
+    {
+      "desde": 398.5,
+      "hasta": 404.81,
+      "texto": "Oramai ho promesso alla mia buona Fata di diventare un ragazzo di giudizio, e non voglio mancare alla parola."
+    },
+    {
+      "desde": 404.81,
+      "hasta": 412.37,
+      "texto": "— Dunque addio, e salutami tanto le scuole ginnasiali!… e anche quelle liceali, se le incontri per la strada."
+    },
+    {
+      "desde": 412.37,
+      "hasta": 418.81,
+      "texto": "— Addio, Lucignolo; fa’ buon viaggio, divertiti e rammentati qualche volta degli amici. —"
+    },
+    {
+      "desde": 418.81,
+      "hasta": 426.39,
+      "texto": "Ciò detto, il burattino fece due passi in atto di andarsene: ma poi, fermandosi e voltandosi all’amico, gli domandò:"
+    },
+    {
+      "desde": 426.39,
+      "hasta": 433.15,
+      "texto": "— Ma sei proprio sicuro che in quel paese tutte le settimane sieno composte di sei giovedì e di una domenica?"
+    },
+    {
+      "desde": 433.15,
+      "hasta": 434.67,
+      "texto": "— Sicurissimo."
+    },
+    {
+      "desde": 434.67,
+      "hasta": 441.23,
+      "texto": "— Ma lo sai dicerto, che le vacanze abbiano principio col primo di gennaio e finiscano coll’ultimo di dicembre?"
+    },
+    {
+      "desde": 441.23,
+      "hasta": 442.27,
+      "texto": "— Di certissimo!"
+    },
+    {
+      "desde": 442.27,
+      "hasta": 443.39,
+      "texto": "— Che bel paese!"
+    },
+    {
+      "desde": 445.98,
+      "hasta": 448.03,
+      "texto": "— ripetè Pinocchio, sputando dalla soverchia consolazione."
+    },
+    {
+      "desde": 448.03,
+      "hasta": 452.16,
+      "texto": "Poi, fatto un animo risoluto, soggiunse in fretta e in furia:"
+    },
+    {
+      "desde": 452.16,
+      "hasta": 456.31,
+      "texto": "— Dunque, addio davvero: e buon viaggio. — Addio."
+    },
+    {
+      "desde": 456.31,
+      "hasta": 459.42,
+      "texto": "— Fra quanto partirete? — Fra poco. — Peccato!"
+    },
+    {
+      "desde": 459.42,
+      "hasta": 465.54,
+      "texto": "Se alla partenza mancasse un’ora sola, sarei quasi quasi capace di aspettare."
+    },
+    {
+      "desde": 465.54,
+      "hasta": 465.79,
+      "texto": "— E la Fata?…"
+    },
+    {
+      "desde": 466.38,
+      "hasta": 472.23,
+      "texto": "— Oramai ho fatto tardi!… e tornare a casa un’ora prima o un’ora dopo è lo stesso."
+    },
+    {
+      "desde": 472.23,
+      "hasta": 473.9,
+      "texto": "— Povero Pinocchio!"
+    },
+    {
+      "desde": 473.9,
+      "hasta": 476.58,
+      "texto": "E se la Fata ti grida? — Pazienza!"
+    },
+    {
+      "desde": 476.58,
+      "hasta": 478.44,
+      "texto": "La lascerò gridare."
+    },
+    {
+      "desde": 478.44,
+      "hasta": 480.33,
+      "texto": "Quando avrà gridato ben bene si cheterà. —"
+    },
+    {
+      "desde": 481.24,
+      "hasta": 494.42,
+      "texto": "Intanto si era già fatta notte e notte buia: quando a un tratto videro muoversi in lontananza un lumicino.... e sentirono un suono di bubboli e uno squillo di trombetta, così piccolino e soffocato,"
+    },
+    {
+      "desde": 494.42,
+      "hasta": 498.06,
+      "texto": "che pareva il sibilo di una zanzara. — Eccolo!"
+    },
+    {
+      "desde": 498.06,
+      "hasta": 502.29,
+      "texto": "— gridò Lucignolo rizzandosi in piedi. — Chi è?"
+    },
+    {
+      "desde": 502.29,
+      "hasta": 504.29,
+      "texto": "— domandò sottovoce Pinocchio."
+    },
+    {
+      "desde": 504.29,
+      "hasta": 506.29,
+      "texto": "— È il carro che viene a prendermi."
+    },
+    {
+      "desde": 506.29,
+      "hasta": 509.29,
+      "texto": "Dunque, vuoi venire, sì o no?"
+    },
+    {
+      "desde": 509.29,
+      "hasta": 516.29,
+      "texto": "— Ma è proprio vero, — domandò il burattino — che in quel paese i ragazzi non hanno mai l’obbligo di studiare?"
+    },
+    {
+      "desde": 516.29,
+      "hasta": 518.29,
+      "texto": "— Mai, mai, mai!"
+    },
+    {
+      "desde": 518.29,
+      "hasta": 525.26,
+      "texto": "— Che bel paese!... che bel paese!... che bel paese!... ―"
+    }
+  ]
+}
