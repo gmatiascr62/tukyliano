@@ -209,6 +209,17 @@ void _elCatalogoDePinocchio() {
       // holgado para no saltar por una pausa larga y sigue agarrando
       // cualquier frase que se haya perdido.
       const cuantoSeAguanta = Duration(seconds: 8);
+
+      // El único hueco que se acepta, y se acepta porque no hay nada que
+      // hacerle: en el capítulo 33 el lector lee en voz alta el cartel que
+      // anuncia el espectáculo —"I cartelloni di vario colore, attaccati
+      // alle cantonate delle strade, dicevano così:"— y en Wikisource ese
+      // cartel no es texto, es la foto del afiche escaneado. No hay de
+      // dónde sacar esas palabras. Son veintiséis segundos.
+      //
+      // Va anotado acá y no silenciado en el código del catálogo para que
+      // se vea: es un agujero conocido, no un agujero olvidado.
+      const elCartelDelTeatro = 'I cartelloni di vario colore';
       var conTiempos = 0;
 
       for (final capitulo in catalogo.lecturas) {
@@ -218,6 +229,7 @@ void _elCatalogoDePinocchio() {
         conTiempos++;
 
         for (var i = 0; i < marcados.length - 1; i++) {
+          if (marcados[i].texto.contains(elCartelDelTeatro)) continue;
           final termina = marcados[i].hasta ?? marcados[i].desde!;
           final arranca = marcados[i + 1].desde!;
           expect(arranca - termina, lessThan(cuantoSeAguanta),
@@ -285,6 +297,56 @@ void _elCatalogoDePinocchio() {
       final texto9 =
           catalogo.lecturas[8].renglones.map((r) => r.texto).join(' ');
       expect(texto9, contains('Vuoi darmi quattro soldi'));
+    });
+
+    test('lo que el libro centra y el audio lee no se tira', () {
+      // La otra cara del test de arriba, y la que costó caro: por sacar
+      // las leyendas se fue también el epitafio de la lápida del capítulo
+      // 23, que el audio sí lee. Son nueve segundos de audio sin renglón.
+      //
+      // Lo peor no fue el bug sino cómo pasó: cuando agregué la regla que
+      // se lo comía, verifiqué que el epitafio quedara. Después agregué
+      // otra regla y no volví a mirarlo. Por eso está acá: para que la
+      // próxima regla que saque adornos tenga que pasar por esto.
+      final cap23 =
+          catalogo.lecturas[22].renglones.map((r) => r.texto).join(' ');
+      for (final linea in [
+        'qui giace',
+        'la bambina dai capelli turchini',
+        'morta di dolore',
+        'fratellino pinocchio',
+      ]) {
+        expect(cap23, contains(linea), reason: 'el epitafio de la lápida');
+      }
+
+      // El proverbio del capítulo 36 es la misma trampa: la ilustración lo
+      // cita como leyenda y además está dicho en el cuento.
+      final cap36 =
+          catalogo.lecturas[35].renglones.map((r) => r.texto).join(' ');
+      expect(cap36, contains('Chi ruba il mantello'));
+    });
+
+    test('ningún capítulo arranca encima de la presentación', () {
+      // Adelante de cada grabación va el aviso de LibriVox —quién lee, de
+      // qué libro—, que en Pinocchio son unos cuarenta segundos. Si el
+      // primer renglón con tiempo arranca antes, se lo comió: queda
+      // iluminado todo el aviso y dondeEmpiezaDeVerdad —con lo que la app
+      // ofrece saltarlo— deja de servir.
+      //
+      // Pasaba en el capítulo 30: al renglón 1 le coincidía la palabra
+      // "Pinocchio" del propio aviso, y como el arranque de un renglón es
+      // el mínimo de sus coincidencias, arrancaba en el segundo 0,8.
+      var conTiempos = 0;
+      for (final capitulo in catalogo.lecturas) {
+        final empieza = capitulo.dondeEmpiezaDeVerdad;
+        if (empieza == null) continue;
+        conTiempos++;
+        expect(empieza, greaterThan(const Duration(seconds: 10)),
+            reason: '${capitulo.titulo}: el primer renglón cae encima de la '
+                'presentación de LibriVox');
+      }
+      expect(conTiempos, greaterThan(0),
+          reason: 'ningún capítulo tiene tiempos: este test no probó nada');
     });
 
     test('el texto está partido en oraciones, no en párrafos', () {

@@ -198,6 +198,22 @@ def transcribir(audio, carpeta):
     return palabras, len(pedazos)
 
 
+# Cuántas palabras seguidas hacen falta para creerle a una coincidencia.
+#
+# Una sola palabra suelta no dice nada: adelante de cada capítulo va la
+# presentación de LibriVox, que dice "Le avventure di Pinocchio di
+# Collodi", y con eso al renglón 1 del capítulo 30 le coincidía la palabra
+# "Pinocchio" allá en el segundo 0,8. Como el arranque de un renglón es el
+# mínimo de sus coincidencias, ese renglón arrancaba en 0,8 y duraba
+# cincuenta segundos: quedaba iluminado durante todo el aviso, y la app
+# perdía de dónde arranca el cuento para poder ofrecer saltarlo.
+#
+# Tres seguidas ya no es casualidad. Los renglones de una o dos palabras
+# —"— No."— dejan de coincidir y pasan a estimarse entre sus vecinos, que
+# para dos palabras da lo mismo.
+PALABRAS_SEGUIDAS = 3
+
+
 def alinear(renglones, palabras):
     """Le pone tiempos a cada renglón del texto.
 
@@ -213,7 +229,9 @@ def alinear(renglones, palabras):
     comparador = SequenceMatcher(None, delTexto, deWhisper, autojunk=False)
 
     tiempos = [[] for _ in renglones]
-    for enElTexto, enWhisper, cuantas in comparador.get_matching_blocks():
+    bloques = [b for b in comparador.get_matching_blocks()
+               if b[2] >= PALABRAS_SEGUIDAS]
+    for enElTexto, enWhisper, cuantas in bloques:
         for i in range(cuantas):
             _, inicio, fin = palabras[enWhisper + i]
             tiempos[deQueRenglon[enElTexto + i]].append((inicio, fin))
@@ -238,7 +256,7 @@ def alinear(renglones, palabras):
         resultado[i]['inicio'] = round(resultado[i]['inicio'], 2)
         resultado[i]['fin'] = round(resultado[i]['fin'], 2)
 
-    coincidieron = sum(n for _, _, n in comparador.get_matching_blocks())
+    coincidieron = sum(n for _, _, n in bloques)
     return resultado, {
         'palabras': len(delTexto),
         'coincidieron': coincidieron,

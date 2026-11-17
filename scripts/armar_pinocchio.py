@@ -145,13 +145,23 @@ ACA_EMPIEZA = 'testi'
 # es el "[p. 9 modifica]" partiendo una frase al medio. Y los spans con
 # que Wikisource envuelve una imagen suelta, que traen la leyenda adentro.
 #
-# Y centertext, que es todo lo que el libro centra y el audio no lee: el
-# número romano del capítulo, su resumen, las rayas que separan escenas y
-# las leyendas de las ilustraciones —"Entrò in casa dalla finestra."—. Se
-# revisaron los treinta y seis: adentro de un centertext no hay una sola
-# línea de Collodi. El epitafio del capítulo 23 no está ahí, así que se
-# salva, que es lo que había que cuidar.
-NI_MIRAR = ('style', 'script', 'table')
+# Lo que el libro centra NO se salta, y esto costó caro: el epitafio de la
+# lápida del capítulo 23 —"qui giace / la bambina dai capelli turchini /
+# morta di dolore"— viene en un centertext, y el audio lo lee. Saltar
+# centertext entero se lo comía, y con él nueve segundos de audio sin
+# renglón. Lo peor es que lo había verificado al agregar esa regla, y
+# después agregué la de las leyendas y no volví a mirarlo: apareció solo
+# cuando el test de huecos lo agarró.
+#
+# Así que lo centrado entra, y lo que no es el cuento se filtra después por
+# lo que es —número romano, raya de separación, leyenda— y no por estar
+# centrado.
+# <small> es con lo que el libro marca la leyenda de una ilustración y los
+# metadatos de la fuente. Son cincuenta y tres en el libro y ninguno es
+# prosa: lo que parecía prosa —el proverbio "Chi ruba il mantello al suo
+# prossimo" del capítulo 36— está además como párrafo normal unas líneas
+# antes, porque la leyenda cita la frase que ilustra.
+NI_MIRAR = ('style', 'script', 'table', 'small')
 # Y font-size:smaller, que es con lo que el libro marca lo que no es el
 # cuento: la leyenda de cada ilustración y el resumen del capítulo. Son
 # noventa y nueve en el libro y ninguno es prosa —los resúmenes salen del
@@ -163,8 +173,7 @@ NI_MIRAR = ('style', 'script', 'table')
 # sola se colaban igual. Entraban como renglones que nadie lee en voz
 # alta, y un renglón así no se ilumina nunca.
 NI_MIRAR_SI_DICE = ('numeropagina', 'myspan1', 'freedimg', 'linkmodifica',
-                    'quality-msg', 'centertext', 'intest',
-                    'font-size:smaller')
+                    'quality-msg', 'intest', 'font-size:smaller', 'float:')
 
 # Abren párrafo: el <p> de siempre, y el <div> con sangría que Wikisource
 # usa cuando una ilustración parte el párrafo en dos.
@@ -319,6 +328,11 @@ def losTitulos():
 # títulos salían "II.", "III.", "IV.".
 SOLO_UN_NUMERO = re.compile(r'^[IVXLC]+\.?$')
 
+# La raya con que el libro separa dos escenas adentro de un capítulo, y el
+# "F I N E." del final, espaciado letra por letra. No se leen, y espaciado
+# así tampoco coincidiría con ninguna palabra del audio.
+SOLO_UN_ADORNO = re.compile(r'^(?:[_\-—–\s]+|(?:[A-Z]\s){2,}[A-Z]\s*\.?)$')
+
 
 def guardadoEnDisco(numero, traerlo):
     """Lo que Wikisource contestó, cacheado.
@@ -359,7 +373,7 @@ def elTextoDe(numero):
     for texto in sacador.terminar():
         if len(texto) < 3 or any(x in texto for x in NO_ES_TEXTO):
             continue
-        if SOLO_UN_NUMERO.match(texto):
+        if SOLO_UN_NUMERO.match(texto) or SOLO_UN_ADORNO.match(texto):
             continue
         parrafos.append(texto)
 
