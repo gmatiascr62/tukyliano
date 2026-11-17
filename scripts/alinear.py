@@ -248,13 +248,7 @@ def alinear(renglones, palabras):
     sinNingunaPalabra = [i for i, t in enumerate(tiempos) if not t]
     rellenarLosHuecos(resultado, palabras)
 
-    for i in range(len(resultado)):
-        # Sin esto dos renglones se pintan a la vez en el borde.
-        if i + 1 < len(resultado) and \
-                resultado[i]['fin'] > resultado[i + 1]['inicio']:
-            resultado[i]['fin'] = resultado[i + 1]['inicio']
-        resultado[i]['inicio'] = round(resultado[i]['inicio'], 2)
-        resultado[i]['fin'] = round(resultado[i]['fin'], 2)
+    enOrden(resultado)
 
     coincidieron = sum(n for _, _, n in bloques)
     return resultado, {
@@ -371,6 +365,37 @@ def deUnAudio(audio, renglones):
     comoSalio['duracion'] = palabras[-1][2] if palabras else 0.0
     comoSalio['quejas'] = lasQuejas(resultado, comoSalio)
     return resultado, comoSalio
+
+
+def enOrden(resultado):
+    """Deja los tiempos en orden, que es lo que la app da por cierto.
+
+    Tres cosas que tienen que valer siempre, y antes solo valía la tercera:
+
+    1. Un renglón no arranca antes que el anterior. Las palabras que
+       devuelve whisper se pisan un poco en el borde entre dos pedazos, así
+       que el siguiente renglón puede coincidir un instante antes de que
+       termine el anterior.
+    2. Un renglón no termina antes de arrancar. En el capítulo 25 el
+       renglón 70 iba de 302,09 a 301,74 —duración negativa— porque se
+       estimó entre dos coincidencias que venían pisadas, y el reparto a
+       prorrata le dio un tramo de largo negativo. La app lo pinta con
+       `donde >= desde && donde < hasta`, que para eso nunca es cierto: era
+       un renglón que no se iluminaba nunca.
+    3. Un renglón no sigue pintado cuando ya arrancó el siguiente, o en el
+       borde se ven dos iluminados a la vez.
+    """
+    ultimo = 0.0
+    for r in resultado:
+        r['inicio'] = max(r['inicio'], ultimo)
+        r['fin'] = max(r['fin'], r['inicio'])
+        ultimo = r['inicio']
+    for i in range(len(resultado) - 1):
+        resultado[i]['fin'] = min(resultado[i]['fin'],
+                                  resultado[i + 1]['inicio'])
+    for r in resultado:
+        r['inicio'] = round(r['inicio'], 2)
+        r['fin'] = round(max(r['fin'], r['inicio']), 2)
 
 
 def lasQuejas(resultado, comoSalio):
