@@ -1,0 +1,277 @@
+{
+  "id": "pinocchio_09",
+  "titulo": "9. Pinocchio vende l’Abbecedario per andare a vedere il teatrino dei burattini.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 30.65,
+    "hasta": 36.69,
+    "texto": "Pinocchio vende l’Abbecedario per andare a vedere il teatrino dei burattini."
+  },
+  "renglones": [
+    {
+      "desde": 36.69,
+      "hasta": 44.68,
+      "texto": "Smesso che fu di nevicare, Pinocchio col suo bravo Abbecedario nuovo sotto il braccio, prese la strada che menava alla scuola:"
+    },
+    {
+      "desde": 46.43,
+      "hasta": 55.32,
+      "texto": "e strada facendo, fantasticava nel suo cervellino mille ragionamenti e mille castelli in aria, uno più bello dell’altro."
+    },
+    {
+      "desde": 55.32,
+      "hasta": 58.52,
+      "texto": "E discorrendo da sè solo, diceva:"
+    },
+    {
+      "desde": 58.52,
+      "hasta": 68.04,
+      "texto": "— Oggi, alla scuola, voglio subito imparare a leggere: domani poi imparerò a scrivere, e domani l’altro imparerò a fare i numeri."
+    },
+    {
+      "desde": 68.04,
+      "hasta": 78.04,
+      "texto": "Poi, colla mia abilità, guadagnerò molti quattrini e coi primi quattrini che mi verranno in tasca, voglio subito fare al mio babbo una bella casacca di panno."
+    },
+    {
+      "desde": 78.04,
+      "hasta": 79.53,
+      "texto": "Ma che dico di panno?"
+    },
+    {
+      "desde": 80.06,
+      "hasta": 84.37,
+      "texto": "Gliela voglio fare tutta d’argento e d’oro, e coi bottoni di brillanti."
+    },
+    {
+      "desde": 85.59,
+      "hasta": 94.35,
+      "texto": "E quel pover’uomo se la merita davvero: perchè, insomma, per comprarmi i libri e per farmi istruire, è rimasto in maniche di camicia.... a questi freddi!"
+    },
+    {
+      "desde": 94.48,
+      "hasta": 97.53,
+      "texto": "Non ci sono che i babbi che sieno capaci di certi sacrifizi!... —"
+    },
+    {
+      "desde": 100.28,
+      "hasta": 105.69,
+      "texto": "Mentre tutto commosso diceva così, gli parve di sentire in lontananza una musica di pifferi e di colpi di grancassa: pì-pì-pì, pì-pì-pì, zum, zum, zum, zum."
+    },
+    {
+      "desde": 111.34,
+      "hasta": 112.29,
+      "texto": "Si fermò e stette in ascolto."
+    },
+    {
+      "desde": 114.56,
+      "hasta": 122.86,
+      "texto": "Quei suoni venivano di fondo a una lunghissima strada traversa, che conduceva a un piccolo paesetto fabbricato sulla spiaggia del mare."
+    },
+    {
+      "desde": 122.86,
+      "hasta": 125.18,
+      "texto": "— Che cosa sia questa musica?"
+    },
+    {
+      "desde": 125.18,
+      "hasta": 127.94,
+      "texto": "Peccato che io debba andare a scuola, se no.... —"
+    },
+    {
+      "desde": 127.94,
+      "hasta": 128.88,
+      "texto": "E rimase lì perplesso."
+    },
+    {
+      "desde": 129.94,
+      "hasta": 136.14,
+      "texto": "A ogni modo, bisognava prendere una risoluzione; o a scuola, o a sentire i pifferi."
+    },
+    {
+      "desde": 136.14,
+      "hasta": 139.26,
+      "texto": "— Oggi anderò a sentire i pifferi, e domani a scuola."
+    },
+    {
+      "desde": 139.26,
+      "hasta": 145.05,
+      "texto": "Per andare a scuola c’è sempre tempo — disse finalmente quel monello, facendo una spallucciata."
+    },
+    {
+      "desde": 145.05,
+      "hasta": 150.09,
+      "texto": "Detto fatto, infilò giù per la strada traversa e cominciò a correre a gambe."
+    },
+    {
+      "desde": 150.09,
+      "hasta": 158.61,
+      "texto": "Più correva e più sentiva distinto il suono dei pifferi e dei tonfi della grancassa: pì-pì-pì, pì-pì-pì, pì-pì-pì, zum, zum, zum, zum."
+    },
+    {
+      "desde": 160.65,
+      "hasta": 171.19,
+      "texto": "Quand’ecco che si trovò in mezzo a una piazza tutta piena di gente, la quale si affollava intorno a un gran baraccone di legno e di tela dipinta di mille colori."
+    },
+    {
+      "desde": 171.19,
+      "hasta": 172.48,
+      "texto": "— Che cos’è quel baraccone?"
+    },
+    {
+      "desde": 172.48,
+      "hasta": 176.59,
+      "texto": "— domandò Pinocchio, voltandosi a un ragazzetto che era lì del paese."
+    },
+    {
+      "desde": 176.59,
+      "hasta": 180.07,
+      "texto": "— Leggi il cartello, che c’è scritto, e lo saprai."
+    },
+    {
+      "desde": 180.07,
+      "hasta": 184.35,
+      "texto": "— Lo leggerei volentieri, ma per l’appunto oggi non so leggere."
+    },
+    {
+      "desde": 184.35,
+      "hasta": 185.39,
+      "texto": "— Bravo bue!"
+    },
+    {
+      "desde": 185.39,
+      "hasta": 187.17,
+      "texto": "Allora te lo leggerò io."
+    },
+    {
+      "desde": 187.17,
+      "hasta": 194.31,
+      "texto": "Sappi dunque che in quel cartello a lettere rosse come il fuoco, c’è scritto: Gran Teatro dei Burattini...."
+    },
+    {
+      "desde": 194.31,
+      "hasta": 197.67,
+      "texto": "— È molto che è incominciata la commedia?"
+    },
+    {
+      "desde": 197.67,
+      "hasta": 198.8,
+      "texto": "— Comincia ora."
+    },
+    {
+      "desde": 198.8,
+      "hasta": 200.91,
+      "texto": "— E quanto si spende per entrare?"
+    },
+    {
+      "desde": 200.91,
+      "hasta": 201.97,
+      "texto": "— Quattro soldi. —"
+    },
+    {
+      "desde": 201.97,
+      "hasta": 211.27,
+      "texto": "Pinocchio, che aveva addosso la febbre della curiosità, perse ogni ritegno e disse, senza vergognarsi, al ragazzetto col quale parlava:"
+    },
+    {
+      "desde": 211.27,
+      "hasta": 214.07,
+      "texto": "— Mi daresti quattro soldi fino a domani?"
+    },
+    {
+      "desde": 214.35,
+      "hasta": 220.21,
+      "texto": "— Te li darei volentieri, — gli rispose l’altro canzonandolo — ma oggi per l’appunto non te li posso dare."
+    },
+    {
+      "desde": 220.21,
+      "hasta": 225.21,
+      "texto": "— Per quattro soldi, ti vendo la mia giacchetta — gli disse allora il burattino."
+    },
+    {
+      "desde": 225.21,
+      "hasta": 228.21,
+      "texto": "— Che vuoi che mi faccia di una giacchetta di carta fiorita?"
+    },
+    {
+      "desde": 228.21,
+      "hasta": 232.21,
+      "texto": "Se ci piove su, non c’è più verso di cavarsela da dosso."
+    },
+    {
+      "desde": 232.21,
+      "hasta": 234.21,
+      "texto": "— Vuoi comprare le mie scarpe?"
+    },
+    {
+      "desde": 234.21,
+      "hasta": 236.21,
+      "texto": "— Sono buone per accendere il fuoco."
+    },
+    {
+      "desde": 236.21,
+      "hasta": 238.46,
+      "texto": "— Quanto mi dài del berretto?"
+    },
+    {
+      "desde": 238.84,
+      "hasta": 240.06,
+      "texto": "— Bell’acquisto davvero!"
+    },
+    {
+      "desde": 240.06,
+      "hasta": 241.91,
+      "texto": "Un berretto di midolla di pane!"
+    },
+    {
+      "desde": 241.91,
+      "hasta": 245.1,
+      "texto": "C’è il caso che i topi me lo vengano a mangiare in capo!―"
+    },
+    {
+      "desde": 245.1,
+      "hasta": 246.78,
+      "texto": "Pinocchio era sulle spine."
+    },
+    {
+      "desde": 246.78,
+      "hasta": 247.9,
+      "texto": "Stava lì lì per fare"
+    },
+    {
+      "desde": 247.9,
+      "hasta": 252.67,
+      "texto": "un’ultima offerta: ma non aveva coraggio; esitava, tentennava, pativa."
+    },
+    {
+      "desde": 253.66,
+      "hasta": 255.38,
+      "texto": "Alla fine disse:"
+    },
+    {
+      "desde": 255.66,
+      "hasta": 258.82,
+      "texto": "— Vuoi darmi quattro soldi di quest’Abbecedario nuovo?"
+    },
+    {
+      "desde": 258.91,
+      "hasta": 267.16,
+      "texto": "— Io sono un ragazzo, e non compro nulla dai ragazzi, — gli rispose il suo piccolo interlocutore, che aveva molto più giudizio di lui."
+    },
+    {
+      "desde": 267.16,
+      "hasta": 275.52,
+      "texto": "— Per quattro soldi l’Abbecedario lo prendo io, — gridò un rivenditore di panni usati, che s’era trovato presente alla conversazione."
+    },
+    {
+      "desde": 275.52,
+      "hasta": 278.43,
+      "texto": "E il libro fu venduto lì sui due piedi."
+    },
+    {
+      "desde": 278.43,
+      "hasta": 285.37,
+      "texto": "E pensare che quel pover’uomo di Geppetto era rimasto a casa, a tremare dal freddo in maniche di camicia, per comprare l’Abbecedario al figliuolo!"
+    }
+  ]
+}

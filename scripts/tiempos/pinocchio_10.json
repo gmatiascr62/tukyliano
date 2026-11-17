@@ -1,0 +1,222 @@
+{
+  "id": "pinocchio_10",
+  "titulo": "10. I burattini riconoscono il loro fratello Pinocchio e gli fanno una grandissima festa; ma sul più bello, esce fuori il burattinaio Mangiafoco, e Pinocchio corre il pericolo di fare una brutta fine.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 30.7,
+    "hasta": 45.7,
+    "texto": "I burattini riconoscono il loro fratello Pinocchio e gli fanno una grandissima festa; ma sul più bello, esce fuori il burattinaio Mangiafoco, e Pinocchio corre il pericolo di fare una brutta fine."
+  },
+  "renglones": [
+    {
+      "desde": 45.74,
+      "hasta": 54.15,
+      "texto": "Quando Pinocchio entrò nel teatrino delle marionette, accadde un fatto che destò mezza rivoluzione."
+    },
+    {
+      "desde": 54.15,
+      "hasta": 61.15,
+      "texto": "Bisogna sapere che il sipario era tirato su e la commedia era già incominciata."
+    },
+    {
+      "desde": 61.15,
+      "hasta": 72.91,
+      "texto": "Sulla scena si vedevano Arlecchino e Pulcinella, che bisticciavano fra di loro e, secondo il solito, minacciavano da un momento all’altro di scambiarsi un carico di schiaffi e di bastonate."
+    },
+    {
+      "desde": 72.91,
+      "hasta": 86.07,
+      "texto": "La platea, tutta attenta, si mandava a male dalle grandi risate, nel sentire il battibecco di quei due burattini, che gestivano e si trattavano d’ogni vitupero con tanta verità,"
+    },
+    {
+      "desde": 86.07,
+      "hasta": 90.47,
+      "texto": "come se fossero proprio due animali ragionevoli e due persone di questo mondo."
+    },
+    {
+      "desde": 90.47,
+      "hasta": 104.07,
+      "texto": "Quando all’improvviso, che è che non è, Arlecchino smette di recitare, e voltandosi verso il pubblico e accennando colla mano qualcuno in fondo alla platea, comincia a urlare in tono drammatico:"
+    },
+    {
+      "desde": 104.07,
+      "hasta": 106.55,
+      "texto": "— Numi del firmamento! sogno o son desto?"
+    },
+    {
+      "desde": 107.47,
+      "hasta": 110.55,
+      "texto": "Eppure quello laggiù è Pinocchio!…"
+    },
+    {
+      "desde": 110.55,
+      "hasta": 112.22,
+      "texto": "— È Pinocchio davvero!"
+    },
+    {
+      "desde": 112.22,
+      "hasta": 113.43,
+      "texto": "— grida Pulcinella."
+    },
+    {
+      "desde": 113.43,
+      "hasta": 114.57,
+      "texto": "— È proprio lui!"
+    },
+    {
+      "desde": 114.57,
+      "hasta": 118.58,
+      "texto": "— strilla la signora Rosaura, facendo capolino di fondo alla scena."
+    },
+    {
+      "desde": 118.58,
+      "hasta": 120.32,
+      "texto": "— È Pinocchio! è Pinocchio!"
+    },
+    {
+      "desde": 120.32,
+      "hasta": 123.99,
+      "texto": "— urlano in coro tutti i burattini, uscendo a salti fuori delle quinte."
+    },
+    {
+      "desde": 124.92,
+      "hasta": 126.32,
+      "texto": "— È Pinocchio!"
+    },
+    {
+      "desde": 126.32,
+      "hasta": 128.28,
+      "texto": "È il nostro fratello Pinocchio!"
+    },
+    {
+      "desde": 128.9,
+      "hasta": 130.56,
+      "texto": "Evviva Pinocchio!…"
+    },
+    {
+      "desde": 130.56,
+      "hasta": 142.92,
+      "texto": "— Pinocchio, vieni quassù da me, — grida Arlecchino, — vieni a gettarti fra le braccia dei tuoi fratelli di legno! ― A questo affettuoso invito, Pinocchio spicca un salto, e di fondo alla platea va nei posti distinti;"
+    },
+    {
+      "desde": 143.2,
+      "hasta": 151.48,
+      "texto": "poi con un altro salto, dai posti distinti monta sulla testa del direttore d’orchestra, e di lì schizza sul palcoscenico."
+    },
+    {
+      "desde": 151.48,
+      "hasta": 161.71,
+      "texto": "È impossibile figurarsi gli abbracciamenti, gli strizzoni di collo, i pizzicotti dell’amicizia e le zuccate della vera e sincera fratellanza,"
+    },
+    {
+      "desde": 161.71,
+      "hasta": 168.88,
+      "texto": "che Pinocchio ricevè in mezzo a tanto arruffìo degli attori e delle attrici di quella compagnia drammatico-vegetale."
+    },
+    {
+      "desde": 168.88,
+      "hasta": 183.08,
+      "texto": "Questo spettacolo era commovente, non c’è che dire: ma il pubblico della platea, vedendo che la commedia non andava più avanti, s’impazientì e prese a gridare: — Vogliamo la commedia! vogliamo la commedia! —"
+    },
+    {
+      "desde": 183.08,
+      "hasta": 196.62,
+      "texto": "Tutto fiato buttato via, perchè i burattini, invece di continuare la recita, raddoppiarono il chiasso e le grida, e, postosi Pinocchio sulle spalle, se lo portarono in trionfo davanti ai lumi della ribalta."
+    },
+    {
+      "desde": 196.62,
+      "hasta": 204.08,
+      "texto": "Allora uscì fuori il burattinaio, un omone così brutto, che metteva paura soltanto a guardarlo."
+    },
+    {
+      "desde": 204.08,
+      "hasta": 215.58,
+      "texto": "Aveva una barbaccia nera come uno scarabocchio d’inchiostro, e tanto lunga, che gli scendeva dal mento fino a terra: basta dire che, quando camminava se la pestava coi piedi."
+    },
+    {
+      "desde": 215.62,
+      "hasta": 223.64,
+      "texto": "La sua bocca era larga come un forno, i suoi occhi parevano due lanterne di vetro rosso, col lume acceso di dietro;"
+    },
+    {
+      "desde": 223.64,
+      "hasta": 230.6,
+      "texto": "e con le mani faceva schioccare una grossa frusta, fatta di serpenti e di code di volpe attorcigliate insieme."
+    },
+    {
+      "desde": 230.6,
+      "hasta": 235.65,
+      "texto": "All’apparizione inaspettata del burattinaio, ammutolirono tutti: nessuno fiatò più."
+    },
+    {
+      "desde": 235.65,
+      "hasta": 239.6,
+      "texto": "Si sarebbe sentito volare una mosca."
+    },
+    {
+      "desde": 239.6,
+      "hasta": 244.6,
+      "texto": "Quei poveri burattini, maschi e femmine, tremavano tutti come tante foglie."
+    },
+    {
+      "desde": 244.6,
+      "hasta": 247.6,
+      "texto": "— Perchè sei venuto a mettere lo scompiglio nel mio teatro?"
+    },
+    {
+      "desde": 248.04,
+      "hasta": 254.0,
+      "texto": "— domandò il burattinaio a Pinocchio, con un vocione d’Orco gravemente infreddato di testa."
+    },
+    {
+      "desde": 254.0,
+      "hasta": 257.6,
+      "texto": "— La creda, illustrissimo, che la colpa non è stata mia!..."
+    },
+    {
+      "desde": 257.6,
+      "hasta": 258.88,
+      "texto": "— Basta così!"
+    },
+    {
+      "desde": 258.88,
+      "hasta": 261.5,
+      "texto": "Stasera faremo i nostri conti. —"
+    },
+    {
+      "desde": 262.17,
+      "hasta": 271.76,
+      "texto": "Difatti, finita la recita della commedia, il burattinaio andò in cucina, dov’egli s’era preparato per cena un bel montone, che girava lentamente infilato nello spiede."
+    },
+    {
+      "desde": 272.66,
+      "hasta": 279.02,
+      "texto": "E perchè gli mancavano la legna per finirlo di cuocere e di rosolare, chiamò Arlecchino e Pulcinella e disse loro:"
+    },
+    {
+      "desde": 280.04,
+      "hasta": 284.18,
+      "texto": "— Portatemi di qua quel burattino che troverete attaccato al chiodo."
+    },
+    {
+      "desde": 284.18,
+      "hasta": 293.64,
+      "texto": "Mi pare un burattino fatto di un legname molto asciutto, e sono sicuro che, a buttarlo sul fuoco, mi darà una bellissima fiammata all’arrosto. —"
+    },
+    {
+      "desde": 293.64,
+      "hasta": 301.86,
+      "texto": "Arlecchino e Pulcinella da principio esitarono; ma impauriti da un’occhiataccia del loro padrone, obbedirono:"
+    },
+    {
+      "desde": 301.86,
+      "hasta": 313.76,
+      "texto": "e dopo poco tornarono in cucina, portando sulle braccia il povero Pinocchio, il quale, divincolandosi come un’anguilla fuori dell’acqua, strillava disperatamente: — Babbo mio, salvatemi!"
+    },
+    {
+      "desde": 314.49,
+      "hasta": 317.59,
+      "texto": "Non voglio morire, non voglio morire!... —"
+    }
+  ]
+}

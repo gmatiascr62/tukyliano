@@ -1,0 +1,332 @@
+{
+  "id": "pinocchio_11",
+  "titulo": "11. Mangiafoco starnutisce e perdona a Pinocchio, il quale poi difende dalla morte il suo amico Arlecchino.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 33.11,
+    "hasta": 39.62,
+    "texto": "Mangiafoco starnutisce e perdona a Pinocchio, il quale poi difende dalla morte il suo amico Arlecchino."
+  },
+  "renglones": [
+    {
+      "desde": 39.73,
+      "hasta": 55.95,
+      "texto": "Il burattinaio Mangiafoco (che questo era il suo nome) pareva un uomo spaventoso, non dico di no, specie con quella sua barbaccia nera che, a uso grembiale, gli copriva tutto il petto e tutte le gambe;"
+    },
+    {
+      "desde": 55.95,
+      "hasta": 58.11,
+      "texto": "ma nel fondo poi non era un cattiv’uomo."
+    },
+    {
+      "desde": 60.22,
+      "hasta": 72.63,
+      "texto": "Prova ne sia, che quando vide portarsi davanti quel povero Pinocchio, che si dibatteva per ogni verso, urlando «Non voglio morire, non voglio morire!», principiò subito a commuoversi e a impietosirsi;"
+    },
+    {
+      "desde": 72.63,
+      "hasta": 79.91,
+      "texto": "e dopo aver resistito un bel pezzo, alla fine non ne potè più, e lasciò andare un sonorosissimo starnuto."
+    },
+    {
+      "desde": 79.91,
+      "hasta": 92.58,
+      "texto": "A quello starnuto, Arlecchino, che fin allora era stato afflitto e ripiegato come un salcio piangente, si fece tutto allegro in viso, e chinatosi verso Pinocchio, gli bisbigliò sottovoce:"
+    },
+    {
+      "desde": 93.43,
+      "hasta": 95.41,
+      "texto": "— Buone nuove, fratello."
+    },
+    {
+      "desde": 95.41,
+      "hasta": 103.56,
+      "texto": "Il burattinaio ha starnutito, e questo è segno che s’è mosso a compassione per te, e oramai sei salvo. —"
+    },
+    {
+      "desde": 103.56,
+      "hasta": 118.02,
+      "texto": "Perchè bisogna sapere che, mentre tutti gli uomini quando si sentono impietositi per qualcuno, o piangono, o per lo meno fanno finta di rasciugarsi gli occhi, Mangiafoco, invece, ogni volta che s’inteneriva davvero,"
+    },
+    {
+      "desde": 118.02,
+      "hasta": 119.0,
+      "texto": "aveva il vizio di starnutire."
+    },
+    {
+      "desde": 119.94,
+      "hasta": 124.44,
+      "texto": "Era un modo come un altro, per dare a conoscere agli altri la sensibilità del suo cuore."
+    },
+    {
+      "desde": 124.44,
+      "hasta": 129.86,
+      "texto": "Dopo aver starnutito, il burattinaio, seguitando a fare il burbero, gridò a Pinocchio:"
+    },
+    {
+      "desde": 130.57,
+      "hasta": 131.56,
+      "texto": "— Finiscila di piangere!"
+    },
+    {
+      "desde": 131.56,
+      "hasta": 139.29,
+      "texto": "I tuoi lamenti mi hanno messo un’uggiolina in fondo allo stomaco.... sento uno spasimo, che quasi quasi.... etcì, etcì!"
+    },
+    {
+      "desde": 141.57,
+      "hasta": 144.79,
+      "texto": "— e fece altri due starnuti. — Felicità!"
+    },
+    {
+      "desde": 144.79,
+      "hasta": 147.28,
+      "texto": "— disse Pinocchio. — Grazie."
+    },
+    {
+      "desde": 147.28,
+      "hasta": 150.04,
+      "texto": "E il tuo babbo e la tua mamma sono sempre vivi?"
+    },
+    {
+      "desde": 150.04,
+      "hasta": 151.68,
+      "texto": "— domandò Mangiafoco."
+    },
+    {
+      "desde": 151.68,
+      "hasta": 155.64,
+      "texto": "— Il babbo, sì; la mamma non l’ho mai conosciuta."
+    },
+    {
+      "desde": 155.64,
+      "hasta": 163.31,
+      "texto": "— Chi lo sa che dispiacere sarebbe per il tuo vecchio padre, se ora ti facessi gettare fra quei carboni ardenti!"
+    },
+    {
+      "desde": 163.31,
+      "hasta": 173.53,
+      "texto": "Povero vecchio! lo compatisco.... etcì, etcì, etcì, — e fece altri tre starnuti. — Felicità!"
+    },
+    {
+      "desde": 173.53,
+      "hasta": 175.97,
+      "texto": "— disse Pinocchio. — Grazie."
+    },
+    {
+      "desde": 175.97,
+      "hasta": 189.23,
+      "texto": "Del resto bisogna compatire anche me, perchè, come vedi, non ho più legna per finire di cuocere quel montone arrosto, e tu, dico la verità, in questo caso mi avresti fatto un gran comodo!"
+    },
+    {
+      "desde": 189.31,
+      "hasta": 193.03,
+      "texto": "Ma oramai mi sono impietosito e ci vuol pazienza."
+    },
+    {
+      "desde": 193.11,
+      "hasta": 198.43,
+      "texto": "Invece di te, metterò a bruciare sotto lo spiede qualche burattino della mia compagnia."
+    },
+    {
+      "desde": 198.54,
+      "hasta": 199.11,
+      "texto": "Olà, giandarmi! —"
+    },
+    {
+      "desde": 200.5,
+      "hasta": 210.73,
+      "texto": "A questo comando comparvero subito due giandarmi di legno, lunghi lunghi, secchi secchi, col cappello a lucerna in testa e colla sciabola sfoderata in mano."
+    },
+    {
+      "desde": 211.03,
+      "hasta": 215.12,
+      "texto": "Allora il burattinaio disse loro con voce rantolosa:"
+    },
+    {
+      "desde": 215.12,
+      "hasta": 221.03,
+      "texto": "— Pigliatemi lì quell’Arlecchino, legatelo ben bene, e poi gettatelo a bruciare sul fuoco."
+    },
+    {
+      "desde": 221.03,
+      "hasta": 224.69,
+      "texto": "Io voglio che il mio montone sia arrostito bene! —"
+    },
+    {
+      "desde": 224.69,
+      "hasta": 227.26,
+      "texto": "Figuratevi il povero Arlecchino!"
+    },
+    {
+      "desde": 227.26,
+      "hasta": 233.01,
+      "texto": "Fu tanto il suo spavento, che le gambe gli si ripiegarono e cadde bocconi per terra."
+    },
+    {
+      "desde": 233.03,
+      "hasta": 245.51,
+      "texto": "Pinocchio, alla vista di quello spettacolo straziante, andò a gettarsi ai piedi del burattinaio e piangendo dirottamente e bagnandogli di lacrime tutti i peli della lunghissima barba,"
+    },
+    {
+      "desde": 245.51,
+      "hasta": 248.14,
+      "texto": "cominciò a dire con voce supplichevole:"
+    },
+    {
+      "desde": 248.14,
+      "hasta": 250.36,
+      "texto": "— Pietà, signor Mangiafoco!..."
+    },
+    {
+      "desde": 250.36,
+      "hasta": 252.26,
+      "texto": "— Qui non ci son signori!"
+    },
+    {
+      "desde": 252.26,
+      "hasta": 255.14,
+      "texto": "— replicò duramente il burattinaio."
+    },
+    {
+      "desde": 255.16,
+      "hasta": 257.14,
+      "texto": "— Pietà, signor Cavaliere!..."
+    },
+    {
+      "desde": 257.14,
+      "hasta": 259.2,
+      "texto": "— Qui non ci son cavalieri!"
+    },
+    {
+      "desde": 259.2,
+      "hasta": 260.52,
+      "texto": "— Pietà, signor Commendatore!..."
+    },
+    {
+      "desde": 261.99,
+      "hasta": 262.77,
+      "texto": "— Qui non ci son commendatori!"
+    },
+    {
+      "desde": 264.62,
+      "hasta": 266.64,
+      "texto": "— Pietà, Eccellenza!... —"
+    },
+    {
+      "desde": 266.64,
+      "hasta": 276.86,
+      "texto": "A sentirsi chiamare Eccellenza, il burattinaio fece subito il bocchino tondo, e diventato tutt’a un tratto più umano e più trattabile, disse a Pinocchio:"
+    },
+    {
+      "desde": 276.86,
+      "hasta": 279.34,
+      "texto": "— Ebbene, che cosa vuoi da me?"
+    },
+    {
+      "desde": 279.42,
+      "hasta": 281.4,
+      "texto": "— Vi domando grazia per il povero Arlecchino!..."
+    },
+    {
+      "desde": 282.46,
+      "hasta": 285.03,
+      "texto": "— Qui non c’è grazia che tenga."
+    },
+    {
+      "desde": 285.03,
+      "hasta": 292.28,
+      "texto": "Se ho risparmiato te, bisogna che faccia mettere sul fuoco lui, perchè io voglio che il mio montone sia arrostito bene."
+    },
+    {
+      "desde": 292.28,
+      "hasta": 302.92,
+      "texto": "— In questo caso, — gridò fieramente Pinocchio, rizzandosi e gettando via il suo berretto di midolla di pane, — in questo caso conosco qual è il mio dovere."
+    },
+    {
+      "desde": 302.92,
+      "hasta": 303.53,
+      "texto": "Avanti, signori giandarmi!"
+    },
+    {
+      "desde": 305.31,
+      "hasta": 308.28,
+      "texto": "Legatemi e gettatemi là fra quelle fiamme."
+    },
+    {
+      "desde": 308.28,
+      "hasta": 314.28,
+      "texto": "No, non è giusta che il povero Arlecchino, il vero amico mio, debba morire per me!…"
+    },
+    {
+      "desde": 314.28,
+      "hasta": 323.28,
+      "texto": "Queste parole, pronunziate con voce alta e con accento eroico, fecero piangere tutti i burattini che erano presenti a quella scena."
+    },
+    {
+      "desde": 323.28,
+      "hasta": 329.85,
+      "texto": "Gli stessi giandarmi, sebbene fossero di legno, piangevano come due agnellini di latte."
+    },
+    {
+      "desde": 329.85,
+      "hasta": 340.93,
+      "texto": "Mangiafoco, sul principio, rimase duro e immobile come un pezzo di ghiaccio: ma poi, adagio adagio, cominciò anche lui a commuoversi e a starnutire."
+    },
+    {
+      "desde": 340.93,
+      "hasta": 347.69,
+      "texto": "E fatti quattro o cinque starnuti, aprì affettuosamente le braccia e disse a Pinocchio:"
+    },
+    {
+      "desde": 347.69,
+      "hasta": 349.98,
+      "texto": "— Tu sei un gran bravo ragazzo!"
+    },
+    {
+      "desde": 349.98,
+      "hasta": 353.6,
+      "texto": "Vieni qua da me e dammi un bacio. —"
+    },
+    {
+      "desde": 353.6,
+      "hasta": 364.88,
+      "texto": "Pinocchio corse subito, e arrampicandosi come uno scoiattolo su per la barba del burattinaio, andò a posargli un bellissimo bacio sulla punta del naso."
+    },
+    {
+      "desde": 364.88,
+      "hasta": 367.45,
+      "texto": "— Dunque la grazia è fatta?"
+    },
+    {
+      "desde": 367.45,
+      "hasta": 372.17,
+      "texto": "— domandò il povero Arlecchino, con un fil di voce che si sentiva appena."
+    },
+    {
+      "desde": 372.17,
+      "hasta": 373.9,
+      "texto": "— La grazia è fatta!"
+    },
+    {
+      "desde": 373.9,
+      "hasta": 379.77,
+      "texto": "— rispose Mangiafoco; poi soggiunse sospirando e tentennando il capo:"
+    },
+    {
+      "desde": 379.77,
+      "hasta": 388.21,
+      "texto": "— Pazienza! per questa sera mi rassegnerò a mangiare il montone mezzo crudo: ma un’altra volta, guai a chi toccherà!... —"
+    },
+    {
+      "desde": 388.21,
+      "hasta": 401.13,
+      "texto": "Alla notizia della grazia ottenuta, i burattini corsero tutti sul palcoscenico e, accesi i lumi e i lampadari come in serata di gala, cominciarono a saltare e a ballare."
+    },
+    {
+      "desde": 401.13,
+      "hasta": 404.89,
+      "texto": "Era l’alba e ballavano sempre."
+    }
+  ]
+}
