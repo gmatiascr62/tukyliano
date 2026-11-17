@@ -14,6 +14,7 @@ class RadioItaliana {
     required this.sitio,
     required this.sostener,
     required this.quien,
+    this.balanceador = '',
   });
 
   final String id;
@@ -27,7 +28,16 @@ class RadioItaliana {
   final String ojo;
 
   /// La dirección del audio en vivo.
+  ///
+  /// Si hay balanceador, esta es la de respaldo: la que se usa cuando el
+  /// balanceador no contesta. Tiene que ser una que funcione sola.
   final String stream;
+
+  /// A quién preguntarle por qué nodo transmite hoy, si la emisora reparte
+  /// desde varios. Vacío si transmite siempre desde el mismo lugar.
+  ///
+  /// Ver DondeSuenaLaRadio: la respuesta hay que pasarla a https.
+  final String balanceador;
 
   final String sitio;
 
@@ -44,6 +54,7 @@ class RadioItaliana {
         que: datos['que'] as String? ?? '',
         ojo: datos['ojo'] as String? ?? '',
         stream: datos['stream'] as String,
+        balanceador: datos['balanceador'] as String? ?? '',
         sitio: datos['sitio'] as String? ?? '',
         sostener: datos['sostener'] as String? ?? '',
         quien: datos['quien'] as String? ?? '',
