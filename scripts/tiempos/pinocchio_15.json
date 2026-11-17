@@ -2,6 +2,11 @@
   "id": "pinocchio_15",
   "titulo": "15. Gli assassini inseguono Pinocchio; e, dopo averlo raggiunto, lo impiccano a un ramo della Quercia grande.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 31.38,
+    "hasta": 38.15,
+    "texto": "Gli assassini inseguono Pinocchio; e, dopo averlo raggiunto, lo impiccano a un ramo della Quercia grande."
+  },
   "renglones": [
     {
       "desde": 38.15,
@@ -114,7 +119,7 @@
       "texto": "Abbi compassione di un povero ragazzo inseguìto dagli assass… —"
     },
     {
-      "desde": 149.44,
+      "desde": 150.8,
       "hasta": 157.99,
       "texto": "Ma non potè finir la parola, perchè sentì afferrarsi per il collo, e le solite due vociacce che gli brontolarono minacciosamente:"
     },

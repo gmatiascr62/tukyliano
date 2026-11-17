@@ -2,6 +2,11 @@
   "id": "pinocchio_34",
   "titulo": "34. Pinocchio, gettato in mare, è mangiato dai pesci e ritorna ed essere un burattino come prima; ma mentre nuota per salvarsi, è ingoiato dal terribile Pesce-cane.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 31.13,
+    "hasta": 42.56,
+    "texto": "Pinocchio, gettato in mare, è mangiato dai pesci e ritorna ed essere un burattino come prima; ma mentre nuota per salvarsi, è ingoiato dal terribile Pesce-cane."
+  },
   "renglones": [
     {
       "desde": 43.51,
@@ -44,7 +49,7 @@
       "texto": "— E il ciuchino che ho gettato in mare dov’è?..."
     },
     {
-      "desde": 96.65,
+      "desde": 97.45,
       "hasta": 97.71,
       "texto": "— Quel ciuchino son io!"
     },
@@ -59,7 +64,7 @@
       "texto": "— Ah! mariuolo!"
     },
     {
-      "desde": 104.39,
+      "desde": 104.99,
       "hasta": 106.32,
       "texto": "Pretenderesti forse burlarti di me?"
     },
@@ -120,16 +125,16 @@
     },
     {
       "desde": 147.91,
-      "hasta": 153.21,
+      "hasta": 150.71,
       "texto": "e allora Pinocchio, trovandosi libero come un uccello nell’aria, prese a dirgli così:"
     },
     {
       "desde": 153.85,
-      "hasta": 162.84,
+      "hasta": 162.65,
       "texto": "— Sappiate dunque che io ero un burattino di legno come sono oggi: ma mi trovavo a tocco e non tocco di diventare un ragazzo, come in questo mondo ce n’è tanti:"
     },
     {
-      "desde": 163.45,
+      "desde": 163.95,
       "hasta": 176.5,
       "texto": "se non che per la mia poca voglia di studiare e per dar retta ai cattivi compagni, scappai di casa… e un bel giorno, svegliandomi, mi trovai cambiato in un somaro con tanto d'orecchi… e con tanto di coda!…"
     },
@@ -220,7 +225,7 @@
     },
     {
       "desde": 255.21,
-      "hasta": 261.84,
+      "hasta": 258.91,
       "texto": "Questo sentimento di delicatezza vi onora moltissimo, e io ve ne serberò eterna riconoscenza."
     },
     {
@@ -365,7 +370,7 @@
     },
     {
       "desde": 436.73,
-      "hasta": 448.07,
+      "hasta": 447.56,
       "texto": "ossia si vedeva solamente sulla superficie del mare un puntolino nero, che di tanto in tanto rizzava le gambe fuori dell’acqua e faceva capriole e salti, come un delfino in vena di buonumore."
     },
     {
@@ -375,11 +380,11 @@
     },
     {
       "desde": 463.22,
-      "hasta": 475.45,
+      "hasta": 474.53,
       "texto": "La cosa più singolare era questa: che la lana della caprettina, invece di esser bianca, o nera, o pallata di più colori, come quella delle altre capre, era invece turchina, ma d’un turchino così sfolgorante,"
     },
     {
-      "desde": 476.39,
+      "desde": 477.22,
       "hasta": 479.75,
       "texto": "che rammentava moltissimo i capelli della bella Bambina."
     },
@@ -470,7 +475,7 @@
     },
     {
       "desde": 568.24,
-      "hasta": 577.36,
+      "hasta": 575.29,
       "texto": "E già era presso allo scoglio, e già la caprettina, spenzolandosi tutta sul mare, gli porgeva le sue zampine davanti per aiutarlo a uscire dall’acqua… Ma!…"
     },
     {
@@ -600,7 +605,7 @@
     },
     {
       "desde": 702.34,
-      "hasta": 704.5,
+      "hasta": 702.6,
       "texto": "— Ma io non voglio esser digerito!"
     },
     {
@@ -615,16 +620,16 @@
     },
     {
       "desde": 719.52,
-      "hasta": 720.61,
+      "hasta": 720.73,
       "texto": "— Scioccherie!"
     },
     {
-      "desde": 720.61,
-      "hasta": 722.0,
+      "desde": 720.73,
+      "hasta": 722.28,
       "texto": "— gridò Pinocchio."
     },
     {
-      "desde": 722.0,
+      "desde": 722.28,
       "hasta": 729.34,
       "texto": "— La mia è un’opinione — replicò il Tonno — e le opinioni, come dicono i Tonni politici, vanno rispettate!"
     },
@@ -644,7 +649,7 @@
       "texto": "— È molto grosso questo Pesce-cane che ci ha inghiottiti?"
     },
     {
-      "desde": 739.16,
+      "desde": 739.88,
       "hasta": 740.84,
       "texto": "— domandò il burattino."
     },

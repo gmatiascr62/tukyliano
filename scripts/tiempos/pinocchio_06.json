@@ -2,6 +2,11 @@
   "id": "pinocchio_06",
   "titulo": "6. Pinocchio si addormenta coi piedi sul caldano, e la mattina dopo si sveglia coi piedi tutti bruciati.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.27,
+    "hasta": 39.27,
+    "texto": "Pinocchio si addormenta coi piedi sul caldano, e la mattina dopo si sveglia coi piedi tutti bruciati."
+  },
   "renglones": [
     {
       "desde": 39.33,
@@ -130,7 +135,7 @@
     },
     {
       "desde": 207.43,
-      "hasta": 209.17,
+      "hasta": 209.15,
       "texto": "Quella voce era la voce di Geppetto."
     }
   ]

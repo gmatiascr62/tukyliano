@@ -2,6 +2,11 @@
   "id": "pinocchio_27",
   "titulo": "27. Gran combattimento fra Pinocchio e i suoi compagni: uno de’ quali essendo rimasto ferito, Pinocchio viene arrestato dai carabinieri.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 36.94,
+    "hasta": 46.5,
+    "texto": "Gran combattimento fra Pinocchio e i suoi compagni: uno de’ quali essendo rimasto ferito, Pinocchio viene arrestato dai carabinieri."
+  },
   "renglones": [
     {
       "desde": 47.16,
@@ -179,7 +184,7 @@
       "texto": "— fece il burattino, battendosi coll’indice sulla punta del naso, in segno di canzonatura."
     },
     {
-      "desde": 200.14,
+      "desde": 202.15,
       "hasta": 203.12,
       "texto": "— Pinocchio! la finisce male!… — Cucù!"
     },
@@ -304,8 +309,8 @@
       "texto": "— Chetati, Granchio dell’uggia!"
     },
     {
-      "desde": 341.49,
-      "hasta": 347.61,
+      "desde": 343.68,
+      "hasta": 345.18,
       "texto": "Faresti meglio a succiare due pasticche di lichene per guarire da codesta infreddatura di gola."
     },
     {
@@ -320,7 +325,7 @@
     },
     {
       "desde": 361.92,
-      "hasta": 367.85,
+      "hasta": 365.84,
       "texto": "Fra questi libri, v’era un volume rilegato in cartoncino grosso, colla costola e colle punte di cartapecora."
     },
     {
@@ -665,12 +670,12 @@
     },
     {
       "desde": 672.72,
-      "hasta": 682.79,
+      "hasta": 681.0,
       "texto": "Pinocchio correva, e il cane correva più di lui; per cui tutta la gente si affacciava alle finestre e si affollava in mezzo alla strada, ansiosa di veder la fine di un palio così inferocito."
     },
     {
-      "desde": 683.44,
-      "hasta": 695.66,
+      "desde": 684.96,
+      "hasta": 693.42,
       "texto": "Ma non potè levarsi questa voglia, perchè il can mastino e Pinocchio sollevarono lungo la strada un tal polverone, che dopo pochi minuti non era possibile di veder più nulla."
     }
   ]

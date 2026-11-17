@@ -2,6 +2,11 @@
   "id": "pinocchio_18",
   "titulo": "18. Pinocchio ritrova la Volpe e il Gatto, e va con loro a seminare le quattro monete nel Campo de’ Miracoli.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 27.05,
+    "hasta": 33.7,
+    "texto": "Pinocchio ritrova la Volpe e il Gatto, e va con loro a seminare le quattro monete nel Campo de’ Miracoli."
+  },
   "renglones": [
     {
       "desde": 33.7,
@@ -55,7 +60,7 @@
     },
     {
       "desde": 106.99,
-      "hasta": 108.79,
+      "hasta": 107.39,
       "texto": "— gridò Pinocchio, saltando dall’allegrezza."
     },
     {
@@ -264,7 +269,7 @@
       "texto": "— E le tue monete d’oro?"
     },
     {
-      "desde": 272.95,
+      "desde": 273.84,
       "hasta": 277.13,
       "texto": "— Le ho sempre in tasca, meno una che la spesi all’osteria del Gambero Rosso."
     },
@@ -300,7 +305,7 @@
     },
     {
       "desde": 294.93,
-      "hasta": 302.25,
+      "hasta": 300.75,
       "texto": "— Perchè quel campo è stato comprato da un gran signore e da domani in là non sarà più permesso a nessuno di seminarvi i denari."
     },
     {
@@ -334,7 +339,7 @@
       "texto": "Pinocchio esitò un poco a rispondere, perchè gli tornò in mente la buona Fata, il vecchio Geppetto e gli avvertimenti del Grillo-parlante;"
     },
     {
-      "desde": 326.22,
+      "desde": 327.0,
       "hasta": 336.49,
       "texto": "ma poi finì col fare come fanno tutti i ragazzi senza un fil di giudizio e senza cuore; finì, cioè, col dare una scrollatina di capo, e disse alla Volpe e al Gatto:"
     },
@@ -360,7 +365,7 @@
     },
     {
       "desde": 366.06,
-      "hasta": 380.24,
+      "hasta": 379.24,
       "texto": "perchè avevano venduto le loro bellissime ali colorite, di pavoni tutti scodati, che si vergognavano a farsi vedere, e di fagiani che zampettavano cheti cheti, rimpiangendo le loro scintillanti penne d’oro e d’argento,"
     },
     {
@@ -429,7 +434,7 @@
       "texto": "Poi domandò:"
     },
     {
-      "desde": 447.48,
+      "desde": 447.69,
       "hasta": 448.48,
       "texto": "— C’è altro da fare?"
     },

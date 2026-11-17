@@ -2,6 +2,11 @@
   "id": "pinocchio_16",
   "titulo": "16. La bella Bambina dai capelli turchini fa raccogliere il burattino: lo mette a letto, e chiama tre medici per sapere se sia vivo o morto.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 29.87,
+    "hasta": 40.53,
+    "texto": "La bella Bambina dai capelli turchini fa raccogliere il burattino: lo mette a letto, e chiama tre medici per sapere se sia vivo o morto."
+  },
   "renglones": [
     {
       "desde": 40.55,

@@ -2,6 +2,11 @@
   "id": "pinocchio_26",
   "titulo": "26. Pinocchio va co’ suoi compagni di scuola in riva al mare, per vedere il terribile Pescecane.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 33.08,
+    "hasta": 39.54,
+    "texto": "Pinocchio va co’ suoi compagni di scuola in riva al mare, per vedere il terribile Pescecane."
+  },
   "renglones": [
     {
       "desde": 39.54,
@@ -185,7 +190,7 @@
     },
     {
       "desde": 229.19,
-      "hasta": 231.03,
+      "hasta": 229.68,
       "texto": "È pagato apposta per brontolare tutti i giorni."
     },
     {
@@ -230,7 +235,7 @@
     },
     {
       "desde": 253.1,
-      "hasta": 254.47,
+      "hasta": 253.52,
       "texto": "Appena s’è annoiato,"
     },
     {
@@ -245,7 +250,7 @@
     },
     {
       "desde": 261.66,
-      "hasta": 263.06,
+      "hasta": 262.11,
       "texto": "— domandò il burattino."
     },
     {

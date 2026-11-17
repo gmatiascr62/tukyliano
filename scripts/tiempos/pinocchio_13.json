@@ -2,6 +2,11 @@
   "id": "pinocchio_13",
   "titulo": "13. L’osteria del Gambero Rosso.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 31.71,
+    "hasta": 34.09,
+    "texto": "L’osteria del Gambero Rosso."
+  },
   "renglones": [
     {
       "desde": 34.09,
@@ -119,7 +124,7 @@
       "texto": "Era l’oste che veniva a dirgli che la mezzanotte era sonata."
     },
     {
-      "desde": 200.84,
+      "desde": 200.98,
       "hasta": 203.04,
       "texto": "— E i miei compagni sono pronti?"
     },
@@ -144,7 +149,7 @@
       "texto": "— Perchè il Gatto ha ricevuto un’imbasciata"
     },
     {
-      "desde": 212.44,
+      "desde": 212.63,
       "hasta": 216.88,
       "texto": "che il suo gattino maggiore, malato di geloni ai piedi, stava in pericolo di vita."
     },
@@ -209,13 +214,13 @@
       "texto": "Solamente alcuni uccellacci notturni, traversando la strada da una siepe all’altra, venivano a sbattere le ali sul naso di Pinocchio, il quale, facendo un salto indietro per la paura, gridava: — Chi va là?"
     },
     {
-      "desde": 273.19,
+      "desde": 273.92,
       "hasta": 277.49,
       "texto": "— e l’eco delle colline circostanti ripeteva in lontananza: — Chi va là? chi va là? chi va là?"
     },
     {
       "desde": 280.91,
-      "hasta": 294.57,
+      "hasta": 293.45,
       "texto": "Intanto, mentre camminava, vide sul tronco di un albero un piccolo animaletto, che riluceva di una luce pallida e opaca, come un lumino da notte dentro una lampada di porcellana trasparente. — Chi sei?"
     },
     {
@@ -314,8 +319,8 @@
       "texto": "— Le solite storie."
     },
     {
-      "desde": 363.21,
-      "hasta": 363.95,
+      "desde": 362.15,
+      "hasta": 364.49,
       "texto": "Buona notte, Grillo."
     },
     {

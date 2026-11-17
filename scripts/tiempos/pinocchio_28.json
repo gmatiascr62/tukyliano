@@ -2,6 +2,11 @@
   "id": "pinocchio_28",
   "titulo": "28. Pinocchio corre pericolo di essere fritto in padella come un pesce.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 35.59,
+    "hasta": 39.43,
+    "texto": "Pinocchio corre pericolo di essere fritto in padella come un pesce."
+  },
   "renglones": [
     {
       "desde": 39.43,
@@ -219,7 +224,7 @@
       "texto": "— Buone queste triglie!"
     },
     {
-      "desde": 326.49,
+      "desde": 328.09,
       "hasta": 330.09,
       "texto": "— disse, guardandole e annusandole con compiacenza."
     },
@@ -285,11 +290,11 @@
     },
     {
       "desde": 382.62,
-      "hasta": 389.25,
+      "hasta": 387.78,
       "texto": "E tornò a guardarlo attentamente, e dopo averlo guardato ben bene per ogni verso, finì col dire:"
     },
     {
-      "desde": 389.25,
+      "desde": 390.4,
       "hasta": 392.17,
       "texto": "— Ho capito; dev’essere un granchio di mare."
     },
@@ -355,11 +360,11 @@
     },
     {
       "desde": 435.72,
-      "hasta": 442.6,
+      "hasta": 441.18,
       "texto": "— In segno di amicizia e di stima particolare, lascerò a te la scelta del come vuoi esser cucinato."
     },
     {
-      "desde": 442.6,
+      "desde": 444.52,
       "hasta": 448.72,
       "texto": "Desideri esser fritto in padella, oppure preferisci di esser cotto nel tegame colla salsa di pomidoro?"
     },
@@ -385,11 +390,11 @@
     },
     {
       "desde": 467.43,
-      "hasta": 474.22,
+      "hasta": 472.64,
       "texto": "Lascia fare a me: ti friggerò in padella assieme a tutti gli altri pesci, e te ne troverai contento."
     },
     {
-      "desde": 474.22,
+      "desde": 475.26,
       "hasta": 477.9,
       "texto": "L’esser fritto in compagnia è sempre una consolazione. ―"
     },

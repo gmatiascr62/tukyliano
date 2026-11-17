@@ -2,6 +2,11 @@
   "id": "pinocchio_04",
   "titulo": "4. La storia di Pinocchio col Grillo-parlante, dove si vede come i ragazzi cattivi hanno a noia di sentirsi correggere da chi ne sa più di loro.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.75,
+    "hasta": 43.75,
+    "texto": "La storia di Pinocchio col Grillo-parlante, dove si vede come i ragazzi cattivi hanno a noia di sentirsi correggere da chi ne sa più di loro."
+  },
   "renglones": [
     {
       "desde": 43.93,
@@ -54,7 +59,7 @@
       "texto": "Pinocchio si voltò, e vide un grosso Grillo che saliva lentamente su su per il muro."
     },
     {
-      "desde": 114.62,
+      "desde": 115.96,
       "hasta": 118.04,
       "texto": "— Dimmi, Grillo, e tu chi sei?"
     },

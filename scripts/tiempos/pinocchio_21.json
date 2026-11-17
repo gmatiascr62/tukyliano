@@ -2,6 +2,11 @@
   "id": "pinocchio_21",
   "titulo": "21. Pinocchio è preso da un contadino, il quale lo costringe a far da can da guardia a un pollaio.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 27.25,
+    "hasta": 33.63,
+    "texto": "Pinocchio è preso da un contadino, il quale lo costringe a far da can da guardia a un pollaio."
+  },
   "renglones": [
     {
       "desde": 33.63,
@@ -85,7 +90,7 @@
     },
     {
       "desde": 111.77,
-      "hasta": 121.75,
+      "hasta": 120.22,
       "texto": "Era il padrone del campo che veniva in punta di piedi a vedere se qualcuna di quelle faine, che gli mangiavano di nottetempo i polli, fosse rimasta presa al trabocchetto della tagliuola."
     },
     {
@@ -215,11 +220,11 @@
     },
     {
       "desde": 265.64,
-      "hasta": 268.76,
+      "hasta": 267.73,
       "texto": "a fare il cane di guardia alla casa di un contadino."
     },
     {
-      "desde": 268.96,
+      "desde": 269.66,
       "hasta": 271.44,
       "texto": "Oh, se potessi rinascere un’altra volta!…"
     },

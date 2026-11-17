@@ -2,6 +2,11 @@
   "id": "pinocchio_31",
   "titulo": "31. Dopo cinque mesi di cuccagna, Pinocchio, con sua grande maraviglia, sente spuntarsi un bel paio d’orecchie asinine e diventa un ciuchino, con la coda e tutto.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 31.44,
+    "hasta": 43.02,
+    "texto": "Dopo cinque mesi di cuccagna, Pinocchio, con sua grande maraviglia, sente spuntarsi un bel paio d’orecchie asinine e diventa un ciuchino, con la coda e tutto."
+  },
   "renglones": [
     {
       "desde": 43.02,
@@ -50,7 +55,7 @@
     },
     {
       "desde": 107.55,
-      "hasta": 120.44,
+      "hasta": 119.15,
       "texto": "restavano innamorati e facevano a gara nel montare sul suo carro, per essere condotti da lui in quella vera cuccagna, conosciuta nella carta geografica col seducente nome di «Paese de’ balocchi.»"
     },
     {
@@ -105,11 +110,11 @@
     },
     {
       "desde": 189.0,
-      "hasta": 191.79,
+      "hasta": 189.79,
       "texto": "— E spiccato un salto, montò a cavalcioni sulle stanghe."
     },
     {
-      "desde": 192.62,
+      "desde": 195.11,
       "hasta": 199.49,
       "texto": "— E tu amor mio, — disse l’ omino volgendosi tutto complimentoso a Pinocchio — che intendi fare?"
     },
@@ -129,8 +134,8 @@
       "texto": "— Io voglio tornarmene a casa mia: voglio studiare e voglio farmi onore alla scuola, come fanno tutti i ragazzi perbene."
     },
     {
-      "desde": 211.78,
-      "hasta": 211.96,
+      "desde": 211.07,
+      "hasta": 212.95,
       "texto": "— Buon pro ti faccia!"
     },
     {
@@ -224,7 +229,7 @@
       "texto": "Detto fatto, si avvicinò al ciuchino manritto della prima pariglia, e fece l’atto di volerlo cavalcare: ma la bestiuola, voltandosi a secco, gli dètte una gran musata nello stomaco e lo gettò a gambe all’aria."
     },
     {
-      "desde": 297.06,
+      "desde": 298.91,
       "hasta": 303.04,
       "texto": "Figuratevi la risatona impertinente e sgangherata di tutti quei ragazzi presenti alla scena."
     },
@@ -375,11 +380,11 @@
     },
     {
       "desde": 480.29,
-      "hasta": 483.69,
+      "hasta": 482.77,
       "texto": "— disse l’omino — non perdiamo il nostro tempo a veder piangere un ciuco."
     },
     {
-      "desde": 484.28,
+      "desde": 484.88,
       "hasta": 488.99,
       "texto": "Rimonta a cavallo, e andiamo: la nottata è fresca, e la strada è lunga. ―"
     },

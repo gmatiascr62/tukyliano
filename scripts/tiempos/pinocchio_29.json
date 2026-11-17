@@ -2,6 +2,11 @@
   "id": "pinocchio_29",
   "titulo": "29. Ritorna a casa della Fata, la quale gli promette che il giorno dopo non sarà più un burattino, ma diventerà un ragazzo. Gran colazione di caffè-e-latte per festeggiare questo grande avvenimento.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 35.68,
+    "hasta": 48.75,
+    "texto": "Ritorna a casa della Fata, la quale gli promette che il giorno dopo non sarà più un burattino, ma diventerà un ragazzo. Gran colazione di caffè-e-latte per festeggiare questo grande avvenimento."
+  },
   "renglones": [
     {
       "desde": 48.75,
@@ -40,11 +45,11 @@
     },
     {
       "desde": 93.17,
-      "hasta": 97.77,
+      "hasta": 96.07,
       "texto": "In quel mentre si udì nella grotta una vocina fioca fioca, che disse:"
     },
     {
-      "desde": 97.77,
+      "desde": 96.07,
       "hasta": 99.52,
       "texto": "— Salvami, Alidoro!"
     },
@@ -70,11 +75,11 @@
     },
     {
       "desde": 123.85,
-      "hasta": 138.53,
+      "hasta": 136.97,
       "texto": "Il pescatore arrabbiatissimo di vedersi strappar di mano un pesce, che egli avrebbe mangiato tanto volentieri, si provò a rincorrere il cane; ma fatti pochi passi gli venne un nodo di tosse e dovè tornarsene indietro."
     },
     {
-      "desde": 138.57,
+      "desde": 140.05,
       "hasta": 141.64,
       "texto": "Intanto Alidoro, ritrovata che ebbe la viottola"
     },
@@ -270,16 +275,16 @@
     },
     {
       "desde": 288.0,
-      "hasta": 297.92,
+      "hasta": 296.7,
       "texto": "— Non date retta, galantuomo, a tutto il bene che ve ne ho detto; perchè conosco benissimo Pinocchio e posso assicurarvi anch’io ch’è davvero un ragazzaccio, un disubbidiente e uno svogliato,"
     },
     {
       "desde": 298.64,
-      "hasta": 302.32,
+      "hasta": 300.22,
       "texto": "e che invece di andare a scuola, va coi compagni a fare lo sbarazzino!"
     },
     {
-      "desde": 302.32,
+      "desde": 302.74,
       "hasta": 308.86,
       "texto": "Appena ebbe pronunziate queste parole, il suo naso raccorcì e tornò alla grandezza naturale, come era prima."
     },
@@ -395,11 +400,11 @@
     },
     {
       "desde": 446.08,
-      "hasta": 447.52,
+      "hasta": 446.43,
       "texto": "— domandò il burattino."
     },
     {
-      "desde": 447.52,
+      "desde": 448.04,
       "hasta": 454.83,
       "texto": "— La Fata dorme e non vuol essere svegliata: ma tu chi sei? — Sono io! — Chi io?"
     },
@@ -534,7 +539,7 @@
       "texto": "— Che cosa fate con codesto piede conficcato nell’uscio?"
     },
     {
-      "desde": 602.13,
+      "desde": 602.97,
       "hasta": 604.41,
       "texto": "— domandò ridendo al burattino."
     },
@@ -585,11 +590,11 @@
     },
     {
       "desde": 642.12,
-      "hasta": 647.52,
+      "hasta": 646.0,
       "texto": "Nel vassoio c’era un pane, un pollastro arrosto e quattro albicocche mature."
     },
     {
-      "desde": 648.04,
+      "desde": 649.11,
       "hasta": 650.71,
       "texto": "— Ecco la colazione che vi manda la Fata — disse la Lumaca."
     },
@@ -660,7 +665,7 @@
     },
     {
       "desde": 743.56,
-      "hasta": 751.56,
+      "hasta": 750.83,
       "texto": "e la Fata aveva fatto preparare dugento tazze di caffè-e-latte e quattrocento panini imburrati di dentro e di fuori."
     },
     {
@@ -670,7 +675,7 @@
     },
     {
       "desde": 759.07,
-      "hasta": 763.07,
+      "hasta": 761.79,
       "texto": "Disgraziatamente, nella vita dei burattini, c’è sempre un ma, che sciupa ogni cosa."
     }
   ]

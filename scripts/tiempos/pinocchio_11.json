@@ -2,6 +2,11 @@
   "id": "pinocchio_11",
   "titulo": "11. Mangiafoco starnutisce e perdona a Pinocchio, il quale poi difende dalla morte il suo amico Arlecchino.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 33.11,
+    "hasta": 39.62,
+    "texto": "Mangiafoco starnutisce e perdona a Pinocchio, il quale poi difende dalla morte il suo amico Arlecchino."
+  },
   "renglones": [
     {
       "desde": 39.73,
@@ -10,11 +15,11 @@
     },
     {
       "desde": 55.95,
-      "hasta": 59.45,
+      "hasta": 58.11,
       "texto": "ma nel fondo poi non era un cattiv’uomo."
     },
     {
-      "desde": 59.47,
+      "desde": 60.22,
       "hasta": 72.63,
       "texto": "Prova ne sia, che quando vide portarsi davanti quel povero Pinocchio, che si dibatteva per ogni verso, urlando «Non voglio morire, non voglio morire!», principiò subito a commuoversi e a impietosirsi;"
     },
@@ -84,8 +89,8 @@
       "texto": "E il tuo babbo e la tua mamma sono sempre vivi?"
     },
     {
-      "desde": 150.14,
-      "hasta": 150.62,
+      "desde": 150.04,
+      "hasta": 151.68,
       "texto": "— domandò Mangiafoco."
     },
     {
@@ -240,7 +245,7 @@
     },
     {
       "desde": 302.92,
-      "hasta": 304.5,
+      "hasta": 303.53,
       "texto": "Avanti, signori giandarmi!"
     },
     {

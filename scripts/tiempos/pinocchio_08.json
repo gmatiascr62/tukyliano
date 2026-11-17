@@ -2,6 +2,11 @@
   "id": "pinocchio_08",
   "titulo": "8. Geppetto rifà i piedi a Pinocchio e vende la propria casacca per comprargli l’Abbecedario.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.51,
+    "hasta": 38.25,
+    "texto": "Geppetto rifà i piedi a Pinocchio e vende la propria casacca per comprargli l’Abbecedario."
+  },
   "renglones": [
     {
       "desde": 38.25,
@@ -155,7 +160,7 @@
     },
     {
       "desde": 232.15,
-      "hasta": 233.15,
+      "hasta": 232.22,
       "texto": "— E i quattrini?"
     },
     {
@@ -179,7 +184,7 @@
       "texto": "— gridò Geppetto tutt’a un tratto rizzandosi in piedi; e infilatasi la vecchia casacca di fustagno, tutta toppe e rimendi, uscì correndo di casa."
     },
     {
-      "desde": 262.06,
+      "desde": 262.59,
       "hasta": 269.31,
       "texto": "Dopo poco tornò: e quando tornò aveva in mano l’Abbecedario per il figliuolo, ma la casacca non l’aveva più."
     },

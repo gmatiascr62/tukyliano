@@ -2,6 +2,11 @@
   "id": "pinocchio_12",
   "titulo": "12. Il burattinaio Mangiafoco regala cinque monete d’oro a Pinocchio, perché le porti al suo babbo Geppetto: e Pinocchio, invece, si lascia abbindolare dalla Volpe e dal Gatto e se ne va con loro.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 28.82,
+    "hasta": 39.21,
+    "texto": "Il burattinaio Mangiafoco regala cinque monete d’oro a Pinocchio, perché le porti al suo babbo Geppetto: e Pinocchio, invece, si lascia abbindolare dalla Volpe e dal Gatto e se ne va con loro."
+  },
   "renglones": [
     {
       "desde": 39.21,
@@ -54,7 +59,7 @@
       "texto": "Ecco qui cinque monete d’oro."
     },
     {
-      "desde": 70.62,
+      "desde": 72.21,
       "hasta": 74.29,
       "texto": "Va’ subito a portargliele, e salutalo tanto da parte mia. —"
     },
@@ -330,7 +335,7 @@
     },
     {
       "desde": 311.05,
-      "hasta": 324.45,
+      "hasta": 322.62,
       "texto": "«I ragazzi disobbedienti non possono aver bene in questo mondo.» Ed io l’ho provato a mie spese, perchè mi sono capitate molte disgrazie, e anche ieri sera in casa di Mangiafoco, ho corso pericolo…"
     },
     {
@@ -460,16 +465,16 @@
     },
     {
       "desde": 445.31,
-      "hasta": 446.73,
+      "hasta": 445.56,
       "texto": "— Dio te ne liberi!"
     },
     {
-      "desde": 446.73,
-      "hasta": 446.83,
+      "desde": 445.56,
+      "hasta": 446.19,
       "texto": "— Te ne liberi!"
     },
     {
-      "desde": 446.83,
+      "desde": 446.19,
       "hasta": 446.94,
       "texto": "— ripetè il Gatto."
     },

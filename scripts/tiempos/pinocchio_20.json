@@ -2,6 +2,11 @@
   "id": "pinocchio_20",
   "titulo": "20. Liberato dalla prigione, si avvia per tornare a casa della Fata; ma lungo la strada trova un serpente orribile, e poi rimane preso alla tagliuola.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 28.16,
+    "hasta": 36.38,
+    "texto": "Liberato dalla prigione, si avvia per tornare a casa della Fata; ma lungo la strada trova un serpente orribile, e poi rimane preso alla tagliuola."
+  },
   "renglones": [
     {
       "desde": 36.96,
@@ -45,7 +50,7 @@
     },
     {
       "desde": 92.69,
-      "hasta": 98.77,
+      "hasta": 98.38,
       "texto": "Ma da questa volta in là, faccio proponimento di cambiar vita e di diventare un ragazzo ammodo e ubbidiente…"
     },
     {
@@ -54,7 +59,7 @@
       "texto": "Tanto ormai ho bell’e visto che i ragazzi, a essere disubbidienti, ci scapitano sempre e non ne infilano mai una per il su’ verso."
     },
     {
-      "desde": 108.86,
+      "desde": 108.96,
       "hasta": 111.54,
       "texto": "E il mio babbo mi avrà aspettato?…"
     },
@@ -170,7 +175,7 @@
     },
     {
       "desde": 254.68,
-      "hasta": 259.15,
+      "hasta": 257.96,
       "texto": "Ma non aveva ancora finito di alzare la gamba, che il Serpente si rizzò all’improvviso"
     },
     {

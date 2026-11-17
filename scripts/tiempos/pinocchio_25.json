@@ -2,6 +2,11 @@
   "id": "pinocchio_25",
   "titulo": "25. Pinocchio promette alla Fata di essere buono e di studiare, perché è stufo di fare il burattino e vuol diventare un bravo ragazzo.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.12,
+    "hasta": 38.12,
+    "texto": "Pinocchio promette alla Fata di essere buono e di studiare, perché è stufo di fare il burattino e vuol diventare un bravo ragazzo."
+  },
   "renglones": [
     {
       "desde": 39.51,

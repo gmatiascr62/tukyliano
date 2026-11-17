@@ -2,6 +2,11 @@
   "id": "pinocchio_03",
   "titulo": "3. Geppetto, tornato a casa, comincia subito a fabbricarsi il burattino e gli mette il nome di Pinocchio. Prime monellerie del burattino.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 23.68,
+    "hasta": 34.57,
+    "texto": "Geppetto, tornato a casa, comincia subito a fabbricarsi il burattino e gli mette il nome di Pinocchio. Prime monellerie del burattino."
+  },
   "renglones": [
     {
       "desde": 34.57,
@@ -30,7 +35,7 @@
     },
     {
       "desde": 78.21,
-      "hasta": 79.37,
+      "hasta": 78.98,
       "texto": "— disse fra sè e sè."
     },
     {
@@ -164,8 +169,8 @@
       "texto": "A quel garbo insolente e derisorio, Geppetto si fece tristo e melanconico, come non era stato mai in vita sua: e voltandosi verso Pinocchio, gli disse:"
     },
     {
-      "desde": 214.37,
-      "hasta": 214.86,
+      "desde": 213.95,
+      "hasta": 215.45,
       "texto": "— Birba d’un figliuolo!"
     },
     {
@@ -185,11 +190,11 @@
     },
     {
       "desde": 223.99,
-      "hasta": 226.91,
+      "hasta": 226.11,
       "texto": "Restavano sempre da fare le gambe e i piedi."
     },
     {
-      "desde": 226.91,
+      "desde": 228.12,
       "hasta": 232.57,
       "texto": "Quando Geppetto ebbe finito di fargli i piedi, sentì arrivarsi un calcio sulla punta del naso."
     },
@@ -279,7 +284,7 @@
       "texto": "Ma figuratevi come rimase, quando nel cercargli gli orecchi, non gli riuscì di poterli trovare: e sapete perchè? perchè, nella furia di scolpirlo, si era dimenticato di farglieli."
     },
     {
-      "desde": 357.06,
+      "desde": 357.97,
       "hasta": 364.38,
       "texto": "Allora lo prese per la collottola, e, mentre lo riconduceva indietro, gli disse tentennando minacciosamente il capo:"
     },
@@ -300,7 +305,7 @@
     },
     {
       "desde": 374.68,
-      "hasta": 379.09,
+      "hasta": 378.04,
       "texto": "Intanto i curiosi e i bighelloni principiavano a fermarsi lì dintorno e a far capannello."
     },
     {
@@ -315,7 +320,7 @@
     },
     {
       "desde": 383.8,
-      "hasta": 387.28,
+      "hasta": 385.03,
       "texto": "— dicevano alcuni — ha ragione a non voler tornare a casa!"
     },
     {
@@ -340,7 +345,7 @@
     },
     {
       "desde": 403.13,
-      "hasta": 411.7,
+      "hasta": 410.88,
       "texto": "Insomma, tanto dissero e tanto fecero, che il carabiniere rimise in libertà Pinocchio, e condusse in prigione quel pover’uomo di Geppetto."
     },
     {

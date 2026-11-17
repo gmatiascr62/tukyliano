@@ -2,6 +2,11 @@
   "id": "pinocchio_23",
   "titulo": "23. Pinocchio piange la morte della bella Bambina dai capelli turchini: poi trova un Colombo che lo porta sulla riva del mare, e lì si getta nell’acqua per andare in aiuto del suo babbo Geppetto.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 27.1,
+    "hasta": 37.83,
+    "texto": "Pinocchio piange la morte della bella Bambina dai capelli turchini: poi trova un Colombo che lo porta sulla riva del mare, e lì si getta nell’acqua per andare in aiuto del suo babbo Geppetto."
+  },
   "renglones": [
     {
       "desde": 38.43,

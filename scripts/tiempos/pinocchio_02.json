@@ -2,6 +2,11 @@
   "id": "pinocchio_02",
   "titulo": "2. Maestro Ciliegia regala il pezzo di legno al suo amico Geppetto, il quale lo prende per fabbricarsi un burattino maraviglioso che sappia ballare, tirar di scherma e fare i salti mortali.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 34.65,
+    "hasta": 49.61,
+    "texto": "Maestro Ciliegia regala il pezzo di legno al suo amico Geppetto, il quale lo prende per fabbricarsi un burattino maraviglioso che sappia ballare, tirar di scherma e fare i salti mortali."
+  },
   "renglones": [
     {
       "desde": 49.61,
@@ -39,8 +44,8 @@
       "texto": "Diventava subito una bestia, e non c’era più verso di tenerlo."
     },
     {
-      "desde": 95.98,
-      "hasta": 96.56,
+      "desde": 93.85,
+      "hasta": 98.1,
       "texto": "— Buon giorno, mastr’Antonio, — disse Geppetto."
     },
     {
@@ -70,7 +75,7 @@
     },
     {
       "desde": 118.89,
-      "hasta": 124.13,
+      "hasta": 123.25,
       "texto": "— Eccomi qui, pronto a servirvi, — replicò il falegname rizzandosi su i ginocchi."
     },
     {
@@ -189,8 +194,8 @@
       "texto": "Ma quando fu lì per consegnarlo all’amico, il pezzo di legno dette uno scossone, e sgusciandogli violentemente dalle mani, andò a battere con forza negli stinchi impresciuttiti del povero Geppetto."
     },
     {
-      "desde": 259.85,
-      "hasta": 266.31,
+      "desde": 260.65,
+      "hasta": 262.56,
       "texto": "— Ah! gli è con questo bel garbo, mastr’Antonio, che voi regalate la vostra roba?"
     },
     {
@@ -224,7 +229,7 @@
       "texto": "— Io non ve l’ho tirato! — Bugiardo!"
     },
     {
-      "desde": 282.71,
+      "desde": 283.8,
       "hasta": 286.14,
       "texto": "— Geppetto, non mi offendete: se no vi chiamo Polendina!... — Asino!"
     },
@@ -255,7 +260,7 @@
     },
     {
       "desde": 302.88,
-      "hasta": 310.36,
+      "hasta": 309.8,
       "texto": "A battaglia finita, mastr’Antonio si trovò due graffi di più sul naso, e quell’altro due bottoni di meno al giubbetto."
     },
     {
@@ -265,7 +270,7 @@
     },
     {
       "desde": 319.1,
-      "hasta": 328.9,
+      "hasta": 325.44,
       "texto": "Intanto Geppetto prese con sè il suo bravo pezzo di legno, e ringraziato mastr’Antonio, se ne tornò zoppicando a casa."
     }
   ]

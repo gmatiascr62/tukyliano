@@ -2,6 +2,11 @@
   "id": "pinocchio_19",
   "titulo": "19. Pinocchio è derubato delle sue monete d’oro e, per gastigo, si busca quattro mesi di prigione.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 27.94,
+    "hasta": 35.27,
+    "texto": "Pinocchio è derubato delle sue monete d’oro e, per gastigo, si busca quattro mesi di prigione."
+  },
   "renglones": [
     {
       "desde": 35.27,
@@ -164,7 +169,7 @@
       "texto": "E scava, scava, scava, fece una buca così profonda, che ci sarebbe entrato per ritto un pagliaio: ma le monete non c' erano più."
     },
     {
-      "desde": 248.6,
+      "desde": 248.84,
       "hasta": 257.68,
       "texto": "Preso allora dalla disperazione, tornò di corsa in città e andò difilato in tribunale, per denunziare al giudice i due malandrini, che lo avevano derubato."
     },
@@ -190,7 +195,7 @@
     },
     {
       "desde": 298.95,
-      "hasta": 303.67,
+      "hasta": 302.13,
       "texto": "A quella scampanellata comparvero subito due can mastini vestiti da giandarmi."
     },
     {

@@ -2,6 +2,11 @@
   "id": "pinocchio_05",
   "titulo": "5. Pinocchio ha fame, e cerca un uovo per farsi una frittata; ma sul più bello, la frittata gli vola via dalla finestra.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.77,
+    "hasta": 41.77,
+    "texto": "Pinocchio ha fame, e cerca un uovo per farsi una frittata; ma sul più bello, la frittata gli vola via dalla finestra."
+  },
   "renglones": [
     {
       "desde": 41.77,
@@ -25,7 +30,7 @@
     },
     {
       "desde": 87.85,
-      "hasta": 92.77,
+      "hasta": 91.77,
       "texto": "Il suo naso, che era già lungo, gli diventò più lungo almeno quattro dita."
     },
     {
@@ -70,7 +75,7 @@
     },
     {
       "desde": 160.31,
-      "hasta": 163.31,
+      "hasta": 162.42,
       "texto": "Oh! che brutta malattia che è la fame! —"
     },
     {
@@ -149,12 +154,12 @@
       "texto": "— Mille grazie, signor Pinocchio, d’avermi risparmiata la fatica di rompere il guscio!"
     },
     {
-      "desde": 252.9,
+      "desde": 254.42,
       "hasta": 256.8,
       "texto": "Arrivedella, stia bene e tanti saluti a casa! —"
     },
     {
-      "desde": 257.04,
+      "desde": 258.42,
       "hasta": 263.3,
       "texto": "Ciò detto, distese le ali, e, infilata la finestra che era aperta, se ne volò via a perdita d’occhio."
     },

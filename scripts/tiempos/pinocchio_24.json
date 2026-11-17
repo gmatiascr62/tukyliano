@@ -2,6 +2,11 @@
   "id": "pinocchio_24",
   "titulo": "24. Pinocchio arriva all’isola delle Api industriose e ritrova la Fata.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 27.93,
+    "hasta": 32.45,
+    "texto": "Pinocchio arriva all’isola delle Api industriose e ritrova la Fata."
+  },
   "renglones": [
     {
       "desde": 32.45,
@@ -15,11 +20,11 @@
     },
     {
       "desde": 42.23,
-      "hasta": 47.86,
+      "hasta": 47.48,
       "texto": "Diluviò, grandinò, tuonò spaventosamente e con certi lampi che pareva di giorno."
     },
     {
-      "desde": 47.86,
+      "desde": 48.3,
       "hasta": 52.7,
       "texto": "Sul far del mattino, gli riuscì di vedere poco distante una lunga striscia di terra."
     },
@@ -105,7 +110,7 @@
     },
     {
       "desde": 178.1,
-      "hasta": 185.78,
+      "hasta": 184.98,
       "texto": "— Mi farebbe il piacere di dirmi se in quest’isola vi sono dei paesi dove si possa mangiare, senza pericolo d’esser mangiati?"
     },
     {
@@ -249,7 +254,7 @@
       "texto": "— Ho capito; — disse subito quello svogliato di Pinocchio, — questo paese non è fatto per me!"
     },
     {
-      "desde": 317.67,
+      "desde": 318.59,
       "hasta": 320.0,
       "texto": "Io non son nato per lavorare!"
     },
@@ -499,8 +504,8 @@
       "texto": "sì.... anche voi avete i capelli turchini.... come lei!"
     },
     {
-      "desde": 602.34,
-      "hasta": 603.33,
+      "desde": 602.16,
+      "hasta": 603.51,
       "texto": "O Fatina mia!..."
     },
     {

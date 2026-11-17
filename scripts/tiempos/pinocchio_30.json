@@ -2,6 +2,11 @@
   "id": "pinocchio_30",
   "titulo": "30. Pinocchio, invece di diventare un ragazzo, parte di nascosto col suo amico Lucignolo per il Paese dei Balocchi.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.49,
+    "hasta": 40.79,
+    "texto": "Pinocchio, invece di diventare un ragazzo, parte di nascosto col suo amico Lucignolo per il Paese dei Balocchi."
+  },
   "renglones": [
     {
       "desde": 41.13,

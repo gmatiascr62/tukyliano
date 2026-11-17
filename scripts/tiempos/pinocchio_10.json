@@ -2,9 +2,14 @@
   "id": "pinocchio_10",
   "titulo": "10. I burattini riconoscono il loro fratello Pinocchio e gli fanno una grandissima festa; ma sul più bello, esce fuori il burattinaio Mangiafoco, e Pinocchio corre il pericolo di fare una brutta fine.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 30.7,
+    "hasta": 45.7,
+    "texto": "I burattini riconoscono il loro fratello Pinocchio e gli fanno una grandissima festa; ma sul più bello, esce fuori il burattinaio Mangiafoco, e Pinocchio corre il pericolo di fare una brutta fine."
+  },
   "renglones": [
     {
-      "desde": 46.19,
+      "desde": 45.74,
       "hasta": 54.15,
       "texto": "Quando Pinocchio entrò nel teatrino delle marionette, accadde un fatto che destò mezza rivoluzione."
     },
@@ -70,7 +75,7 @@
     },
     {
       "desde": 120.32,
-      "hasta": 124.92,
+      "hasta": 123.99,
       "texto": "— urlano in coro tutti i burattini, uscendo a salti fuori delle quinte."
     },
     {

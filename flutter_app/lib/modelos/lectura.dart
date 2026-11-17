@@ -55,6 +55,8 @@ class Lectura {
     required this.segundos,
     required this.bytes,
     this.renglones = const [],
+    this.tituloDesde,
+    this.tituloHasta,
   });
 
   final String id;
@@ -80,6 +82,49 @@ class Lectura {
   /// aprender a hablar, el italiano de Pinocchio es mejor material.
   final List<RenglonDeLectura> renglones;
 
+  /// Cuánto antes del título se empieza a reproducir.
+  ///
+  /// El alineado marca el título tarde, y no por imprecisión de whisper sino
+  /// por una razón concreta: el título sale del índice del libro y el lector
+  /// lee el del capítulo, que no siempre dice lo mismo. El capítulo 2 es el
+  /// caso claro —el índice dice "Maestro Ciliegia" y el lector dice "Mastro
+  /// Ciliegia"—, así que la primera palabra no coincide y el alineado
+  /// arranca en la segunda.
+  ///
+  /// Medido contra la transcripción del audio en los tres capítulos de los
+  /// que se tiene: el alineado llega 0,78 segundos tarde en el 1, 1,92 en el
+  /// 2 y 2,54 en el 33. El error crece con el largo del título, que encaja
+  /// con la explicación: cuanto más largo, más chances de que las primeras
+  /// palabras no coincidan.
+  ///
+  /// De ahí cuatro segundos y no dos y medio. Dos y medio parecía alcanzar
+  /// con los dos primeros capítulos y con el 33 se quedaba corto por cuatro
+  /// centésimas, que es la clase de margen que no es margen.
+  ///
+  /// Pasarse cuesta poco: lo que se oye de más es el final de la
+  /// presentación de LibriVox —el nombre de quien lee— y el "Capitolo
+  /// primo". Quedarse corto, en cambio, se come el principio del título,
+  /// que es justo lo que se vino a arreglar.
+  static const _elAire = Duration(seconds: 4);
+
+  /// Cuándo el lector lee el título, en las colecciones donde lo lee.
+  ///
+  /// En Pinocchio el lector dice "Capitolo primo" y después el título
+  /// entero, y recién ahí empieza el cuento. El título no es un renglón de
+  /// la lista —es el encabezado, y como renglón aparecería dos veces— pero
+  /// tiene su momento, y sin él la app arrancaba pasado el título: quedaba
+  /// escrito arriba sin que se oyera nunca.
+  final Duration? tituloDesde;
+  final Duration? tituloHasta;
+
+  /// Si en este momento se está leyendo el título.
+  bool tituloSuenaEn(Duration donde) {
+    final arranca = tituloDesde;
+    final termina = tituloHasta;
+    if (arranca == null || termina == null) return false;
+    return donde >= arranca && donde < termina;
+  }
+
   bool get tieneTexto => renglones.isNotEmpty;
 
   /// Si se sabe en qué momento se dice cada renglón.
@@ -94,12 +139,21 @@ class Lectura {
     return -1;
   }
 
-  /// Dónde arranca el primer verso. Null si no está marcado.
+  /// Dónde arranca lo que se vino a escuchar. Null si no está marcado.
   ///
   /// Importa porque antes va la presentación de LibriVox —quién lee, de qué
   /// libro—, y en una fábula de minuto y medio son dieciséis segundos de
   /// espera antes de que empiece lo que se vino a escuchar.
+  ///
+  /// Donde el lector lee el título, eso **también** es lo que se vino a
+  /// escuchar: es la primera línea del capítulo, está escrita arriba y hay
+  /// que oírla. Saltearla dejaba una frase a la vista que no sonaba nunca.
   Duration? get dondeEmpiezaDeVerdad {
+    final elTitulo = tituloDesde;
+    if (elTitulo != null) {
+      final conAire = elTitulo - _elAire;
+      return conAire < Duration.zero ? Duration.zero : conAire;
+    }
     for (final renglon in renglones) {
       if (renglon.desde != null) return renglon.desde;
     }
@@ -131,6 +185,8 @@ class Lectura {
           for (final r in (datos['renglones'] as List? ?? []))
             RenglonDeLectura.desdeJson(r),
         ],
+        tituloDesde: RenglonDeLectura._comoDuracion(datos['tituloDesde']),
+        tituloHasta: RenglonDeLectura._comoDuracion(datos['tituloHasta']),
       );
 }
 

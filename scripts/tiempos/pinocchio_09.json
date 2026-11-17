@@ -2,10 +2,15 @@
   "id": "pinocchio_09",
   "titulo": "9. Pinocchio vende l’Abbecedario per andare a vedere il teatrino dei burattini.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 30.65,
+    "hasta": 36.69,
+    "texto": "Pinocchio vende l’Abbecedario per andare a vedere il teatrino dei burattini."
+  },
   "renglones": [
     {
       "desde": 36.69,
-      "hasta": 46.21,
+      "hasta": 44.68,
       "texto": "Smesso che fu di nevicare, Pinocchio col suo bravo Abbecedario nuovo sotto il braccio, prese la strada che menava alla scuola:"
     },
     {
@@ -49,13 +54,13 @@
       "texto": "Non ci sono che i babbi che sieno capaci di certi sacrifizi!... —"
     },
     {
-      "desde": 98.34,
+      "desde": 100.28,
       "hasta": 105.69,
       "texto": "Mentre tutto commosso diceva così, gli parve di sentire in lontananza una musica di pifferi e di colpi di grancassa: pì-pì-pì, pì-pì-pì, zum, zum, zum, zum."
     },
     {
       "desde": 111.34,
-      "hasta": 114.34,
+      "hasta": 112.29,
       "texto": "Si fermò e stette in ascolto."
     },
     {
@@ -265,7 +270,7 @@
     },
     {
       "desde": 278.43,
-      "hasta": 288.89,
+      "hasta": 285.37,
       "texto": "E pensare che quel pover’uomo di Geppetto era rimasto a casa, a tremare dal freddo in maniche di camicia, per comprare l’Abbecedario al figliuolo!"
     }
   ]

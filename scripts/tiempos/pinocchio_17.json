@@ -2,6 +2,11 @@
   "id": "pinocchio_17",
   "titulo": "17. Pinocchio mangia lo zucchero, ma non vuol purgarsi: Però quando vede i becchini che vengono a portarlo via, allora si purga. Poi dice una bugia e per gastigo gli cresce il naso.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 27.27,
+    "hasta": 38.63,
+    "texto": "Pinocchio mangia lo zucchero, ma non vuol purgarsi: Però quando vede i becchini che vengono a portarlo via, allora si purga. Poi dice una bugia e per gastigo gli cresce il naso."
+  },
   "renglones": [
     {
       "desde": 38.63,
@@ -30,11 +35,11 @@
     },
     {
       "desde": 68.39,
-      "hasta": 70.78,
+      "hasta": 69.66,
       "texto": "— È amara, ma ti farà bene."
     },
     {
-      "desde": 70.78,
+      "desde": 70.96,
       "hasta": 72.83,
       "texto": "— Se è amara non la voglio."
     },
@@ -230,12 +235,12 @@
     },
     {
       "desde": 191.71,
-      "hasta": 201.69,
+      "hasta": 200.65,
       "texto": "A questo punto, la porta della camera si spalancò, ed entrarono dentro quattro conigli neri come l’inchiostro, che portavano sulle spalle una piccola bara da morto."
     },
     {
-      "desde": 201.69,
-      "hasta": 202.67,
+      "desde": 200.65,
+      "hasta": 204.26,
       "texto": "— Che cosa volete da me?"
     },
     {
@@ -265,11 +270,11 @@
     },
     {
       "desde": 221.64,
-      "hasta": 223.45,
+      "hasta": 222.01,
       "texto": "— O Fata mia, o Fata mia!"
     },
     {
-      "desde": 223.45,
+      "desde": 224.06,
       "hasta": 227.66,
       "texto": "— cominciò allora a strillare il burattino — datemi subito quel bicchiere..."
     },
@@ -360,7 +365,7 @@
     },
     {
       "desde": 311.19,
-      "hasta": 319.61,
+      "hasta": 318.47,
       "texto": "— e io, invece, per la strada trovai una Volpe e un Gatto, due persone molto per bene, che mi dissero: — Vuoi che codeste monete diventino mille e duemila?"
     },
     {
@@ -405,7 +410,7 @@
     },
     {
       "desde": 378.31,
-      "hasta": 380.27,
+      "hasta": 379.56,
       "texto": "— E ora le quattro monete dove le hai messe?"
     },
     {
@@ -469,7 +474,7 @@
       "texto": "correva il rischio di ficcarlo in un occhio alla Fata."
     },
     {
-      "desde": 441.15,
+      "desde": 441.78,
       "hasta": 443.38,
       "texto": "E la Fata lo guardava e rideva."
     },

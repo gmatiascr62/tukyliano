@@ -2,6 +2,11 @@
   "id": "pinocchio_22",
   "titulo": "22. Pinocchio scuopre i ladri e, in ricompensa di essere stato fedele, vien posto in libertà.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 28.37,
+    "hasta": 33.97,
+    "texto": "Pinocchio scuopre i ladri e, in ricompensa di essere stato fedele, vien posto in libertà."
+  },
   "renglones": [
     {
       "desde": 33.97,
@@ -180,11 +185,11 @@
     },
     {
       "desde": 205.0,
-      "hasta": 210.75,
+      "hasta": 209.47,
       "texto": "E poi cominciò ad abbaiare: e, abbaiando proprio proprio come se fosse un cane di guardia, faceva colla voce: bù-bù-bù-bù."
     },
     {
-      "desde": 212.59,
+      "desde": 213.62,
       "hasta": 219.21,
       "texto": "A quella abbaiata, il contadino saltò il letto, e preso il fucile e affacciatosi alla finestra, domandò:"
     },
@@ -279,7 +284,7 @@
       "texto": "— All’arrivo delle faine sull’aia, eri sveglio o dormivi?"
     },
     {
-      "desde": 299.0,
+      "desde": 299.7,
       "hasta": 300.68,
       "texto": "— continuò a chiedergli il contadino."
     },
@@ -290,11 +295,11 @@
     },
     {
       "desde": 308.34,
-      "hasta": 315.69,
+      "hasta": 315.08,
       "texto": "«Se prometti di non abbaiare, e di non svegliare il padrone, noi ti regaleremo una pollastra bell’e pelata!» Capite, eh?"
     },
     {
-      "desde": 316.09,
+      "desde": 317.35,
       "hasta": 319.47,
       "texto": "Avere la sfacciataggine di fare a me una simile proposta!"
     },
@@ -310,7 +315,7 @@
     },
     {
       "desde": 331.5,
-      "hasta": 334.29,
+      "hasta": 331.83,
       "texto": "— gridò il contadino, battendogli sur una spalla."
     },
     {

@@ -2,6 +2,11 @@
   "id": "pinocchio_33",
   "titulo": "33. Diventato un ciuchino vero, è portato a vendere, e lo compra il direttore di una compagnia di pagliacci per insegnargli a ballare e a saltare i cerchi; ma una sera azzoppisce e allora lo ricompra un altro, per far con la sua pelle un tamburo.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.78,
+    "hasta": 49.56,
+    "texto": "Diventato un ciuchino vero, è portato a vendere, e lo compra il direttore di una compagnia di pagliacci per insegnargli a ballare e a saltare i cerchi; ma una sera azzoppisce e allora lo ricompra un altro, per far con la sua pelle un tamburo."
+  },
   "renglones": [
     {
       "desde": 49.56,

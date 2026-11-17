@@ -2,6 +2,11 @@
   "id": "pinocchio_14",
   "titulo": "14. Pinocchio, per non aver dato retta ai buoni consigli del Grillo-parlante, s’imbatte negli assassini.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 31.09,
+    "hasta": 38.59,
+    "texto": "Pinocchio, per non aver dato retta ai buoni consigli del Grillo-parlante, s’imbatte negli assassini."
+  },
   "renglones": [
     {
       "desde": 38.59,
@@ -30,7 +35,7 @@
     },
     {
       "desde": 69.28,
-      "hasta": 72.4,
+      "hasta": 69.63,
       "texto": "Dovrei incontrare anche gli assassini!"
     },
     {
@@ -119,7 +124,7 @@
       "texto": "di cui si vedevano soltanto gli occhi attraverso i buchi dei sacchi, che lui era un povero burattino e che non aveva in tasca nemmeno un centesimo falso. — Via via!"
     },
     {
-      "desde": 187.2,
+      "desde": 189.86,
       "hasta": 191.03,
       "texto": "Meno ciarle e fuori i denari — gridarono minacciosamente i due briganti."
     },

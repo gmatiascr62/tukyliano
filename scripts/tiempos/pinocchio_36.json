@@ -2,6 +2,11 @@
   "id": "pinocchio_36",
   "titulo": "36. Finalmente Pinocchio cessa d’essere un burattino e diventa un ragazzo.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 33.25,
+    "hasta": 38.09,
+    "texto": "Finalmente Pinocchio cessa d’essere un burattino e diventa un ragazzo."
+  },
   "renglones": [
     {
       "desde": 38.09,
@@ -244,7 +249,7 @@
       "texto": "— domandò Geppetto."
     },
     {
-      "desde": 277.62,
+      "desde": 278.27,
       "hasta": 285.57,
       "texto": "— In cerca di una casa o d’una capanna, dove ci diano per carità un boccon di pane e un po’ di paglia che ci serva da letto. ―"
     },
@@ -315,7 +320,7 @@
     },
     {
       "desde": 355.9,
-      "hasta": 363.18,
+      "hasta": 361.75,
       "texto": "Ricordatevi del proverbio che dice: «I quattrini rubati non fanno mai frutto.» Addio, mascherine."
     },
     {
@@ -435,7 +440,7 @@
     },
     {
       "desde": 461.59,
-      "hasta": 466.27,
+      "hasta": 464.88,
       "texto": "Ma ti rammenti di quando, per cacciarmi di casa tua, mi tirasti un manico di martello?"
     },
     {
@@ -519,7 +524,7 @@
       "texto": "— cominciò a urlare Pinocchio, singhiozzando e piangendo dirottamente."
     },
     {
-      "desde": 540.02,
+      "desde": 540.61,
       "hasta": 547.48,
       "texto": "Quand’ebbe pianto ben bene, si rasciugò gli occhi, e preparato un buon lettino di paglia, vi distese sopra il vecchio Geppetto."
     },
@@ -585,7 +590,7 @@
     },
     {
       "desde": 591.16,
-      "hasta": 593.8,
+      "hasta": 592.21,
       "texto": "— disse Pinocchio e fece l’atto di andarsene."
     },
     {
@@ -680,11 +685,11 @@
     },
     {
       "desde": 665.74,
-      "hasta": 668.17,
+      "hasta": 666.09,
       "texto": "Non mi è fisonomia nuova! —"
     },
     {
-      "desde": 668.17,
+      "desde": 668.93,
       "hasta": 673.19,
       "texto": "E chinatosi fino a lui, gli domandò in dialetto asinino: — Chi sei?—"
     },
@@ -1015,7 +1020,7 @@
     },
     {
       "desde": 1004.78,
-      "hasta": 1009.4,
+      "hasta": 1008.36,
       "texto": "A questo punto il sogno finì, e Pinocchio si svegliò con tanto d’occhi spalancati."
     },
     {
@@ -1055,7 +1060,7 @@
     },
     {
       "desde": 1077.38,
-      "hasta": 1086.47,
+      "hasta": 1084.04,
       "texto": "Non vide più riflessa la solita immagine della marionetta di legno, ma vide l’immagine vispa e intelligente di un bel fanciullo coi capelli castagni,"
     },
     {
@@ -1134,7 +1139,7 @@
       "texto": "Pinocchio si voltò a guardarlo: e dopo che l’ebbe guardato un poco, disse dentro di sè con grandissima compiacenza:"
     },
     {
-      "desde": 1178.31,
+      "desde": 1180.94,
       "hasta": 1184.78,
       "texto": "— Com’ero buffo, quand’ero un burattino! e come ora son contento di esser diventato un ragazzino perbene!… ―"
     }

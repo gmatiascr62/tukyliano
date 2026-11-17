@@ -2,6 +2,11 @@
   "id": "pinocchio_32",
   "titulo": "32. A Pinocchio gli vengono gli orecchi di ciuco, e poi diventa un ciuchino vero e comincia a ragliare.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 31.82,
+    "hasta": 38.82,
+    "texto": "A Pinocchio gli vengono gli orecchi di ciuco, e poi diventa un ciuchino vero e comincia a ragliare."
+  },
   "renglones": [
     {
       "desde": 38.82,
@@ -135,11 +140,11 @@
     },
     {
       "desde": 204.27,
-      "hasta": 207.51,
+      "hasta": 206.7,
       "texto": "— gridò Pinocchio pigliandosi con le mani tutt’e due gli orec-"
     },
     {
-      "desde": 208.18,
+      "desde": 210.84,
       "hasta": 213.26,
       "texto": "chi, e tirandoli e strappandoli rabbiosamente, come se fossero gli orecchi di un altro."
     },
@@ -149,7 +154,7 @@
       "texto": "— Caro mio, — replicò la Marmottina per consolarlo — che cosa ci vuoi tu fare?"
     },
     {
-      "desde": 219.9,
+      "desde": 221.48,
       "hasta": 233.4,
       "texto": "Oramai è destino, oramai è scritto nei decreti della sapienza, che tutti quei ragazzi svogliati che, pigliando a noia i libri, le scuole e i maestri, passano le loro giornate in balocchi, in giuochi e in divertimenti,"
     },
@@ -164,8 +169,8 @@
       "texto": "— Ma davvero è proprio così?"
     },
     {
-      "desde": 241.6,
-      "hasta": 242.75,
+      "desde": 240.28,
+      "hasta": 244.17,
       "texto": "— domandò singhiozzando il burattino."
     },
     {
@@ -220,7 +225,7 @@
     },
     {
       "desde": 295.02,
-      "hasta": 299.77,
+      "hasta": 298.23,
       "texto": "Oh! se avessi avuto un zinzino di cuore, non avrei mai abbandonata quella buona Fata,"
     },
     {
@@ -519,7 +524,7 @@
       "texto": "E risero, risero, risero da doversi reggere il corpo: se non che, sul più bello del ridere, Lucignolo"
     },
     {
-      "desde": 539.11,
+      "desde": 540.61,
       "hasta": 543.98,
       "texto": "Lucignolo tutt’a un tratto si chetò, e barcollando e cambiando di colore, disse all’amico:"
     },

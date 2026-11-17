@@ -2,6 +2,11 @@
   "id": "pinocchio_07",
   "titulo": "7. Geppetto torna a casa, e dà al burattino la colazione che il pover’uomo aveva portata per sé.",
   "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.37,
+    "hasta": 38.85,
+    "texto": "Geppetto torna a casa, e dà al burattino la colazione che il pover’uomo aveva portata per sé."
+  },
   "renglones": [
     {
       "desde": 38.85,
@@ -19,7 +24,7 @@
       "texto": "E nel battere in terra fece lo stesso rumore, che avrebbe fatto un sacco di mestoli, cascato da un quinto piano. — Aprimi!"
     },
     {
-      "desde": 70.66,
+      "desde": 72.22,
       "hasta": 73.22,
       "texto": "— intanto gridava Geppetto dalla strada."
     },
@@ -45,16 +50,16 @@
     },
     {
       "desde": 84.66,
-      "hasta": 91.9,
+      "hasta": 90.66,
       "texto": "— Il gatto, — disse Pinocchio, vedendo il gatto che colle zampine davanti si divertiva a far ballare alcuni trucioli di legno."
     },
     {
-      "desde": 92.82,
-      "hasta": 93.36,
+      "desde": 90.66,
+      "hasta": 94.99,
       "texto": "— Aprimi, ti dico!"
     },
     {
-      "desde": 93.36,
+      "desde": 94.99,
       "hasta": 97.75,
       "texto": "— ripetè Geppetto — se no, quando vengo in casa, il gatto te lo do io!"
     },
@@ -84,8 +89,8 @@
       "texto": "e presolo subito in collo si dette a baciarlo e a fargli mille carezze e mille moine, e, coi lucciconi che gli cascavano giù per le gote, gli disse singhiozzando:"
     },
     {
-      "desde": 139.56,
-      "hasta": 139.93,
+      "desde": 137.6,
+      "hasta": 140.28,
       "texto": "— Pinocchiuccio mio!"
     },
     {
@@ -120,7 +125,7 @@
     },
     {
       "desde": 199.02,
-      "hasta": 208.62,
+      "hasta": 207.92,
       "texto": "messi i piedi sul caldano per rasciugarmi, e voi siete tornato, e me li sono trovati bruciati, e intanto la fame l’ho sempre e i piedi non li ho più! ih!... ih!... ih!... ih!... ―"
     },
     {
@@ -130,11 +135,11 @@
     },
     {
       "desde": 218.3,
-      "hasta": 231.61,
+      "hasta": 227.64,
       "texto": "Geppetto, che di tutto quel discorso arruffato aveva capito una cosa sola, cioè che il burattino sentiva morirsi dalla gran fame, tirò fuori di tasca tre pere, e porgendogliele, disse:"
     },
     {
-      "desde": 231.61,
+      "desde": 232.28,
       "hasta": 235.62,
       "texto": "— Queste tre pere erano per la mia colazione: ma io te le do volentieri."
     },
@@ -215,7 +220,7 @@
     },
     {
       "desde": 303.79,
-      "hasta": 304.91,
+      "hasta": 304.09,
       "texto": "I casi son tanti!..."
     },
     {
@@ -289,8 +294,8 @@
       "texto": "Caro mio, non si sa mai quel che ci può capitare in questo mondo."
     },
     {
-      "desde": 371.43,
-      "hasta": 374.33,
+      "desde": 371.42,
+      "hasta": 376.33,
       "texto": "I casi son tanti!... —"
     }
   ]
