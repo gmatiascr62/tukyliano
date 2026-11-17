@@ -1,0 +1,142 @@
+{
+  "id": "pinocchio_06",
+  "titulo": "6. Pinocchio si addormenta coi piedi sul caldano, e la mattina dopo si sveglia coi piedi tutti bruciati.",
+  "comoSeHizo": "Alineado con scripts/alinear_favole.py (whisper.cpp small, de a pedazos de 22 s).",
+  "elTitulo": {
+    "desde": 32.27,
+    "hasta": 39.27,
+    "texto": "Pinocchio si addormenta coi piedi sul caldano, e la mattina dopo si sveglia coi piedi tutti bruciati."
+  },
+  "renglones": [
+    {
+      "desde": 39.33,
+      "hasta": 43.7,
+      "texto": "Per l’appunto era una nottataccia d’inferno."
+    },
+    {
+      "desde": 43.7,
+      "hasta": 55.52,
+      "texto": "Tuonava forte forte, lampeggiava come se il cielo pigliasse fuoco, e un ventaccio freddo e strapazzone, fischiando rabbiosamente e sollevando un immenso nuvolo di polvere,"
+    },
+    {
+      "desde": 55.52,
+      "hasta": 59.65,
+      "texto": "faceva stridere e cigolare tutti gli alberi della campagna."
+    },
+    {
+      "desde": 59.65,
+      "hasta": 68.04,
+      "texto": "Pinocchio aveva una gran paura dei tuoni e dei lampi: se non che la fame era più forte della paura:"
+    },
+    {
+      "desde": 68.04,
+      "hasta": 79.92,
+      "texto": "motivo per cui accostò l’uscio di casa, e presa la carriera, in un centinaio di salti arrivò fino al paese, colla lingua fuori e col fiato grosso, come un can da caccia."
+    },
+    {
+      "desde": 79.92,
+      "hasta": 82.8,
+      "texto": "Ma trovò tutto buio e tutto deserto."
+    },
+    {
+      "desde": 82.8,
+      "hasta": 91.56,
+      "texto": "Le botteghe erano chiuse; le porte di casa chiuse, le finestre chiuse, e nella strada nemmeno un cane."
+    },
+    {
+      "desde": 91.96,
+      "hasta": 94.13,
+      "texto": "Pareva il paese dei morti."
+    },
+    {
+      "desde": 94.13,
+      "hasta": 104.35,
+      "texto": "Allora Pinocchio, preso dalla disperazione e dalla fame, si attaccò al campanello d’una casa, e cominciò a suonare a distesa, dicendo dentro di sè:"
+    },
+    {
+      "desde": 104.35,
+      "hasta": 105.32,
+      "texto": "— Qualcuno si affaccerà."
+    },
+    {
+      "desde": 106.94,
+      "hasta": 113.73,
+      "texto": "— Difatti si affacciò un vecchio, col berretto da notte in capo, il quale gridò tutto stizzito:"
+    },
+    {
+      "desde": 114.15,
+      "hasta": 116.23,
+      "texto": "— Che cosa volete a quest’ora?"
+    },
+    {
+      "desde": 116.4,
+      "hasta": 119.79,
+      "texto": "— Che mi fareste il piacere di darmi un po’ di pane?"
+    },
+    {
+      "desde": 119.87,
+      "hasta": 131.96,
+      "texto": "— Aspettami costì che torno subito, — rispose il vecchino, credendo di aver da fare con qualcuno di quei ragazzacci rompicolli che si divertono di notte a suonare i campanelli delle case,"
+    },
+    {
+      "desde": 131.96,
+      "hasta": 135.79,
+      "texto": "per molestare la gente per bene, che se la dorme tranquillamente."
+    },
+    {
+      "desde": 135.83,
+      "hasta": 142.61,
+      "texto": "Dopo mezzo minuto la finestra si riaprì, e la voce del solito vecchino gridò a Pinocchio:"
+    },
+    {
+      "desde": 142.61,
+      "hasta": 144.93,
+      "texto": "— Fàtti sotto e para il cappello. —"
+    },
+    {
+      "desde": 144.93,
+      "hasta": 159.79,
+      "texto": "Pinocchio che non aveva ancora un cappello, si avvicinò e sentì pioversi addosso un’enorme catinellata d’acqua che lo annaffiò tutto, dalla testa ai piedi, come se fosse un vaso di giranio appassito."
+    },
+    {
+      "desde": 161.48,
+      "hasta": 167.03,
+      "texto": "Tornò a casa bagnato come un pulcino e rifinito dalla stanchezza e dalla fame:"
+    },
+    {
+      "desde": 167.03,
+      "hasta": 177.64,
+      "texto": "e perchè non aveva più forza di reggersi ritto, si pose a sedere, appoggiando i piedi fradici e impillaccherati sopra un caldano pieno di brace accesa."
+    },
+    {
+      "desde": 177.64,
+      "hasta": 188.41,
+      "texto": "E lì si addormentò; e nel dormire, i piedi che erano di legno, gli presero fuoco, e adagio adagio gli si carbonizzarono e diventarono cenere."
+    },
+    {
+      "desde": 188.41,
+      "hasta": 194.71,
+      "texto": "E Pinocchio seguitava a dormire e a russare, come se i suoi piedi fossero quelli d’un altro."
+    },
+    {
+      "desde": 194.71,
+      "hasta": 201.86,
+      "texto": "Finalmente sul far del giorno si svegliò, perchè qualcuno aveva bussato alla porta. — Chi è?"
+    },
+    {
+      "desde": 201.86,
+      "hasta": 205.79,
+      "texto": "— domandò sbadigliando e stropicciandosi gli occhi. — Sono io!"
+    },
+    {
+      "desde": 205.79,
+      "hasta": 207.43,
+      "texto": "— rispose una voce."
+    },
+    {
+      "desde": 207.43,
+      "hasta": 209.15,
+      "texto": "Quella voce era la voce di Geppetto."
+    }
+  ]
+}
