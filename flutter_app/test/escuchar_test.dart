@@ -210,16 +210,13 @@ void _elCatalogoDePinocchio() {
       // cualquier frase que se haya perdido.
       const cuantoSeAguanta = Duration(seconds: 8);
 
-      // El único hueco que se acepta, y se acepta porque no hay nada que
-      // hacerle: en el capítulo 33 el lector lee en voz alta el cartel que
-      // anuncia el espectáculo —"I cartelloni di vario colore, attaccati
-      // alle cantonate delle strade, dicevano così:"— y en Wikisource ese
-      // cartel no es texto, es la foto del afiche escaneado. No hay de
-      // dónde sacar esas palabras. Son veintiséis segundos.
-      //
-      // Va anotado acá y no silenciado en el código del catálogo para que
-      // se vea: es un agujero conocido, no un agujero olvidado.
-      const elCartelDelTeatro = 'I cartelloni di vario colore';
+      // Acá hubo una excepción y ya no hace falta: el capítulo 33 tenía
+      // veintiséis segundos donde el lector lee el cartel que anuncia el
+      // espectáculo, y en Wikisource ese cartel no es texto sino la foto
+      // del afiche escaneado —lo verifiqué en el wikitexto de la página
+      // 247, que tiene solo la imagen—. Las palabras salieron de la
+      // grabación, que es la única fuente que existe, y ahora el libro
+      // entero pasa sin excepciones.
       var conTiempos = 0;
 
       for (final capitulo in catalogo.lecturas) {
@@ -229,7 +226,6 @@ void _elCatalogoDePinocchio() {
         conTiempos++;
 
         for (var i = 0; i < marcados.length - 1; i++) {
-          if (marcados[i].texto.contains(elCartelDelTeatro)) continue;
           final termina = marcados[i].hasta ?? marcados[i].desde!;
           final arranca = marcados[i + 1].desde!;
           expect(arranca - termina, lessThan(cuantoSeAguanta),
@@ -324,6 +320,16 @@ void _elCatalogoDePinocchio() {
       final cap36 =
           catalogo.lecturas[35].renglones.map((r) => r.texto).join(' ');
       expect(cap36, contains('Chi ruba il mantello'));
+
+      // El cartel del teatro del capítulo 33, que no sale de Wikisource
+      // —ahí es la foto del afiche escaneado— sino de la grabación. Si
+      // alguien reescribe el extractor y se olvida de volver a meterlo,
+      // vuelven los veintiséis segundos de audio sin renglón.
+      final cap33 =
+          catalogo.lecturas[32].renglones.map((r) => r.texto).join(' ');
+      expect(cap33, contains('Grande spettacolo di gala'));
+      expect(cap33, contains('detto la stella della danza'));
+      expect(cap33, contains('Il teatro sarà illuminato a giorno'));
     });
 
     test('ningún capítulo arranca encima de la presentación', () {
