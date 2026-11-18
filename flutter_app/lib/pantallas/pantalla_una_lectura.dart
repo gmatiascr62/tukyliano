@@ -407,9 +407,16 @@ class _SinTexto extends StatelessWidget {
 /// la primera línea, no un rótulo. En Pinocchio el lector dice "Capitolo
 /// primo" y después el título entero, y recién ahí empieza el cuento.
 class _ElTitulo extends StatelessWidget {
-  const _ElTitulo({required this.lectura, required this.leyendolo});
+  const _ElTitulo({
+    required this.titulo,
+    required this.enPalabras,
+    required this.leyendolo,
+  });
 
-  final Lectura lectura;
+  final String titulo;
+
+  /// Parte el título en palabras que se pueden tocar, igual que un renglón.
+  final List<InlineSpan> Function(String) enPalabras;
   final bool leyendolo;
 
   @override
@@ -418,8 +425,8 @@ class _ElTitulo extends StatelessWidget {
       color: leyendolo ? Tema.verdeSuave : null,
       padding: const EdgeInsets.symmetric(vertical: 3, horizontal: 6),
       margin: const EdgeInsets.only(bottom: 14),
-      child: Text(
-        lectura.titulo,
+      child: Text.rich(
+        TextSpan(children: enPalabras(titulo)),
         style: const TextStyle(
           fontSize: 19,
           height: 1.3,
@@ -467,6 +474,33 @@ class _ElTextoState extends State<_ElTexto> {
   /// colgado, y esta pantalla se redibuja cada vez que se toca play.
   final List<TapGestureRecognizer> _gestos = [];
 
+  /// Cuál del montón toca repartir. Se reinicia en cada dibujado.
+  int _cual = 0;
+
+  /// El texto partido en palabras que se pueden tocar.
+  ///
+  /// Lo usan los renglones y también el título: el título es la primera
+  /// línea del capítulo, así que tocar una palabra ahí tiene que funcionar
+  /// igual que en el resto. Quedó sin esto un rato —el título era texto
+  /// plano— y Matías lo encontró enseguida: "no me deja traducir el título
+  /// del primer capítulo, quiero traducir bambino y no aparece".
+  List<InlineSpan> _enPalabrasQueSeTocan(String texto) {
+    final partes = <InlineSpan>[];
+    // Se parte dejando los espacios adentro, así el renglón se vuelve a
+    // armar exactamente como estaba.
+    for (final pedazo in texto.split(RegExp(r'(?<= )'))) {
+      if (pedazo.trim().isEmpty) {
+        partes.add(TextSpan(text: pedazo));
+        continue;
+      }
+      if (_cual >= _gestos.length) _gestos.add(TapGestureRecognizer());
+      final gesto = _gestos[_cual++];
+      gesto.onTap = () => widget.alTocarPalabra(pedazo, texto);
+      partes.add(TextSpan(text: pedazo, recognizer: gesto));
+    }
+    return partes;
+  }
+
   @override
   void dispose() {
     for (final gesto in _gestos) {
@@ -477,7 +511,7 @@ class _ElTextoState extends State<_ElTexto> {
 
   @override
   Widget build(BuildContext context) {
-    var cual = 0;
+    _cual = 0;
 
     return ListView.builder(
       controller: widget.scroll,
@@ -492,7 +526,8 @@ class _ElTextoState extends State<_ElTexto> {
         // repitiendo algo que ya pasó.
         if (puesto == 0) {
           return _ElTitulo(
-            lectura: widget.lectura,
+            titulo: widget.lectura.titulo,
+            enPalabras: _enPalabrasQueSeTocan,
             leyendolo: widget.leyendoElTitulo,
           );
         }
@@ -509,21 +544,7 @@ class _ElTextoState extends State<_ElTexto> {
         }
 
         final suena = i == widget.enElRenglon;
-        final partes = <InlineSpan>[];
-        // Se parte dejando los espacios adentro, así el renglón se vuelve a
-        // armar exactamente como estaba.
-        for (final pedazo
-            in widget.renglones[i].texto.split(RegExp(r'(?<= )'))) {
-          if (pedazo.trim().isEmpty) {
-            partes.add(TextSpan(text: pedazo));
-            continue;
-          }
-          if (cual >= _gestos.length) _gestos.add(TapGestureRecognizer());
-          final gesto = _gestos[cual++];
-          gesto.onTap =
-              () => widget.alTocarPalabra(pedazo, widget.renglones[i].texto);
-          partes.add(TextSpan(text: pedazo, recognizer: gesto));
-        }
+        final partes = _enPalabrasQueSeTocan(widget.renglones[i].texto);
 
         return Container(
           key: widget.claves[i],
