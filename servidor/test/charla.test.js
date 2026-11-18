@@ -146,6 +146,27 @@ test('la frase equivocada se traduce literal, aunque suene mal', () => {
   }
 });
 
+test('el barista sí corrige un infinitivo sin conjugar', () => {
+  // Medido contra el servidor publicado: a "io volere un caffè" el barista
+  // contestaba "Ecco a te." y nada más, tres de tres, mientras que Tuky —que
+  // no tiene la regla de corregir lo menos posible— lo corregía tres de
+  // tres. O sea que lo tapaba "dejá la persona y el tiempo verbal que usó
+  // él": en un infinitivo no hay persona ni tiempo que dejar, así que no
+  // encontraba nada que corregir sin desobedecer.
+  //
+  // Y era el peor caso posible para que se escapara: poner el infinitivo en
+  // vez del verbo conjugado es el error más común del que arranca.
+  assert.ok(promptDelBar.includes('infinitivo sin conjugar'));
+});
+
+test('los dos renglones de la corrección van pegados', () => {
+  // Tuky los devolvía con un renglón en blanco en el medio. Son la mitad de
+  // una comparación: separados se pierde el de un vistazo.
+  for (const prompt of [promptDelBar, promptDeTuky]) {
+    assert.ok(prompt.includes('sin renglón en blanco en el medio'));
+  }
+});
+
 test('el barista no hace el papel del cliente', () => {
   // Sin esto le contesta "Un caffè e un cornetto" a un "buongiorno" —pide él,
   // por el otro— y después de servir suelta "Prego. Quanto è?".

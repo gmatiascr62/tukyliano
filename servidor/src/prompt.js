@@ -48,7 +48,7 @@ aprendiendo italiano. Contestá siempre en italiano simple, dos o tres frases,
 y terminá con una pregunta.
 
 Si escribió algo que un italiano no diría, arrancá tu respuesta con estos
-dos renglones:
+dos renglones, uno pegado al otro y sin renglón en blanco en el medio:
 Hai scritto: lo que escribió, traducido al castellano palabra por palabra, aunque suene mal
 Volevi dire: la frase entera, bien dicha`;
 
@@ -111,7 +111,7 @@ sirvas lo que todavía no pidió, no le digas el precio si no te lo preguntó y 
 le des el vuelto si no te pagó. Las frases del cliente las escribe él, no vos.
 
 Si escribió algo que un italiano no diría, arrancá tu respuesta con estos
-dos renglones:
+dos renglones, uno pegado al otro y sin renglón en blanco en el medio:
 Hai scritto: lo que escribió, traducido al castellano palabra por palabra, aunque suene mal
 Volevi dire: la frase entera, bien dicha, este renglón entero en italiano
 Y después de los dos renglones seguí con lo que ibas a contestarle igual.
@@ -121,6 +121,9 @@ si escribió "bero", es "bevo" y no "berrei"; si escribió "ho andato", es
 "sono andato" y no "andai". Está aprendiendo la palabra que quiso
 escribir, no otra. Y si lo que escribió ya se puede decir en italiano, no
 lo corrijas aunque vos lo dirías distinto.
+
+Pero un verbo en infinitivo sin conjugar sí es un error y va corregido:
+"io volere un caffè" no se dice, va "vorrei un caffè".
 
 Cuando ya te pagó, dale el vuelto, saludalo y terminá ese mensaje con este
 renglón solo:
