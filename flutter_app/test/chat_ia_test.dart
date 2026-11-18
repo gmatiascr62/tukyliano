@@ -340,5 +340,57 @@ void main() {
       );
       expect(paraLeerEnVozAlta('Ecco a te.'), 'Ecco a te.');
     });
+
+    test('también la castellana, que es la que llega', () {
+      // Para cuando esto corre la marca ya se cambió a castellano, así que
+      // mirar solo la italiana no servía de nada: la voz terminaba diciendo
+      // "Se dice así" con acento italiano en todas las correcciones, que es
+      // justo lo que esto vino a evitar.
+      expect(
+        paraLeerEnVozAlta('Se dice así: Io bevo il caffè\nEcco a te.'),
+        'Io bevo il caffè\nEcco a te.',
+      );
+    });
+  });
+
+  group('lo que escribiste, arriba de la corrección', () {
+    // Sin esto la corrección llega sola y hay que acordarse de qué se había
+    // escrito para encontrar la diferencia. Con las dos frases una encima
+    // de la otra el error salta a la vista.
+    test('se antepone a la corrección', () {
+      expect(
+        conLoQueEscribiste(
+          'Se dice así: Vorrei vedere altre tue foto.\n'
+              'Mi dispiace, ma non posso.',
+          'Vorrei vedere altre foto tua',
+        ),
+        'Vos dijiste: Vorrei vedere altre foto tua\n'
+            'Se dice así: Vorrei vedere altre tue foto.\n'
+            'Mi dispiace, ma non posso.',
+      );
+    });
+
+    test('si no hubo corrección no se agrega nada', () {
+      // Cuando se escribió bien no hay nada que comparar, y un "vos dijiste"
+      // suelto parecería un reproche.
+      const sinCorreccion = 'Ciao! Ti piace camminare?';
+      expect(conLoQueEscribiste(sinCorreccion, 'Mi piace molto'),
+          sinCorreccion);
+    });
+
+    test('la frase equivocada no se lee en voz alta', () {
+      // Esta es la que importa. La voz es italiana y lee lo que le den:
+      // leerle el error al oído es exactamente lo contrario de para qué
+      // está la corrección.
+      final conTodo = conLoQueEscribiste(
+        'Se dice así: Vorrei vedere altre tue foto.',
+        'Vorrei vedere altre foto tua',
+      );
+
+      final paraLaVoz = paraLeerEnVozAlta(conTodo);
+      expect(paraLaVoz, isNot(contains('altre foto tua')));
+      expect(paraLaVoz, isNot(contains('Vos dijiste')));
+      expect(paraLaVoz.trim(), 'Vorrei vedere altre tue foto.');
+    });
   });
 }

@@ -279,14 +279,73 @@ const String seDiceAsi = 'Se dice así:';
 String conLaMarcaEnCastellano(String respuesta) =>
     _conLaMarca(respuesta, (resto) => '$seDiceAsi$resto');
 
-/// Lo mismo para leer en voz alta, pero sin la marca.
+/// Lo que se lee arriba de la corrección, con la frase tal como se escribió.
 ///
-/// La voz es italiana. Leer "Se dice así" con acento italiano suena a
-/// error, y leer "Volevi dire" sería decirle en italiano algo que no es
-/// parte de la charla. Se saca y se lee la frase corregida sola, que es lo
-/// único que vale la pena escuchar de ese renglón.
-String paraLeerEnVozAlta(String respuesta) =>
-    _conLaMarca(respuesta, (resto) => resto.trimLeft());
+/// Sin esto la corrección llega sola —"Se dice así: Vorrei vedere altre tue
+/// foto"— y hay que acordarse de qué se había escrito para encontrar la
+/// diferencia. Con las dos frases una encima de la otra, el error salta a la
+/// vista: era "altre foto tua" y va "altre tue foto".
+const String vosDijiste = 'Vos dijiste:';
+
+/// Pone arriba de cada corrección la frase que escribió la persona.
+///
+/// Solo donde hay corrección. Si el modelo no corrigió nada —o la
+/// corrección repetía la frase tal cual y ya se filtró— no hay nada que
+/// comparar y no se agrega nada.
+String conLoQueEscribiste(String respuesta, String escrito) {
+  final limpio = escrito.trim();
+  if (limpio.isEmpty) return respuesta;
+  return [
+    for (final renglon in respuesta.split('\n')) ...[
+      if (_esCorreccion(renglon)) '$vosDijiste $limpio',
+      renglon,
+    ],
+  ].join('\n');
+}
+
+bool _esCorreccion(String renglon) {
+  final texto = renglon.trimLeft();
+  return _empiezaCorreccion.matchAsPrefix(texto) != null ||
+      texto.startsWith(seDiceAsi);
+}
+
+/// Lo mismo para leer en voz alta, pero sin las marcas y sin el error.
+///
+/// Dos cosas se sacan, y las dos por el mismo motivo: la voz es italiana y
+/// lee lo que le den.
+///
+/// La marca, porque leer "Se dice así" con acento italiano suena a error, y
+/// leer "Volevi dire" sería decirle en italiano algo que no es parte de la
+/// charla. Queda la frase corregida sola, que es lo único que vale la pena
+/// escuchar de ese renglón.
+///
+/// Y el renglón de "Vos dijiste", entero: es la frase equivocada. Leérsela
+/// en voz alta sería enseñarle el error al oído, que es exactamente lo
+/// contrario de para qué está.
+///
+/// Se reconocen las dos marcas, la italiana y la castellana, porque para
+/// cuando esto corre la marca ya se cambió. Antes solo miraba la italiana y
+/// la voz terminaba diciendo "Se dice así" en todas las correcciones.
+String paraLeerEnVozAlta(String respuesta) => [
+      for (final renglon in respuesta.split('\n'))
+        if (!renglon.trimLeft().startsWith(vosDijiste))
+          _sinLaMarcaDeCorreccion(renglon),
+    ].join('\n');
+
+String _sinLaMarcaDeCorreccion(String renglon) {
+  final adelante = renglon.length - renglon.trimLeft().length;
+  final texto = renglon.trimLeft();
+  final marca = _empiezaCorreccion.matchAsPrefix(texto);
+  if (marca != null) {
+    return renglon.substring(0, adelante) +
+        texto.substring(marca.end).trimLeft();
+  }
+  if (texto.startsWith(seDiceAsi)) {
+    return renglon.substring(0, adelante) +
+        texto.substring(seDiceAsi.length).trimLeft();
+  }
+  return renglon;
+}
 
 String _conLaMarca(String respuesta, String Function(String) queHacer) => [
       for (final renglon in respuesta.split('\n'))
