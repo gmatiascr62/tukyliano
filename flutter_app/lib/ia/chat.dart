@@ -271,42 +271,67 @@ final RegExp _empiezaCorreccion = RegExp(
 /// dos en italiano, el aviso se lee como una frase más de la charla.
 const String seDiceAsi = 'Se dice así:';
 
-/// Cambia la marca de corrección al castellano, dejando la frase corregida
-/// intacta.
+/// Cambia las dos marcas al castellano, dejando lo que sigue intacto.
 ///
-/// Solo toca el principio del renglón. Lo que sigue es italiano bien dicho y
-/// es lo que hay que aprender.
-String conLaMarcaEnCastellano(String respuesta) =>
-    _conLaMarca(respuesta, (resto) => '$seDiceAsi$resto');
+/// Solo toca el principio del renglón. Lo que sigue a la corrección es
+/// italiano bien dicho y es lo que hay que aprender; lo que sigue a la otra
+/// ya viene en castellano.
+String conLaMarcaEnCastellano(String respuesta) => [
+      for (final renglon in respuesta.split('\n')) _enCastellano(renglon),
+    ].join('\n');
 
-/// Lo que se lee arriba de la corrección, con la frase tal como se escribió.
-///
-/// Sin esto la corrección llega sola —"Se dice así: Vorrei vedere altre tue
-/// foto"— y hay que acordarse de qué se había escrito para encontrar la
-/// diferencia. Con las dos frases una encima de la otra, el error salta a la
-/// vista: era "altre foto tua" y va "altre tue foto".
-const String vosDijiste = 'Vos dijiste:';
-
-/// Pone arriba de cada corrección la frase que escribió la persona.
-///
-/// Solo donde hay corrección. Si el modelo no corrigió nada —o la
-/// corrección repetía la frase tal cual y ya se filtró— no hay nada que
-/// comparar y no se agrega nada.
-String conLoQueEscribiste(String respuesta, String escrito) {
-  final limpio = escrito.trim();
-  if (limpio.isEmpty) return respuesta;
-  return [
-    for (final renglon in respuesta.split('\n')) ...[
-      if (_esCorreccion(renglon)) '$vosDijiste $limpio',
-      renglon,
-    ],
-  ].join('\n');
+String _enCastellano(String renglon) {
+  // Los espacios de adelante se guardan: sacarlos movería el renglón.
+  final adelante = renglon.substring(
+    0,
+    renglon.length - renglon.trimLeft().length,
+  );
+  final texto = renglon.trimLeft();
+  for (final (marca, enCastellano) in [
+    (_empiezaCorreccion, seDiceAsi),
+    (_empiezaLoQueDijiste, vosDijiste),
+  ]) {
+    final encontrada = marca.matchAsPrefix(texto);
+    if (encontrada != null) {
+      return '$adelante$enCastellano${texto.substring(encontrada.end)}';
+    }
+  }
+  return renglon;
 }
+
+/// Cómo empieza el renglón que dice, en castellano, lo que escribió el
+/// alumno. Lo pide el prompt del servidor igual que la corrección, y por el
+/// mismo motivo: con una marca al principio del renglón la app lo encuentra.
+///
+/// Se aceptan dos verbos porque el modelo alterna entre "hai scritto" y
+/// "hai detto" aunque el prompt pida uno solo.
+final RegExp _empiezaLoQueDijiste = RegExp(
+  r'^hai\s+(scritto|detto)\s*:',
+  caseSensitive: false,
+);
+
+/// Lo que se lee en pantalla donde el modelo escribió "Hai scritto:".
+///
+/// Lo que sigue a esta marca NO es italiano: es la frase del alumno traducida
+/// palabra por palabra al castellano. Esa es la idea. Matías lo pidió así:
+/// "que la parte que dice vos dijiste esté en español y se dice así en
+/// italiano".
+///
+/// Repetirle su frase en italiano no servía de nada, porque la tiene ahí
+/// arriba en su propia burbuja. Traducida literal, en cambio, el error se ve
+/// solo: escribió "io volere un caffè" y lee "yo querer un café".
+const String vosDijiste = 'Vos dijiste:';
 
 bool _esCorreccion(String renglon) {
   final texto = renglon.trimLeft();
   return _empiezaCorreccion.matchAsPrefix(texto) != null ||
       texto.startsWith(seDiceAsi);
+}
+
+bool _esLoQueDijiste(String renglon) {
+  final texto = renglon.trimLeft();
+  return _empiezaLoQueDijiste.matchAsPrefix(texto) != null ||
+      texto.startsWith(vosDijiste);
 }
 
 /// Lo mismo para leer en voz alta, pero sin las marcas y sin el error.
@@ -319,17 +344,17 @@ bool _esCorreccion(String renglon) {
 /// charla. Queda la frase corregida sola, que es lo único que vale la pena
 /// escuchar de ese renglón.
 ///
-/// Y el renglón de "Vos dijiste", entero: es la frase equivocada. Leérsela
-/// en voz alta sería enseñarle el error al oído, que es exactamente lo
-/// contrario de para qué está.
+/// Y el renglón de "Vos dijiste", entero, por partida doble: está en
+/// castellano, así que la voz italiana lo leería con acento, y además es la
+/// frase equivocada. Leérsela sería enseñarle el error al oído, que es
+/// exactamente lo contrario de para qué está.
 ///
 /// Se reconocen las dos marcas, la italiana y la castellana, porque para
 /// cuando esto corre la marca ya se cambió. Antes solo miraba la italiana y
 /// la voz terminaba diciendo "Se dice así" en todas las correcciones.
 String paraLeerEnVozAlta(String respuesta) => [
       for (final renglon in respuesta.split('\n'))
-        if (!renglon.trimLeft().startsWith(vosDijiste))
-          _sinLaMarcaDeCorreccion(renglon),
+        if (!_esLoQueDijiste(renglon)) _sinLaMarcaDeCorreccion(renglon),
     ].join('\n');
 
 String _sinLaMarcaDeCorreccion(String renglon) {
@@ -345,20 +370,6 @@ String _sinLaMarcaDeCorreccion(String renglon) {
         texto.substring(seDiceAsi.length).trimLeft();
   }
   return renglon;
-}
-
-String _conLaMarca(String respuesta, String Function(String) queHacer) => [
-      for (final renglon in respuesta.split('\n'))
-        _cambiarLaMarca(renglon, queHacer),
-    ].join('\n');
-
-String _cambiarLaMarca(String renglon, String Function(String) queHacer) {
-  // Los espacios de adelante se guardan: sacarlos movería el renglón.
-  final adelante = renglon.length - renglon.trimLeft().length;
-  final texto = renglon.trimLeft();
-  final marca = _empiezaCorreccion.matchAsPrefix(texto);
-  if (marca == null) return renglon;
-  return renglon.substring(0, adelante) + queHacer(texto.substring(marca.end));
 }
 
 /// Signos que no cambian lo que dice una frase.
@@ -389,10 +400,22 @@ String _comparable(String texto) => texto
 /// una corrección al pedo que una burbuja vacía.
 String sinCorreccionRepetida(String respuesta, String mensaje) {
   final escrito = _comparable(mensaje);
-  final quedan = [
+  var quedan = [
     for (final renglon in respuesta.split('\n'))
       if (!_esCorreccionDe(renglon, escrito)) renglon,
   ];
+
+  // El renglón de "Vos dijiste" es la mitad de una comparación: solo tiene
+  // sentido pegado a la corrección. Si la corrección se fue —porque repetía
+  // la frase tal cual—, el de arriba queda diciéndole en castellano lo que
+  // acaba de escribir, sin nada con qué compararlo. Pasa también al revés,
+  // cuando el modelo pone uno de los dos renglones y se olvida del otro.
+  if (!quedan.any(_esCorreccion)) {
+    quedan = [
+      for (final renglon in quedan)
+        if (!_esLoQueDijiste(renglon)) renglon,
+    ];
+  }
 
   final limpio = quedan.join('\n').trim();
   return limpio.isEmpty ? respuesta : limpio;

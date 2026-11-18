@@ -217,14 +217,10 @@ class _PantallaChatState extends State<PantallaChat> {
       final cerro = widget.escena.termina && cierraLaEscena(contestado);
       final dicho = cerro ? sinLaMarcaDelFinal(contestado) : contestado;
       // No se muestra una corrección que repite lo que escribió.
-      // Y la marca de la corrección se lee en castellano: lo que viene
-      // después sigue en italiano, que es lo que hay que aprender.
-      // Y arriba de la corrección va lo que se escribió, para que la
-      // diferencia se vea sin tener que acordarse.
-      final deLaIa = conLoQueEscribiste(
-        conLaMarcaEnCastellano(sinCorreccionRepetida(dicho, texto)),
-        texto,
-      );
+      // Y las dos marcas se leen en castellano: la de la corrección porque
+      // lo que viene después sigue en italiano y hay que distinguirlo de la
+      // charla, y la de arriba porque lo que viene después ya es castellano.
+      final deLaIa = conLaMarcaEnCastellano(sinCorreccionRepetida(dicho, texto));
       // Las traducciones van arriba, como antes, pero salen del diccionario.
       final respuesta =
           traducido.isEmpty ? deLaIa : '$traducido\n$deLaIa';

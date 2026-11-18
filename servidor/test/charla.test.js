@@ -134,6 +134,18 @@ test('la corrección del barista va entera en italiano', () => {
   assert.ok(promptDelBar.includes('entero en italiano'));
 });
 
+test('la frase equivocada se traduce literal, aunque suene mal', () => {
+  // Arriba de la corrección va lo que escribió traducido palabra por
+  // palabra. Sin el "aunque suene mal" el modelo traduce lo que QUISO
+  // decir —"quiero un café"—, que se lee perfecto en castellano y entonces
+  // no se ve ningún error, que es justo para lo que está el renglón.
+  for (const prompt of [promptDelBar, promptDeTuky]) {
+    assert.ok(prompt.includes('Hai scritto:'));
+    assert.ok(prompt.includes('palabra por palabra'));
+    assert.ok(prompt.includes('aunque suene mal'));
+  }
+});
+
 test('el barista no hace el papel del cliente', () => {
   // Sin esto le contesta "Un caffè e un cornetto" a un "buongiorno" —pide él,
   // por el otro— y después de servir suelta "Prego. Quanto è?".
