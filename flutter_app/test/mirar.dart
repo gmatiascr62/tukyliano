@@ -212,7 +212,8 @@ DescargasFalsas _descargasDeMentira() => DescargasFalsas(yaBajadas: const {
 /// Un barista de mentira que contesta la escena entera, para la foto.
 Servidor _baristaDeMentira() {
   const dice = [
-    'Volevi dire: Vorrei un caffè\n\nEcco a te.',
+    'Hai scritto: yo querer un café\n'
+        'Volevi dire: Vorrei un caffè\n\nEcco a te.',
     'Un euro e cinquanta.',
     'Ecco il resto. Arrivederci!\nFINE',
   ];

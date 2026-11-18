@@ -340,5 +340,94 @@ void main() {
       );
       expect(paraLeerEnVozAlta('Ecco a te.'), 'Ecco a te.');
     });
+
+    test('también la castellana, que es la que llega', () {
+      // Para cuando esto corre la marca ya se cambió a castellano, así que
+      // mirar solo la italiana no servía de nada: la voz terminaba diciendo
+      // "Se dice así" con acento italiano en todas las correcciones, que es
+      // justo lo que esto vino a evitar.
+      expect(
+        paraLeerEnVozAlta('Se dice así: Io bevo il caffè\nEcco a te.'),
+        'Io bevo il caffè\nEcco a te.',
+      );
+    });
+  });
+
+  group('lo que dijiste, arriba de la corrección', () {
+    // Es la mitad de una comparación: arriba lo que escribió traducido
+    // literal al castellano, abajo cómo se dice en italiano. Matías lo pidió
+    // así de preciso: "que la parte que dice vos dijiste esté en español y
+    // se dice así en italiano".
+    const delModelo = 'Hai scritto: yo querer un café\n'
+        'Volevi dire: Vorrei un caffè\n'
+        'Ecco a te.';
+
+    test('la marca se lee en castellano y la traducción queda intacta', () {
+      expect(
+        conLaMarcaEnCastellano(delModelo),
+        'Vos dijiste: yo querer un café\n'
+            'Se dice así: Vorrei un caffè\n'
+            'Ecco a te.',
+      );
+    });
+
+    test('también si el modelo dice "hai detto"', () {
+      // Alterna entre los dos verbos aunque el prompt pida uno solo.
+      expect(conLaMarcaEnCastellano('Hai detto: yo querer un café'),
+          'Vos dijiste: yo querer un café');
+    });
+
+    test('un "hai scritto" en medio de una frase no es la marca', () {
+      // La marca es el principio del renglón. En medio de una frase el
+      // barista está hablando italiano y hay que dejarlo en paz.
+      const charlando = 'Cosa hai scritto: non si capisce.';
+      expect(conLaMarcaEnCastellano(charlando), charlando);
+    });
+
+    test('la frase equivocada no se lee en voz alta', () {
+      // Esta es la que importa, y ahora por dos motivos: el renglón está en
+      // castellano —la voz es italiana y lo leería con acento— y además es
+      // el error. Leérselo al oído es lo contrario de para qué está.
+      final paraLaVoz = paraLeerEnVozAlta(conLaMarcaEnCastellano(delModelo));
+
+      expect(paraLaVoz, isNot(contains('querer')));
+      expect(paraLaVoz, isNot(contains('Vos dijiste')));
+      expect(paraLaVoz, 'Vorrei un caffè\nEcco a te.');
+    });
+
+    test('tampoco se lee si llega con la marca todavía en italiano', () {
+      // Por si alguna vez se muestra sin pasar por la traducción de marcas.
+      expect(paraLeerEnVozAlta(delModelo), 'Vorrei un caffè\nEcco a te.');
+    });
+
+    test('sin corrección al lado, el renglón se va', () {
+      // Si la corrección repetía la frase tal cual, se filtra. El de arriba
+      // quedaría solo, diciéndole en castellano lo que acaba de escribir,
+      // sin nada con qué compararlo.
+      expect(
+        sinCorreccionRepetida(
+          'Hai scritto: yo bebo el café\n'
+              'Volevi dire: io bevo il caffè\n'
+              'Ecco a te.',
+          'io bevo il caffè',
+        ),
+        'Ecco a te.',
+      );
+    });
+
+    test('si el modelo se olvida de la corrección, tampoco queda solo', () {
+      expect(
+        sinCorreccionRepetida('Hai scritto: yo querer un café\nEcco a te.',
+            'io volere un caffè'),
+        'Ecco a te.',
+      );
+    });
+
+    test('con la corrección al lado se queda', () {
+      // El caso de siempre: la corrección dice algo distinto de lo que
+      // escribió, así que la comparación tiene sentido y van los dos.
+      expect(sinCorreccionRepetida(delModelo, 'io volere un caffè'),
+          delModelo);
+    });
   });
 }

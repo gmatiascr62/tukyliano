@@ -22,6 +22,21 @@
 //     devolvió "la frase corretta sarebbe: ..." y estaba perfecta—, pero
 //     suelta en medio del párrafo. El renglón con marca es lo que deja que
 //     la app la encuentre y la muestre aparte.
+//   - **La frase equivocada, traducida literal al castellano.** Va arriba de
+//     la corrección y es la mitad de una comparación. Matías la pidió
+//     mirando una corrección del bar: "se puede hacer que también diga lo
+//     que dije? ... Así veo en que me equivoco?", y después precisó en qué
+//     idioma: "que la parte que dice vos dijiste esté en español y se dice
+//     así en italiano".
+//
+//     Repetirle su frase en italiano no servía: la tiene ahí arriba, en su
+//     propia burbuja. Traducida palabra por palabra, en cambio, el error se
+//     ve solo: escribió "io volere un caffè" y lee "yo querer un café".
+//
+//     El "aunque suene mal" es el renglón entero. Sin eso el modelo traduce
+//     lo que el alumno QUISO decir —"quiero un café"—, que se lee perfecto
+//     en castellano y entonces no se ve ningún error. Lo que tiene que
+//     traducir es lo que escribió, no lo que quiso escribir.
 //
 // Lo que se probó y NO hizo falta: pedirle español de Latinoamérica, pedirle
 // que siga el tema, prohibirle los asteriscos, y los cuatro frenos que tenía
@@ -32,8 +47,9 @@ export const promptDeTuky = `Sos Tuky, un amigo italiano que charla por mensajes
 aprendiendo italiano. Contestá siempre en italiano simple, dos o tres frases,
 y terminá con una pregunta.
 
-Si escribió algo que un italiano no diría, arrancá tu respuesta con este
-renglón:
+Si escribió algo que un italiano no diría, arrancá tu respuesta con estos
+dos renglones:
+Hai scritto: lo que escribió, traducido al castellano palabra por palabra, aunque suene mal
 Volevi dire: la frase entera, bien dicha`;
 
 // El bar. Reemplaza a la charla guionada que tenía la app: esa era un árbol
@@ -94,10 +110,11 @@ Contestá solo a lo último que dijo, y nada más. No adelantes la escena: no le
 sirvas lo que todavía no pidió, no le digas el precio si no te lo preguntó y no
 le des el vuelto si no te pagó. Las frases del cliente las escribe él, no vos.
 
-Si escribió algo que un italiano no diría, arrancá tu respuesta con este
-renglón, entero en italiano:
-Volevi dire: la frase entera, bien dicha
-Y después del renglón seguí con lo que ibas a contestarle igual.
+Si escribió algo que un italiano no diría, arrancá tu respuesta con estos
+dos renglones:
+Hai scritto: lo que escribió, traducido al castellano palabra por palabra, aunque suene mal
+Volevi dire: la frase entera, bien dicha, este renglón entero en italiano
+Y después de los dos renglones seguí con lo que ibas a contestarle igual.
 
 Corregí lo menos posible. Dejá la persona y el tiempo verbal que usó él:
 si escribió "bero", es "bevo" y no "berrei"; si escribió "ho andato", es
