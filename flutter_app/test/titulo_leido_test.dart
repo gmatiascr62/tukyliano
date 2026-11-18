@@ -99,6 +99,33 @@ void main() {
     expect(find.text(_elTitulo), findsOneWidget);
   });
 
+  testWidgets('las palabras del título se pueden tocar', (tester) async {
+    // Al pasar el título adentro del texto quedó como texto plano, sin los
+    // toques por palabra que tienen los renglones. Matías lo encontró
+    // enseguida: "no me deja traducir el título del primer capítulo,
+    // quiero traducir bambino y no aparece la traducción".
+    //
+    // Si el título es la primera línea del capítulo, tocar una palabra ahí
+    // tiene que funcionar igual que en el resto.
+    await _abrir(tester);
+
+    // El título ya no es un Text con una cadena adentro sino uno armado con
+    // un pedazo por palabra, cada uno con su reconocedor de toques.
+    final palabras = <String>[];
+    for (final texto in tester.widgetList<Text>(find.byType(Text))) {
+      final span = texto.textSpan;
+      if (span is! TextSpan) continue;
+      final pedazos = (span.children ?? []).whereType<TextSpan>();
+      if (!pedazos.any((p) => (p.text ?? '').contains('Ciliegia'))) continue;
+      palabras.addAll(pedazos
+          .where((p) => p.recognizer != null)
+          .map((p) => p.text ?? ''));
+    }
+
+    expect(palabras, isNotEmpty, reason: 'ninguna palabra del título se toca');
+    expect(palabras.join(), contains('Ciliegia'));
+  });
+
   testWidgets('se empieza por el título, no por el cuento', (tester) async {
     final reproductor = await _abrir(tester);
 
