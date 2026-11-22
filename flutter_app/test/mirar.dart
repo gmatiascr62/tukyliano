@@ -10,6 +10,7 @@
 // No forma parte de la suite: no verifica nada, solo dibuja.
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
@@ -20,10 +21,13 @@ import 'package:http/http.dart' as http;
 import 'package:http/testing.dart';
 import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/datos/repositorio_diccionario.dart';
+import 'package:tukyliano/datos/repositorio_frases.dart';
 import 'package:tukyliano/datos/repositorio_lecturas.dart';
 import 'package:tukyliano/ia/chat.dart';
 import 'package:tukyliano/ia/servidor.dart';
+import 'package:tukyliano/modelos/verbo.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
+import 'package:tukyliano/pantallas/pantalla_frases.dart';
 import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
@@ -106,13 +110,25 @@ Future<void> dibujar(
     ..devicePixelRatio = _escala
     ..padding = const FakeViewPadding(top: 102, bottom: 60);
 
+  // El tamaño de letra que eligió el dueño del celular. Vale 1 salvo que se
+  // pida otra cosa, que es como se dibujó siempre; pero Android deja subirlo
+  // hasta 1,3 o más, y ahí es donde se rompen los altos fijos. Sin poder
+  // moverlo, un recorte que el alumno ve todos los días es invisible acá.
+  final letra = double.parse(Platform.environment['LETRA'] ?? '1');
+
   await tester.pumpWidget(
     RepaintBoundary(
       key: clave,
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         theme: Tema.datos,
-        home: pantalla,
+        home: Builder(
+          builder: (contexto) => MediaQuery(
+            data: MediaQuery.of(contexto)
+                .copyWith(textScaler: TextScaler.linear(letra)),
+            child: pantalla,
+          ),
+        ),
       ),
     ),
   );
@@ -208,6 +224,28 @@ DescargasFalsas _descargasDeMentira() => DescargasFalsas(yaBajadas: const {
       'favole_03_libro01_lafontaine_64kb.mp3',
       'favole_05_libro01_lafontaine_64kb.mp3',
     });
+
+/// Lo justo para que la pantalla de frases tenga algo que preguntar.
+final _unVerbo = DatosVerbos.desdeJson(jsonDecode('''
+  {"verbos": {"dovere": {"traduccion": "deber", "tiempos": {
+    "passato": {"loro": {"italiano": "hanno dovuto",
+                         "espanol": "ellos tuvieron que"}}
+  }}}}
+''') as Map<String, dynamic>);
+
+/// La frase de la foto, que es larga a propósito: es la que se cortaba.
+RepositorioFrases _laFraseLarga() => RepositorioFrases(
+      leerAsset: (_) async => '''
+        {"frases": [
+          {"verbo": "dovere", "tiempo": "passato", "persona": "loro",
+           "espanol": "Los chicos tuvieron que estudiar",
+           "italiano": "I bambini hanno dovuto studiare",
+           "pista": "chicos = bambini"}
+        ]}
+      ''',
+      cliente: MockClient((_) async => http.Response('', 404)),
+      carpeta: () async => null,
+    );
 
 /// Un barista de mentira que contesta la escena entera, para la foto.
 Servidor _baristaDeMentira() {
@@ -338,6 +376,26 @@ void main() {
             conTitulo.correrA(const Duration(seconds: 36));
             await t.pumpAndSettle();
           },
+        );
+
+      case 'frases':
+        // Con la frase larga que Matías mandó en la foto: 'Los chicos
+        // tuvieron que estudiar' no entra en un renglón, y con la letra
+        // grande del celular el segundo se cortaba a la mitad.
+        //
+        // LETRA sube el tamaño de letra del sistema, que es lo que hay que
+        // mirar: con LETRA=1 no se rompe nada y por eso nunca lo vi.
+        //
+        //   MIRAR=frases LETRA=1.3 flutter test test/mirar.dart
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(PantallaFrases(
+            verbos: _unVerbo.verbos.values.toList(),
+            tiempos: const ['passato'],
+            frasesLocales: _laFraseLarga(),
+            azar: Random(1),
+          )),
         );
 
       case 'bar':
