@@ -16,12 +16,29 @@ class TarjetaPregunta extends StatelessWidget {
 
   /// Título chico arriba ("Traducí al italiano"). Vacío = no se muestra.
   final String etiqueta;
+
+  /// Alto mínimo, no fijo.
+  ///
+  /// Era fijo, y así se veía bien en cualquier celular mientras la frase
+  /// entrara. Matías mandó la foto de una que no entraba: 'Los chicos
+  /// tuvieron que estudiar' con el segundo renglón cortado por la mitad.
+  ///
+  /// La frase sola no alcanza para romperlo —con el tamaño de letra normal
+  /// entra en un renglón—: hace falta además que el dueño del celular haya
+  /// agrandado la letra del sistema. Reproducido con MIRAR=frases LETRA=1.5,
+  /// que da exactamente la foto que mandó.
+  ///
+  /// Mínimo y no fijo porque el alto estaba para que la pantalla no saltara
+  /// al cambiar de pregunta, y eso se sigue cumpliendo: con una frase corta
+  /// la tarjeta mide lo mismo de siempre. Solo crece cuando el texto no
+  /// entra, que es cuando la alternativa era no poder leerlo. Las cuatro
+  /// pantallas que la usan están adentro de un scroll, así que hay lugar.
   final double alto;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: alto,
+      constraints: BoxConstraints(minHeight: alto),
       width: double.infinity,
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 14),
       decoration: BoxDecoration(
@@ -44,18 +61,19 @@ class TarjetaPregunta extends StatelessWidget {
             ),
             const SizedBox(height: 10),
           ],
-          Flexible(
-            child: Center(
-              child: Text(
-                texto,
-                textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 21,
-                  height: 1.3,
-                  fontWeight: FontWeight.w500,
-                  color: Tema.titulo,
-                ),
-              ),
+          // Sin Flexible: ahora el alto de arriba es un mínimo, así que la
+          // tarjeta puede quedar sin tope de alto, y un hijo flexible
+          // adentro de una columna sin tope es un error de Flutter. Tampoco
+          // hace falta, porque ya no hay un alto que repartir: el texto
+          // ocupa lo que necesita y la tarjeta lo acompaña.
+          Text(
+            texto,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 21,
+              height: 1.3,
+              fontWeight: FontWeight.w500,
+              color: Tema.titulo,
             ),
           ),
         ],
