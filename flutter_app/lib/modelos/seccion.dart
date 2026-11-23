@@ -4,6 +4,7 @@
 /// se llega a ellas desde el inicio, y las de gramática desde su propia
 /// pantalla. El enum queda porque sigue siendo la forma de nombrar a cada una.
 enum Seccion {
+  camino,
   racconti,
   hablar,
   frases,
@@ -22,17 +23,18 @@ extension EtiquetaSeccion on Seccion {
   /// Cómo se llama en pantalla. Casi todas van en italiano, aunque el resto de
   /// la app le hable al alumno en español: son los nombres de los temas.
   String get etiqueta => switch (this) {
-        Seccion.frases => 'Frasi',
-        Seccion.verbos => 'Verbi',
-        Seccion.articoli => 'Articoli',
-        Seccion.preposizioni => 'Preposizioni',
-        Seccion.via => 'Via',
-        Seccion.ci => 'Ci',
-        Seccion.ne => 'Ne',
-        Seccion.racconti => 'Racconti',
-        Seccion.hablar => 'Parlare',
-        Seccion.chat => 'Chat',
-        Seccion.podcast => 'Escuchar',
-        Seccion.radio => 'Radio',
-      };
+    Seccion.frases => 'Frasi',
+    Seccion.verbos => 'Verbi',
+    Seccion.articoli => 'Articoli',
+    Seccion.preposizioni => 'Preposizioni',
+    Seccion.via => 'Via',
+    Seccion.ci => 'Ci',
+    Seccion.ne => 'Ne',
+    Seccion.racconti => 'Racconti',
+    Seccion.hablar => 'Parlare',
+    Seccion.chat => 'Chat',
+    Seccion.podcast => 'Escuchar',
+    Seccion.radio => 'Radio',
+    Seccion.camino => 'El camino',
+  };
 }

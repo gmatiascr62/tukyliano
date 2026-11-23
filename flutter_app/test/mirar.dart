@@ -23,10 +23,12 @@ import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/datos/repositorio_diccionario.dart';
 import 'package:tukyliano/datos/repositorio_frases.dart';
 import 'package:tukyliano/datos/repositorio_lecturas.dart';
+import 'package:tukyliano/datos/repositorio_percorso.dart';
 import 'package:tukyliano/ia/chat.dart';
 import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
+import 'package:tukyliano/pantallas/pantalla_ciudad.dart';
 import 'package:tukyliano/pantallas/pantalla_frases.dart';
 import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
@@ -396,6 +398,30 @@ void main() {
             frasesLocales: _laFraseLarga(),
             azar: Random(1),
           )),
+        );
+
+      case 'ciudad':
+        // Palermo con las dos primeras hechas, que es como se ve a mitad
+        // de camino. Recién abierta sólo se vería la primera encendida.
+        final camino = RepositorioPercorso(
+          leerAsset: (_) async =>
+              File('assets/percorso.json').readAsStringSync(),
+        );
+        await camino.cargar();
+        final avance = Progreso(carpeta: () async => null)
+          ..termino('palermo-1')
+          ..termino('palermo-2');
+        await dibujar(
+          tester,
+          cual,
+          Scaffold(
+            body: PantallaCiudad(
+              ciudad: camino.camino.ciudades.first,
+              progreso: avance,
+              alVolver: () {},
+              alEmpezar: (_) {},
+            ),
+          ),
         );
 
       case 'bar':

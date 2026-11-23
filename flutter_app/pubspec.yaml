@@ -84,6 +84,9 @@ flutter:
     - assets/preposizioni.json
     - assets/via.json
     - assets/racconti.json
+    # El camino: las ciudades y sus lecciones, con los dibujos de cada una.
+    - assets/percorso.json
+    - assets/camino/
     - assets/podcast.json
     # El catálogo de las fábulas: títulos y duraciones, nada más. Los audios
     # NO van acá —son 17 MB el primer libro— y se bajan cuando se tocan.

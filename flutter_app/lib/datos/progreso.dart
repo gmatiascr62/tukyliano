@@ -19,7 +19,7 @@ const int diasDeLaSemana = 7;
 /// desinstala la app se pierde: no hay cuenta ni nube, y eso es a propósito.
 class Progreso {
   Progreso({Future<Directory?> Function()? carpeta})
-      : _carpeta = carpeta ?? _carpetaDeLaApp;
+    : _carpeta = carpeta ?? _carpetaDeLaApp;
 
   /// Devuelve null cuando no hay dónde guardar (los tests): ahí el progreso
   /// vale solo para la sesión abierta.
@@ -35,8 +35,22 @@ class Progreso {
   int _aciertos = 0;
   final Set<String> _dias = {};
 
+  /// Las lecciones del camino que ya se hicieron, por id.
+  ///
+  /// Van acá y no en un archivo aparte porque es lo mismo: cuánto llevás
+  /// hecho. Un archivo más sería otra cosa que puede faltar, romperse o
+  /// quedar desincronizada con ésta.
+  final Set<String> _hechas = {};
+
   /// Cuántas veces se acertó desde que se instaló la app.
   int get aciertos => _aciertos;
+
+  /// Si esa lección del camino ya está hecha.
+  bool hizo(String leccion) => _hechas.contains(leccion);
+
+  /// Cuántas de esas lecciones están hechas.
+  int cuantasHechas(Iterable<String> lecciones) =>
+      lecciones.where(_hechas.contains).length;
 
   /// De los últimos siete días, en cuántos se practicó.
   int get diasPracticados {
@@ -53,8 +67,8 @@ class Progreso {
   /// mostrar además cuáles: una semana dibujada se lee de un vistazo y el
   /// hueco del día que falta se ve, que es lo que invita a volver.
   bool practicoHace(int cuantosDias) => _dias.contains(
-        _comoTexto(DateTime.now().subtract(Duration(days: cuantosDias))),
-      );
+    _comoTexto(DateTime.now().subtract(Duration(days: cuantosDias))),
+  );
 
   static String _comoTexto(DateTime dia) =>
       '${dia.year}-${dia.month.toString().padLeft(2, '0')}-'
@@ -84,6 +98,13 @@ class Progreso {
         ..addAll([
           for (final dia in datos['dias'] as List? ?? []) dia.toString(),
         ]);
+      // Las guardadas por una versión anterior no traen esta lista, y eso
+      // no es un error: es que todavía no había camino.
+      _hechas
+        ..clear()
+        ..addAll([
+          for (final hecha in datos['hechas'] as List? ?? []) hecha.toString(),
+        ]);
     } catch (_) {
       // Un archivo roto no tiene que impedir usar la app: se arranca de cero.
     }
@@ -104,6 +125,12 @@ class Progreso {
     _guardar();
   }
 
+  /// Se terminó una lección del camino. Hacerla de nuevo no cambia nada.
+  void termino(String leccion) {
+    if (!_hechas.add(leccion)) return;
+    practico();
+  }
+
   void _limpiarViejos() {
     if (_dias.length <= _cuantosDiasGuardar) return;
     final ordenados = _dias.toList()..sort();
@@ -116,7 +143,11 @@ class Progreso {
     try {
       final archivo = await _obtenerArchivo();
       archivo?.writeAsStringSync(
-        jsonEncode({'aciertos': _aciertos, 'dias': _dias.toList()..sort()}),
+        jsonEncode({
+          'aciertos': _aciertos,
+          'dias': _dias.toList()..sort(),
+          'hechas': _hechas.toList()..sort(),
+        }),
       );
     } catch (_) {
       // Si no se puede escribir, el progreso igual vale para esta sesión.

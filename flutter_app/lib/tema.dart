@@ -20,6 +20,12 @@ class Tema {
   static const Color boton = verde;
   static const Color textoBoton = Colors.white;
 
+  /// El terracota de las portadas de los racconti. Lo usa la cabecera de
+  /// una ciudad del camino: es lo que ata esa pantalla con los cuentos, que
+  /// es de donde sale su contenido.
+  static const Color terracota = Color(0xFFC8553D);
+  static const Color terracotaSuave = Color(0xFFF6DED6);
+
   static const Color correcto = Color(0xFF2E7D32);
   static const Color incorrecto = Color(0xFFC62828);
 
@@ -44,31 +50,23 @@ class Tema {
               estados.contains(WidgetState.selected) ? verde : Colors.white,
         ),
         side: const BorderSide(color: borde, width: 2),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(6),
-        ),
+        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(6)),
       ),
     );
   }
 
   /// Botón principal (Verificar, Siguiente, Empezar, Guardar).
   static ButtonStyle get botonPrincipal => ElevatedButton.styleFrom(
-        backgroundColor: verde,
-        foregroundColor: Colors.white,
-        disabledBackgroundColor: const Color(0xFFC7D4BC),
-        disabledForegroundColor: Colors.white,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(radio),
-        ),
-      );
+    backgroundColor: verde,
+    foregroundColor: Colors.white,
+    disabledBackgroundColor: const Color(0xFFC7D4BC),
+    disabledForegroundColor: Colors.white,
+    elevation: 0,
+    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(radio)),
+  );
 
   /// Sombra suave para las tarjetas.
   static List<BoxShadow> get sombra => const [
-        BoxShadow(
-          color: Color(0x14000000),
-          blurRadius: 10,
-          offset: Offset(0, 2),
-        ),
-      ];
+    BoxShadow(color: Color(0x14000000), blurRadius: 10, offset: Offset(0, 2)),
+  ];
 }

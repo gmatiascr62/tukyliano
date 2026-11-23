@@ -9,7 +9,7 @@ import '../constantes.dart';
 
 /// A dónde se puede ir desde el inicio: los cuatro botones en diagonal,
 /// más el podcast y la radio, que van en barras aparte debajo.
-enum Destino { racconti, hablar, gramatica, chat, podcast, radio }
+enum Destino { racconti, hablar, gramatica, chat, podcast, radio, camino }
 
 extension EtiquetaDestino on Destino {
   String get etiqueta => switch (this) {
@@ -19,6 +19,7 @@ extension EtiquetaDestino on Destino {
     Destino.chat => 'Chat',
     Destino.podcast => 'Escuchar',
     Destino.radio => 'Radio',
+    Destino.camino => 'El camino',
   };
 
   IconData get icono => switch (this) {
@@ -28,6 +29,7 @@ extension EtiquetaDestino on Destino {
     Destino.chat => Icons.chat_bubble_outline,
     Destino.podcast => Icons.headphones,
     Destino.radio => Icons.radio,
+    Destino.camino => Icons.map_outlined,
   };
 }
 
@@ -97,6 +99,8 @@ class PantallaInicio extends StatelessWidget {
           child: _Diagonales(nivel: nivel, alElegir: alElegir),
         ),
         const SizedBox(height: 14),
+        _BarraDelCamino(alTocar: () => alElegir(Destino.camino)),
+        const SizedBox(height: 10),
         _BarraDePodcast(alTocar: () => alElegir(Destino.podcast)),
         const SizedBox(height: 9),
         _BarraDeRadio(alTocar: () => alElegir(Destino.radio)),
@@ -464,6 +468,74 @@ class _BotonRedondo extends StatelessWidget {
 
 /// El podcast no entra en las diagonales: son cuatro y la composición es con
 /// cuatro. Va abajo, ancho, que además es donde cae el pulgar sin estirarse.
+/// Por dónde empezar, para el que no sabe nada.
+///
+/// Va arriba de las otras dos y de color terracota: el resto del inicio es
+/// verde, así que el color sola la señala sin tener que escribir "empezá
+/// por acá". Y es la única barra que lleva a algo con orden adentro.
+class _BarraDelCamino extends StatelessWidget {
+  const _BarraDelCamino({required this.alTocar});
+
+  final VoidCallback alTocar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Colors.transparent,
+      borderRadius: BorderRadius.circular(_radio),
+      child: Ink(
+        decoration: BoxDecoration(
+          color: Tema.terracota,
+          borderRadius: BorderRadius.circular(_radio),
+          boxShadow: [
+            BoxShadow(
+              color: Tema.terracota.withValues(alpha: 0.30),
+              blurRadius: 16,
+              offset: const Offset(0, 6),
+            ),
+          ],
+        ),
+        child: InkWell(
+          onTap: alTocar,
+          borderRadius: BorderRadius.circular(_radio),
+          child: const Padding(
+            padding: EdgeInsets.symmetric(horizontal: 18, vertical: 16),
+            child: Row(
+              children: [
+                Icon(Icons.map_outlined, size: 24, color: Colors.white),
+                SizedBox(width: 12),
+                Expanded(
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        'El camino',
+                        style: TextStyle(
+                          fontSize: 16.5,
+                          fontWeight: FontWeight.w700,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        'Empezá por Palermo, de a una lección',
+                        style: TextStyle(
+                          fontSize: 12,
+                          color: Color(0xE6FFFFFF),
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Icon(Icons.chevron_right, size: 22, color: Colors.white),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class _BarraDePodcast extends StatelessWidget {
   const _BarraDePodcast({required this.alTocar});
 
