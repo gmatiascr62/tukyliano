@@ -79,7 +79,7 @@ class TukylianoApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Tukyliano',
+      title: nombreDeLaApp,
       debugShowCheckedModeBanner: false,
       theme: Tema.datos,
       home: PantallaPrincipal(
@@ -272,7 +272,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     // El chequeo va después de mostrar los verbos guardados, para que la app
     // sea usable aunque no haya internet. Si llegan verbos nuevos aparecen
     // solos, sin avisar nada.
-    final resultado = await _repositorio.verificarActualizacion(_datos!.version);
+    final resultado = await _repositorio.verificarActualizacion(
+      _datos!.version,
+    );
     if (!mounted || resultado.datos == null) return;
     setState(() => _datos = resultado.datos);
   }
@@ -327,14 +329,14 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   }
 
   static bool _esDeGramatica(Seccion seccion) => const {
-        Seccion.frases,
-        Seccion.verbos,
-        Seccion.articoli,
-        Seccion.preposizioni,
-        Seccion.via,
-        Seccion.ci,
-        Seccion.ne,
-      }.contains(seccion);
+    Seccion.frases,
+    Seccion.verbos,
+    Seccion.articoli,
+    Seccion.preposizioni,
+    Seccion.via,
+    Seccion.ci,
+    Seccion.ne,
+  }.contains(seccion);
 
   bool get _enElInicio => _seccion == null && !_eligiendoTema;
 
@@ -408,7 +410,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   }
 
   String _titulo() =>
-      _seccion?.etiqueta ?? (_eligiendoTema ? 'Gramática' : 'Tukyliano');
+      _seccion?.etiqueta ?? (_eligiendoTema ? 'Gramática' : nombreDeLaApp);
 
   Widget _cuerpo() {
     final seccion = _seccion;
@@ -443,12 +445,14 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         return PantallaVia(repositorio: _via, progreso: _progreso);
       case Seccion.ci:
         return const PantallaProximamente(
-          adelanto: 'El ci que reemplaza un lugar (vado a Roma: ci vado) y el '
+          adelanto:
+              'El ci que reemplaza un lugar (vado a Roma: ci vado) y el '
               "de c'è, ci sono.",
         );
       case Seccion.ne:
         return const PantallaProximamente(
-          adelanto: 'El ne de la cantidad y del "de eso": ne ho due, ne '
+          adelanto:
+              'El ne de la cantidad y del "de eso": ne ho due, ne '
               'parliamo domani.',
         );
       case Seccion.racconti:
@@ -456,10 +460,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       case Seccion.chat:
         // Sin key ni nada que guarde el estado: al cambiar de sección esta
         // pantalla se destruye y la charla se olvida, que es lo que se pidió.
-        return PantallaConversacion(
-          servidor: _servidor,
-          voz: _voz,
-        );
+        return PantallaConversacion(servidor: _servidor, voz: _voz);
     }
   }
 

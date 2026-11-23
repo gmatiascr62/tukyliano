@@ -10,6 +10,7 @@ import '../datos/reproductor.dart';
 import '../datos/repositorio_radios.dart';
 import '../modelos/radio_italiana.dart';
 import '../tema.dart';
+import '../constantes.dart';
 
 /// Radio italiana en vivo.
 ///
@@ -211,9 +212,7 @@ class _PantallaRadioState extends State<PantallaRadio> {
     }
 
     if (_radios.isEmpty) {
-      return const _Cartel(
-        'Todavía no hay emisoras cargadas.',
-      );
+      return const _Cartel('Todavía no hay emisoras cargadas.');
     }
 
     final radio = _cual;
@@ -314,8 +313,7 @@ class _Escucha extends StatelessWidget {
 
   /// True cuando el audio en segundo plano no quedó bien armado. Es lo único
   /// que hace aparecer el detalle técnico.
-  bool get hayUnProblema =>
-      !AudioDeFondo.anda || AudioDeFondo.seRompio != null;
+  bool get hayUnProblema => !AudioDeFondo.anda || AudioDeFondo.seRompio != null;
 
   final String? porQueFallo;
   final VoidCallback alPlay;
@@ -391,8 +389,11 @@ class _ComoVaElAudio extends StatelessWidget {
         child: Text(
           texto,
           textAlign: TextAlign.center,
-          style: const TextStyle(fontSize: 10.5, height: 1.4,
-              color: Tema.textoTenue),
+          style: const TextStyle(
+            fontSize: 10.5,
+            height: 1.4,
+            color: Tema.textoTenue,
+          ),
         ),
       ),
     );
@@ -474,8 +475,7 @@ class _Botonera extends StatelessWidget {
                             height: 34,
                             child: CircularProgressIndicator(
                               strokeWidth: 3.5,
-                              valueColor:
-                                  AlwaysStoppedAnimation(Tema.verde),
+                              valueColor: AlwaysStoppedAnimation(Tema.verde),
                             ),
                           )
                         : Icon(
@@ -494,13 +494,13 @@ class _Botonera extends StatelessWidget {
   }
 
   static String _enQueAnda(_Estado estado) => switch (estado) {
-        _Estado.quieta => 'En vivo desde Italia',
-        _Estado.conectando => 'Conectando…',
-        _Estado.sonando => 'Sonando en vivo',
-        _Estado.pausada => 'Pausada',
-        _Estado.falla => 'No se pudo conectar',
-        _Estado.cortada => 'Se cortó',
-      };
+    _Estado.quieta => 'En vivo desde Italia',
+    _Estado.conectando => 'Conectando…',
+    _Estado.sonando => 'Sonando en vivo',
+    _Estado.pausada => 'Pausada',
+    _Estado.falla => 'No se pudo conectar',
+    _Estado.cortada => 'Se cortó',
+  };
 }
 
 /// Lo que salió mal, en criollo y con el motivo de verdad abajo.
@@ -526,10 +526,10 @@ class _Problema extends StatelessWidget {
           Text(
             cortada
                 ? 'Se cortó la transmisión. Puede ser la señal de tu celular '
-                    'o la emisora, que son voluntarios y no transmiten las '
-                    '24 horas. Tocá de nuevo para reconectar.'
+                      'o la emisora, que son voluntarios y no transmiten las '
+                      '24 horas. Tocá de nuevo para reconectar.'
                 : 'No se pudo conectar. Fijate que tengas internet y probá de '
-                    'nuevo; si sigue así, puede ser que la emisora esté caída.',
+                      'nuevo; si sigue así, puede ser que la emisora esté caída.',
             style: const TextStyle(fontSize: 13.5, color: Tema.texto),
           ),
           if (porQue != null) ...[
@@ -696,10 +696,13 @@ class _SinNotificaciones extends StatelessWidget {
             'Sin eso no aparece el reproductor en la barra y Android corta el '
             'audio al bloquear la pantalla: la notificación con los controles '
             'es lo que le dice al sistema que hay algo sonando.\n\n'
-            'Se prende en Ajustes → Aplicaciones → Tukyliano → '
+            'Se prende en Ajustes → Aplicaciones → $nombreDeLaApp → '
             'Notificaciones.',
-            style: TextStyle(fontSize: 12.5, height: 1.35,
-                color: Tema.textoTenue),
+            style: TextStyle(
+              fontSize: 12.5,
+              height: 1.35,
+              color: Tema.textoTenue,
+            ),
           ),
         ],
       ),
@@ -780,7 +783,7 @@ class _Credito extends StatelessWidget {
           const SizedBox(height: 12),
           if (radio.quien.isNotEmpty)
             Text(
-              'La transmite ${radio.quien}. Tukyliano solo la reproduce: no '
+              'La transmite ${radio.quien}. $nombreDeLaApp solo la reproduce: no '
               'la hace, no la graba y no gana nada con ella.',
               style: const TextStyle(fontSize: 12, color: Tema.textoTenue),
             ),

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:speech_to_text/speech_recognition_error.dart';
 import 'package:speech_to_text/speech_to_text.dart';
+import '../constantes.dart';
 
 /// El idioma que se escucha, como lo nombra Android (con guion bajo, al revés
 /// que el de la voz). Solo se usa a ciegas: si el celular sabe listar sus
@@ -99,7 +100,8 @@ class EscuchaDelCelular implements Escucha {
       _listo = false;
     }
     if (!_listo) {
-      _problema = 'Este celular no puede escuchar: o no tiene reconocimiento '
+      _problema =
+          'Este celular no puede escuchar: o no tiene reconocimiento '
           'de voz, o no le diste permiso al micrófono.';
       return false;
     }
@@ -256,18 +258,18 @@ class EscuchaDelCelular implements Escucha {
   /// Los dos primeros no son fallas: son "no te escuché", y la pantalla ya lo
   /// dice sola, así que no se muestra nada.
   String _explicar(String codigo) => switch (codigo) {
-        'error_no_match' || 'error_speech_timeout' => '',
-        'error_network' || 'error_network_timeout' =>
-          'Para escucharte necesita internet. Con datos o wifi anda; sin eso, '
-              'hay que bajar el italiano offline desde Ajustes de Android.',
-        'error_permission' =>
-          'Falta el permiso del micrófono. Se da desde Ajustes de Android, en '
-              'los permisos de Tukyliano.',
-        'error_busy' => 'El micrófono está ocupado por otra app.',
-        'error_audio' => 'No se pudo grabar el audio.',
-        'error_language_not_supported' || 'error_language_unavailable' =>
-          'Este celular no tiene el italiano para escuchar. Se baja desde '
-              'Ajustes de Android, en los idiomas del teclado de Google.',
-        _ => 'No se pudo escuchar ($codigo).',
-      };
+    'error_no_match' || 'error_speech_timeout' => '',
+    'error_network' || 'error_network_timeout' =>
+      'Para escucharte necesita internet. Con datos o wifi anda; sin eso, '
+          'hay que bajar el italiano offline desde Ajustes de Android.',
+    'error_permission' =>
+      'Falta el permiso del micrófono. Se da desde Ajustes de Android, en '
+          'los permisos de $nombreDeLaApp.',
+    'error_busy' => 'El micrófono está ocupado por otra app.',
+    'error_audio' => 'No se pudo grabar el audio.',
+    'error_language_not_supported' || 'error_language_unavailable' =>
+      'Este celular no tiene el italiano para escuchar. Se baja desde '
+          'Ajustes de Android, en los idiomas del teclado de Google.',
+    _ => 'No se pudo escuchar ($codigo).',
+  };
 }

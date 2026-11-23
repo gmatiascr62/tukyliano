@@ -63,6 +63,23 @@ void main() {
       expect(nueva.tamano, '41 MB');
     });
 
+    test('encuentra el APK aunque le hayan cambiado el nombre', () async {
+      // La app se llamaba Tukyliano y pasó a llamarse DueParole, así que el
+      // archivo del release cambió de nombre. Un celular con la versión
+      // vieja instalada busca la actualización con el código viejo: si ese
+      // código buscara "Tukyliano.apk" y nada más, se quedaría sin
+      // actualizaciones para siempre y habría que reinstalar a mano.
+      //
+      // No pasa porque se busca cualquier adjunto que termine en .apk. Este
+      // test está para que siga siendo así: el día que alguien lo cambie por
+      // un nombre fijo, se entera acá y no en el celular de alguien.
+      for (final nombre in ['Tukyliano.apk', 'DueParole.apk', 'otro.apk']) {
+        final nueva =
+            await _buscador(_publicacion(archivo: nombre)).buscar();
+        expect(nueva?.url, endsWith(nombre), reason: nombre);
+      }
+    });
+
     test('no avisa si es la misma que está instalada', () async {
       final nueva = await _buscador(_publicacion(), instalado: 63).buscar();
 

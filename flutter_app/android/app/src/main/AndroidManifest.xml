@@ -40,7 +40,7 @@
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS"/>
 
     <application
-        android:label="Tukyliano"
+        android:label="DueParole"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <!-- Con el nombre completo del paquete: el namespace ahora es
