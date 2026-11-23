@@ -1,0 +1,117 @@
+{
+  "version": 1,
+  "de": "El camino: las ciudades y sus lecciones, en orden.",
+  "ciudades": [
+    {
+      "id": "palermo",
+      "nombre": "Palermo",
+      "subtitulo": "las primeras palabras",
+      "nivel": 1,
+      "icono": "palermo",
+      "x": 0.61,
+      "y": 0.76,
+      "lecciones": [
+        {
+          "id": "palermo-1",
+          "titulo": "Il gatto è in cucina",
+          "deQueVa": "Las primeras diez palabras",
+          "palabras": [
+            {"it": "il", "es": "el"},
+            {"it": "la", "es": "la"},
+            {"it": "un", "es": "un"},
+            {"it": "una", "es": "una"},
+            {"it": "è", "es": "es, está"},
+            {"it": "in", "es": "en"},
+            {"it": "e", "es": "y"},
+            {"it": "gatto", "es": "gato"},
+            {"it": "cucina", "es": "cocina"},
+            {"it": "casa", "es": "casa"}
+          ],
+          "frases": [
+            {"it": "Il gatto è in cucina.", "es": "El gato está en la cocina."},
+            {"it": "Il gatto è in casa.", "es": "El gato está en casa."}
+          ]
+        },
+        {
+          "id": "palermo-2",
+          "titulo": "Ha fame",
+          "deQueVa": "Tener, querer, y lo que el gato busca",
+          "palabras": [
+            {"it": "ha", "es": "tiene"},
+            {"it": "fame", "es": "hambre"},
+            {"it": "sonno", "es": "sueño"},
+            {"it": "vuole", "es": "quiere"},
+            {"it": "non", "es": "no"},
+            {"it": "ma", "es": "pero"},
+            {"it": "pesce", "es": "pescado"},
+            {"it": "latte", "es": "leche"}
+          ],
+          "frases": [
+            {"it": "Il gatto ha fame.", "es": "El gato tiene hambre."},
+            {"it": "Vuole il pesce.", "es": "Quiere el pescado."},
+            {"it": "Ma non vuole il latte.", "es": "Pero no quiere la leche."}
+          ]
+        },
+        {
+          "id": "palermo-3",
+          "titulo": "Sul tavolo",
+          "deQueVa": "Dónde están las cosas",
+          "palabras": [
+            {"it": "tavolo", "es": "mesa"},
+            {"it": "sedia", "es": "silla"},
+            {"it": "giardino", "es": "jardín"},
+            {"it": "sul", "es": "sobre el"},
+            {"it": "sulla", "es": "sobre la"},
+            {"it": "c'è", "es": "hay"},
+            {"it": "uccello", "es": "pájaro"},
+            {"it": "solo", "es": "solo, solamente"}
+          ],
+          "frases": [
+            {"it": "Sul tavolo c'è il latte.", "es": "Sobre la mesa hay leche."},
+            {"it": "In giardino c'è un uccello.", "es": "En el jardín hay un pájaro."},
+            {"it": "C'è solo il latte.", "es": "Solo hay leche."}
+          ]
+        },
+        {
+          "id": "palermo-4",
+          "titulo": "Cosa fa il gatto",
+          "deQueVa": "Lo que el gato hace",
+          "palabras": [
+            {"it": "beve", "es": "toma, bebe"},
+            {"it": "guarda", "es": "mira"},
+            {"it": "va", "es": "va"},
+            {"it": "torna", "es": "vuelve"},
+            {"it": "dorme", "es": "duerme"},
+            {"it": "vola", "es": "vuela"},
+            {"it": "via", "es": "lejos, se va"},
+            {"it": "poi", "es": "después"},
+            {"it": "adesso", "es": "ahora"},
+            {"it": "a", "es": "a"},
+            {"it": "l'", "es": "el, la"}
+          ],
+          "frases": [
+            {"it": "Il gatto beve il latte.", "es": "El gato toma la leche."},
+            {"it": "Poi va in giardino.", "es": "Después va al jardín."},
+            {"it": "Il gatto guarda l'uccello.", "es": "El gato mira al pájaro."},
+            {"it": "L'uccello vola via.", "es": "El pájaro se vuela."},
+            {"it": "Adesso torna a casa e dorme sulla sedia.", "es": "Ahora vuelve a casa y duerme en la silla."}
+          ]
+        },
+        {
+          "id": "palermo-5",
+          "titulo": "Il gatto ha fame",
+          "deQueVa": "El cuento entero. No hay palabras nuevas.",
+          "racconto": "il-gatto-ha-fame"
+        },
+        {
+          "id": "palermo-prueba",
+          "titulo": "La prueba de Palermo",
+          "deQueVa": "Si la pasás, se abre Napoli",
+          "prueba": true,
+          "paraAprobar": 6,
+          "cuantas": 8
+        }
+      ]
+    }
+  ]
+}

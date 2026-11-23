@@ -10,6 +10,7 @@ import 'datos/repositorio_particelle.dart';
 import 'datos/repositorio_preposizioni.dart';
 import 'datos/repositorio_racconti.dart';
 import 'datos/progreso.dart';
+import 'datos/repositorio_percorso.dart';
 import 'datos/reproductor.dart';
 import 'datos/repositorio_verbos.dart';
 import 'datos/voz.dart';
@@ -17,6 +18,7 @@ import 'ia/servidor.dart';
 import 'modelos/seccion.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
+import 'pantallas/pantalla_ciudad.dart';
 import 'pantallas/pantalla_conversacion.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_gramatica.dart';
@@ -145,6 +147,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       widget.articoli ?? RepositorioArticoli();
   late final RepositorioPreposizioni _preposizioni =
       widget.preposizioni ?? RepositorioPreposizioni();
+  late final RepositorioPercorso _camino = RepositorioPercorso();
   late final RepositorioRacconti _racconti =
       widget.racconti ?? RepositorioRacconti();
   late final RepositorioParticelle _via =
@@ -306,6 +309,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         _irA(Seccion.podcast);
       case Destino.radio:
         _irA(Seccion.radio);
+      case Destino.camino:
+        _irA(Seccion.camino);
       case Destino.gramatica:
         setState(() {
           _seccion = null;
@@ -454,6 +459,24 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           adelanto:
               'El ne de la cantidad y del "de eso": ne ho due, ne '
               'parliamo domani.',
+        );
+      case Seccion.camino:
+        return FutureBuilder<void>(
+          future: _camino.cargar(),
+          builder: (_, estado) {
+            final ciudades = _camino.camino.ciudades;
+            if (estado.connectionState != ConnectionState.done ||
+                ciudades.isEmpty) {
+              return const Center(child: CircularProgressIndicator());
+            }
+            // Derecho a la primera ciudad: el mapa es el paso siguiente, y
+            // con una sola ciudad una lista de ciudades no dice nada.
+            return PantallaCiudad(
+              ciudad: ciudades.first,
+              progreso: _progreso,
+              alVolver: _volver,
+            );
+          },
         );
       case Seccion.racconti:
         return PantallaRacconti(repositorio: _racconti, voz: _voz);
