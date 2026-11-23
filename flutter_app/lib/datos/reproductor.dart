@@ -4,6 +4,7 @@ import 'package:just_audio/just_audio.dart';
 
 import 'android.dart';
 import 'audio_de_fondo.dart';
+import '../constantes.dart';
 
 /// Reproduce el audio grabado de un episodio.
 ///
@@ -38,11 +39,7 @@ abstract class Reproductor {
   ///
   /// Es lo que suena cuando se bajó una fábula: no viaja en el APK ni sale
   /// de internet cada vez, está en la carpeta de la app.
-  Future<bool> cargarGuardado(
-    String ruta, {
-    String? titulo,
-    String? deQuien,
-  });
+  Future<bool> cargarGuardado(String ruta, {String? titulo, String? deQuien});
 
   /// Carga algo que está en internet: una radio en vivo, por ejemplo.
   ///
@@ -95,8 +92,8 @@ class ReproductorDeVerdad implements Reproductor {
   /// propio: el audio suena igual, nada más que sin notificación y sin
   /// segundo plano.
   ReproductorDeVerdad()
-      : _player = AudioDeFondo.elReproductor ?? AudioPlayer(),
-        _manejador = AudioDeFondo.manejador;
+    : _player = AudioDeFondo.elReproductor ?? AudioPlayer(),
+      _manejador = AudioDeFondo.manejador;
 
   final AudioPlayer _player;
 
@@ -141,7 +138,7 @@ class ReproductorDeVerdad implements Reproductor {
     _manejador?.ahoraSuena(
       id: id,
       titulo: titulo,
-      deQuien: deQuien ?? 'Tukyliano',
+      deQuien: deQuien ?? nombreDeLaApp,
       cuantoDura: _player.duration,
     );
   }
@@ -228,8 +225,9 @@ class ReproductorDeVerdad implements Reproductor {
   Stream<Duration> get porDonde => _player.positionStream;
 
   @override
-  Stream<void> get termino => _player.processingStateStream
-      .where((estado) => estado == ProcessingState.completed);
+  Stream<void> get termino => _player.processingStateStream.where(
+    (estado) => estado == ProcessingState.completed,
+  );
 
   @override
   Future<void> soltar() async {

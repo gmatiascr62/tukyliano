@@ -1,6 +1,7 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:flutter/foundation.dart' show visibleForTesting;
 import 'package:just_audio/just_audio.dart';
+import '../constantes.dart';
 
 /// Lo que hace que el podcast y la radio sigan sonando con la pantalla
 /// bloqueada.
@@ -76,7 +77,7 @@ class AudioDeFondo {
           // hay forma de arreglarlo desde el código salvo estrenar un canal
           // nuevo. Esto es el canal nuevo.
           androidNotificationChannelId: 'org.gmatiascr62.tukyliano.audio2',
-          androidNotificationChannelName: 'Audio de Tukyliano',
+          androidNotificationChannelName: 'Audio de $nombreDeLaApp',
           // Mientras algo suena, la notificación no se puede descartar: si se
           // va la notificación, se va el permiso de seguir sonando. Al pausar
           // vuelve a ser descartable sola.
@@ -165,13 +166,15 @@ class ManejadorDeAudio extends BaseAudioHandler with SeekHandler {
     required String deQuien,
     Duration? cuantoDura,
   }) {
-    mediaItem.add(MediaItem(
-      id: id,
-      title: titulo,
-      artist: deQuien,
-      album: 'Tukyliano',
-      duration: cuantoDura,
-    ));
+    mediaItem.add(
+      MediaItem(
+        id: id,
+        title: titulo,
+        artist: deQuien,
+        album: nombreDeLaApp,
+        duration: cuantoDura,
+      ),
+    );
   }
 
   /// Una radio en vivo no tiene duración, pero un episodio sí, y recién se
@@ -187,34 +190,36 @@ class ManejadorDeAudio extends BaseAudioHandler with SeekHandler {
     final r = reproductor;
     if (r == null) return;
 
-    playbackState.add(PlaybackState(
-      // Lo que se ve en la notificación. Un solo botón que alterna: es un
-      // reproductor de una cosa por vez, no una lista.
-      // Con íconos propios, no los de audio_service.
-      //
-      // Los suyos no llegan al APK: buscados por nombre dan 0, y un botón
-      // sin ícono es lo que tuvo todo esto roto. Los de acá están en
-      // res/drawable de esta app y se encuentran —medido: el id que devuelve
-      // el compilador y el que devuelve la búsqueda por nombre coinciden—.
-      //
-      // Sin el botón de parar, a propósito.
-      //
-      // Desde Android 13, audio_service convierte el de parar en una
-      // "CustomAction", y una CustomAction sin ícono tira una excepción que
-      // revienta el aviso entero —antes de llegar al startForeground, que es
-      // lo que hace falta—. Los de reproducir y pausar no pasan por ahí: sin
-      // ícono quedan feos, pero no rompen nada.
-      //
-      // Para una radio y un podcast, play y pausa alcanzan.
-      controls: [if (r.playing) _pausar else _reproducir],
-      systemActions: const {MediaAction.seek},
-      androidCompactActionIndices: const [0],
-      processingState: _comoLoLlamaAndroid(r.processingState),
-      playing: r.playing,
-      updatePosition: r.position,
-      bufferedPosition: r.bufferedPosition,
-      speed: r.speed,
-    ));
+    playbackState.add(
+      PlaybackState(
+        // Lo que se ve en la notificación. Un solo botón que alterna: es un
+        // reproductor de una cosa por vez, no una lista.
+        // Con íconos propios, no los de audio_service.
+        //
+        // Los suyos no llegan al APK: buscados por nombre dan 0, y un botón
+        // sin ícono es lo que tuvo todo esto roto. Los de acá están en
+        // res/drawable de esta app y se encuentran —medido: el id que devuelve
+        // el compilador y el que devuelve la búsqueda por nombre coinciden—.
+        //
+        // Sin el botón de parar, a propósito.
+        //
+        // Desde Android 13, audio_service convierte el de parar en una
+        // "CustomAction", y una CustomAction sin ícono tira una excepción que
+        // revienta el aviso entero —antes de llegar al startForeground, que es
+        // lo que hace falta—. Los de reproducir y pausar no pasan por ahí: sin
+        // ícono quedan feos, pero no rompen nada.
+        //
+        // Para una radio y un podcast, play y pausa alcanzan.
+        controls: [if (r.playing) _pausar else _reproducir],
+        systemActions: const {MediaAction.seek},
+        androidCompactActionIndices: const [0],
+        processingState: _comoLoLlamaAndroid(r.processingState),
+        playing: r.playing,
+        updatePosition: r.position,
+        bufferedPosition: r.bufferedPosition,
+        speed: r.speed,
+      ),
+    );
   }
 
   static const _reproducir = MediaControl(

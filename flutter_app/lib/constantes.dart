@@ -1,3 +1,20 @@
+/// Cómo se llama la app para quien la usa.
+///
+/// Se llamó Tukyliano hasta que Matías la bautizó: viene de «fare due
+/// parole», que en italiano es charlar un rato.
+///
+/// Está acá y en un solo lugar porque el nombre andaba repetido en nueve
+/// archivos —la pantalla de inicio, el acerca de, el aviso de permisos, la
+/// pantalla bloqueada mientras suena un cuento— y cambiarlo era encontrarlos
+/// todos sin olvidarse de ninguno.
+///
+/// Lo que NO sale de acá es el identificador de la app para Android
+/// (`org.gmatiascr62.tukyliano.flutter`): ese es quién es la app para el
+/// celular. Cambiarlo haría que el teléfono la trate como otra app distinta,
+/// quedarían las dos instaladas y las actualizaciones dejarían de llegar. El
+/// nombre de adentro puede seguir diciendo tukyliano sin que nadie lo vea.
+const String nombreDeLaApp = 'DueParole';
+
 /// JSON en GitHub que se chequea para ver si hay verbos nuevos.
 /// Es el mismo que usa la app Kivy: el repo de datos no se toca.
 const String urlRemoto =

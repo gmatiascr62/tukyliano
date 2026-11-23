@@ -112,7 +112,7 @@ jobs:
 
       # Sin esto el archivo se llama "app-release.apk" en Descargas.
       - name: Renombrar el APK
-        run: mv build/app/outputs/flutter-apk/app-release.apk Tukyliano.apk
+        run: mv build/app/outputs/flutter-apk/app-release.apk DueParole.apk
 
       # De esto depende que la app se pueda actualizar: Android solo instala
       # encima si la firma es la misma de siempre. Si alguien regenerara el
@@ -129,11 +129,11 @@ jobs:
           APKSIGNER=$(ls "$ANDROID_HOME"/build-tools/*/apksigner 2>/dev/null | sort -V | tail -1 || true)
           HUELLA=""
           if [ -n "$APKSIGNER" ]; then
-            HUELLA=$("$APKSIGNER" verify --print-certs Tukyliano.apk \
+            HUELLA=$("$APKSIGNER" verify --print-certs DueParole.apk \
               | grep -m1 -i 'SHA-256 digest' | awk '{print $NF}')
           fi
           if [ -z "$HUELLA" ]; then
-            HUELLA=$(keytool -printcert -jarfile Tukyliano.apk 2>/dev/null \
+            HUELLA=$(keytool -printcert -jarfile DueParole.apk 2>/dev/null \
               | grep -m1 'SHA256:' | awk '{print $NF}' | tr -d ':' | tr 'A-F' 'a-f')
           fi
 
@@ -153,8 +153,8 @@ jobs:
       - name: Subir APK como artefacto
         uses: actions/upload-artifact@v4
         with:
-          name: tukyliano-flutter-apk
-          path: flutter_app/Tukyliano.apk
+          name: dueparole-flutter-apk
+          path: flutter_app/DueParole.apk
 
       # La Release es de donde la app se baja la actualización: el artefacto de
       # arriba pide estar logueado en GitHub y se borra a los 90 días, así que
@@ -170,7 +170,7 @@ jobs:
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create "v1.0.${{ github.run_number }}" Tukyliano.apk \
+          gh release create "v1.0.${{ github.run_number }}" DueParole.apk \
             --repo "${{ github.repository }}" \
-            --title "Tukyliano 1.0.${{ github.run_number }}" \
+            --title "DueParole 1.0.${{ github.run_number }}" \
             --notes "$(git log -1 --pretty=%s)"

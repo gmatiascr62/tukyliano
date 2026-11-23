@@ -5,6 +5,7 @@ import '../logica/nivel.dart';
 import '../tema.dart';
 import '../widgets/texto_ajustado.dart';
 import 'acerca_de.dart';
+import '../constantes.dart';
 
 /// A dónde se puede ir desde el inicio: los cuatro botones en diagonal,
 /// más el podcast y la radio, que van en barras aparte debajo.
@@ -70,7 +71,7 @@ class PantallaInicio extends StatelessWidget {
             alignment: Alignment.center,
             children: [
               const Text(
-                'Tukyliano',
+                nombreDeLaApp,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 27,
