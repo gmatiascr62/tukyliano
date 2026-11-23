@@ -15,10 +15,12 @@ import 'datos/reproductor.dart';
 import 'datos/repositorio_verbos.dart';
 import 'datos/voz.dart';
 import 'ia/servidor.dart';
+import 'modelos/percorso.dart';
 import 'modelos/seccion.dart';
 import 'modelos/verbo.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_ciudad.dart';
+import 'pantallas/pantalla_mapa.dart';
 import 'pantallas/pantalla_conversacion.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_gramatica.dart';
@@ -148,6 +150,19 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   late final RepositorioPreposizioni _preposizioni =
       widget.preposizioni ?? RepositorioPreposizioni();
   late final RepositorioPercorso _camino = RepositorioPercorso();
+
+  /// La ciudad del camino que está abierta, por id. Null = se ve el mapa.
+  String? _ciudad;
+
+  Ciudad? get _ciudadAbierta {
+    final cual = _ciudad;
+    if (cual == null) return null;
+    for (final ciudad in _camino.camino.ciudades) {
+      if (ciudad.id == cual) return ciudad;
+    }
+    return null;
+  }
+
   late final RepositorioRacconti _racconti =
       widget.racconti ?? RepositorioRacconti();
   late final RepositorioParticelle _via =
@@ -291,6 +306,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       // directo en la práctica y no se podía cambiar la selección.
       if (seccion == Seccion.verbos) _eligiendoVerbos = true;
       if (seccion == Seccion.frases) _eligiendoFrases = true;
+      if (seccion != Seccion.camino) _ciudad = null;
     });
     // Entrar a practicar ya cuenta como haber practicado hoy, aunque después
     // no se acierte nada.
@@ -469,12 +485,20 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
                 ciudades.isEmpty) {
               return const Center(child: CircularProgressIndicator());
             }
-            // Derecho a la primera ciudad: el mapa es el paso siguiente, y
-            // con una sola ciudad una lista de ciudades no dice nada.
-            return PantallaCiudad(
-              ciudad: ciudades.first,
+            // Adentro de una ciudad se vuelve al mapa, no al inicio: es de
+            // donde se entró. Igual que las secciones de gramática.
+            final abierta = _ciudadAbierta;
+            if (abierta != null) {
+              return PantallaCiudad(
+                ciudad: abierta,
+                progreso: _progreso,
+                alVolver: () => setState(() => _ciudad = null),
+              );
+            }
+            return PantallaMapa(
+              ciudades: ciudades,
               progreso: _progreso,
-              alVolver: _volver,
+              alElegir: (ciudad) => setState(() => _ciudad = ciudad.id),
             );
           },
         );

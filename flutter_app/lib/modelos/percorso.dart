@@ -154,7 +154,7 @@ class Ciudad {
       for (final l in (item['lecciones'] as List? ?? const []))
         ?Leccion.desdeJson(l),
     ];
-    if (lecciones.isEmpty) return null;
+
     return Ciudad(
       id: id,
       nombre: (item['nombre'] as String? ?? '').trim(),
