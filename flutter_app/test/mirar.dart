@@ -29,6 +29,7 @@ import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
 import 'package:tukyliano/pantallas/pantalla_ciudad.dart';
+import 'package:tukyliano/pantallas/pantalla_mapa.dart';
 import 'package:tukyliano/pantallas/pantalla_frases.dart';
 import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
 import 'package:tukyliano/pantallas/pantalla_inicio.dart';
@@ -134,6 +135,17 @@ Future<void> dibujar(
       ),
     ),
   );
+  await tester.pumpAndSettle();
+
+  // Las imágenes no aparecen solas en una foto de test: decodificar un PNG
+  // es trabajo de verdad y el reloj falso de los tests no lo deja correr.
+  // runAsync suelta el reloj un instante, que es lo que necesitan para
+  // terminar. Sin esto el mapa salía en blanco.
+  await tester.runAsync(() async {
+    for (final elemento in tester.widgetList<Image>(find.byType(Image))) {
+      await precacheImage(elemento.image, tester.element(find.byWidget(elemento)));
+    }
+  });
   await tester.pumpAndSettle();
 
   if (despuesDeAbrir != null) {
@@ -398,6 +410,24 @@ void main() {
             frasesLocales: _laFraseLarga(),
             azar: Random(1),
           )),
+        );
+
+      case 'mapa':
+        final mapa = RepositorioPercorso(
+          leerAsset: (_) async =>
+              File('assets/percorso.json').readAsStringSync(),
+        );
+        await mapa.cargar();
+        await dibujar(
+          tester,
+          cual,
+          Scaffold(
+            body: PantallaMapa(
+              ciudades: mapa.camino.ciudades,
+              progreso: Progreso(carpeta: () async => null),
+              alElegir: (_) {},
+            ),
+          ),
         );
 
       case 'ciudad':
