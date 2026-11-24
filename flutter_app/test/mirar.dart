@@ -32,7 +32,6 @@ import 'package:tukyliano/pantallas/pantalla_ciudad.dart';
 import 'package:tukyliano/pantallas/pantalla_mapa.dart';
 import 'package:tukyliano/pantallas/pantalla_frases.dart';
 import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
-import 'package:tukyliano/pantallas/pantalla_inicio.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 import 'package:tukyliano/tema.dart';
 
@@ -293,11 +292,23 @@ void main() {
 
     switch (cual) {
       case 'inicio':
-        final progreso = await progresoDeMentira();
+        // El inicio ES el mapa desde que el camino pasó al frente.
+        final deEntrada = RepositorioPercorso(
+          leerAsset: (_) async =>
+              File('assets/percorso.json').readAsStringSync(),
+        );
+        await deEntrada.cargar();
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaInicio(progreso: progreso, alElegir: (_) {})),
+          Scaffold(
+            body: PantallaMapa(
+              ciudades: deEntrada.camino.ciudades,
+              progreso: await progresoDeMentira(),
+              alElegir: (_) {},
+              alIrA: (_) {},
+            ),
+          ),
         );
 
       case 'radio':

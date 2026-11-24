@@ -9,7 +9,7 @@ import 'package:tukyliano/datos/repositorio_particelle.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/modelos/seccion.dart';
 import 'package:tukyliano/pantallas/pantalla_gramatica.dart';
-import 'package:tukyliano/pantallas/pantalla_inicio.dart';
+import 'package:tukyliano/modelos/destino.dart';
 
 import 'escucha_falsa.dart';
 import 'util_pantalla.dart';
@@ -40,9 +40,12 @@ Future<void> _abrir(WidgetTester tester, {Widget? app}) async {
   await tester.pumpAndSettle();
 }
 
-/// Toca uno de los cuatro botones redondos del inicio.
+/// Toca una de las herramientas del costado del mapa.
+///
+/// Se busca por el tooltip y no por el ícono: en el mapa los botones son
+/// dibujos, no íconos.
 Future<void> _entrarA(WidgetTester tester, Destino destino) async {
-  await tester.tap(find.byIcon(destino.icono));
+  await tester.tap(find.byTooltip(destino.etiqueta));
   await tester.pumpAndSettle();
 }
 
@@ -55,22 +58,29 @@ void main() {
   // En los tests no hay plugins de plataforma, así que la carga de verbos
   // (path_provider) falla y la sección Verbi queda sin datos. Acá se verifica
   // la navegación; el parseo se prueba en modelo_verbo_test.dart.
-  testWidgets('arranca en el inicio, con los cuatro botones',
+  testWidgets('arranca en el mapa, con todas las herramientas a mano',
       (WidgetTester tester) async {
     await _abrir(tester);
 
+    // Al pasar el mapa al frente, lo que no podía perderse era el acceso
+    // rápido a lo de siempre. Están las seis, al costado.
     for (final destino in Destino.values) {
-      expect(find.text(destino.etiqueta), findsOneWidget, reason: destino.name);
+      expect(find.byTooltip(destino.etiqueta), findsOneWidget,
+          reason: destino.name);
     }
     // El inicio no es una sección: no hay de dónde volver.
     expect(find.byIcon(Icons.arrow_back), findsNothing);
   });
 
-  testWidgets('el inicio muestra el nivel', (WidgetTester tester) async {
+  testWidgets('el mapa muestra la racha y el nivel',
+      (WidgetTester tester) async {
+    // Eran dos cosas grandes en la pantalla vieja —la tarjeta de los siete
+    // días y el anillo— y acá van chicas, en un renglón. Chicas, pero no
+    // se van: la racha es de lo poco que hace volver al otro día.
     await _abrir(tester);
 
-    expect(find.text('NIVEL 1'), findsOneWidget);
-    expect(find.text('Principiante'), findsOneWidget);
+    expect(find.textContaining('de 7 días'), findsOneWidget);
+    expect(find.textContaining('Principiante'), findsOneWidget);
   });
 
   testWidgets('entrar a una sección y volver al inicio con la flecha',
@@ -81,7 +91,7 @@ void main() {
     expect(find.text('Racconti'), findsWidgets);
 
     await _volver(tester);
-    expect(find.text('Principiante'), findsOneWidget);
+    expect(find.textContaining('Principiante'), findsOneWidget);
   });
 
   testWidgets('gramática abre los siete temas', (WidgetTester tester) async {
@@ -105,10 +115,10 @@ void main() {
     await _volver(tester);
     // La lista de temas, no el inicio.
     expect(find.text('Preposizioni'), findsOneWidget);
-    expect(find.text('Principiante'), findsNothing);
+    expect(find.textContaining('Principiante'), findsNothing);
 
     await _volver(tester);
-    expect(find.text('Principiante'), findsOneWidget);
+    expect(find.textContaining('Principiante'), findsOneWidget);
   });
 
   testWidgets('Ci y Ne ya tienen su lugar, pero todavía no el contenido',

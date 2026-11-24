@@ -8,7 +8,7 @@ import 'package:tukyliano/datos/repositorio_frases.dart';
 import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/datos/repositorio_verbos.dart';
 import 'package:tukyliano/main.dart';
-import 'package:tukyliano/pantallas/pantalla_inicio.dart';
+import 'package:tukyliano/modelos/destino.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 
 import 'util_pantalla.dart';
@@ -63,7 +63,7 @@ Future<void> _irA(WidgetTester tester, String tema) async {
       await tester.pumpAndSettle();
     }
   }
-  await tester.tap(find.byIcon(Destino.gramatica.icono));
+  await tester.tap(find.byTooltip(Destino.gramatica.etiqueta));
   await tester.pumpAndSettle();
   await tester.tap(find.text(tema));
   await tester.pumpAndSettle();

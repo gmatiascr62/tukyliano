@@ -15,6 +15,7 @@ import 'datos/reproductor.dart';
 import 'datos/repositorio_verbos.dart';
 import 'datos/voz.dart';
 import 'ia/servidor.dart';
+import 'modelos/destino.dart';
 import 'modelos/percorso.dart';
 import 'modelos/seccion.dart';
 import 'modelos/verbo.dart';
@@ -24,7 +25,6 @@ import 'pantallas/pantalla_mapa.dart';
 import 'pantallas/pantalla_conversacion.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_gramatica.dart';
-import 'pantallas/pantalla_inicio.dart';
 import 'pantallas/pantalla_preposizioni.dart';
 import 'pantallas/pantalla_escuchar.dart';
 import 'pantallas/pantalla_radio.dart';
@@ -229,6 +229,14 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     _cargarRacconti();
     _cargarVia();
     _cargarProgreso();
+    _cargarCamino();
+  }
+
+  /// Lee el camino y redibuja cuando está. Mientras tanto el mapa se ve
+  /// sin ciudades, que es menos de un parpadeo.
+  Future<void> _cargarCamino() async {
+    await _camino.cargar();
+    if (mounted) setState(() {});
   }
 
   @override
@@ -306,7 +314,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       // directo en la práctica y no se podía cambiar la selección.
       if (seccion == Seccion.verbos) _eligiendoVerbos = true;
       if (seccion == Seccion.frases) _eligiendoFrases = true;
-      if (seccion != Seccion.camino) _ciudad = null;
+      // Al entrar a una sección se cierra la ciudad: al volver se
+      // vuelve al mapa, que ahora es el inicio.
+      _ciudad = null;
     });
     // Entrar a practicar ya cuenta como haber practicado hoy, aunque después
     // no se acierte nada.
@@ -325,8 +335,6 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         _irA(Seccion.podcast);
       case Destino.radio:
         _irA(Seccion.radio);
-      case Destino.camino:
-        _irA(Seccion.camino);
       case Destino.gramatica:
         setState(() {
           _seccion = null;
@@ -437,7 +445,28 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     final seccion = _seccion;
     if (seccion == null) {
       if (_eligiendoTema) return PantallaGramatica(alElegir: _irA);
-      return PantallaInicio(progreso: _progreso, alElegir: _irAlDestino);
+
+      final abierta = _ciudadAbierta;
+      if (abierta != null) {
+        return PantallaCiudad(
+          ciudad: abierta,
+          progreso: _progreso,
+          alVolver: () => setState(() => _ciudad = null),
+        );
+      }
+
+      // El mapa es la primera pantalla de la app.
+      //
+      // Sin cartel de "cargando" en el medio: el mapa se dibuja de una y
+      // las ciudades aparecen cuando el archivo terminó de leerse, que es
+      // un parpadeo. Un cartel que gira acá sería lo primero que se ve al
+      // abrir la app, y además no deja nunca quieta a la pantalla.
+      return PantallaMapa(
+        ciudades: _camino.camino.ciudades,
+        progreso: _progreso,
+        alElegir: (ciudad) => setState(() => _ciudad = ciudad.id),
+        alIrA: _irAlDestino,
+      );
     }
 
     switch (seccion) {
@@ -475,32 +504,6 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           adelanto:
               'El ne de la cantidad y del "de eso": ne ho due, ne '
               'parliamo domani.',
-        );
-      case Seccion.camino:
-        return FutureBuilder<void>(
-          future: _camino.cargar(),
-          builder: (_, estado) {
-            final ciudades = _camino.camino.ciudades;
-            if (estado.connectionState != ConnectionState.done ||
-                ciudades.isEmpty) {
-              return const Center(child: CircularProgressIndicator());
-            }
-            // Adentro de una ciudad se vuelve al mapa, no al inicio: es de
-            // donde se entró. Igual que las secciones de gramática.
-            final abierta = _ciudadAbierta;
-            if (abierta != null) {
-              return PantallaCiudad(
-                ciudad: abierta,
-                progreso: _progreso,
-                alVolver: () => setState(() => _ciudad = null),
-              );
-            }
-            return PantallaMapa(
-              ciudades: ciudades,
-              progreso: _progreso,
-              alElegir: (ciudad) => setState(() => _ciudad = ciudad.id),
-            );
-          },
         );
       case Seccion.racconti:
         return PantallaRacconti(repositorio: _racconti, voz: _voz);

@@ -3,6 +3,8 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../datos/progreso.dart';
+import '../logica/nivel.dart';
+import '../modelos/destino.dart';
 import '../modelos/percorso.dart';
 import '../tema.dart';
 
@@ -34,7 +36,13 @@ Rect dondeEntraElMapa(Size pantalla, {double proporcion = proporcionDelMapa}) {
   );
 }
 
-/// El mapa de Italia, con una ciudad por nivel.
+/// El mapa de Italia: la primera pantalla de la app.
+///
+/// Antes el inicio eran cuatro círculos y tres barras. Para Matías, que
+/// sabe lo que necesita hoy, estaba bien; para el que no sabe nada eran
+/// seis puertas sin ningún orden. Ahora lo primero que se ve es el camino,
+/// y las herramientas quedan al costado: están a mano, pero no son lo que
+/// la app te propone cuando abrís.
 ///
 /// Las ciudades que faltan no se esconden: se muestran apagadas. Un mapa
 /// casi vacío se lee como "la app está a medio hacer"; Italia entera en
@@ -46,11 +54,16 @@ class PantallaMapa extends StatelessWidget {
     required this.ciudades,
     required this.progreso,
     this.alElegir,
+    this.alIrA,
   });
 
   final List<Ciudad> ciudades;
   final Progreso progreso;
   final void Function(Ciudad)? alElegir;
+
+  /// Las herramientas de siempre: la radio, el chat, los cuentos. Si no
+  /// viene, la barra del costado no se dibuja (los tests del mapa solo).
+  final void Function(Destino)? alIrA;
 
   bool _terminada(Ciudad ciudad) =>
       ciudad.lecciones.isNotEmpty &&
@@ -93,6 +106,18 @@ class PantallaMapa extends StatelessWidget {
                 mapa,
                 abierta: _abierta(i),
                 terminada: _terminada(ciudades[i]),
+              ),
+            Positioned(
+              top: 10,
+              left: 14,
+              right: 14,
+              child: _Arriba(progreso: progreso),
+            ),
+            if (alIrA != null)
+              Positioned(
+                top: 86,
+                right: 10,
+                child: _Herramientas(alIrA: alIrA!),
               ),
             if (toca != null)
               Positioned(
@@ -308,6 +333,123 @@ class _Seguir extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+/// La racha y el nivel, en un solo renglón.
+///
+/// En la pantalla vieja eran dos cosas grandes: una tarjeta con los siete
+/// días y un anillo en el medio. Acá el protagonista es el mapa, así que
+/// van juntas y chicas. No se sacan: la racha es de lo poco que hace volver
+/// al otro día.
+class _Arriba extends StatelessWidget {
+  const _Arriba({required this.progreso});
+
+  final Progreso progreso;
+
+  @override
+  Widget build(BuildContext context) {
+    final nivel = nivelPara(progreso.aciertos);
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 9),
+      decoration: BoxDecoration(
+        color: Colors.white.withValues(alpha: 0.94),
+        borderRadius: BorderRadius.circular(14),
+        boxShadow: const [
+          BoxShadow(
+            color: Color(0x26000000),
+            blurRadius: 8,
+            offset: Offset(0, 2),
+          ),
+        ],
+      ),
+      child: Row(
+        children: [
+          const Icon(
+            Icons.local_fire_department_rounded,
+            size: 19,
+            color: Tema.verde,
+          ),
+          const SizedBox(width: 5),
+          // Los dos flexibles y con puntos suspensivos: con la letra del
+          // sistema agrandada, "Principiante · faltan 50" no entra al lado
+          // de la racha y el renglón se desborda. Es lo mismo que pasó con
+          // la tarjeta de Frasi, y acá se evita de entrada.
+          Flexible(
+            child: Text(
+              '${progreso.diasPracticados} de $diasDeLaSemana días',
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(
+                fontSize: 13,
+                fontWeight: FontWeight.w700,
+                color: Tema.titulo,
+              ),
+            ),
+          ),
+          const SizedBox(width: 10),
+          Flexible(
+            child: Text(
+              nivel.esElUltimo
+                  ? nivel.nombre
+                  : '${nivel.nombre} · faltan ${nivel.faltan}',
+              textAlign: TextAlign.right,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: const TextStyle(fontSize: 12.5, color: Tema.textoTenue),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Las herramientas, sobre el Adriático.
+///
+/// Van de ese lado porque del otro, a la altura de los botones, se mete
+/// Cerdeña: es el único costado con mar libre de arriba a abajo. Cada una
+/// lleva su dibujo de arcilla, los mismos que las ciudades, así que el
+/// mapa entero se ve de una sola mano.
+class _Herramientas extends StatelessWidget {
+  const _Herramientas({required this.alIrA});
+
+  final void Function(Destino) alIrA;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        for (final destino in Destino.values)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 9),
+            child: Tooltip(
+              message: destino.etiqueta,
+              child: GestureDetector(
+                onTap: () => alIrA(destino),
+                behavior: HitTestBehavior.opaque,
+                child: Container(
+                  width: 48,
+                  height: 48,
+                  padding: const EdgeInsets.all(7),
+                  decoration: const BoxDecoration(
+                    color: Colors.white,
+                    shape: BoxShape.circle,
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color(0x40000000),
+                        blurRadius: 6,
+                        offset: Offset(0, 2),
+                      ),
+                    ],
+                  ),
+                  child: Image.asset('assets/camino/${destino.dibujo}.png'),
+                ),
+              ),
+            ),
+          ),
+      ],
     );
   }
 }
