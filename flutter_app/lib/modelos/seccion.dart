@@ -4,7 +4,6 @@
 /// se llega a ellas desde el inicio, y las de gramática desde su propia
 /// pantalla. El enum queda porque sigue siendo la forma de nombrar a cada una.
 enum Seccion {
-  camino,
   racconti,
   hablar,
   frases,
@@ -35,6 +34,5 @@ extension EtiquetaSeccion on Seccion {
     Seccion.chat => 'Chat',
     Seccion.podcast => 'Escuchar',
     Seccion.radio => 'Radio',
-    Seccion.camino => 'El camino',
   };
 }

@@ -12,7 +12,7 @@ import 'package:tukyliano/ia/chat.dart';
 import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/main.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
-import 'package:tukyliano/pantallas/pantalla_inicio.dart';
+import 'package:tukyliano/modelos/destino.dart';
 import 'package:tukyliano/tema.dart';
 import 'package:tukyliano/widgets/pastilla.dart';
 
@@ -497,7 +497,7 @@ void main() {
 
       Future<void> irA(Destino destino) async {
         await volverAlInicio();
-        await tester.tap(find.byIcon(destino.icono));
+        await tester.tap(find.byTooltip(destino.etiqueta));
         await tester.pumpAndSettle();
         // La sección abre en la charla guionada, que anda sin clave. La charla
         // con la IA es la otra pastilla.
