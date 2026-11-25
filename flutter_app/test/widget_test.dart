@@ -94,7 +94,11 @@ void main() {
     await _abrir(tester);
 
     expect(find.textContaining('de 7 días'), findsOneWidget);
-    expect(find.textContaining('Principiante'), findsOneWidget);
+    // Sin el nombre del nivel: queda el número de cuántas faltan, que es
+    // lo único que cambia. Lo pidió Matías porque en su celular el
+    // renglón entraba cortado y el número no se veía.
+    expect(find.textContaining('faltan'), findsOneWidget);
+    expect(find.textContaining('Principiante'), findsNothing);
   });
 
   testWidgets('entrar a una sección y volver al inicio con la flecha', (
@@ -106,7 +110,7 @@ void main() {
     expect(find.text('Racconti'), findsWidgets);
 
     await _volver(tester);
-    expect(find.textContaining('Principiante'), findsOneWidget);
+    expect(find.text('Palermo'), findsOneWidget);
   });
 
   testWidgets('gramática abre los siete temas', (WidgetTester tester) async {
@@ -131,10 +135,10 @@ void main() {
     await _volver(tester);
     // La lista de temas, no el inicio.
     expect(find.text('Preposizioni'), findsOneWidget);
-    expect(find.textContaining('Principiante'), findsNothing);
+    expect(find.text('Palermo'), findsNothing);
 
     await _volver(tester);
-    expect(find.textContaining('Principiante'), findsOneWidget);
+    expect(find.text('Palermo'), findsOneWidget);
   });
 
   testWidgets('Ci y Ne ya tienen su lugar, pero todavía no el contenido', (
