@@ -65,6 +65,11 @@ void main() {
               contains(frase.italiano),
               reason: 'semilla $semilla: se arma una frase sin mostrarla',
             );
+          case MostrarExplicacion():
+          case MostrarDialogo():
+          case Contestar():
+          case Relacionar():
+            break;
         }
       }
     }
@@ -152,6 +157,29 @@ void main() {
           paso.fichas.length,
           greaterThan(palabrasDeLaFrase(paso.frase.italiano).length),
           reason: 'sin fichas de más el ejercicio se resuelve solo',
+        );
+      }
+    }
+  });
+
+  test('el relacionar no deja ninguna traducción frente a su palabra', () {
+    // Mirado renderizado salió una pantalla con las cuatro alineadas:
+    // amico-amigo, giorno-día, gelato-helado, ciao-hola, una debajo de
+    // la otra. Así el ejercicio se resuelve sin leer nada.
+    for (var semilla = 0; semilla < 50; semilla++) {
+      for (final paso in pasosDe(_palermo1, azar: Random(semilla))) {
+        if (paso is! Relacionar) continue;
+        expect(
+          hayAlgunaEnLinea(paso.pares, paso.traducciones),
+          isFalse,
+          reason:
+              'semilla $semilla: '
+              '${paso.pares.map((p) => p.italiano)} vs ${paso.traducciones}',
+        );
+        expect(
+          paso.traducciones.toSet(),
+          paso.pares.map((p) => p.espanol).toSet(),
+          reason: 'están las cuatro traducciones y ninguna de más',
         );
       }
     }

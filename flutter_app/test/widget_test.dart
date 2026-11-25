@@ -218,61 +218,61 @@ void main() {
     expect(find.byType(TextField), findsOneWidget);
   });
 
-  testWidgets(
-    'del mapa a una lección: Palermo, Empezar, y la primera palabra',
-    (WidgetTester tester) async {
-      // El camino entero, de punta a punta, en la app de verdad: es lo que
-      // Matías hace al abrir. Hasta ahora "Empezar" no llevaba a ningún lado.
-      await _abrir(tester);
+  testWidgets('del mapa a una lección: Olbia, Empezar, y la primera regla', (
+    WidgetTester tester,
+  ) async {
+    // El camino entero, de punta a punta, en la app de verdad: es lo que
+    // hace alguien que abre la app por primera vez.
+    await _abrir(tester);
 
-      await tester.tap(find.text('Palermo'));
-      await tester.pumpAndSettle();
-      expect(find.text('Il gatto è in cucina'), findsOneWidget);
+    await tester.tap(find.text(primeraCiudad));
+    await tester.pumpAndSettle();
+    expect(find.text('Cómo suena el italiano'), findsOneWidget);
 
-      await tester.tap(find.text('Empezar'));
-      await tester.pumpAndSettle();
+    await tester.tap(find.text('Empezar'));
+    await tester.pumpAndSettle();
 
-      expect(find.text('Palabra nueva'), findsOneWidget);
-      expect(find.text('il'), findsOneWidget);
+    // Arranca explicando, no preguntando: es lo que la hacía imposible
+    // para el que no sabe nada.
+    expect(find.text('Las vocales son las mismas'), findsOneWidget);
 
-      // Y la cruz devuelve a la ciudad, sin darla por hecha.
-      await tester.tap(find.byTooltip('Salir'));
-      await tester.pumpAndSettle();
-      expect(find.text('Empezar'), findsOneWidget);
-      expect(find.byIcon(Icons.check_circle_rounded), findsNothing);
-    },
-  );
+    // Y la cruz devuelve a la ciudad, sin darla por hecha.
+    await tester.tap(find.byTooltip('Salir'));
+    await tester.pumpAndSettle();
+    expect(find.text('Empezar'), findsOneWidget);
+    expect(find.byIcon(Icons.check_circle_rounded), findsNothing);
+  });
 
-  testWidgets(
-    'la prueba todavía no existe y lo dice, en vez de darse por hecha',
-    (WidgetTester tester) async {
-      // Con las cinco lecciones hechas, la que toca es la prueba. Apretar
-      // Empezar no puede abrir una pantalla vacía con un botón "Terminar":
-      // eso abriría Napoli sin haber contestado nada.
-      final progreso = _progresoDePrueba();
-      for (var i = 1; i <= 5; i++) {
-        progreso.termino('palermo-$i');
-      }
-      await _abrir(
-        tester,
-        app: TukylianoApp(progreso: progreso, camino: caminoDePrueba()),
-      );
+  testWidgets('con las lecciones hechas, Empezar abre la prueba de la ciudad', (
+    WidgetTester tester,
+  ) async {
+    final progreso = _progresoDePrueba();
+    for (var i = 1; i <= 10; i++) {
+      progreso.termino('olbia-$i');
+    }
+    await _abrir(
+      tester,
+      app: TukylianoApp(progreso: progreso, camino: caminoDePrueba()),
+    );
 
-      await tester.tap(find.text('Palermo'));
-      await tester.pumpAndSettle();
-      await tester.scrollUntilVisible(find.text('Empezar'), 150);
-      await tester.ensureVisible(find.text('Empezar'));
-      await tester.pumpAndSettle();
-      await tester.tap(find.text('Empezar'));
-      await tester.pumpAndSettle();
+    await tester.tap(find.text(primeraCiudad));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('Empezar'), 150);
+    await tester.ensureVisible(find.text('Empezar'));
+    await tester.pumpAndSettle();
+    await tester.tap(find.text('Empezar'));
+    await tester.pumpAndSettle();
 
-      expect(find.text('Próximamente'), findsOneWidget);
-      expect(find.text('Terminar'), findsNothing);
+    // Pregunta de entrada: la prueba no enseña nada, toma.
+    expect(find.text('Comprobar'), findsOneWidget);
+    expect(find.text('Palabra nueva'), findsNothing);
+    expect(find.text('Terminar'), findsNothing);
 
-      // Y se sale: el cartel no es una pantalla sin salida.
-      await tester.tap(find.byTooltip('Salir'));
-      await tester.pumpAndSettle();
-      expect(find.text('La prueba de Palermo'), findsOneWidget);
-    },
-  );
+    // Y se sale sin darla por hecha.
+    await tester.tap(find.byTooltip('Salir'));
+    await tester.pumpAndSettle();
+    await tester.scrollUntilVisible(find.text('La prueba de Olbia'), 150);
+    expect(find.text('La prueba de Olbia'), findsOneWidget);
+    expect(progreso.hizo('olbia-prueba'), isFalse);
+  });
 }

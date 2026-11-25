@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/repositorio_percorso.dart';
+import 'package:tukyliano/logica/armar_frase.dart';
+import 'package:tukyliano/logica/leccion.dart';
 import 'package:tukyliano/modelos/destino.dart';
 
 /// Los tests de widget corren por defecto en una superficie de 800x600, que es
@@ -37,11 +39,12 @@ Future<void> volverAlMapa(WidgetTester tester) async {
 ///
 /// Cuatro están al costado del mapa y se tocan por su dibujo. Gramática y
 /// hablar no: viven adentro de la ciudad, abajo de la fila de lecciones,
-/// así que primero hay que abrir Palermo.
+/// así que primero hay que abrir la primera ciudad del camino, que es la
+/// única que arranca desbloqueada.
 Future<void> entrarA(WidgetTester tester, Destino destino) async {
   await volverAlMapa(tester);
   if (paraPracticarMas.contains(destino)) {
-    await tester.tap(find.text('Palermo'));
+    await tester.tap(find.text(primeraCiudad));
     await tester.pumpAndSettle();
     await tester.scrollUntilVisible(find.text(destino.etiqueta), 150);
     await tester.tap(find.text(destino.etiqueta));
@@ -64,3 +67,75 @@ Future<void> entrarA(WidgetTester tester, Destino destino) async {
 RepositorioPercorso caminoDePrueba() => RepositorioPercorso(
   leerAsset: (ruta) async => File(ruta).readAsStringSync(),
 );
+
+/// La primera ciudad del camino: la única abierta al empezar de cero.
+const String primeraCiudad = 'Olbia';
+
+/// Toca el botón grande de abajo de una lección, sea cual sea el que esté.
+Future<void> botonDeAbajo(WidgetTester tester) async {
+  await tester.tap(find.byType(ElevatedButton));
+  await tester.pumpAndSettle();
+}
+
+/// Contesta bien el paso que está a la vista, si hay algo que contestar.
+///
+/// Está acá y no en cada test porque lo usan tres archivos, y cada copia
+/// se desactualizaba sola al agregar un tipo de paso nuevo.
+Future<void> contestarBien(WidgetTester tester, Paso paso) async {
+  switch (paso) {
+    case ElegirTraduccion(:final correcta):
+      // La última: hay palabras que se escriben igual en los dos idiomas
+      // —"casa", "la", "un"— y entonces el texto está dos veces, arriba en
+      // la tarjeta y abajo en las opciones. La de abajo es la que se toca.
+      await tester.tap(find.text(correcta).last);
+      await tester.pumpAndSettle();
+    case Contestar(:final pregunta):
+      await tester.tap(find.text(pregunta.correcta).last);
+      await tester.pumpAndSettle();
+    case Relacionar(:final pares):
+      // first y last porque hay palabras que se escriben igual en los dos
+      // idiomas —"casa"— y entonces están en las dos columnas. La
+      // izquierda se dibuja primero, así que first es la italiana.
+      for (final par in pares) {
+        await tester.tap(find.text(par.italiano).first);
+        await tester.pumpAndSettle();
+        await tester.tap(find.text(par.espanol).last);
+        await tester.pumpAndSettle();
+      }
+    case ArmarLaFrase(:final frase, :final fichas):
+      for (final palabra in palabrasDeLaFrase(frase.italiano)) {
+        await tester.tap(
+          find.text(fichas[fichas.indexOf(comoFicha(palabra))]).last,
+        );
+        await tester.pumpAndSettle();
+      }
+    case MostrarExplicacion():
+    case MostrarPalabra():
+    case MostrarFrase():
+    case MostrarDialogo():
+      break;
+  }
+}
+
+/// Si el paso tiene algo que contestar, y entonces lleva dos toques:
+/// Comprobar y después Seguir.
+bool seContesta(Paso paso) =>
+    paso is ElegirTraduccion ||
+    paso is Contestar ||
+    paso is Relacionar ||
+    paso is ArmarLaFrase;
+
+/// Juega la lección desde donde esté hasta el paso número [hasta],
+/// contestando siempre bien.
+Future<void> jugarHasta(
+  WidgetTester tester,
+  List<Paso> guion,
+  int hasta,
+) async {
+  for (var i = 0; i < hasta; i++) {
+    final paso = guion[i];
+    await contestarBien(tester, paso);
+    await botonDeAbajo(tester);
+    if (seContesta(paso)) await botonDeAbajo(tester);
+  }
+}

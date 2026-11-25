@@ -13,21 +13,47 @@
 
 import 'dart:convert';
 import 'dart:io';
+import 'dart:math';
 
 import 'package:flutter_test/flutter_test.dart';
+import 'package:tukyliano/logica/leccion.dart';
 import 'package:tukyliano/modelos/percorso.dart';
 
 /// Una palabra italiana. El apóstrofo separa: "l'uccello" son dos,
 /// el artículo y el sustantivo, y se enseñan por separado.
-final _unaPalabra = RegExp(r"[a-zàèéìòóùü]+", caseSensitive: false);
+final _unaPalabra = RegExp(r"[a-zàáèéìíòóùúü]+", caseSensitive: false);
 
 List<String> _enPalabras(String texto) =>
     _unaPalabra.allMatches(texto.toLowerCase()).map((m) => m[0]!).toList();
 
 /// Los nombres propios no son vocabulario: no se traducen ni se aprenden.
-const _nombres = {'marco', 'elena', 'rosa', 'riccardo', 'paolo', 'stefano',
-  'anna', 'giulia', 'luca', 'sofia', 'matteo', 'chiara', 'roma', 'napoli',
-  'firenze', 'milano', 'italia', 'venezia', 'palermo'};
+const _nombres = {
+  'marco',
+  'elena',
+  'rosa',
+  'riccardo',
+  'paolo',
+  'stefano',
+  'anna',
+  'giulia',
+  'luca',
+  'sofia',
+  'matteo',
+  'chiara',
+  'roma',
+  'napoli',
+  'firenze',
+  'milano',
+  'italia',
+  'venezia',
+  'palermo',
+  'olbia',
+  'cagliari',
+  'sardegna',
+  'matías',
+  'buenos',
+  'aires',
+};
 
 Map<String, dynamic> _leer(String archivo) =>
     jsonDecode(File(archivo).readAsStringSync()) as Map<String, dynamic>;
@@ -45,32 +71,87 @@ List<String> _renglonesDe(String id) {
 }
 
 void main() {
-  test('el camino se lee y Palermo está entera', () {
+  test('el nivel 1 son las dos ciudades de Cerdeña, y están enteras', () {
     final camino = _elCamino;
-    expect(camino.ciudades, isNotEmpty);
+    final nivelUno = camino.ciudades.where((c) => c.nivel == 1).toList();
 
-    final palermo = camino.ciudades.first;
-    expect(palermo.id, 'palermo');
-    expect(palermo.lecciones.length, 6);
-    expect(palermo.cuantasLecciones, 5, reason: 'la prueba no se cuenta');
-    expect(palermo.lecciones.last.esPrueba, isTrue);
+    expect(nivelUno.map((c) => c.id), ['olbia', 'cagliari']);
+    for (final ciudad in nivelUno) {
+      expect(ciudad.lecciones.last.esPrueba, isTrue, reason: ciudad.id);
+      expect(ciudad.cuantasLecciones, 10, reason: ciudad.id);
+      for (final leccion in ciudad.lecciones.where((l) => !l.esPrueba)) {
+        expect(
+          leccion.explicaciones,
+          isNotEmpty,
+          reason:
+              '${ciudad.id} · ${leccion.id}: toda lección explica algo '
+              'antes de preguntar',
+        );
+      }
+    }
+
+    // El examen del final toma el nivel entero, no solo Cagliari.
+    expect(nivelUno.last.lecciones.last.integradora, isTrue);
   });
 
-  test('ninguna frase usa una palabra que todavía no se enseñó', () {
-    // Esta es la importante. Se recorren las lecciones en orden, juntando
-    // lo enseñado, y cada frase de ejemplo tiene que entrar en eso.
+  test('cada ciudad llega a su prueba con suficiente para preguntar', () {
+    // La prueba saca sus preguntas de las lecciones de antes. Si pide más
+    // de las que hay, se achica sola y se aprueba con cuatro preguntas.
     for (final ciudad in _elCamino.ciudades) {
-      final sabidas = <String>{};
+      final prueba = ciudad.lecciones.where((l) => l.esPrueba).firstOrNull;
+      if (prueba == null) continue;
+      final dadas = ciudad.lecciones.where((l) => !l.esPrueba);
+      final cuantosEjercicios =
+          dadas.fold(0, (suma, l) => suma + l.palabras.length) +
+          dadas.fold(0, (suma, l) => suma + l.frases.length) +
+          dadas.fold(0, (suma, l) => suma + l.preguntas.length);
+      expect(
+        cuantosEjercicios,
+        greaterThanOrEqualTo(prueba.cuantas),
+        reason: '${ciudad.id}: la prueba pide ${prueba.cuantas}',
+      );
+      expect(prueba.paraAprobar, lessThanOrEqualTo(prueba.cuantas));
+    }
+  });
+
+  test('ninguna frase ni diálogo usa una palabra que no se enseñó', () {
+    // Esta es la importante. Se recorre el camino entero en orden,
+    // juntando lo enseñado, y cada frase y cada renglón de diálogo tiene
+    // que entrar en eso.
+    //
+    // De corrido entre ciudades, no de a una: el camino es un curso solo,
+    // así que Cagliari puede usar lo de Olbia sin volver a enseñarlo.
+    //
+    // Los ejemplos de las explicaciones quedan afuera a propósito. En las
+    // lecciones de pronunciación son demostraciones de un sonido
+    // —gnocchi, spaghetti, famiglia—, van con su traducción al lado y no
+    // se preguntan nunca. Exigirles la escalera obligaría a enseñar como
+    // vocabulario cada palabra que se usa de ejemplo.
+    final sabidas = <String>{};
+    for (final ciudad in _elCamino.ciudades) {
       for (final leccion in ciudad.lecciones) {
         sabidas.addAll(leccion.palabras.expand((p) => _enPalabras(p.italiano)));
 
+        void revisar(String texto, String que) {
+          final faltan = _enPalabras(
+            texto,
+          ).where((p) => !sabidas.contains(p) && !_nombres.contains(p)).toSet();
+          expect(
+            faltan,
+            isEmpty,
+            reason:
+                '${ciudad.nombre} · ${leccion.titulo} ($que): '
+                '"$texto" usa $faltan, que no se enseñó todavía',
+          );
+        }
+
         for (final frase in leccion.frases) {
-          final faltan = _enPalabras(frase.italiano)
-              .where((p) => !sabidas.contains(p) && !_nombres.contains(p))
-              .toSet();
-          expect(faltan, isEmpty,
-              reason: '${ciudad.nombre} · ${leccion.titulo}: '
-                  '"${frase.italiano}" usa $faltan, que no se enseñó todavía');
+          revisar(frase.italiano, 'frase');
+        }
+        for (final dialogo in leccion.dialogos) {
+          for (final renglon in dialogo.renglones) {
+            revisar(renglon.italiano, 'diálogo');
+          }
         }
       }
     }
@@ -80,20 +161,48 @@ void main() {
     // El premio de la ciudad es leer un cuento entero sin que falte nada.
     // Si falta una sola palabra, deja de ser un premio y vuelve a ser un
     // examen.
+    final sabidas = <String>{};
     for (final ciudad in _elCamino.ciudades) {
-      final sabidas = <String>{};
       for (final leccion in ciudad.lecciones) {
         sabidas.addAll(leccion.palabras.expand((p) => _enPalabras(p.italiano)));
         if (!leccion.esLectura) continue;
 
-        final delCuento = _renglonesDe(leccion.racconto)
-            .expand(_enPalabras)
-            .where((p) => !_nombres.contains(p))
-            .toSet();
+        final delCuento = _renglonesDe(
+          leccion.racconto,
+        ).expand(_enPalabras).where((p) => !_nombres.contains(p)).toSet();
         final faltan = delCuento.difference(sabidas);
-        expect(faltan, isEmpty,
-            reason: '${ciudad.nombre}: el cuento "${leccion.racconto}" usa '
-                '${faltan.length} palabras sin enseñar: $faltan');
+        expect(
+          faltan,
+          isEmpty,
+          reason:
+              '${ciudad.nombre}: el cuento "${leccion.racconto}" usa '
+              '${faltan.length} palabras sin enseñar: $faltan',
+        );
+      }
+    }
+  });
+
+  test('ninguna lección se hace interminable', () {
+    // Medido: las del nivel 1 van de 21 a 39 pasos, o sea entre tres y
+    // siete minutos. Cuarenta es el techo. No es un número mágico: es
+    // que una lección más larga que eso se abandona por la mitad, y
+    // abandonada no enseñó nada.
+    //
+    // Cada palabra nueva cuesta dos pasos —mostrarla y preguntarla—, así
+    // que el que se pasa del techo casi siempre es por meter demasiado
+    // vocabulario junto.
+    for (final ciudad in _elCamino.ciudades) {
+      final antes = <Leccion>[];
+      for (final leccion in ciudad.lecciones) {
+        final pasos = pasosDe(leccion, antes: antes, azar: Random(1));
+        expect(
+          pasos.length,
+          lessThanOrEqualTo(40),
+          reason:
+              '${ciudad.id} · ${leccion.id} tiene ${pasos.length} pasos '
+              'con ${leccion.palabras.length} palabras',
+        );
+        if (!leccion.esPrueba) antes.add(leccion);
       }
     }
   });
@@ -106,9 +215,13 @@ void main() {
       for (final leccion in ciudad.lecciones) {
         for (final palabra in leccion.palabras) {
           final antes = vistas[palabra.italiano];
-          expect(antes, isNull,
-              reason: '"${palabra.italiano}" está en "${leccion.titulo}" '
-                  'y ya estaba en "$antes"');
+          expect(
+            antes,
+            isNull,
+            reason:
+                '"${palabra.italiano}" está en "${leccion.titulo}" '
+                'y ya estaba en "$antes"',
+          );
           vistas[palabra.italiano] = leccion.titulo;
         }
       }
@@ -119,8 +232,11 @@ void main() {
     for (final ciudad in _elCamino.ciudades) {
       for (final leccion in ciudad.lecciones) {
         for (final palabra in leccion.palabras) {
-          expect(palabra.espanol, isNotEmpty,
-              reason: '"${palabra.italiano}" en "${leccion.titulo}"');
+          expect(
+            palabra.espanol,
+            isNotEmpty,
+            reason: '"${palabra.italiano}" en "${leccion.titulo}"',
+          );
         }
       }
     }

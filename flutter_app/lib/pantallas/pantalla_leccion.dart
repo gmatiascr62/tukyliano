@@ -24,12 +24,18 @@ class PantallaLeccion extends StatefulWidget {
     super.key,
     required this.leccion,
     required this.voz,
+    this.antes = const [],
     this.alTerminar,
     this.alSalir,
     this.azar,
   });
 
   final Leccion leccion;
+
+  /// Las lecciones ya hechas de la misma ciudad. De ahí sale el repaso
+  /// del final, y, si esta lección es la prueba, todas sus preguntas.
+  final List<Leccion> antes;
+
   final Voz voz;
 
   /// La lección se dio por hecha. Lo llama el botón del final.
@@ -46,7 +52,20 @@ class PantallaLeccion extends StatefulWidget {
 }
 
 class _PantallaLeccionState extends State<PantallaLeccion> {
-  late final List<Paso> _pasos = pasosDe(widget.leccion, azar: widget.azar);
+  late List<Paso> _pasos = _armarLosPasos();
+
+  List<Paso> _armarLosPasos() => pasosDe(
+    widget.leccion,
+    antes: widget.antes,
+    // La prueba se puede repetir, y repetida tiene que traer otras
+    // preguntas: con la misma semilla saldrían las ocho de antes y se
+    // aprobaría de memoria. Fuera de la prueba, la semilla es la que
+    // viene, que es lo que deja a los tests mirar siempre lo mismo.
+    azar: widget.leccion.esPrueba && _intentos > 0 ? null : widget.azar,
+  );
+
+  /// Cuántas veces se empezó la prueba.
+  int _intentos = 0;
 
   int _cual = 0;
 
@@ -55,6 +74,20 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
 
   /// Las fichas puestas, por su lugar en el banco.
   List<int> _puestas = [];
+
+  /// La palabra italiana tocada en el relacionar, esperando su pareja.
+  String? _esperandoPareja;
+
+  /// Las parejas ya resueltas: italiano a español.
+  Map<String, String> _parejas = {};
+
+  /// El último intento fallido del relacionar, para pintarlo en rojo
+  /// hasta el toque siguiente. Sin reloj: un rojo que se apaga solo
+  /// necesitaría un timer, y en los tests el reloj es falso.
+  (String, String)? _parejaMal;
+
+  /// Cuántas veces se erró en el relacionar de este paso.
+  int _erroresDeRelacion = 0;
 
   /// Ya se apretó Comprobar: la respuesta queda a la vista, pintada.
   bool _comprobado = false;
@@ -95,6 +128,13 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
     MostrarPalabra(:final palabra) => palabra.italiano,
     MostrarFrase(:final frase) => frase.italiano,
     ElegirTraduccion(:final palabra) => palabra.italiano,
+    // La explicación, el diálogo y el relacionar no se leen solos: el
+    // primero es castellano, y los otros dos son varias frases. Tienen su
+    // botón de escuchar renglón por renglón.
+    MostrarExplicacion() => '',
+    MostrarDialogo() => '',
+    Contestar() => '',
+    Relacionar() => '',
     ArmarLaFrase() => '',
     null => '',
   };
@@ -109,6 +149,8 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
   /// siempre true: no hay con qué equivocarse.
   bool get _estaBien => switch (_paso) {
     ElegirTraduccion(:final correcta) => _elegida == correcta,
+    Contestar(:final pregunta) => _elegida == pregunta.correcta,
+    Relacionar() => _erroresDeRelacion == 0,
     ArmarLaFrase(:final frase, :final fichas) =>
       _puestas.map((i) => fichas[i]).join(' ').toLowerCase() ==
           palabrasDeLaFrase(frase.italiano).map(comoFicha).join(' '),
@@ -117,12 +159,44 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
 
   bool get _sePuedeComprobar => switch (_paso) {
     ElegirTraduccion() => _elegida != null,
+    Contestar() => _elegida != null,
+    // El relacionar se comprueba solo cuando están las cuatro: hasta
+    // entonces no hay nada que comprobar, falta trabajo.
+    Relacionar(:final pares) => _parejas.length == pares.length,
     ArmarLaFrase() => _puestas.isNotEmpty,
     _ => true,
   };
 
   bool get _hayQueComprobar =>
-      _paso is ElegirTraduccion || _paso is ArmarLaFrase;
+      _paso is ElegirTraduccion ||
+      _paso is Contestar ||
+      _paso is Relacionar ||
+      _paso is ArmarLaFrase;
+
+  /// Un toque en el relacionar: primero una italiana, después su
+  /// traducción. Si la pareja está bien queda puesta; si no, se marca en
+  /// rojo y se suelta, sin perder las que ya estaban.
+  void _tocarEnRelacionar({required bool izquierda, required String texto}) {
+    final paso = _paso;
+    if (paso is! Relacionar) return;
+    setState(() {
+      _parejaMal = null;
+      if (izquierda) {
+        _esperandoPareja = texto;
+        return;
+      }
+      final italiana = _esperandoPareja;
+      if (italiana == null) return;
+      final par = paso.pares.firstWhere((p) => p.italiano == italiana);
+      if (par.espanol == texto) {
+        _parejas = {..._parejas, italiana: texto};
+      } else {
+        _erroresDeRelacion++;
+        _parejaMal = (italiana, texto);
+      }
+      _esperandoPareja = null;
+    });
+  }
 
   void _comprobar() {
     setState(() {
@@ -132,6 +206,30 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
     });
   }
 
+  /// Volver a dar la prueba, con otras preguntas.
+  void _volverAIntentar() {
+    widget.voz.callar();
+    setState(() {
+      _intentos++;
+      _pasos = _armarLosPasos();
+      _cual = 0;
+      _bien = 0;
+      _contestadas = 0;
+      _elegida = null;
+      _puestas = [];
+      _comprobado = false;
+      _esperandoPareja = null;
+      _parejas = {};
+      _parejaMal = null;
+      _erroresDeRelacion = 0;
+    });
+  }
+
+  /// Si la prueba se aprobó. Fuera de la prueba no hay nota: terminarla
+  /// ya es haberla hecho.
+  bool get _aprobo =>
+      !widget.leccion.esPrueba || _bien >= widget.leccion.paraAprobar;
+
   void _seguir() {
     widget.voz.callar();
     setState(() {
@@ -139,6 +237,10 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
       _elegida = null;
       _puestas = [];
       _comprobado = false;
+      _esperandoPareja = null;
+      _parejas = {};
+      _parejaMal = null;
+      _erroresDeRelacion = 0;
     });
     _decirLoDeAhora();
   }
@@ -170,21 +272,34 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
   }
 
   Widget _elPaso() => switch (_paso!) {
+    MostrarExplicacion(:final explicacion) => _LaExplicacion(
+      explicacion: explicacion,
+      alEscuchar: _puedeHablar ? widget.voz.decir : null,
+    ),
+    MostrarDialogo(:final dialogo) => _ElDialogo(
+      dialogo: dialogo,
+      alEscuchar: _puedeHablar ? widget.voz.decir : null,
+    ),
     MostrarPalabra(:final palabra) => _Tarjeta(
       arriba: 'Palabra nueva',
       italiano: palabra.italiano,
+      suena: palabra.suena,
       espanol: palabra.espanol,
       alEscuchar: _puedeHablar ? _decirLoDeAhora : null,
     ),
     MostrarFrase(:final frase) => _Tarjeta(
       arriba: 'Así se dice',
       italiano: frase.italiano,
+      suena: frase.suena,
       espanol: frase.espanol,
       alEscuchar: _puedeHablar ? _decirLoDeAhora : null,
     ),
     ElegirTraduccion(:final palabra, :final opciones, :final correcta) =>
       _Elegir(
-        palabra: palabra,
+        consigna: (_paso! as ElegirTraduccion).esRepaso
+            ? 'Repaso: ¿qué quiere decir?'
+            : '¿Qué quiere decir?',
+        enunciado: palabra.italiano,
         opciones: opciones,
         correcta: correcta,
         elegida: _elegida,
@@ -194,6 +309,24 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
             ? null
             : (cual) => setState(() => _elegida = cual),
       ),
+    Contestar(:final pregunta) => _Elegir(
+      consigna: pregunta.consigna,
+      enunciado: pregunta.enunciado,
+      chico: true,
+      opciones: pregunta.opciones,
+      correcta: pregunta.correcta,
+      elegida: _elegida,
+      comprobado: _comprobado,
+      alElegir: _comprobado ? null : (cual) => setState(() => _elegida = cual),
+    ),
+    Relacionar(:final pares, :final traducciones) => _ElRelacionar(
+      pares: pares,
+      traducciones: traducciones,
+      esperando: _esperandoPareja,
+      parejas: _parejas,
+      parejaMal: _parejaMal,
+      alTocar: _comprobado ? null : _tocarEnRelacionar,
+    ),
     ArmarLaFrase(:final frase, :final fichas) => _Armar(
       frase: frase,
       fichas: fichas,
@@ -209,9 +342,17 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
     ),
   };
 
-  /// El cartel del final. Sin puntaje si no hubo nada que contestar: la
-  /// lección del cuento es solo leer, y "0 de 0" sonaría a haber fallado.
+  /// El cartel del final.
+  ///
+  /// Sin puntaje si no hubo nada que contestar: la lección del cuento es
+  /// solo leer, y "0 de 0" sonaría a haber fallado.
+  ///
+  /// En la prueba sí hay nota, y hay reprobar: es lo único de la app que
+  /// se puede no pasar. Reprobar no castiga —no se pierde lo hecho— pero
+  /// tampoco abre la ciudad siguiente, que es de lo que se trata.
   Widget _elFinal() {
+    final esPrueba = widget.leccion.esPrueba;
+    final aprobo = _aprobo;
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
@@ -221,17 +362,25 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
         Container(
           width: 84,
           height: 84,
-          decoration: const BoxDecoration(
-            color: Tema.verdeSuave,
+          decoration: BoxDecoration(
+            color: aprobo ? Tema.verdeSuave : Tema.terracotaSuave,
             shape: BoxShape.circle,
           ),
-          child: const Icon(Icons.check_rounded, size: 48, color: Tema.verde),
+          child: Icon(
+            aprobo ? Icons.check_rounded : Icons.refresh_rounded,
+            size: 48,
+            color: aprobo ? Tema.verde : Tema.terracota,
+          ),
         ),
         const SizedBox(height: 16),
-        const Text(
-          '¡Lección terminada!',
+        Text(
+          switch ((esPrueba, aprobo)) {
+            (true, true) => '¡Aprobaste!',
+            (true, false) => 'Casi',
+            _ => '¡Lección terminada!',
+          },
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 26,
             fontWeight: FontWeight.w700,
             color: Tema.titulo,
@@ -244,12 +393,22 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
             style: const TextStyle(fontSize: 17, color: Tema.textoTenue),
           ),
         ],
+        if (esPrueba && !aprobo) ...[
+          const SizedBox(height: 8),
+          Text(
+            'Hacen falta ${widget.leccion.paraAprobar}. '
+            'Probá de nuevo: las preguntas son otras.',
+            textAlign: TextAlign.center,
+            style: const TextStyle(fontSize: 15, color: Tema.textoTenue),
+          ),
+        ],
       ],
     );
   }
 
   Widget _abajo() {
     final (texto, alTocar) = switch (_termino) {
+      true when !_aprobo => ('Volver a intentar', _volverAIntentar),
       true => ('Terminar', widget.alTerminar),
       false when _hayQueComprobar && !_comprobado => (
         'Comprobar',
@@ -269,7 +428,11 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           if (_comprobado) ...[
-            _Veredicto(bien: _estaBien, correcta: _laCorrecta),
+            _Veredicto(
+              bien: _estaBien,
+              mensaje: _mensajeDelVeredicto,
+              porque: _porque,
+            ),
             const SizedBox(height: 10),
           ],
           SizedBox(
@@ -291,10 +454,30 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
     );
   }
 
-  /// La respuesta que iba, para mostrarla cuando se erró.
-  String get _laCorrecta => switch (_paso) {
-    ElegirTraduccion(:final correcta) => correcta,
-    ArmarLaFrase(:final frase) => frase.italiano,
+  /// Lo que dice el renglón de arriba del botón.
+  ///
+  /// Cuando se erró, la que iba: decir "mal" y no decir cuál era deja al
+  /// alumno igual que antes.
+  String get _mensajeDelVeredicto {
+    if (_estaBien) return '¡Bien!';
+    final paso = _paso;
+    if (paso is Relacionar) {
+      return _erroresDeRelacion == 1
+          ? 'Con un error, pero quedaron las cuatro'
+          : 'Con $_erroresDeRelacion errores, pero quedaron las cuatro';
+    }
+    return switch (paso) {
+      ElegirTraduccion(:final correcta) => 'Era: $correcta',
+      Contestar(:final pregunta) => 'Era: ${pregunta.correcta}',
+      ArmarLaFrase(:final frase) => 'Era: ${frase.italiano}',
+      _ => '',
+    };
+  }
+
+  /// El por qué del ejercicio, si lo trae. Se muestra siempre, se haya
+  /// acertado o no: el que acierta de casualidad también lo necesita.
+  String get _porque => switch (_paso) {
+    Contestar(:final pregunta) => pregunta.porque,
     _ => '',
   };
 }
@@ -342,12 +525,17 @@ class _Tarjeta extends StatelessWidget {
     required this.arriba,
     required this.italiano,
     required this.espanol,
+    this.suena = '',
     this.alEscuchar,
   });
 
   final String arriba;
   final String italiano;
   final String espanol;
+
+  /// Cómo se lee, cuando no se lee como se escribe.
+  final String suena;
+
   final VoidCallback? alEscuchar;
 
   @override
@@ -383,6 +571,10 @@ class _Tarjeta extends StatelessWidget {
                   color: Tema.titulo,
                 ),
               ),
+              if (suena.isNotEmpty && !_mismoTexto(suena, italiano)) ...[
+                const SizedBox(height: 4),
+                _ComoSuena(suena: suena),
+              ],
               const SizedBox(height: 10),
               Text(
                 espanol,
@@ -426,16 +618,27 @@ class _BotonEscuchar extends StatelessWidget {
 /// Qué quiere decir esta palabra: cuatro opciones.
 class _Elegir extends StatelessWidget {
   const _Elegir({
-    required this.palabra,
+    required this.consigna,
+    required this.enunciado,
     required this.opciones,
     required this.correcta,
     required this.elegida,
     required this.comprobado,
+    this.chico = false,
     this.alElegir,
     this.alEscuchar,
   });
 
-  final PalabraDeLeccion palabra;
+  /// El renglón de arriba: "¿Qué quiere decir?", "Completá", "¿Qué le
+  /// contestás?".
+  final String consigna;
+
+  /// Lo que se lee en la tarjeta: una palabra sola, o una frase con ___.
+  final String enunciado;
+
+  /// Una frase entera no entra con la letra de una palabra suelta.
+  final bool chico;
+
   final List<String> opciones;
   final String correcta;
   final String? elegida;
@@ -448,10 +651,10 @@ class _Elegir extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        const Text(
-          '¿Qué quiere decir?',
+        Text(
+          consigna,
           textAlign: TextAlign.center,
-          style: TextStyle(
+          style: const TextStyle(
             fontSize: 13,
             fontWeight: FontWeight.w700,
             color: Tema.textoTenue,
@@ -468,10 +671,10 @@ class _Elegir extends StatelessWidget {
           child: Column(
             children: [
               Text(
-                palabra.italiano,
+                enunciado,
                 textAlign: TextAlign.center,
-                style: const TextStyle(
-                  fontSize: 30,
+                style: TextStyle(
+                  fontSize: chico ? 20 : 30,
                   fontWeight: FontWeight.w700,
                   color: Tema.titulo,
                 ),
@@ -667,32 +870,481 @@ class _Armar extends StatelessWidget {
 
 /// El renglón que dice si estuvo bien, arriba del botón.
 class _Veredicto extends StatelessWidget {
-  const _Veredicto({required this.bien, required this.correcta});
+  const _Veredicto({
+    required this.bien,
+    required this.mensaje,
+    this.porque = '',
+  });
 
   final bool bien;
-  final String correcta;
+  final String mensaje;
+
+  /// Por qué es así. Va abajo, en gris: es lo que convierte un error en
+  /// algo aprendido en vez de un número que bajó.
+  final String porque;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Row(
+          children: [
+            Icon(
+              bien ? Icons.check_circle_rounded : Icons.cancel_rounded,
+              color: bien ? Tema.correcto : Tema.incorrecto,
+              size: 22,
+            ),
+            const SizedBox(width: 8),
+            Expanded(
+              child: Text(
+                mensaje,
+                style: TextStyle(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w700,
+                  color: bien ? Tema.correcto : Tema.incorrecto,
+                ),
+              ),
+            ),
+          ],
+        ),
+        if (porque.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(top: 4, left: 30),
+            child: Text(
+              porque,
+              style: const TextStyle(fontSize: 13.5, color: Tema.textoTenue),
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+/// Si dos textos dicen lo mismo, más allá de mayúsculas y acentos.
+///
+/// Sirve para no escribir tres veces la misma palabra: "casa / se lee
+/// casa / casa" ocupa una tarjeta entera para no decir nada.
+bool _mismoTexto(String a, String b) => _pelado(a) == _pelado(b);
+
+String _pelado(String texto) {
+  const con = 'áàéèíìóòúùü';
+  const sin = 'aaeeiioouuu';
+  var salida = texto.toLowerCase();
+  for (var i = 0; i < con.length; i++) {
+    salida = salida.replaceAll(con[i], sin[i]);
+  }
+  return salida;
+}
+
+/// Cómo se lee una palabra, escrito como lo leería un argentino.
+///
+/// Entre comillas simples y en cursiva para que no se confunda con la
+/// traducción: "ciao / *chao* / hola" se lee de una.
+class _ComoSuena extends StatelessWidget {
+  const _ComoSuena({required this.suena});
+
+  final String suena;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      'se lee "$suena"',
+      textAlign: TextAlign.center,
+      style: const TextStyle(
+        fontSize: 15,
+        fontStyle: FontStyle.italic,
+        color: Tema.verdeOscuro,
+      ),
+    );
+  }
+}
+
+/// La tarjeta de la regla: una idea, y los ejemplos abajo.
+///
+/// Los ejemplos se tocan para escucharlos. En una regla de pronunciación
+/// eso no es un adorno: es la mitad de la explicación.
+class _LaExplicacion extends StatelessWidget {
+  const _LaExplicacion({required this.explicacion, this.alEscuchar});
+
+  final Explicacion explicacion;
+  final void Function(String)? alEscuchar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Container(
+          padding: const EdgeInsets.fromLTRB(18, 18, 18, 18),
+          decoration: BoxDecoration(
+            color: Tema.superficie,
+            borderRadius: BorderRadius.circular(Tema.radio),
+            boxShadow: Tema.sombra,
+          ),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              if (explicacion.titulo.isNotEmpty) ...[
+                Text(
+                  explicacion.titulo,
+                  style: const TextStyle(
+                    fontSize: 21,
+                    fontWeight: FontWeight.w700,
+                    color: Tema.titulo,
+                  ),
+                ),
+                const SizedBox(height: 10),
+              ],
+              if (explicacion.texto.isNotEmpty)
+                Text(
+                  explicacion.texto,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    height: 1.4,
+                    color: Tema.texto,
+                  ),
+                ),
+            ],
+          ),
+        ),
+        for (final ejemplo in explicacion.ejemplos)
+          Padding(
+            padding: const EdgeInsets.only(top: 10),
+            child: _Ejemplo(ejemplo: ejemplo, alEscuchar: alEscuchar),
+          ),
+      ],
+    );
+  }
+}
+
+class _Ejemplo extends StatelessWidget {
+  const _Ejemplo({required this.ejemplo, this.alEscuchar});
+
+  final FraseDeLeccion ejemplo;
+  final void Function(String)? alEscuchar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Material(
+      color: Tema.verdeSuave,
+      borderRadius: BorderRadius.circular(Tema.radioChico),
+      child: InkWell(
+        onTap: alEscuchar == null ? null : () => alEscuchar!(ejemplo.italiano),
+        borderRadius: BorderRadius.circular(Tema.radioChico),
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 11),
+          child: Row(
+            children: [
+              Expanded(
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      ejemplo.italiano,
+                      style: const TextStyle(
+                        fontSize: 17,
+                        fontWeight: FontWeight.w700,
+                        color: Tema.titulo,
+                      ),
+                    ),
+                    if (ejemplo.suena.isNotEmpty &&
+                        !_mismoTexto(ejemplo.suena, ejemplo.italiano))
+                      Text(
+                        'se lee "${ejemplo.suena}"',
+                        style: const TextStyle(
+                          fontSize: 14,
+                          fontStyle: FontStyle.italic,
+                          color: Tema.verdeOscuro,
+                        ),
+                      ),
+                    if (ejemplo.espanol.isNotEmpty &&
+                        !_mismoTexto(ejemplo.espanol, ejemplo.italiano))
+                      Text(
+                        ejemplo.espanol,
+                        style: const TextStyle(
+                          fontSize: 14,
+                          color: Tema.textoTenue,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
+              if (alEscuchar != null)
+                const Icon(
+                  Icons.volume_up_rounded,
+                  color: Tema.verde,
+                  size: 22,
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// Un diálogo: quién dice qué, con la traducción debajo de cada renglón.
+///
+/// Las dos voces van a lados distintos, como un chat. Es la forma en que
+/// ya se lee una conversación sin que nadie la explique.
+class _ElDialogo extends StatelessWidget {
+  const _ElDialogo({required this.dialogo, this.alEscuchar});
+
+  final Dialogo dialogo;
+  final void Function(String)? alEscuchar;
+
+  @override
+  Widget build(BuildContext context) {
+    // Quién habla primero va a la izquierda; el otro, a la derecha.
+    final primero = dialogo.renglones.first.quien;
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        if (dialogo.situacion.isNotEmpty) ...[
+          Text(
+            dialogo.situacion,
+            textAlign: TextAlign.center,
+            style: const TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: Tema.textoTenue,
+            ),
+          ),
+          const SizedBox(height: 12),
+        ],
+        for (final renglon in dialogo.renglones)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: _Burbuja(
+              renglon: renglon,
+              aLaIzquierda: renglon.quien == primero,
+              alEscuchar: alEscuchar,
+            ),
+          ),
+      ],
+    );
+  }
+}
+
+class _Burbuja extends StatelessWidget {
+  const _Burbuja({
+    required this.renglon,
+    required this.aLaIzquierda,
+    this.alEscuchar,
+  });
+
+  final RenglonDeDialogo renglon;
+  final bool aLaIzquierda;
+  final void Function(String)? alEscuchar;
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: aLaIzquierda
+          ? MainAxisAlignment.start
+          : MainAxisAlignment.end,
       children: [
-        Icon(
-          bien ? Icons.check_circle_rounded : Icons.cancel_rounded,
-          color: bien ? Tema.correcto : Tema.incorrecto,
-          size: 22,
-        ),
-        const SizedBox(width: 8),
-        Expanded(
-          child: Text(
-            bien ? '¡Bien!' : 'Era: $correcta',
-            style: TextStyle(
-              fontSize: 15,
-              fontWeight: FontWeight.w700,
-              color: bien ? Tema.correcto : Tema.incorrecto,
+        Flexible(
+          child: Material(
+            color: aLaIzquierda ? Tema.superficie : Tema.verdeSuave,
+            borderRadius: BorderRadius.circular(Tema.radio),
+            child: InkWell(
+              onTap: alEscuchar == null
+                  ? null
+                  : () => alEscuchar!(renglon.italiano),
+              borderRadius: BorderRadius.circular(Tema.radio),
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(13, 10, 13, 11),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    if (renglon.quien.isNotEmpty)
+                      Text(
+                        renglon.quien,
+                        style: const TextStyle(
+                          fontSize: 12,
+                          fontWeight: FontWeight.w700,
+                          color: Tema.verdeOscuro,
+                        ),
+                      ),
+                    Text(
+                      renglon.italiano,
+                      style: const TextStyle(
+                        fontSize: 16.5,
+                        fontWeight: FontWeight.w600,
+                        color: Tema.titulo,
+                      ),
+                    ),
+                    if (renglon.espanol.isNotEmpty)
+                      Text(
+                        renglon.espanol,
+                        style: const TextStyle(
+                          fontSize: 13.5,
+                          color: Tema.textoTenue,
+                        ),
+                      ),
+                  ],
+                ),
+              ),
             ),
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Unir cada palabra con lo que quiere decir: una columna contra la otra.
+///
+/// Se toca primero una italiana y después su traducción. La pareja que
+/// sale bien queda puesta en verde y no se toca más; la que sale mal
+/// queda en rojo hasta el toque siguiente y hay que volver a intentarla.
+/// Nada se pierde al errar: la gracia es que al final queden las cuatro.
+class _ElRelacionar extends StatelessWidget {
+  const _ElRelacionar({
+    required this.pares,
+    required this.traducciones,
+    required this.esperando,
+    required this.parejas,
+    required this.parejaMal,
+    this.alTocar,
+  });
+
+  final List<PalabraDeLeccion> pares;
+  final List<String> traducciones;
+  final String? esperando;
+  final Map<String, String> parejas;
+  final (String, String)? parejaMal;
+  final void Function({required bool izquierda, required String texto})?
+  alTocar;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        const Text(
+          'Uní cada palabra con lo que quiere decir',
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 13,
+            fontWeight: FontWeight.w700,
+            color: Tema.textoTenue,
+          ),
+        ),
+        const SizedBox(height: 14),
+        Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Expanded(
+              child: Column(
+                children: [
+                  for (final par in pares)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: _Media(
+                        texto: par.italiano,
+                        resuelta: parejas.containsKey(par.italiano),
+                        elegida: esperando == par.italiano,
+                        mal: parejaMal?.$1 == par.italiano,
+                        alTocar: alTocar == null
+                            ? null
+                            : () => alTocar!(
+                                izquierda: true,
+                                texto: par.italiano,
+                              ),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 10),
+            Expanded(
+              child: Column(
+                children: [
+                  for (final texto in traducciones)
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 10),
+                      child: _Media(
+                        texto: texto,
+                        resuelta: parejas.containsValue(texto),
+                        elegida: false,
+                        mal: parejaMal?.$2 == texto,
+                        alTocar: alTocar == null
+                            ? null
+                            : () => alTocar!(izquierda: false, texto: texto),
+                      ),
+                    ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+}
+
+/// Media pareja: una de las fichas del relacionar.
+class _Media extends StatelessWidget {
+  const _Media({
+    required this.texto,
+    required this.resuelta,
+    required this.elegida,
+    required this.mal,
+    this.alTocar,
+  });
+
+  final String texto;
+  final bool resuelta;
+  final bool elegida;
+  final bool mal;
+  final VoidCallback? alTocar;
+
+  @override
+  Widget build(BuildContext context) {
+    final fondo = resuelta
+        ? Tema.correcto
+        : mal
+        ? Tema.incorrecto
+        : elegida
+        ? Tema.verde
+        : Tema.superficie;
+    final blanca = resuelta || mal || elegida;
+
+    return SizedBox(
+      height: 52,
+      child: Material(
+        color: fondo,
+        borderRadius: BorderRadius.circular(Tema.radio),
+        child: InkWell(
+          onTap: resuelta ? null : alTocar,
+          borderRadius: BorderRadius.circular(Tema.radio),
+          child: Container(
+            alignment: Alignment.center,
+            padding: const EdgeInsets.symmetric(horizontal: 8),
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(Tema.radio),
+              border: Border.all(
+                color: blanca ? Colors.transparent : Tema.borde,
+                width: 1.5,
+              ),
+            ),
+            child: Text(
+              texto,
+              textAlign: TextAlign.center,
+              maxLines: 2,
+              overflow: TextOverflow.ellipsis,
+              style: TextStyle(
+                fontSize: 15.5,
+                fontWeight: FontWeight.w600,
+                color: blanca ? Colors.white : Tema.titulo,
+              ),
+            ),
+          ),
+        ),
+      ),
     );
   }
 }

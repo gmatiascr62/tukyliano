@@ -1,12 +1,2889 @@
 {
-  "version": 1,
+  "version": 2,
   "de": "El camino: las ciudades y sus lecciones, en orden.",
   "ciudades": [
+    {
+      "id": "olbia",
+      "nombre": "Olbia",
+      "subtitulo": "las primeras palabras",
+      "nivel": 1,
+      "icono": "",
+      "x": 0.275,
+      "y": 0.51,
+      "lecciones": [
+        {
+          "id": "olbia-1",
+          "titulo": "Cómo suena el italiano",
+          "deQueVa": "La C y la G, que no se leen como acá",
+          "explicaciones": [
+            {
+              "titulo": "Las vocales son las mismas",
+              "texto": "a, e, i, o, u se leen igual que en castellano, siempre. Eso ya te deja leer media palabra. Lo que cambia son algunas consonantes, y son pocas: en dos lecciones las tenés todas.",
+              "ejemplos": [
+                {
+                  "it": "casa",
+                  "es": "casa",
+                  "suena": "casa"
+                },
+                {
+                  "it": "vino",
+                  "es": "vino",
+                  "suena": "vino"
+                }
+              ]
+            },
+            {
+              "titulo": "La C antes de E y de I suena CH",
+              "texto": "ce y ci se leen \"che\" y \"chi\". Con a, o, u la C vuelve a ser dura, como en \"casa\".",
+              "ejemplos": [
+                {
+                  "it": "ciao",
+                  "es": "hola",
+                  "suena": "chao"
+                },
+                {
+                  "it": "cena",
+                  "es": "cena",
+                  "suena": "chena"
+                },
+                {
+                  "it": "casa",
+                  "es": "casa",
+                  "suena": "casa"
+                }
+              ]
+            },
+            {
+              "titulo": "La G antes de E y de I suena como la Y argentina",
+              "texto": "ge y gi se leen como decís vos \"ya\" o \"yo\". Con a, o, u la G es dura, como en \"gato\".",
+              "ejemplos": [
+                {
+                  "it": "gelato",
+                  "es": "helado",
+                  "suena": "yeláto"
+                },
+                {
+                  "it": "giorno",
+                  "es": "día",
+                  "suena": "yórno"
+                },
+                {
+                  "it": "gatto",
+                  "es": "gato",
+                  "suena": "gátto"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "ciao",
+              "es": "hola, chau",
+              "suena": "chao"
+            },
+            {
+              "it": "cena",
+              "es": "cena",
+              "suena": "chena"
+            },
+            {
+              "it": "amico",
+              "es": "amigo",
+              "suena": "amíco"
+            },
+            {
+              "it": "gelato",
+              "es": "helado",
+              "suena": "yeláto"
+            },
+            {
+              "it": "giorno",
+              "es": "día",
+              "suena": "yórno"
+            },
+            {
+              "it": "gatto",
+              "es": "gato",
+              "suena": "gátto"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Ciao, amico!",
+              "es": "¡Hola, amigo!",
+              "suena": "chao, amíco"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "¿Cómo se lee?",
+              "enunciado": "cena",
+              "opciones": [
+                "chena",
+                "kena",
+                "sena"
+              ],
+              "correcta": "chena",
+              "porque": "La C antes de E suena CH. Si fuera \"ca\", sonaría dura."
+            },
+            {
+              "consigna": "¿Cómo se lee?",
+              "enunciado": "giorno",
+              "opciones": [
+                "yórno",
+                "guiórno",
+                "jórno"
+              ],
+              "correcta": "yórno",
+              "porque": "La G antes de I suena como la Y de \"yo\"."
+            },
+            {
+              "consigna": "¿Cuál de estas tiene la C dura, como en \"casa\"?",
+              "enunciado": "amico / cena / ciao",
+              "opciones": [
+                "amico",
+                "cena",
+                "ciao"
+              ],
+              "correcta": "amico",
+              "porque": "En \"amico\" la C va antes de O, así que es dura: amíco."
+            }
+          ]
+        },
+        {
+          "id": "olbia-2",
+          "titulo": "Los otros sonidos",
+          "deQueVa": "CH, GH, GN, GLI, SC, Z y la H que no suena",
+          "explicaciones": [
+            {
+              "titulo": "CH y GH vuelven a ser duras",
+              "texto": "Cuando los italianos quieren una C o una G dura antes de E o de I, le meten una H en el medio. La H no suena: está solo para endurecer.",
+              "ejemplos": [
+                {
+                  "it": "che",
+                  "es": "qué",
+                  "suena": "ke"
+                },
+                {
+                  "it": "spaghetti",
+                  "es": "espaguetis",
+                  "suena": "spaguétti"
+                },
+                {
+                  "it": "chi",
+                  "es": "quién",
+                  "suena": "ki"
+                }
+              ]
+            },
+            {
+              "titulo": "GN es Ñ, y GLI es LLI",
+              "texto": "gn se lee como nuestra ñ. gli se lee como \"lli\" en \"millón\".",
+              "ejemplos": [
+                {
+                  "it": "gnocchi",
+                  "es": "ñoquis",
+                  "suena": "ñóki"
+                },
+                {
+                  "it": "famiglia",
+                  "es": "familia",
+                  "suena": "famílla"
+                },
+                {
+                  "it": "signore",
+                  "es": "señor",
+                  "suena": "siñóre"
+                }
+              ]
+            },
+            {
+              "titulo": "SC antes de E o I es SH. La Z es TS. La H nunca suena.",
+              "texto": "sce y sci suenan como el \"sh\" de \"shopping\". La Z suena \"ts\". Y la H sola no se pronuncia nunca: \"ho\" se dice \"o\".",
+              "ejemplos": [
+                {
+                  "it": "pesce",
+                  "es": "pescado",
+                  "suena": "péshe"
+                },
+                {
+                  "it": "grazie",
+                  "es": "gracias",
+                  "suena": "grátsie"
+                },
+                {
+                  "it": "ho",
+                  "es": "tengo",
+                  "suena": "o"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "grazie",
+              "es": "gracias",
+              "suena": "grátsie"
+            },
+            {
+              "it": "prego",
+              "es": "de nada",
+              "suena": "prégo"
+            },
+            {
+              "it": "scusi",
+              "es": "disculpe",
+              "suena": "skúsi"
+            },
+            {
+              "it": "famiglia",
+              "es": "familia",
+              "suena": "famílla"
+            },
+            {
+              "it": "pesce",
+              "es": "pescado",
+              "suena": "péshe"
+            },
+            {
+              "it": "che",
+              "es": "qué",
+              "suena": "ke"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Grazie, amico!",
+              "es": "¡Gracias, amigo!",
+              "suena": "grátsie, amíco"
+            },
+            {
+              "it": "Che gatto!",
+              "es": "¡Qué gato!",
+              "suena": "ke gátto"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "¿Cómo se lee?",
+              "enunciado": "famiglia",
+              "opciones": [
+                "famílla",
+                "famíglia",
+                "famíguia"
+              ],
+              "correcta": "famílla",
+              "porque": "gli se lee \"lli\": la G no se oye."
+            },
+            {
+              "consigna": "¿Cómo se lee?",
+              "enunciado": "grazie",
+              "opciones": [
+                "grátsie",
+                "grásie",
+                "grázie"
+              ],
+              "correcta": "grátsie",
+              "porque": "La Z italiana suena \"ts\", nunca \"s\"."
+            },
+            {
+              "consigna": "En \"scusi\", ¿cómo suena la SC?",
+              "enunciado": "scusi",
+              "opciones": [
+                "como SK",
+                "como SH",
+                "como S"
+              ],
+              "correcta": "como SK",
+              "porque": "sc es \"sh\" solo antes de E o I. Antes de U vuelve a ser dura: skúsi."
+            }
+          ]
+        },
+        {
+          "id": "olbia-3",
+          "titulo": "Saludar y agradecer",
+          "deQueVa": "Lo primero que vas a decir y a escuchar",
+          "explicaciones": [
+            {
+              "titulo": "Ciao no se usa con cualquiera",
+              "texto": "Ciao es para amigos, para gente joven, para alguien que ya conocés. Con un desconocido, en un negocio o con alguien mayor, va buongiorno (hasta la media tarde) o buonasera (de ahí en más). Salve sirve siempre y no compromete.",
+              "ejemplos": [
+                {
+                  "it": "Buongiorno!",
+                  "es": "¡Buenos días!",
+                  "suena": "buonyórno"
+                },
+                {
+                  "it": "Buonasera!",
+                  "es": "¡Buenas tardes!",
+                  "suena": "buonaséra"
+                },
+                {
+                  "it": "Salve!",
+                  "es": "¡Hola! (neutro)",
+                  "suena": "sálve"
+                }
+              ]
+            },
+            {
+              "titulo": "Per favore y grazie se usan mucho más que acá",
+              "texto": "En Italia se agradece todo el tiempo, y pedir algo sin per favore suena seco. La respuesta a grazie es prego.",
+              "ejemplos": [
+                {
+                  "it": "Grazie!",
+                  "es": "¡Gracias!",
+                  "suena": "grátsie"
+                },
+                {
+                  "it": "Prego.",
+                  "es": "De nada.",
+                  "suena": "prégo"
+                }
+              ]
+            },
+            {
+              "titulo": "Un y una",
+              "texto": "Un va con las palabras de varón y una con las de mujer. Es lo mismo que en castellano, y casi siempre coinciden: un gelato, una cena.",
+              "ejemplos": [
+                {
+                  "it": "un amico",
+                  "es": "un amigo",
+                  "suena": "un amíco"
+                },
+                {
+                  "it": "una famiglia",
+                  "es": "una familia",
+                  "suena": "úna famílla"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "buongiorno",
+              "es": "buenos días",
+              "suena": "buonyórno"
+            },
+            {
+              "it": "buonasera",
+              "es": "buenas tardes",
+              "suena": "buonaséra"
+            },
+            {
+              "it": "arrivederci",
+              "es": "hasta luego",
+              "suena": "arrivedérchi"
+            },
+            {
+              "it": "salve",
+              "es": "hola (neutro)",
+              "suena": "sálve"
+            },
+            {
+              "it": "per favore",
+              "es": "por favor",
+              "suena": "per favóre"
+            },
+            {
+              "it": "sì",
+              "es": "sí",
+              "suena": "si"
+            },
+            {
+              "it": "no",
+              "es": "no",
+              "suena": "no"
+            },
+            {
+              "it": "signore",
+              "es": "señor",
+              "suena": "siñóre"
+            },
+            {
+              "it": "signora",
+              "es": "señora",
+              "suena": "siñóra"
+            },
+            {
+              "it": "un",
+              "es": "un"
+            },
+            {
+              "it": "una",
+              "es": "una",
+              "suena": "úna"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Buongiorno, signore!",
+              "es": "¡Buenos días, señor!",
+              "suena": "buonyórno siñóre"
+            },
+            {
+              "it": "Un gelato, per favore.",
+              "es": "Un helado, por favor.",
+              "suena": "un yeláto per favóre"
+            },
+            {
+              "it": "Grazie, arrivederci!",
+              "es": "¡Gracias, hasta luego!",
+              "suena": "grátsie arrivedérchi"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "Entrás a una panadería a las nueve de la mañana. ¿Qué decís?",
+              "enunciado": "___, un pesce, per favore.",
+              "opciones": [
+                "Buongiorno",
+                "Buonasera",
+                "Ciao"
+              ],
+              "correcta": "Buongiorno",
+              "porque": "Es de mañana y no conocés a nadie: buongiorno. Ciao con un desconocido suena demasiado confianzudo."
+            },
+            {
+              "consigna": "Te dicen grazie. ¿Qué contestás?",
+              "enunciado": "— Grazie!",
+              "opciones": [
+                "Prego.",
+                "Scusi.",
+                "Salve."
+              ],
+              "correcta": "Prego.",
+              "porque": "Prego es el \"de nada\" italiano. También sirve para \"adelante, pase\"."
+            }
+          ]
+        },
+        {
+          "id": "olbia-4",
+          "titulo": "Come stai?",
+          "deQueVa": "Preguntar cómo está alguien, y contestar",
+          "explicaciones": [
+            {
+              "titulo": "Come stai? y Come sta?",
+              "texto": "Las dos preguntan lo mismo: cómo andás. Come stai? es de confianza, igual que ciao. Come sta? es para un desconocido, igual que buongiorno. Se contesta con sto bene, o solo bene.",
+              "ejemplos": [
+                {
+                  "it": "Come stai?",
+                  "es": "¿Cómo estás?",
+                  "suena": "cóme stái"
+                },
+                {
+                  "it": "Sto bene, grazie.",
+                  "es": "Estoy bien, gracias.",
+                  "suena": "sto béne grátsie"
+                },
+                {
+                  "it": "E tu?",
+                  "es": "¿Y vos?",
+                  "suena": "e tu"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "come",
+              "es": "cómo",
+              "suena": "cóme"
+            },
+            {
+              "it": "stai",
+              "es": "estás",
+              "suena": "stái"
+            },
+            {
+              "it": "sta",
+              "es": "está (usted)",
+              "suena": "sta"
+            },
+            {
+              "it": "sto",
+              "es": "estoy",
+              "suena": "sto"
+            },
+            {
+              "it": "bene",
+              "es": "bien",
+              "suena": "béne"
+            },
+            {
+              "it": "male",
+              "es": "mal",
+              "suena": "mále"
+            },
+            {
+              "it": "e",
+              "es": "y",
+              "suena": "e"
+            },
+            {
+              "it": "tu",
+              "es": "vos, tú",
+              "suena": "tu"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Ciao! Come stai?",
+              "es": "¡Hola! ¿Cómo estás?",
+              "suena": "chao cóme stái"
+            },
+            {
+              "it": "Sto bene, grazie. E tu?",
+              "es": "Estoy bien, gracias. ¿Y vos?",
+              "suena": "sto béne grátsie e tu"
+            },
+            {
+              "it": "Buongiorno, come sta?",
+              "es": "Buenos días, ¿cómo está?",
+              "suena": "buonyórno cóme sta"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "En la calle, con alguien que ya conocés",
+              "renglones": [
+                {
+                  "quien": "Marco",
+                  "it": "Ciao! Come stai?",
+                  "es": "¡Hola! ¿Cómo estás?"
+                },
+                {
+                  "quien": "Elena",
+                  "it": "Sto bene, grazie. E tu?",
+                  "es": "Estoy bien, gracias. ¿Y vos?"
+                },
+                {
+                  "quien": "Marco",
+                  "it": "Bene, bene!",
+                  "es": "¡Bien, bien!"
+                },
+                {
+                  "quien": "Elena",
+                  "it": "Ciao, arrivederci!",
+                  "es": "¡Chau, hasta luego!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Cómo está Elena?",
+                  "enunciado": "— Come stai? — ___",
+                  "opciones": [
+                    "Sto bene.",
+                    "Sto male.",
+                    "Per favore."
+                  ],
+                  "correcta": "Sto bene.",
+                  "porque": "Dijo \"sto bene, grazie\": está bien."
+                },
+                {
+                  "consigna": "Marco y Elena, ¿se conocen?",
+                  "enunciado": "Ciao! Come stai?",
+                  "opciones": [
+                    "Sí, se tratan de ciao",
+                    "No, son desconocidos"
+                  ],
+                  "correcta": "Sí, se tratan de ciao",
+                  "porque": "Ciao y come stai son de confianza. Entre desconocidos sería buongiorno, come sta?"
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "olbia-5",
+          "titulo": "Mi chiamo...",
+          "deQueVa": "Decir tu nombre y preguntar el de otro",
+          "explicaciones": [
+            {
+              "titulo": "Come ti chiami? — Mi chiamo...",
+              "texto": "Literalmente es \"¿cómo te llamás?\" y \"me llamo\". Con un desconocido cambia a Come si chiama?, y se contesta igual: mi chiamo.",
+              "ejemplos": [
+                {
+                  "it": "Come ti chiami?",
+                  "es": "¿Cómo te llamás?",
+                  "suena": "cóme ti kiámi"
+                },
+                {
+                  "it": "Mi chiamo Marco.",
+                  "es": "Me llamo Marco.",
+                  "suena": "mi kiámo márco"
+                },
+                {
+                  "it": "Come si chiama?",
+                  "es": "¿Cómo se llama usted?",
+                  "suena": "cóme si kiáma"
+                }
+              ]
+            },
+            {
+              "titulo": "Piacere",
+              "texto": "Es el \"mucho gusto\" de cuando te presentan a alguien. Se dice al conocerse, y el otro contesta piacere también.",
+              "ejemplos": [
+                {
+                  "it": "Piacere!",
+                  "es": "¡Mucho gusto!",
+                  "suena": "piachére"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "mi",
+              "es": "me",
+              "suena": "mi"
+            },
+            {
+              "it": "ti",
+              "es": "te",
+              "suena": "ti"
+            },
+            {
+              "it": "si",
+              "es": "se",
+              "suena": "si"
+            },
+            {
+              "it": "chiamo",
+              "es": "llamo",
+              "suena": "kiámo"
+            },
+            {
+              "it": "chiami",
+              "es": "llamás",
+              "suena": "kiámi"
+            },
+            {
+              "it": "chiama",
+              "es": "llama",
+              "suena": "kiáma"
+            },
+            {
+              "it": "piacere",
+              "es": "mucho gusto",
+              "suena": "piachére"
+            },
+            {
+              "it": "Lei",
+              "es": "usted",
+              "suena": "lei"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Come ti chiami?",
+              "es": "¿Cómo te llamás?",
+              "suena": "cóme ti kiámi"
+            },
+            {
+              "it": "Mi chiamo Marco, piacere!",
+              "es": "Me llamo Marco, ¡mucho gusto!",
+              "suena": "mi kiámo márco piachére"
+            },
+            {
+              "it": "Come si chiama, signora?",
+              "es": "¿Cómo se llama, señora?",
+              "suena": "cóme si kiáma siñóra"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "Te presentan a alguien en el trabajo",
+              "renglones": [
+                {
+                  "quien": "Elena",
+                  "it": "Buongiorno! Come si chiama?",
+                  "es": "¡Buenos días! ¿Cómo se llama?"
+                },
+                {
+                  "quien": "Matías",
+                  "it": "Mi chiamo Matías. E Lei?",
+                  "es": "Me llamo Matías. ¿Y usted?"
+                },
+                {
+                  "quien": "Elena",
+                  "it": "Mi chiamo Elena. Piacere!",
+                  "es": "Me llamo Elena. ¡Mucho gusto!"
+                },
+                {
+                  "quien": "Matías",
+                  "it": "Piacere, signora!",
+                  "es": "¡Mucho gusto, señora!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Por qué Elena dice \"come si chiama\" y no \"come ti chiami\"?",
+                  "enunciado": "Come si chiama?",
+                  "opciones": [
+                    "Porque no se conocen",
+                    "Porque son amigos",
+                    "Porque ella es mayor"
+                  ],
+                  "correcta": "Porque no se conocen",
+                  "porque": "Con un desconocido va el trato de usted: si chiama, Lei."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "olbia-6",
+          "titulo": "Il verbo essere",
+          "deQueVa": "Ser y estar, que en italiano son el mismo verbo",
+          "explicaciones": [
+            {
+              "titulo": "Essere es ser y estar a la vez",
+              "texto": "io sono, tu sei, lui/lei è, noi siamo, voi siete, loro sono. Sirve para las dos cosas: sono argentino (soy) y sono a casa (estoy).",
+              "ejemplos": [
+                {
+                  "it": "Io sono Marco.",
+                  "es": "Yo soy Marco.",
+                  "suena": "ío sóno márco"
+                },
+                {
+                  "it": "Tu sei un amico.",
+                  "es": "Vos sos un amigo.",
+                  "suena": "tu sei un amíco"
+                },
+                {
+                  "it": "Lui è a casa.",
+                  "es": "Él está en casa.",
+                  "suena": "lui e a cása"
+                }
+              ]
+            },
+            {
+              "titulo": "El pronombre casi no se dice",
+              "texto": "La terminación del verbo ya dice quién es, así que io, tu y los demás se usan poco: sono Marco alcanza. Se ponen solo para marcar o para contrastar.",
+              "ejemplos": [
+                {
+                  "it": "Sono Marco.",
+                  "es": "Soy Marco.",
+                  "suena": "sóno márco"
+                },
+                {
+                  "it": "Io sono Marco, lui è Paolo.",
+                  "es": "Yo soy Marco, él es Paolo.",
+                  "suena": "ío sóno márco, lui e páolo"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "io",
+              "es": "yo",
+              "suena": "ío"
+            },
+            {
+              "it": "sono",
+              "es": "soy, están",
+              "suena": "sóno"
+            },
+            {
+              "it": "sei",
+              "es": "sos",
+              "suena": "sei"
+            },
+            {
+              "it": "è",
+              "es": "es, está",
+              "suena": "e"
+            },
+            {
+              "it": "lui",
+              "es": "él",
+              "suena": "lui"
+            },
+            {
+              "it": "lei",
+              "es": "ella",
+              "suena": "lei"
+            },
+            {
+              "it": "noi",
+              "es": "nosotros",
+              "suena": "nói"
+            },
+            {
+              "it": "siamo",
+              "es": "somos",
+              "suena": "siámo"
+            },
+            {
+              "it": "voi",
+              "es": "ustedes",
+              "suena": "vói"
+            },
+            {
+              "it": "siete",
+              "es": "son (ustedes)",
+              "suena": "siéte"
+            },
+            {
+              "it": "loro",
+              "es": "ellos",
+              "suena": "lóro"
+            },
+            {
+              "it": "a",
+              "es": "a, en",
+              "suena": "a"
+            },
+            {
+              "it": "casa",
+              "es": "casa",
+              "suena": "cása"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Io sono Marco.",
+              "es": "Yo soy Marco.",
+              "suena": "ío sóno márco"
+            },
+            {
+              "it": "Tu sei un amico.",
+              "es": "Vos sos un amigo.",
+              "suena": "tu sei un amíco"
+            },
+            {
+              "it": "Noi siamo a casa.",
+              "es": "Nosotros estamos en casa.",
+              "suena": "nói siámo a cása"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "Completá",
+              "enunciado": "Io ___ Marco.",
+              "opciones": [
+                "sono",
+                "sei",
+                "è"
+              ],
+              "correcta": "sono",
+              "porque": "Con io el verbo essere es sono."
+            },
+            {
+              "consigna": "Completá",
+              "enunciado": "Tu ___ a casa.",
+              "opciones": [
+                "sei",
+                "sono",
+                "siamo"
+              ],
+              "correcta": "sei",
+              "porque": "Con tu es sei. Fijate que la terminación ya dice quién es."
+            },
+            {
+              "consigna": "¿Cuál de las dos dice \"ella es\"?",
+              "enunciado": "lei è / Lei è",
+              "opciones": [
+                "lei è",
+                "Lei è"
+              ],
+              "correcta": "lei è",
+              "porque": "Con minúscula es \"ella\". Con mayúscula, Lei, es \"usted\"."
+            }
+          ]
+        },
+        {
+          "id": "olbia-7",
+          "titulo": "Di dove sei?",
+          "deQueVa": "De dónde venís y dónde vivís",
+          "explicaciones": [
+            {
+              "titulo": "Di dove sei? — Sono di Buenos Aires",
+              "texto": "Di dove sei? es de dónde sos. Se contesta con sono di y la ciudad. Para el país se usa la nacionalidad: sono argentino, sono argentina.",
+              "ejemplos": [
+                {
+                  "it": "Di dove sei?",
+                  "es": "¿De dónde sos?",
+                  "suena": "di dóve sei"
+                },
+                {
+                  "it": "Sono di Buenos Aires.",
+                  "es": "Soy de Buenos Aires.",
+                  "suena": "sóno di buenos áires"
+                },
+                {
+                  "it": "Sono argentino.",
+                  "es": "Soy argentino.",
+                  "suena": "sóno argentíno"
+                }
+              ]
+            },
+            {
+              "titulo": "Dove abiti? — Abito a...",
+              "texto": "Abitare es vivir, en el sentido de tener la casa en un lugar. Con ciudades va a: abito a Roma. Con países va in: abito in Italia.",
+              "ejemplos": [
+                {
+                  "it": "Dove abiti?",
+                  "es": "¿Dónde vivís?",
+                  "suena": "dóve ábiti"
+                },
+                {
+                  "it": "Abito a Roma.",
+                  "es": "Vivo en Roma.",
+                  "suena": "ábito a róma"
+                },
+                {
+                  "it": "Abito in Italia.",
+                  "es": "Vivo en Italia.",
+                  "suena": "ábito in itália"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "dove",
+              "es": "dónde",
+              "suena": "dóve"
+            },
+            {
+              "it": "di",
+              "es": "de",
+              "suena": "di"
+            },
+            {
+              "it": "in",
+              "es": "en",
+              "suena": "in"
+            },
+            {
+              "it": "abito",
+              "es": "vivo",
+              "suena": "ábito"
+            },
+            {
+              "it": "abiti",
+              "es": "vivís",
+              "suena": "ábiti"
+            },
+            {
+              "it": "argentino",
+              "es": "argentino",
+              "suena": "argentíno"
+            },
+            {
+              "it": "italiano",
+              "es": "italiano",
+              "suena": "italiáno"
+            },
+            {
+              "it": "spagnolo",
+              "es": "español",
+              "suena": "spañólo"
+            },
+            {
+              "it": "parlo",
+              "es": "hablo",
+              "suena": "párlo"
+            },
+            {
+              "it": "parli",
+              "es": "hablás",
+              "suena": "párli"
+            },
+            {
+              "it": "un po'",
+              "es": "un poco",
+              "suena": "un po"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Di dove sei?",
+              "es": "¿De dónde sos?",
+              "suena": "di dóve sei"
+            },
+            {
+              "it": "Sono argentino e abito in Italia.",
+              "es": "Soy argentino y vivo en Italia.",
+              "suena": "sóno argentíno e ábito in itália"
+            },
+            {
+              "it": "Parlo spagnolo e un po' italiano.",
+              "es": "Hablo español y un poco de italiano.",
+              "suena": "párlo spañólo e un po italiáno"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "Un vecino te pregunta de dónde sos",
+              "renglones": [
+                {
+                  "quien": "Paolo",
+                  "it": "Di dove sei?",
+                  "es": "¿De dónde sos?"
+                },
+                {
+                  "quien": "Matías",
+                  "it": "Sono argentino, di Buenos Aires.",
+                  "es": "Soy argentino, de Buenos Aires."
+                },
+                {
+                  "quien": "Paolo",
+                  "it": "E dove abiti?",
+                  "es": "¿Y dónde vivís?"
+                },
+                {
+                  "quien": "Matías",
+                  "it": "Abito a Olbia. Parlo spagnolo e un po' italiano.",
+                  "es": "Vivo en Olbia. Hablo español y un poco de italiano."
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Dónde vive Matías?",
+                  "enunciado": "Dove abiti?",
+                  "opciones": [
+                    "A Olbia",
+                    "A Buenos Aires",
+                    "In Spagna"
+                  ],
+                  "correcta": "A Olbia",
+                  "porque": "Es argentino de Buenos Aires, pero ahora vive en Olbia."
+                },
+                {
+                  "consigna": "Completá",
+                  "enunciado": "Abito ___ Italia.",
+                  "opciones": [
+                    "in",
+                    "a",
+                    "di"
+                  ],
+                  "correcta": "in",
+                  "porque": "Con países va in; con ciudades, a: abito a Olbia, abito in Italia."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "olbia-8",
+          "titulo": "Quanti anni hai?",
+          "deQueVa": "El verbo avere y la edad",
+          "explicaciones": [
+            {
+              "titulo": "Avere: tener",
+              "texto": "io ho, tu hai, lui/lei ha, noi abbiamo, voi avete, loro hanno. Ojo con la H: no suena, es muda. ho se dice \"o\", hai se dice \"ai\".",
+              "ejemplos": [
+                {
+                  "it": "Ho un amico a Roma.",
+                  "es": "Tengo un amigo en Roma.",
+                  "suena": "o un amíco a róma"
+                },
+                {
+                  "it": "Hai una casa?",
+                  "es": "¿Tenés una casa?",
+                  "suena": "ai úna cása"
+                }
+              ]
+            },
+            {
+              "titulo": "La edad se tiene, no se es",
+              "texto": "En italiano no se dice \"soy de treinta años\": se tiene la edad, igual que en castellano. Quanti anni hai? — Ho trenta anni.",
+              "ejemplos": [
+                {
+                  "it": "Quanti anni hai?",
+                  "es": "¿Cuántos años tenés?",
+                  "suena": "cuánti ánni ái"
+                },
+                {
+                  "it": "Ho trenta anni.",
+                  "es": "Tengo treinta años.",
+                  "suena": "o trénta ánni"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "ho",
+              "es": "tengo",
+              "suena": "o"
+            },
+            {
+              "it": "hai",
+              "es": "tenés",
+              "suena": "ái"
+            },
+            {
+              "it": "ha",
+              "es": "tiene",
+              "suena": "a"
+            },
+            {
+              "it": "abbiamo",
+              "es": "tenemos",
+              "suena": "abbiámo"
+            },
+            {
+              "it": "anni",
+              "es": "años",
+              "suena": "ánni"
+            },
+            {
+              "it": "quanti",
+              "es": "cuántos",
+              "suena": "cuánti"
+            },
+            {
+              "it": "fame",
+              "es": "hambre",
+              "suena": "fáme"
+            },
+            {
+              "it": "sete",
+              "es": "sed",
+              "suena": "séte"
+            },
+            {
+              "it": "tempo",
+              "es": "tiempo",
+              "suena": "témpo"
+            },
+            {
+              "it": "trenta",
+              "es": "treinta",
+              "suena": "trénta"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Quanti anni hai?",
+              "es": "¿Cuántos años tenés?",
+              "suena": "cuánti ánni ái"
+            },
+            {
+              "it": "Ho trenta anni.",
+              "es": "Tengo treinta años.",
+              "suena": "o trénta ánni"
+            },
+            {
+              "it": "Ho fame e sete.",
+              "es": "Tengo hambre y sed.",
+              "suena": "o fáme e séte"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "Completá",
+              "enunciado": "Quanti anni ___?",
+              "opciones": [
+                "hai",
+                "ho",
+                "abbiamo"
+              ],
+              "correcta": "hai",
+              "porque": "Le estás preguntando a la otra persona: tu hai."
+            },
+            {
+              "consigna": "¿Cómo se lee \"ho\"?",
+              "enunciado": "ho",
+              "opciones": [
+                "o",
+                "jo",
+                "ho"
+              ],
+              "correcta": "o",
+              "porque": "La H italiana no suena nunca. Está solo para distinguir \"ho\" (tengo) de \"o\" (o)."
+            }
+          ]
+        },
+        {
+          "id": "olbia-9",
+          "titulo": "Che lavoro fai?",
+          "deQueVa": "Decir de qué trabajás",
+          "explicaciones": [
+            {
+              "titulo": "Che lavoro fai? — Sono...",
+              "texto": "La profesión va con essere y sin artículo: sono cuoco, no \"sono un cuoco\". Es una de las pocas cosas donde el italiano saca el artículo y el castellano también.",
+              "ejemplos": [
+                {
+                  "it": "Che lavoro fai?",
+                  "es": "¿De qué trabajás?",
+                  "suena": "ke lavóro fái"
+                },
+                {
+                  "it": "Sono cuoco.",
+                  "es": "Soy cocinero.",
+                  "suena": "sóno cuóco"
+                },
+                {
+                  "it": "Lavoro in un bar.",
+                  "es": "Trabajo en un bar.",
+                  "suena": "lavóro in un bar"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "lavoro",
+              "es": "trabajo",
+              "suena": "lavóro"
+            },
+            {
+              "it": "lavori",
+              "es": "trabajás",
+              "suena": "lavóri"
+            },
+            {
+              "it": "fai",
+              "es": "hacés",
+              "suena": "fái"
+            },
+            {
+              "it": "cuoco",
+              "es": "cocinero",
+              "suena": "cuóco"
+            },
+            {
+              "it": "cameriere",
+              "es": "mozo",
+              "suena": "camerière"
+            },
+            {
+              "it": "medico",
+              "es": "médico",
+              "suena": "médico"
+            },
+            {
+              "it": "studente",
+              "es": "estudiante",
+              "suena": "studénte"
+            },
+            {
+              "it": "bar",
+              "es": "bar, café",
+              "suena": "bar"
+            },
+            {
+              "it": "qui",
+              "es": "acá",
+              "suena": "cui"
+            },
+            {
+              "it": "fa",
+              "es": "hace (usted)",
+              "suena": "fa"
+            },
+            {
+              "it": "parla",
+              "es": "habla (usted)",
+              "suena": "párla"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Che lavoro fai?",
+              "es": "¿De qué trabajás?",
+              "suena": "ke lavóro fái"
+            },
+            {
+              "it": "Sono cameriere e lavoro qui.",
+              "es": "Soy mozo y trabajo acá.",
+              "suena": "sóno camerière e lavóro cui"
+            },
+            {
+              "it": "Lui è medico, lei è studente.",
+              "es": "Él es médico, ella es estudiante.",
+              "suena": "lui e médico, lei e studénte"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "Te presentás para un trabajo en un bar",
+              "renglones": [
+                {
+                  "quien": "Signora",
+                  "it": "Buongiorno! Come si chiama?",
+                  "es": "¡Buenos días! ¿Cómo se llama?"
+                },
+                {
+                  "quien": "Matías",
+                  "it": "Mi chiamo Matías. Sono argentino.",
+                  "es": "Me llamo Matías. Soy argentino."
+                },
+                {
+                  "quien": "Signora",
+                  "it": "Che lavoro fa?",
+                  "es": "¿De qué trabaja?"
+                },
+                {
+                  "quien": "Matías",
+                  "it": "Sono cameriere. Ho trenta anni e abito qui a Olbia.",
+                  "es": "Soy mozo. Tengo treinta años y vivo acá en Olbia."
+                },
+                {
+                  "quien": "Signora",
+                  "it": "Bene! Parla italiano?",
+                  "es": "¡Bien! ¿Habla italiano?"
+                },
+                {
+                  "quien": "Matías",
+                  "it": "Un po'. Parlo spagnolo e un po' italiano.",
+                  "es": "Un poco. Hablo español y un poco de italiano."
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Qué trabajo tiene Matías?",
+                  "enunciado": "Che lavoro fa?",
+                  "opciones": [
+                    "Cameriere",
+                    "Cuoco",
+                    "Medico"
+                  ],
+                  "correcta": "Cameriere",
+                  "porque": "Dijo \"sono cameriere\"."
+                },
+                {
+                  "consigna": "La señora dice \"fa\" y no \"fai\". ¿Por qué?",
+                  "enunciado": "Che lavoro fa?",
+                  "opciones": [
+                    "Porque lo trata de usted",
+                    "Porque es una pregunta",
+                    "Porque habla rápido"
+                  ],
+                  "correcta": "Porque lo trata de usted",
+                  "porque": "Con Lei el verbo va como con lui/lei: fa, parla, si chiama."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "olbia-10",
+          "titulo": "I numeri",
+          "deQueVa": "Del cero al cien, que te salvan en todos lados",
+          "explicaciones": [
+            {
+              "titulo": "Del uno al diez",
+              "texto": "uno, due, tre, quattro, cinque, sei, sette, otto, nove, dieci. Ojo con sei: también es \"sos\" del verbo essere. Se entiende por lo que viene alrededor.",
+              "ejemplos": [
+                {
+                  "it": "uno, due, tre",
+                  "es": "uno, dos, tres",
+                  "suena": "úno, dúe, tre"
+                },
+                {
+                  "it": "quattro, cinque, sei",
+                  "es": "cuatro, cinco, seis",
+                  "suena": "cuáttro, chíncue, sei"
+                },
+                {
+                  "it": "sette, otto, nove, dieci",
+                  "es": "siete, ocho, nueve, diez",
+                  "suena": "sétte, ótto, nóve, diéchi"
+                }
+              ]
+            },
+            {
+              "titulo": "Las decenas",
+              "texto": "venti, trenta, quaranta, cinquanta, sessanta, settanta, ottanta, novanta, cento. Para armar el resto se pegan: venti + due = ventidue. Y si el número empieza con vocal, la decena pierde la última letra: venti + uno = ventuno.",
+              "ejemplos": [
+                {
+                  "it": "ventidue",
+                  "es": "veintidós",
+                  "suena": "ventidúe"
+                },
+                {
+                  "it": "ventuno",
+                  "es": "veintiuno",
+                  "suena": "ventúno"
+                },
+                {
+                  "it": "cinquanta",
+                  "es": "cincuenta",
+                  "suena": "chincuánta"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "uno",
+              "es": "uno",
+              "suena": "úno"
+            },
+            {
+              "it": "due",
+              "es": "dos",
+              "suena": "dúe"
+            },
+            {
+              "it": "tre",
+              "es": "tres",
+              "suena": "tre"
+            },
+            {
+              "it": "quattro",
+              "es": "cuatro",
+              "suena": "cuáttro"
+            },
+            {
+              "it": "cinque",
+              "es": "cinco",
+              "suena": "chíncue"
+            },
+            {
+              "it": "sette",
+              "es": "siete",
+              "suena": "sétte"
+            },
+            {
+              "it": "otto",
+              "es": "ocho",
+              "suena": "ótto"
+            },
+            {
+              "it": "nove",
+              "es": "nueve",
+              "suena": "nóve"
+            },
+            {
+              "it": "dieci",
+              "es": "diez",
+              "suena": "diéchi"
+            },
+            {
+              "it": "venti",
+              "es": "veinte",
+              "suena": "vénti"
+            },
+            {
+              "it": "cento",
+              "es": "cien",
+              "suena": "chénto"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Ho venti anni.",
+              "es": "Tengo veinte años.",
+              "suena": "o vénti ánni"
+            },
+            {
+              "it": "Hai dieci anni?",
+              "es": "¿Tenés diez años?",
+              "suena": "ái diéchi ánni"
+            },
+            {
+              "it": "Uno, due, tre, quattro, cinque.",
+              "es": "Uno, dos, tres, cuatro, cinco.",
+              "suena": "úno dúe tre cuáttro chíncue"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "¿Cuánto es \"ventidue\"?",
+              "enunciado": "ventidue",
+              "opciones": [
+                "22",
+                "12",
+                "202"
+              ],
+              "correcta": "22",
+              "porque": "venti (20) + due (2), pegados: 22."
+            },
+            {
+              "consigna": "¿Cómo se dice 21?",
+              "enunciado": "21",
+              "opciones": [
+                "ventuno",
+                "ventiuno",
+                "ventiunu"
+              ],
+              "correcta": "ventuno",
+              "porque": "Uno empieza con vocal, así que venti pierde la i: ventuno."
+            }
+          ]
+        },
+        {
+          "id": "olbia-prueba",
+          "titulo": "La prueba de Olbia",
+          "deQueVa": "Si la pasás, se abre Cagliari",
+          "prueba": true,
+          "paraAprobar": 8,
+          "cuantas": 12
+        }
+      ]
+    },
+    {
+      "id": "cagliari",
+      "nombre": "Cagliari",
+      "subtitulo": "el día a día",
+      "nivel": 1,
+      "icono": "",
+      "x": 0.235,
+      "y": 0.63,
+      "lecciones": [
+        {
+          "id": "cagliari-1",
+          "titulo": "Il, lo, la, l'",
+          "deQueVa": "El artículo, que en italiano tiene cuatro formas",
+          "explicaciones": [
+            {
+              "titulo": "El \"el\" italiano tiene tres formas",
+              "texto": "il es la normal: il pane, il vino. l' va antes de vocal: l'amico. lo va antes de s con otra consonante (lo studente), de z (lo zucchero) y de gn, ps, y. La de mujer es una sola: la, y l' antes de vocal.",
+              "ejemplos": [
+                {
+                  "it": "il pane",
+                  "es": "el pan",
+                  "suena": "il páne"
+                },
+                {
+                  "it": "l'amico",
+                  "es": "el amigo",
+                  "suena": "lamíco"
+                },
+                {
+                  "it": "lo zucchero",
+                  "es": "el azúcar",
+                  "suena": "lo tsúkkero"
+                },
+                {
+                  "it": "la casa",
+                  "es": "la casa",
+                  "suena": "la cása"
+                }
+              ]
+            },
+            {
+              "titulo": "Por qué existe lo",
+              "texto": "No es un capricho: \"il studente\" es incómodo de decir, con tres consonantes seguidas. lo studente sale solo. Si te olvidás, se entiende igual, pero suena a extranjero.",
+              "ejemplos": [
+                {
+                  "it": "lo studente",
+                  "es": "el estudiante",
+                  "suena": "lo studénte"
+                },
+                {
+                  "it": "lo zaino",
+                  "es": "la mochila",
+                  "suena": "lo dsáino"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "il",
+              "es": "el",
+              "suena": "il"
+            },
+            {
+              "it": "lo",
+              "es": "el (antes de s+cons, z)",
+              "suena": "lo"
+            },
+            {
+              "it": "la",
+              "es": "la",
+              "suena": "la"
+            },
+            {
+              "it": "l'",
+              "es": "el, la (antes de vocal)",
+              "suena": "l"
+            },
+            {
+              "it": "caffè",
+              "es": "café",
+              "suena": "café"
+            },
+            {
+              "it": "acqua",
+              "es": "agua",
+              "suena": "ácua"
+            },
+            {
+              "it": "pane",
+              "es": "pan",
+              "suena": "páne"
+            },
+            {
+              "it": "vino",
+              "es": "vino",
+              "suena": "víno"
+            },
+            {
+              "it": "zucchero",
+              "es": "azúcar",
+              "suena": "tsúkkero"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Il caffè, per favore.",
+              "es": "El café, por favor.",
+              "suena": "il café per favóre"
+            },
+            {
+              "it": "L'acqua è qui.",
+              "es": "El agua está acá.",
+              "suena": "lácua e cui"
+            },
+            {
+              "it": "Lo zucchero, per favore.",
+              "es": "El azúcar, por favor.",
+              "suena": "lo tsúkkero per favóre"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "Completá",
+              "enunciado": "___ studente è qui.",
+              "opciones": [
+                "Lo",
+                "Il",
+                "La"
+              ],
+              "correcta": "Lo",
+              "porque": "studente empieza con s y otra consonante: va lo."
+            },
+            {
+              "consigna": "Completá",
+              "enunciado": "___ amico è a casa.",
+              "opciones": [
+                "L'",
+                "Il",
+                "Lo"
+              ],
+              "correcta": "L'",
+              "porque": "amico empieza con vocal, así que il se apoya: l'amico."
+            },
+            {
+              "consigna": "Completá",
+              "enunciado": "___ pane è buono.",
+              "opciones": [
+                "Il",
+                "Lo",
+                "L'"
+              ],
+              "correcta": "Il",
+              "porque": "pane empieza con una consonante sola: la forma normal, il."
+            }
+          ]
+        },
+        {
+          "id": "cagliari-2",
+          "titulo": "Uno o muchos",
+          "deQueVa": "El plural, y el género que arrastra todo",
+          "explicaciones": [
+            {
+              "titulo": "La O se vuelve I, la A se vuelve E",
+              "texto": "amico → amici, casa → case. No hay \"s\" de plural en italiano: cambia la última letra. Por eso \"dos cafés\" es due caffè, sin ninguna marca.",
+              "ejemplos": [
+                {
+                  "it": "il ragazzo → i ragazzi",
+                  "es": "el chico → los chicos",
+                  "suena": "i ragátsi"
+                },
+                {
+                  "it": "la ragazza → le ragazze",
+                  "es": "la chica → las chicas",
+                  "suena": "le ragátse"
+                }
+              ]
+            },
+            {
+              "titulo": "El artículo también cambia",
+              "texto": "il → i, la → le, lo y l' → gli. gli se lee \"lli\", como aprendiste en Olbia.",
+              "ejemplos": [
+                {
+                  "it": "i ragazzi",
+                  "es": "los chicos",
+                  "suena": "i ragátsi"
+                },
+                {
+                  "it": "le ragazze",
+                  "es": "las chicas",
+                  "suena": "le ragátse"
+                },
+                {
+                  "it": "gli studenti",
+                  "es": "los estudiantes",
+                  "suena": "lli studénti"
+                }
+              ]
+            },
+            {
+              "titulo": "El adjetivo acompaña",
+              "texto": "Si la palabra es de mujer, el adjetivo también: la ragazza è piccola, il ragazzo è piccolo. En plural, piccoli y piccole. Es lo mismo que en castellano.",
+              "ejemplos": [
+                {
+                  "it": "il gatto piccolo",
+                  "es": "el gato chico",
+                  "suena": "il gátto píccolo"
+                },
+                {
+                  "it": "la casa piccola",
+                  "es": "la casa chica",
+                  "suena": "la cása píccola"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "i",
+              "es": "los",
+              "suena": "i"
+            },
+            {
+              "it": "le",
+              "es": "las",
+              "suena": "le"
+            },
+            {
+              "it": "gli",
+              "es": "los (antes de vocal, s+cons, z)",
+              "suena": "lli"
+            },
+            {
+              "it": "ragazzo",
+              "es": "chico",
+              "suena": "ragátso"
+            },
+            {
+              "it": "ragazza",
+              "es": "chica",
+              "suena": "ragátsa"
+            },
+            {
+              "it": "ragazzi",
+              "es": "chicos",
+              "suena": "ragátsi"
+            },
+            {
+              "it": "ragazze",
+              "es": "chicas",
+              "suena": "ragátse"
+            },
+            {
+              "it": "molto",
+              "es": "mucho, muy",
+              "suena": "mólto"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Il ragazzo è qui.",
+              "es": "El chico está acá.",
+              "suena": "il ragátso e cui"
+            },
+            {
+              "it": "I ragazzi sono a casa.",
+              "es": "Los chicos están en casa.",
+              "suena": "i ragátsi sóno a cása"
+            },
+            {
+              "it": "Le ragazze sono molto bene.",
+              "es": "Las chicas están muy bien.",
+              "suena": "le ragátse sóno mólto béne"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "¿Cuál es el plural de \"il gatto\"?",
+              "enunciado": "il gatto",
+              "opciones": [
+                "i gatti",
+                "i gattos",
+                "le gatte"
+              ],
+              "correcta": "i gatti",
+              "porque": "La o final pasa a i, y il pasa a i. Nunca hay s."
+            },
+            {
+              "consigna": "Completá",
+              "enunciado": "La casa è ___.",
+              "opciones": [
+                "piccola",
+                "piccolo",
+                "piccoli"
+              ],
+              "correcta": "piccola",
+              "porque": "casa es de mujer, así que el adjetivo termina en -a."
+            }
+          ]
+        },
+        {
+          "id": "cagliari-3",
+          "titulo": "Los verbos de todos los días",
+          "deQueVa": "Tomar, entender, ir: lo que más vas a usar",
+          "explicaciones": [
+            {
+              "titulo": "Tres terminaciones: -are, -ere, -ire",
+              "texto": "Todos los verbos italianos terminan de una de estas tres formas, y cada grupo se conjuga parecido. parlare (hablar), prendere (tomar), capire (entender).",
+              "ejemplos": [
+                {
+                  "it": "parlo, parli, parla",
+                  "es": "hablo, hablás, habla",
+                  "suena": "párlo, párli, párla"
+                },
+                {
+                  "it": "prendo, prendi, prende",
+                  "es": "tomo, tomás, toma",
+                  "suena": "préndo, préndi, prénde"
+                },
+                {
+                  "it": "capisco, capisci, capisce",
+                  "es": "entiendo, entendés, entiende",
+                  "suena": "capísco, capíshi, capíshe"
+                }
+              ]
+            },
+            {
+              "titulo": "Non va adelante",
+              "texto": "Para negar, non va antes del verbo y nada más: non capisco, non parlo italiano. No hace falta nada más.",
+              "ejemplos": [
+                {
+                  "it": "Non capisco.",
+                  "es": "No entiendo.",
+                  "suena": "non capísco"
+                },
+                {
+                  "it": "Non parlo italiano.",
+                  "es": "No hablo italiano.",
+                  "suena": "non párlo italiáno"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "non",
+              "es": "no",
+              "suena": "non"
+            },
+            {
+              "it": "prendo",
+              "es": "tomo",
+              "suena": "préndo"
+            },
+            {
+              "it": "prendi",
+              "es": "tomás",
+              "suena": "préndi"
+            },
+            {
+              "it": "prende",
+              "es": "toma",
+              "suena": "prénde"
+            },
+            {
+              "it": "capisco",
+              "es": "entiendo",
+              "suena": "capísco"
+            },
+            {
+              "it": "capisci",
+              "es": "entendés",
+              "suena": "capíshi"
+            },
+            {
+              "it": "vado",
+              "es": "voy",
+              "suena": "vádo"
+            },
+            {
+              "it": "vai",
+              "es": "vas",
+              "suena": "vái"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Prendo un caffè.",
+              "es": "Tomo un café.",
+              "suena": "préndo un café"
+            },
+            {
+              "it": "Non capisco.",
+              "es": "No entiendo.",
+              "suena": "non capísco"
+            },
+            {
+              "it": "Vado a casa.",
+              "es": "Voy a casa.",
+              "suena": "vádo a cása"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "Completá",
+              "enunciado": "Io ___ un caffè.",
+              "opciones": [
+                "prendo",
+                "prendi",
+                "prende"
+              ],
+              "correcta": "prendo",
+              "porque": "Con io los verbos terminan en -o, casi siempre."
+            },
+            {
+              "consigna": "¿Cómo se dice \"no entiendo\"?",
+              "enunciado": "No entiendo",
+              "opciones": [
+                "Non capisco",
+                "Capisco non",
+                "No capisco"
+              ],
+              "correcta": "Non capisco",
+              "porque": "El non va siempre antes del verbo."
+            }
+          ]
+        },
+        {
+          "id": "cagliari-4",
+          "titulo": "Al bar",
+          "deQueVa": "Pedir un café y preguntar cuánto es",
+          "explicaciones": [
+            {
+              "titulo": "Vorrei, no voglio",
+              "texto": "voglio es \"quiero\" y suena mandón. vorrei es \"quisiera\" y es lo que se usa para pedir. Con per favore atrás, no falla nunca.",
+              "ejemplos": [
+                {
+                  "it": "Vorrei un caffè, per favore.",
+                  "es": "Quisiera un café, por favor.",
+                  "suena": "vorréi un café per favóre"
+                },
+                {
+                  "it": "Vorrei un cappuccino.",
+                  "es": "Quisiera un capuchino.",
+                  "suena": "vorréi un cappuchíno"
+                }
+              ]
+            },
+            {
+              "titulo": "En el bar italiano se toma parado",
+              "texto": "Casi siempre se paga primero en la caja y después se pide en la barra con el ticket. Sentarse en la mesa suele costar más: lo verás escrito como servizio al tavolo.",
+              "ejemplos": [
+                {
+                  "it": "Quanto costa?",
+                  "es": "¿Cuánto cuesta?",
+                  "suena": "cuánto cósta"
+                },
+                {
+                  "it": "Due euro.",
+                  "es": "Dos euros.",
+                  "suena": "dúe éuro"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "vorrei",
+              "es": "quisiera",
+              "suena": "vorréi"
+            },
+            {
+              "it": "cappuccino",
+              "es": "capuchino",
+              "suena": "cappuchíno"
+            },
+            {
+              "it": "cornetto",
+              "es": "medialuna",
+              "suena": "cornétto"
+            },
+            {
+              "it": "birra",
+              "es": "cerveza",
+              "suena": "bírra"
+            },
+            {
+              "it": "quanto",
+              "es": "cuánto",
+              "suena": "cuánto"
+            },
+            {
+              "it": "costa",
+              "es": "cuesta",
+              "suena": "cósta"
+            },
+            {
+              "it": "euro",
+              "es": "euro",
+              "suena": "éuro"
+            },
+            {
+              "it": "ecco",
+              "es": "acá tiene, aquí está",
+              "suena": "écco"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Vorrei un caffè, per favore.",
+              "es": "Quisiera un café, por favor.",
+              "suena": "vorréi un café per favóre"
+            },
+            {
+              "it": "Quanto costa il cornetto?",
+              "es": "¿Cuánto cuesta la medialuna?",
+              "suena": "cuánto cósta il cornétto"
+            },
+            {
+              "it": "Un cappuccino e un cornetto, per favore.",
+              "es": "Un capuchino y una medialuna, por favor.",
+              "suena": "un cappuchíno e un cornétto per favóre"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "En el bar, a la mañana",
+              "renglones": [
+                {
+                  "quien": "Barista",
+                  "it": "Buongiorno! Prego?",
+                  "es": "¡Buenos días! ¿Qué va a ser?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Buongiorno. Vorrei un cappuccino e un cornetto, per favore.",
+                  "es": "Buenos días. Quisiera un capuchino y una medialuna, por favor."
+                },
+                {
+                  "quien": "Barista",
+                  "it": "Ecco. Tre euro.",
+                  "es": "Acá tiene. Tres euros."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Grazie. Arrivederci!",
+                  "es": "Gracias. ¡Hasta luego!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Cuánto salió?",
+                  "enunciado": "Ecco. Tre euro.",
+                  "opciones": [
+                    "3 euros",
+                    "2 euros",
+                    "13 euros"
+                  ],
+                  "correcta": "3 euros",
+                  "porque": "tre es tres. Los números de Olbia vuelven todo el tiempo."
+                },
+                {
+                  "consigna": "El barista dice \"Prego?\" al empezar. ¿Qué quiere decir acá?",
+                  "enunciado": "Buongiorno! Prego?",
+                  "opciones": [
+                    "¿Qué va a llevar?",
+                    "De nada",
+                    "Por favor"
+                  ],
+                  "correcta": "¿Qué va a llevar?",
+                  "porque": "Prego sirve para muchas cosas: de nada, pase, y también \"dígame\" cuando te atienden."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cagliari-5",
+          "titulo": "La famiglia",
+          "deQueVa": "Hablar de los tuyos",
+          "explicaciones": [
+            {
+              "titulo": "Mio, mia",
+              "texto": "mio con palabras de varón y mia con las de mujer: mio padre, mia madre. Con la familia cercana no lleva artículo, que es la única rareza: mio fratello, no \"il mio fratello\".",
+              "ejemplos": [
+                {
+                  "it": "mio padre",
+                  "es": "mi papá",
+                  "suena": "mío pádre"
+                },
+                {
+                  "it": "mia madre",
+                  "es": "mi mamá",
+                  "suena": "mía mádre"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "mio",
+              "es": "mi (de varón)",
+              "suena": "mío"
+            },
+            {
+              "it": "mia",
+              "es": "mi (de mujer)",
+              "suena": "mía"
+            },
+            {
+              "it": "madre",
+              "es": "madre",
+              "suena": "mádre"
+            },
+            {
+              "it": "padre",
+              "es": "padre",
+              "suena": "pádre"
+            },
+            {
+              "it": "figlio",
+              "es": "hijo",
+              "suena": "fíllo"
+            },
+            {
+              "it": "figlia",
+              "es": "hija",
+              "suena": "fílla"
+            },
+            {
+              "it": "fratello",
+              "es": "hermano",
+              "suena": "fratéllo"
+            },
+            {
+              "it": "sorella",
+              "es": "hermana",
+              "suena": "sorélla"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Mio padre è italiano.",
+              "es": "Mi papá es italiano.",
+              "suena": "mío pádre e italiáno"
+            },
+            {
+              "it": "Ho un fratello e una sorella.",
+              "es": "Tengo un hermano y una hermana.",
+              "suena": "o un fratéllo e úna sorélla"
+            },
+            {
+              "it": "Mia madre è a Roma.",
+              "es": "Mi mamá está en Roma.",
+              "suena": "mía mádre e a róma"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "Completá",
+              "enunciado": "___ madre è qui.",
+              "opciones": [
+                "Mia",
+                "Mio",
+                "Mie"
+              ],
+              "correcta": "Mia",
+              "porque": "madre es de mujer: mia."
+            },
+            {
+              "consigna": "¿Cuál está bien?",
+              "enunciado": "mi hermano",
+              "opciones": [
+                "mio fratello",
+                "il mio fratello",
+                "mia fratello"
+              ],
+              "correcta": "mio fratello",
+              "porque": "Con la familia cercana no va el artículo."
+            }
+          ]
+        },
+        {
+          "id": "cagliari-6",
+          "titulo": "Mangiare e bere",
+          "deQueVa": "Comer, tomar, y qué pedir",
+          "explicaciones": [
+            {
+              "titulo": "Mangio, bevo",
+              "texto": "mangiare es comer y bere es tomar. io mangio, tu mangi; io bevo, tu bevi. En \"mangio\" la i no suena: está solo para que la g sea blanda, como en gelato.",
+              "ejemplos": [
+                {
+                  "it": "Mangio una pizza.",
+                  "es": "Como una pizza.",
+                  "suena": "mányo úna pítsa"
+                },
+                {
+                  "it": "Bevo un caffè.",
+                  "es": "Tomo un café.",
+                  "suena": "bévo un café"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "mangio",
+              "es": "como",
+              "suena": "mányo"
+            },
+            {
+              "it": "mangi",
+              "es": "comés",
+              "suena": "mányi"
+            },
+            {
+              "it": "bevo",
+              "es": "tomo, bebo",
+              "suena": "bévo"
+            },
+            {
+              "it": "bevi",
+              "es": "tomás, bebés",
+              "suena": "bévi"
+            },
+            {
+              "it": "pasta",
+              "es": "pasta",
+              "suena": "pásta"
+            },
+            {
+              "it": "pizza",
+              "es": "pizza",
+              "suena": "pítsa"
+            },
+            {
+              "it": "carne",
+              "es": "carne",
+              "suena": "cárne"
+            },
+            {
+              "it": "verdura",
+              "es": "verdura",
+              "suena": "verdúra"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Mangio una pizza.",
+              "es": "Como una pizza.",
+              "suena": "mányo úna pítsa"
+            },
+            {
+              "it": "Non mangio carne.",
+              "es": "No como carne.",
+              "suena": "non mányo cárne"
+            },
+            {
+              "it": "Bevo acqua, non vino.",
+              "es": "Tomo agua, no vino.",
+              "suena": "bévo ácua non víno"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "Sos vegetariano. ¿Qué decís?",
+              "enunciado": "___ carne.",
+              "opciones": [
+                "Non mangio",
+                "Mangio",
+                "Non bevo"
+              ],
+              "correcta": "Non mangio",
+              "porque": "mangiare es comer; bere es tomar."
+            }
+          ]
+        },
+        {
+          "id": "cagliari-7",
+          "titulo": "Comprare",
+          "deQueVa": "El restaurante, el negocio y la plata",
+          "explicaciones": [
+            {
+              "titulo": "Il conto, per favore",
+              "texto": "En Italia la cuenta no llega sola: hay que pedirla. Y el servicio suele venir incluido, así que no hace falta dejar propina como acá.",
+              "ejemplos": [
+                {
+                  "it": "Il conto, per favore.",
+                  "es": "La cuenta, por favor.",
+                  "suena": "il cónto per favóre"
+                },
+                {
+                  "it": "Quanto costa?",
+                  "es": "¿Cuánto cuesta?",
+                  "suena": "cuánto cósta"
+                }
+              ]
+            },
+            {
+              "titulo": "Aperto e chiuso",
+              "texto": "Mirá siempre el cartel: muchos negocios cierran al mediodía y abren de nuevo a la tarde. Si dice chiuso per ferie, está cerrado por vacaciones y puede ser por semanas.",
+              "ejemplos": [
+                {
+                  "it": "aperto",
+                  "es": "abierto",
+                  "suena": "apérto"
+                },
+                {
+                  "it": "chiuso",
+                  "es": "cerrado",
+                  "suena": "kiúso"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "conto",
+              "es": "cuenta",
+              "suena": "cónto"
+            },
+            {
+              "it": "menu",
+              "es": "menú",
+              "suena": "menú"
+            },
+            {
+              "it": "tavolo",
+              "es": "mesa",
+              "suena": "távolo"
+            },
+            {
+              "it": "negozio",
+              "es": "negocio",
+              "suena": "negótsio"
+            },
+            {
+              "it": "aperto",
+              "es": "abierto",
+              "suena": "apérto"
+            },
+            {
+              "it": "chiuso",
+              "es": "cerrado",
+              "suena": "kiúso"
+            },
+            {
+              "it": "soldi",
+              "es": "plata, dinero",
+              "suena": "sóldi"
+            },
+            {
+              "it": "troppo",
+              "es": "demasiado",
+              "suena": "tróppo"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Il conto, per favore.",
+              "es": "La cuenta, por favor.",
+              "suena": "il cónto per favóre"
+            },
+            {
+              "it": "Il negozio è chiuso.",
+              "es": "El negocio está cerrado.",
+              "suena": "il negótsio e kiúso"
+            },
+            {
+              "it": "Quanto costa il pane?",
+              "es": "¿Cuánto cuesta el pan?",
+              "suena": "cuánto cósta il páne"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "En el restaurante, al terminar",
+              "renglones": [
+                {
+                  "quien": "Vos",
+                  "it": "Scusi, il conto per favore.",
+                  "es": "Disculpe, la cuenta por favor."
+                },
+                {
+                  "quien": "Cameriere",
+                  "it": "Ecco. Venti euro.",
+                  "es": "Acá tiene. Veinte euros."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Venti euro? È troppo!",
+                  "es": "¿Veinte euros? ¡Es demasiado!"
+                },
+                {
+                  "quien": "Cameriere",
+                  "it": "Il menu è qui, signore.",
+                  "es": "El menú está acá, señor."
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Cuánto es la cuenta?",
+                  "enunciado": "Ecco. Venti euro.",
+                  "opciones": [
+                    "20 euros",
+                    "2 euros",
+                    "12 euros"
+                  ],
+                  "correcta": "20 euros",
+                  "porque": "venti es veinte. Ojo: ventidue sería 22."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cagliari-8",
+          "titulo": "Che ore sono?",
+          "deQueVa": "La hora, los días y cuándo",
+          "explicaciones": [
+            {
+              "titulo": "Che ore sono? — Sono le tre",
+              "texto": "La hora va en plural: sono le tre, sono le dieci. La única en singular es la una: è l'una. Para los minutos se usa e: sono le tre e venti.",
+              "ejemplos": [
+                {
+                  "it": "Che ore sono?",
+                  "es": "¿Qué hora es?",
+                  "suena": "ke óre sóno"
+                },
+                {
+                  "it": "Sono le tre.",
+                  "es": "Son las tres.",
+                  "suena": "sóno le tre"
+                },
+                {
+                  "it": "È l'una.",
+                  "es": "Es la una.",
+                  "suena": "e lúna"
+                }
+              ]
+            },
+            {
+              "titulo": "Los días de la semana",
+              "texto": "lunedì, martedì, mercoledì, giovedì, venerdì, sabato, domenica. Van con minúscula y los cinco primeros terminan en -dì, que es acentuado.",
+              "ejemplos": [
+                {
+                  "it": "lunedì, martedì, mercoledì",
+                  "es": "lunes, martes, miércoles",
+                  "suena": "lunedí, martedí, mercoledí"
+                },
+                {
+                  "it": "sabato, domenica",
+                  "es": "sábado, domingo",
+                  "suena": "sábato, doménica"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "ore",
+              "es": "horas",
+              "suena": "óre"
+            },
+            {
+              "it": "oggi",
+              "es": "hoy",
+              "suena": "óddyi"
+            },
+            {
+              "it": "domani",
+              "es": "mañana",
+              "suena": "dománi"
+            },
+            {
+              "it": "adesso",
+              "es": "ahora",
+              "suena": "adésso"
+            },
+            {
+              "it": "lunedì",
+              "es": "lunes",
+              "suena": "lunedí"
+            },
+            {
+              "it": "sabato",
+              "es": "sábado",
+              "suena": "sábato"
+            },
+            {
+              "it": "domenica",
+              "es": "domingo",
+              "suena": "doménica"
+            },
+            {
+              "it": "settimana",
+              "es": "semana",
+              "suena": "settimána"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Che ore sono?",
+              "es": "¿Qué hora es?",
+              "suena": "ke óre sóno"
+            },
+            {
+              "it": "Oggi è lunedì.",
+              "es": "Hoy es lunes.",
+              "suena": "óddyi e lunedí"
+            },
+            {
+              "it": "Domani vado a Roma.",
+              "es": "Mañana voy a Roma.",
+              "suena": "dománi vádo a róma"
+            }
+          ],
+          "preguntas": [
+            {
+              "consigna": "Completá",
+              "enunciado": "___ le tre.",
+              "opciones": [
+                "Sono",
+                "È",
+                "Ho"
+              ],
+              "correcta": "Sono",
+              "porque": "La hora va en plural: sono le tre. Solo la una es è l'una."
+            },
+            {
+              "consigna": "El negocio dice \"chiuso la domenica\". ¿Qué día no abre?",
+              "enunciado": "chiuso la domenica",
+              "opciones": [
+                "El domingo",
+                "El lunes",
+                "El sábado"
+              ],
+              "correcta": "El domingo",
+              "porque": "domenica es domingo, aunque suene parecido a \"semana\"."
+            }
+          ]
+        },
+        {
+          "id": "cagliari-9",
+          "titulo": "Dov'è la stazione?",
+          "deQueVa": "Preguntar dónde queda algo y tomar el tren",
+          "explicaciones": [
+            {
+              "titulo": "Scusi, dov'è...?",
+              "texto": "Es la fórmula completa: scusi para interrumpir, dov'è para preguntar. Y la respuesta casi siempre trae una de tres: a destra, a sinistra, sempre dritto.",
+              "ejemplos": [
+                {
+                  "it": "Scusi, dov'è la stazione?",
+                  "es": "Disculpe, ¿dónde está la estación?",
+                  "suena": "skúsi dové la statsióne"
+                },
+                {
+                  "it": "A destra.",
+                  "es": "A la derecha.",
+                  "suena": "a déstra"
+                },
+                {
+                  "it": "Sempre dritto.",
+                  "es": "Todo derecho.",
+                  "suena": "sémpre drítto"
+                }
+              ]
+            },
+            {
+              "titulo": "El billete hay que validarlo",
+              "texto": "En el tren y en el colectivo, el biglietto se compra antes y se marca en una maquinita amarilla antes de subir. Sin validar, aunque lo hayas pagado, es multa.",
+              "ejemplos": [
+                {
+                  "it": "Un biglietto per Roma, per favore.",
+                  "es": "Un boleto para Roma, por favor.",
+                  "suena": "un billétto per róma per favóre"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "dov'è",
+              "es": "dónde está",
+              "suena": "dové"
+            },
+            {
+              "it": "destra",
+              "es": "derecha",
+              "suena": "déstra"
+            },
+            {
+              "it": "sinistra",
+              "es": "izquierda",
+              "suena": "sinístra"
+            },
+            {
+              "it": "dritto",
+              "es": "derecho (de frente)",
+              "suena": "drítto"
+            },
+            {
+              "it": "stazione",
+              "es": "estación",
+              "suena": "statsióne"
+            },
+            {
+              "it": "treno",
+              "es": "tren",
+              "suena": "tréno"
+            },
+            {
+              "it": "biglietto",
+              "es": "boleto",
+              "suena": "billétto"
+            },
+            {
+              "it": "autobus",
+              "es": "colectivo",
+              "suena": "áutobus"
+            },
+            {
+              "it": "o",
+              "es": "o",
+              "suena": "o"
+            },
+            {
+              "it": "poi",
+              "es": "después",
+              "suena": "pói"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Scusi, dov'è la stazione?",
+              "es": "Disculpe, ¿dónde está la estación?",
+              "suena": "skúsi dové la statsióne"
+            },
+            {
+              "it": "A destra o a sinistra?",
+              "es": "¿A la derecha o a la izquierda?",
+              "suena": "a déstra o a sinístra"
+            },
+            {
+              "it": "Un biglietto per Roma, per favore.",
+              "es": "Un boleto para Roma, por favor.",
+              "suena": "un billétto per róma per favóre"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "Perdido en la calle",
+              "renglones": [
+                {
+                  "quien": "Vos",
+                  "it": "Scusi, dov'è la stazione?",
+                  "es": "Disculpe, ¿dónde está la estación?"
+                },
+                {
+                  "quien": "Signora",
+                  "it": "La stazione? Dritto e poi a destra.",
+                  "es": "¿La estación? Derecho y después a la derecha."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Dritto e a destra. Grazie!",
+                  "es": "Derecho y a la derecha. ¡Gracias!"
+                },
+                {
+                  "quien": "Signora",
+                  "it": "Prego. Arrivederci!",
+                  "es": "De nada. ¡Hasta luego!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Para dónde hay que doblar?",
+                  "enunciado": "Dritto e poi a destra.",
+                  "opciones": [
+                    "A la derecha",
+                    "A la izquierda",
+                    "Para atrás"
+                  ],
+                  "correcta": "A la derecha",
+                  "porque": "destra es derecha. sinistra es izquierda: no se parecen a las nuestras, hay que aprenderlas."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cagliari-10",
+          "titulo": "Non capisco, può ripetere?",
+          "deQueVa": "Las frases que te salvan cuando no entendés",
+          "explicaciones": [
+            {
+              "titulo": "Estas cuatro valen por una lección entera",
+              "texto": "Non capisco. Può ripetere, per favore? Parla lentamente, per favore. Cosa significa? Con estas cuatro, cualquier conversación se puede sostener aunque te falte todo lo demás.",
+              "ejemplos": [
+                {
+                  "it": "Non capisco.",
+                  "es": "No entiendo.",
+                  "suena": "non capísco"
+                },
+                {
+                  "it": "Può ripetere, per favore?",
+                  "es": "¿Puede repetir, por favor?",
+                  "suena": "puó ripétere per favóre"
+                },
+                {
+                  "it": "Cosa significa?",
+                  "es": "¿Qué significa?",
+                  "suena": "cósa siñífica"
+                }
+              ]
+            },
+            {
+              "titulo": "Parli spagnolo?",
+              "texto": "Preguntarlo no es rendirse: es lo que hace cualquiera. Y muchas veces la respuesta es un poco, y con eso alcanza para entenderse.",
+              "ejemplos": [
+                {
+                  "it": "Parli spagnolo?",
+                  "es": "¿Hablás español?",
+                  "suena": "párli spañólo"
+                },
+                {
+                  "it": "Parlo un po' italiano.",
+                  "es": "Hablo un poco de italiano.",
+                  "suena": "párlo un po italiáno"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "può",
+              "es": "puede (usted)",
+              "suena": "puó"
+            },
+            {
+              "it": "ripetere",
+              "es": "repetir",
+              "suena": "ripétere"
+            },
+            {
+              "it": "lentamente",
+              "es": "despacio",
+              "suena": "lentaménte"
+            },
+            {
+              "it": "cosa",
+              "es": "qué, cosa",
+              "suena": "cósa"
+            },
+            {
+              "it": "significa",
+              "es": "significa",
+              "suena": "siñífica"
+            },
+            {
+              "it": "aiuto",
+              "es": "ayuda, socorro",
+              "suena": "aiúto"
+            },
+            {
+              "it": "sempre",
+              "es": "siempre",
+              "suena": "sémpre"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Non capisco, può ripetere?",
+              "es": "No entiendo, ¿puede repetir?",
+              "suena": "non capísco puó ripétere"
+            },
+            {
+              "it": "Parla lentamente, per favore.",
+              "es": "Hable despacio, por favor.",
+              "suena": "párla lentaménte per favóre"
+            },
+            {
+              "it": "Cosa significa \"ecco\"?",
+              "es": "¿Qué significa \"ecco\"?",
+              "suena": "cósa siñífica écco"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "El primer día, con un vecino",
+              "renglones": [
+                {
+                  "quien": "Vicino",
+                  "it": "Buongiorno! Lei è il ragazzo argentino?",
+                  "es": "¡Buenos días! ¿Usted es el chico argentino?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Scusi, non capisco. Può ripetere lentamente, per favore?",
+                  "es": "Disculpe, no entiendo. ¿Puede repetir despacio, por favor?"
+                },
+                {
+                  "quien": "Vicino",
+                  "it": "Lei... è... argentino?",
+                  "es": "¿Usted... es... argentino?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Sì! Sono argentino. Mi chiamo Matteo. Parlo un po' italiano.",
+                  "es": "¡Sí! Soy argentino. Me llamo Matteo. Hablo un poco de italiano."
+                },
+                {
+                  "quien": "Vicino",
+                  "it": "Molto bene! Prendi un caffè?",
+                  "es": "¡Muy bien! ¿Tomás un café?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Sì, grazie!",
+                  "es": "¡Sí, gracias!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Qué hiciste cuando no entendiste?",
+                  "enunciado": "Non capisco. Può ripetere lentamente, per favore?",
+                  "opciones": [
+                    "Pedir que repita despacio",
+                    "Contestar que sí igual",
+                    "Irte"
+                  ],
+                  "correcta": "Pedir que repita despacio",
+                  "porque": "Es exactamente lo que hay que hacer, y en italiano se entiende como educación, no como torpeza."
+                },
+                {
+                  "consigna": "El vecino te ofrece algo. ¿Qué?",
+                  "enunciado": "Prendi un caffè?",
+                  "opciones": [
+                    "Un café",
+                    "Una cerveza",
+                    "Un helado"
+                  ],
+                  "correcta": "Un café",
+                  "porque": "prendere un caffè es la invitación italiana por excelencia."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "cagliari-prueba",
+          "titulo": "Examen del nivel 1",
+          "deQueVa": "Todo lo de Olbia y Cagliari junto",
+          "prueba": true,
+          "integradora": true,
+          "paraAprobar": 11,
+          "cuantas": 15
+        }
+      ]
+    },
     {
       "id": "palermo",
       "nombre": "Palermo",
       "subtitulo": "las primeras palabras",
-      "nivel": 1,
+      "nivel": 2,
       "icono": "palermo",
       "x": 0.61,
       "y": 0.76,
@@ -267,7 +3144,7 @@
       "id": "napoli",
       "nombre": "Napoli",
       "subtitulo": "la vida de todos los días",
-      "nivel": 2,
+      "nivel": 3,
       "icono": "napoli",
       "x": 0.71,
       "y": 0.56,
@@ -277,7 +3154,7 @@
       "id": "roma",
       "nombre": "Roma",
       "subtitulo": "el trabajo y la ciudad",
-      "nivel": 3,
+      "nivel": 4,
       "icono": "roma",
       "x": 0.61,
       "y": 0.48,
@@ -287,7 +3164,7 @@
       "id": "firenze",
       "nombre": "Firenze",
       "subtitulo": "contar lo que pasó",
-      "nivel": 4,
+      "nivel": 5,
       "icono": "firenze",
       "x": 0.49,
       "y": 0.42,
@@ -297,7 +3174,7 @@
       "id": "milano",
       "nombre": "Milano",
       "subtitulo": "hablar de todo",
-      "nivel": 5,
+      "nivel": 6,
       "icono": "milano",
       "x": 0.3,
       "y": 0.27,
