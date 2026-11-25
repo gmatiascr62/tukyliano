@@ -31,14 +31,15 @@ import 'package:tukyliano/pantallas/pantalla_chat.dart';
 import 'package:tukyliano/pantallas/pantalla_ciudad.dart';
 import 'package:tukyliano/pantallas/pantalla_mapa.dart';
 import 'package:tukyliano/pantallas/pantalla_frases.dart';
-import 'package:tukyliano/logica/armar_frase.dart';
 import 'package:tukyliano/logica/leccion.dart';
+import 'package:tukyliano/modelos/percorso.dart';
 import 'package:tukyliano/pantallas/pantalla_leccion.dart';
 import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 import 'package:tukyliano/tema.dart';
 
 import 'descargas_falsas.dart';
+import 'util_pantalla.dart';
 import 'reproductor_falso.dart';
 import 'voz_falsa.dart';
 
@@ -504,18 +505,30 @@ void main() {
       case 'leccion-elegir':
       case 'leccion-armar':
       case 'leccion-final':
+      case 'leccion-dialogo':
+      case 'leccion-relacionar':
         final conLecciones = RepositorioPercorso(
           leerAsset: (_) async =>
               File('assets/percorso.json').readAsStringSync(),
         );
         await conLecciones.cargar();
-        final cual1 = conLecciones.camino.ciudades.first.lecciones.first;
-        final guion = pasosDe(cual1, azar: Random(7));
+        final ciudad = conLecciones.camino.ciudades.first;
+        // La lección que se mira: la primera de Olbia para los pasos de
+        // enseñar, y la cuarta —la del diálogo— para el diálogo.
+        final cual1 = cual == 'leccion-dialogo'
+            ? ciudad.lecciones[3]
+            : ciudad.lecciones.first;
+        final antes = cual == 'leccion-dialogo'
+            ? ciudad.lecciones.sublist(0, 3)
+            : const <Leccion>[];
+        final guion = pasosDe(cual1, antes: antes, azar: Random(7));
         // Hasta dónde jugar: el primero que sea de la clase que se quiere
         // mirar, y para el final, la lección entera.
         final hasta = switch (cual) {
           'leccion-elegir' => guion.indexWhere((p) => p is ElegirTraduccion),
           'leccion-armar' => guion.indexWhere((p) => p is ArmarLaFrase),
+          'leccion-relacionar' => guion.indexWhere((p) => p is Relacionar),
+          'leccion-dialogo' => guion.indexWhere((p) => p is MostrarDialogo),
           'leccion-final' => guion.length,
           _ => 0,
         };
@@ -525,6 +538,7 @@ void main() {
           Scaffold(
             body: PantallaLeccion(
               leccion: cual1,
+              antes: antes,
               voz: VozFalsa(),
               azar: Random(7),
               alSalir: () {},
@@ -532,34 +546,7 @@ void main() {
             ),
           ),
           despuesDeAbrir: (tester) async {
-            Future<void> botonDeAbajo() async {
-              await tester.tap(find.byType(ElevatedButton));
-              await tester.pumpAndSettle();
-            }
-
-            for (var i = 0; i < hasta; i++) {
-              switch (guion[i]) {
-                case MostrarPalabra():
-                case MostrarFrase():
-                  await botonDeAbajo();
-                case ElegirTraduccion(:final correcta):
-                  await tester.tap(find.text(correcta).last);
-                  await tester.pumpAndSettle();
-                  await botonDeAbajo();
-                  await botonDeAbajo();
-                case ArmarLaFrase(:final frase, :final fichas):
-                  for (final palabra in palabrasDeLaFrase(frase.italiano)) {
-                    await tester.tap(
-                      find
-                          .text(fichas[fichas.indexOf(comoFicha(palabra))])
-                          .last,
-                    );
-                    await tester.pumpAndSettle();
-                  }
-                  await botonDeAbajo();
-                  await botonDeAbajo();
-              }
-            }
+            await jugarHasta(tester, guion, hasta);
           },
         );
 

@@ -11,7 +11,6 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:tukyliano/logica/armar_frase.dart';
 import 'package:tukyliano/logica/leccion.dart';
 import 'package:tukyliano/modelos/percorso.dart';
 import 'package:tukyliano/pantallas/pantalla_leccion.dart';
@@ -63,35 +62,6 @@ Future<VozFalsa> _abrir(
   return voz;
 }
 
-/// Toca el botón de abajo, sea cual sea el que esté.
-Future<void> _botonDeAbajo(WidgetTester tester) async {
-  await tester.tap(find.byType(ElevatedButton));
-  await tester.pumpAndSettle();
-}
-
-/// Contesta bien el paso que esté a la vista, si hay algo que contestar.
-Future<void> _contestarBien(WidgetTester tester, Paso paso) async {
-  switch (paso) {
-    case ElegirTraduccion(:final correcta):
-      // La última: hay palabras que se escriben igual en los dos idiomas
-      // —"casa", "la", "un"— y entonces el texto está dos veces, arriba en
-      // la tarjeta y abajo en las opciones. La de abajo es la que se toca.
-      await tester.tap(find.text(correcta).last);
-      await tester.pumpAndSettle();
-    case ArmarLaFrase(:final frase, :final fichas):
-      for (final palabra in palabrasDeLaFrase(frase.italiano)) {
-        final cual = fichas.indexOf(comoFicha(palabra));
-        // Cada ficha aparece una vez en el banco y, si ya se puso, otra
-        // arriba: se toca la del banco, que es la última dibujada.
-        await tester.tap(find.text(fichas[cual]).last);
-        await tester.pumpAndSettle();
-      }
-    case MostrarPalabra():
-    case MostrarFrase():
-      break;
-  }
-}
-
 void main() {
   testWidgets('arranca mostrando la primera palabra, no preguntándola', (
     tester,
@@ -111,27 +81,17 @@ void main() {
     await _abrir(tester, alTerminar: () => termino = true);
 
     final pasos = pasosDe(_leccion, azar: Random(7));
-    for (final paso in pasos) {
-      await _contestarBien(tester, paso);
-      // Comprobar y después Seguir, en los pasos que se contestan.
-      await _botonDeAbajo(tester);
-      if (paso is ElegirTraduccion || paso is ArmarLaFrase) {
-        expect(find.text('¡Bien!'), findsOneWidget);
-        await _botonDeAbajo(tester);
-      }
-    }
+    await jugarHasta(tester, pasos, pasos.length);
 
     expect(find.text('¡Lección terminada!'), findsOneWidget);
-    final cuantasSeContestan = pasos
-        .where((p) => p is ElegirTraduccion || p is ArmarLaFrase)
-        .length;
+    final cuantasSeContestan = pasos.where(seContesta).length;
     expect(
       find.text('$cuantasSeContestan de $cuantasSeContestan bien'),
       findsOneWidget,
     );
 
     expect(termino, isFalse, reason: 'todavía no se apretó Terminar');
-    await _botonDeAbajo(tester);
+    await botonDeAbajo(tester);
     expect(termino, isTrue);
   });
 
@@ -142,7 +102,7 @@ void main() {
     final pasos = pasosDe(_leccion, azar: Random(7));
     for (final paso in pasos) {
       if (paso is ElegirTraduccion) break;
-      await _botonDeAbajo(tester);
+      await botonDeAbajo(tester);
     }
 
     expect(find.text('Comprobar'), findsOneWidget);
@@ -162,18 +122,18 @@ void main() {
         pregunta = paso;
         break;
       }
-      await _botonDeAbajo(tester);
+      await botonDeAbajo(tester);
     }
 
     final mala = pregunta.opciones.firstWhere((o) => o != pregunta.correcta);
     await tester.tap(find.text(mala).last);
     await tester.pumpAndSettle();
-    await _botonDeAbajo(tester);
+    await botonDeAbajo(tester);
 
     expect(find.text('Era: ${pregunta.correcta}'), findsOneWidget);
     // Y se sigue: equivocarse no es un callejón sin salida.
     expect(find.text('Seguir'), findsOneWidget);
-    await _botonDeAbajo(tester);
+    await botonDeAbajo(tester);
     expect(find.text('Era: ${pregunta.correcta}'), findsNothing);
   });
 
@@ -191,14 +151,14 @@ void main() {
           find.text(paso.opciones.firstWhere((o) => o != paso.correcta)).last,
         );
         await tester.pumpAndSettle();
-        await _botonDeAbajo(tester);
-        await _botonDeAbajo(tester);
+        await botonDeAbajo(tester);
+        await botonDeAbajo(tester);
         continue;
       }
-      if (paso is ArmarLaFrase) contestadas++;
-      await _contestarBien(tester, paso);
-      await _botonDeAbajo(tester);
-      if (paso is ArmarLaFrase) await _botonDeAbajo(tester);
+      if (seContesta(paso)) contestadas++;
+      await contestarBien(tester, paso);
+      await botonDeAbajo(tester);
+      if (seContesta(paso)) await botonDeAbajo(tester);
     }
 
     expect(

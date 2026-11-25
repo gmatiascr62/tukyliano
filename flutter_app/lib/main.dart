@@ -371,6 +371,31 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   void _cerrarLeccion() => setState(() => _leccion = null);
 
+  /// Lo que ya se dio antes de [leccion].
+  ///
+  /// Normalmente son las lecciones anteriores de la misma ciudad. Si es
+  /// la prueba que cierra un nivel, en cambio, entra todo el nivel: de
+  /// eso se trata un integrador.
+  List<Leccion> _loDadoAntesDe(Leccion leccion) {
+    final ciudad = _ciudadAbierta;
+    if (ciudad == null) return const [];
+    final dadas = <Leccion>[];
+    if (leccion.integradora) {
+      for (final otra in _camino.camino.ciudades) {
+        if (otra.id == ciudad.id) break;
+        if (otra.nivel != ciudad.nivel) continue;
+        dadas.addAll(otra.lecciones.where((l) => !l.esPrueba));
+      }
+    }
+    final donde = ciudad.lecciones.indexWhere((l) => l.id == leccion.id);
+    if (donde > 0) {
+      dadas.addAll(
+        ciudad.lecciones.sublist(0, donde).where((l) => !l.esPrueba),
+      );
+    }
+    return dadas;
+  }
+
   /// Un paso para atrás. Desde una sección de gramática se vuelve a la lista
   /// de temas, no al inicio: es de donde se entró.
   void _volver() {
@@ -495,23 +520,12 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
       final haciendo = _leccion;
       if (haciendo != null) {
-        // La prueba todavía no existe. Se muestra el cartel en vez de
-        // dejarla pasar: una pantalla vacía con un botón "Terminar"
-        // abriría Napoli sin haber contestado nada.
-        if (haciendo.esPrueba) {
-          return _ConCruz(
-            alSalir: _cerrarLeccion,
-            hijo: const PantallaProximamente(
-              adelanto:
-                  'Acá va a estar la prueba de la ciudad: ocho preguntas '
-                  'con todo lo que se vio, y seis bien para abrir la que '
-                  'sigue.',
-            ),
-          );
-        }
         return PantallaLeccion(
           leccion: haciendo,
           voz: _voz,
+          // Lo que ya se dio en esta ciudad: de ahí salen el repaso del
+          // final y, si esto es la prueba, todas sus preguntas.
+          antes: _loDadoAntesDe(haciendo),
           alSalir: _cerrarLeccion,
           alTerminar: () {
             _progreso.termino(haciendo.id);
@@ -650,36 +664,6 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       verbos: _resolverVerbos(_verbosElegidos),
       tiempos: _tiemposElegidos ?? tiemposDisponibles,
       progreso: _progreso,
-    );
-  }
-}
-
-/// Una pantalla prestada, con una cruz arriba para salir.
-///
-/// La usa la prueba mientras no exista: sirve para que el cartel de
-/// "próximamente" no sea una pantalla sin salida.
-class _ConCruz extends StatelessWidget {
-  const _ConCruz({required this.hijo, required this.alSalir});
-
-  final Widget hijo;
-  final VoidCallback alSalir;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.stretch,
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: IconButton(
-            onPressed: alSalir,
-            icon: const Icon(Icons.close_rounded),
-            color: Tema.textoTenue,
-            tooltip: 'Salir',
-          ),
-        ),
-        Expanded(child: hijo),
-      ],
     );
   }
 }
