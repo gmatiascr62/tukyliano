@@ -19,13 +19,13 @@ import 'package:tukyliano/tema.dart';
 import 'util_pantalla.dart';
 
 Ciudad _ciudad(String id, {List<Leccion> lecciones = const []}) => Ciudad(
-      id: id,
-      nombre: id[0].toUpperCase() + id.substring(1),
-      icono: '',
-      x: 0.5,
-      y: 0.5,
-      lecciones: lecciones,
-    );
+  id: id,
+  nombre: id[0].toUpperCase() + id.substring(1),
+  icono: '',
+  x: 0.5,
+  y: 0.5,
+  lecciones: lecciones,
+);
 
 final _conLecciones = [
   const Leccion(id: 'palermo-1', titulo: 'Il gatto è in cucina'),
@@ -40,19 +40,25 @@ Progreso _progresoCon(List<String> hechas) {
   return progreso;
 }
 
-Future<void> _abrir(WidgetTester tester, List<Ciudad> ciudades,
-    {Progreso? progreso, void Function(Ciudad)? alElegir}) async {
+Future<void> _abrir(
+  WidgetTester tester,
+  List<Ciudad> ciudades, {
+  Progreso? progreso,
+  void Function(Ciudad)? alElegir,
+}) async {
   usarPantallaDeCelular(tester);
-  await tester.pumpWidget(MaterialApp(
-    theme: Tema.datos,
-    home: Scaffold(
-      body: PantallaMapa(
-        ciudades: ciudades,
-        progreso: progreso ?? _progresoCon(const []),
-        alElegir: alElegir,
+  await tester.pumpWidget(
+    MaterialApp(
+      theme: Tema.datos,
+      home: Scaffold(
+        body: PantallaMapa(
+          ciudades: ciudades,
+          progreso: progreso ?? _progresoCon(const []),
+          alElegir: alElegir,
+        ),
       ),
     ),
-  ));
+  );
   await tester.pump();
 }
 
@@ -65,8 +71,11 @@ void main() {
 
       expect(donde.height, 855, reason: 'tiene que llenar el alto');
       expect(donde.width, closeTo(481.2, 0.2));
-      expect(donde.left, closeTo(-43.1, 0.2),
-          reason: 'el dibujo empieza antes del borde izquierdo');
+      expect(
+        donde.left,
+        closeTo(-43.1, 0.2),
+        reason: 'el dibujo empieza antes del borde izquierdo',
+      );
       expect(donde.top, 0);
     });
 
@@ -92,8 +101,9 @@ void main() {
   });
 
   group('las ciudades', () {
-    testWidgets('se muestran todas, también las que no tienen contenido',
-        (tester) async {
+    testWidgets('se muestran todas, también las que no tienen contenido', (
+      tester,
+    ) async {
       await _abrir(tester, [
         _ciudad('palermo', lecciones: _conLecciones),
         _ciudad('napoli'),
@@ -109,14 +119,10 @@ void main() {
 
     testWidgets('sólo se puede entrar a la que está abierta', (tester) async {
       final elegidas = <String>[];
-      await _abrir(
-        tester,
-        [
-          _ciudad('palermo', lecciones: _conLecciones),
-          _ciudad('napoli'),
-        ],
-        alElegir: (ciudad) => elegidas.add(ciudad.id),
-      );
+      await _abrir(tester, [
+        _ciudad('palermo', lecciones: _conLecciones),
+        _ciudad('napoli'),
+      ], alElegir: (ciudad) => elegidas.add(ciudad.id));
 
       await tester.tap(find.text('Napoli'));
       await tester.pump();
@@ -127,24 +133,17 @@ void main() {
       expect(elegidas, ['palermo']);
     });
 
-    testWidgets('la tarjeta de abajo dice qué lección toca', (tester) async {
-      await _abrir(
-        tester,
-        [_ciudad('palermo', lecciones: _conLecciones)],
-        progreso: _progresoCon(['palermo-1']),
-      );
+    testWidgets('no hay tarjeta abajo: la ciudad encendida ya lo dice', (
+      tester,
+    ) async {
+      // La sacó Matías: "creo que es innecesario". Repetía lo que el mapa
+      // ya muestra y tapaba media Sicilia. El test queda para que no
+      // vuelva sola.
+      await _abrir(tester, [
+        _ciudad('palermo', lecciones: _conLecciones),
+      ], progreso: _progresoCon(['palermo-1']));
 
-      expect(find.text('Palermo · Ha fame'), findsOneWidget);
-    });
-
-    testWidgets('terminada la ciudad, no queda tarjeta', (tester) async {
-      // Con todo hecho y sin ciudad siguiente, no hay nada para ofrecer.
-      await _abrir(
-        tester,
-        [_ciudad('palermo', lecciones: _conLecciones)],
-        progreso: _progresoCon(['palermo-1', 'palermo-2']),
-      );
-
+      expect(find.textContaining('Ha fame'), findsNothing);
       expect(find.byIcon(Icons.play_arrow_rounded), findsNothing);
     });
   });

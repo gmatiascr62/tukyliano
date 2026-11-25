@@ -48,6 +48,11 @@ Rect dondeEntraElMapa(Size pantalla, {double proporcion = proporcionDelMapa}) {
 /// casi vacío se lee como "la app está a medio hacer"; Italia entera en
 /// gris con una sola encendida se lee como "todavía no", y de paso muestra
 /// cuánto camino hay.
+///
+/// Abajo había una tarjeta que decía qué lección tocaba. Matías la marcó y
+/// la sacó: "creo que es innecesario". Y es cierto que repetía —la ciudad
+/// encendida ya es la que toca, y adentro está la lección con su botón—,
+/// además de tapar media Sicilia.
 class PantallaMapa extends StatelessWidget {
   const PantallaMapa({
     super.key,
@@ -80,17 +85,8 @@ class PantallaMapa extends StatelessWidget {
     return true;
   }
 
-  /// La que toca: la primera abierta sin terminar.
-  Ciudad? get _laQueToca {
-    for (var i = 0; i < ciudades.length; i++) {
-      if (_abierta(i) && !_terminada(ciudades[i])) return ciudades[i];
-    }
-    return null;
-  }
-
   @override
   Widget build(BuildContext context) {
-    final toca = _laQueToca;
     return LayoutBuilder(
       builder: (context, medidas) {
         final mapa = dondeEntraElMapa(
@@ -118,17 +114,6 @@ class PantallaMapa extends StatelessWidget {
                 top: 86,
                 right: 10,
                 child: _Herramientas(alIrA: alIrA!),
-              ),
-            if (toca != null)
-              Positioned(
-                left: 14,
-                right: 14,
-                bottom: 16,
-                child: _Seguir(
-                  ciudad: toca,
-                  progreso: progreso,
-                  alTocar: alElegir == null ? null : () => alElegir!(toca),
-                ),
               ),
           ],
         );
@@ -256,85 +241,6 @@ class _Ciudad extends StatelessWidget {
     0.6,
     0,
   ];
-}
-
-/// La tarjeta de abajo: qué toca hacer hoy.
-class _Seguir extends StatelessWidget {
-  const _Seguir({required this.ciudad, required this.progreso, this.alTocar});
-
-  final Ciudad ciudad;
-  final Progreso progreso;
-  final VoidCallback? alTocar;
-
-  @override
-  Widget build(BuildContext context) {
-    final toca = ciudad.lecciones
-        .where((l) => !progreso.hizo(l.id))
-        .firstOrNull;
-    // La sombra va por decoración y no por el elevation de Material: es la
-    // misma que usa el resto de la app, y la de Material se dibujaba como
-    // un borde negro duro en vez de una sombra.
-    return Container(
-      decoration: BoxDecoration(
-        color: Tema.superficie,
-        borderRadius: BorderRadius.circular(18),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x33000000),
-            blurRadius: 14,
-            offset: Offset(0, 4),
-          ),
-        ],
-      ),
-      child: InkWell(
-        onTap: alTocar,
-        borderRadius: BorderRadius.circular(18),
-        child: Padding(
-          padding: const EdgeInsets.fromLTRB(16, 13, 13, 13),
-          child: Row(
-            children: [
-              Expanded(
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${ciudad.nombre} · ${toca?.titulo ?? ''}',
-                      style: const TextStyle(
-                        fontSize: 15,
-                        fontWeight: FontWeight.w700,
-                        color: Tema.titulo,
-                      ),
-                    ),
-                    if (toca?.deQueVa.isNotEmpty ?? false)
-                      Text(
-                        toca!.deQueVa,
-                        style: const TextStyle(
-                          fontSize: 12.5,
-                          color: Tema.textoTenue,
-                        ),
-                      ),
-                  ],
-                ),
-              ),
-              Container(
-                width: 38,
-                height: 38,
-                decoration: const BoxDecoration(
-                  color: Tema.verde,
-                  shape: BoxShape.circle,
-                ),
-                child: const Icon(
-                  Icons.play_arrow_rounded,
-                  color: Colors.white,
-                  size: 22,
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    );
-  }
 }
 
 /// La racha y el nivel, en un solo renglón.
