@@ -412,6 +412,11 @@
               "it": "una",
               "es": "una",
               "suena": "úna"
+            },
+            {
+              "it": "caffè",
+              "es": "café",
+              "suena": "café"
             }
           ],
           "frases": [
@@ -433,8 +438,8 @@
           ],
           "preguntas": [
             {
-              "consigna": "Entrás a una panadería a las nueve de la mañana. ¿Qué decís?",
-              "enunciado": "___, un pesce, per favore.",
+              "consigna": "Entrás a un bar a las nueve de la mañana. ¿Qué decís?",
+              "enunciado": "___, un caffè, per favore.",
               "opciones": [
                 "Buongiorno",
                 "Buonasera",
@@ -1295,9 +1300,9 @@
               "suena": "sóno camerière e lavóro cui"
             },
             {
-              "it": "Lui è medico, lei è studente.",
-              "es": "Él es médico, ella es estudiante.",
-              "suena": "lui e médico, lei e studénte"
+              "it": "Lui è medico e io sono cameriere.",
+              "es": "Él es médico y yo soy mozo.",
+              "suena": "lui e médico e ío sóno camerière"
             }
           ],
           "dialogos": [
@@ -1598,11 +1603,6 @@
               "suena": "l"
             },
             {
-              "it": "caffè",
-              "es": "café",
-              "suena": "café"
-            },
-            {
               "it": "acqua",
               "es": "agua",
               "suena": "ácua"
@@ -1665,7 +1665,7 @@
             },
             {
               "consigna": "Completá",
-              "enunciado": "___ pane è buono.",
+              "enunciado": "___ pane è qui.",
               "opciones": [
                 "Il",
                 "Lo",
@@ -1789,9 +1789,9 @@
               "suena": "i ragátsi sóno a cása"
             },
             {
-              "it": "Le ragazze sono molto bene.",
-              "es": "Las chicas están muy bien.",
-              "suena": "le ragátse sóno mólto béne"
+              "it": "Le ragazze sono a Roma.",
+              "es": "Las chicas están en Roma.",
+              "suena": "le ragátse sóno a róma"
             }
           ],
           "preguntas": [
@@ -2409,13 +2409,13 @@
                 },
                 {
                   "quien": "Vos",
-                  "it": "Venti euro? È troppo!",
-                  "es": "¿Veinte euros? ¡Es demasiado!"
+                  "it": "Ecco. Grazie!",
+                  "es": "Acá tiene. ¡Gracias!"
                 },
                 {
                   "quien": "Cameriere",
-                  "it": "Il menu è qui, signore.",
-                  "es": "El menú está acá, señor."
+                  "it": "Grazie a Lei. Arrivederci!",
+                  "es": "Gracias a usted. ¡Hasta luego!"
                 }
               ],
               "preguntas": [
@@ -2827,8 +2827,8 @@
                 },
                 {
                   "quien": "Vos",
-                  "it": "Sì! Sono argentino. Mi chiamo Matteo. Parlo un po' italiano.",
-                  "es": "¡Sí! Soy argentino. Me llamo Matteo. Hablo un poco de italiano."
+                  "it": "Sì! Sono argentino. Parlo un po' italiano.",
+                  "es": "¡Sí! Soy argentino. Hablo un poco de italiano."
                 },
                 {
                   "quien": "Vicino",
