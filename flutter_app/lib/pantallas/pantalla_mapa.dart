@@ -279,9 +279,9 @@ class _Arriba extends StatelessWidget {
           ),
           const SizedBox(width: 5),
           // Los dos flexibles y con puntos suspensivos: con la letra del
-          // sistema agrandada, "Principiante · faltan 50" no entra al lado
-          // de la racha y el renglón se desborda. Es lo mismo que pasó con
-          // la tarjeta de Frasi, y acá se evita de entrada.
+          // sistema agrandada, hasta el renglón corto puede no entrar al
+          // lado de la racha y desbordarse. Es lo mismo que pasó con la
+          // tarjeta de Frasi, y acá se evita de entrada.
           Flexible(
             child: Text(
               '${progreso.diasPracticados} de $diasDeLaSemana días',
@@ -297,9 +297,15 @@ class _Arriba extends StatelessWidget {
           const SizedBox(width: 10),
           Flexible(
             child: Text(
-              nivel.esElUltimo
-                  ? nivel.nombre
-                  : '${nivel.nombre} · faltan ${nivel.faltan}',
+              // Sin el nombre del nivel. Decía "Principiante · faltan 32"
+              // y en el celular de Matías entraba cortado: "Principiante ·
+              // fal…", o sea el nombre completo y el número, que es lo
+              // único que cambia día a día, invisible. Lo pidió así: que
+              // diga "faltan 32" y nada más.
+              //
+              // En el último nivel no falta nada, así que ahí sí va el
+              // nombre: es lo único que queda para decir.
+              nivel.esElUltimo ? nivel.nombre : 'faltan ${nivel.faltan}',
               textAlign: TextAlign.right,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
