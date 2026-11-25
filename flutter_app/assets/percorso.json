@@ -7,7 +7,7 @@
       "nombre": "Olbia",
       "subtitulo": "las primeras palabras",
       "nivel": 1,
-      "icono": "",
+      "icono": "olbia",
       "x": 0.275,
       "y": 0.51,
       "lecciones": [
@@ -1524,7 +1524,7 @@
       "nombre": "Cagliari",
       "subtitulo": "el día a día",
       "nivel": 1,
-      "icono": "",
+      "icono": "cagliari",
       "x": 0.235,
       "y": 0.63,
       "lecciones": [
