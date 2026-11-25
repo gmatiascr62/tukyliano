@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../datos/progreso.dart';
+import '../modelos/destino.dart';
 import '../modelos/percorso.dart';
 import '../tema.dart';
 
@@ -11,11 +12,10 @@ import '../tema.dart';
 /// sola cosa para apretar, que es la que toca. Las hechas quedan en verde y
 /// las que faltan, apagadas.
 ///
-/// Si acá hubiera tres botones iguales —cuentos, gramática, hablar— el que
-/// no sabe nada volvería a tener que elegir, que es justo de lo que el
-/// camino lo saca. Por eso esas tres están abajo, chiquitas y bajo el
-/// cartel de "practicá más": están para el que quiere repasar, no para
-/// avanzar.
+/// Si acá arriba hubiera botones iguales —gramática, hablar— el que no
+/// sabe nada volvería a tener que elegir, que es justo de lo que el camino
+/// lo saca. Por eso van abajo de todo, chiquitas y bajo el cartel de
+/// "practicá más": están para el que quiere repasar, no para avanzar.
 class PantallaCiudad extends StatelessWidget {
   const PantallaCiudad({
     super.key,
@@ -23,6 +23,7 @@ class PantallaCiudad extends StatelessWidget {
     required this.progreso,
     this.alVolver,
     this.alEmpezar,
+    this.alIrA,
   });
 
   final Ciudad ciudad;
@@ -31,6 +32,10 @@ class PantallaCiudad extends StatelessWidget {
 
   /// Qué hacer cuando se aprieta la lección que toca.
   final void Function(Leccion)? alEmpezar;
+
+  /// Las de practicar un tema. Si no viene, el cartel de abajo no se
+  /// dibuja (los tests que solo miran la fila de lecciones).
+  final void Function(Destino)? alIrA;
 
   /// La primera sin hacer: la única que se puede apretar.
   Leccion? get _laQueToca {
@@ -56,10 +61,17 @@ class PantallaCiudad extends StatelessWidget {
         _Cabecera(ciudad: ciudad, alVolver: alVolver),
         _Avance(hechas: hechas, total: total),
         Expanded(
+          // "Practicá más" va adentro de la lista, no clavado abajo: si
+          // fuera una barra fija se leería como parte del camino, y además
+          // en un celular chico le comería un escalón de lugar a la fila,
+          // que es lo único que importa acá.
           child: ListView.builder(
             padding: const EdgeInsets.fromLTRB(16, 14, 16, 8),
-            itemCount: ciudad.lecciones.length,
+            itemCount: ciudad.lecciones.length + (alIrA == null ? 0 : 1),
             itemBuilder: (_, i) {
+              if (i == ciudad.lecciones.length) {
+                return _PracticarMas(alIrA: alIrA!);
+              }
               final leccion = ciudad.lecciones[i];
               return _Paso(
                 leccion: leccion,
@@ -72,6 +84,96 @@ class PantallaCiudad extends StatelessWidget {
           ),
         ),
       ],
+    );
+  }
+}
+
+/// Gramática y hablar, al final de la fila.
+///
+/// Chiquitas y abajo de todo a propósito: no son un escalón del camino,
+/// son para el que ya hizo la lección y quiere seguir dándole al mismo
+/// tema. Llevan los mismos dibujos de arcilla que el mapa.
+class _PracticarMas extends StatelessWidget {
+  const _PracticarMas({required this.alIrA});
+
+  final void Function(Destino) alIrA;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.only(top: 6, bottom: 10),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          const Text(
+            'Practicá más',
+            style: TextStyle(
+              fontSize: 13,
+              fontWeight: FontWeight.w700,
+              color: Tema.textoTenue,
+            ),
+          ),
+          const SizedBox(height: 9),
+          // Wrap y no Row: con la letra del sistema agrandada las dos
+          // chapitas no entran en un renglón —en los tests, con la
+          // tipografía de prueba, se pasaban 6 píxeles— y así la segunda
+          // baja sola en vez de quedar cortada.
+          Wrap(
+            spacing: 10,
+            runSpacing: 9,
+            children: [
+              for (final destino in paraPracticarMas)
+                _Chapita(destino: destino, alTocar: () => alIrA(destino)),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+class _Chapita extends StatelessWidget {
+  const _Chapita({required this.destino, required this.alTocar});
+
+  final Destino destino;
+  final VoidCallback alTocar;
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: alTocar,
+      behavior: HitTestBehavior.opaque,
+      child: Container(
+        padding: const EdgeInsets.fromLTRB(10, 7, 14, 7),
+        decoration: BoxDecoration(
+          color: Tema.superficie,
+          borderRadius: BorderRadius.circular(16),
+          border: Border.all(color: Tema.borde),
+        ),
+        child: Row(
+          mainAxisSize: MainAxisSize.min,
+          children: [
+            Image.asset(
+              'assets/camino/${destino.dibujo}.png',
+              width: 26,
+              height: 26,
+            ),
+            const SizedBox(width: 7),
+            Flexible(
+              child: Text(
+                destino.etiqueta,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: const TextStyle(
+                  fontSize: 14,
+                  fontWeight: FontWeight.w700,
+                  color: Tema.titulo,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

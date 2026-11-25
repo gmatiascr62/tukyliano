@@ -16,7 +16,8 @@ import 'util_pantalla.dart';
 /// Clave en memoria: en los tests no hay path_provider. La app ya no la usa,
 /// Verbos en memoria, por el mismo motivo.
 class _RepoFalso extends RepositorioVerbos {
-  static final _datos = DatosVerbos.desdeJson(jsonDecode('''
+  static final _datos = DatosVerbos.desdeJson(
+    jsonDecode('''
     {"version": 5, "verbos": {
       "essere": {"traduccion": "ser/estar", "tiempos": {
         "presente": {"io": {"italiano": "sono", "espanol": "yo soy/estoy"}}
@@ -25,7 +26,9 @@ class _RepoFalso extends RepositorioVerbos {
         "presente": {"io": {"italiano": "ho", "espanol": "yo tengo"}}
       }}
     }}
-  ''') as Map<String, dynamic>);
+  ''')
+        as Map<String, dynamic>,
+  );
 
   @override
   Future<DatosVerbos> cargar() async => _datos;
@@ -36,35 +39,28 @@ class _RepoFalso extends RepositorioVerbos {
 }
 
 RepositorioFrases _frasesFalsas() => RepositorioFrases(
-      leerAsset: (_) async => '''
+  leerAsset: (_) async => '''
         {"frases": [
           {"verbo": "avere", "tiempo": "presente", "persona": "io",
            "espanol": "Tengo mucha hambre", "italiano": "Ho molta fame",
            "pista": "hambre = fame"}
         ]}
       ''',
-      cliente: MockClient((_) async => http.Response('', 404)),
-      carpeta: () async => null,
-    );
+  cliente: MockClient((_) async => http.Response('', 404)),
+  carpeta: () async => null,
+);
 
 Widget _app() => TukylianoApp(
-      repositorio: _RepoFalso(),
-      frasesLocales: _frasesFalsas(),
-      progreso: Progreso(carpeta: () async => null),
-    );
+  camino: caminoDePrueba(),
+  repositorio: _RepoFalso(),
+  frasesLocales: _frasesFalsas(),
+  progreso: Progreso(carpeta: () async => null),
+);
 
-/// Entra a un tema de gramática desde el inicio: primero el botón redondo,
-/// después la tarjeta del tema.
+/// Entra a un tema de gramática desde donde esté: primero Gramática
+/// —que está adentro de la ciudad—, después la tarjeta del tema.
 Future<void> _irA(WidgetTester tester, String tema) async {
-  if (find.byIcon(Icons.arrow_back).evaluate().isNotEmpty) {
-    // Se está adentro de algo: hay que salir hasta el inicio.
-    while (find.byIcon(Icons.arrow_back).evaluate().isNotEmpty) {
-      await tester.tap(find.byIcon(Icons.arrow_back));
-      await tester.pumpAndSettle();
-    }
-  }
-  await tester.tap(find.byTooltip(Destino.gramatica.etiqueta));
-  await tester.pumpAndSettle();
+  await entrarA(tester, Destino.gramatica);
   await tester.tap(find.text(tema));
   await tester.pumpAndSettle();
 }
@@ -84,8 +80,9 @@ bool _tildado(WidgetTester tester, String texto) {
 }
 
 void main() {
-  testWidgets('Frasi lleva a elegir qué practicar, sin pedir ninguna clave',
-      (tester) async {
+  testWidgets('Frasi lleva a elegir qué practicar, sin pedir ninguna clave', (
+    tester,
+  ) async {
     usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
@@ -98,8 +95,9 @@ void main() {
     expect(find.widgetWithText(ElevatedButton, 'Pegar clave'), findsNothing);
   });
 
-  testWidgets('volver a Frasi deja elegir de nuevo, no cae en la práctica',
-      (tester) async {
+  testWidgets('volver a Frasi deja elegir de nuevo, no cae en la práctica', (
+    tester,
+  ) async {
     usarPantallaDeCelular(tester);
     // Regresión: antes conservaba el paso, así que al volver desde otra
     // sección entraba directo a practicar y no se podían cambiar los verbos.
@@ -117,8 +115,9 @@ void main() {
     expect(find.textContaining('Tengo mucha hambre'), findsNothing);
   });
 
-  testWidgets('al volver, los tildes quedan como se habían dejado',
-      (tester) async {
+  testWidgets('al volver, los tildes quedan como se habían dejado', (
+    tester,
+  ) async {
     usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
@@ -153,8 +152,9 @@ void main() {
     expect(_tildado(tester, 'essere (ser/estar)'), isTrue);
   });
 
-  testWidgets('no muestra nada sobre el chequeo de verbos nuevos',
-      (tester) async {
+  testWidgets('no muestra nada sobre el chequeo de verbos nuevos', (
+    tester,
+  ) async {
     usarPantallaDeCelular(tester);
     await tester.pumpWidget(_app());
     await tester.pumpAndSettle();
@@ -166,5 +166,4 @@ void main() {
     expect(find.textContaining('última versión'), findsNothing);
     expect(find.textContaining('Buscando verbos'), findsNothing);
   });
-
 }

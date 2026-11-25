@@ -20,32 +20,26 @@ import 'voz_falsa.dart';
 Progreso _progresoDePrueba() => Progreso(carpeta: () async => null);
 
 RepositorioParticelle _viaConUnaFrase() => RepositorioParticelle(
-      asset: assetVia,
-      urlRemoto: urlViaRemoto,
-      archivoLocal: archivoViaLocal,
-      leerAsset: (_) async => '''
+  asset: assetVia,
+  urlRemoto: urlViaRemoto,
+  archivoLocal: archivoViaLocal,
+  leerAsset: (_) async => '''
         {"version": 1, "frases": [
           {"frase": "___ via, è tardi.", "correcta": "Vado", "es": "me voy",
            "opciones": ["Vado", "Porto", "Butto", "Mando"],
            "explicacion": "andare via = irse.", "persona": "io"}
         ]}
       ''',
-      cliente: MockClient((_) async => http.Response('', 404)),
-      carpeta: () async => null,
-    );
+  cliente: MockClient((_) async => http.Response('', 404)),
+  carpeta: () async => null,
+);
 
 Future<void> _abrir(WidgetTester tester, {Widget? app}) async {
   usarPantallaDeCelular(tester);
-  await tester.pumpWidget(app ?? TukylianoApp(progreso: _progresoDePrueba()));
-  await tester.pumpAndSettle();
-}
-
-/// Toca una de las herramientas del costado del mapa.
-///
-/// Se busca por el tooltip y no por el ícono: en el mapa los botones son
-/// dibujos, no íconos.
-Future<void> _entrarA(WidgetTester tester, Destino destino) async {
-  await tester.tap(find.byTooltip(destino.etiqueta));
+  await tester.pumpWidget(
+    app ??
+        TukylianoApp(progreso: _progresoDePrueba(), camino: caminoDePrueba()),
+  );
   await tester.pumpAndSettle();
 }
 
@@ -58,22 +52,42 @@ void main() {
   // En los tests no hay plugins de plataforma, así que la carga de verbos
   // (path_provider) falla y la sección Verbi queda sin datos. Acá se verifica
   // la navegación; el parseo se prueba en modelo_verbo_test.dart.
-  testWidgets('arranca en el mapa, con todas las herramientas a mano',
-      (WidgetTester tester) async {
+  testWidgets('en el mapa están las cuatro herramientas, y solo esas cuatro', (
+    WidgetTester tester,
+  ) async {
     await _abrir(tester);
 
-    // Al pasar el mapa al frente, lo que no podía perderse era el acceso
-    // rápido a lo de siempre. Están las seis, al costado.
-    for (final destino in Destino.values) {
-      expect(find.byTooltip(destino.etiqueta), findsOneWidget,
-          reason: destino.name);
+    // Son cuatro, no seis: gramática y hablar están adentro de la ciudad.
+    // Esto lo marcó Matías mirando el APK, así que el test mira las dos
+    // cosas —las que tienen que estar y las que no— y no solo las primeras:
+    // si solo mirara las cuatro, volver a poner las seis pasaría en verde.
+    for (final destino in herramientasDelMapa) {
+      expect(
+        find.byTooltip(destino.etiqueta),
+        findsOneWidget,
+        reason: destino.name,
+      );
     }
+    for (final destino in paraPracticarMas) {
+      expect(
+        find.byTooltip(destino.etiqueta),
+        findsNothing,
+        reason: destino.name,
+      );
+    }
+    expect(
+      herramientasDelMapa.length + paraPracticarMas.length,
+      Destino.values.length,
+      reason: 'ningún destino puede quedar sin pantalla de dónde salir',
+    );
+
     // El inicio no es una sección: no hay de dónde volver.
     expect(find.byIcon(Icons.arrow_back), findsNothing);
   });
 
-  testWidgets('el mapa muestra la racha y el nivel',
-      (WidgetTester tester) async {
+  testWidgets('el mapa muestra la racha y el nivel', (
+    WidgetTester tester,
+  ) async {
     // Eran dos cosas grandes en la pantalla vieja —la tarjeta de los siete
     // días y el anillo— y acá van chicas, en un renglón. Chicas, pero no
     // se van: la racha es de lo poco que hace volver al otro día.
@@ -83,11 +97,12 @@ void main() {
     expect(find.textContaining('Principiante'), findsOneWidget);
   });
 
-  testWidgets('entrar a una sección y volver al inicio con la flecha',
-      (WidgetTester tester) async {
+  testWidgets('entrar a una sección y volver al inicio con la flecha', (
+    WidgetTester tester,
+  ) async {
     await _abrir(tester);
 
-    await _entrarA(tester, Destino.racconti);
+    await entrarA(tester, Destino.racconti);
     expect(find.text('Racconti'), findsWidgets);
 
     await _volver(tester);
@@ -96,17 +111,18 @@ void main() {
 
   testWidgets('gramática abre los siete temas', (WidgetTester tester) async {
     await _abrir(tester);
-    await _entrarA(tester, Destino.gramatica);
+    await entrarA(tester, Destino.gramatica);
 
     for (final (seccion, _, _) in PantallaGramatica.temas) {
       expect(find.text(seccion.etiqueta), findsOneWidget, reason: seccion.name);
     }
   });
 
-  testWidgets('desde un tema se vuelve a la lista de temas, no al inicio',
-      (WidgetTester tester) async {
+  testWidgets('desde un tema se vuelve a la lista de temas, no al inicio', (
+    WidgetTester tester,
+  ) async {
     await _abrir(tester);
-    await _entrarA(tester, Destino.gramatica);
+    await entrarA(tester, Destino.gramatica);
 
     await tester.tap(find.text('Articoli'));
     await tester.pumpAndSettle();
@@ -121,10 +137,11 @@ void main() {
     expect(find.textContaining('Principiante'), findsOneWidget);
   });
 
-  testWidgets('Ci y Ne ya tienen su lugar, pero todavía no el contenido',
-      (WidgetTester tester) async {
+  testWidgets('Ci y Ne ya tienen su lugar, pero todavía no el contenido', (
+    WidgetTester tester,
+  ) async {
     await _abrir(tester);
-    await _entrarA(tester, Destino.gramatica);
+    await entrarA(tester, Destino.gramatica);
 
     for (final seccion in [Seccion.ci, Seccion.ne]) {
       await tester.tap(find.text(seccion.etiqueta));
@@ -140,24 +157,30 @@ void main() {
     await _abrir(
       tester,
       app: TukylianoApp(
+        camino: caminoDePrueba(),
         voz: VozFalsa(),
         escucha: EscuchaFalsa(),
         progreso: _progresoDePrueba(),
       ),
     );
 
-    await _entrarA(tester, Destino.hablar);
+    await entrarA(tester, Destino.hablar);
     expect(find.text('DECILA EN VOZ ALTA'), findsOneWidget);
   });
 
-  testWidgets('Via entra a la práctica, con sus dos modos',
-      (WidgetTester tester) async {
+  testWidgets('Via entra a la práctica, con sus dos modos', (
+    WidgetTester tester,
+  ) async {
     await _abrir(
       tester,
-      app: TukylianoApp(via: _viaConUnaFrase(), progreso: _progresoDePrueba()),
+      app: TukylianoApp(
+        via: _viaConUnaFrase(),
+        progreso: _progresoDePrueba(),
+        camino: caminoDePrueba(),
+      ),
     );
 
-    await _entrarA(tester, Destino.gramatica);
+    await entrarA(tester, Destino.gramatica);
     await tester.tap(find.text('Via'));
     await tester.pumpAndSettle();
 
@@ -166,14 +189,18 @@ void main() {
     expect(find.text('Escribir'), findsOneWidget);
   });
 
-  testWidgets('Chat abre en la charla guionada y no pide ninguna clave',
-      (WidgetTester tester) async {
+  testWidgets('Chat abre en la charla guionada y no pide ninguna clave', (
+    WidgetTester tester,
+  ) async {
     await _abrir(
       tester,
-      app: TukylianoApp(progreso: _progresoDePrueba()),
+      app: TukylianoApp(
+        progreso: _progresoDePrueba(),
+        camino: caminoDePrueba(),
+      ),
     );
 
-    await _entrarA(tester, Destino.chat);
+    await entrarA(tester, Destino.chat);
 
     // La charla del bar anda sin internet y sin clave.
     expect(find.text('Al bar'), findsOneWidget);

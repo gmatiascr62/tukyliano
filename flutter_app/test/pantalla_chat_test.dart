@@ -28,9 +28,9 @@ class _Espia {
   /// El saludo va aparte en el pedido, así que se suma acá adelante para que
   /// los índices sigan contando la charla entera, como antes.
   List<Map<String, dynamic>> get ultimosTurnos => [
-        {'quien': 'ia', 'texto': pedidos.last['saludo']},
-        ...(pedidos.last['mensajes'] as List).cast<Map<String, dynamic>>(),
-      ];
+    {'quien': 'ia', 'texto': pedidos.last['saludo']},
+    ...(pedidos.last['mensajes'] as List).cast<Map<String, dynamic>>(),
+  ];
 
   String textoDe(int turno) => ultimosTurnos[turno]['texto'] as String;
 }
@@ -105,29 +105,31 @@ Future<_Espia> _abrir(
   final dir = carpeta ?? _carpeta();
   final espia = _Espia();
   usarPantallaDeCelular(tester);
-  await tester.pumpWidget(MaterialApp(
-    theme: Tema.datos,
-    home: Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.all(14),
-        child: PantallaChat(
-          escena: escena,
-          servidor: _servidor(
-            espia,
-            respuesta: respuesta,
-            estado: estado,
-            demora: demora,
+  await tester.pumpWidget(
+    MaterialApp(
+      theme: Tema.datos,
+      home: Scaffold(
+        body: Padding(
+          padding: const EdgeInsets.all(14),
+          child: PantallaChat(
+            escena: escena,
+            servidor: _servidor(
+              espia,
+              respuesta: respuesta,
+              estado: estado,
+              demora: demora,
+            ),
+            quienSoy: QuienSoy(carpeta: () async => dir),
+            voz: voz ?? VozFalsa(),
+            diccionario: RepositorioDiccionario(
+              leerAsset: (_) async => _diccionarioDePrueba,
+            ),
+            azar: Random(_semilla),
           ),
-          quienSoy: QuienSoy(carpeta: () async => dir),
-          voz: voz ?? VozFalsa(),
-          diccionario: RepositorioDiccionario(
-            leerAsset: (_) async => _diccionarioDePrueba,
-          ),
-          azar: Random(_semilla),
         ),
       ),
     ),
-  ));
+  );
   await tester.pumpAndSettle();
   return espia;
 }
@@ -138,7 +140,8 @@ Future<void> _escribir(WidgetTester tester, String texto) async {
   await tester.pump();
 }
 
-ElevatedButton _botonEnviar(WidgetTester tester) => tester.widget<ElevatedButton>(
+ElevatedButton _botonEnviar(WidgetTester tester) =>
+    tester.widget<ElevatedButton>(
       find.ancestor(
         of: find.byIcon(Icons.send_rounded),
         matching: find.byType(ElevatedButton),
@@ -152,8 +155,9 @@ Future<void> _enviar(WidgetTester tester) async {
 
 void main() {
   group('quién soy', () {
-    testWidgets('el número del celular se inventa una vez y se guarda',
-        (tester) async {
+    testWidgets('el número del celular se inventa una vez y se guarda', (
+      tester,
+    ) async {
       // Es lo único que viaja al servidor para identificar al celular, y
       // existe para repartir los topes: sin él, el primero que charlara toda
       // la tarde dejaría a los demás sin mensajes.
@@ -180,24 +184,29 @@ void main() {
 
       // El pedido lleva quién, el código de invitación, en qué escena está,
       // el saludo y la charla. Nada más: el modelo lo corre el servidor.
-      expect(
-        espia.pedidos.last.keys.toSet(),
-        {'quien', 'codigo', 'escena', 'saludo', 'mensajes'},
-      );
+      expect(espia.pedidos.last.keys.toSet(), {
+        'quien',
+        'codigo',
+        'escena',
+        'saludo',
+        'mensajes',
+      });
     });
   });
 
   group('la charla', () {
-    testWidgets('arranca con el saludo, sin pedirle nada a la IA',
-        (tester) async {
+    testWidgets('arranca con el saludo, sin pedirle nada a la IA', (
+      tester,
+    ) async {
       final espia = await _abrir(tester);
 
       expect(find.text(_saludoFijo), findsOneWidget);
       expect(espia.pedidos, isEmpty);
     });
 
-    testWidgets('se escribe con el teclado propio y contesta la IA',
-        (tester) async {
+    testWidgets('se escribe con el teclado propio y contesta la IA', (
+      tester,
+    ) async {
       final espia = await _abrir(tester, respuesta: 'Bene! E tu?');
 
       await _escribir(tester, 'ciao');
@@ -210,8 +219,7 @@ void main() {
       expect(find.text('Escribí en italiano...'), findsOneWidget);
     });
 
-    testWidgets('usa el teclado del celular, con corrector',
-        (tester) async {
+    testWidgets('usa el teclado del celular, con corrector', (tester) async {
       // En el resto de la app el teclado es propio: corregir una conjugación
       // a medio escribir le resolvería el ejercicio al alumno. Acá son frases
       // enteras y el corrector ayuda.
@@ -257,19 +265,23 @@ void main() {
       final espia = _Espia();
 
       usarPantallaDeCelular(tester);
-      await tester.pumpWidget(MaterialApp(
-        theme: Tema.datos,
-        home: Scaffold(
-          body: PantallaChat(
-            servidor: Servidor(
-              url: 'https://servidor-de-mentira',
-              cliente: MockClient((_) async => throw const SocketException('')),
+      await tester.pumpWidget(
+        MaterialApp(
+          theme: Tema.datos,
+          home: Scaffold(
+            body: PantallaChat(
+              servidor: Servidor(
+                url: 'https://servidor-de-mentira',
+                cliente: MockClient(
+                  (_) async => throw const SocketException(''),
+                ),
+              ),
+              quienSoy: QuienSoy(carpeta: () async => null),
+              voz: VozFalsa(),
             ),
-            quienSoy: QuienSoy(carpeta: () async => null),
-            voz: VozFalsa(),
           ),
         ),
-      ));
+      );
       await tester.pumpAndSettle();
 
       await _escribir(tester, 'ciao');
@@ -283,8 +295,9 @@ void main() {
   });
 
   group('las traducciones con almohadillas', () {
-    testWidgets('la contesta el diccionario, sin molestar a la IA',
-        (tester) async {
+    testWidgets('la contesta el diccionario, sin molestar a la IA', (
+      tester,
+    ) async {
       final espia = await _abrir(tester);
 
       await _escribir(tester, '#manteca#');
@@ -316,8 +329,9 @@ void main() {
       );
     });
 
-    testWidgets('un pedido en medio de una frase no corta la charla',
-        (tester) async {
+    testWidgets('un pedido en medio de una frase no corta la charla', (
+      tester,
+    ) async {
       final espia = await _abrir(tester, respuesta: 'Capisco, cosa prepari?');
 
       await _escribir(tester, 'mi serve #manteca#');
@@ -332,8 +346,9 @@ void main() {
       expect(espia.textoDe(1), 'mi serve manteca');
     });
 
-    testWidgets('buscar una palabra no queda en la memoria de la IA',
-        (tester) async {
+    testWidgets('buscar una palabra no queda en la memoria de la IA', (
+      tester,
+    ) async {
       final espia = await _abrir(tester);
 
       await _escribir(tester, '#manteca#');
@@ -348,13 +363,15 @@ void main() {
   });
 
   group('la corrección', () {
-    testWidgets('no se muestra si corrige con la misma frase que escribí',
-        (tester) async {
+    testWidgets('no se muestra si corrige con la misma frase que escribí', (
+      tester,
+    ) async {
       // Lo que pasó practicando: "io vado al lavoro" está bien escrito y la
       // corrección repetía la frase igual.
       await _abrir(
         tester,
-        respuesta: 'Correzione: io vado al lavoro\n'
+        respuesta:
+            'Correzione: io vado al lavoro\n'
             'Lavori sempre così presto la mattina?',
       );
 
@@ -379,8 +396,10 @@ void main() {
 
       // La marca se lee en castellano; la frase corregida sigue en italiano,
       // que es lo que hay que aprender.
-      expect(find.textContaining('Se dice así: io vado al lavoro'),
-          findsOneWidget);
+      expect(
+        find.textContaining('Se dice así: io vado al lavoro'),
+        findsOneWidget,
+      );
       expect(find.textContaining('Correzione:'), findsNothing);
     });
   });
@@ -400,8 +419,9 @@ void main() {
       expect(voz.dicho, contains('Bene! E tu?'));
     });
 
-    testWidgets('el ojito destapa la respuesta que no se entendió',
-        (tester) async {
+    testWidgets('el ojito destapa la respuesta que no se entendió', (
+      tester,
+    ) async {
       await _abrir(tester, respuesta: 'Bene! E tu?');
 
       await tester.tap(find.text('Solo escuchar'));
@@ -426,8 +446,9 @@ void main() {
       expect(voz.dicho, contains('manteca = burro'));
     });
 
-    testWidgets('lo que ya se leyó no se tapa al prender el modo',
-        (tester) async {
+    testWidgets('lo que ya se leyó no se tapa al prender el modo', (
+      tester,
+    ) async {
       await _abrir(tester);
 
       await tester.tap(find.text('Solo escuchar'));
@@ -449,8 +470,9 @@ void main() {
       expect(find.text('Bene! E tu?'), findsOneWidget);
     });
 
-    testWidgets('con el modo apagado se toca la burbuja para escucharla',
-        (tester) async {
+    testWidgets('con el modo apagado se toca la burbuja para escucharla', (
+      tester,
+    ) async {
       final voz = VozFalsa();
       await _abrir(tester, respuesta: 'Bene! E tu?', voz: voz);
 
@@ -464,8 +486,9 @@ void main() {
       expect(voz.dicho, ['Bene! E tu?']);
     });
 
-    testWidgets('sin la voz italiana instalada no se ofrece el modo',
-        (tester) async {
+    testWidgets('sin la voz italiana instalada no se ofrece el modo', (
+      tester,
+    ) async {
       // Hablar italiano con los sonidos de otro idioma enseña mal, así que ahí
       // no hay nada que escuchar: se avisa cómo instalarla.
       await _abrir(tester, voz: VozFalsa(hayItaliano: false));
@@ -480,25 +503,19 @@ void main() {
       final espia = _Espia();
 
       usarPantallaDeCelular(tester);
-      await tester.pumpWidget(TukylianoApp(
-        servidor: _servidor(espia, respuesta: 'Bene! E tu?'),
-        voz: VozFalsa(),
-      ));
+      await tester.pumpWidget(
+        TukylianoApp(
+          camino: caminoDePrueba(),
+          servidor: _servidor(espia, respuesta: 'Bene! E tu?'),
+          voz: VozFalsa(),
+        ),
+      );
       await tester.pumpAndSettle();
 
-      // Volver al inicio y entrar a otra cosa: es lo que destruye la pantalla
+      // Volver al mapa y entrar a otra cosa: es lo que destruye la pantalla
       // del chat y, con ella, la charla.
-      Future<void> volverAlInicio() async {
-        while (find.byIcon(Icons.arrow_back).evaluate().isNotEmpty) {
-          await tester.tap(find.byIcon(Icons.arrow_back));
-          await tester.pumpAndSettle();
-        }
-      }
-
       Future<void> irA(Destino destino) async {
-        await volverAlInicio();
-        await tester.tap(find.byTooltip(destino.etiqueta));
-        await tester.pumpAndSettle();
+        await entrarA(tester, destino);
         // La sección abre en la charla guionada, que anda sin clave. La charla
         // con la IA es la otra pastilla.
         if (destino == Destino.chat) {
@@ -547,8 +564,9 @@ void main() {
       expect(find.textContaining('Sono Tuky'), findsOneWidget);
     });
 
-    testWidgets('la IA tampoco se acuerda de la charla anterior',
-        (tester) async {
+    testWidgets('la IA tampoco se acuerda de la charla anterior', (
+      tester,
+    ) async {
       final espia = await _abrir(tester);
       await _escribir(tester, 'mi chiamo Matías');
       await _enviar(tester);
@@ -564,8 +582,9 @@ void main() {
       expect(espia.textoDe(1), 'ciao');
     });
 
-    testWidgets('mientras la IA piensa, el botón no se puede tocar',
-        (tester) async {
+    testWidgets('mientras la IA piensa, el botón no se puede tocar', (
+      tester,
+    ) async {
       // Si no, la respuesta llegaría a una charla que ya no existe.
       await _abrir(tester, demora: const Duration(seconds: 1));
       await _escribir(tester, 'ciao');
@@ -583,12 +602,13 @@ void main() {
   });
 
   group('el bar', () {
-    testWidgets('arranca con el barista preguntando qué tomás',
-        (tester) async {
+    testWidgets('arranca con el barista preguntando qué tomás', (tester) async {
       await _abrir(tester, escena: Escena.bar);
 
-      expect(find.text(saludoAlAzar(escena: Escena.bar, azar: Random(_semilla))),
-          findsOne);
+      expect(
+        find.text(saludoAlAzar(escena: Escena.bar, azar: Random(_semilla))),
+        findsOne,
+      );
       // El saludo del bar es otro, no uno de los de Tuky.
       expect(find.text(_saludoFijo), findsNothing);
     });
@@ -643,8 +663,9 @@ void main() {
       expect(find.textContaining('Arrivederci!'), findsOne);
     });
 
-    testWidgets('la marca pegada al final de la frase también cierra',
-        (tester) async {
+    testWidgets('la marca pegada al final de la frase también cierra', (
+      tester,
+    ) async {
       // El modelo devolvió "Arrivederci. FINE" en vez de ponerla en un
       // renglón aparte, que es como la pide el prompt. Pelearle por dónde
       // pone una palabra se pierde.
@@ -661,15 +682,14 @@ void main() {
       expect(find.textContaining('Arrivederci.'), findsOne);
     });
 
-    testWidgets('empezar otra devuelve el campo y cambia el saludo',
-        (tester) async {
-      await _abrir(
-        tester,
+    testWidgets('empezar otra devuelve el campo y cambia el saludo', (
+      tester,
+    ) async {
+      await _abrir(tester, escena: Escena.bar, respuesta: 'Arrivederci!\nFINE');
+      final primerSaludo = saludoAlAzar(
         escena: Escena.bar,
-        respuesta: 'Arrivederci!\nFINE',
+        azar: Random(_semilla),
       );
-      final primerSaludo =
-          saludoAlAzar(escena: Escena.bar, azar: Random(_semilla));
 
       await _escribir(tester, 'ecco');
       await _enviar(tester);
@@ -682,8 +702,9 @@ void main() {
       expect(find.text(primerSaludo), findsNothing);
     });
 
-    testWidgets('en la libre no termina nunca, aunque diga FINE',
-        (tester) async {
+    testWidgets('en la libre no termina nunca, aunque diga FINE', (
+      tester,
+    ) async {
       // "fine" es una palabra italiana común. En la charla libre no es una
       // señal de nada, y el campo tiene que seguir estando.
       await _abrir(tester, respuesta: 'Che bello! FINE');
