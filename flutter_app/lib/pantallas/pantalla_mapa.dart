@@ -412,6 +412,9 @@ class _Arriba extends StatelessWidget {
 /// Cerdeña: es el único costado con mar libre de arriba a abajo. Cada una
 /// lleva su dibujo de arcilla, los mismos que las ciudades, así que el
 /// mapa entero se ve de una sola mano.
+///
+/// Son las cuatro de `herramientasDelMapa`, no las seis: gramática y
+/// hablar están adentro de la ciudad. El porqué está en destino.dart.
 class _Herramientas extends StatelessWidget {
   const _Herramientas({required this.alIrA});
 
@@ -421,7 +424,7 @@ class _Herramientas extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        for (final destino in Destino.values)
+        for (final destino in herramientasDelMapa)
           Padding(
             padding: const EdgeInsets.only(bottom: 9),
             child: Tooltip(

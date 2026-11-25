@@ -58,6 +58,7 @@ class TukylianoApp extends StatelessWidget {
     this.articoli,
     this.preposizioni,
     this.racconti,
+    this.camino,
     this.via,
     this.voz,
     this.escucha,
@@ -73,6 +74,7 @@ class TukylianoApp extends StatelessWidget {
   final RepositorioArticoli? articoli;
   final RepositorioPreposizioni? preposizioni;
   final RepositorioRacconti? racconti;
+  final RepositorioPercorso? camino;
   final RepositorioParticelle? via;
   final Voz? voz;
   final Escucha? escucha;
@@ -93,6 +95,7 @@ class TukylianoApp extends StatelessWidget {
         articoli: articoli,
         preposizioni: preposizioni,
         racconti: racconti,
+        camino: camino,
         via: via,
         voz: voz,
         escucha: escucha,
@@ -116,6 +119,7 @@ class PantallaPrincipal extends StatefulWidget {
     this.articoli,
     this.preposizioni,
     this.racconti,
+    this.camino,
     this.via,
     this.voz,
     this.escucha,
@@ -129,6 +133,7 @@ class PantallaPrincipal extends StatefulWidget {
   final RepositorioArticoli? articoli;
   final RepositorioPreposizioni? preposizioni;
   final RepositorioRacconti? racconti;
+  final RepositorioPercorso? camino;
   final RepositorioParticelle? via;
   final Voz? voz;
   final Escucha? escucha;
@@ -149,7 +154,8 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       widget.articoli ?? RepositorioArticoli();
   late final RepositorioPreposizioni _preposizioni =
       widget.preposizioni ?? RepositorioPreposizioni();
-  late final RepositorioPercorso _camino = RepositorioPercorso();
+  late final RepositorioPercorso _camino =
+      widget.camino ?? RepositorioPercorso();
 
   /// La ciudad del camino que está abierta, por id. Null = se ve el mapa.
   String? _ciudad;
@@ -452,6 +458,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           ciudad: abierta,
           progreso: _progreso,
           alVolver: () => setState(() => _ciudad = null),
+          alIrA: _irAlDestino,
         );
       }
 

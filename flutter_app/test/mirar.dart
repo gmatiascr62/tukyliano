@@ -461,6 +461,7 @@ void main() {
               progreso: avance,
               alVolver: () {},
               alEmpezar: (_) {},
+              alIrA: (_) {},
             ),
           ),
         );
