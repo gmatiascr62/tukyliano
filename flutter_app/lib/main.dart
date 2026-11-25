@@ -25,6 +25,7 @@ import 'pantallas/pantalla_mapa.dart';
 import 'pantallas/pantalla_conversacion.dart';
 import 'pantallas/pantalla_frases.dart';
 import 'pantallas/pantalla_gramatica.dart';
+import 'pantallas/pantalla_leccion.dart';
 import 'pantallas/pantalla_preposizioni.dart';
 import 'pantallas/pantalla_escuchar.dart';
 import 'pantallas/pantalla_radio.dart';
@@ -159,6 +160,10 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   /// La ciudad del camino que está abierta, por id. Null = se ve el mapa.
   String? _ciudad;
+
+  /// La lección que se está haciendo. Se guarda entera y no por id porque
+  /// es lo único que la pantalla necesita.
+  Leccion? _leccion;
 
   Ciudad? get _ciudadAbierta {
     final cual = _ciudad;
@@ -349,9 +354,37 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     }
   }
 
+  /// Empezar un escalón del camino.
+  ///
+  /// La lección que manda a leer un cuento no abre una pantalla propia:
+  /// lleva a Racconti, que es donde está el cuento, con su audio y su
+  /// diccionario. Duplicar eso adentro de la lección sería tener dos
+  /// lectores distintos del mismo cuento.
+  void _empezarLeccion(Leccion leccion) {
+    if (leccion.esLectura) {
+      _irA(Seccion.racconti);
+      return;
+    }
+    setState(() => _leccion = leccion);
+    _progreso.practico();
+  }
+
+  void _cerrarLeccion() => setState(() => _leccion = null);
+
   /// Un paso para atrás. Desde una sección de gramática se vuelve a la lista
   /// de temas, no al inicio: es de donde se entró.
   void _volver() {
+    // Adentro de una lección o de una ciudad, atrás es salir de ahí: no
+    // cerrar la app, que es lo que hacía antes de que el mapa fuera el
+    // inicio.
+    if (_leccion != null) {
+      _cerrarLeccion();
+      return;
+    }
+    if (_seccion == null && !_eligiendoTema && _ciudad != null) {
+      setState(() => _ciudad = null);
+      return;
+    }
     setState(() {
       if (_seccion != null && _esDeGramatica(_seccion!)) {
         _seccion = null;
@@ -373,7 +406,15 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     Seccion.ne,
   }.contains(seccion);
 
-  bool get _enElInicio => _seccion == null && !_eligiendoTema;
+  /// El inicio es el mapa pelado. Con una ciudad o una lección abierta no
+  /// se está en el inicio, aunque no haya sección: el botón de atrás del
+  /// celular tiene que cerrar eso, no la app.
+  bool get _enElInicio =>
+      _seccion == null && !_eligiendoTema && _ciudad == null;
+
+  /// Quién lleva la cabecera de la app. El mapa no, y la ciudad y la
+  /// lección tampoco: cada una dibuja la suya, con su flecha o su cruz.
+  bool get _llevaEncabezado => _seccion != null || _eligiendoTema;
 
   void _empezarFrases(List<String> verbos, List<String> tiempos) {
     setState(() {
@@ -429,7 +470,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
             padding: const EdgeInsets.all(14),
             child: Column(
               children: [
-                if (!_enElInicio) ...[
+                if (_llevaEncabezado) ...[
                   Encabezado(titulo: _titulo(), alVolver: _volver),
                   const SizedBox(height: 6),
                 ],
@@ -452,6 +493,33 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
     if (seccion == null) {
       if (_eligiendoTema) return PantallaGramatica(alElegir: _irA);
 
+      final haciendo = _leccion;
+      if (haciendo != null) {
+        // La prueba todavía no existe. Se muestra el cartel en vez de
+        // dejarla pasar: una pantalla vacía con un botón "Terminar"
+        // abriría Napoli sin haber contestado nada.
+        if (haciendo.esPrueba) {
+          return _ConCruz(
+            alSalir: _cerrarLeccion,
+            hijo: const PantallaProximamente(
+              adelanto:
+                  'Acá va a estar la prueba de la ciudad: ocho preguntas '
+                  'con todo lo que se vio, y seis bien para abrir la que '
+                  'sigue.',
+            ),
+          );
+        }
+        return PantallaLeccion(
+          leccion: haciendo,
+          voz: _voz,
+          alSalir: _cerrarLeccion,
+          alTerminar: () {
+            _progreso.termino(haciendo.id);
+            _cerrarLeccion();
+          },
+        );
+      }
+
       final abierta = _ciudadAbierta;
       if (abierta != null) {
         return PantallaCiudad(
@@ -459,6 +527,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           progreso: _progreso,
           alVolver: () => setState(() => _ciudad = null),
           alIrA: _irAlDestino,
+          alEmpezar: _empezarLeccion,
         );
       }
 
@@ -581,6 +650,36 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       verbos: _resolverVerbos(_verbosElegidos),
       tiempos: _tiemposElegidos ?? tiemposDisponibles,
       progreso: _progreso,
+    );
+  }
+}
+
+/// Una pantalla prestada, con una cruz arriba para salir.
+///
+/// La usa la prueba mientras no exista: sirve para que el cartel de
+/// "próximamente" no sea una pantalla sin salida.
+class _ConCruz extends StatelessWidget {
+  const _ConCruz({required this.hijo, required this.alSalir});
+
+  final Widget hijo;
+  final VoidCallback alSalir;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Align(
+          alignment: Alignment.centerLeft,
+          child: IconButton(
+            onPressed: alSalir,
+            icon: const Icon(Icons.close_rounded),
+            color: Tema.textoTenue,
+            tooltip: 'Salir',
+          ),
+        ),
+        Expanded(child: hijo),
+      ],
     );
   }
 }

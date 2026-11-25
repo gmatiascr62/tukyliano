@@ -31,6 +31,9 @@ import 'package:tukyliano/pantallas/pantalla_chat.dart';
 import 'package:tukyliano/pantallas/pantalla_ciudad.dart';
 import 'package:tukyliano/pantallas/pantalla_mapa.dart';
 import 'package:tukyliano/pantallas/pantalla_frases.dart';
+import 'package:tukyliano/logica/armar_frase.dart';
+import 'package:tukyliano/logica/leccion.dart';
+import 'package:tukyliano/pantallas/pantalla_leccion.dart';
 import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 import 'package:tukyliano/tema.dart';
@@ -94,10 +97,12 @@ Future<void> dibujar(
   WidgetTester tester,
   String nombre,
   Widget pantalla, {
+
   /// Para mirar la misma pantalla en un celular más chico o más bajo. Sale
   /// de las variables ANCHO y ALTO.
   double? ancho,
   double? alto,
+
   /// Para sacar la foto con la pantalla ya usada —una charla empezada, por
   /// ejemplo— en vez de recién abierta.
   Future<void> Function(WidgetTester)? despuesDeAbrir,
@@ -126,8 +131,9 @@ Future<void> dibujar(
         theme: Tema.datos,
         home: Builder(
           builder: (contexto) => MediaQuery(
-            data: MediaQuery.of(contexto)
-                .copyWith(textScaler: TextScaler.linear(letra)),
+            data: MediaQuery.of(
+              contexto,
+            ).copyWith(textScaler: TextScaler.linear(letra)),
             child: pantalla,
           ),
         ),
@@ -142,7 +148,10 @@ Future<void> dibujar(
   // terminar. Sin esto el mapa salía en blanco.
   await tester.runAsync(() async {
     for (final elemento in tester.widgetList<Image>(find.byType(Image))) {
-      await precacheImage(elemento.image, tester.element(find.byWidget(elemento)));
+      await precacheImage(
+        elemento.image,
+        tester.element(find.byWidget(elemento)),
+      );
     }
   });
   await tester.pumpAndSettle();
@@ -161,8 +170,9 @@ Future<void> dibujar(
   imagen.dispose();
 
   final carpeta = Directory('/tmp/pantallas')..createSync(recursive: true);
-  File('${carpeta.path}/$nombre.png')
-      .writeAsBytesSync(bytes!.buffer.asUint8List());
+  File(
+    '${carpeta.path}/$nombre.png',
+  ).writeAsBytesSync(bytes!.buffer.asUint8List());
   // ignore: avoid_print
   print('>>> /tmp/pantallas/$nombre.png');
 
@@ -185,13 +195,15 @@ Future<Progreso> progresoDeMentira({
 
   final carpeta = Directory('/tmp/pantallas/progreso')
     ..createSync(recursive: true);
-  File('${carpeta.path}/$archivoProgreso').writeAsStringSync(jsonEncode({
-    'aciertos': aciertos,
-    'dias': [
-      for (final atras in diasAtras)
-        comoTexto(hoy.subtract(Duration(days: atras))),
-    ],
-  }));
+  File('${carpeta.path}/$archivoProgreso').writeAsStringSync(
+    jsonEncode({
+      'aciertos': aciertos,
+      'dias': [
+        for (final atras in diasAtras)
+          comoTexto(hoy.subtract(Duration(days: atras))),
+      ],
+    }),
+  );
 
   final p = Progreso(carpeta: () async => carpeta);
   await p.cargar();
@@ -200,13 +212,13 @@ Future<Progreso> progresoDeMentira({
 
 /// El armazón que pone main.dart alrededor de cualquier pantalla.
 Widget comoEnLaApp(Widget pantalla) => Scaffold(
-      body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.all(14),
-          child: Column(children: [Expanded(child: pantalla)]),
-        ),
-      ),
-    );
+  body: SafeArea(
+    child: Padding(
+      padding: const EdgeInsets.all(14),
+      child: Column(children: [Expanded(child: pantalla)]),
+    ),
+  ),
+);
 
 /// El catálogo de verdad, pero leído del disco y no del paquete de la app.
 ///
@@ -216,39 +228,43 @@ Widget comoEnLaApp(Widget pantalla) => Scaffold(
 RepositorioLecturas _elCatalogoDeVerdad({
   String archivo = 'assets/favole.json',
   String clave = 'favole',
-}) =>
-    RepositorioLecturas(
-      leerAsset: (cual) async => File(cual).readAsStringSync(),
-      archivo: archivo,
-      clave: clave,
-    );
+}) => RepositorioLecturas(
+  leerAsset: (cual) async => File(cual).readAsStringSync(),
+  archivo: archivo,
+  clave: clave,
+);
 
 /// Un diccionario chiquito. El de verdad son 770 KB y para una foto no hace
 /// falta: leerlo entero acá hace que la pantalla no termine de cargar nunca.
 RepositorioDiccionario _diccionarioChico() => RepositorioDiccionario(
-      leerAsset: (_) async => '{"version":1,"it":{},"es":{}}',
-    );
+  leerAsset: (_) async => '{"version":1,"it":{},"es":{}}',
+);
 
 /// Descargas de mentira para la foto: con las tres primeras ya bajadas, que
 /// es como se ve la pantalla después de usarla un rato.
-DescargasFalsas _descargasDeMentira() => DescargasFalsas(yaBajadas: const {
-      'favole_01_libro01_lafontaine_64kb.mp3',
-      'favole_02_libro01_lafontaine_64kb.mp3',
-      'favole_03_libro01_lafontaine_64kb.mp3',
-      'favole_05_libro01_lafontaine_64kb.mp3',
-    });
+DescargasFalsas _descargasDeMentira() => DescargasFalsas(
+  yaBajadas: const {
+    'favole_01_libro01_lafontaine_64kb.mp3',
+    'favole_02_libro01_lafontaine_64kb.mp3',
+    'favole_03_libro01_lafontaine_64kb.mp3',
+    'favole_05_libro01_lafontaine_64kb.mp3',
+  },
+);
 
 /// Lo justo para que la pantalla de frases tenga algo que preguntar.
-final _unVerbo = DatosVerbos.desdeJson(jsonDecode('''
+final _unVerbo = DatosVerbos.desdeJson(
+  jsonDecode('''
   {"verbos": {"dovere": {"traduccion": "deber", "tiempos": {
     "passato": {"loro": {"italiano": "hanno dovuto",
                          "espanol": "ellos tuvieron que"}}
   }}}}
-''') as Map<String, dynamic>);
+''')
+      as Map<String, dynamic>,
+);
 
 /// La frase de la foto, que es larga a propósito: es la que se cortaba.
 RepositorioFrases _laFraseLarga() => RepositorioFrases(
-      leerAsset: (_) async => '''
+  leerAsset: (_) async => '''
         {"frases": [
           {"verbo": "dovere", "tiempo": "passato", "persona": "loro",
            "espanol": "Los chicos tuvieron que estudiar",
@@ -256,9 +272,9 @@ RepositorioFrases _laFraseLarga() => RepositorioFrases(
            "pista": "chicos = bambini"}
         ]}
       ''',
-      cliente: MockClient((_) async => http.Response('', 404)),
-      carpeta: () async => null,
-    );
+  cliente: MockClient((_) async => http.Response('', 404)),
+  carpeta: () async => null,
+);
 
 /// Un barista de mentira que contesta la escena entera, para la foto.
 Servidor _baristaDeMentira() {
@@ -271,11 +287,13 @@ Servidor _baristaDeMentira() {
   var cual = 0;
   return Servidor(
     url: 'https://de-mentira',
-    cliente: MockClient((_) async => http.Response(
-          jsonEncode({'texto': dice[cual++ % dice.length]}),
-          200,
-          headers: {'content-type': 'application/json; charset=utf-8'},
-        )),
+    cliente: MockClient(
+      (_) async => http.Response(
+        jsonEncode({'texto': dice[cual++ % dice.length]}),
+        200,
+        headers: {'content-type': 'application/json; charset=utf-8'},
+      ),
+    ),
   );
 }
 
@@ -337,12 +355,14 @@ void main() {
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaLecturas(
-            repositorio: _elCatalogoDeVerdad(),
-            descargas: _descargasDeMentira(),
-            reproductor: reproductor,
-            diccionario: _diccionarioChico(),
-          )),
+          comoEnLaApp(
+            PantallaLecturas(
+              repositorio: _elCatalogoDeVerdad(),
+              descargas: _descargasDeMentira(),
+              reproductor: reproductor,
+              diccionario: _diccionarioChico(),
+            ),
+          ),
           despuesDeAbrir: (t) async {
             await t.tap(find.text('Il Lupo e il Cane'));
             await t.pumpAndSettle();
@@ -355,27 +375,31 @@ void main() {
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaLecturas(
-            repositorio: _elCatalogoDeVerdad(),
-            descargas: _descargasDeMentira(),
-            reproductor: ReproductorFalso(),
-            diccionario: _diccionarioChico(),
-          )),
+          comoEnLaApp(
+            PantallaLecturas(
+              repositorio: _elCatalogoDeVerdad(),
+              descargas: _descargasDeMentira(),
+              reproductor: ReproductorFalso(),
+              diccionario: _diccionarioChico(),
+            ),
+          ),
         );
 
       case 'pinocchio':
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaLecturas(
-            repositorio: _elCatalogoDeVerdad(
-              archivo: 'assets/pinocchio.json',
-              clave: 'capitulos',
+          comoEnLaApp(
+            PantallaLecturas(
+              repositorio: _elCatalogoDeVerdad(
+                archivo: 'assets/pinocchio.json',
+                clave: 'capitulos',
+              ),
+              descargas: _descargasDeMentira(),
+              reproductor: ReproductorFalso(),
+              diccionario: _diccionarioChico(),
             ),
-            descargas: _descargasDeMentira(),
-            reproductor: ReproductorFalso(),
-            diccionario: _diccionarioChico(),
-          )),
+          ),
         );
 
       case 'pinocchio-titulo':
@@ -386,15 +410,17 @@ void main() {
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaLecturas(
-            repositorio: _elCatalogoDeVerdad(
-              archivo: 'assets/pinocchio.json',
-              clave: 'capitulos',
+          comoEnLaApp(
+            PantallaLecturas(
+              repositorio: _elCatalogoDeVerdad(
+                archivo: 'assets/pinocchio.json',
+                clave: 'capitulos',
+              ),
+              descargas: _descargasDeMentira(),
+              reproductor: conTitulo,
+              diccionario: _diccionarioChico(),
             ),
-            descargas: _descargasDeMentira(),
-            reproductor: conTitulo,
-            diccionario: _diccionarioChico(),
-          )),
+          ),
           despuesDeAbrir: (t) async {
             await t.tap(find.textContaining('Come andò che maestro Ciliegia'));
             await t.pumpAndSettle();
@@ -415,12 +441,14 @@ void main() {
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaFrases(
-            verbos: _unVerbo.verbos.values.toList(),
-            tiempos: const ['passato'],
-            frasesLocales: _laFraseLarga(),
-            azar: Random(1),
-          )),
+          comoEnLaApp(
+            PantallaFrases(
+              verbos: _unVerbo.verbos.values.toList(),
+              tiempos: const ['passato'],
+              frasesLocales: _laFraseLarga(),
+              azar: Random(1),
+            ),
+          ),
         );
 
       case 'mapa':
@@ -466,6 +494,75 @@ void main() {
           ),
         );
 
+      // Los tres pasos de una lección: mostrar, elegir, armar.
+      //
+      // Para llegar al tercero hay que contestar los anteriores: tocar el
+      // botón a ciegas se frena en la primera pregunta, con Comprobar
+      // apagado. Así que el banco juega la lección igual que el alumno,
+      // con la misma semilla que la pantalla.
+      case 'leccion':
+      case 'leccion-elegir':
+      case 'leccion-armar':
+      case 'leccion-final':
+        final conLecciones = RepositorioPercorso(
+          leerAsset: (_) async =>
+              File('assets/percorso.json').readAsStringSync(),
+        );
+        await conLecciones.cargar();
+        final cual1 = conLecciones.camino.ciudades.first.lecciones.first;
+        final guion = pasosDe(cual1, azar: Random(7));
+        // Hasta dónde jugar: el primero que sea de la clase que se quiere
+        // mirar, y para el final, la lección entera.
+        final hasta = switch (cual) {
+          'leccion-elegir' => guion.indexWhere((p) => p is ElegirTraduccion),
+          'leccion-armar' => guion.indexWhere((p) => p is ArmarLaFrase),
+          'leccion-final' => guion.length,
+          _ => 0,
+        };
+        await dibujar(
+          tester,
+          cual,
+          Scaffold(
+            body: PantallaLeccion(
+              leccion: cual1,
+              voz: VozFalsa(),
+              azar: Random(7),
+              alSalir: () {},
+              alTerminar: () {},
+            ),
+          ),
+          despuesDeAbrir: (tester) async {
+            Future<void> botonDeAbajo() async {
+              await tester.tap(find.byType(ElevatedButton));
+              await tester.pumpAndSettle();
+            }
+
+            for (var i = 0; i < hasta; i++) {
+              switch (guion[i]) {
+                case MostrarPalabra():
+                case MostrarFrase():
+                  await botonDeAbajo();
+                case ElegirTraduccion(:final correcta):
+                  await tester.tap(find.text(correcta).last);
+                  await tester.pumpAndSettle();
+                  await botonDeAbajo();
+                  await botonDeAbajo();
+                case ArmarLaFrase(:final frase, :final fichas):
+                  for (final palabra in palabrasDeLaFrase(frase.italiano)) {
+                    await tester.tap(
+                      find
+                          .text(fichas[fichas.indexOf(comoFicha(palabra))])
+                          .last,
+                    );
+                    await tester.pumpAndSettle();
+                  }
+                  await botonDeAbajo();
+                  await botonDeAbajo();
+              }
+            }
+          },
+        );
+
       case 'bar':
         // Con la escena ya empezada, una corrección adentro y el barista
         // cerrando: es lo que hay que mirar. Recién abierta solo se ve el
@@ -473,11 +570,13 @@ void main() {
         await dibujar(
           tester,
           cual,
-          comoEnLaApp(PantallaChat(
-            escena: Escena.bar,
-            voz: VozFalsa(),
-            servidor: _baristaDeMentira(),
-          )),
+          comoEnLaApp(
+            PantallaChat(
+              escena: Escena.bar,
+              voz: VozFalsa(),
+              servidor: _baristaDeMentira(),
+            ),
+          ),
           despuesDeAbrir: (t) async {
             for (final mio in const [
               'io volere un caffè',
