@@ -1522,7 +1522,8 @@
           "paraAprobar": 8,
           "cuantas": 12
         }
-      ]
+      ],
+      "racconto": "un-giorno-a-olbia"
     },
     {
       "id": "cagliari",
@@ -2877,7 +2878,8 @@
           "paraAprobar": 11,
           "cuantas": 15
         }
-      ]
+      ],
+      "racconto": "un-sabato-a-cagliari"
     },
     {
       "id": "palermo",

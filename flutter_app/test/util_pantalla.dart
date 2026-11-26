@@ -2,7 +2,10 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:http/http.dart' as http;
+import 'package:http/testing.dart';
 import 'package:tukyliano/datos/repositorio_percorso.dart';
+import 'package:tukyliano/datos/repositorio_racconti.dart';
 import 'package:tukyliano/logica/armar_frase.dart';
 import 'package:tukyliano/logica/leccion.dart';
 import 'package:tukyliano/modelos/destino.dart';
@@ -139,3 +142,15 @@ Future<void> jugarHasta(
     if (seContesta(paso)) await botonDeAbajo(tester);
   }
 }
+
+/// Los cuentos de verdad, leídos del archivo y no del bundle.
+///
+/// Por lo mismo que [caminoDePrueba]: con el reloj falso de los tests la
+/// carga del bundle no termina y la pantalla se queda en "Cargando
+/// cuentos...". Y sin red: el cliente contesta 404 a todo, así que no se
+/// busca nada en GitHub.
+RepositorioRacconti raccontiDePrueba() => RepositorioRacconti(
+  leerAsset: (ruta) async => File(ruta).readAsStringSync(),
+  cliente: MockClient((_) async => http.Response('', 404)),
+  carpeta: () async => null,
+);

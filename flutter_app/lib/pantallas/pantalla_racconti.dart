@@ -15,7 +15,19 @@ import '../widgets/selector_de_voz.dart';
 /// no se entiende para ver la traducción y escucharla. Frase por frase con un
 /// botón de "Siguiente" volvería a ser un ejercicio, y de esos ya hay tres.
 class PantallaRacconti extends StatefulWidget {
-  const PantallaRacconti({super.key, this.repositorio, this.voz});
+  const PantallaRacconti({
+    super.key,
+    this.repositorio,
+    this.voz,
+    this.bloqueados = const {},
+  });
+
+  /// Los cuentos todavía cerrados: del id al motivo, que se muestra en la
+  /// tarjeta ("Se abre al pasar la prueba de Olbia").
+  ///
+  /// Viene de afuera y no se calcula acá porque quien sabe qué prueba se
+  /// aprobó es el camino, no la lista de cuentos.
+  final Map<String, String> bloqueados;
 
   /// Inyectables para los tests.
   final RepositorioRacconti? repositorio;
@@ -132,6 +144,7 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
       separatorBuilder: (_, _) => const SizedBox(height: 10),
       itemBuilder: (_, i) => _TarjetaObra(
         obra: _obras[i],
+        porQueCerrado: widget.bloqueados[_obras[i].id] ?? '',
         alTocar: () => _abrirObra(_obras[i]),
       ),
     );
@@ -145,13 +158,24 @@ class _PantallaRaccontiState extends State<PantallaRacconti> {
 /// título, el nivel y cuántas frases son ya están adentro del dibujo, así que
 /// repetirlos al lado sería decir dos veces lo mismo.
 class _TarjetaObra extends StatelessWidget {
-  const _TarjetaObra({required this.obra, required this.alTocar});
+  const _TarjetaObra({
+    required this.obra,
+    required this.alTocar,
+    this.porQueCerrado = '',
+  });
 
   final Obra obra;
   final VoidCallback alTocar;
 
+  /// Por qué todavía no se puede leer. Vacío = se puede.
+  final String porQueCerrado;
+
+  bool get _cerrado => porQueCerrado.isNotEmpty;
+
   @override
   Widget build(BuildContext context) {
+    if (_cerrado) return _CuentoCerrado(obra: obra, porQue: porQueCerrado);
+
     final renglon = _Tarjeta(
       imagen: obra.imagen,
       foto: obra.fotoTapa,
@@ -232,8 +256,7 @@ class _VistaObra extends StatelessWidget {
   /// cada una y habría que deslizar diez veces para ver la novela entera. De a
   /// dos entran cinco renglones y se leen como los lomos de una biblioteca.
   Widget _capitulos() {
-    final conTapa =
-        obra.capitulos.every((c) => c.fotoPortada.isNotEmpty);
+    final conTapa = obra.capitulos.every((c) => c.fotoPortada.isNotEmpty);
 
     if (!conTapa) {
       return ListView.separated(
@@ -597,7 +620,8 @@ class _VistaRaccontoState extends State<_VistaRacconto> {
     }
 
     final voces = widget.voz.voces;
-    final elegida = widget.voz.vozElegida ?? (voces.isEmpty ? null : voces.first);
+    final elegida =
+        widget.voz.vozElegida ?? (voces.isEmpty ? null : voces.first);
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -792,6 +816,68 @@ class _Linea extends StatelessWidget {
             ],
           ],
         ),
+      ),
+    );
+  }
+}
+
+/// La tarjeta de un cuento que todavía no se abrió.
+///
+/// Se muestra, no se esconde: saber que está y qué hay que hacer para
+/// llegar es parte de lo que empuja a seguir. Esconderlo sería lo mismo
+/// que no tenerlo.
+class _CuentoCerrado extends StatelessWidget {
+  const _CuentoCerrado({required this.obra, required this.porQue});
+
+  final Obra obra;
+  final String porQue;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: const EdgeInsets.all(14),
+      decoration: BoxDecoration(
+        color: const Color(0xFFEDF1EE),
+        borderRadius: BorderRadius.circular(Tema.radio),
+        border: Border.all(color: Tema.borde),
+      ),
+      child: Row(
+        children: [
+          Container(
+            width: 52,
+            height: 52,
+            decoration: BoxDecoration(
+              color: const Color(0xFFDDE3E0),
+              borderRadius: BorderRadius.circular(Tema.radioChico),
+            ),
+            child: const Icon(
+              Icons.lock_rounded,
+              color: Color(0xFF8D9A94),
+              size: 26,
+            ),
+          ),
+          const SizedBox(width: 12),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  obra.titulo,
+                  style: const TextStyle(
+                    fontSize: 16.5,
+                    fontWeight: FontWeight.w700,
+                    color: Color(0xFF8D9A94),
+                  ),
+                ),
+                const SizedBox(height: 2),
+                Text(
+                  porQue,
+                  style: const TextStyle(fontSize: 13, color: Tema.textoTenue),
+                ),
+              ],
+            ),
+          ),
+        ],
       ),
     );
   }

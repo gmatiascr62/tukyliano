@@ -1,5 +1,5 @@
 {
- "version": 16,
+ "version": 18,
  "nombres": [
   "Marco",
   "Anna",
@@ -26,7 +26,9 @@
   "Costanza",
   "Antonio",
   "Montalcino",
-  "Firenze"
+  "Firenze",
+  "Olbia",
+  "Cagliari"
  ],
  "vocabulario_comun": [
   {
@@ -100,9 +102,878 @@
   {
    "it": "c'è",
    "es": "hay"
+  },
+  {
+   "it": "ciao",
+   "es": "hola, chau"
+  },
+  {
+   "it": "cena",
+   "es": "cena"
+  },
+  {
+   "it": "amico",
+   "es": "amigo"
+  },
+  {
+   "it": "gelato",
+   "es": "helado"
+  },
+  {
+   "it": "giorno",
+   "es": "día"
+  },
+  {
+   "it": "gatto",
+   "es": "gato"
+  },
+  {
+   "it": "grazie",
+   "es": "gracias"
+  },
+  {
+   "it": "prego",
+   "es": "de nada"
+  },
+  {
+   "it": "scusi",
+   "es": "disculpe"
+  },
+  {
+   "it": "famiglia",
+   "es": "familia"
+  },
+  {
+   "it": "pesce",
+   "es": "pescado"
+  },
+  {
+   "it": "che",
+   "es": "qué"
+  },
+  {
+   "it": "buongiorno",
+   "es": "buenos días"
+  },
+  {
+   "it": "buonasera",
+   "es": "buenas tardes"
+  },
+  {
+   "it": "arrivederci",
+   "es": "hasta luego"
+  },
+  {
+   "it": "salve",
+   "es": "hola (neutro)"
+  },
+  {
+   "it": "per favore",
+   "es": "por favor"
+  },
+  {
+   "it": "sì",
+   "es": "sí"
+  },
+  {
+   "it": "no",
+   "es": "no"
+  },
+  {
+   "it": "signore",
+   "es": "señor"
+  },
+  {
+   "it": "signora",
+   "es": "señora"
+  },
+  {
+   "it": "un",
+   "es": "un"
+  },
+  {
+   "it": "una",
+   "es": "una"
+  },
+  {
+   "it": "caffè",
+   "es": "café"
+  },
+  {
+   "it": "come",
+   "es": "cómo"
+  },
+  {
+   "it": "stai",
+   "es": "estás"
+  },
+  {
+   "it": "sta",
+   "es": "está (usted)"
+  },
+  {
+   "it": "sto",
+   "es": "estoy"
+  },
+  {
+   "it": "bene",
+   "es": "bien"
+  },
+  {
+   "it": "male",
+   "es": "mal"
+  },
+  {
+   "it": "e",
+   "es": "y"
+  },
+  {
+   "it": "tu",
+   "es": "vos, tú"
+  },
+  {
+   "it": "mi",
+   "es": "me"
+  },
+  {
+   "it": "ti",
+   "es": "te"
+  },
+  {
+   "it": "si",
+   "es": "se"
+  },
+  {
+   "it": "chiamo",
+   "es": "llamo"
+  },
+  {
+   "it": "chiami",
+   "es": "llamás"
+  },
+  {
+   "it": "chiama",
+   "es": "llama"
+  },
+  {
+   "it": "piacere",
+   "es": "mucho gusto"
+  },
+  {
+   "it": "Lei",
+   "es": "usted"
+  },
+  {
+   "it": "io",
+   "es": "yo"
+  },
+  {
+   "it": "lui",
+   "es": "él"
+  },
+  {
+   "it": "lei",
+   "es": "ella"
+  },
+  {
+   "it": "noi",
+   "es": "nosotros"
+  },
+  {
+   "it": "voi",
+   "es": "ustedes"
+  },
+  {
+   "it": "loro",
+   "es": "ellos"
+  },
+  {
+   "it": "a",
+   "es": "a, en"
+  },
+  {
+   "it": "casa",
+   "es": "casa"
+  },
+  {
+   "it": "dove",
+   "es": "dónde"
+  },
+  {
+   "it": "di",
+   "es": "de"
+  },
+  {
+   "it": "in",
+   "es": "en"
+  },
+  {
+   "it": "abito",
+   "es": "vivo"
+  },
+  {
+   "it": "abiti",
+   "es": "vivís"
+  },
+  {
+   "it": "argentino",
+   "es": "argentino"
+  },
+  {
+   "it": "italiano",
+   "es": "italiano"
+  },
+  {
+   "it": "spagnolo",
+   "es": "español"
+  },
+  {
+   "it": "parlo",
+   "es": "hablo"
+  },
+  {
+   "it": "parli",
+   "es": "hablás"
+  },
+  {
+   "it": "un po'",
+   "es": "un poco"
+  },
+  {
+   "it": "anni",
+   "es": "años"
+  },
+  {
+   "it": "quanti",
+   "es": "cuántos"
+  },
+  {
+   "it": "fame",
+   "es": "hambre"
+  },
+  {
+   "it": "sete",
+   "es": "sed"
+  },
+  {
+   "it": "tempo",
+   "es": "tiempo"
+  },
+  {
+   "it": "trenta",
+   "es": "treinta"
+  },
+  {
+   "it": "lavoro",
+   "es": "trabajo"
+  },
+  {
+   "it": "lavori",
+   "es": "trabajás"
+  },
+  {
+   "it": "fai",
+   "es": "hacés"
+  },
+  {
+   "it": "cuoco",
+   "es": "cocinero"
+  },
+  {
+   "it": "cameriere",
+   "es": "mozo"
+  },
+  {
+   "it": "medico",
+   "es": "médico"
+  },
+  {
+   "it": "studente",
+   "es": "estudiante"
+  },
+  {
+   "it": "bar",
+   "es": "bar, café"
+  },
+  {
+   "it": "qui",
+   "es": "acá"
+  },
+  {
+   "it": "parla",
+   "es": "habla (usted)"
+  },
+  {
+   "it": "uno",
+   "es": "uno"
+  },
+  {
+   "it": "due",
+   "es": "dos"
+  },
+  {
+   "it": "tre",
+   "es": "tres"
+  },
+  {
+   "it": "quattro",
+   "es": "cuatro"
+  },
+  {
+   "it": "cinque",
+   "es": "cinco"
+  },
+  {
+   "it": "sette",
+   "es": "siete"
+  },
+  {
+   "it": "otto",
+   "es": "ocho"
+  },
+  {
+   "it": "nove",
+   "es": "nueve"
+  },
+  {
+   "it": "dieci",
+   "es": "diez"
+  },
+  {
+   "it": "venti",
+   "es": "veinte"
+  },
+  {
+   "it": "cento",
+   "es": "cien"
+  },
+  {
+   "it": "il",
+   "es": "el"
+  },
+  {
+   "it": "lo",
+   "es": "el (antes de s+cons, z)"
+  },
+  {
+   "it": "la",
+   "es": "la"
+  },
+  {
+   "it": "l'",
+   "es": "el, la (antes de vocal)"
+  },
+  {
+   "it": "acqua",
+   "es": "agua"
+  },
+  {
+   "it": "pane",
+   "es": "pan"
+  },
+  {
+   "it": "vino",
+   "es": "vino"
+  },
+  {
+   "it": "zucchero",
+   "es": "azúcar"
+  },
+  {
+   "it": "i",
+   "es": "los"
+  },
+  {
+   "it": "le",
+   "es": "las"
+  },
+  {
+   "it": "gli",
+   "es": "los (antes de vocal, s+cons, z)"
+  },
+  {
+   "it": "ragazzo",
+   "es": "chico"
+  },
+  {
+   "it": "ragazza",
+   "es": "chica"
+  },
+  {
+   "it": "ragazzi",
+   "es": "chicos"
+  },
+  {
+   "it": "ragazze",
+   "es": "chicas"
+  },
+  {
+   "it": "molto",
+   "es": "mucho, muy"
+  },
+  {
+   "it": "non",
+   "es": "no"
+  },
+  {
+   "it": "prendo",
+   "es": "tomo"
+  },
+  {
+   "it": "prendi",
+   "es": "tomás"
+  },
+  {
+   "it": "prende",
+   "es": "toma"
+  },
+  {
+   "it": "capisco",
+   "es": "entiendo"
+  },
+  {
+   "it": "capisci",
+   "es": "entendés"
+  },
+  {
+   "it": "vado",
+   "es": "voy"
+  },
+  {
+   "it": "vai",
+   "es": "vas"
+  },
+  {
+   "it": "vorrei",
+   "es": "quisiera"
+  },
+  {
+   "it": "cappuccino",
+   "es": "capuchino"
+  },
+  {
+   "it": "cornetto",
+   "es": "medialuna"
+  },
+  {
+   "it": "birra",
+   "es": "cerveza"
+  },
+  {
+   "it": "quanto",
+   "es": "cuánto"
+  },
+  {
+   "it": "costa",
+   "es": "cuesta"
+  },
+  {
+   "it": "euro",
+   "es": "euro"
+  },
+  {
+   "it": "ecco",
+   "es": "acá tiene, aquí está"
+  },
+  {
+   "it": "mio",
+   "es": "mi (de varón)"
+  },
+  {
+   "it": "mia",
+   "es": "mi (de mujer)"
+  },
+  {
+   "it": "madre",
+   "es": "madre"
+  },
+  {
+   "it": "padre",
+   "es": "padre"
+  },
+  {
+   "it": "figlio",
+   "es": "hijo"
+  },
+  {
+   "it": "figlia",
+   "es": "hija"
+  },
+  {
+   "it": "fratello",
+   "es": "hermano"
+  },
+  {
+   "it": "sorella",
+   "es": "hermana"
+  },
+  {
+   "it": "mangio",
+   "es": "como"
+  },
+  {
+   "it": "mangi",
+   "es": "comés"
+  },
+  {
+   "it": "bevo",
+   "es": "tomo, bebo"
+  },
+  {
+   "it": "bevi",
+   "es": "tomás, bebés"
+  },
+  {
+   "it": "pasta",
+   "es": "pasta"
+  },
+  {
+   "it": "pizza",
+   "es": "pizza"
+  },
+  {
+   "it": "carne",
+   "es": "carne"
+  },
+  {
+   "it": "verdura",
+   "es": "verdura"
+  },
+  {
+   "it": "conto",
+   "es": "cuenta"
+  },
+  {
+   "it": "menu",
+   "es": "menú"
+  },
+  {
+   "it": "tavolo",
+   "es": "mesa"
+  },
+  {
+   "it": "negozio",
+   "es": "negocio"
+  },
+  {
+   "it": "aperto",
+   "es": "abierto"
+  },
+  {
+   "it": "chiuso",
+   "es": "cerrado"
+  },
+  {
+   "it": "soldi",
+   "es": "plata, dinero"
+  },
+  {
+   "it": "troppo",
+   "es": "demasiado"
+  },
+  {
+   "it": "ore",
+   "es": "horas"
+  },
+  {
+   "it": "oggi",
+   "es": "hoy"
+  },
+  {
+   "it": "domani",
+   "es": "mañana"
+  },
+  {
+   "it": "adesso",
+   "es": "ahora"
+  },
+  {
+   "it": "lunedì",
+   "es": "lunes"
+  },
+  {
+   "it": "sabato",
+   "es": "sábado"
+  },
+  {
+   "it": "domenica",
+   "es": "domingo"
+  },
+  {
+   "it": "settimana",
+   "es": "semana"
+  },
+  {
+   "it": "dov'è",
+   "es": "dónde está"
+  },
+  {
+   "it": "destra",
+   "es": "derecha"
+  },
+  {
+   "it": "sinistra",
+   "es": "izquierda"
+  },
+  {
+   "it": "dritto",
+   "es": "derecho (de frente)"
+  },
+  {
+   "it": "stazione",
+   "es": "estación"
+  },
+  {
+   "it": "treno",
+   "es": "tren"
+  },
+  {
+   "it": "biglietto",
+   "es": "boleto"
+  },
+  {
+   "it": "autobus",
+   "es": "colectivo"
+  },
+  {
+   "it": "o",
+   "es": "o"
+  },
+  {
+   "it": "poi",
+   "es": "después"
+  },
+  {
+   "it": "può",
+   "es": "puede (usted)"
+  },
+  {
+   "it": "ripetere",
+   "es": "repetir"
+  },
+  {
+   "it": "lentamente",
+   "es": "despacio"
+  },
+  {
+   "it": "cosa",
+   "es": "qué, cosa"
+  },
+  {
+   "it": "significa",
+   "es": "significa"
+  },
+  {
+   "it": "aiuto",
+   "es": "ayuda, socorro"
+  },
+  {
+   "it": "sempre",
+   "es": "siempre"
   }
  ],
  "racconti": [
+  {
+   "id": "un-giorno-a-olbia",
+   "imagen": "mare",
+   "foto": "olbia",
+   "titulo": "Un giorno a Olbia",
+   "titulo_es": "Un día en Olbia",
+   "nivel": 1,
+   "tema": "cotidiano",
+   "vocabulario": [
+    {
+     "it": "cameriere",
+     "es": "mozo"
+    },
+    {
+     "it": "lavoro",
+     "es": "trabajo"
+    },
+    {
+     "it": "piacere",
+     "es": "mucho gusto"
+    },
+    {
+     "it": "un po'",
+     "es": "un poco"
+    },
+    {
+     "it": "fame",
+     "es": "hambre"
+    },
+    {
+     "it": "pesce",
+     "es": "pescado"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Mi chiamo Marco e sono argentino.",
+     "es": "Me llamo Marco y soy argentino.",
+     "cuadro": 1
+    },
+    {
+     "it": "Ho trenta anni e abito a Olbia.",
+     "es": "Tengo treinta años y vivo en Olbia."
+    },
+    {
+     "it": "Sono cameriere e lavoro in un bar.",
+     "es": "Soy mozo y trabajo en un bar."
+    },
+    {
+     "it": "«Buongiorno, signora! Come sta?»",
+     "es": "«¡Buenos días, señora! ¿Cómo está?»",
+     "cuadro": 2
+    },
+    {
+     "it": "«Sto bene, grazie. E Lei?»",
+     "es": "«Estoy bien, gracias. ¿Y usted?»"
+    },
+    {
+     "it": "«Bene! Un caffè?»",
+     "es": "«¡Bien! ¿Un café?»"
+    },
+    {
+     "it": "«Sì, un caffè, per favore.»",
+     "es": "«Sí, un café, por favor.»"
+    },
+    {
+     "it": "«Lei parla italiano?»",
+     "es": "«¿Usted habla italiano?»"
+    },
+    {
+     "it": "«Un po'. Parlo spagnolo e un po' italiano.»",
+     "es": "«Un poco. Hablo español y un poco de italiano.»"
+    },
+    {
+     "it": "«Io sono di Olbia. Mi chiamo Elena.»",
+     "es": "«Yo soy de Olbia. Me llamo Elena.»"
+    },
+    {
+     "it": "«Piacere, signora!»",
+     "es": "«¡Mucho gusto, señora!»"
+    },
+    {
+     "it": "Un gatto è qui! Che gatto!",
+     "es": "¡Hay un gato acá! ¡Qué gato!",
+     "cuadro": 3
+    },
+    {
+     "it": "Ha fame: un pesce per lui.",
+     "es": "Tiene hambre: un pescado para él."
+    }
+   ]
+  },
+  {
+   "id": "un-sabato-a-cagliari",
+   "imagen": "roma",
+   "foto": "cagliari",
+   "titulo": "Un sabato a Cagliari",
+   "titulo_es": "Un sábado en Cagliari",
+   "nivel": 1,
+   "tema": "italia",
+   "vocabulario": [
+    {
+     "it": "biglietto",
+     "es": "boleto"
+    },
+    {
+     "it": "treno",
+     "es": "tren"
+    },
+    {
+     "it": "dov'è",
+     "es": "dónde está"
+    },
+    {
+     "it": "dritto",
+     "es": "derecho, de frente"
+    },
+    {
+     "it": "destra",
+     "es": "derecha"
+    },
+    {
+     "it": "vorrei",
+     "es": "quisiera"
+    },
+    {
+     "it": "cornetto",
+     "es": "medialuna"
+    },
+    {
+     "it": "quanto costa",
+     "es": "cuánto cuesta"
+    },
+    {
+     "it": "ecco",
+     "es": "acá tiene"
+    },
+    {
+     "it": "aperto / chiuso",
+     "es": "abierto / cerrado"
+    }
+   ],
+   "lineas": [
+    {
+     "it": "Oggi è sabato e vado a Cagliari.",
+     "es": "Hoy es sábado y voy a Cagliari.",
+     "cuadro": 1
+    },
+    {
+     "it": "«Un biglietto per Cagliari, per favore. Prendo il treno.»",
+     "es": "«Un boleto para Cagliari, por favor. Tomo el tren.»"
+    },
+    {
+     "it": "Mia sorella è a Cagliari. Si chiama Elena.",
+     "es": "Mi hermana está en Cagliari. Se llama Elena.",
+     "cuadro": 2
+    },
+    {
+     "it": "«Scusi, dov'è il bar?»",
+     "es": "«Disculpe, ¿dónde está el bar?»"
+    },
+    {
+     "it": "«Sempre dritto e poi a destra.» «Grazie!»",
+     "es": "«Todo derecho y después a la derecha.» «¡Gracias!»"
+    },
+    {
+     "it": "«Ciao, Elena! Come stai?» «Sto bene! E tu?»",
+     "es": "«¡Hola, Elena! ¿Cómo estás?» «¡Estoy bien! ¿Y vos?»"
+    },
+    {
+     "it": "«Bene. Prendi un caffè?» «Sì, grazie.»",
+     "es": "«Bien. ¿Tomás un café?» «Sí, gracias.»",
+     "cuadro": 3
+    },
+    {
+     "it": "«Vorrei un cappuccino e un cornetto, per favore.»",
+     "es": "«Quisiera un capuchino y una medialuna, por favor.»"
+    },
+    {
+     "it": "«Quanto costa?» «Tre euro.» «Ecco.»",
+     "es": "«¿Cuánto cuesta?» «Tres euros.» «Acá tiene.»"
+    },
+    {
+     "it": "Poi mangio una pizza e bevo l'acqua.",
+     "es": "Después como una pizza y tomo agua.",
+     "cuadro": 4
+    },
+    {
+     "it": "«E tu, mangi la pizza?» «No, io mangio la verdura.»",
+     "es": "«¿Y vos, comés pizza?» «No, yo como verdura.»"
+    },
+    {
+     "it": "Un negozio è aperto. Domani, domenica, è chiuso.",
+     "es": "Un negocio está abierto. Mañana, domingo, está cerrado."
+    },
+    {
+     "it": "Adesso vado a casa. Arrivederci, Cagliari!",
+     "es": "Ahora voy a casa. ¡Hasta luego, Cagliari!"
+    }
+   ]
+  },
   {
    "id": "la-colazione",
    "imagen": "colazione",
@@ -112,25 +983,82 @@
    "nivel": 1,
    "tema": "cotidiano",
    "vocabulario": [
-    {"it": "si sveglia", "es": "se despierta"},
-    {"it": "presto", "es": "temprano"},
-    {"it": "va", "es": "va"},
-    {"it": "accende", "es": "enciende"},
-    {"it": "macchina", "es": "máquina"},
-    {"it": "esce", "es": "sale"},
-    {"it": "tazza", "es": "taza"},
-    {"it": "versa", "es": "sirve, vierte"},
-    {"it": "poi", "es": "después"},
-    {"it": "mette", "es": "pone"},
-    {"it": "chiaro/chiara", "es": "claro, clara"},
-    {"it": "prende", "es": "agarra, toma"},
-    {"it": "biscotto/biscotti", "es": "galletita, galletitas"},
-    {"it": "barattolo", "es": "frasco"},
-    {"it": "piatto", "es": "plato"},
-    {"it": "colazione", "es": "desayuno"},
-    {"it": "mangia", "es": "come"},
-    {"it": "adesso", "es": "ahora"},
-    {"it": "pronto/pronta", "es": "listo, lista"}
+    {
+     "it": "si sveglia",
+     "es": "se despierta"
+    },
+    {
+     "it": "presto",
+     "es": "temprano"
+    },
+    {
+     "it": "va",
+     "es": "va"
+    },
+    {
+     "it": "accende",
+     "es": "enciende"
+    },
+    {
+     "it": "macchina",
+     "es": "máquina"
+    },
+    {
+     "it": "esce",
+     "es": "sale"
+    },
+    {
+     "it": "tazza",
+     "es": "taza"
+    },
+    {
+     "it": "versa",
+     "es": "sirve, vierte"
+    },
+    {
+     "it": "poi",
+     "es": "después"
+    },
+    {
+     "it": "mette",
+     "es": "pone"
+    },
+    {
+     "it": "chiaro/chiara",
+     "es": "claro, clara"
+    },
+    {
+     "it": "prende",
+     "es": "agarra, toma"
+    },
+    {
+     "it": "biscotto/biscotti",
+     "es": "galletita, galletitas"
+    },
+    {
+     "it": "barattolo",
+     "es": "frasco"
+    },
+    {
+     "it": "piatto",
+     "es": "plato"
+    },
+    {
+     "it": "colazione",
+     "es": "desayuno"
+    },
+    {
+     "it": "mangia",
+     "es": "come"
+    },
+    {
+     "it": "adesso",
+     "es": "ahora"
+    },
+    {
+     "it": "pronto/pronta",
+     "es": "listo, lista"
+    }
    ],
    "lineas": [
     {
