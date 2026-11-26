@@ -85,20 +85,37 @@ void main() {
     expect(find.byIcon(Icons.arrow_back), findsNothing);
   });
 
-  testWidgets('el mapa muestra la racha y el nivel', (
+  testWidgets('el mapa muestra la semana dibujada y cuánto falta', (
     WidgetTester tester,
   ) async {
     // Eran dos cosas grandes en la pantalla vieja —la tarjeta de los siete
-    // días y el anillo— y acá van chicas, en un renglón. Chicas, pero no
-    // se van: la racha es de lo poco que hace volver al otro día.
-    await _abrir(tester);
+    // días y el anillo—, después un renglón que decía "4 de 7 días", y
+    // ahora la semana está dibujada abajo de todo: siete marcas, una por
+    // día. El número decía cuántos; el dibujo muestra **cuál falta**, que
+    // es lo que invita a volver.
+    final progreso = _progresoDePrueba()..practico();
+    await _abrir(
+      tester,
+      app: TukylianoApp(progreso: progreso, camino: caminoDePrueba()),
+    );
 
-    expect(find.textContaining('de 7 días'), findsOneWidget);
-    // Sin el nombre del nivel: queda el número de cuántas faltan, que es
-    // lo único que cambia. Lo pidió Matías porque en su celular el
-    // renglón entraba cortado y el número no se veía.
+    expect(
+      find.byIcon(Icons.check_rounded),
+      findsOneWidget,
+      reason: 'se practicó hoy y nada más: un solo tilde',
+    );
     expect(find.textContaining('faltan'), findsOneWidget);
-    expect(find.textContaining('Principiante'), findsNothing);
+
+    // Las siete iniciales, una por día.
+    final iniciales = find
+        .byWidgetPredicate(
+          (w) =>
+              w is Text &&
+              (w.data ?? '').length == 1 &&
+              'LMXJVSD'.contains(w.data!),
+        )
+        .evaluate();
+    expect(iniciales.length, 7);
   });
 
   testWidgets('entrar a una sección y volver al inicio con la flecha', (
