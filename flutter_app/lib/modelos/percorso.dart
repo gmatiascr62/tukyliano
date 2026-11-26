@@ -314,6 +314,7 @@ class Ciudad {
     this.subtitulo = '',
     this.nivel = 1,
     this.icono = '',
+    this.racconto = '',
     this.x = 0,
     this.y = 0,
   });
@@ -325,6 +326,13 @@ class Ciudad {
 
   /// Qué dibujo le toca en el mapa.
   final String icono;
+
+  /// El cuento que abre la prueba de esta ciudad, por id.
+  ///
+  /// Los racconti son el premio del camino: están cerrados hasta que se
+  /// aprueba la ciudad que los enseña. Leer uno antes no sería un premio,
+  /// sería un examen con palabras que no se dieron.
+  final String racconto;
 
   /// Dónde va en el mapa, en partes del ancho y del alto del dibujo (no de
   /// la pantalla: el mapa se recorta de los costados y si fueran de la
@@ -352,6 +360,7 @@ class Ciudad {
       subtitulo: (item['subtitulo'] as String? ?? '').trim(),
       nivel: (item['nivel'] as num?)?.toInt() ?? 1,
       icono: (item['icono'] as String? ?? '').trim(),
+      racconto: (item['racconto'] as String? ?? '').trim(),
       x: (item['x'] as num?)?.toDouble() ?? 0,
       y: (item['y'] as num?)?.toDouble() ?? 0,
       lecciones: lecciones,

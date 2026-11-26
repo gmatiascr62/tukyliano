@@ -35,6 +35,8 @@ import 'package:tukyliano/logica/leccion.dart';
 import 'package:tukyliano/modelos/percorso.dart';
 import 'package:tukyliano/pantallas/pantalla_leccion.dart';
 import 'package:tukyliano/pantallas/pantalla_lecturas.dart';
+import 'package:tukyliano/datos/repositorio_racconti.dart';
+import 'package:tukyliano/pantallas/pantalla_racconti.dart';
 import 'package:tukyliano/pantallas/pantalla_radio.dart';
 import 'package:tukyliano/tema.dart';
 
@@ -147,19 +149,27 @@ Future<void> dibujar(
   // es trabajo de verdad y el reloj falso de los tests no lo deja correr.
   // runAsync suelta el reloj un instante, que es lo que necesitan para
   // terminar. Sin esto el mapa salía en blanco.
-  await tester.runAsync(() async {
-    for (final elemento in tester.widgetList<Image>(find.byType(Image))) {
-      await precacheImage(
-        elemento.image,
-        tester.element(find.byWidget(elemento)),
-      );
-    }
-  });
-  await tester.pumpAndSettle();
+  Future<void> cargarLasImagenes() async {
+    await tester.runAsync(() async {
+      for (final elemento in tester.widgetList<Image>(find.byType(Image))) {
+        await precacheImage(
+          elemento.image,
+          tester.element(find.byWidget(elemento)),
+        );
+      }
+    });
+    await tester.pumpAndSettle();
+  }
+
+  await cargarLasImagenes();
 
   if (despuesDeAbrir != null) {
     await despuesDeAbrir(tester);
     await tester.pumpAndSettle();
+    // Otra vez: las que recién aparecen después de tocar algo —los
+    // cuadros de un cuento, que están adentro— no existían en la primera
+    // vuelta. El cuento de Olbia salía sin un solo dibujo.
+    await cargarLasImagenes();
   }
 
   final limite =
@@ -344,6 +354,49 @@ void main() {
           comoEnLaApp(PantallaRadio(reproductor: ReproductorFalso())),
           despuesDeAbrir: (t) async {
             await t.tap(find.byIcon(Icons.play_arrow));
+            await t.pumpAndSettle();
+          },
+        );
+
+      // La lista de cuentos: con el de Olbia cerrado, y el mismo cuento
+      // abierto con sus cuadros. Es lo que hay que mirar de los racconti
+      // del camino, que son el premio de la ciudad.
+      case 'racconti':
+      case 'racconti-abierto':
+        final progreso = Progreso(carpeta: () async => null);
+        if (cual == 'racconti-abierto') progreso.termino('olbia-prueba');
+        final cerrados = <String, String>{
+          if (!progreso.hizo('olbia-prueba'))
+            'un-giorno-a-olbia': 'Se abre al pasar la prueba de Olbia',
+          'un-sabato-a-cagliari': 'Se abre al pasar la prueba de Cagliari',
+        };
+        await dibujar(
+          tester,
+          cual,
+          comoEnLaApp(
+            PantallaRacconti(
+              repositorio: RepositorioRacconti(
+                leerAsset: (ruta) async => File(ruta).readAsStringSync(),
+                cliente: MockClient((_) async => http.Response('', 404)),
+                carpeta: () async => null,
+              ),
+              voz: VozFalsa(),
+              bloqueados: cerrados,
+            ),
+          ),
+          despuesDeAbrir: (t) async {
+            if (cual != 'racconti-abierto') return;
+            // Abierto, el cuento se muestra con su tapa y nada de texto
+            // al lado: hay que tocar la foto, no el título.
+            await t.tap(
+              find.byWidgetPredicate(
+                (w) =>
+                    w is Image &&
+                    w.image is AssetImage &&
+                    (w.image as AssetImage).assetName ==
+                        'assets/racconti/olbia-portada.jpg',
+              ),
+            );
             await t.pumpAndSettle();
           },
         );

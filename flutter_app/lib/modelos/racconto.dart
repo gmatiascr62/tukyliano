@@ -190,6 +190,11 @@ class Obra {
 
   bool get tieneCapitulos => capitulos.length > 1;
 
+  /// Cómo se la nombra desde afuera: la serie si es una novela, y si no el
+  /// id del cuento suelto. Es lo que usa el camino para decir cuál abre
+  /// la prueba de cada ciudad.
+  String get id => serie.isNotEmpty ? serie : capitulos.first.id;
+
   /// Los del primer capítulo: una obra se empieza por el principio.
   int get nivel => capitulos.first.nivel;
   String get imagen => capitulos.first.imagen;

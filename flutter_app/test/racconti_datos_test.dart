@@ -11,8 +11,9 @@ import 'package:tukyliano/modelos/racconto.dart';
 import 'package:tukyliano/widgets/portada_racconto.dart';
 
 final _json = File('assets/racconti.json').readAsStringSync();
-final _datos =
-    DatosRacconti.desdeJson(jsonDecode(_json) as Map<String, dynamic>);
+final _datos = DatosRacconti.desdeJson(
+  jsonDecode(_json) as Map<String, dynamic>,
+);
 
 /// Los sustantivos que ya se practican en Articoli, en singular y en plural.
 final _sustantivos = () {
@@ -27,21 +28,45 @@ final _sustantivos = () {
 }();
 
 const _articulos = [
-  'il', 'lo', 'la', "l'", 'i', 'gli', 'le', 'un', 'uno', 'una', "un'",
+  'il',
+  'lo',
+  'la',
+  "l'",
+  'i',
+  'gli',
+  'le',
+  'un',
+  'uno',
+  'una',
+  "un'",
 ];
 
 /// Palabras de puro andamiaje: no son vocabulario que haya que aprender, son
 /// las que sostienen cualquier frase.
-const _gramatica = ['e', 'ed', 'ma', 'o', 'che', 'non', 'ci', 'si', 'mi',
-                    'ti', 'ne'];
+const _gramatica = [
+  'e',
+  'ed',
+  'ma',
+  'o',
+  'che',
+  'non',
+  'ci',
+  'si',
+  'mi',
+  'ti',
+  'ne',
+];
 
-RepositorioRacconti _repo({String? asset, String remoto = '', int codigo = 404}) =>
-    RepositorioRacconti(
-      leerAsset: (_) async => asset ?? _json,
-      cliente: MockClient((_) async => http.Response(remoto, codigo)),
-      // Sin carpeta: en los tests no hay path_provider, así que no se cachea.
-      carpeta: () async => null,
-    );
+RepositorioRacconti _repo({
+  String? asset,
+  String remoto = '',
+  int codigo = 404,
+}) => RepositorioRacconti(
+  leerAsset: (_) async => asset ?? _json,
+  cliente: MockClient((_) async => http.Response(remoto, codigo)),
+  // Sin carpeta: en los tests no hay path_provider, así que no se cachea.
+  carpeta: () async => null,
+);
 
 /// Parte un texto italiano en palabras.
 ///
@@ -71,9 +96,9 @@ final _conocidas = <String>{
 /// Las palabras que declara el propio cuento. Se parten por "/" para que una
 /// sola entrada cubra las dos formas ("caldo/calda").
 Set<String> _declaradas(Racconto r) => {
-      for (final p in r.vocabulario)
-        for (final alt in p.italiano.split('/')) ..._palabras(alt),
-    };
+  for (final p in r.vocabulario)
+    for (final alt in p.italiano.split('/')) ..._palabras(alt),
+};
 
 void main() {
   group('el asset de cuentos', () {
@@ -118,8 +143,11 @@ void main() {
           final formas = {
             for (final alt in p.italiano.split('/')) ..._palabras(alt),
           };
-          expect(formas.any(usadas.contains), isTrue,
-              reason: '"${p.italiano}" de "${r.id}" no se usa en el cuento');
+          expect(
+            formas.any(usadas.contains),
+            isTrue,
+            reason: '"${p.italiano}" de "${r.id}" no se usa en el cuento',
+          );
         }
       }
     });
@@ -128,7 +156,11 @@ void main() {
       for (final r in _datos.racconti) {
         for (final linea in r.lineas) {
           expect(linea.italiano, isNotEmpty, reason: r.id);
-          expect(linea.espanol, isNotEmpty, reason: '${r.id}: ${linea.italiano}');
+          expect(
+            linea.espanol,
+            isNotEmpty,
+            reason: '${r.id}: ${linea.italiano}',
+          );
         }
       }
     });
@@ -218,14 +250,19 @@ void main() {
       expect(novelas.single.capitulos.length, 10);
       expect(
         novelas.single.capitulos.map((c) => c.id),
-        orderedEquals([for (var i = 1; i <= 10; i++) 'ferrante-${i.toString().padLeft(2, '0')}']),
+        orderedEquals([
+          for (var i = 1; i <= 10; i++)
+            'ferrante-${i.toString().padLeft(2, '0')}',
+        ]),
       );
     });
 
     test('los cuentos sueltos siguen siendo uno cada uno', () {
       final sueltos = _datos.obras.where((o) => !o.tieneCapitulos);
 
-      expect(sueltos.length, 9);
+      // Nueve de siempre más los dos de Cerdeña, que son el premio de
+      // las dos ciudades del nivel 1.
+      expect(sueltos.length, 11);
       for (final obra in sueltos) {
         expect(obra.serie, isEmpty, reason: obra.titulo);
       }
@@ -233,24 +270,35 @@ void main() {
 
     test('todos los capítulos declaran la misma serie y el mismo título', () {
       // Un typo en la marca partiría la novela en dos tarjetas.
-      final capitulos =
-          _datos.racconti.where((r) => r.id.startsWith('ferrante-'));
+      final capitulos = _datos.racconti.where(
+        (r) => r.id.startsWith('ferrante-'),
+      );
 
-      expect(capitulos.map((c) => c.serie).toSet(), {'il-segreto-dei-ferrante'});
-      expect(capitulos.map((c) => c.serieTitulo).toSet(),
-          {'Il segreto dei Ferrante'});
+      expect(capitulos.map((c) => c.serie).toSet(), {
+        'il-segreto-dei-ferrante',
+      });
+      expect(capitulos.map((c) => c.serieTitulo).toSet(), {
+        'Il segreto dei Ferrante',
+      });
       expect(capitulos.map((c) => c.serieTituloEspanol).toSet().length, 1);
     });
 
     test('cada capítulo dice qué número es en su título', () {
-      for (final (i, capitulo) in _datos.obras
-          .firstWhere((o) => o.tieneCapitulos)
-          .capitulos
-          .indexed) {
-        expect(capitulo.titulo, startsWith('Capitolo ${i + 1} ·'),
-            reason: capitulo.id);
-        expect(capitulo.tituloEspanol, startsWith('Capítulo ${i + 1} ·'),
-            reason: capitulo.id);
+      for (final (i, capitulo)
+          in _datos.obras
+              .firstWhere((o) => o.tieneCapitulos)
+              .capitulos
+              .indexed) {
+        expect(
+          capitulo.titulo,
+          startsWith('Capitolo ${i + 1} ·'),
+          reason: capitulo.id,
+        );
+        expect(
+          capitulo.tituloEspanol,
+          startsWith('Capítulo ${i + 1} ·'),
+          reason: capitulo.id,
+        );
       }
     });
 
@@ -266,8 +314,11 @@ void main() {
             if (r.fotoDeLinea(i).isNotEmpty) r.fotoDeLinea(i),
         ];
         for (final foto in esperadas) {
-          expect(File(rutaDeFoto(foto)).existsSync(), isTrue,
-              reason: '${r.id}: falta ${rutaDeFoto(foto)}');
+          expect(
+            File(rutaDeFoto(foto)).existsSync(),
+            isTrue,
+            reason: '${r.id}: falta ${rutaDeFoto(foto)}',
+          );
         }
       }
     });
@@ -278,8 +329,11 @@ void main() {
       for (final obra in _datos.obras.where((o) => o.tieneCapitulos)) {
         for (final foto in [obra.fotoTapa, obra.fotoPortada]) {
           expect(foto, isNotEmpty, reason: obra.titulo);
-          expect(File(rutaDeFoto(foto)).existsSync(), isTrue,
-              reason: '${obra.titulo}: falta ${rutaDeFoto(foto)}');
+          expect(
+            File(rutaDeFoto(foto)).existsSync(),
+            isTrue,
+            reason: '${obra.titulo}: falta ${rutaDeFoto(foto)}',
+          );
         }
       }
     });
@@ -288,8 +342,11 @@ void main() {
       // Si las compartieran, la lista mostraría "Capitolo 1" como si fuera la
       // tapa de la novela entera.
       for (final obra in _datos.obras.where((o) => o.tieneCapitulos)) {
-        expect(obra.fotoPortada, isNot(obra.capitulos.first.fotoPortada),
-            reason: obra.titulo);
+        expect(
+          obra.fotoPortada,
+          isNot(obra.capitulos.first.fotoPortada),
+          reason: obra.titulo,
+        );
       }
     });
 
@@ -304,10 +361,9 @@ void main() {
             if (r.fotoDeLinea(i).isNotEmpty) '${r.fotoDeLinea(i)}.jpg',
         ],
         // Las de la obra entera, que no son de ningún capítulo en particular.
-        for (final o in _datos.obras.where((o) => o.fotoPortada.isNotEmpty)) ...[
-          '${o.fotoTapa}.jpg',
-          '${o.fotoPortada}.jpg',
-        ],
+        for (final o in _datos.obras.where(
+          (o) => o.fotoPortada.isNotEmpty,
+        )) ...['${o.fotoTapa}.jpg', '${o.fotoPortada}.jpg'],
       };
       final enDisco = Directory('assets/racconti')
           .listSync()
@@ -319,8 +375,9 @@ void main() {
     });
 
     test('el cuento con fotos las reparte por la historia', () {
-      final gatto =
-          _datos.racconti.firstWhere((r) => r.id == 'il-gatto-ha-fame');
+      final gatto = _datos.racconti.firstWhere(
+        (r) => r.id == 'il-gatto-ha-fame',
+      );
       final conCuadro = [
         for (var i = 0; i < gatto.lineas.length; i++)
           if (gatto.fotoDeLinea(i).isNotEmpty) i,
@@ -383,8 +440,8 @@ void main() {
 
   group('agrupar en obras', () {
     /// Tres cuentos, dos de ellos capítulos de la misma obra.
-    DatosRacconti mezcla({String serie = 'saga'}) =>
-        DatosRacconti.desdeJson(jsonDecode('''
+    DatosRacconti mezcla({String serie = 'saga'}) => DatosRacconti.desdeJson(
+      jsonDecode('''
           {"racconti": [
             {"id": "suelto", "titulo": "Suelto",
              "lineas": [{"it": "Ciao.", "es": "Hola."}]},
@@ -395,7 +452,9 @@ void main() {
              "serie_titulo": "La saga",
              "lineas": [{"it": "Due.", "es": "Dos."}]}
           ]}
-        ''') as Map<String, dynamic>);
+        ''')
+          as Map<String, dynamic>,
+    );
 
     test('los capítulos de una serie entran en una obra sola', () {
       final obras = mezcla().obras;
@@ -418,7 +477,8 @@ void main() {
 
     test('la obra queda en el lugar de su primer capítulo', () {
       // Si se fuera al final, la lista dejaría de ir de fácil a difícil.
-      final obras = DatosRacconti.desdeJson(jsonDecode('''
+      final obras = DatosRacconti.desdeJson(
+        jsonDecode('''
         {"racconti": [
           {"id": "cap-1", "serie": "saga", "serie_titulo": "La saga",
            "nivel": 1, "lineas": [{"it": "Uno.", "es": "Uno."}]},
@@ -427,7 +487,9 @@ void main() {
           {"id": "cap-2", "serie": "saga", "serie_titulo": "La saga",
            "nivel": 1, "lineas": [{"it": "Due.", "es": "Dos."}]}
         ]}
-      ''') as Map<String, dynamic>).obras;
+      ''')
+            as Map<String, dynamic>,
+      ).obras;
 
       expect(obras.map((o) => o.titulo), ['La saga', 'Otro']);
       expect(obras.first.capitulos.length, 2);
@@ -441,12 +503,15 @@ void main() {
     });
 
     test('sin serie_titulo se usa el título del primer capítulo', () {
-      final obras = DatosRacconti.desdeJson(jsonDecode('''
+      final obras = DatosRacconti.desdeJson(
+        jsonDecode('''
         {"racconti": [
           {"id": "cap-1", "titulo": "Capitolo 1", "serie": "saga",
            "lineas": [{"it": "Uno.", "es": "Uno."}]}
         ]}
-      ''') as Map<String, dynamic>).obras;
+      ''')
+            as Map<String, dynamic>,
+      ).obras;
 
       expect(obras.single.titulo, 'Capitolo 1');
     });
@@ -454,73 +519,96 @@ void main() {
 
   group('DatosRacconti.desdeJson', () {
     test('descarta el cuento sin renglones', () {
-      final datos = DatosRacconti.desdeJson(jsonDecode('''
+      final datos = DatosRacconti.desdeJson(
+        jsonDecode('''
         {"racconti": [
           {"id": "uno", "lineas": [{"it": "Ciao.", "es": "Hola."}]},
           {"id": "vacio", "lineas": []}
         ]}
-      ''') as Map<String, dynamic>);
+      ''')
+            as Map<String, dynamic>,
+      );
 
       expect(datos.racconti.single.id, 'uno');
     });
 
     test('descarta el cuento sin id, que no se podría abrir', () {
-      final datos = DatosRacconti.desdeJson(jsonDecode('''
+      final datos = DatosRacconti.desdeJson(
+        jsonDecode('''
         {"racconti": [{"lineas": [{"it": "Ciao.", "es": "Hola."}]}]}
-      ''') as Map<String, dynamic>);
+      ''')
+            as Map<String, dynamic>,
+      );
 
       expect(datos.racconti, isEmpty);
     });
 
     test('sin título usa el id', () {
-      final datos = DatosRacconti.desdeJson(jsonDecode('''
+      final datos = DatosRacconti.desdeJson(
+        jsonDecode('''
         {"racconti": [{"id": "uno", "lineas": [{"it": "Ciao.", "es": "Hola."}]}]}
-      ''') as Map<String, dynamic>);
+      ''')
+            as Map<String, dynamic>,
+      );
 
       expect(datos.racconti.single.titulo, 'uno');
     });
 
     test('graduado es true si el JSON no dice nada', () {
-      final datos = DatosRacconti.desdeJson(jsonDecode('''
+      final datos = DatosRacconti.desdeJson(
+        jsonDecode('''
         {"racconti": [
           {"id": "callado", "lineas": [{"it": "Ciao.", "es": "Hola."}]},
           {"id": "marcado", "graduado": false,
            "lineas": [{"it": "Ciao.", "es": "Hola."}]}
         ]}
-      ''') as Map<String, dynamic>);
+      ''')
+            as Map<String, dynamic>,
+      );
 
       expect(datos.racconti[0].graduado, isTrue);
       expect(datos.racconti[1].graduado, isFalse);
     });
 
     test('a igual nivel mantiene el orden del JSON', () {
-      final datos = DatosRacconti.desdeJson(jsonDecode('''
+      final datos = DatosRacconti.desdeJson(
+        jsonDecode('''
         {"racconti": [
           {"id": "cap1", "nivel": 6, "lineas": [{"it": "a", "es": "a"}]},
           {"id": "cap2", "nivel": 6, "lineas": [{"it": "b", "es": "b"}]},
           {"id": "facil", "nivel": 1, "lineas": [{"it": "c", "es": "c"}]},
           {"id": "cap3", "nivel": 6, "lineas": [{"it": "d", "es": "d"}]}
         ]}
-      ''') as Map<String, dynamic>);
+      ''')
+            as Map<String, dynamic>,
+      );
 
-      expect(datos.racconti.map((r) => r.id),
-          ['facil', 'cap1', 'cap2', 'cap3']);
+      expect(datos.racconti.map((r) => r.id), [
+        'facil',
+        'cap1',
+        'cap2',
+        'cap3',
+      ]);
     });
 
     test('ordena por nivel', () {
-      final datos = DatosRacconti.desdeJson(jsonDecode('''
+      final datos = DatosRacconti.desdeJson(
+        jsonDecode('''
         {"racconti": [
           {"id": "dificil", "nivel": 3, "lineas": [{"it": "a", "es": "a"}]},
           {"id": "facil", "nivel": 1, "lineas": [{"it": "b", "es": "b"}]}
         ]}
-      ''') as Map<String, dynamic>);
+      ''')
+            as Map<String, dynamic>,
+      );
 
       expect(datos.racconti.map((r) => r.id), ['facil', 'dificil']);
     });
 
     test('un JSON vacío no rompe', () {
-      final datos =
-          DatosRacconti.desdeJson(jsonDecode('{}') as Map<String, dynamic>);
+      final datos = DatosRacconti.desdeJson(
+        jsonDecode('{}') as Map<String, dynamic>,
+      );
       expect(datos.racconti, isEmpty);
       expect(datos.vocabularioComun, isEmpty);
       expect(datos.nombres, isEmpty);
@@ -552,12 +640,15 @@ void main() {
     });
 
     test('una versión más nueva reemplaza a la del asset', () async {
-      final repo = _repo(codigo: 200, remoto: '''
+      final repo = _repo(
+        codigo: 200,
+        remoto: '''
         {"version": 99, "racconti": [
           {"id": "nuevo", "titulo": "Nuovo", "titulo_es": "Nuevo",
            "lineas": [{"it": "Ciao.", "es": "Hola."}]}
         ]}
-      ''');
+      ''',
+      );
       await repo.cargar();
 
       expect(await repo.verificarActualizacion(), isTrue);
@@ -576,7 +667,9 @@ void main() {
     test('sin internet se sigue con los que ya están', () async {
       final repo = RepositorioRacconti(
         leerAsset: (_) async => _json,
-        cliente: MockClient((_) async => throw const SocketException('sin red')),
+        cliente: MockClient(
+          (_) async => throw const SocketException('sin red'),
+        ),
         carpeta: () async => null,
       );
       await repo.cargar();

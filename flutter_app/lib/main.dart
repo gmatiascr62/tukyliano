@@ -371,6 +371,28 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   void _cerrarLeccion() => setState(() => _leccion = null);
 
+  /// Los cuentos que todavía no se abrieron, con el motivo.
+  ///
+  /// Un cuento está cerrado si alguna ciudad lo reclama y su prueba no se
+  /// aprobó. Los que no reclama nadie se leen siempre: no tendría sentido
+  /// cerrar un cuento que ninguna ciudad abre nunca.
+  Map<String, String> _cuentosCerrados() => {
+    for (final ciudad in _camino.camino.ciudades)
+      if (ciudad.racconto.isNotEmpty && !_progreso.hizo('${ciudad.id}-prueba'))
+        ciudad.racconto: 'Se abre al pasar la prueba de ${ciudad.nombre}',
+  };
+
+  /// El título del cuento que abre esta prueba, si abre alguno.
+  String _cuentoQueAbre(Leccion leccion) {
+    if (!leccion.esPrueba) return '';
+    final ciudad = _ciudadAbierta;
+    if (ciudad == null || ciudad.racconto.isEmpty) return '';
+    for (final obra in _racconti.datos.obras) {
+      if (obra.id == ciudad.racconto) return obra.titulo;
+    }
+    return '';
+  }
+
   /// Lo que ya se dio antes de [leccion].
   ///
   /// Normalmente son las lecciones anteriores de la misma ciudad. Si es
@@ -526,6 +548,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
           // Lo que ya se dio en esta ciudad: de ahí salen el repaso del
           // final y, si esto es la prueba, todas sus preguntas.
           antes: _loDadoAntesDe(haciendo),
+          abre: _cuentoQueAbre(haciendo),
           alSalir: _cerrarLeccion,
           alTerminar: () {
             _progreso.termino(haciendo.id);
@@ -596,7 +619,11 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
               'parliamo domani.',
         );
       case Seccion.racconti:
-        return PantallaRacconti(repositorio: _racconti, voz: _voz);
+        return PantallaRacconti(
+          repositorio: _racconti,
+          voz: _voz,
+          bloqueados: _cuentosCerrados(),
+        );
       case Seccion.chat:
         // Sin key ni nada que guarde el estado: al cambiar de sección esta
         // pantalla se destruye y la charla se olvida, que es lo que se pidió.

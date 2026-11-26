@@ -25,6 +25,7 @@ class PantallaLeccion extends StatefulWidget {
     required this.leccion,
     required this.voz,
     this.antes = const [],
+    this.abre = '',
     this.alTerminar,
     this.alSalir,
     this.azar,
@@ -37,6 +38,11 @@ class PantallaLeccion extends StatefulWidget {
   final List<Leccion> antes;
 
   final Voz voz;
+
+  /// El cuento que abre esta prueba, si abre alguno. Se avisa en el
+  /// cartel del final: aprobar sin enterarse de lo que se ganó es la
+  /// mitad del premio.
+  final String abre;
 
   /// La lección se dio por hecha. Lo llama el botón del final.
   final VoidCallback? alTerminar;
@@ -400,6 +406,55 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
           Text(
             '$_bien de $_contestadas bien',
             style: const TextStyle(fontSize: 17, color: Tema.textoTenue),
+          ),
+        ],
+        if (esPrueba && aprobo && widget.abre.isNotEmpty) ...[
+          const SizedBox(height: 18),
+          Container(
+            padding: const EdgeInsets.fromLTRB(14, 12, 14, 13),
+            decoration: BoxDecoration(
+              color: Tema.verdeSuave,
+              borderRadius: BorderRadius.circular(Tema.radio),
+            ),
+            child: Column(
+              children: [
+                const Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.lock_open_rounded,
+                      size: 18,
+                      color: Tema.verdeOscuro,
+                    ),
+                    SizedBox(width: 6),
+                    Text(
+                      'Se abrió un racconto',
+                      style: TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w700,
+                        color: Tema.verdeOscuro,
+                      ),
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 4),
+                Text(
+                  widget.abre,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 17,
+                    fontWeight: FontWeight.w700,
+                    color: Tema.titulo,
+                  ),
+                ),
+                const SizedBox(height: 2),
+                const Text(
+                  'Está en Racconti, listo para leer.',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(fontSize: 13, color: Tema.textoTenue),
+                ),
+              ],
+            ),
           ),
         ],
         if (esPrueba && !aprobo) ...[
