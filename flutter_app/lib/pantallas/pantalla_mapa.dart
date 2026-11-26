@@ -257,7 +257,10 @@ class _Banner extends StatelessWidget {
     return Center(
       child: Image.asset(
         'assets/camino/dueparole.png',
-        width: 230,
+        // Un poco más grande que el primer intento, no mucho: más que
+        // esto y empieza a competir con el mapa, que es lo que la
+        // pantalla tiene que mostrar.
+        width: 268,
         fit: BoxFit.contain,
       ),
     );
