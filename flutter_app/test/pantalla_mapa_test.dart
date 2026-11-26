@@ -18,12 +18,17 @@ import 'package:tukyliano/tema.dart';
 
 import 'util_pantalla.dart';
 
-Ciudad _ciudad(String id, {List<Leccion> lecciones = const []}) => Ciudad(
+Ciudad _ciudad(
+  String id, {
+  List<Leccion> lecciones = const [],
+  double x = 0.5,
+  double y = 0.5,
+}) => Ciudad(
   id: id,
   nombre: id[0].toUpperCase() + id.substring(1),
   icono: '',
-  x: 0.5,
-  y: 0.5,
+  x: x,
+  y: y,
   lecciones: lecciones,
 );
 
@@ -145,6 +150,95 @@ void main() {
 
       expect(find.textContaining('Ha fame'), findsNothing);
       expect(find.byIcon(Icons.play_arrow_rounded), findsNothing);
+    });
+  });
+
+  group('el perrito', () {
+    // Se para al lado de la ciudad que toca y se desliza a la siguiente
+    // cuando esa se termina. Lo que se mide acá es **dónde queda**, que es
+    // justo lo que a ojo no se ve: en una foto chiquita un perrito 20
+    // puntos corrido parece bien puesto igual.
+    const pantalla = Size(420, 900);
+    final mapa = dondeEntraElMapa(pantalla);
+    double bordeIzquierdoDe(double x) =>
+        mapa.left + x * mapa.width - ladoDeLaChapa / 2;
+    double baseDe(double y) =>
+        mapa.top + y * mapa.height - loQueSubeLaChapa + ladoDeLaChapa;
+
+    AnimatedPositioned donde(WidgetTester tester) =>
+        tester.widget<AnimatedPositioned>(find.byType(AnimatedPositioned));
+
+    final dosCiudades = [
+      _ciudad('palermo', lecciones: _conLecciones, x: 0.2, y: 0.3),
+      _ciudad(
+        'napoli',
+        lecciones: [const Leccion(id: 'napoli-1', titulo: 'Due caffè')],
+        x: 0.8,
+        y: 0.7,
+      ),
+    ];
+
+    testWidgets('está parado al lado de la ciudad que toca, no encima', (
+      tester,
+    ) async {
+      await _abrir(tester, dosCiudades);
+      final perrito = donde(tester);
+
+      // Pegado al borde izquierdo de la chapita, sin pisarla.
+      final aLaDerechaDelPerrito = perrito.left! + anchoDelPerrito;
+      expect(aLaDerechaDelPerrito, lessThanOrEqualTo(bordeIzquierdoDe(0.2)));
+      expect(aLaDerechaDelPerrito, greaterThan(bordeIzquierdoDe(0.2) - 8));
+
+      // Y apoyado en la base de la chapita, para que no quede flotando.
+      expect(perrito.top! + altoDelPerrito, closeTo(baseDe(0.3), 1));
+
+      // Más chico que la chapita: la pedida de Matías.
+      expect(altoDelPerrito, lessThan(ladoDeLaChapa));
+    });
+
+    testWidgets(
+      'se corre a la ciudad siguiente cuando se termina la de ahora',
+      (tester) async {
+        await _abrir(
+          tester,
+          dosCiudades,
+          progreso: _progresoCon(['palermo-1', 'palermo-2']),
+        );
+        final perrito = donde(tester);
+
+        expect(
+          perrito.left! + anchoDelPerrito,
+          closeTo(bordeIzquierdoDe(0.8), 8),
+          reason: 'Palermo está hecha: el perrito ya tiene que estar en Napoli',
+        );
+        expect(perrito.top! + altoDelPerrito, closeTo(baseDe(0.7), 1));
+      },
+    );
+
+    testWidgets('sin ciudades no se cae la pantalla', (tester) async {
+      // Mientras el camino carga, la lista viene vacía. La primera versión
+      // buscaba igual la ciudad del perrito y se caía entera, con la
+      // pantalla en blanco: lo agarraron los tests de las otras secciones,
+      // que abren la app sin camino. Queda acá para que no vuelva.
+      await _abrir(tester, const []);
+
+      expect(tester.takeException(), isNull);
+      expect(find.byType(AnimatedPositioned), findsNothing);
+    });
+
+    testWidgets('con todo terminado se queda en la última, no desaparece', (
+      tester,
+    ) async {
+      await _abrir(
+        tester,
+        dosCiudades,
+        progreso: _progresoCon(['palermo-1', 'palermo-2', 'napoli-1']),
+      );
+
+      expect(
+        donde(tester).left! + anchoDelPerrito,
+        closeTo(bordeIzquierdoDe(0.8), 8),
+      );
     });
   });
 }

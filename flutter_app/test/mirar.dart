@@ -340,6 +340,30 @@ void main() {
           ),
         );
 
+      case 'inicio-olbia-hecha':
+        final hecha = RepositorioPercorso(
+          leerAsset: (_) async =>
+              File('assets/percorso.json').readAsStringSync(),
+        );
+        await hecha.cargar();
+        final conOlbia = await progresoDeMentira();
+        for (var i = 1; i <= 10; i++) {
+          conOlbia.termino('olbia-$i');
+        }
+        conOlbia.termino('olbia-prueba');
+        await dibujar(
+          tester,
+          cual,
+          Scaffold(
+            body: PantallaMapa(
+              ciudades: hecha.camino.ciudades,
+              progreso: conOlbia,
+              alElegir: (_) {},
+              alIrA: (_) {},
+            ),
+          ),
+        );
+
       case 'radio':
         await dibujar(
           tester,
