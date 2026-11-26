@@ -48,7 +48,7 @@ class PantallaAlbum extends StatelessWidget {
                     crossAxisCount: 2,
                     crossAxisSpacing: 12,
                     mainAxisSpacing: 12,
-                    childAspectRatio: 0.78,
+                    childAspectRatio: 0.72,
                   ),
                   itemCount: album.length,
                   itemBuilder: (_, i) =>
@@ -143,9 +143,16 @@ class _Tarjeta extends StatelessWidget {
         children: [
           Expanded(
             child: abierta
-                ? Image.asset(
-                    '$carpetaDeFotos/${cual.foto.archivo}',
-                    fit: BoxFit.cover,
+                // Entera y no recortada: las fotos vienen con su marco de
+                // polaroid, y recortarlas para llenar la tarjeta se come
+                // el marco y, en las verticales, media foto.
+                ? Container(
+                    color: const Color(0xFFF2F4F0),
+                    padding: const EdgeInsets.all(4),
+                    child: Image.asset(
+                      '$carpetaDeFotos/${cual.foto.archivo}',
+                      fit: BoxFit.contain,
+                    ),
                   )
                 : const _Tapada(),
           ),

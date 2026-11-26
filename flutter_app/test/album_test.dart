@@ -5,6 +5,9 @@
 // una foto de más, el álbum se termina antes que la ciudad; si se abre
 // una de menos, la última no se abre nunca.
 
+import 'dart:convert';
+import 'dart:io';
+
 import 'package:flutter_test/flutter_test.dart';
 import 'package:tukyliano/datos/progreso.dart';
 import 'package:tukyliano/logica/album.dart';
@@ -94,6 +97,46 @@ void main() {
     expect(album.first.ciudad.nombre, 'Olbia');
     expect(album.first.foto.archivo, 'olbia-1.jpg');
     expect(album.first.foto.texto, 'Llegada');
+  });
+
+  test('toda foto declarada en el camino existe, y tiene su pie', () {
+    // Se mide sobre el archivo que se publica, no sobre datos de prueba.
+    // Un nombre mal escrito acá no rompe nada: la tarjeta queda con el
+    // cuadro roto y recién se ve abriendo el álbum con esa lección hecha,
+    // que puede ser semanas después.
+    final json =
+        jsonDecode(File('assets/percorso.json').readAsStringSync())
+            as Map<String, dynamic>;
+    final ciudades = [
+      for (final c in json['ciudades'] as List) ?Ciudad.desdeJson(c),
+    ];
+
+    var cuantas = 0;
+    for (final ciudad in ciudades) {
+      for (final foto in ciudad.album) {
+        cuantas++;
+        expect(
+          File('assets/album/${foto.archivo}').existsSync(),
+          isTrue,
+          reason: '${ciudad.id}: falta assets/album/${foto.archivo}',
+        );
+        expect(
+          foto.texto,
+          isNotEmpty,
+          reason: '${ciudad.id}: ${foto.archivo} sin pie de foto',
+        );
+      }
+      // Una ciudad con álbum tiene que poder abrirlo entero: si hubiera
+      // más fotos que pares de lecciones, la última no se abriría nunca.
+      if (ciudad.album.isNotEmpty) {
+        expect(
+          ciudad.album.length * leccionesPorFoto,
+          lessThanOrEqualTo(ciudad.cuantasLecciones),
+          reason: '${ciudad.id} tiene más fotos que lecciones para abrirlas',
+        );
+      }
+    }
+    expect(cuantas, greaterThan(0), reason: 'el álbum no puede estar vacío');
   });
 
   test('el camino de verdad trae las fotos de Olbia', () {

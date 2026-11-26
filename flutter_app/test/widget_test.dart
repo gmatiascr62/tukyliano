@@ -155,7 +155,7 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('1 de 5 fotos'), findsOneWidget);
-    expect(find.text('Llegada a Olbia'), findsOneWidget);
+    expect(find.text('Selfie en la playa de Pittulongu'), findsOneWidget);
   });
 
   testWidgets('entrar a una sección y volver al inicio con la flecha', (
