@@ -29,6 +29,7 @@ import 'package:tukyliano/ia/servidor.dart';
 import 'package:tukyliano/modelos/verbo.dart';
 import 'package:tukyliano/pantallas/pantalla_chat.dart';
 import 'package:tukyliano/pantallas/pantalla_ciudad.dart';
+import 'package:tukyliano/pantallas/pantalla_album.dart';
 import 'package:tukyliano/pantallas/pantalla_mapa.dart';
 import 'package:tukyliano/pantallas/pantalla_frases.dart';
 import 'package:tukyliano/logica/leccion.dart';
@@ -336,6 +337,31 @@ void main() {
               progreso: await progresoDeMentira(),
               alElegir: (_) {},
               alIrA: (_) {},
+            ),
+          ),
+        );
+
+      case 'album':
+        final conAlbum = RepositorioPercorso(
+          leerAsset: (_) async =>
+              File('assets/percorso.json').readAsStringSync(),
+        );
+        await conAlbum.cargar();
+        // Cinco lecciones hechas: dos fotos abiertas y tres tapadas, que
+        // es lo que hay que mirar —el álbum lleno no muestra el hueco, y
+        // el vacío no muestra la foto—.
+        final aMitad = await progresoDeMentira();
+        for (var i = 1; i <= 5; i++) {
+          aMitad.termino('olbia-$i');
+        }
+        await dibujar(
+          tester,
+          cual,
+          Scaffold(
+            body: PantallaAlbum(
+              ciudades: conAlbum.camino.ciudades,
+              progreso: aMitad,
+              alVolver: () {},
             ),
           ),
         );

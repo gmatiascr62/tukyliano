@@ -305,6 +305,27 @@ class Leccion {
   }
 }
 
+/// Una foto del álbum del viaje: el premio de cada dos lecciones.
+///
+/// El archivo es el nombre pelado, sin carpeta: la pantalla sabe dónde
+/// viven las fotos, el camino no tiene por qué.
+class Foto {
+  const Foto({required this.archivo, this.texto = ''});
+
+  final String archivo;
+  final String texto;
+
+  static Foto? desdeJson(Object? item) {
+    if (item is! Map<String, dynamic>) return null;
+    final archivo = (item['archivo'] as String? ?? '').trim();
+    if (archivo.isEmpty) return null;
+    return Foto(
+      archivo: archivo,
+      texto: (item['texto'] as String? ?? '').trim(),
+    );
+  }
+}
+
 /// Una ciudad del mapa.
 class Ciudad {
   const Ciudad({
@@ -315,6 +336,7 @@ class Ciudad {
     this.nivel = 1,
     this.icono = '',
     this.racconto = '',
+    this.album = const [],
     this.x = 0,
     this.y = 0,
   });
@@ -340,6 +362,10 @@ class Ciudad {
   final double x;
   final double y;
 
+  /// Las fotos que el perrito saca en esta ciudad, en orden. Se abre una
+  /// cada dos lecciones.
+  final List<Foto> album;
+
   final List<Leccion> lecciones;
 
   /// Las que se hacen, sin contar la prueba. Es el denominador del "2 de 5".
@@ -361,6 +387,9 @@ class Ciudad {
       nivel: (item['nivel'] as num?)?.toInt() ?? 1,
       icono: (item['icono'] as String? ?? '').trim(),
       racconto: (item['racconto'] as String? ?? '').trim(),
+      album: [
+        for (final f in (item['album'] as List? ?? const [])) ?Foto.desdeJson(f),
+      ],
       x: (item['x'] as num?)?.toDouble() ?? 0,
       y: (item['y'] as num?)?.toDouble() ?? 0,
       lecciones: lecciones,
