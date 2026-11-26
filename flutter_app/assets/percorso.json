@@ -1523,7 +1523,20 @@
           "cuantas": 12
         }
       ],
-      "racconto": "un-giorno-a-olbia"
+      "racconto": "un-giorno-a-olbia",
+      "album": [
+        {
+          "archivo": "olbia-1.jpg",
+          "texto": "Selfie en la playa de Pittulongu"
+        },
+        { "archivo": "olbia-2.jpg", "texto": "Posando en San Simplicio" },
+        { "archivo": "olbia-3.jpg", "texto": "Selfie en Corso Umberto" },
+        {
+          "archivo": "olbia-4.jpg",
+          "texto": "Gelato en el puerto al atardecer"
+        },
+        { "archivo": "olbia-5.jpg", "texto": "Selfie en el paseo marítimo" }
+      ]
     },
     {
       "id": "cagliari",

@@ -118,6 +118,46 @@ void main() {
     expect(iniciales.length, 7);
   });
 
+  testWidgets('tocar al perrito abre el álbum del viaje, y la flecha vuelve', (
+    WidgetTester tester,
+  ) async {
+    // El perrito no es un adorno: es la puerta del álbum. Y la puerta se
+    // prueba desde la app entera, no desde el mapa suelto, porque lo que
+    // se rompe fácil es el cableado —quién abre qué y adónde vuelve—.
+    await _abrir(tester);
+
+    await tester.tap(find.byTooltip('El álbum del viaje'));
+    await tester.pumpAndSettle();
+    expect(find.text('El álbum del viaje'), findsWidgets);
+
+    // De cero no hay ninguna abierta, pero el álbum se ve igual: las
+    // tapadas dicen cuánto falta.
+    expect(find.text('0 de 5 fotos'), findsOneWidget);
+    expect(find.text('Faltan 2 lecciones'), findsOneWidget);
+
+    await tester.tap(find.byIcon(Icons.arrow_back_rounded));
+    await tester.pumpAndSettle();
+    expect(find.text(primeraCiudad), findsOneWidget);
+  });
+
+  testWidgets('con dos lecciones hechas el álbum tiene su primera foto', (
+    WidgetTester tester,
+  ) async {
+    final progreso = _progresoDePrueba()
+      ..termino('olbia-1')
+      ..termino('olbia-2');
+    await _abrir(
+      tester,
+      app: TukylianoApp(progreso: progreso, camino: caminoDePrueba()),
+    );
+
+    await tester.tap(find.byTooltip('El álbum del viaje'));
+    await tester.pumpAndSettle();
+
+    expect(find.text('1 de 5 fotos'), findsOneWidget);
+    expect(find.text('Selfie en la playa de Pittulongu'), findsOneWidget);
+  });
+
   testWidgets('entrar a una sección y volver al inicio con la flecha', (
     WidgetTester tester,
   ) async {

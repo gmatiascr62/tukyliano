@@ -87,6 +87,8 @@ flutter:
     # El camino: las ciudades y sus lecciones, con los dibujos de cada una.
     - assets/percorso.json
     - assets/camino/
+    # Las fotos del viaje del perrito: una cada dos lecciones.
+    - assets/album/
     - assets/podcast.json
     # El catálogo de las fábulas: títulos y duraciones, nada más. Los audios
     # NO van acá —son 17 MB el primer libro— y se bajan cuando se tocan.

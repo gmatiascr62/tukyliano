@@ -48,7 +48,7 @@ const double loQueSubeLaChapa = 34;
 
 /// El perrito que acompaña el camino: cuánto mide y la proporción del
 /// dibujo (124 x 220, ya recortado).
-const double altoDelPerrito = 60;
+const double altoDelPerrito = 72;
 const double anchoDelPerrito = altoDelPerrito * 124 / 220;
 
 /// El mapa de Italia: la primera pantalla de la app.
@@ -75,11 +75,16 @@ class PantallaMapa extends StatelessWidget {
     required this.progreso,
     this.alElegir,
     this.alIrA,
+    this.alVerElAlbum,
   });
 
   final List<Ciudad> ciudades;
   final Progreso progreso;
   final void Function(Ciudad)? alElegir;
+
+  /// Tocar al perrito abre el álbum del viaje. Si no viene, el perrito se
+  /// dibuja igual pero no se toca.
+  final VoidCallback? alVerElAlbum;
 
   /// Las herramientas de siempre: la radio, el chat, los cuentos. Si no
   /// viene, la barra del costado no se dibuja (los tests del mapa solo).
@@ -187,7 +192,18 @@ class PantallaMapa extends StatelessWidget {
           altoDelPerrito,
       width: anchoDelPerrito,
       height: altoDelPerrito,
-      child: Image.asset('assets/camino/perrito.png', fit: BoxFit.contain),
+      // Tocarlo abre el álbum del viaje. `opaque` porque el dibujo tiene
+      // fondo transparente: sin eso solo contarían los toques que caen
+      // justo sobre el perro y no los del aire de alrededor, que en un
+      // muñequito flaco es casi todo el rectángulo.
+      child: GestureDetector(
+        onTap: alVerElAlbum,
+        behavior: HitTestBehavior.opaque,
+        child: Tooltip(
+          message: 'El álbum del viaje',
+          child: Image.asset('assets/camino/perrito.png', fit: BoxFit.contain),
+        ),
+      ),
     );
   }
 

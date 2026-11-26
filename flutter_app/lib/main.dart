@@ -19,6 +19,7 @@ import 'modelos/destino.dart';
 import 'modelos/percorso.dart';
 import 'modelos/seccion.dart';
 import 'modelos/verbo.dart';
+import 'pantallas/pantalla_album.dart';
 import 'pantallas/pantalla_articoli.dart';
 import 'pantallas/pantalla_ciudad.dart';
 import 'pantallas/pantalla_mapa.dart';
@@ -164,6 +165,9 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   /// La lección que se está haciendo. Se guarda entera y no por id porque
   /// es lo único que la pantalla necesita.
   Leccion? _leccion;
+
+  /// True cuando se tocó al perrito y se está mirando el álbum del viaje.
+  bool _album = false;
 
   Ciudad? get _ciudadAbierta {
     final cual = _ciudad;
@@ -328,6 +332,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       // Al entrar a una sección se cierra la ciudad: al volver se
       // vuelve al mapa, que ahora es el inicio.
       _ciudad = null;
+      _album = false;
     });
     // Entrar a practicar ya cuenta como haber practicado hoy, aunque después
     // no se acierte nada.
@@ -428,6 +433,10 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
       _cerrarLeccion();
       return;
     }
+    if (_album) {
+      setState(() => _album = false);
+      return;
+    }
     if (_seccion == null && !_eligiendoTema && _ciudad != null) {
       setState(() => _ciudad = null);
       return;
@@ -457,7 +466,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   /// se está en el inicio, aunque no haya sección: el botón de atrás del
   /// celular tiene que cerrar eso, no la app.
   bool get _enElInicio =>
-      _seccion == null && !_eligiendoTema && _ciudad == null;
+      _seccion == null && !_eligiendoTema && _ciudad == null && !_album;
 
   /// Quién lleva la cabecera de la app. El mapa no, y la ciudad y la
   /// lección tampoco: cada una dibuja la suya, con su flecha o su cruz.
@@ -557,6 +566,16 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         );
       }
 
+      // El álbum del viaje, que se abre tocando al perrito del mapa.
+      // Lleva su propia cabecera, como la ciudad.
+      if (_album) {
+        return PantallaAlbum(
+          ciudades: _camino.camino.ciudades,
+          progreso: _progreso,
+          alVolver: () => setState(() => _album = false),
+        );
+      }
+
       final abierta = _ciudadAbierta;
       if (abierta != null) {
         return PantallaCiudad(
@@ -579,6 +598,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
         progreso: _progreso,
         alElegir: (ciudad) => setState(() => _ciudad = ciudad.id),
         alIrA: _irAlDestino,
+        alVerElAlbum: () => setState(() => _album = true),
       );
     }
 
