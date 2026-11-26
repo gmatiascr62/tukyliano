@@ -48,7 +48,7 @@ const double loQueSubeLaChapa = 34;
 
 /// El perrito que acompaña el camino: cuánto mide y la proporción del
 /// dibujo (124 x 220, ya recortado).
-const double altoDelPerrito = 48;
+const double altoDelPerrito = 60;
 const double anchoDelPerrito = altoDelPerrito * 124 / 220;
 
 /// El mapa de Italia: la primera pantalla de la app.

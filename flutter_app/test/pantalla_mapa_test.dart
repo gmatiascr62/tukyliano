@@ -192,8 +192,13 @@ void main() {
       // Y apoyado en la base de la chapita, para que no quede flotando.
       expect(perrito.top! + altoDelPerrito, closeTo(baseDe(0.3), 1));
 
-      // Más chico que la chapita: la pedida de Matías.
-      expect(altoDelPerrito, lessThan(ladoDeLaChapa));
+      // Angosto: ocupa menos de lo que ocupa la chapita de la ciudad.
+      //
+      // Era "más bajo que la chapita" hasta que Matías lo pidió más
+      // grande, y de alto ahora la pasa un poco. Lo que sigue valiendo es
+      // esto: el perrito es flaco y la chapita cuadrada, así que al lado
+      // de la ciudad sigue siendo el acompañante y no el protagonista.
+      expect(anchoDelPerrito, lessThan(ladoDeLaChapa));
     });
 
     testWidgets(
