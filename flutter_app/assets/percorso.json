@@ -2892,7 +2892,26 @@
           "cuantas": 15
         }
       ],
-      "racconto": "un-sabato-a-cagliari"
+      "racconto": "un-sabato-a-cagliari",
+      "album": [
+        {
+          "archivo": "cagliari-1.jpg",
+          "texto": "Selfie en el Bastione di Saint Remy"
+        },
+        { "archivo": "cagliari-2.jpg", "texto": "Relax en la playa del Poetto" },
+        {
+          "archivo": "cagliari-3.jpg",
+          "texto": "Selfie con los flamencos en Molentargius"
+        },
+        {
+          "archivo": "cagliari-4.jpg",
+          "texto": "Comiendo culurgiones y seadas en La Marina"
+        },
+        {
+          "archivo": "cagliari-5.jpg",
+          "texto": "Selfie en Castello con traje típico sardo"
+        }
+      ]
     },
     {
       "id": "palermo",

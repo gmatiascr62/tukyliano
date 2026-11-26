@@ -176,7 +176,10 @@ class _Tarjeta extends StatelessWidget {
                             ? 'Foto $numero'
                             : cual.foto.texto)
                       : _loQueFalta(cual.faltan),
-                  maxLines: 2,
+                  // Tres y no dos: los pies que puso Matías son largos
+                  // —"Comiendo culurgiones y seadas en La Marina"— y con
+                  // dos renglones quedaban cortados justo en el lugar.
+                  maxLines: 3,
                   overflow: TextOverflow.ellipsis,
                   style: TextStyle(
                     fontSize: 13.5,
