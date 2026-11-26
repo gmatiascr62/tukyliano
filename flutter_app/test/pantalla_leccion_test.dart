@@ -167,6 +167,54 @@ void main() {
     );
   });
 
+  testWidgets('una frase con un nombre propio se puede acertar', (
+    tester,
+  ) async {
+    // Regresión: la ficha de un nombre conserva la mayúscula —"Marco"—
+    // y la respuesta del alumno se comparaba en minúscula contra ella,
+    // así que no había forma de dar bien ninguna frase con un nombre.
+    // Matías mandó la foto de "Mi chiamo Marco, piacere!" armada
+    // perfecta y marcada en rojo.
+    const conNombre = Leccion(
+      id: 'x',
+      titulo: 'x',
+      palabras: [
+        PalabraDeLeccion(italiano: 'mi', espanol: 'me'),
+        PalabraDeLeccion(italiano: 'chiamo', espanol: 'llamo'),
+        PalabraDeLeccion(italiano: 'piacere', espanol: 'mucho gusto'),
+      ],
+      frases: [
+        FraseDeLeccion(
+          italiano: 'Mi chiamo Marco, piacere!',
+          espanol: 'Me llamo Marco, ¡mucho gusto!',
+        ),
+      ],
+    );
+
+    usarPantallaDeCelular(tester);
+    await tester.pumpWidget(
+      MaterialApp(
+        theme: Tema.datos,
+        home: Scaffold(
+          body: PantallaLeccion(
+            leccion: conNombre,
+            voz: VozFalsa(),
+            azar: Random(5),
+            alSalir: () {},
+            alTerminar: () {},
+          ),
+        ),
+      ),
+    );
+    await tester.pumpAndSettle();
+
+    final pasos = pasosDe(conNombre, azar: Random(5));
+    await jugarHasta(tester, pasos, pasos.length);
+
+    final cuantas = pasos.where(seContesta).length;
+    expect(find.text('$cuantas de $cuantas bien'), findsOneWidget);
+  });
+
   testWidgets('la cruz sale sin dar la lección por hecha', (tester) async {
     var salio = false;
     var termino = false;

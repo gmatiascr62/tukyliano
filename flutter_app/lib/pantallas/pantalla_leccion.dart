@@ -151,9 +151,18 @@ class _PantallaLeccionState extends State<PantallaLeccion> {
     ElegirTraduccion(:final correcta) => _elegida == correcta,
     Contestar(:final pregunta) => _elegida == pregunta.correcta,
     Relacionar() => _erroresDeRelacion == 0,
+    // Los dos lados en minúscula.
+    //
+    // Antes solo se bajaba el del alumno, y entonces **toda frase con un
+    // nombre propio era imposible de acertar**: la ficha dice "Marco"
+    // —comoFicha le deja la mayúscula porque es un nombre— y al
+    // compararla con "marco" nunca daba. Matías mandó la foto de "Mi
+    // chiamo Marco, piacere!" armada perfecta y marcada en rojo.
     ArmarLaFrase(:final frase, :final fichas) =>
       _puestas.map((i) => fichas[i]).join(' ').toLowerCase() ==
-          palabrasDeLaFrase(frase.italiano).map(comoFicha).join(' '),
+          palabrasDeLaFrase(
+            frase.italiano,
+          ).map(comoFicha).join(' ').toLowerCase(),
     _ => true,
   };
 
