@@ -85,28 +85,27 @@ void main() {
     expect(find.byIcon(Icons.arrow_back), findsNothing);
   });
 
-  testWidgets('el mapa muestra la semana dibujada y cuánto falta', (
+  testWidgets('el mapa muestra las seis luces y la palabra del color', (
     WidgetTester tester,
   ) async {
-    // Eran dos cosas grandes en la pantalla vieja —la tarjeta de los siete
-    // días y el anillo—, después un renglón que decía "4 de 7 días", y
-    // ahora la semana está dibujada abajo de todo: siete marcas, una por
-    // día. El número decía cuántos; el dibujo muestra **cuál falta**, que
-    // es lo que invita a volver.
-    final progreso = _progresoDePrueba()..practico();
+    // Antes abajo había una semana dibujada —siete marcas, una por día— y
+    // el renglón "faltan 32". La semana contaba días; esto cuenta
+    // lecciones, que es lo que de verdad hace avanzar. Lo pidió Matías
+    // así: seis luces, dos rojas, dos amarillas y dos verdes.
+    final progreso = _progresoDePrueba()
+      ..termino('olbia-1')
+      ..termino('olbia-2');
     await _abrir(
       tester,
       app: TukylianoApp(progreso: progreso, camino: caminoDePrueba()),
     );
 
-    expect(
-      find.byIcon(Icons.check_rounded),
-      findsOneWidget,
-      reason: 'se practicó hoy y nada más: un solo tilde',
-    );
-    expect(find.textContaining('faltan'), findsOneWidget);
+    // Dos lecciones: una luz, y con una luz se está en rojo.
+    expect(find.text('Cuidado'), findsOneWidget);
+    expect(find.text('Vas bien'), findsNothing);
 
-    // Las siete iniciales, una por día.
+    // Las letras de los días se fueron, y el número también.
+    expect(find.textContaining('faltan'), findsNothing);
     final iniciales = find
         .byWidgetPredicate(
           (w) =>
@@ -115,7 +114,26 @@ void main() {
               'LMXJVSD'.contains(w.data!),
         )
         .evaluate();
-    expect(iniciales.length, 7);
+    expect(iniciales, isEmpty, reason: 'sin letras de días');
+  });
+
+  testWidgets('con las seis luces prendidas el mapa dice que vas bien', (
+    WidgetTester tester,
+  ) async {
+    final progreso = _progresoDePrueba();
+    for (var i = 1; i <= 10; i++) {
+      progreso.termino('olbia-$i');
+    }
+    for (var i = 1; i <= 2; i++) {
+      progreso.termino('cagliari-$i');
+    }
+    await _abrir(
+      tester,
+      app: TukylianoApp(progreso: progreso, camino: caminoDePrueba()),
+    );
+
+    expect(find.text('Vas bien'), findsOneWidget);
+    expect(find.text('Cuidado'), findsNothing);
   });
 
   testWidgets('tocar al perrito abre el álbum del viaje, y la flecha vuelve', (

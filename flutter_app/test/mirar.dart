@@ -222,6 +222,16 @@ Future<Progreso> progresoDeMentira({
   return p;
 }
 
+/// Un progreso con [cuantas] luces prendidas, para mirar la fila de abajo
+/// del mapa en cada color.
+Future<Progreso> progresoConLuces(int cuantas) async {
+  final progreso = await progresoDeMentira();
+  for (var i = 1; i <= cuantas * leccionesPorLuz; i++) {
+    progreso.termino('luz-$i');
+  }
+  return progreso;
+}
+
 /// El armazón que pone main.dart alrededor de cualquier pantalla.
 Widget comoEnLaApp(Widget pantalla) => Scaffold(
   body: SafeArea(
@@ -323,6 +333,9 @@ void main() {
     switch (cual) {
       case 'inicio':
         // El inicio ES el mapa desde que el camino pasó al frente.
+        // Con LUCES se mira la fila de abajo en otro color.
+        final cuantasPrendidas =
+            int.tryParse(Platform.environment['LUCES'] ?? '') ?? 3;
         final deEntrada = RepositorioPercorso(
           leerAsset: (_) async =>
               File('assets/percorso.json').readAsStringSync(),
@@ -334,7 +347,7 @@ void main() {
           Scaffold(
             body: PantallaMapa(
               ciudades: deEntrada.camino.ciudades,
-              progreso: await progresoDeMentira(),
+              progreso: await progresoConLuces(cuantasPrendidas),
               alElegir: (_) {},
               alIrA: (_) {},
             ),
