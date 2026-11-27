@@ -8,6 +8,13 @@ const String archivoProgreso = 'progreso.json';
 /// Cuántos días para atrás se miran para el "practicaste X de los últimos 7".
 const int diasDeLaSemana = 7;
 
+/// Cuántas luces tiene la fila de abajo del mapa: dos rojas, dos amarillas
+/// y dos verdes.
+const int cuantasLuces = 6;
+
+/// Cada cuántas lecciones se prende una luz.
+const int leccionesPorLuz = 2;
+
 /// Lo que se lleva hecho en la app, guardado en el celular.
 ///
 /// Son dos cosas nada más: cuántas veces se acertó desde siempre —de ahí sale
@@ -34,6 +41,25 @@ class Progreso {
   File? _archivo;
   int _aciertos = 0;
   final Set<String> _dias = {};
+
+  /// Las luces prendidas, de cero a [cuantasLuces].
+  int _luces = 0;
+
+  /// Lecciones contadas desde la última luz: cuando llega a
+  /// [leccionesPorLuz] se prende una.
+  int _haciaLaLuz = 0;
+
+  /// La última lección que contó para la luz. Hacer dos veces seguidas la
+  /// misma no suma: lo pidió así Matías para que no se pueda sumar luz
+  /// repitiendo la lección 1 una y otra vez.
+  String _ultimaContada = '';
+
+  /// El día de la última lección, en texto. De acá sale el reloj del
+  /// olvido: cada semana entera sin hacer ninguna cuesta una luz.
+  ///
+  /// Vacío mientras no se hizo ninguna lección, y ahí no se castiga nada:
+  /// no se puede perder lo que todavía no se empezó.
+  String _diaDeLaUltima = '';
 
   /// Las lecciones del camino que ya se hicieron, por id.
   ///
@@ -105,6 +131,16 @@ class Progreso {
         ..addAll([
           for (final hecha in datos['hechas'] as List? ?? []) hecha.toString(),
         ]);
+      // Lo de las luces tampoco está en los archivos viejos: ahí se
+      // arranca con cero prendidas y sin reloj corriendo, que es lo mismo
+      // que le pasa al que instala la app por primera vez.
+      _luces = (datos['luces'] as int? ?? 0).clamp(0, cuantasLuces);
+      _haciaLaLuz = (datos['haciaLaLuz'] as int? ?? 0).clamp(
+        0,
+        leccionesPorLuz - 1,
+      );
+      _ultimaContada = datos['ultimaContada']?.toString() ?? '';
+      _diaDeLaUltima = datos['diaDeLaUltima']?.toString() ?? '';
     } catch (_) {
       // Un archivo roto no tiene que impedir usar la app: se arranca de cero.
     }
@@ -125,10 +161,76 @@ class Progreso {
     _guardar();
   }
 
-  /// Se terminó una lección del camino. Hacerla de nuevo no cambia nada.
+  /// Se terminó una lección del camino.
+  ///
+  /// Suma para la luz **aunque ya estuviera hecha**: si sólo contaran las
+  /// nuevas, el día que se termine todo el contenido no habría forma de
+  /// mantener las luces y se perderían ciudades sin poder hacer nada. Lo
+  /// que no vale es repetir siempre la misma, así que tiene que ser
+  /// distinta de la última que contó.
+  ///
+  /// El reloj del olvido se reinicia igual, cuente o no: el que repite la
+  /// misma lección está estudiando, aunque no sume.
   void termino(String leccion) {
-    if (!_hechas.add(leccion)) return;
+    _hechas.add(leccion);
+    _diaDeLaUltima = _comoTexto(DateTime.now());
+    if (leccion != _ultimaContada) {
+      _ultimaContada = leccion;
+      _haciaLaLuz++;
+      if (_haciaLaLuz >= leccionesPorLuz) {
+        _haciaLaLuz = 0;
+        if (_luces < cuantasLuces) _luces++;
+      }
+    }
     practico();
+  }
+
+  /// Las luces prendidas.
+  int get luces => _luces;
+
+  /// Cuántas semanas enteras pasaron desde la última lección.
+  ///
+  /// Cero mientras no se hizo ninguna: el castigo es por dejar algo
+  /// empezado, no por no haber empezado.
+  int semanasSinEstudiar({DateTime? hoy}) {
+    final ultima = _comoFecha(_diaDeLaUltima);
+    if (ultima == null) return 0;
+    final dias = (hoy ?? DateTime.now()).difference(ultima).inDays;
+    return dias < 0 ? 0 : dias ~/ diasDeLaSemana;
+  }
+
+  /// Da por cobradas [semanas] semanas de olvido, corriendo el reloj para
+  /// adelante. Sin esto el mismo castigo se cobraría en cada arranque.
+  void cobrarSemanas(int semanas) {
+    final ultima = _comoFecha(_diaDeLaUltima);
+    if (ultima == null || semanas <= 0) return;
+    _diaDeLaUltima = _comoTexto(
+      ultima.add(Duration(days: semanas * diasDeLaSemana)),
+    );
+    _guardar();
+  }
+
+  /// Se apaga una luz. No baja de cero.
+  void perderUnaLuz() {
+    if (_luces > 0) _luces--;
+    _guardar();
+  }
+
+  /// Se deshace una lección, que es lo que pasa al retroceder una ciudad:
+  /// su prueba deja de estar aprobada y el cuento que abría se vuelve a
+  /// cerrar solo, porque eso se calcula de acá.
+  void olvidar(String leccion) {
+    if (_hechas.remove(leccion)) _guardar();
+  }
+
+  static DateTime? _comoFecha(String texto) {
+    final partes = texto.split('-');
+    if (partes.length != 3) return null;
+    final year = int.tryParse(partes[0]);
+    final mes = int.tryParse(partes[1]);
+    final dia = int.tryParse(partes[2]);
+    if (year == null || mes == null || dia == null) return null;
+    return DateTime(year, mes, dia);
   }
 
   void _limpiarViejos() {
@@ -147,6 +249,10 @@ class Progreso {
           'aciertos': _aciertos,
           'dias': _dias.toList()..sort(),
           'hechas': _hechas.toList()..sort(),
+          'luces': _luces,
+          'haciaLaLuz': _haciaLaLuz,
+          'ultimaContada': _ultimaContada,
+          'diaDeLaUltima': _diaDeLaUltima,
         }),
       );
     } catch (_) {

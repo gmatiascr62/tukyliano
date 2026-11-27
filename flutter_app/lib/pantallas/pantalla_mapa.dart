@@ -3,7 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 import '../datos/progreso.dart';
-import '../logica/nivel.dart';
+import '../logica/luces.dart';
 import '../modelos/destino.dart';
 import '../modelos/percorso.dart';
 import '../tema.dart';
@@ -134,7 +134,7 @@ class PantallaMapa extends StatelessWidget {
               left: 14,
               right: 14,
               bottom: 14,
-              child: _LaSemana(progreso: progreso),
+              child: _LasLuces(progreso: progreso),
             ),
             if (alIrA != null)
               Positioned(
@@ -360,16 +360,27 @@ class _Banner extends StatelessWidget {
 ///
 /// Va abajo y no arriba porque arriba está el nombre de la app, y porque
 /// es lo último que mirás antes de guardar el teléfono.
-class _LaSemana extends StatelessWidget {
-  const _LaSemana({required this.progreso});
+/// La fila de luces de abajo: cómo venís.
+///
+/// Reemplazó a la semana dibujada, y no es lo mismo de otra forma: la
+/// semana contaba días y esto cuenta **lecciones**, que es lo que de
+/// verdad hace avanzar. Cada dos se prende una luz; cada semana entera
+/// sin hacer ninguna se apaga una, y cuando no quedan se retrocede una
+/// ciudad.
+///
+/// Los colores son fijos por posición —dos rojas, dos amarillas, dos
+/// verdes— así que la fila se lee como un termómetro aunque esté apagada:
+/// se ve de entrada que las dos primeras son la zona de peligro.
+class _LasLuces extends StatelessWidget {
+  const _LasLuces({required this.progreso});
 
   final Progreso progreso;
 
   @override
   Widget build(BuildContext context) {
-    final nivel = nivelPara(progreso.aciertos);
+    final animo = animoDe(progreso.luces);
     return Container(
-      padding: const EdgeInsets.fromLTRB(14, 10, 14, 11),
+      padding: const EdgeInsets.fromLTRB(14, 11, 14, 11),
       decoration: BoxDecoration(
         color: Colors.white.withValues(alpha: 0.94),
         borderRadius: BorderRadius.circular(16),
@@ -387,74 +398,51 @@ class _LaSemana extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              // De la más vieja a hoy, que es como se lee una semana.
-              for (var atras = diasDeLaSemana - 1; atras >= 0; atras--)
-                _Dia(
-                  inicial: _inicialDe(atras),
-                  hecho: progreso.practicoHace(atras),
-                  esHoy: atras == 0,
+              for (var cual = 0; cual < cuantasLuces; cual++)
+                _Luz(
+                  color: animoDeLaLuz(cual).color,
+                  prendida: cual < progreso.luces,
                 ),
             ],
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 9),
           Text(
-            nivel.esElUltimo ? nivel.nombre : 'faltan ${nivel.faltan}',
+            animo.etiqueta,
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
-            style: const TextStyle(fontSize: 12.5, color: Tema.textoTenue),
+            style: TextStyle(
+              fontSize: 13.5,
+              fontWeight: FontWeight.w700,
+              color: animo.color,
+            ),
           ),
         ],
       ),
     );
   }
-
-  /// La primera letra del día, como la diría un argentino: L M M J V S D.
-  static String _inicialDe(int cuantosAtras) {
-    const iniciales = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
-    final dia = DateTime.now().subtract(Duration(days: cuantosAtras));
-    return iniciales[dia.weekday - 1];
-  }
 }
 
-class _Dia extends StatelessWidget {
-  const _Dia({required this.inicial, required this.hecho, required this.esHoy});
+class _Luz extends StatelessWidget {
+  const _Luz({required this.color, required this.prendida});
 
-  final String inicial;
-  final bool hecho;
-  final bool esHoy;
+  final Color color;
+  final bool prendida;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          width: 34,
-          height: 34,
-          decoration: BoxDecoration(
-            color: hecho ? Tema.verde : const Color(0xFFEDF1EE),
-            shape: BoxShape.circle,
-            // Hoy lleva borde aunque todavía no esté hecho: marca dónde
-            // estás parado, que es lo que vuelve al hueco una invitación
-            // y no un reproche.
-            border: esHoy && !hecho
-                ? Border.all(color: Tema.verde, width: 2)
-                : null,
-          ),
-          child: hecho
-              ? const Icon(Icons.check_rounded, size: 20, color: Colors.white)
-              : null,
-        ),
-        const SizedBox(height: 3),
-        Text(
-          inicial,
-          style: TextStyle(
-            fontSize: 11.5,
-            fontWeight: esHoy ? FontWeight.w700 : FontWeight.w500,
-            color: esHoy ? Tema.titulo : Tema.textoTenue,
-          ),
-        ),
-      ],
+    // Apagada se dibuja igual, en gris: el lugar vacío es la mitad del
+    // mensaje. Si las apagadas no se vieran, tener una luz y tener seis
+    // se verían parecido.
+    return Container(
+      width: 34,
+      height: 34,
+      decoration: BoxDecoration(
+        color: prendida ? color : const Color(0xFFEDF1EE),
+        shape: BoxShape.circle,
+        border: prendida
+            ? null
+            : Border.all(color: const Color(0xFFDDE3E0), width: 2),
+      ),
     );
   }
 }

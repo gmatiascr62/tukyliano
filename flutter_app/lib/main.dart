@@ -15,6 +15,7 @@ import 'datos/reproductor.dart';
 import 'datos/repositorio_verbos.dart';
 import 'datos/voz.dart';
 import 'ia/servidor.dart';
+import 'logica/luces.dart';
 import 'modelos/destino.dart';
 import 'modelos/percorso.dart';
 import 'modelos/seccion.dart';
@@ -251,7 +252,21 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
   /// sin ciudades, que es menos de un parpadeo.
   Future<void> _cargarCamino() async {
     await _camino.cargar();
+    _cobrarElOlvido();
     if (mounted) setState(() {});
+  }
+
+  /// Cobra las semanas sin estudiar: una luz por semana, y sin luces, una
+  /// ciudad por semana.
+  ///
+  /// Se hace al arrancar y necesita las dos cosas cargadas —el progreso,
+  /// para saber desde cuándo, y el camino, para saber qué ciudad
+  /// retroceder—, así que lo llaman las dos cargas y hace algo sólo
+  /// cuando ya están las dos. Cobrar de menos sería regalar semanas;
+  /// cobrar dos veces, castigar el doble.
+  void _cobrarElOlvido() {
+    if (_camino.camino.ciudades.isEmpty) return;
+    cobrarElOlvido(_progreso, _camino.camino.ciudades);
   }
 
   @override
@@ -262,6 +277,7 @@ class _PantallaPrincipalState extends State<PantallaPrincipal> {
 
   Future<void> _cargarProgreso() async {
     await _progreso.cargar();
+    _cobrarElOlvido();
     if (!mounted) return;
     setState(() {});
   }
