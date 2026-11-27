@@ -1,12 +1,25 @@
 import '../datos/progreso.dart';
 import '../modelos/percorso.dart';
 
-/// Cada cuántas lecciones el perrito saca una foto.
+/// Cuántas lecciones de la ciudad hay que llevar hechas para que se abra
+/// su foto número [cual], contando desde cero.
 ///
-/// Dos: con diez lecciones por ciudad son cinco fotos, que es lo que pidió
-/// Matías. Está acá y no desparramado por la pantalla porque es la regla
-/// del premio, y el día que cambie tiene que cambiar en un solo lugar.
-const int leccionesPorFoto = 2;
+/// Las fotos se reparten parejo entre las lecciones de **esa** ciudad. En
+/// Cerdeña —diez lecciones y cinco fotos— da una cada dos, que es como lo
+/// pidió Matías; en Palermo, que tiene cinco lecciones y también cinco
+/// fotos, da una por lección.
+///
+/// Antes era "cada dos" a secas, y así tres de las cinco de Palermo no se
+/// abrían nunca: no había con qué. Repartir en vez de contar de a dos deja
+/// la misma regla donde la ciudad da para eso y, sobre todo, hace que el
+/// álbum de una ciudad siempre se pueda completar terminándola.
+///
+/// Una ciudad sin lecciones no abre nada: pide una lección que no existe.
+int leccionesParaLaFoto(Ciudad ciudad, int cual) {
+  final total = ciudad.cuantasLecciones;
+  if (total <= 0 || ciudad.album.isEmpty) return cual + 1;
+  return ((cual + 1) * total / ciudad.album.length).ceil();
+}
 
 /// Una foto del álbum, con todo lo que la pantalla necesita saber: de qué
 /// ciudad es, si ya se abrió, y cuántas lecciones faltan si no.
@@ -43,7 +56,7 @@ List<FotoDelViaje> albumDelViaje(List<Ciudad> ciudades, Progreso progreso) {
         .where((l) => !l.esPrueba && progreso.hizo(l.id))
         .length;
     for (var i = 0; i < ciudad.album.length; i++) {
-      final pedidas = (i + 1) * leccionesPorFoto;
+      final pedidas = leccionesParaLaFoto(ciudad, i);
       todas.add(
         FotoDelViaje(
           ciudad: ciudad,

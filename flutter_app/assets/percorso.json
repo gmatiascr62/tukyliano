@@ -3172,6 +3172,25 @@
           "paraAprobar": 6,
           "cuantas": 8
         }
+      ],
+      "album": [
+        { "archivo": "palermo-1.jpg", "texto": "Selfie en la Catedral" },
+        {
+          "archivo": "palermo-2.jpg",
+          "texto": "Arancina en el Mercado de Ballarò"
+        },
+        {
+          "archivo": "palermo-3.jpg",
+          "texto": "Selfie en Teatro Massimo con un Pupi siciliano"
+        },
+        {
+          "archivo": "palermo-4.jpg",
+          "texto": "Cannoli en Mondello con coppola siciliana"
+        },
+        {
+          "archivo": "palermo-5.jpg",
+          "texto": "Selfie en Quattro Canti con el vendedor"
+        }
       ]
     },
     {

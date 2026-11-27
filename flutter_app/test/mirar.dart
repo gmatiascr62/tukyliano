@@ -357,6 +357,7 @@ void main() {
         for (var i = 1; i <= cuantas; i++) {
           aMitad.termino('olbia-$i');
           aMitad.termino('cagliari-$i');
+          aMitad.termino('palermo-$i');
         }
         await dibujar(
           tester,

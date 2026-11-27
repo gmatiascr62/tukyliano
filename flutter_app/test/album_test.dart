@@ -46,7 +46,7 @@ void main() {
     expect(album.map((f) => f.faltan), [2, 4, 6, 8, 10]);
   });
 
-  test('cada dos lecciones se abre una', () {
+  test('con diez lecciones y cinco fotos, una cada dos', () {
     for (final (hechas, abiertas) in [
       (1, 0),
       (2, 1),
@@ -64,6 +64,43 @@ void main() {
         reason: 'con $hechas lecciones tienen que estar $abiertas abiertas',
       );
     }
+  });
+
+  test('con cinco lecciones y cinco fotos, una por lección', () {
+    // Palermo. Con la regla vieja —una cada dos, siempre— tres de sus
+    // cinco fotos no se abrían nunca: no había con qué. Las fotos se
+    // reparten entre las lecciones que la ciudad tiene.
+    final palermo = Ciudad(
+      id: 'palermo',
+      nombre: 'Palermo',
+      lecciones: [
+        for (var i = 1; i <= 5; i++)
+          Leccion(id: 'palermo-$i', titulo: 'Lección $i'),
+        const Leccion(
+          id: 'palermo-prueba',
+          titulo: 'La prueba',
+          esPrueba: true,
+        ),
+      ],
+      album: const [
+        Foto(archivo: 'palermo-1.jpg', texto: 'La Catedral'),
+        Foto(archivo: 'palermo-2.jpg', texto: 'Ballarò'),
+        Foto(archivo: 'palermo-3.jpg', texto: 'Teatro Massimo'),
+        Foto(archivo: 'palermo-4.jpg', texto: 'Mondello'),
+        Foto(archivo: 'palermo-5.jpg', texto: 'Quattro Canti'),
+      ],
+    );
+
+    expect(
+      [for (var i = 0; i < 5; i++) leccionesParaLaFoto(palermo, i)],
+      [1, 2, 3, 4, 5],
+    );
+
+    final conTres = _con([for (var i = 1; i <= 3; i++) 'palermo-$i']);
+    expect(cuantasAbiertas(albumDelViaje([palermo], conTres)), 3);
+
+    final todas = _con([for (var i = 1; i <= 5; i++) 'palermo-$i']);
+    expect(albumDelViaje([palermo], todas).every((f) => f.abierta), isTrue);
   });
 
   test('las diez lecciones abren las cinco, ni una menos', () {
@@ -126,13 +163,14 @@ void main() {
           reason: '${ciudad.id}: ${foto.archivo} sin pie de foto',
         );
       }
-      // Una ciudad con álbum tiene que poder abrirlo entero: si hubiera
-      // más fotos que pares de lecciones, la última no se abriría nunca.
+      // Una ciudad con álbum tiene que poder abrirlo entero terminando
+      // la ciudad: una foto que pide más lecciones de las que hay es una
+      // promesa que no se puede cumplir.
       if (ciudad.album.isNotEmpty) {
         expect(
-          ciudad.album.length * leccionesPorFoto,
+          leccionesParaLaFoto(ciudad, ciudad.album.length - 1),
           lessThanOrEqualTo(ciudad.cuantasLecciones),
-          reason: '${ciudad.id} tiene más fotos que lecciones para abrirlas',
+          reason: '${ciudad.id}: la última foto no se abre nunca',
         );
       }
     }

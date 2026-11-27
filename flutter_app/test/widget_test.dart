@@ -132,7 +132,7 @@ void main() {
 
     // De cero no hay ninguna abierta, pero el álbum se ve igual: las
     // tapadas dicen cuánto falta.
-    expect(find.text('0 de 10 fotos'), findsOneWidget);
+    expect(find.text('0 de 15 fotos'), findsOneWidget);
     // Una por ciudad con álbum: la primera foto de cada una se abre a
     // las dos lecciones de esa ciudad.
     expect(find.text('Faltan 2 lecciones'), findsWidgets);
@@ -156,7 +156,7 @@ void main() {
     await tester.tap(find.byTooltip('El álbum del viaje'));
     await tester.pumpAndSettle();
 
-    expect(find.text('1 de 10 fotos'), findsOneWidget);
+    expect(find.text('1 de 15 fotos'), findsOneWidget);
     expect(find.text('Selfie en la playa de Pittulongu'), findsOneWidget);
   });
 
