@@ -356,6 +356,8 @@ void main() {
         final aMitad = await progresoDeMentira();
         for (var i = 1; i <= cuantas; i++) {
           aMitad.termino('olbia-$i');
+          aMitad.termino('cagliari-$i');
+          aMitad.termino('palermo-$i');
         }
         await dibujar(
           tester,
@@ -367,6 +369,14 @@ void main() {
               alVolver: () {},
             ),
           ),
+          // Con ABAJO se mira el final de la lista, que es donde están
+          // las fotos de la segunda ciudad.
+          despuesDeAbrir: Platform.environment['ABAJO'] == null
+              ? null
+              : (t) async {
+                  await t.drag(find.byType(GridView), const Offset(0, -1100));
+                  await t.pumpAndSettle();
+                },
         );
 
       case 'inicio-olbia-hecha':
