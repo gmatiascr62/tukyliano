@@ -134,7 +134,10 @@ class PantallaMapa extends StatelessWidget {
               left: 14,
               right: 14,
               bottom: 14,
-              child: _LasLuces(progreso: progreso),
+              child: _LasLuces(
+                progreso: progreso,
+                enRiesgo: ciudadEnRiesgo(ciudades, progreso),
+              ),
             ),
             if (alIrA != null)
               Positioned(
@@ -372,9 +375,13 @@ class _Banner extends StatelessWidget {
 /// verdes— así que la fila se lee como un termómetro aunque esté apagada:
 /// se ve de entrada que las dos primeras son la zona de peligro.
 class _LasLuces extends StatelessWidget {
-  const _LasLuces({required this.progreso});
+  const _LasLuces({required this.progreso, required this.enRiesgo});
 
   final Progreso progreso;
+
+  /// La ciudad que se pierde si se acaban las luces, para poder
+  /// nombrarla. Vacío mientras no haya ninguna prueba aprobada.
+  final String enRiesgo;
 
   @override
   Widget build(BuildContext context) {
@@ -407,7 +414,7 @@ class _LasLuces extends StatelessWidget {
           ),
           const SizedBox(height: 9),
           Text(
-            animo.etiqueta,
+            loQueEstaEnJuego(progreso.luces, enRiesgo),
             maxLines: 1,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(

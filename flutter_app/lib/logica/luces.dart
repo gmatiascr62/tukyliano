@@ -33,6 +33,46 @@ Animo animoDeLaLuz(int cual) => switch (cual) {
 Animo animoDe(int luces) =>
     luces <= 0 ? Animo.cuidado : animoDeLaLuz(luces - 1);
 
+/// Qué ciudad se pierde si se acaban las luces, o vacío si todavía no
+/// hay nada que perder.
+///
+/// Se deshace la prueba de la última ciudad aprobada, y con eso la
+/// **siguiente** se cierra: esa es la que se pierde, y es la que el
+/// alumno tiene abierta hoy. Si la aprobada es la última del camino no
+/// hay otra adelante, así que lo que se pierde es ella misma.
+String ciudadEnRiesgo(List<Ciudad> ciudades, Progreso progreso) {
+  for (var i = ciudades.length - 1; i >= 0; i--) {
+    if (!progreso.hizo('${ciudades[i].id}-prueba')) continue;
+    return i + 1 < ciudades.length
+        ? ciudades[i + 1].nombre
+        : ciudades[i].nombre;
+  }
+  return '';
+}
+
+/// El renglón de abajo del mapa: no dice en qué color estás, dice **qué
+/// está en juego**.
+///
+/// "Cuidado" no explica nada; "Estás por perder Palermo" sí, y es la
+/// verdad exacta: con la fila en rojo, la semana que viene se deshace
+/// esa prueba. Mientras no haya ninguna ciudad aprobada no hay nada que
+/// perder, y entonces el renglón sólo dice cómo venís.
+String loQueEstaEnJuego(int luces, String enRiesgo) {
+  final animo = animoDe(luces);
+  if (enRiesgo.isEmpty) {
+    return switch (animo) {
+      Animo.cuidado => 'Cuidado',
+      Animo.seguilo => 'Vas bien',
+      Animo.bien => 'Vas firme',
+    };
+  }
+  return switch (animo) {
+    Animo.cuidado => 'Estás por perder $enRiesgo',
+    Animo.seguilo => '$enRiesgo está a salvo',
+    Animo.bien => 'Vas firme',
+  };
+}
+
 /// Cobra las semanas sin estudiar: una luz por semana, y cuando no quedan
 /// luces, una ciudad por semana.
 ///

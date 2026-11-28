@@ -1,5 +1,5 @@
 {
-  "version": 19,
+  "version": 20,
   "nombres": [
     "Marco",
     "Anna",
@@ -30,7 +30,9 @@
     "Olbia",
     "Cagliari",
     "Palermo",
-    "Ballarò"
+    "Ballarò",
+    "Lima",
+    "Bogotá"
   ],
   "vocabulario_comun": [
     {
@@ -39,7 +41,7 @@
     },
     {
       "it": "hai",
-      "es": "tenés"
+      "es": "tienes"
     },
     {
       "it": "ha",
@@ -63,7 +65,7 @@
     },
     {
       "it": "sei",
-      "es": "sos"
+      "es": "eres"
     },
     {
       "it": "è",
@@ -231,7 +233,7 @@
     },
     {
       "it": "tu",
-      "es": "vos, tú"
+      "es": "tú"
     },
     {
       "it": "mi",
@@ -251,7 +253,7 @@
     },
     {
       "it": "chiami",
-      "es": "llamás"
+      "es": "llamas"
     },
     {
       "it": "chiama",
@@ -315,11 +317,11 @@
     },
     {
       "it": "abiti",
-      "es": "vivís"
+      "es": "vives"
     },
     {
-      "it": "argentino",
-      "es": "argentino"
+      "it": "latinoamericano",
+      "es": "latinoamericano"
     },
     {
       "it": "italiano",
@@ -335,7 +337,7 @@
     },
     {
       "it": "parli",
-      "es": "hablás"
+      "es": "hablas"
     },
     {
       "it": "un po'",
@@ -371,11 +373,11 @@
     },
     {
       "it": "lavori",
-      "es": "trabajás"
+      "es": "trabajas"
     },
     {
       "it": "fai",
-      "es": "hacés"
+      "es": "haces"
     },
     {
       "it": "cuoco",
@@ -383,7 +385,7 @@
     },
     {
       "it": "cameriere",
-      "es": "mozo"
+      "es": "mesero, mozo"
     },
     {
       "it": "medico",
@@ -399,7 +401,7 @@
     },
     {
       "it": "qui",
-      "es": "acá"
+      "es": "aquí"
     },
     {
       "it": "parla",
@@ -523,7 +525,7 @@
     },
     {
       "it": "prendi",
-      "es": "tomás"
+      "es": "tomas"
     },
     {
       "it": "prende",
@@ -535,7 +537,7 @@
     },
     {
       "it": "capisci",
-      "es": "entendés"
+      "es": "entiendes"
     },
     {
       "it": "vado",
@@ -555,7 +557,7 @@
     },
     {
       "it": "cornetto",
-      "es": "medialuna"
+      "es": "croissant, medialuna"
     },
     {
       "it": "birra",
@@ -575,7 +577,7 @@
     },
     {
       "it": "ecco",
-      "es": "acá tiene, aquí está"
+      "es": "aquí tiene, aquí está"
     },
     {
       "it": "mio",
@@ -615,7 +617,7 @@
     },
     {
       "it": "mangi",
-      "es": "comés"
+      "es": "comes"
     },
     {
       "it": "bevo",
@@ -623,7 +625,7 @@
     },
     {
       "it": "bevi",
-      "es": "tomás, bebés"
+      "es": "tomas, bebés"
     },
     {
       "it": "pasta",
@@ -655,7 +657,7 @@
     },
     {
       "it": "negozio",
-      "es": "negocio"
+      "es": "tienda, negocio"
     },
     {
       "it": "aperto",
@@ -667,7 +669,7 @@
     },
     {
       "it": "soldi",
-      "es": "plata, dinero"
+      "es": "dinero, plata"
     },
     {
       "it": "troppo",
@@ -731,11 +733,11 @@
     },
     {
       "it": "biglietto",
-      "es": "boleto"
+      "es": "boleto, pasaje"
     },
     {
       "it": "autobus",
-      "es": "colectivo"
+      "es": "autobús, colectivo"
     },
     {
       "it": "o",
@@ -807,7 +809,7 @@
     },
     {
       "it": "puoi",
-      "es": "podés"
+      "es": "puedes"
     },
     {
       "it": "devo",
@@ -815,7 +817,7 @@
     },
     {
       "it": "devi",
-      "es": "tenés que"
+      "es": "tienes que"
     },
     {
       "it": "andare",
@@ -967,7 +969,7 @@
     },
     {
       "it": "stanza",
-      "es": "pieza, habitación"
+      "es": "habitación, pieza"
     },
     {
       "it": "bagno",
@@ -1098,7 +1100,7 @@
       "vocabulario": [
         {
           "it": "cameriere",
-          "es": "mozo"
+          "es": "mesero, mozo"
         },
         {
           "it": "lavoro",
@@ -1123,8 +1125,8 @@
       ],
       "lineas": [
         {
-          "it": "Mi chiamo Marco e sono argentino.",
-          "es": "Me llamo Marco y soy argentino.",
+          "it": "Mi chiamo Marco e sono latinoamericano.",
+          "es": "Me llamo Marco y soy latinoamericano.",
           "cuadro": 1
         },
         {
@@ -1133,7 +1135,7 @@
         },
         {
           "it": "Sono cameriere e lavoro in un bar.",
-          "es": "Soy mozo y trabajo en un bar."
+          "es": "Soy mesero y trabajo en un bar."
         },
         {
           "it": "«Buongiorno, signora! Come sta?»",
@@ -1170,7 +1172,7 @@
         },
         {
           "it": "Un gatto è qui! Che gatto!",
-          "es": "¡Hay un gato acá! ¡Qué gato!",
+          "es": "¡Hay un gato aquí! ¡Qué gato!",
           "cuadro": 3
         },
         {
@@ -1190,7 +1192,7 @@
       "vocabulario": [
         {
           "it": "biglietto",
-          "es": "boleto"
+          "es": "boleto, pasaje"
         },
         {
           "it": "treno",
@@ -1214,7 +1216,7 @@
         },
         {
           "it": "cornetto",
-          "es": "medialuna"
+          "es": "croissant, medialuna"
         },
         {
           "it": "quanto costa",
@@ -1222,7 +1224,7 @@
         },
         {
           "it": "ecco",
-          "es": "acá tiene"
+          "es": "aquí tiene"
         },
         {
           "it": "aperto / chiuso",
@@ -1254,20 +1256,20 @@
         },
         {
           "it": "«Ciao, Elena! Come stai?» «Sto bene! E tu?»",
-          "es": "«¡Hola, Elena! ¿Cómo estás?» «¡Estoy bien! ¿Y vos?»"
+          "es": "«¡Hola, Elena! ¿Cómo estás?» «¡Estoy bien! ¿Y tú?»"
         },
         {
           "it": "«Bene. Prendi un caffè?» «Sì, grazie.»",
-          "es": "«Bien. ¿Tomás un café?» «Sí, gracias.»",
+          "es": "«Bien. ¿Tomas un café?» «Sí, gracias.»",
           "cuadro": 3
         },
         {
           "it": "«Vorrei un cappuccino e un cornetto, per favore.»",
-          "es": "«Quisiera un capuchino y una medialuna, por favor.»"
+          "es": "«Quisiera un capuchino y una croissant, por favor.»"
         },
         {
           "it": "«Quanto costa?» «Tre euro.» «Ecco.»",
-          "es": "«¿Cuánto cuesta?» «Tres euros.» «Acá tiene.»"
+          "es": "«¿Cuánto cuesta?» «Tres euros.» «Aquí tiene.»"
         },
         {
           "it": "Poi mangio una pizza e bevo l'acqua.",
@@ -1276,7 +1278,7 @@
         },
         {
           "it": "«E tu, mangi la pizza?» «No, io mangio la verdura.»",
-          "es": "«¿Y vos, comés pizza?» «No, yo como verdura.»"
+          "es": "«¿Y tú, comes pizza?» «No, yo como verdura.»"
         },
         {
           "it": "Un negozio è aperto. Domani, domenica, è chiuso.",
@@ -1570,7 +1572,7 @@
       "vocabulario": [
         {
           "it": "stanza",
-          "es": "pieza, habitación"
+          "es": "habitación, pieza"
         },
         {
           "it": "affitto",
@@ -1601,7 +1603,7 @@
         },
         {
           "it": "Cerco una stanza in affitto.",
-          "es": "Busco una pieza en alquiler."
+          "es": "Busco una habitación en alquiler."
         },
         {
           "it": "Ieri sono andato in una casa vicino alla stazione.",
@@ -1610,7 +1612,7 @@
         },
         {
           "it": "La signora ha una stanza con bagno e cucina.",
-          "es": "La señora tiene una pieza con baño y cocina."
+          "es": "La señora tiene una habitación con baño y cocina."
         },
         {
           "it": "«Quanto costa l'affitto?» «Quattrocento euro».",
@@ -1618,7 +1620,7 @@
         },
         {
           "it": "Adesso ho una stanza a Palermo!",
-          "es": "¡Ahora tengo una pieza en Palermo!"
+          "es": "¡Ahora tengo una habitación en Palermo!"
         },
         {
           "it": "Oggi sono andato al mercato di Ballarò.",
@@ -1830,7 +1832,7 @@
         },
         {
           "it": "cameriere",
-          "es": "mozo"
+          "es": "mesero, mozo"
         },
         {
           "it": "porta",
@@ -1892,7 +1894,7 @@
         },
         {
           "it": "Il cameriere porta le pizze.",
-          "es": "El mozo trae las pizzas.",
+          "es": "El mesero trae las pizzas.",
           "cuadro": 5
         },
         {
@@ -2179,7 +2181,7 @@
         },
         {
           "it": "Ogni mattina prende l'autobus.",
-          "es": "Cada mañana toma el colectivo.",
+          "es": "Cada mañana toma el autobús.",
           "cuadro": 2
         },
         {
@@ -2588,7 +2590,7 @@
         },
         {
           "it": "A Napoli prendono l'autobus.",
-          "es": "En Nápoles toman el colectivo.",
+          "es": "En Nápoles toman el autobús.",
           "cuadro": 2
         },
         {
@@ -2744,7 +2746,7 @@
         },
         {
           "it": "Sull'autobus Anna è triste.",
-          "es": "En el colectivo Anna está triste."
+          "es": "En el autobús Anna está triste."
         },
         {
           "it": "Non vuole tornare a casa.",
@@ -2783,7 +2785,7 @@
         },
         {
           "it": "come stai",
-          "es": "cómo andás"
+          "es": "cómo andas"
         },
         {
           "it": "bene",
@@ -2795,7 +2797,7 @@
         },
         {
           "it": "tu",
-          "es": "vos"
+          "es": "tú"
         },
         {
           "it": "stanco",
@@ -2835,7 +2837,7 @@
         },
         {
           "it": "fai",
-          "es": "hacés"
+          "es": "haces"
         },
         {
           "it": "no",
@@ -2923,7 +2925,7 @@
         },
         {
           "it": "abiti",
-          "es": "vivís"
+          "es": "vives"
         },
         {
           "it": "adesso",
@@ -2955,7 +2957,7 @@
         },
         {
           "it": "appartamento",
-          "es": "departamento"
+          "es": "apartamento"
         },
         {
           "it": "terzo",
@@ -2991,7 +2993,7 @@
         },
         {
           "it": "puoi",
-          "es": "podés"
+          "es": "puedes"
         },
         {
           "it": "venire",
@@ -3057,12 +3059,12 @@
         },
         {
           "it": "Marco: Ciao Paolo! Come stai?",
-          "es": "Marco: ¡Hola Paolo! ¿Cómo andás?",
+          "es": "Marco: ¡Hola Paolo! ¿Cómo andas?",
           "cuadro": 1
         },
         {
           "it": "Paolo: Bene, grazie. E tu?",
-          "es": "Paolo: Bien, gracias. ¿Y vos?",
+          "es": "Paolo: Bien, gracias. ¿Y tú?",
           "cuadro": 2
         },
         {
@@ -3080,7 +3082,7 @@
         },
         {
           "it": "Paolo: Senti, cosa fai sabato sera?",
-          "es": "Paolo: Escuchá, ¿qué hacés el sábado a la noche?"
+          "es": "Paolo: Escuchá, ¿qué haces el sábado a la noche?"
         },
         {
           "it": "Marco: Niente. Perché?",
@@ -3146,7 +3148,7 @@
         },
         {
           "it": "Marco: E dove abiti adesso?",
-          "es": "Marco: ¿Y dónde vivís ahora?"
+          "es": "Marco: ¿Y dónde vives ahora?"
         },
         {
           "it": "Paolo: In via Roma, numero dodici.",
@@ -3166,7 +3168,7 @@
         },
         {
           "it": "Paolo: L'appartamento è al terzo piano.",
-          "es": "Paolo: El departamento está en el tercer piso."
+          "es": "Paolo: El apartamento está en el tercer piso."
         },
         {
           "it": "Marco: C'è l'ascensore?",
@@ -3198,7 +3200,7 @@
         },
         {
           "it": "Paolo: Puoi venire un po' prima?",
-          "es": "Paolo: ¿Podés venir un poco antes?"
+          "es": "Paolo: ¿Puedes venir un poco antes?"
         },
         {
           "it": "Marco: Certo. Perché?",
@@ -3214,7 +3216,7 @@
         },
         {
           "it": "Paolo: Grazie, sei un amico.",
-          "es": "Paolo: Gracias, sos un amigo."
+          "es": "Paolo: Gracias, eres un amigo."
         },
         {
           "it": "Marco: Senti, una domanda.",
@@ -3226,7 +3228,7 @@
         },
         {
           "it": "Marco: Perché fai questa cena?",
-          "es": "Marco: ¿Por qué hacés esta cena?"
+          "es": "Marco: ¿Por qué haces esta cena?"
         },
         {
           "it": "Paolo: Come perché? È il mio compleanno.",
@@ -3238,7 +3240,7 @@
         },
         {
           "it": "Paolo: Tu non ricordi niente.",
-          "es": "Paolo: Vos no te acordás de nada."
+          "es": "Paolo: Tú no te acordás de nada."
         },
         {
           "it": "Marco: Ricordo tutto!",
@@ -4149,7 +4151,7 @@
         },
         {
           "it": "soldi",
-          "es": "plata, dinero"
+          "es": "dinero, plata"
         },
         {
           "it": "sconosciuta",
@@ -4311,11 +4313,11 @@
         },
         {
           "it": "«La casa di Firenze. E i soldi in banca.»",
-          "es": "«La casa de Florencia. Y la plata del banco»."
+          "es": "«La casa de Florencia. Y la dinero del banco»."
         },
         {
           "it": "«I soldi in banca,» ha ripetuto Riccardo. «Ottantamila euro.»",
-          "es": "«La plata del banco», repitió Riccardo. «Ochenta mil euros»."
+          "es": "«La dinero del banco», repitió Riccardo. «Ochenta mil euros»."
         },
         {
           "it": "«Ottantamila euro e trecento ettari a una sconosciuta.»",
@@ -4923,7 +4925,7 @@
         },
         {
           "it": "«Mio padre veniva qui ogni sera,» ha detto Stefano.",
-          "es": "«Mi padre venía acá todas las tardes», dijo Stefano."
+          "es": "«Mi padre venía aquí todas las tardes», dijo Stefano."
         },
         {
           "it": "«Da solo?»",
@@ -5185,7 +5187,7 @@
         },
         {
           "it": "«Rosa, lei lavora qui da quanto?»",
-          "es": "«Rosa, ¿hace cuánto que trabaja acá?»"
+          "es": "«Rosa, ¿hace cuánto que trabaja aquí?»"
         },
         {
           "it": "«Da quarantanove anni.»",
@@ -5261,7 +5263,7 @@
         },
         {
           "it": "«Non l'ho mai conosciuto. È per questo che sono qui.»",
-          "es": "«Nunca lo conocí. Por eso estoy acá»."
+          "es": "«Nunca lo conocí. Por eso estoy aquí»."
         }
       ]
     },
@@ -5475,7 +5477,7 @@
         },
         {
           "it": "«Una ladra guarda i prezzi. Tu guardavi le date.»",
-          "es": "«Una ladrona mira los precios. Vos mirabas las fechas»."
+          "es": "«Una ladrona mira los precios. Tú mirabas las fechas»."
         },
         {
           "it": "Elena ha sorriso per la prima volta in due settimane.",
@@ -5547,11 +5549,11 @@
         },
         {
           "it": "«Io lo so chi sei.»",
-          "es": "«Yo sé quién sos»."
+          "es": "«Yo sé quién eres»."
         },
         {
           "it": "«No, Stefano. Non lo sai.»",
-          "es": "«No, Stefano. No lo sabés»."
+          "es": "«No, Stefano. No lo sabes»."
         },
         {
           "it": "È uscita sotto la pioggia senza la giacca.",
@@ -5939,7 +5941,7 @@
         },
         {
           "it": "«Là ha conosciuto una donna. Si chiamava Teresa.»",
-          "es": "«Allá conoció a una mujer. Se llamaba Teresa»."
+          "es": "«Allí conoció a una mujer. Se llamaba Teresa»."
         },
         {
           "it": "Elena si è alzata in piedi.",
@@ -6583,7 +6585,7 @@
         },
         {
           "it": "«Questa lettera parla di soldi.»",
-          "es": "«Esta carta habla de plata»."
+          "es": "«Esta carta habla de dinero»."
         },
         {
           "it": "«Sì.»",
@@ -6749,7 +6751,7 @@
         },
         {
           "it": "«Sì. E Antonio Ricci aveva una vigna qui vicino.»",
-          "es": "«Sí. Y Antonio Ricci tenía una viña acá cerca»."
+          "es": "«Sí. Y Antonio Ricci tenía una viña aquí cerca»."
         },
         {
           "it": "Elena non ha detto niente.",
