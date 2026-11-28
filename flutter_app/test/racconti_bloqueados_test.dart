@@ -31,14 +31,15 @@ DatosRacconti get _racconti =>
     DatosRacconti.desdeJson(_leer('assets/racconti.json'));
 
 void main() {
-  test('cada ciudad del nivel 1 reclama un cuento que existe', () {
+  test('cada ciudad con contenido reclama un cuento que existe', () {
     final cuentos = {for (final o in _racconti.obras) o.id};
     final conCuento = _camino.ciudades.where((c) => c.racconto.isNotEmpty);
 
     expect(conCuento.map((c) => c.id), [
       'olbia',
       'cagliari',
-    ], reason: 'hoy son las dos de Cerdeña');
+      'palermo',
+    ], reason: 'las tres que tienen lecciones; las otras cuatro no');
     for (final ciudad in conCuento) {
       expect(
         cuentos,

@@ -260,9 +260,9 @@ void main() {
     test('los cuentos sueltos siguen siendo uno cada uno', () {
       final sueltos = _datos.obras.where((o) => !o.tieneCapitulos);
 
-      // Nueve de siempre más los dos de Cerdeña, que son el premio de
-      // las dos ciudades del nivel 1.
-      expect(sueltos.length, 11);
+      // Nueve de siempre más los tres del camino: los dos de Cerdeña y
+      // el de Palermo, que son el premio de cada ciudad con lecciones.
+      expect(sueltos.length, 12);
       for (final obra in sueltos) {
         expect(obra.serie, isEmpty, reason: obra.titulo);
       }
