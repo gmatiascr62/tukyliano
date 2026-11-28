@@ -600,22 +600,28 @@ void main() {
         );
 
       case 'ciudad':
-        // Palermo con las dos primeras hechas, que es como se ve a mitad
-        // de camino. Recién abierta sólo se vería la primera encendida.
+        // Con las dos primeras hechas, que es como se ve a mitad de
+        // camino. Recién abierta sólo se vería la primera encendida.
+        // Con CIUDAD se mira otra; por defecto, la primera del camino.
         final camino = RepositorioPercorso(
           leerAsset: (_) async =>
               File('assets/percorso.json').readAsStringSync(),
         );
         await camino.cargar();
+        final cualCiudadVer = Platform.environment['CIUDAD'] ?? '';
+        final laCiudad = camino.camino.ciudades.firstWhere(
+          (c) => c.id == cualCiudadVer,
+          orElse: () => camino.camino.ciudades.first,
+        );
         final avance = Progreso(carpeta: () async => null)
-          ..termino('palermo-1')
-          ..termino('palermo-2');
+          ..termino(laCiudad.lecciones[0].id)
+          ..termino(laCiudad.lecciones[1].id);
         await dibujar(
           tester,
           cual,
           Scaffold(
             body: PantallaCiudad(
-              ciudad: camino.camino.ciudades.first,
+              ciudad: laCiudad,
               progreso: avance,
               alVolver: () {},
               alEmpezar: (_) {},
@@ -641,7 +647,12 @@ void main() {
               File('assets/percorso.json').readAsStringSync(),
         );
         await conLecciones.cargar();
-        final ciudad = conLecciones.camino.ciudades.first;
+        // Con CIUDAD se mira una lección de otra ciudad del camino.
+        final cualCiudad = Platform.environment['CIUDAD'] ?? '';
+        final ciudad = conLecciones.camino.ciudades.firstWhere(
+          (c) => c.id == cualCiudad,
+          orElse: () => conLecciones.camino.ciudades.first,
+        );
         // La lección que se mira: la primera de Olbia para los pasos de
         // enseñar, y la cuarta —la del diálogo— para el diálogo.
         final cual1 = cual == 'leccion-dialogo'
