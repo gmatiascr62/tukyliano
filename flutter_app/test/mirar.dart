@@ -439,12 +439,23 @@ void main() {
       // del camino, que son el premio de la ciudad.
       case 'racconti':
       case 'racconti-abierto':
+        // Con CUENTO se abre el de otra ciudad; por defecto, el de Olbia.
+        final deQuien = Platform.environment['CUENTO'] ?? 'olbia';
         final progreso = Progreso(carpeta: () async => null);
-        if (cual == 'racconti-abierto') progreso.termino('olbia-prueba');
+        if (cual == 'racconti-abierto') progreso.termino('$deQuien-prueba');
+        // Los cerrados se calculan como en la app y no a mano: así la
+        // foto no miente cuando una ciudad nueva reclama su cuento.
+        // Estaban escritos a mano y por eso Palermo apareció abierto.
+        final elCamino = RepositorioPercorso(
+          leerAsset: (_) async =>
+              File('assets/percorso.json').readAsStringSync(),
+        );
+        await elCamino.cargar();
         final cerrados = <String, String>{
-          if (!progreso.hizo('olbia-prueba'))
-            'un-giorno-a-olbia': 'Se abre al pasar la prueba de Olbia',
-          'un-sabato-a-cagliari': 'Se abre al pasar la prueba de Cagliari',
+          for (final ciudad in elCamino.camino.ciudades)
+            if (ciudad.racconto.isNotEmpty &&
+                !progreso.hizo('${ciudad.id}-prueba'))
+              ciudad.racconto: 'Se abre al pasar la prueba de ${ciudad.nombre}',
         };
         await dibujar(
           tester,
@@ -464,15 +475,20 @@ void main() {
             if (cual != 'racconti-abierto') return;
             // Abierto, el cuento se muestra con su tapa y nada de texto
             // al lado: hay que tocar la foto, no el título.
-            await t.tap(
-              find.byWidgetPredicate(
-                (w) =>
-                    w is Image &&
-                    w.image is AssetImage &&
-                    (w.image as AssetImage).assetName ==
-                        'assets/racconti/olbia-portada.jpg',
-              ),
+            final laTapa = find.byWidgetPredicate(
+              (w) =>
+                  w is Image &&
+                  w.image is AssetImage &&
+                  (w.image as AssetImage).assetName ==
+                      'assets/racconti/$deQuien-portada.jpg',
             );
+            // Si el cuento está abajo en la lista hay que bajar primero:
+            // tocar lo que no se ve no abre nada y la foto sale igual,
+            // mostrando la lista como si no hubiera pasado nada.
+            await t.scrollUntilVisible(laTapa, 200);
+            await t.ensureVisible(laTapa);
+            await t.pumpAndSettle();
+            await t.tap(laTapa);
             await t.pumpAndSettle();
           },
         );
@@ -600,22 +616,28 @@ void main() {
         );
 
       case 'ciudad':
-        // Palermo con las dos primeras hechas, que es como se ve a mitad
-        // de camino. Recién abierta sólo se vería la primera encendida.
+        // Con las dos primeras hechas, que es como se ve a mitad de
+        // camino. Recién abierta sólo se vería la primera encendida.
+        // Con CIUDAD se mira otra; por defecto, la primera del camino.
         final camino = RepositorioPercorso(
           leerAsset: (_) async =>
               File('assets/percorso.json').readAsStringSync(),
         );
         await camino.cargar();
+        final cualCiudadVer = Platform.environment['CIUDAD'] ?? '';
+        final laCiudad = camino.camino.ciudades.firstWhere(
+          (c) => c.id == cualCiudadVer,
+          orElse: () => camino.camino.ciudades.first,
+        );
         final avance = Progreso(carpeta: () async => null)
-          ..termino('palermo-1')
-          ..termino('palermo-2');
+          ..termino(laCiudad.lecciones[0].id)
+          ..termino(laCiudad.lecciones[1].id);
         await dibujar(
           tester,
           cual,
           Scaffold(
             body: PantallaCiudad(
-              ciudad: camino.camino.ciudades.first,
+              ciudad: laCiudad,
               progreso: avance,
               alVolver: () {},
               alEmpezar: (_) {},
@@ -641,7 +663,12 @@ void main() {
               File('assets/percorso.json').readAsStringSync(),
         );
         await conLecciones.cargar();
-        final ciudad = conLecciones.camino.ciudades.first;
+        // Con CIUDAD se mira una lección de otra ciudad del camino.
+        final cualCiudad = Platform.environment['CIUDAD'] ?? '';
+        final ciudad = conLecciones.camino.ciudades.firstWhere(
+          (c) => c.id == cualCiudad,
+          orElse: () => conLecciones.camino.ciudades.first,
+        );
         // La lección que se mira: la primera de Olbia para los pasos de
         // enseñar, y la cuarta —la del diálogo— para el diálogo.
         final cual1 = cual == 'leccion-dialogo'

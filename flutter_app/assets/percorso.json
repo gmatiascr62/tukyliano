@@ -1529,13 +1529,22 @@
           "archivo": "olbia-1.jpg",
           "texto": "Selfie en la playa de Pittulongu"
         },
-        { "archivo": "olbia-2.jpg", "texto": "Posando en San Simplicio" },
-        { "archivo": "olbia-3.jpg", "texto": "Selfie en Corso Umberto" },
+        {
+          "archivo": "olbia-2.jpg",
+          "texto": "Posando en San Simplicio"
+        },
+        {
+          "archivo": "olbia-3.jpg",
+          "texto": "Selfie en Corso Umberto"
+        },
         {
           "archivo": "olbia-4.jpg",
           "texto": "Gelato en el puerto al atardecer"
         },
-        { "archivo": "olbia-5.jpg", "texto": "Selfie en el paseo marítimo" }
+        {
+          "archivo": "olbia-5.jpg",
+          "texto": "Selfie en el paseo marítimo"
+        }
       ]
     },
     {
@@ -2898,7 +2907,10 @@
           "archivo": "cagliari-1.jpg",
           "texto": "Selfie en el Bastione di Saint Remy"
         },
-        { "archivo": "cagliari-2.jpg", "texto": "Relax en la playa del Poetto" },
+        {
+          "archivo": "cagliari-2.jpg",
+          "texto": "Relax en la playa del Poetto"
+        },
         {
           "archivo": "cagliari-3.jpg",
           "texto": "Selfie con los flamencos en Molentargius"
@@ -2916,7 +2928,7 @@
     {
       "id": "palermo",
       "nombre": "Palermo",
-      "subtitulo": "las primeras palabras",
+      "subtitulo": "vivir en Italia",
       "nivel": 2,
       "icono": "palermo",
       "x": 0.61,
@@ -2924,257 +2936,1513 @@
       "lecciones": [
         {
           "id": "palermo-1",
-          "titulo": "Il gatto è in cucina",
-          "deQueVa": "Las primeras diez palabras",
+          "titulo": "C'è un mercato qui vicino?",
+          "deQueVa": "Decir que algo hay, y preguntar dónde",
+          "explicaciones": [
+            {
+              "titulo": "C'è para uno, ci sono para varios",
+              "texto": "Las dos quieren decir \"hay\". c'è va con una sola cosa y ci sono con varias. En castellano \"hay\" no cambia nunca, así que es de las primeras que se olvidan.",
+              "ejemplos": [
+                {
+                  "it": "C'è un bar.",
+                  "es": "Hay un bar.",
+                  "suena": "ché un bar"
+                },
+                {
+                  "it": "Ci sono due bar.",
+                  "es": "Hay dos bares.",
+                  "suena": "chi sóno dúe bar"
+                }
+              ]
+            },
+            {
+              "titulo": "C'è dice que existe, dov'è pregunta dónde",
+              "texto": "dov'è ya lo viste en Cagliari: sirve cuando sabés que la cosa está y querés el camino. c'è es para antes: para saber si hay.",
+              "ejemplos": [
+                {
+                  "it": "C'è una farmacia?",
+                  "es": "¿Hay una farmacia?",
+                  "suena": "ché úna farmachía"
+                },
+                {
+                  "it": "Dov'è la farmacia?",
+                  "es": "¿Dónde está la farmacia?",
+                  "suena": "dovvé la farmachía"
+                }
+              ]
+            }
+          ],
           "palabras": [
             {
-              "it": "il",
-              "es": "el"
+              "it": "c'è",
+              "es": "hay (uno)",
+              "suena": "ché"
             },
             {
-              "it": "la",
-              "es": "la"
+              "it": "ci sono",
+              "es": "hay (varios)",
+              "suena": "chi sóno"
             },
             {
-              "it": "un",
-              "es": "un"
+              "it": "piazza",
+              "es": "plaza",
+              "suena": "piátsa"
             },
             {
-              "it": "una",
-              "es": "una"
+              "it": "chiesa",
+              "es": "iglesia",
+              "suena": "quiésa"
             },
             {
-              "it": "è",
-              "es": "es, está"
+              "it": "mercato",
+              "es": "mercado",
+              "suena": "mercáto"
             },
             {
-              "it": "in",
-              "es": "en"
+              "it": "strada",
+              "es": "calle",
+              "suena": "stráda"
             },
             {
-              "it": "e",
-              "es": "y"
+              "it": "vicino",
+              "es": "cerca",
+              "suena": "vichíno"
             },
             {
-              "it": "gatto",
-              "es": "gato"
-            },
-            {
-              "it": "cucina",
-              "es": "cocina"
-            },
-            {
-              "it": "casa",
-              "es": "casa"
+              "it": "lontano",
+              "es": "lejos",
+              "suena": "lontáno"
             }
           ],
           "frases": [
             {
-              "it": "Il gatto è in cucina.",
-              "es": "El gato está en la cocina."
+              "it": "C'è un bar in piazza.",
+              "es": "Hay un bar en la plaza.",
+              "suena": "ché un bar in piátsa"
             },
             {
-              "it": "Il gatto è in casa.",
-              "es": "El gato está en casa."
+              "it": "Ci sono due bar qui vicino.",
+              "es": "Hay dos bares acá cerca.",
+              "suena": "chi sóno dúe bar cuí vichíno"
+            },
+            {
+              "it": "Il mercato è lontano?",
+              "es": "¿El mercado queda lejos?",
+              "suena": "il mercáto e lontáno"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "Parado en una esquina de Palermo, preguntándole a una señora",
+              "renglones": [
+                {
+                  "quien": "Vos",
+                  "it": "Scusi, c'è un mercato qui vicino?",
+                  "es": "Disculpe, ¿hay un mercado acá cerca?"
+                },
+                {
+                  "quien": "Signora",
+                  "it": "Sì, c'è un mercato in piazza.",
+                  "es": "Sí, hay un mercado en la plaza."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "È lontano?",
+                  "es": "¿Queda lejos?"
+                },
+                {
+                  "quien": "Signora",
+                  "it": "No, è vicino. Sempre dritto e poi a destra.",
+                  "es": "No, está cerca. Siempre derecho y después a la derecha."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Grazie, signora!",
+                  "es": "¡Gracias, señora!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Qué contestó la señora?",
+                  "enunciado": "Sì, c'è un mercato in piazza.",
+                  "opciones": [
+                    "Que hay uno en la plaza",
+                    "Que no hay ninguno",
+                    "Que hay dos"
+                  ],
+                  "correcta": "Que hay uno en la plaza",
+                  "porque": "c'è es para una sola cosa. Si fueran dos diría ci sono."
+                },
+                {
+                  "consigna": "¿Para dónde hay que doblar?",
+                  "enunciado": "Sempre dritto e poi a destra.",
+                  "opciones": [
+                    "A la derecha",
+                    "A la izquierda",
+                    "Para atrás"
+                  ],
+                  "correcta": "A la derecha",
+                  "porque": "destra es derecha, de Cagliari. sinistra es la otra."
+                }
+              ]
             }
           ]
         },
         {
           "id": "palermo-2",
-          "titulo": "Ha fame",
-          "deQueVa": "Tener, querer, y lo que el gato busca",
+          "titulo": "Posso, voglio, devo",
+          "deQueVa": "Poder, querer y tener que, con otro verbo atrás",
+          "explicaciones": [
+            {
+              "titulo": "Tres verbos que mandan a otro",
+              "texto": "posso (puedo), voglio (quiero) y devo (tengo que) van siempre con otro verbo atrás, y ese otro queda tal cual sale del diccionario: andare, pagare, mangiare.",
+              "ejemplos": [
+                {
+                  "it": "Posso pagare qui?",
+                  "es": "¿Puedo pagar acá?",
+                  "suena": "pósso pagáre cuí"
+                },
+                {
+                  "it": "Devo andare a casa.",
+                  "es": "Tengo que ir a casa.",
+                  "suena": "dévo andáre a cása"
+                }
+              ]
+            },
+            {
+              "titulo": "Voglio suena fuerte",
+              "texto": "voglio es \"quiero\" y para pedir algo suena mandón; por eso en el bar se usa vorrei. Pero para contar lo que querés hacer está perfecto.",
+              "ejemplos": [
+                {
+                  "it": "Voglio mangiare la pizza.",
+                  "es": "Quiero comer la pizza.",
+                  "suena": "vóllo manyáre la pítsa"
+                },
+                {
+                  "it": "Non voglio pagare troppo.",
+                  "es": "No quiero pagar de más.",
+                  "suena": "non vóllo pagáre tróppo"
+                }
+              ]
+            }
+          ],
           "palabras": [
             {
-              "it": "ha",
-              "es": "tiene"
+              "it": "posso",
+              "es": "puedo",
+              "suena": "pósso"
             },
             {
-              "it": "fame",
-              "es": "hambre"
+              "it": "puoi",
+              "es": "podés",
+              "suena": "puói"
             },
             {
-              "it": "sonno",
-              "es": "sueño"
+              "it": "voglio",
+              "es": "quiero",
+              "suena": "vóllo"
             },
             {
-              "it": "vuole",
-              "es": "quiere"
+              "it": "devo",
+              "es": "tengo que",
+              "suena": "dévo"
             },
             {
-              "it": "non",
-              "es": "no"
+              "it": "devi",
+              "es": "tenés que",
+              "suena": "dévi"
             },
             {
-              "it": "ma",
-              "es": "pero"
+              "it": "andare",
+              "es": "ir",
+              "suena": "andáre"
             },
             {
-              "it": "pesce",
-              "es": "pescado"
+              "it": "pagare",
+              "es": "pagar",
+              "suena": "pagáre"
             },
             {
-              "it": "latte",
-              "es": "leche"
+              "it": "mangiare",
+              "es": "comer",
+              "suena": "manyáre"
             }
           ],
           "frases": [
             {
-              "it": "Il gatto ha fame.",
-              "es": "El gato tiene hambre."
+              "it": "Posso pagare qui?",
+              "es": "¿Puedo pagar acá?",
+              "suena": "pósso pagáre cuí"
             },
             {
-              "it": "Vuole il pesce.",
-              "es": "Quiere el pescado."
+              "it": "Voglio andare a casa.",
+              "es": "Quiero ir a casa.",
+              "suena": "vóllo andáre a cása"
             },
             {
-              "it": "Ma non vuole il latte.",
-              "es": "Pero no quiere la leche."
+              "it": "Devo mangiare adesso.",
+              "es": "Tengo que comer ahora.",
+              "suena": "dévo manyáre adésso"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "En un negocio, antes de llevarse algo",
+              "renglones": [
+                {
+                  "quien": "Vos",
+                  "it": "Scusi, posso pagare qui?",
+                  "es": "Disculpe, ¿puedo pagar acá?"
+                },
+                {
+                  "quien": "Signore",
+                  "it": "Sì, prego. Sono dieci euro.",
+                  "es": "Sí, adelante. Son diez euros."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Devo pagare adesso?",
+                  "es": "¿Tengo que pagar ahora?"
+                },
+                {
+                  "quien": "Signore",
+                  "it": "Sì, adesso. Grazie!",
+                  "es": "Sí, ahora. ¡Gracias!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Cuánto hay que pagar?",
+                  "enunciado": "Sono dieci euro.",
+                  "opciones": [
+                    "10 euros",
+                    "2 euros",
+                    "20 euros"
+                  ],
+                  "correcta": "10 euros",
+                  "porque": "dieci es diez, de los números de Olbia."
+                },
+                {
+                  "consigna": "\"Devo pagare adesso?\" quiere decir...",
+                  "enunciado": "Devo pagare adesso?",
+                  "opciones": [
+                    "¿Tengo que pagar ahora?",
+                    "¿Puedo pagar ahora?",
+                    "¿Quiero pagar ahora?"
+                  ],
+                  "correcta": "¿Tengo que pagar ahora?",
+                  "porque": "devo es la obligación. posso sería \"puedo\"."
+                }
+              ]
             }
           ]
         },
         {
           "id": "palermo-3",
-          "titulo": "Sul tavolo",
-          "deQueVa": "Dónde están las cosas",
+          "titulo": "Mi piace",
+          "deQueVa": "Decir qué te gusta y qué no",
+          "explicaciones": [
+            {
+              "titulo": "Lo que gusta es la cosa, no vos",
+              "texto": "mi piace se arma al revés que en castellano: no es \"yo gusto\" sino \"me gusta eso\". Si lo que gusta es uno, piace; si son varios, piacciono.",
+              "ejemplos": [
+                {
+                  "it": "Mi piace il caffè.",
+                  "es": "Me gusta el café.",
+                  "suena": "mi piáche il café"
+                },
+                {
+                  "it": "Mi piacciono i dolci.",
+                  "es": "Me gustan los dulces.",
+                  "suena": "mi piáchono i dólchi"
+                }
+              ]
+            },
+            {
+              "titulo": "Buono se come, bello se mira",
+              "texto": "buono es rico, de gusto. bello es lindo, de ver. Un café es buono; una piazza es bella.",
+              "ejemplos": [
+                {
+                  "it": "Il vino è buono.",
+                  "es": "El vino está rico.",
+                  "suena": "il víno e buóno"
+                },
+                {
+                  "it": "Palermo è bella.",
+                  "es": "Palermo es linda.",
+                  "suena": "palérmo e bélla"
+                }
+              ]
+            }
+          ],
           "palabras": [
             {
-              "it": "tavolo",
-              "es": "mesa"
+              "it": "piace",
+              "es": "gusta",
+              "suena": "piáche"
             },
             {
-              "it": "sedia",
-              "es": "silla"
+              "it": "piacciono",
+              "es": "gustan",
+              "suena": "piáchono"
             },
             {
-              "it": "giardino",
-              "es": "jardín"
+              "it": "dolci",
+              "es": "dulces",
+              "suena": "dólchi"
             },
             {
-              "it": "sul",
-              "es": "sobre el"
+              "it": "buono",
+              "es": "rico, bueno",
+              "suena": "buóno"
             },
             {
-              "it": "sulla",
-              "es": "sobre la"
+              "it": "bello",
+              "es": "lindo",
+              "suena": "béllo"
             },
             {
-              "it": "c'è",
-              "es": "hay"
+              "it": "anche",
+              "es": "también",
+              "suena": "ánque"
             },
             {
-              "it": "uccello",
-              "es": "pájaro"
+              "it": "niente",
+              "es": "nada",
+              "suena": "niénte"
             },
             {
-              "it": "solo",
-              "es": "solo, solamente"
+              "it": "troppo caro",
+              "es": "demasiado caro",
+              "suena": "tróppo cáro"
             }
           ],
           "frases": [
             {
-              "it": "Sul tavolo c'è il latte.",
-              "es": "Sobre la mesa hay leche."
+              "it": "Mi piace molto il caffè.",
+              "es": "Me gusta mucho el café.",
+              "suena": "mi piáche mólto il café"
             },
             {
-              "it": "In giardino c'è un uccello.",
-              "es": "En el jardín hay un pájaro."
+              "it": "Non mi piacciono i dolci.",
+              "es": "No me gustan los dulces.",
+              "suena": "non mi piáchono i dólchi"
             },
             {
-              "it": "C'è solo il latte.",
-              "es": "Solo hay leche."
+              "it": "Il vino è buono e non è troppo caro.",
+              "es": "El vino está rico y no es demasiado caro.",
+              "suena": "il víno e buóno e non e tróppo cáro"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "En la mesa, probando algo por primera vez",
+              "renglones": [
+                {
+                  "quien": "Amico",
+                  "it": "Ti piace la pasta?",
+                  "es": "¿Te gusta la pasta?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Sì, mi piace molto!",
+                  "es": "¡Sí, me gusta mucho!"
+                },
+                {
+                  "quien": "Amico",
+                  "it": "E il pesce? Ti piace anche il pesce?",
+                  "es": "¿Y el pescado? ¿Te gusta también el pescado?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "No, non mi piace. Non mangio pesce.",
+                  "es": "No, no me gusta. No como pescado."
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Qué le gusta?",
+                  "enunciado": "Sì, mi piace molto!",
+                  "opciones": [
+                    "La pasta",
+                    "El pescado",
+                    "Las dos cosas"
+                  ],
+                  "correcta": "La pasta",
+                  "porque": "Contesta a \"Ti piace la pasta?\", y del pescado dice que no después."
+                },
+                {
+                  "consigna": "\"Anche\" quiere decir...",
+                  "enunciado": "Ti piace anche il pesce?",
+                  "opciones": [
+                    "también",
+                    "tampoco",
+                    "mucho"
+                  ],
+                  "correcta": "también",
+                  "porque": "anche suma: te gusta esto, ¿y esto otro también?"
+                }
+              ]
             }
           ]
         },
         {
           "id": "palermo-4",
-          "titulo": "Cosa fa il gatto",
-          "deQueVa": "Lo que el gato hace",
+          "titulo": "Al bar, del bar, nel bar",
+          "deQueVa": "Las preposiciones pegadas al artículo",
+          "explicaciones": [
+            {
+              "titulo": "a + il = al",
+              "texto": "En italiano la preposición y el artículo se pegan y quedan una sola palabra. a + il da al, di + il da del, in + il da nel, su + il da sul. Con la femenina: alla, della, nella, sulla.",
+              "ejemplos": [
+                {
+                  "it": "Vado al mercato.",
+                  "es": "Voy al mercado.",
+                  "suena": "vádo al mercáto"
+                },
+                {
+                  "it": "Il caffè del bar è buono.",
+                  "es": "El café del bar está rico.",
+                  "suena": "il café del bar e buóno"
+                }
+              ]
+            },
+            {
+              "titulo": "Su es encima",
+              "texto": "su sola quiere decir sobre, encima. Pegada al artículo da sul y sulla, que es como se dice casi siempre.",
+              "ejemplos": [
+                {
+                  "it": "Il pane è sul tavolo.",
+                  "es": "El pan está sobre la mesa.",
+                  "suena": "il páne e sul távolo"
+                },
+                {
+                  "it": "Sulla strada c'è un bar.",
+                  "es": "Sobre la calle hay un bar.",
+                  "suena": "súlla stráda ché un bar"
+                }
+              ]
+            }
+          ],
           "palabras": [
             {
-              "it": "beve",
-              "es": "toma, bebe"
+              "it": "al",
+              "es": "al",
+              "suena": "al"
             },
             {
-              "it": "guarda",
-              "es": "mira"
+              "it": "alla",
+              "es": "a la",
+              "suena": "álla"
             },
             {
-              "it": "va",
-              "es": "va"
+              "it": "del",
+              "es": "del",
+              "suena": "del"
             },
             {
-              "it": "torna",
-              "es": "vuelve"
+              "it": "della",
+              "es": "de la",
+              "suena": "délla"
             },
             {
-              "it": "dorme",
-              "es": "duerme"
+              "it": "nel",
+              "es": "en el",
+              "suena": "nel"
             },
             {
-              "it": "vola",
-              "es": "vuela"
+              "it": "nella",
+              "es": "en la",
+              "suena": "nélla"
             },
             {
-              "it": "via",
-              "es": "lejos, se va"
+              "it": "sul",
+              "es": "sobre el",
+              "suena": "sul"
             },
             {
-              "it": "poi",
-              "es": "después"
-            },
-            {
-              "it": "adesso",
-              "es": "ahora"
-            },
-            {
-              "it": "a",
-              "es": "a"
-            },
-            {
-              "it": "l'",
-              "es": "el, la"
+              "it": "sulla",
+              "es": "sobre la",
+              "suena": "súlla"
             }
           ],
           "frases": [
             {
-              "it": "Il gatto beve il latte.",
-              "es": "El gato toma la leche."
+              "it": "Vado al mercato della piazza.",
+              "es": "Voy al mercado de la plaza.",
+              "suena": "vádo al mercáto délla piátsa"
             },
             {
-              "it": "Poi va in giardino.",
-              "es": "Después va al jardín."
+              "it": "Il pane è sul tavolo.",
+              "es": "El pan está sobre la mesa.",
+              "suena": "il páne e sul távolo"
             },
             {
-              "it": "Il gatto guarda l'uccello.",
-              "es": "El gato mira al pájaro."
-            },
+              "it": "Nella piazza c'è una chiesa.",
+              "es": "En la plaza hay una iglesia.",
+              "suena": "nélla piátsa ché úna quiésa"
+            }
+          ],
+          "dialogos": [
             {
-              "it": "L'uccello vola via.",
-              "es": "El pájaro se vuela."
-            },
-            {
-              "it": "Adesso torna a casa e dorme sulla sedia.",
-              "es": "Ahora vuelve a casa y duerme en la silla."
+              "situacion": "Quedando en encontrarse en algún lado",
+              "renglones": [
+                {
+                  "quien": "Amico",
+                  "it": "Dove sei?",
+                  "es": "¿Dónde estás?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Sono al bar della stazione.",
+                  "es": "Estoy en el bar de la estación."
+                },
+                {
+                  "quien": "Amico",
+                  "it": "Vado alla stazione adesso.",
+                  "es": "Voy a la estación ahora."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Bene, a domani!",
+                  "es": "¡Bien, hasta mañana!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Dónde está esperando?",
+                  "enunciado": "Sono al bar della stazione.",
+                  "opciones": [
+                    "En el bar de la estación",
+                    "En la estación, afuera",
+                    "En el bar de la plaza"
+                  ],
+                  "correcta": "En el bar de la estación",
+                  "porque": "al bar es dónde está; della stazione dice de qué bar se trata."
+                },
+                {
+                  "consigna": "¿Qué junta \"della\"?",
+                  "enunciado": "il bar della stazione",
+                  "opciones": [
+                    "di + la",
+                    "da + la",
+                    "a + la"
+                  ],
+                  "correcta": "di + la",
+                  "porque": "di es de, y con la femenina da della. a + la daría alla."
+                }
+              ]
             }
           ]
         },
         {
           "id": "palermo-5",
-          "titulo": "Il gatto ha fame",
-          "deQueVa": "El cuento entero. No hay palabras nuevas.",
-          "racconto": "il-gatto-ha-fame"
+          "titulo": "Ieri ho mangiato",
+          "deQueVa": "Contar lo que hiciste, con avere",
+          "explicaciones": [
+            {
+              "titulo": "Ho + lo hecho",
+              "texto": "Para contar algo que ya pasó se usa ho (que es \"tengo\") más el verbo terminado en -ato o -ito: ho mangiato, ho capito. Literalmente es \"tengo comido\", y suena raro en castellano, pero es así.",
+              "ejemplos": [
+                {
+                  "it": "Ieri ho mangiato la pizza.",
+                  "es": "Ayer comí la pizza.",
+                  "suena": "iéri o manyáto la pítsa"
+                },
+                {
+                  "it": "Ho capito.",
+                  "es": "Entendí.",
+                  "suena": "o capíto"
+                }
+              ]
+            },
+            {
+              "titulo": "Hay unos cuantos torcidos",
+              "texto": "Los más usados no terminan en -ato: fare da fatto, vedere da visto, dire da detto. Son pocos y se repiten todo el tiempo, así que se aprenden de oído.",
+              "ejemplos": [
+                {
+                  "it": "Ho fatto il caffè.",
+                  "es": "Hice el café.",
+                  "suena": "o fátto il café"
+                },
+                {
+                  "it": "Non ho visto il mercato.",
+                  "es": "No vi el mercado.",
+                  "suena": "non o vísto il mercáto"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "ieri",
+              "es": "ayer",
+              "suena": "iéri"
+            },
+            {
+              "it": "mangiato",
+              "es": "comido",
+              "suena": "manyáto"
+            },
+            {
+              "it": "comprato",
+              "es": "comprado",
+              "suena": "compráto"
+            },
+            {
+              "it": "capito",
+              "es": "entendido",
+              "suena": "capíto"
+            },
+            {
+              "it": "visto",
+              "es": "visto",
+              "suena": "vísto"
+            },
+            {
+              "it": "fatto",
+              "es": "hecho",
+              "suena": "fátto"
+            },
+            {
+              "it": "già",
+              "es": "ya",
+              "suena": "yá"
+            },
+            {
+              "it": "ancora",
+              "es": "todavía",
+              "suena": "ancóra"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Ieri ho mangiato al bar.",
+              "es": "Ayer comí en el bar.",
+              "suena": "iéri o manyáto al bar"
+            },
+            {
+              "it": "Ho già comprato il pane.",
+              "es": "Ya compré el pan.",
+              "suena": "o yá compráto il páne"
+            },
+            {
+              "it": "Non ho ancora visto la piazza.",
+              "es": "Todavía no vi la plaza.",
+              "suena": "non o ancóra vísto la piátsa"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "Contando el día que pasó",
+              "renglones": [
+                {
+                  "quien": "Amica",
+                  "it": "Hai mangiato?",
+                  "es": "¿Comiste?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Sì, ho mangiato al mercato. Molto buono!",
+                  "es": "Sí, comí en el mercado. ¡Muy rico!"
+                },
+                {
+                  "quien": "Amica",
+                  "it": "Hai visto la chiesa della piazza?",
+                  "es": "¿Viste la iglesia de la plaza?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "No, non ancora. Domani!",
+                  "es": "No, todavía no. ¡Mañana!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Dónde comió?",
+                  "enunciado": "Sì, ho mangiato al mercato.",
+                  "opciones": [
+                    "En el mercado",
+                    "En la iglesia",
+                    "En casa"
+                  ],
+                  "correcta": "En el mercado",
+                  "porque": "al mercato: a + il mercato, de la lección de antes."
+                },
+                {
+                  "consigna": "¿Vio la iglesia?",
+                  "enunciado": "No, non ancora. Domani!",
+                  "opciones": [
+                    "Todavía no",
+                    "Sí, ayer",
+                    "No le gustó"
+                  ],
+                  "correcta": "Todavía no",
+                  "porque": "ancora es todavía; con non adelante, todavía no."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "palermo-6",
+          "titulo": "Sono andato a Palermo",
+          "deQueVa": "El pasado de los verbos de moverse, con essere",
+          "explicaciones": [
+            {
+              "titulo": "Algunos van con sono, no con ho",
+              "texto": "Los verbos de ir y venir arman el pasado con sono: sono andato, sono arrivato. Y acá el final cambia según quién habla: un varón dice andato y una mujer andata.",
+              "ejemplos": [
+                {
+                  "it": "Sono andato al mercato.",
+                  "es": "Fui al mercado.",
+                  "suena": "sóno andáto al mercáto"
+                },
+                {
+                  "it": "Sono andata al mercato.",
+                  "es": "Fui al mercado (dice una mujer).",
+                  "suena": "sóno andáta al mercáto"
+                }
+              ]
+            },
+            {
+              "titulo": "Perché sirve para las dos cosas",
+              "texto": "perché es \"por qué\" cuando preguntás y \"porque\" cuando contestás. La misma palabra, igualita.",
+              "ejemplos": [
+                {
+                  "it": "Perché sei qui?",
+                  "es": "¿Por qué estás acá?",
+                  "suena": "perqué séi cuí"
+                },
+                {
+                  "it": "Perché mi piace Palermo.",
+                  "es": "Porque me gusta Palermo.",
+                  "suena": "perqué mi piáche palérmo"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "andato",
+              "es": "ido (fui)",
+              "suena": "andáto"
+            },
+            {
+              "it": "andata",
+              "es": "ida (fui, mujer)",
+              "suena": "andáta"
+            },
+            {
+              "it": "arrivato",
+              "es": "llegado",
+              "suena": "arriváto"
+            },
+            {
+              "it": "stato",
+              "es": "estado, sido",
+              "suena": "státo"
+            },
+            {
+              "it": "tornato",
+              "es": "vuelto",
+              "suena": "tornáto"
+            },
+            {
+              "it": "scorsa",
+              "es": "pasada",
+              "suena": "scórsa"
+            },
+            {
+              "it": "perché",
+              "es": "por qué, porque",
+              "suena": "perqué"
+            },
+            {
+              "it": "lavorare",
+              "es": "trabajar",
+              "suena": "lavoráre"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Ieri sono andato al mercato.",
+              "es": "Ayer fui al mercado.",
+              "suena": "iéri sóno andáto al mercáto"
+            },
+            {
+              "it": "Sono arrivato a Palermo la settimana scorsa.",
+              "es": "Llegué a Palermo la semana pasada.",
+              "suena": "sóno arriváto a palérmo la settimána scórsa"
+            },
+            {
+              "it": "Perché non sei tornato?",
+              "es": "¿Por qué no volviste?",
+              "suena": "perqué non séi tornáto"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "Alguien te pregunta desde cuándo estás en Italia",
+              "renglones": [
+                {
+                  "quien": "Signora",
+                  "it": "Sei arrivato ieri?",
+                  "es": "¿Llegaste ayer?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "No, sono arrivato la settimana scorsa.",
+                  "es": "No, llegué la semana pasada."
+                },
+                {
+                  "quien": "Signora",
+                  "it": "E perché sei a Palermo?",
+                  "es": "¿Y por qué estás en Palermo?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Perché voglio lavorare qui.",
+                  "es": "Porque quiero trabajar acá."
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Cuándo llegó?",
+                  "enunciado": "Sono arrivato la settimana scorsa.",
+                  "opciones": [
+                    "La semana pasada",
+                    "Ayer",
+                    "Hace un año"
+                  ],
+                  "correcta": "La semana pasada",
+                  "porque": "scorsa es pasada: la settimana scorsa, la semana que pasó."
+                },
+                {
+                  "consigna": "¿Por qué vino?",
+                  "enunciado": "Perché voglio lavorare qui.",
+                  "opciones": [
+                    "Porque quiere trabajar acá",
+                    "Porque tiene familia acá",
+                    "Porque le gusta el mar"
+                  ],
+                  "correcta": "Porque quiere trabajar acá",
+                  "porque": "voglio lavorare: quiero trabajar, con el verbo entero atrás."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "palermo-7",
+          "titulo": "Cercare casa",
+          "deQueVa": "Alquilar una pieza: lo que vas a tener que preguntar",
+          "explicaciones": [
+            {
+              "titulo": "Affitto es el alquiler",
+              "texto": "in affitto es \"en alquiler\". Una stanza es una pieza sola, y un appartamento es el departamento entero.",
+              "ejemplos": [
+                {
+                  "it": "Cerco una stanza in affitto.",
+                  "es": "Busco una pieza en alquiler.",
+                  "suena": "chérco úna stántsa in affítto"
+                },
+                {
+                  "it": "Quanto costa l'affitto?",
+                  "es": "¿Cuánto cuesta el alquiler?",
+                  "suena": "cuánto cósta laffítto"
+                }
+              ]
+            },
+            {
+              "titulo": "Lo que siempre se pregunta",
+              "texto": "Antes de ver nada conviene saber tres cosas: si las cuentas están incluidas, si hay que dejar depósito y cuántos meses dura el contrato.",
+              "ejemplos": [
+                {
+                  "it": "C'è il bagno nella stanza?",
+                  "es": "¿Tiene baño en la pieza?",
+                  "suena": "ché il bánio nélla stántsa"
+                },
+                {
+                  "it": "Posso vedere la casa?",
+                  "es": "¿Puedo ver la casa?",
+                  "suena": "pósso vedére la cása"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "cerco",
+              "es": "busco",
+              "suena": "chérco"
+            },
+            {
+              "it": "affitto",
+              "es": "alquiler",
+              "suena": "affítto"
+            },
+            {
+              "it": "stanza",
+              "es": "pieza, habitación",
+              "suena": "stántsa"
+            },
+            {
+              "it": "bagno",
+              "es": "baño",
+              "suena": "bánio"
+            },
+            {
+              "it": "cucina",
+              "es": "cocina",
+              "suena": "cuchína"
+            },
+            {
+              "it": "quattrocento",
+              "es": "cuatrocientos",
+              "suena": "cuattrochénto"
+            },
+            {
+              "it": "con",
+              "es": "con",
+              "suena": "con"
+            },
+            {
+              "it": "vedere",
+              "es": "ver",
+              "suena": "vedére"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Cerco una stanza in affitto.",
+              "es": "Busco una pieza en alquiler.",
+              "suena": "chérco úna stántsa in affítto"
+            },
+            {
+              "it": "La stanza ha un bagno e una cucina.",
+              "es": "La pieza tiene baño y cocina.",
+              "suena": "la stántsa a un bánio e úna cuchína"
+            },
+            {
+              "it": "Posso vedere la casa domani?",
+              "es": "¿Puedo ver la casa mañana?",
+              "suena": "pósso vedére la cása dománi"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "Llamando por un aviso de alquiler",
+              "renglones": [
+                {
+                  "quien": "Vos",
+                  "it": "Buongiorno, cerco una stanza in affitto.",
+                  "es": "Buenos días, busco una pieza en alquiler."
+                },
+                {
+                  "quien": "Signora",
+                  "it": "C'è una stanza con bagno. Sono quattrocento euro.",
+                  "es": "Hay una pieza con baño. Son cuatrocientos euros."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Posso vedere la casa domani?",
+                  "es": "¿Puedo ver la casa mañana?"
+                },
+                {
+                  "quien": "Signora",
+                  "it": "Sì, domani. C'è anche una cucina.",
+                  "es": "Sí, mañana. También hay una cocina."
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Qué tiene la pieza?",
+                  "enunciado": "C'è una stanza con bagno.",
+                  "opciones": [
+                    "Baño",
+                    "Cocina sola",
+                    "Nada"
+                  ],
+                  "correcta": "Baño",
+                  "porque": "con bagno: con baño. La cocina la nombra después, aparte."
+                },
+                {
+                  "consigna": "¿Cuándo la puede ver?",
+                  "enunciado": "Sì, domani.",
+                  "opciones": [
+                    "Mañana",
+                    "Hoy",
+                    "La semana que viene"
+                  ],
+                  "correcta": "Mañana",
+                  "porque": "domani es mañana, de la lección del tiempo en Cagliari."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "palermo-8",
+          "titulo": "In farmacia",
+          "deQueVa": "Decir qué te duele y pedir un remedio",
+          "explicaciones": [
+            {
+              "titulo": "Ho mal di...",
+              "texto": "El dolor se dice con ho: ho mal di testa, ho mal di stomaco. Es \"tengo mal de cabeza\", tal cual.",
+              "ejemplos": [
+                {
+                  "it": "Ho mal di testa.",
+                  "es": "Me duele la cabeza.",
+                  "suena": "o mal di tésta"
+                },
+                {
+                  "it": "Ho mal di stomaco.",
+                  "es": "Me duele el estómago.",
+                  "suena": "o mal di stómaco"
+                }
+              ]
+            },
+            {
+              "titulo": "La farmacia resuelve mucho",
+              "texto": "En Italia el farmacéutico atiende y aconseja. Para algunas medicinas hace falta la ricetta del médico; para las comunes, no.",
+              "ejemplos": [
+                {
+                  "it": "Vorrei una medicina.",
+                  "es": "Quisiera un remedio.",
+                  "suena": "vorréi úna medichína"
+                },
+                {
+                  "it": "C'è una farmacia aperta?",
+                  "es": "¿Hay una farmacia abierta?",
+                  "suena": "ché úna farmachía apérta"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "mal di testa",
+              "es": "dolor de cabeza",
+              "suena": "mal di tésta"
+            },
+            {
+              "it": "stomaco",
+              "es": "estómago",
+              "suena": "stómaco"
+            },
+            {
+              "it": "febbre",
+              "es": "fiebre",
+              "suena": "fébbre"
+            },
+            {
+              "it": "farmacia",
+              "es": "farmacia",
+              "suena": "farmachía"
+            },
+            {
+              "it": "medicina",
+              "es": "remedio",
+              "suena": "medichína"
+            },
+            {
+              "it": "ricetta",
+              "es": "receta",
+              "suena": "richétta"
+            },
+            {
+              "it": "meglio",
+              "es": "mejor",
+              "suena": "mélio"
+            },
+            {
+              "it": "serve",
+              "es": "hace falta, sirve",
+              "suena": "sérve"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Ho mal di testa e febbre.",
+              "es": "Me duele la cabeza y tengo fiebre.",
+              "suena": "o mal di tésta e fébbre"
+            },
+            {
+              "it": "Dov'è la farmacia?",
+              "es": "¿Dónde está la farmacia?",
+              "suena": "dovvé la farmachía"
+            },
+            {
+              "it": "Vorrei una medicina, per favore.",
+              "es": "Quisiera un remedio, por favor.",
+              "suena": "vorréi úna medichína per favóre"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "En el mostrador de la farmacia",
+              "renglones": [
+                {
+                  "quien": "Vos",
+                  "it": "Buongiorno. Ho mal di testa.",
+                  "es": "Buenos días. Me duele la cabeza."
+                },
+                {
+                  "quien": "Farmacista",
+                  "it": "Ha anche la febbre?",
+                  "es": "¿Tiene fiebre también?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "No, non ho la febbre.",
+                  "es": "No, no tengo fiebre."
+                },
+                {
+                  "quien": "Farmacista",
+                  "it": "Ecco una medicina. Non serve la ricetta.",
+                  "es": "Acá tiene un remedio. No hace falta receta."
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Qué le pasa?",
+                  "enunciado": "Ho mal di testa.",
+                  "opciones": [
+                    "Le duele la cabeza",
+                    "Tiene fiebre",
+                    "Le duele el estómago"
+                  ],
+                  "correcta": "Le duele la cabeza",
+                  "porque": "mal di testa es el dolor de cabeza. La fiebre la descarta después."
+                },
+                {
+                  "consigna": "¿Necesita receta?",
+                  "enunciado": "Non serve la ricetta.",
+                  "opciones": [
+                    "No",
+                    "Sí",
+                    "Solo para la fiebre"
+                  ],
+                  "correcta": "No",
+                  "porque": "non serve es \"no hace falta\"."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "palermo-9",
+          "titulo": "I documenti",
+          "deQueVa": "El turno en la oficina: lo que te van a pedir",
+          "explicaciones": [
+            {
+              "titulo": "El codice fiscale es el primero",
+              "texto": "Es el número que te identifica en Italia, como el CUIL. Sin eso no se puede abrir una cuenta, firmar un alquiler ni anotarse en el médico, así que suele ser el primer trámite de todos.",
+              "ejemplos": [
+                {
+                  "it": "Ho un appuntamento in ufficio.",
+                  "es": "Tengo un turno en la oficina.",
+                  "suena": "o un appuntaménto in uffícho"
+                },
+                {
+                  "it": "Questo è il mio documento.",
+                  "es": "Este es mi documento.",
+                  "suena": "cuésto e il mío documénto"
+                }
+              ]
+            },
+            {
+              "titulo": "Siempre piden el indirizzo",
+              "texto": "indirizzo es la dirección: calle y número. Te la van a pedir en cada formulario, así que conviene tenerla escrita y saber decirla.",
+              "ejemplos": [
+                {
+                  "it": "Qual è il tuo indirizzo?",
+                  "es": "¿Cuál es tu dirección?",
+                  "suena": "cuál e il túo indirítso"
+                },
+                {
+                  "it": "Devo firmare il modulo?",
+                  "es": "¿Tengo que firmar el formulario?",
+                  "suena": "dévo firmáre il módulo"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "documento",
+              "es": "documento",
+              "suena": "documénto"
+            },
+            {
+              "it": "modulo",
+              "es": "formulario",
+              "suena": "módulo"
+            },
+            {
+              "it": "appuntamento",
+              "es": "turno, cita",
+              "suena": "appuntaménto"
+            },
+            {
+              "it": "ufficio",
+              "es": "oficina",
+              "suena": "uffícho"
+            },
+            {
+              "it": "indirizzo",
+              "es": "dirección",
+              "suena": "indirítso"
+            },
+            {
+              "it": "questo",
+              "es": "este",
+              "suena": "cuésto"
+            },
+            {
+              "it": "firmare",
+              "es": "firmar",
+              "suena": "firmáre"
+            },
+            {
+              "it": "via",
+              "es": "calle (en una dirección)",
+              "suena": "vía"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Ho un appuntamento in ufficio.",
+              "es": "Tengo un turno en la oficina.",
+              "suena": "o un appuntaménto in uffícho"
+            },
+            {
+              "it": "Questo è il mio documento.",
+              "es": "Este es mi documento.",
+              "suena": "cuésto e il mío documénto"
+            },
+            {
+              "it": "Devo firmare questo modulo?",
+              "es": "¿Tengo que firmar este formulario?",
+              "suena": "dévo firmáre cuésto módulo"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "En la ventanilla, con el turno sacado",
+              "renglones": [
+                {
+                  "quien": "Impiegato",
+                  "it": "Buongiorno. Ha un appuntamento?",
+                  "es": "Buenos días. ¿Tiene turno?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Sì, oggi. Questo è il mio documento.",
+                  "es": "Sí, hoy. Este es mi documento."
+                },
+                {
+                  "quien": "Impiegato",
+                  "it": "Bene. Serve anche l'indirizzo.",
+                  "es": "Bien. También hace falta la dirección."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Abito in via Roma, venti.",
+                  "es": "Vivo en via Roma veinte."
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Cuándo es el turno?",
+                  "enunciado": "Sì, oggi.",
+                  "opciones": [
+                    "Hoy",
+                    "Mañana",
+                    "La semana que viene"
+                  ],
+                  "correcta": "Hoy",
+                  "porque": "oggi es hoy, de la lección de la hora y los días."
+                },
+                {
+                  "consigna": "¿Qué le piden además del documento?",
+                  "enunciado": "Serve anche l'indirizzo.",
+                  "opciones": [
+                    "La dirección",
+                    "El número de teléfono",
+                    "La receta"
+                  ],
+                  "correcta": "La dirección",
+                  "porque": "indirizzo es la dirección: calle y número."
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "palermo-10",
+          "titulo": "Al mercato di Ballarò",
+          "deQueVa": "Comprar por peso y preguntar el precio",
+          "explicaciones": [
+            {
+              "titulo": "Un chilo, mezzo chilo, un etto",
+              "texto": "En el mercado se pide por peso. Un etto son cien gramos, y es la medida con la que se compra el fiambre y el queso. mezzo chilo es medio kilo.",
+              "ejemplos": [
+                {
+                  "it": "Vorrei un chilo di pane.",
+                  "es": "Quisiera un kilo de pan.",
+                  "suena": "vorréi un quílo di páne"
+                },
+                {
+                  "it": "Mezzo chilo, per favore.",
+                  "es": "Medio kilo, por favor.",
+                  "suena": "métso quílo per favóre"
+                }
+              ]
+            },
+            {
+              "titulo": "Quanto viene?",
+              "texto": "En el mercado se escucha más quanto viene? que quanto costa?. Quiere decir lo mismo: cuánto sale.",
+              "ejemplos": [
+                {
+                  "it": "Quanto viene un chilo?",
+                  "es": "¿Cuánto sale un kilo?",
+                  "suena": "cuánto viéne un quílo"
+                },
+                {
+                  "it": "Il pesce è fresco?",
+                  "es": "¿El pescado es fresco?",
+                  "suena": "il pésche e frésco"
+                }
+              ]
+            }
+          ],
+          "palabras": [
+            {
+              "it": "chilo",
+              "es": "kilo",
+              "suena": "quílo"
+            },
+            {
+              "it": "mezzo",
+              "es": "medio",
+              "suena": "métso"
+            },
+            {
+              "it": "etto",
+              "es": "cien gramos",
+              "suena": "étto"
+            },
+            {
+              "it": "fresco",
+              "es": "fresco",
+              "suena": "frésco"
+            },
+            {
+              "it": "viene",
+              "es": "sale, viene",
+              "suena": "viéne"
+            },
+            {
+              "it": "arancina",
+              "es": "arancina",
+              "suena": "aranchína"
+            },
+            {
+              "it": "cannolo",
+              "es": "cannolo",
+              "suena": "cannólo"
+            },
+            {
+              "it": "borsa",
+              "es": "bolsa",
+              "suena": "bórsa"
+            }
+          ],
+          "frases": [
+            {
+              "it": "Vorrei un chilo di pesce fresco.",
+              "es": "Quisiera un kilo de pescado fresco.",
+              "suena": "vorréi un quílo di pésche frésco"
+            },
+            {
+              "it": "Quanto viene mezzo chilo?",
+              "es": "¿Cuánto sale medio kilo?",
+              "suena": "cuánto viéne métso quílo"
+            },
+            {
+              "it": "Un cannolo e un'arancina, per favore.",
+              "es": "Un cannolo y una arancina, por favor.",
+              "suena": "un cannólo e úna aranchína per favóre"
+            }
+          ],
+          "dialogos": [
+            {
+              "situacion": "En un puesto del mercado de Ballarò",
+              "renglones": [
+                {
+                  "quien": "Venditore",
+                  "it": "Buongiorno! Prego?",
+                  "es": "¡Buenos días! ¿Qué va a llevar?"
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Vorrei mezzo chilo di pesce. È fresco?",
+                  "es": "Quisiera medio kilo de pescado. ¿Es fresco?"
+                },
+                {
+                  "quien": "Venditore",
+                  "it": "Sì, fresco! Viene otto euro.",
+                  "es": "¡Sí, fresco! Sale ocho euros."
+                },
+                {
+                  "quien": "Vos",
+                  "it": "Bene. Ecco. E anche un'arancina!",
+                  "es": "Bien. Acá tiene. ¡Y también una arancina!"
+                }
+              ],
+              "preguntas": [
+                {
+                  "consigna": "¿Cuánto pescado pidió?",
+                  "enunciado": "Vorrei mezzo chilo di pesce.",
+                  "opciones": [
+                    "Medio kilo",
+                    "Un kilo",
+                    "Cien gramos"
+                  ],
+                  "correcta": "Medio kilo",
+                  "porque": "mezzo es medio. Un etto serían cien gramos."
+                },
+                {
+                  "consigna": "¿Cuánto sale?",
+                  "enunciado": "Viene otto euro.",
+                  "opciones": [
+                    "8 euros",
+                    "18 euros",
+                    "80 euros"
+                  ],
+                  "correcta": "8 euros",
+                  "porque": "otto es ocho. viene acá es \"sale\"."
+                }
+              ]
+            }
+          ]
         },
         {
           "id": "palermo-prueba",
           "titulo": "La prueba de Palermo",
           "deQueVa": "Si la pasás, se abre Napoli",
           "prueba": true,
-          "paraAprobar": 6,
-          "cuantas": 8
+          "paraAprobar": 8,
+          "cuantas": 12
         }
       ],
       "album": [
-        { "archivo": "palermo-1.jpg", "texto": "Selfie en la Catedral" },
+        {
+          "archivo": "palermo-1.jpg",
+          "texto": "Selfie en la Catedral"
+        },
         {
           "archivo": "palermo-2.jpg",
           "texto": "Arancina en el Mercado de Ballarò"
@@ -3191,7 +4459,8 @@
           "archivo": "palermo-5.jpg",
           "texto": "Selfie en Quattro Canti con el vendedor"
         }
-      ]
+      ],
+      "racconto": "una-settimana-a-palermo"
     },
     {
       "id": "napoli",
