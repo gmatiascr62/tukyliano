@@ -226,6 +226,11 @@ Future<Progreso> progresoDeMentira({
 /// del mapa en cada color.
 Future<Progreso> progresoConLuces(int cuantas) async {
   final progreso = await progresoDeMentira();
+  // Con PRUEBA=olbia se mira el mapa de alguien que ya ganó una ciudad,
+  // que es cuando el renglón de abajo puede nombrar lo que está en
+  // juego. Sin eso no hay nada que perder y el renglón no nombra nada.
+  final ganada = Platform.environment['PRUEBA'] ?? '';
+  if (ganada.isNotEmpty) progreso.termino('$ganada-prueba');
   for (var i = 1; i <= cuantas * leccionesPorLuz; i++) {
     progreso.termino('luz-$i');
   }

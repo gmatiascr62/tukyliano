@@ -132,7 +132,9 @@ void main() {
       app: TukylianoApp(progreso: progreso, camino: caminoDePrueba()),
     );
 
-    expect(find.text('Vas bien'), findsOneWidget);
+    // Con seis luces no hace falta nombrar ninguna ciudad: no hay nada
+    // en juego esta semana ni las cinco siguientes.
+    expect(find.text('Vas firme'), findsOneWidget);
     expect(find.text('Cuidado'), findsNothing);
   });
 

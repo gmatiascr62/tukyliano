@@ -245,14 +245,54 @@ void main() {
       );
     });
 
-    test('la palabra es la de la última luz prendida', () {
-      expect(animoDe(0).etiqueta, 'Cuidado');
-      expect(animoDe(1).etiqueta, 'Cuidado');
-      expect(animoDe(2).etiqueta, 'Cuidado');
-      expect(animoDe(3).etiqueta, 'Seguilo');
-      expect(animoDe(4).etiqueta, 'Seguilo');
-      expect(animoDe(5).etiqueta, 'Vas bien');
-      expect(animoDe(6).etiqueta, 'Vas bien');
+    test('el color es el de la última luz prendida', () {
+      expect(animoDe(0), Animo.cuidado);
+      expect(animoDe(2), Animo.cuidado);
+      expect(animoDe(3), Animo.seguilo);
+      expect(animoDe(4), Animo.seguilo);
+      expect(animoDe(5), Animo.bien);
+      expect(animoDe(6), Animo.bien);
+    });
+
+    test('el renglón nombra la ciudad que está en juego', () {
+      // "Cuidado" no explica nada. Lo que de verdad pasa es que la
+      // semana que viene se deshace la prueba de Olbia y Cagliari se
+      // cierra, así que eso es lo que dice.
+      expect(loQueEstaEnJuego(1, 'Cagliari'), 'Estás por perder Cagliari');
+      expect(loQueEstaEnJuego(3, 'Cagliari'), 'Cagliari está a salvo');
+      expect(loQueEstaEnJuego(6, 'Cagliari'), 'Vas firme');
+    });
+
+    test('sin ninguna ciudad ganada no se nombra ninguna', () {
+      // El que recién empieza no tiene nada que perder, y un cartel que
+      // le diga que está por perder algo sería mentira.
+      expect(loQueEstaEnJuego(0, ''), 'Cuidado');
+      expect(loQueEstaEnJuego(3, ''), 'Vas bien');
+      expect(loQueEstaEnJuego(6, ''), 'Vas firme');
+    });
+
+    test('la ciudad en juego es la que se cierra, no la que se deshace', () {
+      // Se deshace la prueba de Olbia, pero la que se pierde —la que
+      // deja de poder abrirse— es Cagliari, la de más adelante.
+      final progreso = _nuevo()..termino('olbia-prueba');
+      expect(ciudadEnRiesgo(_camino, progreso), 'cagliari');
+
+      progreso.termino('cagliari-prueba');
+      expect(ciudadEnRiesgo(_camino, progreso), 'palermo');
+    });
+
+    test('sin pruebas aprobadas no hay ciudad en juego', () {
+      expect(ciudadEnRiesgo(_camino, _nuevo()), '');
+    });
+
+    test('en la última ciudad del camino se pierde ella misma', () {
+      // No hay ninguna adelante que cerrar, así que lo que está en
+      // juego es la que se estaba haciendo.
+      final progreso = _nuevo()
+        ..termino('olbia-prueba')
+        ..termino('cagliari-prueba')
+        ..termino('palermo-prueba');
+      expect(ciudadEnRiesgo(_camino, progreso), 'palermo');
     });
   });
 }
